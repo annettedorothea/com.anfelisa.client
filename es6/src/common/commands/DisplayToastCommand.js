@@ -7,12 +7,8 @@ import AbstractDisplayToastCommand from "../../../gen/common/commands/AbstractDi
 
 export default class DisplayToastCommand extends AbstractDisplayToastCommand {
     execute(data) {
-        if (!data.message) {
-            if (data.error && typeof data.error === "object") {
-                data.message = data.error;
-                data.message.type = "error";
-            }
-            data.message = {};
+        if (data.error) {
+            data.message = data.error;
         }
         data.message.id = data.messages.length;
         data.message.visible = true;

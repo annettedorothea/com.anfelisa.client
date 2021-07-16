@@ -57,7 +57,8 @@ export default class AbstractInitialLoginCommand extends AsynchronousCommand {
 			new TriggerAction().publish(
 				new DisplayToastAction(), 
 					{
-						message: data.message
+						message: data.message, 
+						error: data.error
 					}
 			)
 			new TriggerAction().publish(

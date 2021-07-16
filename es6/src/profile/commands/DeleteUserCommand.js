@@ -21,7 +21,6 @@ export default class DeleteUserCommand extends AbstractDeleteUserCommand {
     }
     handleError(data, resolve) {
         this.addErrorOutcome(data);
-        data.message = data.error;
         data.showDeleteUserDialog = undefined;
         resolve(data);
     }

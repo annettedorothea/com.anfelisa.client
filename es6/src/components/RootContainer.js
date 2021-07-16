@@ -15,6 +15,8 @@ import {Spinner} from "./rootContainer/Spinner";
 import {MainView} from "./rootContainer/MainView";
 import {MessagesItem} from "./rootContainer/MessagesItem";
 import {SaveBugDialog} from "./rootContainer/SaveBugDialog";
+import {VersionMismatchDialog} from "./rootContainer/VersionMismatchDialog";
+import {VersionMismatchErrorDialog} from "./rootContainer/VersionMismatchErrorDialog";
 
 export let setRootContainerState;
 
@@ -53,6 +55,8 @@ const content = (props) => (
 	<div>
 		<Spinner {...props.spinner} language={props.language}/>
 		<SaveBugDialog {...props.saveBugDialog} language={props.language}/>
+		<VersionMismatchDialog {...props.versionMismatchDialog}  language={props.language}/>
+		<VersionMismatchErrorDialog {...props.versionMismatchErrorDialog}  language={props.language}/>
 		<div className="toastContainer">
 			{props.messages ? props.messages.map((message) =>
 				<MessagesItem {...message} language={props.language} key={message.id}/>) : []}

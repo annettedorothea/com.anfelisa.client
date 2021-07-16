@@ -49,9 +49,7 @@ RouteChanged
 	) triggers (
 		category.LoadCategoryTree
 	)
-	on profile (
-		set rootContainer.mainView.profileView
-	) triggers ( 
+	on profile triggers ( 
 		profile.LoadUser
 	)
 	on nextCard (
@@ -96,7 +94,7 @@ Logout
 		set rootContainer.password
 	) triggers ( Route )
 	
-DisplayToast ( message ) 
+DisplayToast ( message, error ) 
 	fromAppState( rootContainer.language, rootContainer.messages)
 	on ok ( 
 		set rootContainer.messages
@@ -122,7 +120,7 @@ CancelVersionMismatchDialog
 	on ok (set rootContainer.versionMismatchDialog.display)
 
 DisplayVersionMismatchErrorDialog
-	on ok (set rootContainer.versionMismatchDialog.display)
+	on ok (set rootContainer.versionMismatchErrorDialog.display)
 
 async CallSaveBug
 	fromAppState( rootContainer.loggedInUser.username )

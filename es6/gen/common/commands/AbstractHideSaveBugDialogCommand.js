@@ -32,7 +32,8 @@ export default class AbstractHideSaveBugDialogCommand extends SynchronousCommand
 			new TriggerAction().publish(
 				new DisplayToastAction(), 
 					{
-						message: data.message
+						message: data.message, 
+						error: data.error
 					}
 			)
 		}

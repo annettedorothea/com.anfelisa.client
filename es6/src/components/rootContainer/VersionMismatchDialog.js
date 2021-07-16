@@ -20,12 +20,12 @@ export const VersionMismatchDialog = (props) => {
 					className="yes"
 					onClick={() => window.location.reload(true)}
 				>
-					Texts.container.yes[props.language]
+					{Texts.container.yes[props.language]}
 				</button>
 				<button
 					onClick={() => cancelVersionMismatchDialog()}
 				>
-					Texts.container.no[props.language]
+					{Texts.container.no[props.language]}
 				</button>
 			</div>
 		</div>

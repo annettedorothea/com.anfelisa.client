@@ -6,14 +6,25 @@
 
 
 import React from "react";
+import {Texts} from "../../app/Texts";
 
 
 export const VersionMismatchErrorDialog = (props) => {
-	const json = JSON.stringify(props, null, '\t');
-	return <div>
-		<div>{props.display}</div>
-		<pre>{json}</pre>
-	</div> 
+	if (props.display === true) {
+		return <div className="modal">
+			<div className="modalContent danger">
+				<h2>{Texts.container.versionMismatchError[props.language]}</h2>
+				<div className="message">{Texts.container.versionMismatchErrorMessage[props.language]}</div>
+				<button
+					className="yes"
+					onClick={() => window.location.reload(true)}
+				>
+					{Texts.container.ok[props.language]}
+				</button>
+			</div>
+		</div>
+	}
+	return null;
 }
 
 

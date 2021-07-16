@@ -26,7 +26,6 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             data.dashboardView = {};
             this.addDashboardOutcome(data);
         } else if (data.hash === "#profile" && this.isUserLoggedIn(data)) {
-            data.profileView = {};
             this.addProfileOutcome(data);
         } else if (data.hash.startsWith("#categories") && hashes.length >= 2 && this.isUserLoggedIn(data)) {
             data.rootCategoryId = hashes[1];

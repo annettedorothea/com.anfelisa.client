@@ -24,7 +24,6 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.RouteChangedResetPasswordEvent', AppState.set_rootContainer_resetPasswordView);
 		ACEController.registerListener('common.RouteChangedDashboardEvent', AppState.set_rootContainer_dashboardView);
 		ACEController.registerListener('common.RouteChangedCategoriesEvent', AppState.set_rootContainer_authorView);
-		ACEController.registerListener('common.RouteChangedProfileEvent', AppState.set_rootContainer_profileView);
 		ACEController.registerListener('common.RouteChangedNextCardEvent', AppState.set_rootContainer_queryCardView);
 		ACEController.registerListener('common.RouteChangedBoxSettingsEvent', AppState.set_rootContainer_boxSettingsView);
 		ACEController.registerListener('common.RouteChangedAllActiveCardsEvent', AppState.set_rootContainer_allActiveCardsView);
@@ -40,7 +39,7 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.DisplaySaveBugDialogOkEvent', AppState.set_rootContainer_saveBugDialog_display);
 		ACEController.registerListener('common.DisplayVersionMismatchDialogOkEvent', AppState.set_rootContainer_versionMismatchDialog_display);
 		ACEController.registerListener('common.CancelVersionMismatchDialogOkEvent', AppState.set_rootContainer_versionMismatchDialog_display);
-		ACEController.registerListener('common.DisplayVersionMismatchErrorDialogOkEvent', AppState.set_rootContainer_versionMismatchDialog_display);
+		ACEController.registerListener('common.DisplayVersionMismatchErrorDialogOkEvent', AppState.set_rootContainer_versionMismatchErrorDialog_display);
 		ACEController.registerListener('common.CancelSaveBugDialogOkEvent', AppState.set_rootContainer_saveBugDialog_display);
 		ACEController.registerListener('common.HideSaveBugDialogOkEvent', AppState.set_rootContainer_saveBugDialog_display);
 	}

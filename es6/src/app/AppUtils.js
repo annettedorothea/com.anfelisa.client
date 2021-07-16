@@ -56,7 +56,7 @@ export function startApp() {
                 displayVersionMismatchDialog();
             }
         });
-    }, 180 * 1000);
+    }, 300 * 1000);
 }
 
 function loadActualClientVersion() {
@@ -178,9 +178,9 @@ export function displayUnexpectedError(error) {
             displayVersionMismatchErrorDialog();
         } else {
             if (typeof error !== "object") {
-                displayToast(createError("unknownError", error));
+                displayToast({}, createError("unknownError", error));
             } else {
-                displayToast(error);
+                displayToast({}, normalizeError(error));
             }
             displaySaveBugDialog();
         }
@@ -191,6 +191,15 @@ export function createInfoMessage(textKey) {
     return {
         textKey,
         type: "info"
+    }
+}
+
+function normalizeError(error) {
+    return {
+        code: error.code ? error.code : 0,
+        text: error.text ? error.text : "unknownError",
+        textKey: error.textKey ? error.textKey : error.code && error.code === 401 ? "loginFailed" : "unknownError",
+        type: "error"
     }
 }
 
@@ -210,25 +219,25 @@ export function isUnauthorized(message) {
 
 export function getMessageText(message, language) {
     if (message && language) {
-        if (message.type === "error" && Texts.messages.unknownError && Texts.messages.unknownError[language]) {
+        if (message.type === "error") {
+            if (message.textKey && Texts.messages[message.textKey] && Texts.messages[message.textKey][language]) {
+                return Texts.messages[message.textKey][language];
+            }
             if (message.text && typeof message.text !== "object") {
                 return Texts.messages.unknownError[language].replace("{0}", message.text);
             }
             if (message.code && typeof message.code !== "object") {
                 return Texts.messages.unknownError[language].replace("{0}", message.code);
             }
-            if (message.textKey && typeof message.textKey !== "object") {
-                return Texts.messages.unknownError[language].replace("{0}", message.textKey);
+            if (language) {
+                return Texts.messages.unknown[language];
             }
         }
         if (message.textKey && Texts.messages[message.textKey] && Texts.messages[message.textKey][language]) {
             return Texts.messages[message.textKey][language];
         }
     }
-    if (language) {
-        return Texts.messages.unknown[language];
-    }
-    return "unknown message";
+    return "";
 }
 
 export function deepCopy(object) {

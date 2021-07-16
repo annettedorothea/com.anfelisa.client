@@ -11,6 +11,7 @@ import {destroyToast} from "../../../gen/common/ActionFunctions";
 
 
 export const MessagesItem = (props) => {
+
 	const text = AppUtils.getMessageText(props, props.language);
 	return <div
 		className={`toastWrapper ${props.visible === false ? "fadeOut" : ""}`}

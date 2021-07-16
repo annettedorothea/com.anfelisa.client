@@ -22,7 +22,6 @@ export default class GetRoleCommand extends AbstractGetRoleCommand {
     handleError(data, resolve, reject) {
         if (AppUtils.isUnauthorized(data.error)) {
             this.addUnauthorizedOutcome(data);
-            data.message = data.error;
             resolve(data);
         } else {
             reject(data.error);

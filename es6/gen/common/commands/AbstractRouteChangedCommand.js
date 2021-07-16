@@ -124,8 +124,6 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
 			)
 		}
 		if (data.outcomes.includes("profile")) {
-			new Event('common.RouteChangedProfileEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
 			new TriggerAction().publish(
 				new LoadUserAction(), 
 					{

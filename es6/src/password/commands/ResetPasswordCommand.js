@@ -25,7 +25,6 @@ export default class ResetPasswordCommand extends AbstractResetPasswordCommand {
     handleError(data, resolve) {
         data.hash = "#";
         this.addErrorOutcome(data);
-        data.message = data.error;
         resolve(data);
     }
 }
