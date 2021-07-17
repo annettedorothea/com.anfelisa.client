@@ -10,6 +10,7 @@ import AbstractGivenLanguageChangedAction from "../../../gen/box/actions/Abstrac
 export default class GivenLanguageChangedAction extends AbstractGivenLanguageChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

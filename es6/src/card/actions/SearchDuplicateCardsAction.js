@@ -10,6 +10,7 @@ import AbstractSearchDuplicateCardsAction from "../../../gen/card/actions/Abstra
 export default class SearchDuplicateCardsAction extends AbstractSearchDuplicateCardsAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

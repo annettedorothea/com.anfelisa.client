@@ -10,6 +10,7 @@ import AbstractOnDragEnterAction from "../../../gen/card/actions/AbstractOnDragE
 export default class OnDragEnterAction extends AbstractOnDragEnterAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

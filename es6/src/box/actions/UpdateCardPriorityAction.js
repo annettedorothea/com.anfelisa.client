@@ -10,6 +10,7 @@ import AbstractUpdateCardPriorityAction from "../../../gen/box/actions/AbstractU
 export default class UpdateCardPriorityAction extends AbstractUpdateCardPriorityAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

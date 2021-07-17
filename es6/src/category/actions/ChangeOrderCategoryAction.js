@@ -10,6 +10,7 @@ import AbstractChangeOrderCategoryAction from "../../../gen/category/actions/Abs
 export default class ChangeOrderCategoryAction extends AbstractChangeOrderCategoryAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

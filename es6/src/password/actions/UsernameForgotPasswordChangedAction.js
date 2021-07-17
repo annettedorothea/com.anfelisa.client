@@ -10,6 +10,7 @@ import AbstractUsernameForgotPasswordChangedAction from "../../../gen/password/a
 export default class UsernameForgotPasswordChangedAction extends AbstractUsernameForgotPasswordChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

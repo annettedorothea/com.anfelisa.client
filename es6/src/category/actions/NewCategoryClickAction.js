@@ -10,6 +10,7 @@ import AbstractNewCategoryClickAction from "../../../gen/category/actions/Abstra
 export default class NewCategoryClickAction extends AbstractNewCategoryClickAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

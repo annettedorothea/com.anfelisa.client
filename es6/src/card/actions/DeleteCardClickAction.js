@@ -10,6 +10,7 @@ import AbstractDeleteCardClickAction from "../../../gen/card/actions/AbstractDel
 export default class DeleteCardClickAction extends AbstractDeleteCardClickAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

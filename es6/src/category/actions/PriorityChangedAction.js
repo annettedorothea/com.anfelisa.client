@@ -10,6 +10,7 @@ import AbstractPriorityChangedAction from "../../../gen/category/actions/Abstrac
 export default class PriorityChangedAction extends AbstractPriorityChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

@@ -10,6 +10,7 @@ import AbstractPasswordChangedAction from "../../../gen/password/actions/Abstrac
 export default class PasswordChangedAction extends AbstractPasswordChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

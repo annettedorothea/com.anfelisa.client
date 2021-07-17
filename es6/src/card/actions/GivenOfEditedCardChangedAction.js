@@ -10,6 +10,7 @@ import AbstractGivenOfEditedCardChangedAction from "../../../gen/card/actions/Ab
 export default class GivenOfEditedCardChangedAction extends AbstractGivenOfEditedCardChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

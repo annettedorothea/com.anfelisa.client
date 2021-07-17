@@ -10,6 +10,7 @@ import AbstractToggleInputOrderAction from "../../../gen/card/actions/AbstractTo
 export default class ToggleInputOrderAction extends AbstractToggleInputOrderAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

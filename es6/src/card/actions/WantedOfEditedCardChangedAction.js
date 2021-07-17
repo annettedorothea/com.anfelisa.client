@@ -10,6 +10,7 @@ import AbstractWantedOfEditedCardChangedAction from "../../../gen/card/actions/A
 export default class WantedOfEditedCardChangedAction extends AbstractWantedOfEditedCardChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

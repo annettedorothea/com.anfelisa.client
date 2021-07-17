@@ -10,6 +10,7 @@ import AbstractToggleSaveInLocalStorageAction from "../../../gen/login/actions/A
 export default class ToggleSaveInLocalStorageAction extends AbstractToggleSaveInLocalStorageAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

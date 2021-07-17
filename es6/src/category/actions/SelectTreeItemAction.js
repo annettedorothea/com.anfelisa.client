@@ -10,6 +10,7 @@ import AbstractSelectTreeItemAction from "../../../gen/category/actions/Abstract
 export default class SelectTreeItemAction extends AbstractSelectTreeItemAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

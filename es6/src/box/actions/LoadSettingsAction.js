@@ -10,6 +10,7 @@ import AbstractLoadSettingsAction from "../../../gen/box/actions/AbstractLoadSet
 export default class LoadSettingsAction extends AbstractLoadSettingsAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

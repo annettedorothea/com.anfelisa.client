@@ -10,6 +10,7 @@ import AbstractOnDragExitAction from "../../../gen/card/actions/AbstractOnDragEx
 export default class OnDragExitAction extends AbstractOnDragExitAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

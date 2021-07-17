@@ -10,6 +10,7 @@ import AbstractGetRoleAction from "../../../gen/login/actions/AbstractGetRoleAct
 export default class GetRoleAction extends AbstractGetRoleAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

@@ -10,6 +10,7 @@ import AbstractLoadCategoryTreeAction from "../../../gen/category/actions/Abstra
 export default class LoadCategoryTreeAction extends AbstractLoadCategoryTreeAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

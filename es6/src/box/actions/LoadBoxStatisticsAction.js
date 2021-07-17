@@ -9,6 +9,7 @@ export default class LoadBoxStatisticsAction extends AbstractLoadBoxStatisticsAc
         let date = new Date();
         date.setHours(0,0,0,0);
         data.todayAtMidnightInUTC = date.toISOString();
+        return data;
     }
 
 }

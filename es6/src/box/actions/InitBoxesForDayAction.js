@@ -8,6 +8,7 @@ export default class InitBoxesForDayAction extends AbstractInitBoxesForDayAction
         let date = new Date();
         date.setHours(0,0,0,0);
         data.todayAtMidnightInUTC = date.toISOString();
+        return data;
     }
 
 }

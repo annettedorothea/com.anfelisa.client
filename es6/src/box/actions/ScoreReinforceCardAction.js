@@ -10,6 +10,7 @@ import AbstractScoreReinforceCardAction from "../../../gen/box/actions/AbstractS
 export default class ScoreReinforceCardAction extends AbstractScoreReinforceCardAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

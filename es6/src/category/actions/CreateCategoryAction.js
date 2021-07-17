@@ -10,6 +10,7 @@ import AbstractCreateCategoryAction from "../../../gen/category/actions/Abstract
 export default class CreateCategoryAction extends AbstractCreateCategoryAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

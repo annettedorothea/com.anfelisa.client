@@ -10,6 +10,7 @@ import AbstractScheduleSelectedCardsAction from "../../../gen/box/actions/Abstra
 export default class ScheduleSelectedCardsAction extends AbstractScheduleSelectedCardsAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

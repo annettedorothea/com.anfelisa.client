@@ -10,6 +10,7 @@ import AbstractResetPasswordAction from "../../../gen/password/actions/AbstractR
 export default class ResetPasswordAction extends AbstractResetPasswordAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

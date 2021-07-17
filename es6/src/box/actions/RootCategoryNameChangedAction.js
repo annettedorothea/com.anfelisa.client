@@ -10,6 +10,7 @@ import AbstractRootCategoryNameChangedAction from "../../../gen/box/actions/Abst
 export default class RootCategoryNameChangedAction extends AbstractRootCategoryNameChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

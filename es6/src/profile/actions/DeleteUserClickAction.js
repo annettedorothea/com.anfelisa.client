@@ -10,6 +10,7 @@ import AbstractDeleteUserClickAction from "../../../gen/profile/actions/Abstract
 export default class DeleteUserClickAction extends AbstractDeleteUserClickAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

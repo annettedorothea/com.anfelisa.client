@@ -10,6 +10,7 @@ import AbstractWantedLanguageChangedAction from "../../../gen/box/actions/Abstra
 export default class WantedLanguageChangedAction extends AbstractWantedLanguageChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

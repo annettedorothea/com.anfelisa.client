@@ -10,6 +10,7 @@ import AbstractConfirmEmailAction from "../../../gen/registration/actions/Abstra
 export default class ConfirmEmailAction extends AbstractConfirmEmailAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

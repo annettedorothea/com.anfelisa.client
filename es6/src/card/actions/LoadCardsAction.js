@@ -10,6 +10,7 @@ import AbstractLoadCardsAction from "../../../gen/card/actions/AbstractLoadCards
 export default class LoadCardsAction extends AbstractLoadCardsAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

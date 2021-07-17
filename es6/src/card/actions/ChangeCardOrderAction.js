@@ -10,6 +10,7 @@ import AbstractChangeCardOrderAction from "../../../gen/card/actions/AbstractCha
 export default class ChangeCardOrderAction extends AbstractChangeCardOrderAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

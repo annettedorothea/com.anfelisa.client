@@ -10,6 +10,7 @@ import AbstractCallSaveBugAction from "../../../gen/common/actions/AbstractCallS
 export default class CallSaveBugAction extends AbstractCallSaveBugAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

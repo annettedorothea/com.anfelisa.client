@@ -10,6 +10,7 @@ import AbstractDestroyToastAction from "../../../gen/common/actions/AbstractDest
 export default class DestroyToastAction extends AbstractDestroyToastAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

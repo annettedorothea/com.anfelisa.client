@@ -10,6 +10,7 @@ import AbstractCreateCardAction from "../../../gen/card/actions/AbstractCreateCa
 export default class CreateCardAction extends AbstractCreateCardAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

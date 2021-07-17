@@ -10,6 +10,7 @@ import AbstractCollapseTreeItemAction from "../../../gen/category/actions/Abstra
 export default class CollapseTreeItemAction extends AbstractCollapseTreeItemAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

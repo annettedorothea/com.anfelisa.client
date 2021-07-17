@@ -10,6 +10,7 @@ import AbstractEmailChangedAction from "../../../gen/registration/actions/Abstra
 export default class EmailChangedAction extends AbstractEmailChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

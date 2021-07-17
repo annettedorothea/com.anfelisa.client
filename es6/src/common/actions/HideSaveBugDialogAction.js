@@ -10,6 +10,7 @@ import AbstractHideSaveBugDialogAction from "../../../gen/common/actions/Abstrac
 export default class HideSaveBugDialogAction extends AbstractHideSaveBugDialogAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

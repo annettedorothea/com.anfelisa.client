@@ -10,6 +10,7 @@ import AbstractCreateRootCategoryAction from "../../../gen/box/actions/AbstractC
 export default class CreateRootCategoryAction extends AbstractCreateRootCategoryAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

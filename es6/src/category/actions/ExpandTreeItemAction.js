@@ -10,6 +10,7 @@ import AbstractExpandTreeItemAction from "../../../gen/category/actions/Abstract
 export default class ExpandTreeItemAction extends AbstractExpandTreeItemAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

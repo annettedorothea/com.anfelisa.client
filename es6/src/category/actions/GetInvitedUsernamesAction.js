@@ -10,6 +10,7 @@ import AbstractGetInvitedUsernamesAction from "../../../gen/category/actions/Abs
 export default class GetInvitedUsernamesAction extends AbstractGetInvitedUsernamesAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

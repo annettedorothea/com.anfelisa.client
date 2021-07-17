@@ -10,6 +10,7 @@ import AbstractDisplayWantedAction from "../../../gen/box/actions/AbstractDispla
 export default class DisplayWantedAction extends AbstractDisplayWantedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

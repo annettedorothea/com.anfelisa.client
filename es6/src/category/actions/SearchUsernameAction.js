@@ -10,6 +10,7 @@ import AbstractSearchUsernameAction from "../../../gen/category/actions/Abstract
 export default class SearchUsernameAction extends AbstractSearchUsernameAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

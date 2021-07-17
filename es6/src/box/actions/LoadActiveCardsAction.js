@@ -10,6 +10,7 @@ import AbstractLoadActiveCardsAction from "../../../gen/box/actions/AbstractLoad
 export default class LoadActiveCardsAction extends AbstractLoadActiveCardsAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

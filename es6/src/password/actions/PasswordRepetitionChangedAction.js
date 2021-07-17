@@ -10,6 +10,7 @@ import AbstractPasswordRepetitionChangedAction from "../../../gen/password/actio
 export default class PasswordRepetitionChangedAction extends AbstractPasswordRepetitionChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

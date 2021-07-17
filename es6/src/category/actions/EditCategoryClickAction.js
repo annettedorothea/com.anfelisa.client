@@ -10,6 +10,7 @@ import AbstractEditCategoryClickAction from "../../../gen/category/actions/Abstr
 export default class EditCategoryClickAction extends AbstractEditCategoryClickAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

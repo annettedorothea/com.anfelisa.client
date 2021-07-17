@@ -10,6 +10,7 @@ import AbstractDictionaryLookupChangedAction from "../../../gen/box/actions/Abst
 export default class DictionaryLookupChangedAction extends AbstractDictionaryLookupChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

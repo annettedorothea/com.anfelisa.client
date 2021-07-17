@@ -10,6 +10,7 @@ import AbstractDeleteCategoryClickAction from "../../../gen/category/actions/Abs
 export default class DeleteCategoryClickAction extends AbstractDeleteCategoryClickAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

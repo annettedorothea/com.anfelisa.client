@@ -10,6 +10,7 @@ import AbstractCancelVersionMismatchDialogAction from "../../../gen/common/actio
 export default class CancelVersionMismatchDialogAction extends AbstractCancelVersionMismatchDialogAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

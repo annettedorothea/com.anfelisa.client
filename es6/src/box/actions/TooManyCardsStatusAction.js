@@ -10,6 +10,7 @@ import AbstractTooManyCardsStatusAction from "../../../gen/box/actions/AbstractT
 export default class TooManyCardsStatusAction extends AbstractTooManyCardsStatusAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

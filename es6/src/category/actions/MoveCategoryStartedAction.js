@@ -10,6 +10,7 @@ import AbstractMoveCategoryStartedAction from "../../../gen/category/actions/Abs
 export default class MoveCategoryStartedAction extends AbstractMoveCategoryStartedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

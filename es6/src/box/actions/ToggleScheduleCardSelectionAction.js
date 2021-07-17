@@ -10,6 +10,7 @@ import AbstractToggleScheduleCardSelectionAction from "../../../gen/box/actions/
 export default class ToggleScheduleCardSelectionAction extends AbstractToggleScheduleCardSelectionAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

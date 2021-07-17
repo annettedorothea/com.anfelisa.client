@@ -10,6 +10,7 @@ import AbstractPassValueToDictionaryAction from "../../../gen/card/actions/Abstr
 export default class PassValueToDictionaryAction extends AbstractPassValueToDictionaryAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

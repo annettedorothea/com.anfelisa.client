@@ -10,6 +10,7 @@ import AbstractInitialLoginAction from "../../../gen/common/actions/AbstractInit
 export default class InitialLoginAction extends AbstractInitialLoginAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

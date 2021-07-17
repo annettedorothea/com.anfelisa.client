@@ -10,6 +10,7 @@ import AbstractLoginAction from "../../../gen/registration/actions/AbstractLogin
 export default class LoginAction extends AbstractLoginAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

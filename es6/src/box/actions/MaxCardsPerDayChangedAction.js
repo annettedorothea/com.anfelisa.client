@@ -10,6 +10,7 @@ import AbstractMaxCardsPerDayChangedAction from "../../../gen/box/actions/Abstra
 export default class MaxCardsPerDayChangedAction extends AbstractMaxCardsPerDayChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

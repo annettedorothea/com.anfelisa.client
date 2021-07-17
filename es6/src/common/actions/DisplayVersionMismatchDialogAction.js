@@ -10,6 +10,7 @@ import AbstractDisplayVersionMismatchDialogAction from "../../../gen/common/acti
 export default class DisplayVersionMismatchDialogAction extends AbstractDisplayVersionMismatchDialogAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

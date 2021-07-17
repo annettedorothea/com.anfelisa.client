@@ -10,6 +10,7 @@ import AbstractDisplayToastAction from "../../../gen/common/actions/AbstractDisp
 export default class DisplayToastAction extends AbstractDisplayToastAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

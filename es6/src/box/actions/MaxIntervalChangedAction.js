@@ -10,6 +10,7 @@ import AbstractMaxIntervalChangedAction from "../../../gen/box/actions/AbstractM
 export default class MaxIntervalChangedAction extends AbstractMaxIntervalChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

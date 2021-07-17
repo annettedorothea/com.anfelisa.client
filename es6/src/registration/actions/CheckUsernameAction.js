@@ -10,6 +10,7 @@ import AbstractCheckUsernameAction from "../../../gen/registration/actions/Abstr
 export default class CheckUsernameAction extends AbstractCheckUsernameAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

@@ -10,6 +10,7 @@ import AbstractCategoryNameChangedAction from "../../../gen/category/actions/Abs
 export default class CategoryNameChangedAction extends AbstractCategoryNameChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

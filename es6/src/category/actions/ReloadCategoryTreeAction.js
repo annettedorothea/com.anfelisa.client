@@ -10,6 +10,7 @@ import AbstractReloadCategoryTreeAction from "../../../gen/category/actions/Abst
 export default class ReloadCategoryTreeAction extends AbstractReloadCategoryTreeAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

@@ -10,6 +10,7 @@ import AbstractCancelSaveBugDialogAction from "../../../gen/common/actions/Abstr
 export default class CancelSaveBugDialogAction extends AbstractCancelSaveBugDialogAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

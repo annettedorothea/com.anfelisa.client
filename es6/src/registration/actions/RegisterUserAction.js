@@ -10,6 +10,7 @@ import AbstractRegisterUserAction from "../../../gen/registration/actions/Abstra
 export default class RegisterUserAction extends AbstractRegisterUserAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

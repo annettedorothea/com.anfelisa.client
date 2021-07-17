@@ -10,6 +10,7 @@ import AbstractLoadUserAction from "../../../gen/profile/actions/AbstractLoadUse
 export default class LoadUserAction extends AbstractLoadUserAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

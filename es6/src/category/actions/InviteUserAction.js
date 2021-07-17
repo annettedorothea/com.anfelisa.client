@@ -10,6 +10,7 @@ import AbstractInviteUserAction from "../../../gen/category/actions/AbstractInvi
 export default class InviteUserAction extends AbstractInviteUserAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

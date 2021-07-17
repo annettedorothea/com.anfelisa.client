@@ -10,6 +10,7 @@ import AbstractEditCardAction from "../../../gen/card/actions/AbstractEditCardAc
 export default class EditCardAction extends AbstractEditCardAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

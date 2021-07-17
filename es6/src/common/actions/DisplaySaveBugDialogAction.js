@@ -10,6 +10,7 @@ import AbstractDisplaySaveBugDialogAction from "../../../gen/common/actions/Abst
 export default class DisplaySaveBugDialogAction extends AbstractDisplaySaveBugDialogAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

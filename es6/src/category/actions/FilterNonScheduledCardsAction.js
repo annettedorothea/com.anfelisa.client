@@ -10,6 +10,7 @@ import AbstractFilterNonScheduledCardsAction from "../../../gen/category/actions
 export default class FilterNonScheduledCardsAction extends AbstractFilterNonScheduledCardsAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

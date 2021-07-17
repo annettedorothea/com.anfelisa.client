@@ -10,6 +10,7 @@ import AbstractDeleteCategoryAction from "../../../gen/category/actions/Abstract
 export default class DeleteCategoryAction extends AbstractDeleteCategoryAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

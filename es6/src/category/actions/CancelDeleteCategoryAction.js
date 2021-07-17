@@ -10,6 +10,7 @@ import AbstractCancelDeleteCategoryAction from "../../../gen/category/actions/Ab
 export default class CancelDeleteCategoryAction extends AbstractCancelDeleteCategoryAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

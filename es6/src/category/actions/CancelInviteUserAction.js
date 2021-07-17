@@ -10,6 +10,7 @@ import AbstractCancelInviteUserAction from "../../../gen/category/actions/Abstra
 export default class CancelInviteUserAction extends AbstractCancelInviteUserAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

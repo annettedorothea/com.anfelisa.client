@@ -10,6 +10,7 @@ import AbstractMoveCardsAction from "../../../gen/card/actions/AbstractMoveCards
 export default class MoveCardsAction extends AbstractMoveCardsAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

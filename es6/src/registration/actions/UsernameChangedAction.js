@@ -10,6 +10,7 @@ import AbstractUsernameChangedAction from "../../../gen/registration/actions/Abs
 export default class UsernameChangedAction extends AbstractUsernameChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

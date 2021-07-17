@@ -10,6 +10,7 @@ import AbstractUpdateCardAction from "../../../gen/card/actions/AbstractUpdateCa
 export default class UpdateCardAction extends AbstractUpdateCardAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

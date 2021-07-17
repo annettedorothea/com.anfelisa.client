@@ -10,6 +10,7 @@ import AbstractCancelNewCardAction from "../../../gen/card/actions/AbstractCance
 export default class CancelNewCardAction extends AbstractCancelNewCardAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

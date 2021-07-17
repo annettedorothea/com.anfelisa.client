@@ -10,6 +10,7 @@ import AbstractInvitedUsernameChangedAction from "../../../gen/category/actions/
 export default class InvitedUsernameChangedAction extends AbstractInvitedUsernameChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

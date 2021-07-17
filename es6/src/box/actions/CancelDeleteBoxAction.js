@@ -10,6 +10,7 @@ import AbstractCancelDeleteBoxAction from "../../../gen/box/actions/AbstractCanc
 export default class CancelDeleteBoxAction extends AbstractCancelDeleteBoxAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

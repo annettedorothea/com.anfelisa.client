@@ -10,6 +10,7 @@ import AbstractItemDroppedAction from "../../../gen/category/actions/AbstractIte
 export default class ItemDroppedAction extends AbstractItemDroppedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

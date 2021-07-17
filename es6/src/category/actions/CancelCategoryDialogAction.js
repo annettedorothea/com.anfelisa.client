@@ -10,6 +10,7 @@ import AbstractCancelCategoryDialogAction from "../../../gen/category/actions/Ab
 export default class CancelCategoryDialogAction extends AbstractCancelCategoryDialogAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

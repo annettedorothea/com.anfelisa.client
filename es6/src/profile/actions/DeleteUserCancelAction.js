@@ -10,6 +10,7 @@ import AbstractDeleteUserCancelAction from "../../../gen/profile/actions/Abstrac
 export default class DeleteUserCancelAction extends AbstractDeleteUserCancelAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

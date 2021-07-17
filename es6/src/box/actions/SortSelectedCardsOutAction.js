@@ -10,6 +10,7 @@ import AbstractSortSelectedCardsOutAction from "../../../gen/box/actions/Abstrac
 export default class SortSelectedCardsOutAction extends AbstractSortSelectedCardsOutAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

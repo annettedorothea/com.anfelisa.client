@@ -10,6 +10,7 @@ import AbstractSaveBoxSettingsAction from "../../../gen/box/actions/AbstractSave
 export default class SaveBoxSettingsAction extends AbstractSaveBoxSettingsAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

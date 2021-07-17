@@ -10,6 +10,7 @@ import AbstractCreateReverseBoxAction from "../../../gen/category/actions/Abstra
 export default class CreateReverseBoxAction extends AbstractCreateReverseBoxAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

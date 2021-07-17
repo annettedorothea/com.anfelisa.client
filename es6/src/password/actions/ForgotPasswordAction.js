@@ -10,6 +10,7 @@ import AbstractForgotPasswordAction from "../../../gen/password/actions/Abstract
 export default class ForgotPasswordAction extends AbstractForgotPasswordAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

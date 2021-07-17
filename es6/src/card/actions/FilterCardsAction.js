@@ -10,6 +10,7 @@ import AbstractFilterCardsAction from "../../../gen/card/actions/AbstractFilterC
 export default class FilterCardsAction extends AbstractFilterCardsAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

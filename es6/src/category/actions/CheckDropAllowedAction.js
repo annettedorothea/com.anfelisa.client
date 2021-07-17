@@ -10,6 +10,7 @@ import AbstractCheckDropAllowedAction from "../../../gen/category/actions/Abstra
 export default class CheckDropAllowedAction extends AbstractCheckDropAllowedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

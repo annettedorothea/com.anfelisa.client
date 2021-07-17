@@ -10,6 +10,7 @@ import AbstractRouteChangedAction from "../../../gen/common/actions/AbstractRout
 export default class RouteChangedAction extends AbstractRouteChangedAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

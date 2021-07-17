@@ -10,6 +10,7 @@ import AbstractHideToastAction from "../../../gen/common/actions/AbstractHideToa
 export default class HideToastAction extends AbstractHideToastAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }

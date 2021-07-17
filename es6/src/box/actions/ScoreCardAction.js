@@ -10,6 +10,7 @@ import AbstractScoreCardAction from "../../../gen/box/actions/AbstractScoreCardA
 export default class ScoreCardAction extends AbstractScoreCardAction {
 
     initActionData(data) {
+    	return data;
     }
 
 }
