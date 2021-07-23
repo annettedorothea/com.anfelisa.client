@@ -1,352 +1,399 @@
-HttpClient 
+HttpClient common
 
-common
 
 
 
 ACE 
 Init 
-	fromAppState (username, password )
+	fromAppState (rootContainer.username, rootContainer.password )
 	on user ( 
-		set loggedInUser 
-		set language
+		set rootContainer.loggedInUser 
+		set rootContainer.language
+		set rootContainer.messages
 	) triggers ( InitialLogin )
 	on noUser ( 
-		set loggedInUser 
-		set language
-	) triggers ( RouteChanged )
+		set rootContainer.loggedInUser 
+		set rootContainer.language
+		set rootContainer.messages
+	) triggers ( 
+		RouteChanged
+	)
 
 RouteChanged
-	fromAppState ( hash, loggedInUser ) 
+	fromAppState ( rootContainer.hash, rootContainer.loggedInUser ) 
 	on login ( 
-		set mainView.loginView 
+		set rootContainer.mainView.loginView 
 	)
 	on privacyPolicy ( 
-		set mainView.privacyPolicyView 
+		set rootContainer.mainView.privacyPolicyView 
 	)
 	on registration ( 
-		set mainView.registrationView
+		set rootContainer.mainView.registrationView
 	)
-	on confirmEmail triggers (registration.ConfirmEmail)
+	on confirmEmail triggers (
+		registration.ConfirmEmail
+	)
 	on forgotPassword ( 
-		set mainView.forgotPasswordView 
+		set rootContainer.mainView.forgotPasswordView 
 	)
 	on resetPassword ( 
-		set mainView.resetPasswordView 
+		set rootContainer.mainView.resetPasswordView 
 	)
-	on dashboard triggers (box.InitBoxesForDay)
+	on dashboard (
+		set rootContainer.mainView.dashboardView
+	) triggers (
+		box.InitBoxesForDay
+	)
 	on categories (
-		set mainView.authorView.filterNonScheduled
-		set mainView.authorView.priority
-		set mainView.authorView.reverse
-	) triggers (category.LoadCategoryTree )
-	on profile triggers ( profile.LoadUser )
-	on userList triggers (admin.GetAllUsers) 
-	on nextCard (set mainView.cardView.boxId) triggers (box.LoadNextCard)
-	on boxSettings (set mainView.boxSettingsView.boxId) triggers (box.LoadSettings)
-	on allActiveCards (set mainView.allActiveCardsView.boxId) triggers (box.LoadActiveCards)
-	on boxCreate ( set mainView.boxSettingsView )
-	on invalid triggers (Route)
+		set rootContainer.mainView.authorView
+	) triggers (
+		category.LoadCategoryTree
+	)
+	on profile triggers ( 
+		profile.LoadUser
+	)
+	on nextCard (
+		set rootContainer.mainView.queryCardView
+	) triggers (
+		box.LoadNextCard
+	)
+	on boxSettings (
+		set rootContainer.mainView.boxSettingsView
+	) triggers (
+		box.LoadSettings
+	)
+	on allActiveCards (
+		set rootContainer.mainView.allActiveCardsView
+	) triggers (
+		box.LoadActiveCards
+	)
+	on boxCreate ( 
+		set rootContainer.mainView.boxSettingsView
+	)
+	on invalid triggers (
+		Route
+	)
+	
+	
 	
 Route ( hash ) 
-	on ok ( set hash )
+	on ok ( set rootContainer.hash )
 	
 InitialLogin
 	call com.anfelisa.user.GetRole
-	loadingFlag displaySpinner 
-	on ok (set loggedInUser.role) triggers ( RouteChanged )
-	on unauthorized triggers ( DisplayError Logout )
+	loadingFlag rootContainer.spinner.display 
+	on ok (
+		set rootContainer.role
+	) triggers ( RouteChanged )
+	on unauthorized triggers ( DisplayToast Logout )
 	
 Logout 
 	on ok ( 
-		set loggedInUser
-		set username
-		set password
-	) triggers ( Route RouteChanged )
+		set rootContainer.loggedInUser
+		set rootContainer.username
+		set rootContainer.password
+	) triggers ( Route )
+	
+DisplayToast ( message, error ) 
+	fromAppState( rootContainer.language, rootContainer.messages)
+	on ok ( 
+		set rootContainer.messages
+	) triggers ( delayInMillis 5000 HideToast ) 
 
-DisplayError ( error ) 
-	fromAppState( language, texts)
-	on ok ( set message) 
-
-DisplayErrorAndLogout ( error ) 
-	fromAppState( language, texts)
-	on ok (set message) triggers ( Logout)
-
-DisplayMessage ( messageKey ) 
-	fromAppState( language, texts)
-	on ok (set message) 
-
-ClearToast 
-	on ok (set message)
+HideToast (id)
+	fromAppState( rootContainer.messages)
+	on ok (
+		set rootContainer.messages
+	) triggers ( delayInMillis 1200 DestroyToast ) 
+	
+DestroyToast (id)
+	fromAppState( rootContainer.messages)
+	on ok (set rootContainer.messages)
 	
 DisplaySaveBugDialog
-	on ok (set displaySaveBugDialog)
+	on ok (set rootContainer.saveBugDialog.display)
 
 DisplayVersionMismatchDialog
-	on ok (set displayVersionMismatchDialog)
+	on ok (set rootContainer.versionMismatchDialog.display)
 
 CancelVersionMismatchDialog
-	on ok (set displayVersionMismatchDialog)
+	on ok (set rootContainer.versionMismatchDialog.display)
 
 DisplayVersionMismatchErrorDialog
-	on ok (set displayVersionMismatchErrorDialog)
+	on ok (set rootContainer.versionMismatchErrorDialog.display)
 
 async CallSaveBug
-	fromAppState( loggedInUser.username )
+	fromAppState( rootContainer.loggedInUser.username )
 	on ok triggers (HideSaveBugDialog)
 
 CancelSaveBugDialog
-	on ok (set displaySaveBugDialog)
+	on ok (set rootContainer.saveBugDialog.display)
 
 HideSaveBugDialog
-	on ok (set displaySaveBugDialog) triggers (DisplayMessage)
+	on ok (set rootContainer.saveBugDialog.display) triggers (DisplayToast)
 
 
 
 
-
-
-
-appState {
-	String loggedInUser {
-		String username
-		String role
-		String password
+ui JSX rootContainer {
+	loggedInUser {
+		username
+		password
 	}
-	String hash location.hash
-	String username storage
-	String password storage
-	Boolean displaySpinner
-	String language
-	texts
-	Boolean displaySaveBugDialog
-	Boolean displayVersionMismatchDialog
-	Boolean displayVersionMismatchErrorDialog
-	message {
-		String type
-		String text
+	hash location.hash
+	username storage
+	password storage
+	role
+	spinner { 
+		display
+	} 
+	language
+	saveBugDialog {
+		display
+	}
+	versionMismatchDialog {
+		display
+	}
+	versionMismatchErrorDialog {
+		display
+	}
+	List messages {
+		type
+		text
+		id
+		visible
+		code
+		textKey
 	}
 	group mainView {
 		privacyPolicyView {
+			display
 		}
 		loginView {
-			String username
-			Boolean saveInLocalStorage
+			username
+			password
+			saveInLocalStorage
 		}
 		registrationView {
-			Boolean displayUsernameSpinner
-	        Boolean available
-	        String username
-	        String email
-	        Boolean emailInvalid
-	        Boolean passwordMismatch
+			displayUsernameSpinner
+	        available
+	        username
+			password
+			passwordRepetition
+	        passwordMismatch
+	        email
+	        emailInvalid
 		}
 		forgotPasswordView {
-			String username
+			username
 		}
 		resetPasswordView {
-			String token
-			Boolean passwordMismatch
+			token
+			password
+			passwordRepetition
+			passwordMismatch
 		}
 		dashboardView {
-	    	List boxList serverModel com.anfelisa.box.BoxWithStatistics {
-				Integer openTodaysCards
-				String categoryName
-				String categoryId
-				String boxId
-				Integer quality0Count
-				Integer quality1Count
-				Integer quality2Count
-				Integer quality3Count
-				Integer quality4Count
-				Integer quality5Count
-				List Integer countsPerDayNextWeek
-				Integer maxCardsPerDay
+	    	List boxList {
+				openTodaysCards
+				categoryName
+				categoryId
+				boxId
+				quality0Count
+				quality1Count
+				quality2Count
+				quality3Count
+				quality4Count
+				quality5Count
+				List countsPerDayNextWeek
+				maxCardsPerDay
+				categoryAuthor
+				editable
+				reverse
 	    	}
 	        deleteBox {
-	            Boolean confirmDelete
-	            String boxId
+	            confirmDelete
+	            boxId
 	        }
 		}
-		boxSettingsView serverModel com.anfelisa.box.BoxSettings {
-	    	Boolean maxIntervalInvalid
-	    	Boolean maxCardsPerDayInvalid
-	    	Integer tooManyCardsStatus
-			Boolean dictionaryLookupInvalid
+		boxSettingsView {
+	    	maxIntervalInvalid
+	    	maxCardsPerDayInvalid
+	    	tooManyCardsStatus
+			dictionaryLookupInvalid
 			
-			String boxId
-			Integer maxInterval
-			Integer maxCardsPerDay
-			String categoryName
-			Boolean dictionaryLookup
-			String givenLanguage
-			String wantedLanguage
-			String categoryId
+			boxId
+			maxInterval
+			maxCardsPerDay
+			categoryName
+			dictionaryLookup
+			givenLanguage
+			wantedLanguage
+			categoryId
+			shared
 			
-			Integer allActiveCards
-			Integer allCards
+			allActiveCards
+			allCards
 		} 
 		allActiveCardsView {
-			String boxId
-			Boolean editable
-			List cardList serverModel com.anfelisa.box.CardWithStatistics {
-				String cardId
-				String given
-				String wanted
-				String image
-				String cardAuthor
-				Integer cardIndex
-				String categoryId
-				String rootCategoryId
-				Integer priority
-				DateTime next
+			boxId
+			editable
+			List activeCardList {
+				cardId
+				given
+				wanted
+				cardAuthor
+				cardIndex
+				categoryId
+				rootCategoryId
+				priority
+				next
+				ef
+				interval
+				count
+				lastQuality
 			}
-			List String selectedCardIds
+			List selectedCardIds
 		} 
 		profileView {
-			String username
-			String email
-			String role
-			Boolean showDeleteUserDialog
+			username
+			email
+			role
+			showDeleteUserDialog
 		}
-		userListView serverModel com.anfelisa.user.UserList {
-			List userList serverModel com.anfelisa.user.User {
-				NotNull String userId 
-				NotNull String username
-				NotNull String password
-				NotNull String email
-				NotNull String role
-				NotNull Boolean emailConfirmed
-			} 
-			NotNull Boolean showDeleteUserDialog 
-			String usernameToBeDeleted
-		}
-		cardView {
-			String cardId
-			String categoryId
-			String categoryName
-			Integer count
-			String given
-			String image
-			Integer lastQuality
-			String rootCategoryId
-			String scheduledCardId
-			String reinforceCardId
-			DateTime scheduledDate
-			DateTime scoredDate
-			String wanted
-			Integer openTodaysCards
-			Integer allTodaysCards
-			Integer index
-			Boolean enableScoreButtons
-			Boolean displayImage
-			String boxId
-			Boolean reverse
+		queryCardView {
+			cardId
+			categoryId
+			categoryName
+			count
+			given
+			lastQuality
+			rootCategoryId
+			scheduledCardId
+			reinforceCardId
+			scheduledDate
+			scoredDate
+			wanted
+			openTodaysCards
+			allTodaysCards
+			index
+			enableScoreButtons
+			boxId
+			reverse
 		}
 		authorView {
-	        Boolean filterNonScheduled
-	        Boolean reverse
-			Boolean reverseBoxExists
-			String boxId
-				
-	        Integer priority
+
+			boxId
+	        reverse
+			
 			categoryTree {
-				selectedCategory {
-					String categoryId
-					String categoryName
-					Integer categoryIndex
-					Boolean empty
-					String parentCategoryId
-					Boolean dictionaryLookup
-					String givenLanguage
-					String wantedLanguage
-					String rootCategoryId
-					List CategoryTreeItem childCategories
-					Integer nonScheduledCount
-					Boolean editable
+		        filterNonScheduled
+				reverseBoxExists
+		        priority
+				noComponent selectedCategory {
+					categoryId
+					categoryName
+					categoryIndex
+					empty
+					parentCategoryId
+					rootCategoryId
+					List childCategories
+					nonScheduledCount
+					editable
 				}
 				rootCategory {
-					String categoryId
-					String categoryName
-					Integer categoryIndex
-					Boolean empty
-					String parentCategoryId
-					Boolean dictionaryLookup
-					String givenLanguage
-					String wantedLanguage
-					String rootCategoryId
-					List CategoryTreeItem childCategories
-					Integer nonScheduledCount
-					Boolean editable
+					categoryId
+					categoryName
+					categoryIndex
+					empty
+					parentCategoryId
+					dictionaryLookup
+					givenLanguage
+					wantedLanguage
+					rootCategoryId
+					List childCategories
+					nonScheduledCount
+					editable
 				}
 				
-				Boolean displayDeleteCategory
+				displayDeleteCategory
 				
-				String categoryName
-				Boolean displayEditCategory
-				Boolean displayNewCategory
-				
-				Boolean displayInviteUser
-				String usernameSearchString
-				List String usernames
-				List String invitedUsernames
-				
-				Boolean dropAllowed
-				String dropTargetCategoryId
-				String movedCategory {
-					String categoryId
-					String categoryName
-					Integer categoryIndex
-					Boolean empty
-					String parentCategoryId
-					Boolean dictionaryLookup
-					String givenLanguage
-					String wantedLanguage
-					String rootCategoryId
-					List CategoryTreeItem childCategories
+				categoryDialog {
+					categoryName
+					newCategory
+					display
 				}
 				
-				previewCsv
+				inviteUserDialog {
+					display
+					usernameSearchString
+					List usernames
+					List invitedUsernames
+				}
+				
+				deleteCategoryDialog {
+					display
+				}
+				
+				dropAllowed
+				dropTargetCategoryId
+				noComponent movedCategory {
+					categoryId
+					categoryName
+					categoryIndex
+					empty
+					parentCategoryId
+					dictionaryLookup
+					givenLanguage
+					wantedLanguage
+					rootCategoryId
+					List childCategories
+				}
 			}
 	        cardView {
-		        List cardList serverModel com.anfelisa.card.CardWithInfo {
-					String cardId
-					String given
-					String wanted
-					String image
-					String cardAuthor
-					Integer cardIndex
-					String categoryId
-					String rootCategoryId
-		        	DateTime next
+		        List cardList {
+					cardId
+					given
+					wanted
+					cardAuthor
+					cardIndex
+					categoryId
+					rootCategoryId
+		        	next
 		        }
-		        Boolean naturalInputOrder
-		        String filter
-		        editedCard {
-		        	String cardId
-		        	String given
-		        	String wanted
-		        	Integer index
-		        	String image
+		        naturalInputOrder
+		        filter
+		        noComponent editedCard {
+		        	cardId
+		        	given
+		        	wanted
+		        	index
 		        }
 		        newCard {
-		        	String given
-		        	String wanted
-		        	Integer index
-		        	String image
-		        	String file
-		        	Boolean displaySpinner
-		        	Boolean displayTranslateSpinner
+		        	given
+		        	wanted
+		        	index
+		        	displaySpinner
 		        }
-		        List cardDuplicates
+		        List cardDuplicates {
+					cardId
+					given
+					wanted
+					cardAuthor
+					cardIndex
+					categoryId
+					rootCategoryId
+		        	next
+		        	categoryName
+		        }
 		        deleteCard {
-		        	Boolean confirmDelete
-		        	String cardId
+		        	confirmDelete
+		        	cardId
 		        }
-		        String dictionaryValue
-		        List String selectedCardIds
-		        List String movedCardIds
-		        String dragTargetCardId
+		        dictionaryValue
+		        List selectedCardIds
+		        List movedCardIds
+		        dragTargetCardId
 	        }
         }
 	}

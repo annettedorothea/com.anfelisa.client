@@ -4,33 +4,37 @@ login
 
 ACE 
 	UsernameChanged ( username  )
-		on ok (set common.mainView.loginView.username)
+		on ok (set common.rootContainer.mainView.loginView.username)
+	
+	PasswordChanged ( password )
+		on ok (set common.rootContainer.mainView.loginView.password)
 	
 	ToggleSaveInLocalStorage 
-		fromAppState ( common.mainView.loginView.saveInLocalStorage )
-		on ok (set common.mainView.loginView.saveInLocalStorage)
+		fromAppState ( common.rootContainer.mainView.loginView.saveInLocalStorage )
+		on ok (set common.rootContainer.mainView.loginView.saveInLocalStorage)
 	
-	Login ( password  )
+	Login
 		fromAppState (
-			common.mainView.loginView.username,
-			common.mainView.loginView.saveInLocalStorage
+			common.rootContainer.mainView.loginView.username,
+			common.rootContainer.mainView.loginView.password,
+			common.rootContainer.mainView.loginView.saveInLocalStorage
 		)
 		on saveInLocalStorage ( 
-			set common.loggedInUser 
-			set common.username 
-			set common.password
+			set common.rootContainer.loggedInUser 
+			set common.rootContainer.username 
+			set common.rootContainer.password
 		) triggers ( GetRole )
 		on doNotSaveInLocalStorage ( 
-			set common.loggedInUser
-			set common.username 
-			set common.password
+			set common.rootContainer.loggedInUser
 		) triggers ( GetRole )
 	
 	GetRole 
 	 	call com.anfelisa.user.GetRole
-		loadingFlag common.displaySpinner 
-		on ok (merge common.loggedInUser) triggers ( common.Route )
-		on unauthorized triggers ( common.Logout common.DisplayError)
+		loadingFlag common.rootContainer.spinner.display 
+		on ok (
+			set common.rootContainer.role
+		) triggers ( common.Route )
+		on unauthorized (set common.rootContainer.loggedInUser ) triggers ( common.DisplayToast common.Logout)
 	
 
 

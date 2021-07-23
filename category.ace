@@ -6,233 +6,241 @@ ACE
 
 LoadCategoryTree ( rootCategoryId, selectedCategoryId )
 	fromAppState (
-		common.mainView.authorView.categoryTree.rootCategory, 
-		common.mainView.authorView.filterNonScheduled,
-		common.mainView.authorView.priority,
-		common.mainView.authorView.reverse
+		common.rootContainer.mainView.authorView.reverse
 	)
 	call com.anfelisa.category.GetCategoryTree
-	loadingFlag common.displaySpinner 
+	loadingFlag common.rootContainer.spinner.display
 	on ok ( 
-		set common.mainView.authorView
+		set common.rootContainer.mainView.authorView.categoryTree
+		set common.rootContainer.mainView.authorView.cardView
+		set common.rootContainer.mainView.authorView.boxId
+	) triggers (card.LoadCards)
+
+ReloadCategoryTree ( selectedCategoryId, categoryIdToBeExpanded )
+	fromAppState (
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory as previousRootCategory, 
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory as selectedCategory, 
+		common.rootContainer.mainView.authorView.categoryTree.filterNonScheduled,
+		common.rootContainer.mainView.authorView.categoryTree.priority,
+		common.rootContainer.mainView.authorView.reverse
+	)
+	call com.anfelisa.category.GetCategoryTree
+	loadingFlag common.rootContainer.spinner.display 
+	on ok ( 
+		set common.rootContainer.mainView.authorView.categoryTree.rootCategory
+		set common.rootContainer.mainView.authorView.categoryTree.selectedCategory
 	) triggers (card.LoadCards)
 
 ExpandTreeItem ( categoryId  )
-	fromAppState (common.mainView.authorView.categoryTree.rootCategory)
-	on ok (set common.mainView.authorView.categoryTree.rootCategory)
+	fromAppState (common.rootContainer.mainView.authorView.categoryTree.rootCategory)
+	on ok (set common.rootContainer.mainView.authorView.categoryTree.rootCategory)
 
 CollapseTreeItem ( categoryId )
 	fromAppState (
-		common.mainView.authorView.categoryTree.rootCategory,
-		common.mainView.authorView.categoryTree.selectedCategory
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory,
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory
 	)
 	on ok (
-		set common.mainView.authorView.categoryTree.rootCategory
+		set common.rootContainer.mainView.authorView.categoryTree.rootCategory
 	)
 	on selectParentCategory (
-		set common.mainView.authorView.categoryTree.rootCategory 
+		set common.rootContainer.mainView.authorView.categoryTree.rootCategory 
 	) triggers( SelectTreeItem )
 
 SelectTreeItem ( categoryId  )
 	fromAppState (
-		common.mainView.authorView.categoryTree.rootCategory
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory
 	)
-	on ok ( set common.mainView.authorView.categoryTree.selectedCategory) triggers( card.LoadCards )
+	on ok ( set common.rootContainer.mainView.authorView.categoryTree.selectedCategory) triggers( card.LoadCards )
 
 NewCategoryClick
-	on ok (merge common.mainView.authorView.categoryTree)
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.categoryDialog
+	)
 	
-CancelNewCategory
-	on ok (merge common.mainView.authorView.categoryTree)
+CancelCategoryDialog
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.categoryDialog
+	)
 	
 CategoryNameChanged ( categoryName )
-	on ok (merge common.mainView.authorView.categoryTree)
-	
-InviteUserClick
 	on ok (
-		set common.mainView.authorView.categoryTree.displayInviteUser
-		set common.mainView.authorView.categoryTree.usernameSearchString
-	) triggers (GetInvitedUsernames)
-	
-GetInvitedUsernames
-	fromAppState (common.mainView.authorView.categoryTree.rootCategory.categoryId)
-	call com.anfelisa.category.GetInvitedUsers
-	on ok (set common.mainView.authorView.categoryTree.invitedUsernames)
-	
-CancelInviteUser
-	on ok (
-		set common.mainView.authorView.categoryTree.displayInviteUser
-		set common.mainView.authorView.categoryTree.usernameSearchString
-		set common.mainView.authorView.categoryTree.invitedUsernames
-		set common.mainView.authorView.categoryTree.usernames
-	)
-	
-InvitedUsernameChanged ( usernameSearchString )
-	on ok (set common.mainView.authorView.categoryTree.usernameSearchString)
-	on search triggers (SearchUsername)
-	on tooShort (set common.mainView.authorView.categoryTree.usernames)
-	
-SearchUsername
-	fromAppState (
-		common.mainView.authorView.categoryTree.usernameSearchString,
-		common.mainView.authorView.categoryTree.rootCategory.categoryId
-	)
-	call com.anfelisa.category.SearchUsernameForInvitation
-	loadingFlag common.displaySpinner 
-	on ok (set common.mainView.authorView.categoryTree.usernames)
-
-InviteUser (invitedUsername)
-	fromAppState (common.mainView.authorView.categoryTree.rootCategory.categoryId)
-	call com.anfelisa.category.InviteUserToCategory
-	loadingFlag common.displaySpinner 
-	on ok (
-		set common.mainView.authorView.categoryTree.displayInviteUser
-		set common.mainView.authorView.categoryTree.usernameSearchString
-		set common.mainView.authorView.categoryTree.invitedUsernames
-		set common.mainView.authorView.categoryTree.usernames
+		set common.rootContainer.mainView.authorView.categoryTree.categoryDialog.categoryName
 	)
 	
 CreateCategory
 	fromAppState (
-		common.mainView.authorView.categoryTree.categoryName,
-		common.mainView.authorView.categoryTree.selectedCategory.categoryId as parentCategoryId,
-		common.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId
+		common.rootContainer.mainView.authorView.categoryTree.categoryDialog.categoryName,
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId as parentCategoryId,
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId
 	)
 	call com.anfelisa.category.CreateCategory
-	loadingFlag common.displaySpinner 
-	on ok (merge common.mainView.authorView.categoryTree) triggers (LoadCategoryTree )
-	on error (merge common.mainView.authorView.categoryTree)
-
-DeleteCategoryClick
-	on ok (merge common.mainView.authorView.categoryTree)
-	
-CancelDeleteCategory
-	on ok (merge common.mainView.authorView.categoryTree)
-
-DeleteCategory
-	fromAppState (
-		common.mainView.authorView.categoryTree.selectedCategory.categoryId,
-		common.mainView.authorView.categoryTree.selectedCategory.parentCategoryId as selectedCategoryId,
-		common.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId
-	)
-	call com.anfelisa.category.DeleteCategory
-	loadingFlag common.displaySpinner 
-	on ok (merge common.mainView.authorView.categoryTree) triggers (LoadCategoryTree)
-	on error (merge common.mainView.authorView.categoryTree)
+	loadingFlag common.rootContainer.spinner.display 
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.categoryDialog
+	) triggers ( ReloadCategoryTree )
 
 EditCategoryClick
-	fromAppState (common.mainView.authorView.categoryTree.selectedCategory.categoryName)
-	on ok (merge common.mainView.authorView.categoryTree)
-	
-CancelEditCategory
-	on ok (merge common.mainView.authorView.categoryTree)
+	fromAppState (common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryName)
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.categoryDialog
+	)
 	
 UpdateCategory
 	fromAppState (
-		common.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId,
-		common.mainView.authorView.categoryTree.selectedCategory.categoryId as selectedCategoryId,
-		common.mainView.authorView.categoryTree.selectedCategory.categoryId,
-		common.mainView.authorView.categoryTree.categoryName
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId,
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId as selectedCategoryId,
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId,
+		common.rootContainer.mainView.authorView.categoryTree.categoryDialog.categoryName
 	)
 	call com.anfelisa.category.UpdateCategory
-	loadingFlag common.displaySpinner 
-	on ok (merge common.mainView.authorView.categoryTree) triggers (LoadCategoryTree)
-	on error (merge common.mainView.authorView.categoryTree)
+	loadingFlag common.rootContainer.spinner.display 
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.categoryDialog
+	) triggers (ReloadCategoryTree)
+
+InviteUserClick
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog
+	) triggers (GetInvitedUsernames)
+	
+GetInvitedUsernames
+	fromAppState (common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId)
+	call com.anfelisa.category.GetInvitedUsers
+	on ok (set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog.invitedUsernames)
+	
+CancelInviteUser
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog
+	)
+	
+InvitedUsernameChanged ( usernameSearchString )
+	on ok (set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog.usernameSearchString)
+	on search triggers (SearchUsername)
+	on tooShort (set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog.usernames)
+	
+SearchUsername
+	fromAppState (
+		common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog.usernameSearchString,
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId
+	)
+	call com.anfelisa.category.SearchUsernameForInvitation
+	loadingFlag common.rootContainer.spinner.display 
+	on ok (set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog.usernames)
+
+InviteUser (invitedUsername)
+	fromAppState (common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId)
+	call com.anfelisa.category.InviteUserToCategory
+	loadingFlag common.rootContainer.spinner.display 
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog
+	)
+	
+DeleteCategoryClick
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.deleteCategoryDialog
+	)
+	
+CancelDeleteCategory
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.deleteCategoryDialog
+	)
+
+DeleteCategory
+	fromAppState (
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId,
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.parentCategoryId as selectedCategoryId,
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId
+	)
+	call com.anfelisa.category.DeleteCategory
+	loadingFlag common.rootContainer.spinner.display 
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.deleteCategoryDialog
+	) triggers (ReloadCategoryTree)
 
 CheckDropAllowed ( categoryId, altKey, depth )
 	fromAppState (
-		common.mainView.authorView.categoryTree.rootCategory,
-		common.mainView.authorView.categoryTree.movedCategory,
-		common.mainView.authorView.categoryTree.selectedCategory
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory,
+		common.rootContainer.mainView.authorView.categoryTree.movedCategory,
+		common.rootContainer.mainView.authorView.cardView.movedCardIds,
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory
 	)
-	on ok (merge common.mainView.authorView.categoryTree)
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
+		set common.rootContainer.mainView.authorView.categoryTree.dropAllowed
+	)
 
-ItemDropped
-	fromAppState (common.mainView.authorView.categoryTree.movedCategory)
+ItemDropped (alt)
+	fromAppState (
+		common.rootContainer.mainView.authorView.categoryTree.movedCategory,
+		common.rootContainer.mainView.authorView.cardView.movedCardIds
+	)
 	on card triggers (card.MoveCards)
-	on category triggers (MoveCategory)
+	on moveCategory triggers ( MoveCategory )
+	on changeCategoryOrder triggers ( ChangeOrderCategory )
 
 MoveCategoryStarted ( movedCategoryId )
-	fromAppState(common.mainView.authorView.categoryTree.rootCategory)
-	on ok (merge common.mainView.authorView.categoryTree)
+	fromAppState(common.rootContainer.mainView.authorView.categoryTree.rootCategory)
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.movedCategory
+	)
 	
 MoveCategory
 	fromAppState (
-		common.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId,
-		common.mainView.authorView.categoryTree.dropTargetCategoryId as selectedCategoryId,
-		common.mainView.authorView.categoryTree.dropTargetCategoryId as targetCategoryId,
-		common.mainView.authorView.categoryTree.movedCategory.categoryId as movedCategoryId
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId,
+		common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId as selectedCategoryId,
+		common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId as targetCategoryId,
+		common.rootContainer.mainView.authorView.categoryTree.movedCategory.categoryId as movedCategoryId
 	)
  	call com.anfelisa.category.MoveCategory
-	loadingFlag common.displaySpinner 
+	loadingFlag common.rootContainer.spinner.display 
 	on ok ( 
-		set common.mainView.authorView.categoryTree.movedCategory
-	) triggers (category.LoadCategoryTree)
+		set common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
+		set common.rootContainer.mainView.authorView.categoryTree.dropAllowed
+		set common.rootContainer.mainView.authorView.categoryTree.movedCategory
+	) triggers (category.ReloadCategoryTree)
 
 ChangeOrderCategory
 	fromAppState (
-		common.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId,
-		common.mainView.authorView.categoryTree.movedCategory.categoryId as selectedCategoryId,
-		common.mainView.authorView.categoryTree.dropTargetCategoryId as targetCategoryId,
-		common.mainView.authorView.categoryTree.movedCategory.categoryId as movedCategoryId
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId,
+		common.rootContainer.mainView.authorView.categoryTree.movedCategory.categoryId as selectedCategoryId,
+		common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId as targetCategoryId,
+		common.rootContainer.mainView.authorView.categoryTree.movedCategory.categoryId as movedCategoryId
 	)
  	call com.anfelisa.category.ChangeOrderCategory
-	loadingFlag common.displaySpinner 
+	loadingFlag common.rootContainer.spinner.display 
 	on ok ( 
-		set common.mainView.authorView.categoryTree.movedCategory
-	) triggers (category.LoadCategoryTree)
+		set common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
+		set common.rootContainer.mainView.authorView.categoryTree.dropAllowed
+		set common.rootContainer.mainView.authorView.categoryTree.movedCategory
+	) triggers (category.ReloadCategoryTree)
 
-PreviewCsv ( csv )
-	on ok (
-		set common.mainView.authorView.categoryTree.previewCsv
-	) 
-	
-CancelPreviewCsv
-	on ok (set common.mainView.authorView.categoryTree.previewCsv)
-		
-SwapPreviewCsv
-	fromAppState (common.mainView.authorView.categoryTree.previewCsv)
-	on ok (set common.mainView.authorView.categoryTree.previewCsv)
-	
-ImportCsv
-	fromAppState (
-		common.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId,
-		common.mainView.authorView.categoryTree.movedCategory.categoryId as selectedCategoryId,
-		common.mainView.authorView.categoryTree.previewCsv,
-		common.mainView.authorView.categoryTree.selectedCategory.categoryId
-	)
-	call com.anfelisa.card.ImportCsv
-	loadingFlag common.displaySpinner 
-	on ok ( 
-		set common.mainView.authorView.categoryTree.previewCsv
-	) triggers (card.LoadCards)
-	
 FilterNonScheduledCards
 	fromAppState (
-		common.mainView.authorView.filterNonScheduled, 
-		common.mainView.authorView.categoryTree.selectedCategory
+		common.rootContainer.mainView.authorView.categoryTree.filterNonScheduled, 
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId as selectedCategoryId
 	)
 	on ok (
-		set common.mainView.authorView.filterNonScheduled
-	) triggers (LoadCategoryTree)
+		set common.rootContainer.mainView.authorView.categoryTree.filterNonScheduled
+	) triggers (category.ReloadCategoryTree)
 
 PriorityChanged(priority)
 	fromAppState (
-		common.mainView.authorView.filterNonScheduled, 
-		common.mainView.authorView.priority as actualPriority,
-		common.mainView.authorView.categoryTree.selectedCategory
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId as selectedCategoryId
 	)
-	on ok (set common.mainView.authorView.priority)
-	triggers (LoadCategoryTree)
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.priority
+	) triggers (category.ReloadCategoryTree)
 	
 CreateReverseBox
 	fromAppState (
-		common.mainView.authorView.categoryTree.rootCategory.rootCategoryId
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory.rootCategoryId
 	)
 	call com.anfelisa.box.CreateReverseBox
-	loadingFlag common.displaySpinner 
+	loadingFlag common.rootContainer.spinner.display 
 	on ok triggers (common.Route)
 	
+
 
 		
 

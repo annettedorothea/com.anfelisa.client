@@ -47,6 +47,9 @@ export const Texts = {
         },
         settings: {
             de: "Einstellungen"
+        },
+        sharedTitle: {
+            de: "{0} von {1}"
         }
     },
     boxSettings : {
@@ -93,10 +96,10 @@ export const Texts = {
             de: "Einstellungen"
         },
         tooManyCardsWarning: {
-            de: "In diese Box passen mit deinen Einstellungen {0} Karten. Du hast aber {1} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maxiamlen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
+            de: "In diese Box passen mit deinen Einstellungen {0} Karten. Du hast aber {1} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maximalen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
         },
         tooManyCardsWarningOne: {
-            de: "In diese Box passt mit deinen Einstellungen eine Karte. Du hast aber {0} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maxiamlen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
+            de: "In diese Box passt mit deinen Einstellungen eine Karte. Du hast aber {0} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maximalen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
         },
         languages: {
             de: {
@@ -153,9 +156,6 @@ export const Texts = {
         },
         newCategory: {
             de: "Neuer Ordner"
-        },
-        newRootCategory: {
-            de: "Neue Lernkartei"
         },
         nonScheduled: {
             de: "{0} nie abgefragte Karten"
@@ -262,7 +262,7 @@ export const Texts = {
                 de: "OK"
             },
             title: {
-                de: "Einladen"
+                de: "Teilen"
             },
             username: {
                 de: "Benutzername"
@@ -274,9 +274,6 @@ export const Texts = {
             },
             newChildCategory: {
                 de: "Neuer Ordner"
-            },
-            newRootCategory: {
-                de: "Neue Lernkartei"
             },
             ok: {
                 de: "OK"
@@ -364,80 +361,6 @@ export const Texts = {
             de: "Ja"
         }
     },
-    errors: {
-        adminRoleMustNotBeChanged: {
-            de: "Admin bleibt Admin."
-        },
-        boxDoesNotExist: {
-            de: "Lernkartei wurde nicht gefunden."
-        },
-        cannotMoveCategoryToItself: {
-            de: "Drag&Drop-Fehler: Ordner kann nicht auf sich selbst verschoben werden."
-        },
-        cannotMoveCategoryToOneOfItsChildren: {
-            de: "Drag&Drop-Fehler: Ordner kann nicht in einen Unterordner verschoben werden."
-        },
-        cardDoesNotExist: {
-            de: "Karte wurde nicht gefunden."
-        },
-        categoriesMustBeInSameRootCategory: {
-            de: "Drag&Drop-Fehler: Die Ordner müssen zu derselben Box gehören."
-        },
-        categoryDoesNotExist: {
-            de: "Lernkartei bzw. Ordner wurde nicht gefunden."
-        },
-        givenLanguageIsInvalid : {
-            de: "Sprache ist ungültig."
-        },
-        lastAdminMustNotBeDeleted: {
-            de: "Der Benutzer konnte nicht gelöscht werden, weil er der letzte Administrator ist."
-        },
-        loginFailed: {
-            de: "Anmeldung fehlgeschlagen."
-        },
-        failedToResetPassword: {
-            de: "Das Passwort konnte nicht geändert werden."
-        },
-        fileTooBig: {
-            de: "Die Datei ist zu groß."
-        },
-        invalidRole: {
-            de: "Ungültige Rolle."
-        },
-        maxCardsPerDayMustNotBeZero: {
-            de: "Die maximale Anzahl von Karten pro Tag darf nicht 0 sein."
-        },
-        movedCategoriesMustNotBeNull: {
-            de: "Drag&Drop-Fehler: keine Ordner gewählt."
-        },
-        noImageFile: {
-            de: "Es dürfen nur Bilder hochgeladen werden."
-        },
-        rootCategoryMustNotBeDeleted: {
-            de: "Ordner darf nicht gelöscht werden."
-        },
-        tokenDoesNotExist: {
-            de: "Token wurde nicht gefunden."
-        },
-        tokenDoesNotMatch: {
-            de: "Token fehlerhaft."
-        },
-        usernameAlreadyTaken: {
-            de: "Die Registrierung ist fehlgeschlagen, weil der Benutzername nicht mehr frei ist. Bitte versuche es mit einem anderen Benutzernamen."
-        },
-        unauthorized: {
-            de: "Zugriff verweigert."
-        },
-        unknownError: {
-            de: "Unbekannter Fehler: {0}."
-        },
-        userDoesNotExist: {
-            de: "Benutzer wurde nicht gefunden."
-        },
-        wantedLanguageIsInvalid: {
-            de: "Sprache ist ungültig."
-        }
-    },
     forgotPassword: {
         cancel: {
             de: "Abbrechen"
@@ -471,6 +394,9 @@ export const Texts = {
         saveInLocalStorageHint: {
             de: "Wenn du angemeldet bleiben willst, werden deine Logindaten verschlüsselt in deinem Browser gespeichert, so dass du dich später nicht erneut anmelden musst."
         },
+        saveTimeline: {
+            de: "Timeline speichern"
+        },
         signin: {
             de: "Anmelden"
         },
@@ -487,6 +413,27 @@ export const Texts = {
         }
     },
     messages: {
+        adminRoleMustNotBeChanged: {
+            de: "Admin bleibt Admin."
+        },
+        boxDoesNotExist: {
+            de: "Lernkartei wurde nicht gefunden."
+        },
+        cannotMoveCategoryToItself: {
+            de: "Drag&Drop-Fehler: Ordner kann nicht auf sich selbst verschoben werden."
+        },
+        cannotMoveCategoryToOneOfItsChildren: {
+            de: "Drag&Drop-Fehler: Ordner kann nicht in einen Unterordner verschoben werden."
+        },
+        cardDoesNotExist: {
+            de: "Karte wurde nicht gefunden."
+        },
+        categoriesMustBeInSameRootCategory: {
+            de: "Drag&Drop-Fehler: Die Ordner müssen zu derselben Box gehören."
+        },
+        categoryDoesNotExist: {
+            de: "Lernkartei bzw. Ordner wurde nicht gefunden."
+        },
         confirmEmail: {
             de: "Bitte checke dein Postfach und bestätige deine Email-Adresse."
         },
@@ -496,20 +443,71 @@ export const Texts = {
         finished: {
             de: "Du bist für heute fertig!"
         },
+        givenLanguageIsInvalid : {
+            de: "Sprache ist ungültig."
+        },
+        lastAdminMustNotBeDeleted: {
+            de: "Der Benutzer konnte nicht gelöscht werden, weil er der letzte Administrator ist."
+        },
+        loginFailed: {
+            de: "Anmeldung fehlgeschlagen."
+        },
+        failedToResetPassword: {
+            de: "Das Passwort konnte nicht geändert werden."
+        },
+        fileTooBig: {
+            de: "Die Datei ist zu groß."
+        },
+        invalidRole: {
+            de: "Ungültige Rolle."
+        },
+        maxCardsPerDayMustNotBeZero: {
+            de: "Die maximale Anzahl von Karten pro Tag darf nicht 0 sein."
+        },
+        movedCategoriesMustNotBeNull: {
+            de: "Drag&Drop-Fehler: keine Ordner gewählt."
+        },
+        noImageFile: {
+            de: "Es dürfen nur Bilder hochgeladen werden."
+        },
         passwordRequestSubmitted: {
             de: "Eine Email mit einem Link zur Eingabe eines neuen Passwortes wurde an deine Email-Adresse verschickt."
         },
         passwordReset: {
             de: "Das Passwort wurde geändert."
         },
+        rootCategoryMustNotBeDeleted: {
+            de: "Ordner darf nicht gelöscht werden."
+        },
         thankYou: {
             de: "Danke für deine Hilfe!"
+        },
+        tokenDoesNotExist: {
+            de: "Token wurde nicht gefunden."
+        },
+        tokenDoesNotMatch: {
+            de: "Token fehlerhaft."
+        },
+        usernameAlreadyTaken: {
+            de: "Die Registrierung ist fehlgeschlagen, weil der Benutzername nicht mehr frei ist. Bitte versuche es mit einem anderen Benutzernamen."
+        },
+        unauthorized: {
+            de: "Zugriff verweigert."
+        },
+        unknown: {
+            de: "Unerwarteter Fehler."
+        },
+        unknownError: {
+            de: "Fehler: {0}"
         },
         userAdded: {
             de: "Der Benutzer wurde hizugefügt."
         },
         userRemoved: {
             de: "Der Benutzer wurde entfernt."
+        },
+        wantedLanguageIsInvalid: {
+            de: "Sprache ist ungültig."
         }
     },
     profile: {

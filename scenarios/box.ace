@@ -1,0 +1,226 @@
+HttpClient boxscenarios
+
+scenarios 
+
+RouteToBoxCreate
+	GIVEN registrationscenarios.Register
+	WHEN common.Route(hash: "#box/create")
+	THEN 
+		expectedState
+			allActiveCards common.rootContainer.mainView.boxSettingsView.allActiveCards shouldBe undefined
+			allCards common.rootContainer.mainView.boxSettingsView.allCards shouldBe undefined
+			dictionaryLookup common.rootContainer.mainView.boxSettingsView.dictionaryLookup shouldBe false
+			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid shouldBe undefined
+			boxId common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
+			categoryName common.rootContainer.mainView.boxSettingsView.categoryName shouldBe ""
+			categoryId common.rootContainer.mainView.boxSettingsView.categoryId shouldBe undefined
+			givenLanguage common.rootContainer.mainView.boxSettingsView.givenLanguage shouldBe ""
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe 8
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe undefined
+			maxInterval common.rootContainer.mainView.boxSettingsView.maxInterval shouldBe ""
+			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe undefined
+			shared common.rootContainer.mainView.boxSettingsView.shared shouldBe undefined
+			tooManyCardsStatus common.rootContainer.mainView.boxSettingsView.tooManyCardsStatus shouldBe undefined
+			wantedLanguage common.rootContainer.mainView.boxSettingsView.wantedLanguage shouldBe ""
+		verifications
+			saveDisabled
+			givenLanguageDisabled
+			wantedLanguageDisabled
+			
+			
+CancelCreateBox
+	GIVEN RouteToBoxCreate
+	WHEN common.Route( hash: "#dashboard" )
+	THEN 
+		expectedState 
+			boxList common.rootContainer.mainView.dashboardView.boxList shouldBe []
+			deleteBox common.rootContainer.mainView.dashboardView.deleteBox shouldBe {
+				confirmDelete: false
+			}
+		
+CategoryNameChanged
+	GIVEN RouteToBoxCreate
+	WHEN box.CategoryNameChanged( categoryName: "categoryName" )
+	THEN 
+		expectedState
+			categoryName common.rootContainer.mainView.boxSettingsView.categoryName shouldBe "categoryName"
+		verifications
+			saveEnabled
+		
+MaxCardsPerDayChanged
+	GIVEN CategoryNameChanged
+	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: 12 )
+	THEN 
+		expectedState
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe "12"
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe false
+		verifications
+			saveEnabled
+		
+MaxCardsPerDayChangedEmpty
+	GIVEN CategoryNameChanged
+	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: "" )
+	THEN 
+		expectedState
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe ""
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe true
+		verifications
+			saveDisabled
+		
+MaxCardsPerDayChangedNaN
+	GIVEN CategoryNameChanged
+	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: "xxx" )
+	THEN 
+		expectedState
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe "xxx"
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe true
+		verifications
+			saveDisabled
+		
+MaxCardsPerDayChangedInvalid
+	GIVEN CategoryNameChanged
+	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: "0" )
+	THEN 
+		expectedState
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe "0"
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe true
+		verifications
+			saveDisabled
+		
+MaxIntervalChanged
+	GIVEN MaxCardsPerDayChanged
+	WHEN box.MaxIntervalChanged( maxInterval: 30 )
+	THEN 
+		expectedState
+			maxInterval common.rootContainer.mainView.boxSettingsView.maxInterval shouldBe "30"
+			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe false
+		verifications
+			saveEnabled
+		
+MaxIntervalChangedNaN
+	GIVEN CategoryNameChanged
+	WHEN box.MaxIntervalChanged( maxInterval: "NaN" )
+	THEN 
+		expectedState
+			maxInterval common.rootContainer.mainView.boxSettingsView.maxInterval shouldBe "NaN"
+			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe true
+		verifications
+			saveDisabled
+		
+MaxIntervalChangedInvalid
+	GIVEN CategoryNameChanged
+	WHEN box.MaxIntervalChanged( maxInterval: "0" )
+	THEN 
+		expectedState
+			maxInterval common.rootContainer.mainView.boxSettingsView.maxInterval shouldBe "0"
+			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe true
+		verifications
+			saveDisabled
+		
+DictionaryLookupChanged
+	GIVEN CategoryNameChanged
+	WHEN box.DictionaryLookupChanged
+	THEN 
+		expectedState
+			dictionaryLookup common.rootContainer.mainView.boxSettingsView.dictionaryLookup shouldBe true
+			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid shouldBe true
+		verifications
+			saveDisabled
+			givenLanguageEnabled
+			wantedLanguageEnabled
+		
+		
+GivenLanguageChanged
+	GIVEN DictionaryLookupChanged
+	WHEN box.GivenLanguageChanged(givenLanguage: "de")
+	THEN 
+		expectedState
+			dictionaryLookup common.rootContainer.mainView.boxSettingsView.dictionaryLookup shouldBe true
+			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid shouldBe true
+			givenLanguage common.rootContainer.mainView.boxSettingsView.givenLanguage shouldBe "de"
+			wantedLanguage common.rootContainer.mainView.boxSettingsView.wantedLanguage shouldBe ""
+		verifications
+			saveDisabled
+			givenLanguageEnabled
+			wantedLanguageEnabled
+		
+WantedLanguageChanged
+	GIVEN GivenLanguageChanged
+	WHEN box.WantedLanguageChanged(wantedLanguage: "en")
+	THEN 
+		expectedState
+			dictionaryLookup common.rootContainer.mainView.boxSettingsView.dictionaryLookup shouldBe true
+			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid shouldBe false
+			givenLanguage common.rootContainer.mainView.boxSettingsView.givenLanguage shouldBe "de"
+			wantedLanguage common.rootContainer.mainView.boxSettingsView.wantedLanguage shouldBe "en"
+		verifications
+			saveEnabled
+			givenLanguageEnabled
+			wantedLanguageEnabled
+		
+CreateRootCategory
+	GIVEN WantedLanguageChanged
+	WHEN box.CreateRootCategory
+		squishyValues {
+			uuid "box-${testId}"
+		}
+	THEN 
+		expectedState 
+			boxList common.rootContainer.mainView.dashboardView.boxList shouldBe [
+				{
+					boxId: "box-${testId}",
+					categoryId: "box-${testId}",
+					categoryName: "categoryName",
+					countsPerDayNextWeek: [
+						0,0,0,0,0,0,0		
+					],
+					maxCardsPerDay: 8,
+					openTodaysCards: 0,
+					quality0Count: 0,
+					quality1Count: 0,
+					quality2Count: 0,
+					quality3Count: 0,
+					quality4Count: 0,
+					quality5Count: 0,
+					categoryAuthor: "username-${testId}",
+					reverse: false,
+					editable: true
+				}
+			]
+			deleteBox common.rootContainer.mainView.dashboardView.deleteBox shouldBe {
+				confirmDelete: false
+			}
+		
+CreateRootCategoryWithDefault
+	GIVEN CategoryNameChanged
+	WHEN box.CreateRootCategory
+		squishyValues {
+			uuid "box-${testId}"
+		}
+	THEN 
+		expectedState 
+			boxList common.rootContainer.mainView.dashboardView.boxList shouldBe [
+				{
+					boxId: "box-${testId}",
+					categoryId: "box-${testId}",
+					categoryName: "categoryName",
+					countsPerDayNextWeek: [
+						0,0,0,0,0,0,0		
+					],
+					maxCardsPerDay: 8,
+					openTodaysCards: 0,
+					quality0Count: 0,
+					quality1Count: 0,
+					quality2Count: 0,
+					quality3Count: 0,
+					quality4Count: 0,
+					quality5Count: 0,
+					categoryAuthor: "username-${testId}",
+					reverse: false,
+					editable: true
+				}
+			]
+			deleteBox common.rootContainer.mainView.dashboardView.deleteBox shouldBe {
+				confirmDelete: false
+			}
+		
