@@ -66,10 +66,10 @@ const content = (props) => (
 			<div className="footerContent">
 				<h1>{Texts.container.about[props.language]}</h1>
 				<p>
-					Annette Pohl &middot; St.-Josef-Str. 20 &middot; 56068 Koblenz
+					Annette Pohl &middot; Im Sommerhäldele 9 &middot; 77799 Ortenberg &middot; Deutschland
 				</p>
 				<p>
-					0261 1393793 &middot; <a href="mailto:info@anfelisa.de">info@anfelisa.de</a>
+					+49 781 99078158 &middot; <a href="mailto:info@anfelisa.de">info@anfelisa.de</a>
 				</p>
 				<p>
 					{Texts.container.version[props.language]} {Utils.settings ? Utils.settings.clientVersion : ""}
