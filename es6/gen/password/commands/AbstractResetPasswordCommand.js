@@ -37,7 +37,7 @@ export default class AbstractResetPasswordCommand extends AsynchronousCommand {
 	    		password : data.password,
 	    		token : data.token
 	    	};
-			AppUtils.httpPut(`${Utils.settings.rootPath}/users/resetpassword`, data.uuid, false, payload).then(() => {
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/users/resetpassword`, data.uuid, false, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

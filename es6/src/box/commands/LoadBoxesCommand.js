@@ -9,7 +9,7 @@ import AbstractLoadBoxesCommand from "../../../gen/box/commands/AbstractLoadBoxe
 
 export default class LoadBoxesCommand extends AbstractLoadBoxesCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
@@ -19,7 +19,7 @@ export default class LoadBoxesCommand extends AbstractLoadBoxesCommand {
             deleteBox: {
                 confirmDelete: false,
                 boxId: undefined
-            }
+            },
         };
         data.boxList = undefined;
     	this.addOkOutcome(data);

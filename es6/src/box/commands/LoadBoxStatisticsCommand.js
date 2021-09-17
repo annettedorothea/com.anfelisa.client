@@ -9,13 +9,12 @@ import AbstractLoadBoxStatisticsCommand from "../../../gen/box/commands/Abstract
 
 export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsCommand {
 
-    validateCommandData(data) {
-    	//data.todayAtMidnightInUTC is mandatory DateTime
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
-        data.boxList.forEach((box) => {
+    handleResponse(data, resolve) {
+        data.dashboardView.boxList.forEach((box) => {
             const boxWithStats = data.boxStatisticsList.find((bs) => {
                 return bs.boxId === box.boxId;
             });

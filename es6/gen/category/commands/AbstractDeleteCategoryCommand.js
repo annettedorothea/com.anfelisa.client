@@ -31,7 +31,7 @@ export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpDelete(`${Utils.settings.rootPath}/category/delete?categoryId=${data.categoryId}`, data.uuid, true).then(() => {
+			AppUtils.httpDelete(`${AppUtils.settings.rootPath}/category/delete?categoryId=${data.categoryId}`, data.uuid, true).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

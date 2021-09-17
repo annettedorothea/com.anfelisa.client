@@ -30,7 +30,7 @@ export default class AbstractSearchDuplicateCardsCommand extends AsynchronousCom
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/cards/search?given=${data.given}&wanted=${data.wanted}&naturalInputOrder=${data.naturalInputOrder}&categoryId=${data.categoryId}`, data.uuid, true).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/cards/search?given=${data.given}&wanted=${data.wanted}&naturalInputOrder=${data.naturalInputOrder}&categoryId=${data.categoryId}`, data.uuid, true).then((response) => {
 				data.cardList = response.cardList;
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {

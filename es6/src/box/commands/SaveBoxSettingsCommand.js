@@ -17,7 +17,7 @@ export default class SaveBoxSettingsCommand extends AbstractSaveBoxSettingsComma
         return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         data.dictionaryLookup = undefined;
         data.givenLanguage = undefined;
         data.wantedLanguage = undefined;

@@ -9,13 +9,11 @@ import AbstractScoreReinforceCardCommand from "../../../gen/box/commands/Abstrac
 
 export default class ScoreReinforceCardCommand extends AbstractScoreReinforceCardCommand {
 
-    validateCommandData(data) {
-    	//data.reinforceCardId is mandatory String
-    	//data.keep is mandatory Boolean
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
     	this.addOkOutcome(data);
     	resolve(data);
     }

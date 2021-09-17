@@ -10,7 +10,7 @@ import * as AppUtils from "../../app/AppUtils";
 
 export default class InitialLoginCommand extends AbstractInitialLoginCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 

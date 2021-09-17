@@ -34,7 +34,7 @@ export default class AbstractForgotPasswordCommand extends AsynchronousCommand {
 	    		username : data.username,
 	    		language : data.language
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/users/forgot-password`, data.uuid, false, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/users/forgot-password`, data.uuid, false, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

@@ -16,7 +16,6 @@ import { DashboardView } from "./mainView/DashboardView";
 import { BoxSettingsView } from "./mainView/BoxSettingsView";
 import { AllActiveCardsView } from "./mainView/AllActiveCardsView";
 import { ProfileView } from "./mainView/ProfileView";
-import { UserListView } from "./mainView/UserListView";
 import { QueryCardView } from "./mainView/QueryCardView";
 import { AuthorView } from "./mainView/AuthorView";
 
@@ -47,9 +46,6 @@ export const MainView = (props) => {
 	}
 	if (props.isProfileView === true) {
 		return <ProfileView {...props}/>;
-	}
-	if (props.isUserListView === true) {
-		return <UserListView {...props}/>;
 	}
 	if (props.isQueryCardView === true) {
 		return <QueryCardView {...props}/>;

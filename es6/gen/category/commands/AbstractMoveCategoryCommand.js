@@ -36,7 +36,7 @@ export default class AbstractMoveCategoryCommand extends AsynchronousCommand {
 	    		movedCategoryId : data.movedCategoryId,
 	    		targetCategoryId : data.targetCategoryId
 	    	};
-			AppUtils.httpPut(`${Utils.settings.rootPath}/category/move`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/category/move`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

@@ -41,11 +41,11 @@ export function merge_rootContainer_loggedInUser(eventData) {
 	if (!appState.rootContainer.loggedInUser) {
 		appState.rootContainer.loggedInUser = {};
 	}
-	if (eventData.username !== undefined) {
-		appState.rootContainer.loggedInUser.username = eventData.username;
+	if (eventData.loggedInUser && eventData.loggedInUser.username !== undefined) {
+		appState.rootContainer.loggedInUser.username = eventData.loggedInUser.username;
 	}
-	if (eventData.password !== undefined) {
-		appState.rootContainer.loggedInUser.password = eventData.password;
+	if (eventData.loggedInUser && eventData.loggedInUser.password !== undefined) {
+		appState.rootContainer.loggedInUser.password = eventData.loggedInUser.password;
 	}
 }
 
@@ -69,6 +69,16 @@ export function set_rootContainer_loggedInUser_username(eventData) {
 	appState.rootContainer.loggedInUser.username = eventData.username;
 }
 
+export function merge_rootContainer_loggedInUser_username(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.loggedInUser) {
+		appState.rootContainer.loggedInUser = {};
+	}
+	appState.rootContainer.loggedInUser.username = eventData.username;
+}
+
 export function get_rootContainer_loggedInUser_password() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -80,6 +90,16 @@ export function get_rootContainer_loggedInUser_password() {
 }
 
 export function set_rootContainer_loggedInUser_password(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.loggedInUser) {
+		appState.rootContainer.loggedInUser = {};
+	}
+	appState.rootContainer.loggedInUser.password = eventData.password;
+}
+
+export function merge_rootContainer_loggedInUser_password(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -135,6 +155,13 @@ export function set_rootContainer_role(eventData) {
 	appState.rootContainer.role = eventData.role;
 }
 
+export function merge_rootContainer_role(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	appState.rootContainer.role = eventData.role;
+}
+
 export function get_rootContainer_spinner() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -159,8 +186,8 @@ export function merge_rootContainer_spinner(eventData) {
 	if (!appState.rootContainer.spinner) {
 		appState.rootContainer.spinner = {};
 	}
-	if (eventData.display !== undefined) {
-		appState.rootContainer.spinner.display = eventData.display;
+	if (eventData.spinner && eventData.spinner.display !== undefined) {
+		appState.rootContainer.spinner.display = eventData.spinner.display;
 	}
 }
 
@@ -184,6 +211,16 @@ export function set_rootContainer_spinner_display(eventData) {
 	appState.rootContainer.spinner.display = eventData.display;
 }
 
+export function merge_rootContainer_spinner_display(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.spinner) {
+		appState.rootContainer.spinner = {};
+	}
+	appState.rootContainer.spinner.display = eventData.display;
+}
+
 export function get_rootContainer_language() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -192,6 +229,13 @@ export function get_rootContainer_language() {
 }
 
 export function set_rootContainer_language(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	appState.rootContainer.language = eventData.language;
+}
+
+export function merge_rootContainer_language(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -222,8 +266,8 @@ export function merge_rootContainer_saveBugDialog(eventData) {
 	if (!appState.rootContainer.saveBugDialog) {
 		appState.rootContainer.saveBugDialog = {};
 	}
-	if (eventData.display !== undefined) {
-		appState.rootContainer.saveBugDialog.display = eventData.display;
+	if (eventData.saveBugDialog && eventData.saveBugDialog.display !== undefined) {
+		appState.rootContainer.saveBugDialog.display = eventData.saveBugDialog.display;
 	}
 }
 
@@ -238,6 +282,16 @@ export function get_rootContainer_saveBugDialog_display() {
 }
 
 export function set_rootContainer_saveBugDialog_display(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.saveBugDialog) {
+		appState.rootContainer.saveBugDialog = {};
+	}
+	appState.rootContainer.saveBugDialog.display = eventData.display;
+}
+
+export function merge_rootContainer_saveBugDialog_display(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -271,8 +325,8 @@ export function merge_rootContainer_versionMismatchDialog(eventData) {
 	if (!appState.rootContainer.versionMismatchDialog) {
 		appState.rootContainer.versionMismatchDialog = {};
 	}
-	if (eventData.display !== undefined) {
-		appState.rootContainer.versionMismatchDialog.display = eventData.display;
+	if (eventData.versionMismatchDialog && eventData.versionMismatchDialog.display !== undefined) {
+		appState.rootContainer.versionMismatchDialog.display = eventData.versionMismatchDialog.display;
 	}
 }
 
@@ -287,6 +341,16 @@ export function get_rootContainer_versionMismatchDialog_display() {
 }
 
 export function set_rootContainer_versionMismatchDialog_display(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.versionMismatchDialog) {
+		appState.rootContainer.versionMismatchDialog = {};
+	}
+	appState.rootContainer.versionMismatchDialog.display = eventData.display;
+}
+
+export function merge_rootContainer_versionMismatchDialog_display(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -320,8 +384,8 @@ export function merge_rootContainer_versionMismatchErrorDialog(eventData) {
 	if (!appState.rootContainer.versionMismatchErrorDialog) {
 		appState.rootContainer.versionMismatchErrorDialog = {};
 	}
-	if (eventData.display !== undefined) {
-		appState.rootContainer.versionMismatchErrorDialog.display = eventData.display;
+	if (eventData.versionMismatchErrorDialog && eventData.versionMismatchErrorDialog.display !== undefined) {
+		appState.rootContainer.versionMismatchErrorDialog.display = eventData.versionMismatchErrorDialog.display;
 	}
 }
 
@@ -336,6 +400,16 @@ export function get_rootContainer_versionMismatchErrorDialog_display() {
 }
 
 export function set_rootContainer_versionMismatchErrorDialog_display(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.versionMismatchErrorDialog) {
+		appState.rootContainer.versionMismatchErrorDialog = {};
+	}
+	appState.rootContainer.versionMismatchErrorDialog.display = eventData.display;
+}
+
+export function merge_rootContainer_versionMismatchErrorDialog_display(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -390,13 +464,16 @@ export function merge_rootContainer_privacyPolicyView(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isPrivacyPolicyView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isPrivacyPolicyView : true
 		};
 	}
-	if (eventData.display !== undefined) {
-		appState.rootContainer.mainView.display = eventData.display;
+	if (eventData.privacyPolicyView && eventData.privacyPolicyView.display !== undefined) {
+		appState.rootContainer.mainView.display = eventData.privacyPolicyView.display;
 	}
 }
 
@@ -418,6 +495,21 @@ export function set_rootContainer_privacyPolicyView_display(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isPrivacyPolicyView !== true) {
+		appState.rootContainer.mainView = {
+			isPrivacyPolicyView : true
+		};
+	}
+	appState.rootContainer.mainView.display = eventData.display;
+}
+
+export function merge_rootContainer_privacyPolicyView_display(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isPrivacyPolicyView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isPrivacyPolicyView : true
 		};
@@ -453,19 +545,22 @@ export function merge_rootContainer_loginView(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isLoginView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isLoginView : true
 		};
 	}
-	if (eventData.username !== undefined) {
-		appState.rootContainer.mainView.username = eventData.username;
+	if (eventData.loginView && eventData.loginView.username !== undefined) {
+		appState.rootContainer.mainView.username = eventData.loginView.username;
 	}
-	if (eventData.password !== undefined) {
-		appState.rootContainer.mainView.password = eventData.password;
+	if (eventData.loginView && eventData.loginView.password !== undefined) {
+		appState.rootContainer.mainView.password = eventData.loginView.password;
 	}
-	if (eventData.saveInLocalStorage !== undefined) {
-		appState.rootContainer.mainView.saveInLocalStorage = eventData.saveInLocalStorage;
+	if (eventData.loginView && eventData.loginView.saveInLocalStorage !== undefined) {
+		appState.rootContainer.mainView.saveInLocalStorage = eventData.loginView.saveInLocalStorage;
 	}
 }
 
@@ -487,6 +582,21 @@ export function set_rootContainer_loginView_username(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isLoginView !== true) {
+		appState.rootContainer.mainView = {
+			isLoginView : true
+		};
+	}
+	appState.rootContainer.mainView.username = eventData.username;
+}
+
+export function merge_rootContainer_loginView_username(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isLoginView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isLoginView : true
 		};
@@ -519,6 +629,21 @@ export function set_rootContainer_loginView_password(eventData) {
 	appState.rootContainer.mainView.password = eventData.password;
 }
 
+export function merge_rootContainer_loginView_password(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isLoginView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isLoginView : true
+		};
+	}
+	appState.rootContainer.mainView.password = eventData.password;
+}
+
 export function get_rootContainer_loginView_saveInLocalStorage() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -537,6 +662,21 @@ export function set_rootContainer_loginView_saveInLocalStorage(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isLoginView !== true) {
+		appState.rootContainer.mainView = {
+			isLoginView : true
+		};
+	}
+	appState.rootContainer.mainView.saveInLocalStorage = eventData.saveInLocalStorage;
+}
+
+export function merge_rootContainer_loginView_saveInLocalStorage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isLoginView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isLoginView : true
 		};
@@ -572,34 +712,37 @@ export function merge_rootContainer_registrationView(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isRegistrationView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isRegistrationView : true
 		};
 	}
-	if (eventData.displayUsernameSpinner !== undefined) {
-		appState.rootContainer.mainView.displayUsernameSpinner = eventData.displayUsernameSpinner;
+	if (eventData.registrationView && eventData.registrationView.displayUsernameSpinner !== undefined) {
+		appState.rootContainer.mainView.displayUsernameSpinner = eventData.registrationView.displayUsernameSpinner;
 	}
-	if (eventData.available !== undefined) {
-		appState.rootContainer.mainView.available = eventData.available;
+	if (eventData.registrationView && eventData.registrationView.available !== undefined) {
+		appState.rootContainer.mainView.available = eventData.registrationView.available;
 	}
-	if (eventData.username !== undefined) {
-		appState.rootContainer.mainView.username = eventData.username;
+	if (eventData.registrationView && eventData.registrationView.username !== undefined) {
+		appState.rootContainer.mainView.username = eventData.registrationView.username;
 	}
-	if (eventData.password !== undefined) {
-		appState.rootContainer.mainView.password = eventData.password;
+	if (eventData.registrationView && eventData.registrationView.password !== undefined) {
+		appState.rootContainer.mainView.password = eventData.registrationView.password;
 	}
-	if (eventData.passwordRepetition !== undefined) {
-		appState.rootContainer.mainView.passwordRepetition = eventData.passwordRepetition;
+	if (eventData.registrationView && eventData.registrationView.passwordRepetition !== undefined) {
+		appState.rootContainer.mainView.passwordRepetition = eventData.registrationView.passwordRepetition;
 	}
-	if (eventData.passwordMismatch !== undefined) {
-		appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
+	if (eventData.registrationView && eventData.registrationView.passwordMismatch !== undefined) {
+		appState.rootContainer.mainView.passwordMismatch = eventData.registrationView.passwordMismatch;
 	}
-	if (eventData.email !== undefined) {
-		appState.rootContainer.mainView.email = eventData.email;
+	if (eventData.registrationView && eventData.registrationView.email !== undefined) {
+		appState.rootContainer.mainView.email = eventData.registrationView.email;
 	}
-	if (eventData.emailInvalid !== undefined) {
-		appState.rootContainer.mainView.emailInvalid = eventData.emailInvalid;
+	if (eventData.registrationView && eventData.registrationView.emailInvalid !== undefined) {
+		appState.rootContainer.mainView.emailInvalid = eventData.registrationView.emailInvalid;
 	}
 }
 
@@ -621,6 +764,21 @@ export function set_rootContainer_registrationView_displayUsernameSpinner(eventD
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isRegistrationView !== true) {
+		appState.rootContainer.mainView = {
+			isRegistrationView : true
+		};
+	}
+	appState.rootContainer.mainView.displayUsernameSpinner = eventData.displayUsernameSpinner;
+}
+
+export function merge_rootContainer_registrationView_displayUsernameSpinner(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isRegistrationView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isRegistrationView : true
 		};
@@ -653,6 +811,21 @@ export function set_rootContainer_registrationView_available(eventData) {
 	appState.rootContainer.mainView.available = eventData.available;
 }
 
+export function merge_rootContainer_registrationView_available(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isRegistrationView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isRegistrationView : true
+		};
+	}
+	appState.rootContainer.mainView.available = eventData.available;
+}
+
 export function get_rootContainer_registrationView_username() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -671,6 +844,21 @@ export function set_rootContainer_registrationView_username(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isRegistrationView !== true) {
+		appState.rootContainer.mainView = {
+			isRegistrationView : true
+		};
+	}
+	appState.rootContainer.mainView.username = eventData.username;
+}
+
+export function merge_rootContainer_registrationView_username(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isRegistrationView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isRegistrationView : true
 		};
@@ -703,6 +891,21 @@ export function set_rootContainer_registrationView_password(eventData) {
 	appState.rootContainer.mainView.password = eventData.password;
 }
 
+export function merge_rootContainer_registrationView_password(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isRegistrationView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isRegistrationView : true
+		};
+	}
+	appState.rootContainer.mainView.password = eventData.password;
+}
+
 export function get_rootContainer_registrationView_passwordRepetition() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -721,6 +924,21 @@ export function set_rootContainer_registrationView_passwordRepetition(eventData)
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isRegistrationView !== true) {
+		appState.rootContainer.mainView = {
+			isRegistrationView : true
+		};
+	}
+	appState.rootContainer.mainView.passwordRepetition = eventData.passwordRepetition;
+}
+
+export function merge_rootContainer_registrationView_passwordRepetition(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isRegistrationView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isRegistrationView : true
 		};
@@ -753,6 +971,21 @@ export function set_rootContainer_registrationView_passwordMismatch(eventData) {
 	appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
 }
 
+export function merge_rootContainer_registrationView_passwordMismatch(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isRegistrationView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isRegistrationView : true
+		};
+	}
+	appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
+}
+
 export function get_rootContainer_registrationView_email() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -778,6 +1011,21 @@ export function set_rootContainer_registrationView_email(eventData) {
 	appState.rootContainer.mainView.email = eventData.email;
 }
 
+export function merge_rootContainer_registrationView_email(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isRegistrationView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isRegistrationView : true
+		};
+	}
+	appState.rootContainer.mainView.email = eventData.email;
+}
+
 export function get_rootContainer_registrationView_emailInvalid() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -796,6 +1044,21 @@ export function set_rootContainer_registrationView_emailInvalid(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isRegistrationView !== true) {
+		appState.rootContainer.mainView = {
+			isRegistrationView : true
+		};
+	}
+	appState.rootContainer.mainView.emailInvalid = eventData.emailInvalid;
+}
+
+export function merge_rootContainer_registrationView_emailInvalid(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isRegistrationView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isRegistrationView : true
 		};
@@ -831,13 +1094,16 @@ export function merge_rootContainer_forgotPasswordView(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isForgotPasswordView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isForgotPasswordView : true
 		};
 	}
-	if (eventData.username !== undefined) {
-		appState.rootContainer.mainView.username = eventData.username;
+	if (eventData.forgotPasswordView && eventData.forgotPasswordView.username !== undefined) {
+		appState.rootContainer.mainView.username = eventData.forgotPasswordView.username;
 	}
 }
 
@@ -859,6 +1125,21 @@ export function set_rootContainer_forgotPasswordView_username(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isForgotPasswordView !== true) {
+		appState.rootContainer.mainView = {
+			isForgotPasswordView : true
+		};
+	}
+	appState.rootContainer.mainView.username = eventData.username;
+}
+
+export function merge_rootContainer_forgotPasswordView_username(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isForgotPasswordView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isForgotPasswordView : true
 		};
@@ -894,22 +1175,25 @@ export function merge_rootContainer_resetPasswordView(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isResetPasswordView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isResetPasswordView : true
 		};
 	}
-	if (eventData.token !== undefined) {
-		appState.rootContainer.mainView.token = eventData.token;
+	if (eventData.resetPasswordView && eventData.resetPasswordView.token !== undefined) {
+		appState.rootContainer.mainView.token = eventData.resetPasswordView.token;
 	}
-	if (eventData.password !== undefined) {
-		appState.rootContainer.mainView.password = eventData.password;
+	if (eventData.resetPasswordView && eventData.resetPasswordView.password !== undefined) {
+		appState.rootContainer.mainView.password = eventData.resetPasswordView.password;
 	}
-	if (eventData.passwordRepetition !== undefined) {
-		appState.rootContainer.mainView.passwordRepetition = eventData.passwordRepetition;
+	if (eventData.resetPasswordView && eventData.resetPasswordView.passwordRepetition !== undefined) {
+		appState.rootContainer.mainView.passwordRepetition = eventData.resetPasswordView.passwordRepetition;
 	}
-	if (eventData.passwordMismatch !== undefined) {
-		appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
+	if (eventData.resetPasswordView && eventData.resetPasswordView.passwordMismatch !== undefined) {
+		appState.rootContainer.mainView.passwordMismatch = eventData.resetPasswordView.passwordMismatch;
 	}
 }
 
@@ -931,6 +1215,21 @@ export function set_rootContainer_resetPasswordView_token(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isResetPasswordView !== true) {
+		appState.rootContainer.mainView = {
+			isResetPasswordView : true
+		};
+	}
+	appState.rootContainer.mainView.token = eventData.token;
+}
+
+export function merge_rootContainer_resetPasswordView_token(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isResetPasswordView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isResetPasswordView : true
 		};
@@ -963,6 +1262,21 @@ export function set_rootContainer_resetPasswordView_password(eventData) {
 	appState.rootContainer.mainView.password = eventData.password;
 }
 
+export function merge_rootContainer_resetPasswordView_password(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isResetPasswordView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isResetPasswordView : true
+		};
+	}
+	appState.rootContainer.mainView.password = eventData.password;
+}
+
 export function get_rootContainer_resetPasswordView_passwordRepetition() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -988,6 +1302,21 @@ export function set_rootContainer_resetPasswordView_passwordRepetition(eventData
 	appState.rootContainer.mainView.passwordRepetition = eventData.passwordRepetition;
 }
 
+export function merge_rootContainer_resetPasswordView_passwordRepetition(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isResetPasswordView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isResetPasswordView : true
+		};
+	}
+	appState.rootContainer.mainView.passwordRepetition = eventData.passwordRepetition;
+}
+
 export function get_rootContainer_resetPasswordView_passwordMismatch() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -1006,6 +1335,21 @@ export function set_rootContainer_resetPasswordView_passwordMismatch(eventData) 
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isResetPasswordView !== true) {
+		appState.rootContainer.mainView = {
+			isResetPasswordView : true
+		};
+	}
+	appState.rootContainer.mainView.passwordMismatch = eventData.passwordMismatch;
+}
+
+export function merge_rootContainer_resetPasswordView_passwordMismatch(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isResetPasswordView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isResetPasswordView : true
 		};
@@ -1041,16 +1385,19 @@ export function merge_rootContainer_dashboardView(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isDashboardView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isDashboardView : true
 		};
 	}
-	if (eventData.boxList !== undefined) {
-		appState.rootContainer.mainView.boxList = eventData.boxList;
+	if (eventData.dashboardView && eventData.dashboardView.boxList !== undefined) {
+		appState.rootContainer.mainView.boxList = eventData.dashboardView.boxList;
 	}
-	if (eventData.deleteBox !== undefined) {
-		appState.rootContainer.mainView.deleteBox = eventData.deleteBox;
+	if (eventData.dashboardView && eventData.dashboardView.deleteBox !== undefined) {
+		appState.rootContainer.mainView.deleteBox = eventData.dashboardView.deleteBox;
 	}
 }
 
@@ -1114,17 +1461,22 @@ export function merge_rootContainer_dashboardView_deleteBox(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isDashboardView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
-		appState.rootContainer.mainView = {};
+		appState.rootContainer.mainView = {
+			isDashboardView : true
+		};
 	}
 	if (!appState.rootContainer.mainView.deleteBox) {
 		appState.rootContainer.mainView.deleteBox = {};
 	}
-	if (eventData.confirmDelete !== undefined) {
-		appState.rootContainer.mainView.deleteBox.confirmDelete = eventData.confirmDelete;
+	if (eventData.deleteBox && eventData.deleteBox.confirmDelete !== undefined) {
+		appState.rootContainer.mainView.deleteBox.confirmDelete = eventData.deleteBox.confirmDelete;
 	}
-	if (eventData.boxId !== undefined) {
-		appState.rootContainer.mainView.deleteBox.boxId = eventData.boxId;
+	if (eventData.deleteBox && eventData.deleteBox.boxId !== undefined) {
+		appState.rootContainer.mainView.deleteBox.boxId = eventData.deleteBox.boxId;
 	}
 }
 
@@ -1149,6 +1501,24 @@ export function set_rootContainer_dashboardView_deleteBox_confirmDelete(eventDat
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isDashboardView !== true) {
+		appState.rootContainer.mainView = {
+			isDashboardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.deleteBox) {
+		appState.rootContainer.mainView.deleteBox = {};
+	}
+	appState.rootContainer.mainView.deleteBox.confirmDelete = eventData.confirmDelete;
+}
+
+export function merge_rootContainer_dashboardView_deleteBox_confirmDelete(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isDashboardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isDashboardView : true
 		};
@@ -1190,6 +1560,24 @@ export function set_rootContainer_dashboardView_deleteBox_boxId(eventData) {
 	appState.rootContainer.mainView.deleteBox.boxId = eventData.boxId;
 }
 
+export function merge_rootContainer_dashboardView_deleteBox_boxId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isDashboardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isDashboardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.deleteBox) {
+		appState.rootContainer.mainView.deleteBox = {};
+	}
+	appState.rootContainer.mainView.deleteBox.boxId = eventData.boxId;
+}
+
 export function get_rootContainer_boxSettingsView() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -1218,156 +1606,20 @@ export function merge_rootContainer_boxSettingsView(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isBoxSettingsView : true
 		};
 	}
-	if (eventData.maxIntervalInvalid !== undefined) {
-		appState.rootContainer.mainView.maxIntervalInvalid = eventData.maxIntervalInvalid;
+	if (eventData.boxSettingsView && eventData.boxSettingsView.boxId !== undefined) {
+		appState.rootContainer.mainView.boxId = eventData.boxSettingsView.boxId;
 	}
-	if (eventData.maxCardsPerDayInvalid !== undefined) {
-		appState.rootContainer.mainView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
+	if (eventData.boxSettingsView && eventData.boxSettingsView.boxSettings !== undefined) {
+		appState.rootContainer.mainView.boxSettings = eventData.boxSettingsView.boxSettings;
 	}
-	if (eventData.tooManyCardsStatus !== undefined) {
-		appState.rootContainer.mainView.tooManyCardsStatus = eventData.tooManyCardsStatus;
-	}
-	if (eventData.dictionaryLookupInvalid !== undefined) {
-		appState.rootContainer.mainView.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
-	}
-	if (eventData.boxId !== undefined) {
-		appState.rootContainer.mainView.boxId = eventData.boxId;
-	}
-	if (eventData.maxInterval !== undefined) {
-		appState.rootContainer.mainView.maxInterval = eventData.maxInterval;
-	}
-	if (eventData.maxCardsPerDay !== undefined) {
-		appState.rootContainer.mainView.maxCardsPerDay = eventData.maxCardsPerDay;
-	}
-	if (eventData.categoryName !== undefined) {
-		appState.rootContainer.mainView.categoryName = eventData.categoryName;
-	}
-	if (eventData.dictionaryLookup !== undefined) {
-		appState.rootContainer.mainView.dictionaryLookup = eventData.dictionaryLookup;
-	}
-	if (eventData.givenLanguage !== undefined) {
-		appState.rootContainer.mainView.givenLanguage = eventData.givenLanguage;
-	}
-	if (eventData.wantedLanguage !== undefined) {
-		appState.rootContainer.mainView.wantedLanguage = eventData.wantedLanguage;
-	}
-	if (eventData.categoryId !== undefined) {
-		appState.rootContainer.mainView.categoryId = eventData.categoryId;
-	}
-	if (eventData.shared !== undefined) {
-		appState.rootContainer.mainView.shared = eventData.shared;
-	}
-	if (eventData.allActiveCards !== undefined) {
-		appState.rootContainer.mainView.allActiveCards = eventData.allActiveCards;
-	}
-	if (eventData.allCards !== undefined) {
-		appState.rootContainer.mainView.allCards = eventData.allCards;
-	}
-}
-
-export function get_rootContainer_boxSettingsView_maxIntervalInvalid() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.maxIntervalInvalid;
-}
-
-export function set_rootContainer_boxSettingsView_maxIntervalInvalid(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
-		appState.rootContainer.mainView = {
-			isBoxSettingsView : true
-		};
-	}
-	appState.rootContainer.mainView.maxIntervalInvalid = eventData.maxIntervalInvalid;
-}
-
-export function get_rootContainer_boxSettingsView_maxCardsPerDayInvalid() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.maxCardsPerDayInvalid;
-}
-
-export function set_rootContainer_boxSettingsView_maxCardsPerDayInvalid(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
-		appState.rootContainer.mainView = {
-			isBoxSettingsView : true
-		};
-	}
-	appState.rootContainer.mainView.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
-}
-
-export function get_rootContainer_boxSettingsView_tooManyCardsStatus() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.tooManyCardsStatus;
-}
-
-export function set_rootContainer_boxSettingsView_tooManyCardsStatus(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
-		appState.rootContainer.mainView = {
-			isBoxSettingsView : true
-		};
-	}
-	appState.rootContainer.mainView.tooManyCardsStatus = eventData.tooManyCardsStatus;
-}
-
-export function get_rootContainer_boxSettingsView_dictionaryLookupInvalid() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.dictionaryLookupInvalid;
-}
-
-export function set_rootContainer_boxSettingsView_dictionaryLookupInvalid(eventData) {
-	if (!appState.rootContainer) {
-		appState.rootContainer = {};
-	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
-		appState.rootContainer.mainView = {
-			isBoxSettingsView : true
-		};
-	}
-	appState.rootContainer.mainView.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
 }
 
 export function get_rootContainer_boxSettingsView_boxId() {
@@ -1395,7 +1647,22 @@ export function set_rootContainer_boxSettingsView_boxId(eventData) {
 	appState.rootContainer.mainView.boxId = eventData.boxId;
 }
 
-export function get_rootContainer_boxSettingsView_maxInterval() {
+export function merge_rootContainer_boxSettingsView_boxId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	appState.rootContainer.mainView.boxId = eventData.boxId;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -1405,10 +1672,13 @@ export function get_rootContainer_boxSettingsView_maxInterval() {
 	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.maxInterval;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.boxSettings);
 }
 
-export function set_rootContainer_boxSettingsView_maxInterval(eventData) {
+export function set_rootContainer_boxSettingsView_boxSettings(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -1417,10 +1687,72 @@ export function set_rootContainer_boxSettingsView_maxInterval(eventData) {
 			isBoxSettingsView : true
 		};
 	}
-	appState.rootContainer.mainView.maxInterval = eventData.maxInterval;
+	appState.rootContainer.mainView.boxSettings = eventData.boxSettings;
 }
 
-export function get_rootContainer_boxSettingsView_maxCardsPerDay() {
+export function merge_rootContainer_boxSettingsView_boxSettings(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	if (eventData.boxSettings && eventData.boxSettings.maxIntervalInvalid !== undefined) {
+		appState.rootContainer.mainView.boxSettings.maxIntervalInvalid = eventData.boxSettings.maxIntervalInvalid;
+	}
+	if (eventData.boxSettings && eventData.boxSettings.maxCardsPerDayInvalid !== undefined) {
+		appState.rootContainer.mainView.boxSettings.maxCardsPerDayInvalid = eventData.boxSettings.maxCardsPerDayInvalid;
+	}
+	if (eventData.boxSettings && eventData.boxSettings.tooManyCardsStatus !== undefined) {
+		appState.rootContainer.mainView.boxSettings.tooManyCardsStatus = eventData.boxSettings.tooManyCardsStatus;
+	}
+	if (eventData.boxSettings && eventData.boxSettings.dictionaryLookupInvalid !== undefined) {
+		appState.rootContainer.mainView.boxSettings.dictionaryLookupInvalid = eventData.boxSettings.dictionaryLookupInvalid;
+	}
+	if (eventData.boxSettings && eventData.boxSettings.boxId !== undefined) {
+		appState.rootContainer.mainView.boxSettings.boxId = eventData.boxSettings.boxId;
+	}
+	if (eventData.boxSettings && eventData.boxSettings.maxInterval !== undefined) {
+		appState.rootContainer.mainView.boxSettings.maxInterval = eventData.boxSettings.maxInterval;
+	}
+	if (eventData.boxSettings && eventData.boxSettings.maxCardsPerDay !== undefined) {
+		appState.rootContainer.mainView.boxSettings.maxCardsPerDay = eventData.boxSettings.maxCardsPerDay;
+	}
+	if (eventData.boxSettings && eventData.boxSettings.categoryName !== undefined) {
+		appState.rootContainer.mainView.boxSettings.categoryName = eventData.boxSettings.categoryName;
+	}
+	if (eventData.boxSettings && eventData.boxSettings.dictionaryLookup !== undefined) {
+		appState.rootContainer.mainView.boxSettings.dictionaryLookup = eventData.boxSettings.dictionaryLookup;
+	}
+	if (eventData.boxSettings && eventData.boxSettings.givenLanguage !== undefined) {
+		appState.rootContainer.mainView.boxSettings.givenLanguage = eventData.boxSettings.givenLanguage;
+	}
+	if (eventData.boxSettings && eventData.boxSettings.wantedLanguage !== undefined) {
+		appState.rootContainer.mainView.boxSettings.wantedLanguage = eventData.boxSettings.wantedLanguage;
+	}
+	if (eventData.boxSettings && eventData.boxSettings.categoryId !== undefined) {
+		appState.rootContainer.mainView.boxSettings.categoryId = eventData.boxSettings.categoryId;
+	}
+	if (eventData.boxSettings && eventData.boxSettings.shared !== undefined) {
+		appState.rootContainer.mainView.boxSettings.shared = eventData.boxSettings.shared;
+	}
+	if (eventData.boxSettings && eventData.boxSettings.allActiveCards !== undefined) {
+		appState.rootContainer.mainView.boxSettings.allActiveCards = eventData.boxSettings.allActiveCards;
+	}
+	if (eventData.boxSettings && eventData.boxSettings.allCards !== undefined) {
+		appState.rootContainer.mainView.boxSettings.allCards = eventData.boxSettings.allCards;
+	}
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_maxIntervalInvalid() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -1430,10 +1762,13 @@ export function get_rootContainer_boxSettingsView_maxCardsPerDay() {
 	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.maxCardsPerDay;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.maxIntervalInvalid;
 }
 
-export function set_rootContainer_boxSettingsView_maxCardsPerDay(eventData) {
+export function set_rootContainer_boxSettingsView_boxSettings_maxIntervalInvalid(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -1442,10 +1777,31 @@ export function set_rootContainer_boxSettingsView_maxCardsPerDay(eventData) {
 			isBoxSettingsView : true
 		};
 	}
-	appState.rootContainer.mainView.maxCardsPerDay = eventData.maxCardsPerDay;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.maxIntervalInvalid = eventData.maxIntervalInvalid;
 }
 
-export function get_rootContainer_boxSettingsView_categoryName() {
+export function merge_rootContainer_boxSettingsView_boxSettings_maxIntervalInvalid(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.maxIntervalInvalid = eventData.maxIntervalInvalid;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_maxCardsPerDayInvalid() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -1455,10 +1811,13 @@ export function get_rootContainer_boxSettingsView_categoryName() {
 	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.categoryName;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.maxCardsPerDayInvalid;
 }
 
-export function set_rootContainer_boxSettingsView_categoryName(eventData) {
+export function set_rootContainer_boxSettingsView_boxSettings_maxCardsPerDayInvalid(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -1467,10 +1826,31 @@ export function set_rootContainer_boxSettingsView_categoryName(eventData) {
 			isBoxSettingsView : true
 		};
 	}
-	appState.rootContainer.mainView.categoryName = eventData.categoryName;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
 }
 
-export function get_rootContainer_boxSettingsView_dictionaryLookup() {
+export function merge_rootContainer_boxSettingsView_boxSettings_maxCardsPerDayInvalid(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.maxCardsPerDayInvalid = eventData.maxCardsPerDayInvalid;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_tooManyCardsStatus() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -1480,10 +1860,13 @@ export function get_rootContainer_boxSettingsView_dictionaryLookup() {
 	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.dictionaryLookup;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.tooManyCardsStatus;
 }
 
-export function set_rootContainer_boxSettingsView_dictionaryLookup(eventData) {
+export function set_rootContainer_boxSettingsView_boxSettings_tooManyCardsStatus(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -1492,10 +1875,31 @@ export function set_rootContainer_boxSettingsView_dictionaryLookup(eventData) {
 			isBoxSettingsView : true
 		};
 	}
-	appState.rootContainer.mainView.dictionaryLookup = eventData.dictionaryLookup;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.tooManyCardsStatus = eventData.tooManyCardsStatus;
 }
 
-export function get_rootContainer_boxSettingsView_givenLanguage() {
+export function merge_rootContainer_boxSettingsView_boxSettings_tooManyCardsStatus(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.tooManyCardsStatus = eventData.tooManyCardsStatus;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_dictionaryLookupInvalid() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -1505,10 +1909,13 @@ export function get_rootContainer_boxSettingsView_givenLanguage() {
 	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.givenLanguage;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.dictionaryLookupInvalid;
 }
 
-export function set_rootContainer_boxSettingsView_givenLanguage(eventData) {
+export function set_rootContainer_boxSettingsView_boxSettings_dictionaryLookupInvalid(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -1517,10 +1924,31 @@ export function set_rootContainer_boxSettingsView_givenLanguage(eventData) {
 			isBoxSettingsView : true
 		};
 	}
-	appState.rootContainer.mainView.givenLanguage = eventData.givenLanguage;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
 }
 
-export function get_rootContainer_boxSettingsView_wantedLanguage() {
+export function merge_rootContainer_boxSettingsView_boxSettings_dictionaryLookupInvalid(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.dictionaryLookupInvalid = eventData.dictionaryLookupInvalid;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_boxId() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -1530,10 +1958,13 @@ export function get_rootContainer_boxSettingsView_wantedLanguage() {
 	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.wantedLanguage;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.boxId;
 }
 
-export function set_rootContainer_boxSettingsView_wantedLanguage(eventData) {
+export function set_rootContainer_boxSettingsView_boxSettings_boxId(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -1542,10 +1973,31 @@ export function set_rootContainer_boxSettingsView_wantedLanguage(eventData) {
 			isBoxSettingsView : true
 		};
 	}
-	appState.rootContainer.mainView.wantedLanguage = eventData.wantedLanguage;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.boxId = eventData.boxId;
 }
 
-export function get_rootContainer_boxSettingsView_categoryId() {
+export function merge_rootContainer_boxSettingsView_boxSettings_boxId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.boxId = eventData.boxId;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_maxInterval() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -1555,10 +2007,13 @@ export function get_rootContainer_boxSettingsView_categoryId() {
 	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.categoryId;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.maxInterval;
 }
 
-export function set_rootContainer_boxSettingsView_categoryId(eventData) {
+export function set_rootContainer_boxSettingsView_boxSettings_maxInterval(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -1567,10 +2022,31 @@ export function set_rootContainer_boxSettingsView_categoryId(eventData) {
 			isBoxSettingsView : true
 		};
 	}
-	appState.rootContainer.mainView.categoryId = eventData.categoryId;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.maxInterval = eventData.maxInterval;
 }
 
-export function get_rootContainer_boxSettingsView_shared() {
+export function merge_rootContainer_boxSettingsView_boxSettings_maxInterval(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.maxInterval = eventData.maxInterval;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_maxCardsPerDay() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -1580,10 +2056,13 @@ export function get_rootContainer_boxSettingsView_shared() {
 	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.shared;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.maxCardsPerDay;
 }
 
-export function set_rootContainer_boxSettingsView_shared(eventData) {
+export function set_rootContainer_boxSettingsView_boxSettings_maxCardsPerDay(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -1592,10 +2071,31 @@ export function set_rootContainer_boxSettingsView_shared(eventData) {
 			isBoxSettingsView : true
 		};
 	}
-	appState.rootContainer.mainView.shared = eventData.shared;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.maxCardsPerDay = eventData.maxCardsPerDay;
 }
 
-export function get_rootContainer_boxSettingsView_allActiveCards() {
+export function merge_rootContainer_boxSettingsView_boxSettings_maxCardsPerDay(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.maxCardsPerDay = eventData.maxCardsPerDay;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_categoryName() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -1605,10 +2105,13 @@ export function get_rootContainer_boxSettingsView_allActiveCards() {
 	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.allActiveCards;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.categoryName;
 }
 
-export function set_rootContainer_boxSettingsView_allActiveCards(eventData) {
+export function set_rootContainer_boxSettingsView_boxSettings_categoryName(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -1617,10 +2120,31 @@ export function set_rootContainer_boxSettingsView_allActiveCards(eventData) {
 			isBoxSettingsView : true
 		};
 	}
-	appState.rootContainer.mainView.allActiveCards = eventData.allActiveCards;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.categoryName = eventData.categoryName;
 }
 
-export function get_rootContainer_boxSettingsView_allCards() {
+export function merge_rootContainer_boxSettingsView_boxSettings_categoryName(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.categoryName = eventData.categoryName;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_dictionaryLookup() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -1630,10 +2154,13 @@ export function get_rootContainer_boxSettingsView_allCards() {
 	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.allCards;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.dictionaryLookup;
 }
 
-export function set_rootContainer_boxSettingsView_allCards(eventData) {
+export function set_rootContainer_boxSettingsView_boxSettings_dictionaryLookup(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -1642,7 +2169,322 @@ export function set_rootContainer_boxSettingsView_allCards(eventData) {
 			isBoxSettingsView : true
 		};
 	}
-	appState.rootContainer.mainView.allCards = eventData.allCards;
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.dictionaryLookup = eventData.dictionaryLookup;
+}
+
+export function merge_rootContainer_boxSettingsView_boxSettings_dictionaryLookup(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.dictionaryLookup = eventData.dictionaryLookup;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_givenLanguage() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.givenLanguage;
+}
+
+export function set_rootContainer_boxSettingsView_boxSettings_givenLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.givenLanguage = eventData.givenLanguage;
+}
+
+export function merge_rootContainer_boxSettingsView_boxSettings_givenLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.givenLanguage = eventData.givenLanguage;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_wantedLanguage() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.wantedLanguage;
+}
+
+export function set_rootContainer_boxSettingsView_boxSettings_wantedLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.wantedLanguage = eventData.wantedLanguage;
+}
+
+export function merge_rootContainer_boxSettingsView_boxSettings_wantedLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.wantedLanguage = eventData.wantedLanguage;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_categoryId() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.categoryId;
+}
+
+export function set_rootContainer_boxSettingsView_boxSettings_categoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.categoryId = eventData.categoryId;
+}
+
+export function merge_rootContainer_boxSettingsView_boxSettings_categoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.categoryId = eventData.categoryId;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_shared() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.shared;
+}
+
+export function set_rootContainer_boxSettingsView_boxSettings_shared(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.shared = eventData.shared;
+}
+
+export function merge_rootContainer_boxSettingsView_boxSettings_shared(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.shared = eventData.shared;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_allActiveCards() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.allActiveCards;
+}
+
+export function set_rootContainer_boxSettingsView_boxSettings_allActiveCards(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.allActiveCards = eventData.allActiveCards;
+}
+
+export function merge_rootContainer_boxSettingsView_boxSettings_allActiveCards(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.allActiveCards = eventData.allActiveCards;
+}
+
+export function get_rootContainer_boxSettingsView_boxSettings_allCards() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.boxSettings.allCards;
+}
+
+export function set_rootContainer_boxSettingsView_boxSettings_allCards(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isBoxSettingsView !== true) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.allCards = eventData.allCards;
+}
+
+export function merge_rootContainer_boxSettingsView_boxSettings_allCards(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isBoxSettingsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isBoxSettingsView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.boxSettings) {
+		appState.rootContainer.mainView.boxSettings = {};
+	}
+	appState.rootContainer.mainView.boxSettings.allCards = eventData.allCards;
 }
 
 export function get_rootContainer_allActiveCardsView() {
@@ -1673,22 +2515,25 @@ export function merge_rootContainer_allActiveCardsView(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAllActiveCardsView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAllActiveCardsView : true
 		};
 	}
-	if (eventData.boxId !== undefined) {
-		appState.rootContainer.mainView.boxId = eventData.boxId;
+	if (eventData.allActiveCardsView && eventData.allActiveCardsView.boxId !== undefined) {
+		appState.rootContainer.mainView.boxId = eventData.allActiveCardsView.boxId;
 	}
-	if (eventData.editable !== undefined) {
-		appState.rootContainer.mainView.editable = eventData.editable;
+	if (eventData.allActiveCardsView && eventData.allActiveCardsView.editable !== undefined) {
+		appState.rootContainer.mainView.editable = eventData.allActiveCardsView.editable;
 	}
-	if (eventData.activeCardList !== undefined) {
-		appState.rootContainer.mainView.activeCardList = eventData.activeCardList;
+	if (eventData.allActiveCardsView && eventData.allActiveCardsView.activeCardList !== undefined) {
+		appState.rootContainer.mainView.activeCardList = eventData.allActiveCardsView.activeCardList;
 	}
-	if (eventData.selectedCardIds !== undefined) {
-		appState.rootContainer.mainView.selectedCardIds = eventData.selectedCardIds;
+	if (eventData.allActiveCardsView && eventData.allActiveCardsView.selectedCardIds !== undefined) {
+		appState.rootContainer.mainView.selectedCardIds = eventData.allActiveCardsView.selectedCardIds;
 	}
 }
 
@@ -1717,6 +2562,21 @@ export function set_rootContainer_allActiveCardsView_boxId(eventData) {
 	appState.rootContainer.mainView.boxId = eventData.boxId;
 }
 
+export function merge_rootContainer_allActiveCardsView_boxId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAllActiveCardsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAllActiveCardsView : true
+		};
+	}
+	appState.rootContainer.mainView.boxId = eventData.boxId;
+}
+
 export function get_rootContainer_allActiveCardsView_editable() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -1735,6 +2595,21 @@ export function set_rootContainer_allActiveCardsView_editable(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAllActiveCardsView !== true) {
+		appState.rootContainer.mainView = {
+			isAllActiveCardsView : true
+		};
+	}
+	appState.rootContainer.mainView.editable = eventData.editable;
+}
+
+export function merge_rootContainer_allActiveCardsView_editable(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAllActiveCardsView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAllActiveCardsView : true
 		};
@@ -1823,22 +2698,25 @@ export function merge_rootContainer_profileView(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isProfileView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isProfileView : true
 		};
 	}
-	if (eventData.username !== undefined) {
-		appState.rootContainer.mainView.username = eventData.username;
+	if (eventData.profileView && eventData.profileView.username !== undefined) {
+		appState.rootContainer.mainView.username = eventData.profileView.username;
 	}
-	if (eventData.email !== undefined) {
-		appState.rootContainer.mainView.email = eventData.email;
+	if (eventData.profileView && eventData.profileView.email !== undefined) {
+		appState.rootContainer.mainView.email = eventData.profileView.email;
 	}
-	if (eventData.role !== undefined) {
-		appState.rootContainer.mainView.role = eventData.role;
+	if (eventData.profileView && eventData.profileView.role !== undefined) {
+		appState.rootContainer.mainView.role = eventData.profileView.role;
 	}
-	if (eventData.showDeleteUserDialog !== undefined) {
-		appState.rootContainer.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
+	if (eventData.profileView && eventData.profileView.showDeleteUserDialog !== undefined) {
+		appState.rootContainer.mainView.showDeleteUserDialog = eventData.profileView.showDeleteUserDialog;
 	}
 }
 
@@ -1860,6 +2738,21 @@ export function set_rootContainer_profileView_username(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isProfileView !== true) {
+		appState.rootContainer.mainView = {
+			isProfileView : true
+		};
+	}
+	appState.rootContainer.mainView.username = eventData.username;
+}
+
+export function merge_rootContainer_profileView_username(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isProfileView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isProfileView : true
 		};
@@ -1892,6 +2785,21 @@ export function set_rootContainer_profileView_email(eventData) {
 	appState.rootContainer.mainView.email = eventData.email;
 }
 
+export function merge_rootContainer_profileView_email(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isProfileView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isProfileView : true
+		};
+	}
+	appState.rootContainer.mainView.email = eventData.email;
+}
+
 export function get_rootContainer_profileView_role() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -1917,6 +2825,21 @@ export function set_rootContainer_profileView_role(eventData) {
 	appState.rootContainer.mainView.role = eventData.role;
 }
 
+export function merge_rootContainer_profileView_role(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isProfileView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isProfileView : true
+		};
+	}
+	appState.rootContainer.mainView.role = eventData.role;
+}
+
 export function get_rootContainer_profileView_showDeleteUserDialog() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -1935,6 +2858,21 @@ export function set_rootContainer_profileView_showDeleteUserDialog(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isProfileView !== true) {
+		appState.rootContainer.mainView = {
+			isProfileView : true
+		};
+	}
+	appState.rootContainer.mainView.showDeleteUserDialog = eventData.showDeleteUserDialog;
+}
+
+export function merge_rootContainer_profileView_showDeleteUserDialog(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isProfileView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isProfileView : true
 		};
@@ -1970,68 +2908,35 @@ export function merge_rootContainer_queryCardView(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isQueryCardView : true
 		};
 	}
-	if (eventData.cardId !== undefined) {
-		appState.rootContainer.mainView.cardId = eventData.cardId;
+	if (eventData.queryCardView && eventData.queryCardView.nextCard !== undefined) {
+		appState.rootContainer.mainView.nextCard = eventData.queryCardView.nextCard;
 	}
-	if (eventData.categoryId !== undefined) {
-		appState.rootContainer.mainView.categoryId = eventData.categoryId;
+	if (eventData.queryCardView && eventData.queryCardView.openTodaysCards !== undefined) {
+		appState.rootContainer.mainView.openTodaysCards = eventData.queryCardView.openTodaysCards;
 	}
-	if (eventData.categoryName !== undefined) {
-		appState.rootContainer.mainView.categoryName = eventData.categoryName;
+	if (eventData.queryCardView && eventData.queryCardView.allTodaysCards !== undefined) {
+		appState.rootContainer.mainView.allTodaysCards = eventData.queryCardView.allTodaysCards;
 	}
-	if (eventData.count !== undefined) {
-		appState.rootContainer.mainView.count = eventData.count;
+	if (eventData.queryCardView && eventData.queryCardView.reverse !== undefined) {
+		appState.rootContainer.mainView.reverse = eventData.queryCardView.reverse;
 	}
-	if (eventData.given !== undefined) {
-		appState.rootContainer.mainView.given = eventData.given;
+	if (eventData.queryCardView && eventData.queryCardView.enableScoreButtons !== undefined) {
+		appState.rootContainer.mainView.enableScoreButtons = eventData.queryCardView.enableScoreButtons;
 	}
-	if (eventData.lastQuality !== undefined) {
-		appState.rootContainer.mainView.lastQuality = eventData.lastQuality;
-	}
-	if (eventData.rootCategoryId !== undefined) {
-		appState.rootContainer.mainView.rootCategoryId = eventData.rootCategoryId;
-	}
-	if (eventData.scheduledCardId !== undefined) {
-		appState.rootContainer.mainView.scheduledCardId = eventData.scheduledCardId;
-	}
-	if (eventData.reinforceCardId !== undefined) {
-		appState.rootContainer.mainView.reinforceCardId = eventData.reinforceCardId;
-	}
-	if (eventData.scheduledDate !== undefined) {
-		appState.rootContainer.mainView.scheduledDate = eventData.scheduledDate;
-	}
-	if (eventData.scoredDate !== undefined) {
-		appState.rootContainer.mainView.scoredDate = eventData.scoredDate;
-	}
-	if (eventData.wanted !== undefined) {
-		appState.rootContainer.mainView.wanted = eventData.wanted;
-	}
-	if (eventData.openTodaysCards !== undefined) {
-		appState.rootContainer.mainView.openTodaysCards = eventData.openTodaysCards;
-	}
-	if (eventData.allTodaysCards !== undefined) {
-		appState.rootContainer.mainView.allTodaysCards = eventData.allTodaysCards;
-	}
-	if (eventData.index !== undefined) {
-		appState.rootContainer.mainView.index = eventData.index;
-	}
-	if (eventData.enableScoreButtons !== undefined) {
-		appState.rootContainer.mainView.enableScoreButtons = eventData.enableScoreButtons;
-	}
-	if (eventData.boxId !== undefined) {
-		appState.rootContainer.mainView.boxId = eventData.boxId;
-	}
-	if (eventData.reverse !== undefined) {
-		appState.rootContainer.mainView.reverse = eventData.reverse;
+	if (eventData.queryCardView && eventData.queryCardView.boxId !== undefined) {
+		appState.rootContainer.mainView.boxId = eventData.queryCardView.boxId;
 	}
 }
 
-export function get_rootContainer_queryCardView_cardId() {
+export function get_rootContainer_queryCardView_nextCard() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -2041,10 +2946,13 @@ export function get_rootContainer_queryCardView_cardId() {
 	if (appState.rootContainer.mainView.isQueryCardView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.cardId;
+	if (!appState.rootContainer.mainView.nextCard) {
+		return undefined;
+	}
+	return AppUtils.deepCopy(appState.rootContainer.mainView.nextCard);
 }
 
-export function set_rootContainer_queryCardView_cardId(eventData) {
+export function set_rootContainer_queryCardView_nextCard(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -2053,10 +2961,66 @@ export function set_rootContainer_queryCardView_cardId(eventData) {
 			isQueryCardView : true
 		};
 	}
-	appState.rootContainer.mainView.cardId = eventData.cardId;
+	appState.rootContainer.mainView.nextCard = eventData.nextCard;
 }
 
-export function get_rootContainer_queryCardView_categoryId() {
+export function merge_rootContainer_queryCardView_nextCard(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	if (eventData.nextCard && eventData.nextCard.cardId !== undefined) {
+		appState.rootContainer.mainView.nextCard.cardId = eventData.nextCard.cardId;
+	}
+	if (eventData.nextCard && eventData.nextCard.categoryId !== undefined) {
+		appState.rootContainer.mainView.nextCard.categoryId = eventData.nextCard.categoryId;
+	}
+	if (eventData.nextCard && eventData.nextCard.categoryName !== undefined) {
+		appState.rootContainer.mainView.nextCard.categoryName = eventData.nextCard.categoryName;
+	}
+	if (eventData.nextCard && eventData.nextCard.count !== undefined) {
+		appState.rootContainer.mainView.nextCard.count = eventData.nextCard.count;
+	}
+	if (eventData.nextCard && eventData.nextCard.given !== undefined) {
+		appState.rootContainer.mainView.nextCard.given = eventData.nextCard.given;
+	}
+	if (eventData.nextCard && eventData.nextCard.lastQuality !== undefined) {
+		appState.rootContainer.mainView.nextCard.lastQuality = eventData.nextCard.lastQuality;
+	}
+	if (eventData.nextCard && eventData.nextCard.rootCategoryId !== undefined) {
+		appState.rootContainer.mainView.nextCard.rootCategoryId = eventData.nextCard.rootCategoryId;
+	}
+	if (eventData.nextCard && eventData.nextCard.scheduledCardId !== undefined) {
+		appState.rootContainer.mainView.nextCard.scheduledCardId = eventData.nextCard.scheduledCardId;
+	}
+	if (eventData.nextCard && eventData.nextCard.reinforceCardId !== undefined) {
+		appState.rootContainer.mainView.nextCard.reinforceCardId = eventData.nextCard.reinforceCardId;
+	}
+	if (eventData.nextCard && eventData.nextCard.scheduledDate !== undefined) {
+		appState.rootContainer.mainView.nextCard.scheduledDate = eventData.nextCard.scheduledDate;
+	}
+	if (eventData.nextCard && eventData.nextCard.scoredDate !== undefined) {
+		appState.rootContainer.mainView.nextCard.scoredDate = eventData.nextCard.scoredDate;
+	}
+	if (eventData.nextCard && eventData.nextCard.wanted !== undefined) {
+		appState.rootContainer.mainView.nextCard.wanted = eventData.nextCard.wanted;
+	}
+	if (eventData.nextCard && eventData.nextCard.index !== undefined) {
+		appState.rootContainer.mainView.nextCard.index = eventData.nextCard.index;
+	}
+}
+
+export function get_rootContainer_queryCardView_nextCard_cardId() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -2066,10 +3030,13 @@ export function get_rootContainer_queryCardView_categoryId() {
 	if (appState.rootContainer.mainView.isQueryCardView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.categoryId;
+	if (!appState.rootContainer.mainView.nextCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.nextCard.cardId;
 }
 
-export function set_rootContainer_queryCardView_categoryId(eventData) {
+export function set_rootContainer_queryCardView_nextCard_cardId(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -2078,10 +3045,31 @@ export function set_rootContainer_queryCardView_categoryId(eventData) {
 			isQueryCardView : true
 		};
 	}
-	appState.rootContainer.mainView.categoryId = eventData.categoryId;
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.cardId = eventData.cardId;
 }
 
-export function get_rootContainer_queryCardView_categoryName() {
+export function merge_rootContainer_queryCardView_nextCard_cardId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.cardId = eventData.cardId;
+}
+
+export function get_rootContainer_queryCardView_nextCard_categoryId() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -2091,10 +3079,13 @@ export function get_rootContainer_queryCardView_categoryName() {
 	if (appState.rootContainer.mainView.isQueryCardView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.categoryName;
+	if (!appState.rootContainer.mainView.nextCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.nextCard.categoryId;
 }
 
-export function set_rootContainer_queryCardView_categoryName(eventData) {
+export function set_rootContainer_queryCardView_nextCard_categoryId(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -2103,10 +3094,31 @@ export function set_rootContainer_queryCardView_categoryName(eventData) {
 			isQueryCardView : true
 		};
 	}
-	appState.rootContainer.mainView.categoryName = eventData.categoryName;
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.categoryId = eventData.categoryId;
 }
 
-export function get_rootContainer_queryCardView_count() {
+export function merge_rootContainer_queryCardView_nextCard_categoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.categoryId = eventData.categoryId;
+}
+
+export function get_rootContainer_queryCardView_nextCard_categoryName() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -2116,10 +3128,13 @@ export function get_rootContainer_queryCardView_count() {
 	if (appState.rootContainer.mainView.isQueryCardView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.count;
+	if (!appState.rootContainer.mainView.nextCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.nextCard.categoryName;
 }
 
-export function set_rootContainer_queryCardView_count(eventData) {
+export function set_rootContainer_queryCardView_nextCard_categoryName(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -2128,10 +3143,31 @@ export function set_rootContainer_queryCardView_count(eventData) {
 			isQueryCardView : true
 		};
 	}
-	appState.rootContainer.mainView.count = eventData.count;
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.categoryName = eventData.categoryName;
 }
 
-export function get_rootContainer_queryCardView_given() {
+export function merge_rootContainer_queryCardView_nextCard_categoryName(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.categoryName = eventData.categoryName;
+}
+
+export function get_rootContainer_queryCardView_nextCard_count() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -2141,10 +3177,13 @@ export function get_rootContainer_queryCardView_given() {
 	if (appState.rootContainer.mainView.isQueryCardView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.given;
+	if (!appState.rootContainer.mainView.nextCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.nextCard.count;
 }
 
-export function set_rootContainer_queryCardView_given(eventData) {
+export function set_rootContainer_queryCardView_nextCard_count(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -2153,10 +3192,31 @@ export function set_rootContainer_queryCardView_given(eventData) {
 			isQueryCardView : true
 		};
 	}
-	appState.rootContainer.mainView.given = eventData.given;
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.count = eventData.count;
 }
 
-export function get_rootContainer_queryCardView_lastQuality() {
+export function merge_rootContainer_queryCardView_nextCard_count(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.count = eventData.count;
+}
+
+export function get_rootContainer_queryCardView_nextCard_given() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -2166,10 +3226,13 @@ export function get_rootContainer_queryCardView_lastQuality() {
 	if (appState.rootContainer.mainView.isQueryCardView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.lastQuality;
+	if (!appState.rootContainer.mainView.nextCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.nextCard.given;
 }
 
-export function set_rootContainer_queryCardView_lastQuality(eventData) {
+export function set_rootContainer_queryCardView_nextCard_given(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -2178,10 +3241,31 @@ export function set_rootContainer_queryCardView_lastQuality(eventData) {
 			isQueryCardView : true
 		};
 	}
-	appState.rootContainer.mainView.lastQuality = eventData.lastQuality;
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.given = eventData.given;
 }
 
-export function get_rootContainer_queryCardView_rootCategoryId() {
+export function merge_rootContainer_queryCardView_nextCard_given(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.given = eventData.given;
+}
+
+export function get_rootContainer_queryCardView_nextCard_lastQuality() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -2191,10 +3275,13 @@ export function get_rootContainer_queryCardView_rootCategoryId() {
 	if (appState.rootContainer.mainView.isQueryCardView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.rootCategoryId;
+	if (!appState.rootContainer.mainView.nextCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.nextCard.lastQuality;
 }
 
-export function set_rootContainer_queryCardView_rootCategoryId(eventData) {
+export function set_rootContainer_queryCardView_nextCard_lastQuality(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -2203,10 +3290,31 @@ export function set_rootContainer_queryCardView_rootCategoryId(eventData) {
 			isQueryCardView : true
 		};
 	}
-	appState.rootContainer.mainView.rootCategoryId = eventData.rootCategoryId;
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.lastQuality = eventData.lastQuality;
 }
 
-export function get_rootContainer_queryCardView_scheduledCardId() {
+export function merge_rootContainer_queryCardView_nextCard_lastQuality(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.lastQuality = eventData.lastQuality;
+}
+
+export function get_rootContainer_queryCardView_nextCard_rootCategoryId() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -2216,10 +3324,13 @@ export function get_rootContainer_queryCardView_scheduledCardId() {
 	if (appState.rootContainer.mainView.isQueryCardView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.scheduledCardId;
+	if (!appState.rootContainer.mainView.nextCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.nextCard.rootCategoryId;
 }
 
-export function set_rootContainer_queryCardView_scheduledCardId(eventData) {
+export function set_rootContainer_queryCardView_nextCard_rootCategoryId(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -2228,10 +3339,31 @@ export function set_rootContainer_queryCardView_scheduledCardId(eventData) {
 			isQueryCardView : true
 		};
 	}
-	appState.rootContainer.mainView.scheduledCardId = eventData.scheduledCardId;
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.rootCategoryId = eventData.rootCategoryId;
 }
 
-export function get_rootContainer_queryCardView_reinforceCardId() {
+export function merge_rootContainer_queryCardView_nextCard_rootCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.rootCategoryId = eventData.rootCategoryId;
+}
+
+export function get_rootContainer_queryCardView_nextCard_scheduledCardId() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -2241,10 +3373,13 @@ export function get_rootContainer_queryCardView_reinforceCardId() {
 	if (appState.rootContainer.mainView.isQueryCardView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.reinforceCardId;
+	if (!appState.rootContainer.mainView.nextCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.nextCard.scheduledCardId;
 }
 
-export function set_rootContainer_queryCardView_reinforceCardId(eventData) {
+export function set_rootContainer_queryCardView_nextCard_scheduledCardId(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -2253,10 +3388,31 @@ export function set_rootContainer_queryCardView_reinforceCardId(eventData) {
 			isQueryCardView : true
 		};
 	}
-	appState.rootContainer.mainView.reinforceCardId = eventData.reinforceCardId;
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.scheduledCardId = eventData.scheduledCardId;
 }
 
-export function get_rootContainer_queryCardView_scheduledDate() {
+export function merge_rootContainer_queryCardView_nextCard_scheduledCardId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.scheduledCardId = eventData.scheduledCardId;
+}
+
+export function get_rootContainer_queryCardView_nextCard_reinforceCardId() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -2266,10 +3422,13 @@ export function get_rootContainer_queryCardView_scheduledDate() {
 	if (appState.rootContainer.mainView.isQueryCardView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.scheduledDate;
+	if (!appState.rootContainer.mainView.nextCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.nextCard.reinforceCardId;
 }
 
-export function set_rootContainer_queryCardView_scheduledDate(eventData) {
+export function set_rootContainer_queryCardView_nextCard_reinforceCardId(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -2278,10 +3437,31 @@ export function set_rootContainer_queryCardView_scheduledDate(eventData) {
 			isQueryCardView : true
 		};
 	}
-	appState.rootContainer.mainView.scheduledDate = eventData.scheduledDate;
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.reinforceCardId = eventData.reinforceCardId;
 }
 
-export function get_rootContainer_queryCardView_scoredDate() {
+export function merge_rootContainer_queryCardView_nextCard_reinforceCardId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.reinforceCardId = eventData.reinforceCardId;
+}
+
+export function get_rootContainer_queryCardView_nextCard_scheduledDate() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -2291,10 +3471,13 @@ export function get_rootContainer_queryCardView_scoredDate() {
 	if (appState.rootContainer.mainView.isQueryCardView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.scoredDate;
+	if (!appState.rootContainer.mainView.nextCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.nextCard.scheduledDate;
 }
 
-export function set_rootContainer_queryCardView_scoredDate(eventData) {
+export function set_rootContainer_queryCardView_nextCard_scheduledDate(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -2303,10 +3486,31 @@ export function set_rootContainer_queryCardView_scoredDate(eventData) {
 			isQueryCardView : true
 		};
 	}
-	appState.rootContainer.mainView.scoredDate = eventData.scoredDate;
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.scheduledDate = eventData.scheduledDate;
 }
 
-export function get_rootContainer_queryCardView_wanted() {
+export function merge_rootContainer_queryCardView_nextCard_scheduledDate(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.scheduledDate = eventData.scheduledDate;
+}
+
+export function get_rootContainer_queryCardView_nextCard_scoredDate() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -2316,10 +3520,13 @@ export function get_rootContainer_queryCardView_wanted() {
 	if (appState.rootContainer.mainView.isQueryCardView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.wanted;
+	if (!appState.rootContainer.mainView.nextCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.nextCard.scoredDate;
 }
 
-export function set_rootContainer_queryCardView_wanted(eventData) {
+export function set_rootContainer_queryCardView_nextCard_scoredDate(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -2328,7 +3535,126 @@ export function set_rootContainer_queryCardView_wanted(eventData) {
 			isQueryCardView : true
 		};
 	}
-	appState.rootContainer.mainView.wanted = eventData.wanted;
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.scoredDate = eventData.scoredDate;
+}
+
+export function merge_rootContainer_queryCardView_nextCard_scoredDate(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.scoredDate = eventData.scoredDate;
+}
+
+export function get_rootContainer_queryCardView_nextCard_wanted() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.nextCard.wanted;
+}
+
+export function set_rootContainer_queryCardView_nextCard_wanted(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.wanted = eventData.wanted;
+}
+
+export function merge_rootContainer_queryCardView_nextCard_wanted(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.wanted = eventData.wanted;
+}
+
+export function get_rootContainer_queryCardView_nextCard_index() {
+	if (!appState.rootContainer) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView) {
+		return undefined;
+	}
+	if (appState.rootContainer.mainView.isQueryCardView !== true) {
+		return undefined;
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		return undefined;
+	}
+	return appState.rootContainer.mainView.nextCard.index;
+}
+
+export function set_rootContainer_queryCardView_nextCard_index(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.index = eventData.index;
+}
+
+export function merge_rootContainer_queryCardView_nextCard_index(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.nextCard) {
+		appState.rootContainer.mainView.nextCard = {};
+	}
+	appState.rootContainer.mainView.nextCard.index = eventData.index;
 }
 
 export function get_rootContainer_queryCardView_openTodaysCards() {
@@ -2349,6 +3675,21 @@ export function set_rootContainer_queryCardView_openTodaysCards(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	appState.rootContainer.mainView.openTodaysCards = eventData.openTodaysCards;
+}
+
+export function merge_rootContainer_queryCardView_openTodaysCards(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isQueryCardView : true
 		};
@@ -2381,7 +3722,22 @@ export function set_rootContainer_queryCardView_allTodaysCards(eventData) {
 	appState.rootContainer.mainView.allTodaysCards = eventData.allTodaysCards;
 }
 
-export function get_rootContainer_queryCardView_index() {
+export function merge_rootContainer_queryCardView_allTodaysCards(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	appState.rootContainer.mainView.allTodaysCards = eventData.allTodaysCards;
+}
+
+export function get_rootContainer_queryCardView_reverse() {
 	if (!appState.rootContainer) {
 		return undefined;
 	}
@@ -2391,10 +3747,10 @@ export function get_rootContainer_queryCardView_index() {
 	if (appState.rootContainer.mainView.isQueryCardView !== true) {
 		return undefined;
 	}
-	return appState.rootContainer.mainView.index;
+	return appState.rootContainer.mainView.reverse;
 }
 
-export function set_rootContainer_queryCardView_index(eventData) {
+export function set_rootContainer_queryCardView_reverse(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
@@ -2403,7 +3759,22 @@ export function set_rootContainer_queryCardView_index(eventData) {
 			isQueryCardView : true
 		};
 	}
-	appState.rootContainer.mainView.index = eventData.index;
+	appState.rootContainer.mainView.reverse = eventData.reverse;
+}
+
+export function merge_rootContainer_queryCardView_reverse(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	appState.rootContainer.mainView.reverse = eventData.reverse;
 }
 
 export function get_rootContainer_queryCardView_enableScoreButtons() {
@@ -2424,6 +3795,21 @@ export function set_rootContainer_queryCardView_enableScoreButtons(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+		appState.rootContainer.mainView = {
+			isQueryCardView : true
+		};
+	}
+	appState.rootContainer.mainView.enableScoreButtons = eventData.enableScoreButtons;
+}
+
+export function merge_rootContainer_queryCardView_enableScoreButtons(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isQueryCardView : true
 		};
@@ -2456,29 +3842,19 @@ export function set_rootContainer_queryCardView_boxId(eventData) {
 	appState.rootContainer.mainView.boxId = eventData.boxId;
 }
 
-export function get_rootContainer_queryCardView_reverse() {
-	if (!appState.rootContainer) {
-		return undefined;
-	}
-	if (!appState.rootContainer.mainView) {
-		return undefined;
-	}
-	if (appState.rootContainer.mainView.isQueryCardView !== true) {
-		return undefined;
-	}
-	return appState.rootContainer.mainView.reverse;
-}
-
-export function set_rootContainer_queryCardView_reverse(eventData) {
+export function merge_rootContainer_queryCardView_boxId(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
-	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isQueryCardView !== true) {
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isQueryCardView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isQueryCardView : true
 		};
 	}
-	appState.rootContainer.mainView.reverse = eventData.reverse;
+	appState.rootContainer.mainView.boxId = eventData.boxId;
 }
 
 export function get_rootContainer_authorView() {
@@ -2509,22 +3885,25 @@ export function merge_rootContainer_authorView(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
 	}
-	if (eventData.boxId !== undefined) {
-		appState.rootContainer.mainView.boxId = eventData.boxId;
+	if (eventData.authorView && eventData.authorView.boxId !== undefined) {
+		appState.rootContainer.mainView.boxId = eventData.authorView.boxId;
 	}
-	if (eventData.reverse !== undefined) {
-		appState.rootContainer.mainView.reverse = eventData.reverse;
+	if (eventData.authorView && eventData.authorView.reverse !== undefined) {
+		appState.rootContainer.mainView.reverse = eventData.authorView.reverse;
 	}
-	if (eventData.categoryTree !== undefined) {
-		appState.rootContainer.mainView.categoryTree = eventData.categoryTree;
+	if (eventData.authorView && eventData.authorView.categoryTree !== undefined) {
+		appState.rootContainer.mainView.categoryTree = eventData.authorView.categoryTree;
 	}
-	if (eventData.cardView !== undefined) {
-		appState.rootContainer.mainView.cardView = eventData.cardView;
+	if (eventData.authorView && eventData.authorView.cardView !== undefined) {
+		appState.rootContainer.mainView.cardView = eventData.authorView.cardView;
 	}
 }
 
@@ -2553,6 +3932,21 @@ export function set_rootContainer_authorView_boxId(eventData) {
 	appState.rootContainer.mainView.boxId = eventData.boxId;
 }
 
+export function merge_rootContainer_authorView_boxId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	appState.rootContainer.mainView.boxId = eventData.boxId;
+}
+
 export function get_rootContainer_authorView_reverse() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -2571,6 +3965,21 @@ export function set_rootContainer_authorView_reverse(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	appState.rootContainer.mainView.reverse = eventData.reverse;
+}
+
+export function merge_rootContainer_authorView_reverse(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -2610,47 +4019,52 @@ export function merge_rootContainer_authorView_categoryTree(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
-		appState.rootContainer.mainView = {};
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
 	}
 	if (!appState.rootContainer.mainView.categoryTree) {
 		appState.rootContainer.mainView.categoryTree = {};
 	}
-	if (eventData.filterNonScheduled !== undefined) {
-		appState.rootContainer.mainView.categoryTree.filterNonScheduled = eventData.filterNonScheduled;
+	if (eventData.categoryTree && eventData.categoryTree.filterNonScheduled !== undefined) {
+		appState.rootContainer.mainView.categoryTree.filterNonScheduled = eventData.categoryTree.filterNonScheduled;
 	}
-	if (eventData.reverseBoxExists !== undefined) {
-		appState.rootContainer.mainView.categoryTree.reverseBoxExists = eventData.reverseBoxExists;
+	if (eventData.categoryTree && eventData.categoryTree.reverseBoxExists !== undefined) {
+		appState.rootContainer.mainView.categoryTree.reverseBoxExists = eventData.categoryTree.reverseBoxExists;
 	}
-	if (eventData.priority !== undefined) {
-		appState.rootContainer.mainView.categoryTree.priority = eventData.priority;
+	if (eventData.categoryTree && eventData.categoryTree.priority !== undefined) {
+		appState.rootContainer.mainView.categoryTree.priority = eventData.categoryTree.priority;
 	}
-	if (eventData.selectedCategory !== undefined) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory = eventData.selectedCategory;
+	if (eventData.categoryTree && eventData.categoryTree.selectedCategory !== undefined) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = eventData.categoryTree.selectedCategory;
 	}
-	if (eventData.rootCategory !== undefined) {
-		appState.rootContainer.mainView.categoryTree.rootCategory = eventData.rootCategory;
+	if (eventData.categoryTree && eventData.categoryTree.rootCategory !== undefined) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = eventData.categoryTree.rootCategory;
 	}
-	if (eventData.displayDeleteCategory !== undefined) {
-		appState.rootContainer.mainView.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
+	if (eventData.categoryTree && eventData.categoryTree.displayDeleteCategory !== undefined) {
+		appState.rootContainer.mainView.categoryTree.displayDeleteCategory = eventData.categoryTree.displayDeleteCategory;
 	}
-	if (eventData.categoryDialog !== undefined) {
-		appState.rootContainer.mainView.categoryTree.categoryDialog = eventData.categoryDialog;
+	if (eventData.categoryTree && eventData.categoryTree.categoryDialog !== undefined) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog = eventData.categoryTree.categoryDialog;
 	}
-	if (eventData.inviteUserDialog !== undefined) {
-		appState.rootContainer.mainView.categoryTree.inviteUserDialog = eventData.inviteUserDialog;
+	if (eventData.categoryTree && eventData.categoryTree.inviteUserDialog !== undefined) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog = eventData.categoryTree.inviteUserDialog;
 	}
-	if (eventData.deleteCategoryDialog !== undefined) {
-		appState.rootContainer.mainView.categoryTree.deleteCategoryDialog = eventData.deleteCategoryDialog;
+	if (eventData.categoryTree && eventData.categoryTree.deleteCategoryDialog !== undefined) {
+		appState.rootContainer.mainView.categoryTree.deleteCategoryDialog = eventData.categoryTree.deleteCategoryDialog;
 	}
-	if (eventData.dropAllowed !== undefined) {
-		appState.rootContainer.mainView.categoryTree.dropAllowed = eventData.dropAllowed;
+	if (eventData.categoryTree && eventData.categoryTree.dropAllowed !== undefined) {
+		appState.rootContainer.mainView.categoryTree.dropAllowed = eventData.categoryTree.dropAllowed;
 	}
-	if (eventData.dropTargetCategoryId !== undefined) {
-		appState.rootContainer.mainView.categoryTree.dropTargetCategoryId = eventData.dropTargetCategoryId;
+	if (eventData.categoryTree && eventData.categoryTree.dropTargetCategoryId !== undefined) {
+		appState.rootContainer.mainView.categoryTree.dropTargetCategoryId = eventData.categoryTree.dropTargetCategoryId;
 	}
-	if (eventData.movedCategory !== undefined) {
-		appState.rootContainer.mainView.categoryTree.movedCategory = eventData.movedCategory;
+	if (eventData.categoryTree && eventData.categoryTree.movedCategory !== undefined) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = eventData.categoryTree.movedCategory;
 	}
 }
 
@@ -2675,6 +4089,24 @@ export function set_rootContainer_authorView_categoryTree_filterNonScheduled(eve
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	appState.rootContainer.mainView.categoryTree.filterNonScheduled = eventData.filterNonScheduled;
+}
+
+export function merge_rootContainer_authorView_categoryTree_filterNonScheduled(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -2716,6 +4148,24 @@ export function set_rootContainer_authorView_categoryTree_reverseBoxExists(event
 	appState.rootContainer.mainView.categoryTree.reverseBoxExists = eventData.reverseBoxExists;
 }
 
+export function merge_rootContainer_authorView_categoryTree_reverseBoxExists(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	appState.rootContainer.mainView.categoryTree.reverseBoxExists = eventData.reverseBoxExists;
+}
+
 export function get_rootContainer_authorView_categoryTree_priority() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -2737,6 +4187,24 @@ export function set_rootContainer_authorView_categoryTree_priority(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	appState.rootContainer.mainView.categoryTree.priority = eventData.priority;
+}
+
+export function merge_rootContainer_authorView_categoryTree_priority(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -2785,8 +4253,13 @@ export function merge_rootContainer_authorView_categoryTree_selectedCategory(eve
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
-		appState.rootContainer.mainView = {};
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
 	}
 	if (!appState.rootContainer.mainView.categoryTree) {
 		appState.rootContainer.mainView.categoryTree = {};
@@ -2794,32 +4267,32 @@ export function merge_rootContainer_authorView_categoryTree_selectedCategory(eve
 	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
 		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
 	}
-	if (eventData.categoryId !== undefined) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory.categoryId = eventData.categoryId;
+	if (eventData.selectedCategory && eventData.selectedCategory.categoryId !== undefined) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory.categoryId = eventData.selectedCategory.categoryId;
 	}
-	if (eventData.categoryName !== undefined) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory.categoryName = eventData.categoryName;
+	if (eventData.selectedCategory && eventData.selectedCategory.categoryName !== undefined) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory.categoryName = eventData.selectedCategory.categoryName;
 	}
-	if (eventData.categoryIndex !== undefined) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory.categoryIndex = eventData.categoryIndex;
+	if (eventData.selectedCategory && eventData.selectedCategory.categoryIndex !== undefined) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory.categoryIndex = eventData.selectedCategory.categoryIndex;
 	}
-	if (eventData.empty !== undefined) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory.empty = eventData.empty;
+	if (eventData.selectedCategory && eventData.selectedCategory.empty !== undefined) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory.empty = eventData.selectedCategory.empty;
 	}
-	if (eventData.parentCategoryId !== undefined) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
+	if (eventData.selectedCategory && eventData.selectedCategory.parentCategoryId !== undefined) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.selectedCategory.parentCategoryId;
 	}
-	if (eventData.rootCategoryId !== undefined) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory.rootCategoryId = eventData.rootCategoryId;
+	if (eventData.selectedCategory && eventData.selectedCategory.rootCategoryId !== undefined) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory.rootCategoryId = eventData.selectedCategory.rootCategoryId;
 	}
-	if (eventData.childCategories !== undefined) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory.childCategories = eventData.childCategories;
+	if (eventData.selectedCategory && eventData.selectedCategory.childCategories !== undefined) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory.childCategories = eventData.selectedCategory.childCategories;
 	}
-	if (eventData.nonScheduledCount !== undefined) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory.nonScheduledCount = eventData.nonScheduledCount;
+	if (eventData.selectedCategory && eventData.selectedCategory.nonScheduledCount !== undefined) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory.nonScheduledCount = eventData.selectedCategory.nonScheduledCount;
 	}
-	if (eventData.editable !== undefined) {
-		appState.rootContainer.mainView.categoryTree.selectedCategory.editable = eventData.editable;
+	if (eventData.selectedCategory && eventData.selectedCategory.editable !== undefined) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory.editable = eventData.selectedCategory.editable;
 	}
 }
 
@@ -2847,6 +4320,27 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_categ
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.selectedCategory.categoryId = eventData.categoryId;
+}
+
+export function merge_rootContainer_authorView_categoryTree_selectedCategory_categoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -2897,6 +4391,27 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_categ
 	appState.rootContainer.mainView.categoryTree.selectedCategory.categoryName = eventData.categoryName;
 }
 
+export function merge_rootContainer_authorView_categoryTree_selectedCategory_categoryName(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.selectedCategory.categoryName = eventData.categoryName;
+}
+
 export function get_rootContainer_authorView_categoryTree_selectedCategory_categoryIndex() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -2921,6 +4436,27 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_categ
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.selectedCategory.categoryIndex = eventData.categoryIndex;
+}
+
+export function merge_rootContainer_authorView_categoryTree_selectedCategory_categoryIndex(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -2971,6 +4507,27 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_empty
 	appState.rootContainer.mainView.categoryTree.selectedCategory.empty = eventData.empty;
 }
 
+export function merge_rootContainer_authorView_categoryTree_selectedCategory_empty(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.selectedCategory.empty = eventData.empty;
+}
+
 export function get_rootContainer_authorView_categoryTree_selectedCategory_parentCategoryId() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -3008,6 +4565,27 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_paren
 	appState.rootContainer.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
 }
 
+export function merge_rootContainer_authorView_categoryTree_selectedCategory_parentCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.selectedCategory.parentCategoryId = eventData.parentCategoryId;
+}
+
 export function get_rootContainer_authorView_categoryTree_selectedCategory_rootCategoryId() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -3032,6 +4610,27 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_rootC
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.selectedCategory.rootCategoryId = eventData.rootCategoryId;
+}
+
+export function merge_rootContainer_authorView_categoryTree_selectedCategory_rootCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -3119,6 +4718,27 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_nonSc
 	appState.rootContainer.mainView.categoryTree.selectedCategory.nonScheduledCount = eventData.nonScheduledCount;
 }
 
+export function merge_rootContainer_authorView_categoryTree_selectedCategory_nonScheduledCount(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.selectedCategory.nonScheduledCount = eventData.nonScheduledCount;
+}
+
 export function get_rootContainer_authorView_categoryTree_selectedCategory_editable() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -3143,6 +4763,27 @@ export function set_rootContainer_authorView_categoryTree_selectedCategory_edita
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.selectedCategory) {
+		appState.rootContainer.mainView.categoryTree.selectedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.selectedCategory.editable = eventData.editable;
+}
+
+export function merge_rootContainer_authorView_categoryTree_selectedCategory_editable(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -3194,8 +4835,13 @@ export function merge_rootContainer_authorView_categoryTree_rootCategory(eventDa
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
-		appState.rootContainer.mainView = {};
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
 	}
 	if (!appState.rootContainer.mainView.categoryTree) {
 		appState.rootContainer.mainView.categoryTree = {};
@@ -3203,41 +4849,41 @@ export function merge_rootContainer_authorView_categoryTree_rootCategory(eventDa
 	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
 		appState.rootContainer.mainView.categoryTree.rootCategory = {};
 	}
-	if (eventData.categoryId !== undefined) {
-		appState.rootContainer.mainView.categoryTree.rootCategory.categoryId = eventData.categoryId;
+	if (eventData.rootCategory && eventData.rootCategory.categoryId !== undefined) {
+		appState.rootContainer.mainView.categoryTree.rootCategory.categoryId = eventData.rootCategory.categoryId;
 	}
-	if (eventData.categoryName !== undefined) {
-		appState.rootContainer.mainView.categoryTree.rootCategory.categoryName = eventData.categoryName;
+	if (eventData.rootCategory && eventData.rootCategory.categoryName !== undefined) {
+		appState.rootContainer.mainView.categoryTree.rootCategory.categoryName = eventData.rootCategory.categoryName;
 	}
-	if (eventData.categoryIndex !== undefined) {
-		appState.rootContainer.mainView.categoryTree.rootCategory.categoryIndex = eventData.categoryIndex;
+	if (eventData.rootCategory && eventData.rootCategory.categoryIndex !== undefined) {
+		appState.rootContainer.mainView.categoryTree.rootCategory.categoryIndex = eventData.rootCategory.categoryIndex;
 	}
-	if (eventData.empty !== undefined) {
-		appState.rootContainer.mainView.categoryTree.rootCategory.empty = eventData.empty;
+	if (eventData.rootCategory && eventData.rootCategory.empty !== undefined) {
+		appState.rootContainer.mainView.categoryTree.rootCategory.empty = eventData.rootCategory.empty;
 	}
-	if (eventData.parentCategoryId !== undefined) {
-		appState.rootContainer.mainView.categoryTree.rootCategory.parentCategoryId = eventData.parentCategoryId;
+	if (eventData.rootCategory && eventData.rootCategory.parentCategoryId !== undefined) {
+		appState.rootContainer.mainView.categoryTree.rootCategory.parentCategoryId = eventData.rootCategory.parentCategoryId;
 	}
-	if (eventData.dictionaryLookup !== undefined) {
-		appState.rootContainer.mainView.categoryTree.rootCategory.dictionaryLookup = eventData.dictionaryLookup;
+	if (eventData.rootCategory && eventData.rootCategory.dictionaryLookup !== undefined) {
+		appState.rootContainer.mainView.categoryTree.rootCategory.dictionaryLookup = eventData.rootCategory.dictionaryLookup;
 	}
-	if (eventData.givenLanguage !== undefined) {
-		appState.rootContainer.mainView.categoryTree.rootCategory.givenLanguage = eventData.givenLanguage;
+	if (eventData.rootCategory && eventData.rootCategory.givenLanguage !== undefined) {
+		appState.rootContainer.mainView.categoryTree.rootCategory.givenLanguage = eventData.rootCategory.givenLanguage;
 	}
-	if (eventData.wantedLanguage !== undefined) {
-		appState.rootContainer.mainView.categoryTree.rootCategory.wantedLanguage = eventData.wantedLanguage;
+	if (eventData.rootCategory && eventData.rootCategory.wantedLanguage !== undefined) {
+		appState.rootContainer.mainView.categoryTree.rootCategory.wantedLanguage = eventData.rootCategory.wantedLanguage;
 	}
-	if (eventData.rootCategoryId !== undefined) {
-		appState.rootContainer.mainView.categoryTree.rootCategory.rootCategoryId = eventData.rootCategoryId;
+	if (eventData.rootCategory && eventData.rootCategory.rootCategoryId !== undefined) {
+		appState.rootContainer.mainView.categoryTree.rootCategory.rootCategoryId = eventData.rootCategory.rootCategoryId;
 	}
-	if (eventData.childCategories !== undefined) {
-		appState.rootContainer.mainView.categoryTree.rootCategory.childCategories = eventData.childCategories;
+	if (eventData.rootCategory && eventData.rootCategory.childCategories !== undefined) {
+		appState.rootContainer.mainView.categoryTree.rootCategory.childCategories = eventData.rootCategory.childCategories;
 	}
-	if (eventData.nonScheduledCount !== undefined) {
-		appState.rootContainer.mainView.categoryTree.rootCategory.nonScheduledCount = eventData.nonScheduledCount;
+	if (eventData.rootCategory && eventData.rootCategory.nonScheduledCount !== undefined) {
+		appState.rootContainer.mainView.categoryTree.rootCategory.nonScheduledCount = eventData.rootCategory.nonScheduledCount;
 	}
-	if (eventData.editable !== undefined) {
-		appState.rootContainer.mainView.categoryTree.rootCategory.editable = eventData.editable;
+	if (eventData.rootCategory && eventData.rootCategory.editable !== undefined) {
+		appState.rootContainer.mainView.categoryTree.rootCategory.editable = eventData.rootCategory.editable;
 	}
 }
 
@@ -3265,6 +4911,27 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_categoryI
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.rootCategory.categoryId = eventData.categoryId;
+}
+
+export function merge_rootContainer_authorView_categoryTree_rootCategory_categoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -3315,6 +4982,27 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_categoryN
 	appState.rootContainer.mainView.categoryTree.rootCategory.categoryName = eventData.categoryName;
 }
 
+export function merge_rootContainer_authorView_categoryTree_rootCategory_categoryName(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.rootCategory.categoryName = eventData.categoryName;
+}
+
 export function get_rootContainer_authorView_categoryTree_rootCategory_categoryIndex() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -3339,6 +5027,27 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_categoryI
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.rootCategory.categoryIndex = eventData.categoryIndex;
+}
+
+export function merge_rootContainer_authorView_categoryTree_rootCategory_categoryIndex(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -3389,6 +5098,27 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_empty(eve
 	appState.rootContainer.mainView.categoryTree.rootCategory.empty = eventData.empty;
 }
 
+export function merge_rootContainer_authorView_categoryTree_rootCategory_empty(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.rootCategory.empty = eventData.empty;
+}
+
 export function get_rootContainer_authorView_categoryTree_rootCategory_parentCategoryId() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -3413,6 +5143,27 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_parentCat
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.rootCategory.parentCategoryId = eventData.parentCategoryId;
+}
+
+export function merge_rootContainer_authorView_categoryTree_rootCategory_parentCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -3463,6 +5214,27 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_dictionar
 	appState.rootContainer.mainView.categoryTree.rootCategory.dictionaryLookup = eventData.dictionaryLookup;
 }
 
+export function merge_rootContainer_authorView_categoryTree_rootCategory_dictionaryLookup(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.rootCategory.dictionaryLookup = eventData.dictionaryLookup;
+}
+
 export function get_rootContainer_authorView_categoryTree_rootCategory_givenLanguage() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -3487,6 +5259,27 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_givenLang
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.rootCategory.givenLanguage = eventData.givenLanguage;
+}
+
+export function merge_rootContainer_authorView_categoryTree_rootCategory_givenLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -3537,6 +5330,27 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_wantedLan
 	appState.rootContainer.mainView.categoryTree.rootCategory.wantedLanguage = eventData.wantedLanguage;
 }
 
+export function merge_rootContainer_authorView_categoryTree_rootCategory_wantedLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.rootCategory.wantedLanguage = eventData.wantedLanguage;
+}
+
 export function get_rootContainer_authorView_categoryTree_rootCategory_rootCategoryId() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -3561,6 +5375,27 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_rootCateg
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.rootCategory.rootCategoryId = eventData.rootCategoryId;
+}
+
+export function merge_rootContainer_authorView_categoryTree_rootCategory_rootCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -3648,6 +5483,27 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_nonSchedu
 	appState.rootContainer.mainView.categoryTree.rootCategory.nonScheduledCount = eventData.nonScheduledCount;
 }
 
+export function merge_rootContainer_authorView_categoryTree_rootCategory_nonScheduledCount(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.rootCategory.nonScheduledCount = eventData.nonScheduledCount;
+}
+
 export function get_rootContainer_authorView_categoryTree_rootCategory_editable() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -3685,6 +5541,27 @@ export function set_rootContainer_authorView_categoryTree_rootCategory_editable(
 	appState.rootContainer.mainView.categoryTree.rootCategory.editable = eventData.editable;
 }
 
+export function merge_rootContainer_authorView_categoryTree_rootCategory_editable(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.rootCategory) {
+		appState.rootContainer.mainView.categoryTree.rootCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.rootCategory.editable = eventData.editable;
+}
+
 export function get_rootContainer_authorView_categoryTree_displayDeleteCategory() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -3706,6 +5583,24 @@ export function set_rootContainer_authorView_categoryTree_displayDeleteCategory(
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	appState.rootContainer.mainView.categoryTree.displayDeleteCategory = eventData.displayDeleteCategory;
+}
+
+export function merge_rootContainer_authorView_categoryTree_displayDeleteCategory(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -3754,8 +5649,13 @@ export function merge_rootContainer_authorView_categoryTree_categoryDialog(event
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
-		appState.rootContainer.mainView = {};
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
 	}
 	if (!appState.rootContainer.mainView.categoryTree) {
 		appState.rootContainer.mainView.categoryTree = {};
@@ -3763,14 +5663,14 @@ export function merge_rootContainer_authorView_categoryTree_categoryDialog(event
 	if (!appState.rootContainer.mainView.categoryTree.categoryDialog) {
 		appState.rootContainer.mainView.categoryTree.categoryDialog = {};
 	}
-	if (eventData.categoryName !== undefined) {
-		appState.rootContainer.mainView.categoryTree.categoryDialog.categoryName = eventData.categoryName;
+	if (eventData.categoryDialog && eventData.categoryDialog.categoryName !== undefined) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog.categoryName = eventData.categoryDialog.categoryName;
 	}
-	if (eventData.newCategory !== undefined) {
-		appState.rootContainer.mainView.categoryTree.categoryDialog.newCategory = eventData.newCategory;
+	if (eventData.categoryDialog && eventData.categoryDialog.newCategory !== undefined) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog.newCategory = eventData.categoryDialog.newCategory;
 	}
-	if (eventData.display !== undefined) {
-		appState.rootContainer.mainView.categoryTree.categoryDialog.display = eventData.display;
+	if (eventData.categoryDialog && eventData.categoryDialog.display !== undefined) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog.display = eventData.categoryDialog.display;
 	}
 }
 
@@ -3798,6 +5698,27 @@ export function set_rootContainer_authorView_categoryTree_categoryDialog_categor
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.categoryDialog) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog = {};
+	}
+	appState.rootContainer.mainView.categoryTree.categoryDialog.categoryName = eventData.categoryName;
+}
+
+export function merge_rootContainer_authorView_categoryTree_categoryDialog_categoryName(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -3848,6 +5769,27 @@ export function set_rootContainer_authorView_categoryTree_categoryDialog_newCate
 	appState.rootContainer.mainView.categoryTree.categoryDialog.newCategory = eventData.newCategory;
 }
 
+export function merge_rootContainer_authorView_categoryTree_categoryDialog_newCategory(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.categoryDialog) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog = {};
+	}
+	appState.rootContainer.mainView.categoryTree.categoryDialog.newCategory = eventData.newCategory;
+}
+
 export function get_rootContainer_authorView_categoryTree_categoryDialog_display() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -3872,6 +5814,27 @@ export function set_rootContainer_authorView_categoryTree_categoryDialog_display
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.categoryDialog) {
+		appState.rootContainer.mainView.categoryTree.categoryDialog = {};
+	}
+	appState.rootContainer.mainView.categoryTree.categoryDialog.display = eventData.display;
+}
+
+export function merge_rootContainer_authorView_categoryTree_categoryDialog_display(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -3923,8 +5886,13 @@ export function merge_rootContainer_authorView_categoryTree_inviteUserDialog(eve
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
-		appState.rootContainer.mainView = {};
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
 	}
 	if (!appState.rootContainer.mainView.categoryTree) {
 		appState.rootContainer.mainView.categoryTree = {};
@@ -3932,17 +5900,17 @@ export function merge_rootContainer_authorView_categoryTree_inviteUserDialog(eve
 	if (!appState.rootContainer.mainView.categoryTree.inviteUserDialog) {
 		appState.rootContainer.mainView.categoryTree.inviteUserDialog = {};
 	}
-	if (eventData.display !== undefined) {
-		appState.rootContainer.mainView.categoryTree.inviteUserDialog.display = eventData.display;
+	if (eventData.inviteUserDialog && eventData.inviteUserDialog.display !== undefined) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog.display = eventData.inviteUserDialog.display;
 	}
-	if (eventData.usernameSearchString !== undefined) {
-		appState.rootContainer.mainView.categoryTree.inviteUserDialog.usernameSearchString = eventData.usernameSearchString;
+	if (eventData.inviteUserDialog && eventData.inviteUserDialog.usernameSearchString !== undefined) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog.usernameSearchString = eventData.inviteUserDialog.usernameSearchString;
 	}
-	if (eventData.usernames !== undefined) {
-		appState.rootContainer.mainView.categoryTree.inviteUserDialog.usernames = eventData.usernames;
+	if (eventData.inviteUserDialog && eventData.inviteUserDialog.usernames !== undefined) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog.usernames = eventData.inviteUserDialog.usernames;
 	}
-	if (eventData.invitedUsernames !== undefined) {
-		appState.rootContainer.mainView.categoryTree.inviteUserDialog.invitedUsernames = eventData.invitedUsernames;
+	if (eventData.inviteUserDialog && eventData.inviteUserDialog.invitedUsernames !== undefined) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog.invitedUsernames = eventData.inviteUserDialog.invitedUsernames;
 	}
 }
 
@@ -3983,6 +5951,27 @@ export function set_rootContainer_authorView_categoryTree_inviteUserDialog_displ
 	appState.rootContainer.mainView.categoryTree.inviteUserDialog.display = eventData.display;
 }
 
+export function merge_rootContainer_authorView_categoryTree_inviteUserDialog_display(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.inviteUserDialog) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog = {};
+	}
+	appState.rootContainer.mainView.categoryTree.inviteUserDialog.display = eventData.display;
+}
+
 export function get_rootContainer_authorView_categoryTree_inviteUserDialog_usernameSearchString() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -4007,6 +5996,27 @@ export function set_rootContainer_authorView_categoryTree_inviteUserDialog_usern
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.inviteUserDialog) {
+		appState.rootContainer.mainView.categoryTree.inviteUserDialog = {};
+	}
+	appState.rootContainer.mainView.categoryTree.inviteUserDialog.usernameSearchString = eventData.usernameSearchString;
+}
+
+export function merge_rootContainer_authorView_categoryTree_inviteUserDialog_usernameSearchString(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -4132,8 +6142,13 @@ export function merge_rootContainer_authorView_categoryTree_deleteCategoryDialog
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
-		appState.rootContainer.mainView = {};
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
 	}
 	if (!appState.rootContainer.mainView.categoryTree) {
 		appState.rootContainer.mainView.categoryTree = {};
@@ -4141,8 +6156,8 @@ export function merge_rootContainer_authorView_categoryTree_deleteCategoryDialog
 	if (!appState.rootContainer.mainView.categoryTree.deleteCategoryDialog) {
 		appState.rootContainer.mainView.categoryTree.deleteCategoryDialog = {};
 	}
-	if (eventData.display !== undefined) {
-		appState.rootContainer.mainView.categoryTree.deleteCategoryDialog.display = eventData.display;
+	if (eventData.deleteCategoryDialog && eventData.deleteCategoryDialog.display !== undefined) {
+		appState.rootContainer.mainView.categoryTree.deleteCategoryDialog.display = eventData.deleteCategoryDialog.display;
 	}
 }
 
@@ -4170,6 +6185,27 @@ export function set_rootContainer_authorView_categoryTree_deleteCategoryDialog_d
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.deleteCategoryDialog) {
+		appState.rootContainer.mainView.categoryTree.deleteCategoryDialog = {};
+	}
+	appState.rootContainer.mainView.categoryTree.deleteCategoryDialog.display = eventData.display;
+}
+
+export function merge_rootContainer_authorView_categoryTree_deleteCategoryDialog_display(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -4214,6 +6250,24 @@ export function set_rootContainer_authorView_categoryTree_dropAllowed(eventData)
 	appState.rootContainer.mainView.categoryTree.dropAllowed = eventData.dropAllowed;
 }
 
+export function merge_rootContainer_authorView_categoryTree_dropAllowed(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	appState.rootContainer.mainView.categoryTree.dropAllowed = eventData.dropAllowed;
+}
+
 export function get_rootContainer_authorView_categoryTree_dropTargetCategoryId() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -4235,6 +6289,24 @@ export function set_rootContainer_authorView_categoryTree_dropTargetCategoryId(e
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	appState.rootContainer.mainView.categoryTree.dropTargetCategoryId = eventData.dropTargetCategoryId;
+}
+
+export function merge_rootContainer_authorView_categoryTree_dropTargetCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -4283,8 +6355,13 @@ export function merge_rootContainer_authorView_categoryTree_movedCategory(eventD
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
-		appState.rootContainer.mainView = {};
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
 	}
 	if (!appState.rootContainer.mainView.categoryTree) {
 		appState.rootContainer.mainView.categoryTree = {};
@@ -4292,35 +6369,35 @@ export function merge_rootContainer_authorView_categoryTree_movedCategory(eventD
 	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
 		appState.rootContainer.mainView.categoryTree.movedCategory = {};
 	}
-	if (eventData.categoryId !== undefined) {
-		appState.rootContainer.mainView.categoryTree.movedCategory.categoryId = eventData.categoryId;
+	if (eventData.movedCategory && eventData.movedCategory.categoryId !== undefined) {
+		appState.rootContainer.mainView.categoryTree.movedCategory.categoryId = eventData.movedCategory.categoryId;
 	}
-	if (eventData.categoryName !== undefined) {
-		appState.rootContainer.mainView.categoryTree.movedCategory.categoryName = eventData.categoryName;
+	if (eventData.movedCategory && eventData.movedCategory.categoryName !== undefined) {
+		appState.rootContainer.mainView.categoryTree.movedCategory.categoryName = eventData.movedCategory.categoryName;
 	}
-	if (eventData.categoryIndex !== undefined) {
-		appState.rootContainer.mainView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
+	if (eventData.movedCategory && eventData.movedCategory.categoryIndex !== undefined) {
+		appState.rootContainer.mainView.categoryTree.movedCategory.categoryIndex = eventData.movedCategory.categoryIndex;
 	}
-	if (eventData.empty !== undefined) {
-		appState.rootContainer.mainView.categoryTree.movedCategory.empty = eventData.empty;
+	if (eventData.movedCategory && eventData.movedCategory.empty !== undefined) {
+		appState.rootContainer.mainView.categoryTree.movedCategory.empty = eventData.movedCategory.empty;
 	}
-	if (eventData.parentCategoryId !== undefined) {
-		appState.rootContainer.mainView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
+	if (eventData.movedCategory && eventData.movedCategory.parentCategoryId !== undefined) {
+		appState.rootContainer.mainView.categoryTree.movedCategory.parentCategoryId = eventData.movedCategory.parentCategoryId;
 	}
-	if (eventData.dictionaryLookup !== undefined) {
-		appState.rootContainer.mainView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
+	if (eventData.movedCategory && eventData.movedCategory.dictionaryLookup !== undefined) {
+		appState.rootContainer.mainView.categoryTree.movedCategory.dictionaryLookup = eventData.movedCategory.dictionaryLookup;
 	}
-	if (eventData.givenLanguage !== undefined) {
-		appState.rootContainer.mainView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
+	if (eventData.movedCategory && eventData.movedCategory.givenLanguage !== undefined) {
+		appState.rootContainer.mainView.categoryTree.movedCategory.givenLanguage = eventData.movedCategory.givenLanguage;
 	}
-	if (eventData.wantedLanguage !== undefined) {
-		appState.rootContainer.mainView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
+	if (eventData.movedCategory && eventData.movedCategory.wantedLanguage !== undefined) {
+		appState.rootContainer.mainView.categoryTree.movedCategory.wantedLanguage = eventData.movedCategory.wantedLanguage;
 	}
-	if (eventData.rootCategoryId !== undefined) {
-		appState.rootContainer.mainView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
+	if (eventData.movedCategory && eventData.movedCategory.rootCategoryId !== undefined) {
+		appState.rootContainer.mainView.categoryTree.movedCategory.rootCategoryId = eventData.movedCategory.rootCategoryId;
 	}
-	if (eventData.childCategories !== undefined) {
-		appState.rootContainer.mainView.categoryTree.movedCategory.childCategories = eventData.childCategories;
+	if (eventData.movedCategory && eventData.movedCategory.childCategories !== undefined) {
+		appState.rootContainer.mainView.categoryTree.movedCategory.childCategories = eventData.movedCategory.childCategories;
 	}
 }
 
@@ -4348,6 +6425,27 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_category
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.movedCategory.categoryId = eventData.categoryId;
+}
+
+export function merge_rootContainer_authorView_categoryTree_movedCategory_categoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -4398,6 +6496,27 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_category
 	appState.rootContainer.mainView.categoryTree.movedCategory.categoryName = eventData.categoryName;
 }
 
+export function merge_rootContainer_authorView_categoryTree_movedCategory_categoryName(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.movedCategory.categoryName = eventData.categoryName;
+}
+
 export function get_rootContainer_authorView_categoryTree_movedCategory_categoryIndex() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -4422,6 +6541,27 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_category
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.movedCategory.categoryIndex = eventData.categoryIndex;
+}
+
+export function merge_rootContainer_authorView_categoryTree_movedCategory_categoryIndex(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -4472,6 +6612,27 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_empty(ev
 	appState.rootContainer.mainView.categoryTree.movedCategory.empty = eventData.empty;
 }
 
+export function merge_rootContainer_authorView_categoryTree_movedCategory_empty(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.movedCategory.empty = eventData.empty;
+}
+
 export function get_rootContainer_authorView_categoryTree_movedCategory_parentCategoryId() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -4496,6 +6657,27 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_parentCa
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.movedCategory.parentCategoryId = eventData.parentCategoryId;
+}
+
+export function merge_rootContainer_authorView_categoryTree_movedCategory_parentCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -4546,6 +6728,27 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_dictiona
 	appState.rootContainer.mainView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
 }
 
+export function merge_rootContainer_authorView_categoryTree_movedCategory_dictionaryLookup(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.movedCategory.dictionaryLookup = eventData.dictionaryLookup;
+}
+
 export function get_rootContainer_authorView_categoryTree_movedCategory_givenLanguage() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -4570,6 +6773,27 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_givenLan
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.movedCategory.givenLanguage = eventData.givenLanguage;
+}
+
+export function merge_rootContainer_authorView_categoryTree_movedCategory_givenLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -4620,6 +6844,27 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_wantedLa
 	appState.rootContainer.mainView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
 }
 
+export function merge_rootContainer_authorView_categoryTree_movedCategory_wantedLanguage(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.movedCategory.wantedLanguage = eventData.wantedLanguage;
+}
+
 export function get_rootContainer_authorView_categoryTree_movedCategory_rootCategoryId() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -4644,6 +6889,27 @@ export function set_rootContainer_authorView_categoryTree_movedCategory_rootCate
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.categoryTree) {
+		appState.rootContainer.mainView.categoryTree = {};
+	}
+	if (!appState.rootContainer.mainView.categoryTree.movedCategory) {
+		appState.rootContainer.mainView.categoryTree.movedCategory = {};
+	}
+	appState.rootContainer.mainView.categoryTree.movedCategory.rootCategoryId = eventData.rootCategoryId;
+}
+
+export function merge_rootContainer_authorView_categoryTree_movedCategory_rootCategoryId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -4726,44 +6992,49 @@ export function merge_rootContainer_authorView_cardView(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
-		appState.rootContainer.mainView = {};
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
 	}
 	if (!appState.rootContainer.mainView.cardView) {
 		appState.rootContainer.mainView.cardView = {};
 	}
-	if (eventData.cardList !== undefined) {
-		appState.rootContainer.mainView.cardView.cardList = eventData.cardList;
+	if (eventData.cardView && eventData.cardView.cardList !== undefined) {
+		appState.rootContainer.mainView.cardView.cardList = eventData.cardView.cardList;
 	}
-	if (eventData.naturalInputOrder !== undefined) {
-		appState.rootContainer.mainView.cardView.naturalInputOrder = eventData.naturalInputOrder;
+	if (eventData.cardView && eventData.cardView.naturalInputOrder !== undefined) {
+		appState.rootContainer.mainView.cardView.naturalInputOrder = eventData.cardView.naturalInputOrder;
 	}
-	if (eventData.filter !== undefined) {
-		appState.rootContainer.mainView.cardView.filter = eventData.filter;
+	if (eventData.cardView && eventData.cardView.filter !== undefined) {
+		appState.rootContainer.mainView.cardView.filter = eventData.cardView.filter;
 	}
-	if (eventData.editedCard !== undefined) {
-		appState.rootContainer.mainView.cardView.editedCard = eventData.editedCard;
+	if (eventData.cardView && eventData.cardView.editedCard !== undefined) {
+		appState.rootContainer.mainView.cardView.editedCard = eventData.cardView.editedCard;
 	}
-	if (eventData.newCard !== undefined) {
-		appState.rootContainer.mainView.cardView.newCard = eventData.newCard;
+	if (eventData.cardView && eventData.cardView.newCard !== undefined) {
+		appState.rootContainer.mainView.cardView.newCard = eventData.cardView.newCard;
 	}
-	if (eventData.cardDuplicates !== undefined) {
-		appState.rootContainer.mainView.cardView.cardDuplicates = eventData.cardDuplicates;
+	if (eventData.cardView && eventData.cardView.cardDuplicates !== undefined) {
+		appState.rootContainer.mainView.cardView.cardDuplicates = eventData.cardView.cardDuplicates;
 	}
-	if (eventData.deleteCard !== undefined) {
-		appState.rootContainer.mainView.cardView.deleteCard = eventData.deleteCard;
+	if (eventData.cardView && eventData.cardView.deleteCard !== undefined) {
+		appState.rootContainer.mainView.cardView.deleteCard = eventData.cardView.deleteCard;
 	}
-	if (eventData.dictionaryValue !== undefined) {
-		appState.rootContainer.mainView.cardView.dictionaryValue = eventData.dictionaryValue;
+	if (eventData.cardView && eventData.cardView.dictionaryValue !== undefined) {
+		appState.rootContainer.mainView.cardView.dictionaryValue = eventData.cardView.dictionaryValue;
 	}
-	if (eventData.selectedCardIds !== undefined) {
-		appState.rootContainer.mainView.cardView.selectedCardIds = eventData.selectedCardIds;
+	if (eventData.cardView && eventData.cardView.selectedCardIds !== undefined) {
+		appState.rootContainer.mainView.cardView.selectedCardIds = eventData.cardView.selectedCardIds;
 	}
-	if (eventData.movedCardIds !== undefined) {
-		appState.rootContainer.mainView.cardView.movedCardIds = eventData.movedCardIds;
+	if (eventData.cardView && eventData.cardView.movedCardIds !== undefined) {
+		appState.rootContainer.mainView.cardView.movedCardIds = eventData.cardView.movedCardIds;
 	}
-	if (eventData.dragTargetCardId !== undefined) {
-		appState.rootContainer.mainView.cardView.dragTargetCardId = eventData.dragTargetCardId;
+	if (eventData.cardView && eventData.cardView.dragTargetCardId !== undefined) {
+		appState.rootContainer.mainView.cardView.dragTargetCardId = eventData.cardView.dragTargetCardId;
 	}
 }
 
@@ -4832,6 +7103,24 @@ export function set_rootContainer_authorView_cardView_naturalInputOrder(eventDat
 	appState.rootContainer.mainView.cardView.naturalInputOrder = eventData.naturalInputOrder;
 }
 
+export function merge_rootContainer_authorView_cardView_naturalInputOrder(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	appState.rootContainer.mainView.cardView.naturalInputOrder = eventData.naturalInputOrder;
+}
+
 export function get_rootContainer_authorView_cardView_filter() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -4853,6 +7142,24 @@ export function set_rootContainer_authorView_cardView_filter(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	appState.rootContainer.mainView.cardView.filter = eventData.filter;
+}
+
+export function merge_rootContainer_authorView_cardView_filter(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -4901,8 +7208,13 @@ export function merge_rootContainer_authorView_cardView_editedCard(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
-		appState.rootContainer.mainView = {};
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
 	}
 	if (!appState.rootContainer.mainView.cardView) {
 		appState.rootContainer.mainView.cardView = {};
@@ -4910,17 +7222,17 @@ export function merge_rootContainer_authorView_cardView_editedCard(eventData) {
 	if (!appState.rootContainer.mainView.cardView.editedCard) {
 		appState.rootContainer.mainView.cardView.editedCard = {};
 	}
-	if (eventData.cardId !== undefined) {
-		appState.rootContainer.mainView.cardView.editedCard.cardId = eventData.cardId;
+	if (eventData.editedCard && eventData.editedCard.cardId !== undefined) {
+		appState.rootContainer.mainView.cardView.editedCard.cardId = eventData.editedCard.cardId;
 	}
-	if (eventData.given !== undefined) {
-		appState.rootContainer.mainView.cardView.editedCard.given = eventData.given;
+	if (eventData.editedCard && eventData.editedCard.given !== undefined) {
+		appState.rootContainer.mainView.cardView.editedCard.given = eventData.editedCard.given;
 	}
-	if (eventData.wanted !== undefined) {
-		appState.rootContainer.mainView.cardView.editedCard.wanted = eventData.wanted;
+	if (eventData.editedCard && eventData.editedCard.wanted !== undefined) {
+		appState.rootContainer.mainView.cardView.editedCard.wanted = eventData.editedCard.wanted;
 	}
-	if (eventData.index !== undefined) {
-		appState.rootContainer.mainView.cardView.editedCard.index = eventData.index;
+	if (eventData.editedCard && eventData.editedCard.index !== undefined) {
+		appState.rootContainer.mainView.cardView.editedCard.index = eventData.editedCard.index;
 	}
 }
 
@@ -4948,6 +7260,27 @@ export function set_rootContainer_authorView_cardView_editedCard_cardId(eventDat
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		appState.rootContainer.mainView.cardView.editedCard = {};
+	}
+	appState.rootContainer.mainView.cardView.editedCard.cardId = eventData.cardId;
+}
+
+export function merge_rootContainer_authorView_cardView_editedCard_cardId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -4998,6 +7331,27 @@ export function set_rootContainer_authorView_cardView_editedCard_given(eventData
 	appState.rootContainer.mainView.cardView.editedCard.given = eventData.given;
 }
 
+export function merge_rootContainer_authorView_cardView_editedCard_given(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		appState.rootContainer.mainView.cardView.editedCard = {};
+	}
+	appState.rootContainer.mainView.cardView.editedCard.given = eventData.given;
+}
+
 export function get_rootContainer_authorView_cardView_editedCard_wanted() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -5035,6 +7389,27 @@ export function set_rootContainer_authorView_cardView_editedCard_wanted(eventDat
 	appState.rootContainer.mainView.cardView.editedCard.wanted = eventData.wanted;
 }
 
+export function merge_rootContainer_authorView_cardView_editedCard_wanted(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		appState.rootContainer.mainView.cardView.editedCard = {};
+	}
+	appState.rootContainer.mainView.cardView.editedCard.wanted = eventData.wanted;
+}
+
 export function get_rootContainer_authorView_cardView_editedCard_index() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -5059,6 +7434,27 @@ export function set_rootContainer_authorView_cardView_editedCard_index(eventData
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	if (!appState.rootContainer.mainView.cardView.editedCard) {
+		appState.rootContainer.mainView.cardView.editedCard = {};
+	}
+	appState.rootContainer.mainView.cardView.editedCard.index = eventData.index;
+}
+
+export function merge_rootContainer_authorView_cardView_editedCard_index(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -5110,8 +7506,13 @@ export function merge_rootContainer_authorView_cardView_newCard(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
-		appState.rootContainer.mainView = {};
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
 	}
 	if (!appState.rootContainer.mainView.cardView) {
 		appState.rootContainer.mainView.cardView = {};
@@ -5119,17 +7520,17 @@ export function merge_rootContainer_authorView_cardView_newCard(eventData) {
 	if (!appState.rootContainer.mainView.cardView.newCard) {
 		appState.rootContainer.mainView.cardView.newCard = {};
 	}
-	if (eventData.given !== undefined) {
-		appState.rootContainer.mainView.cardView.newCard.given = eventData.given;
+	if (eventData.newCard && eventData.newCard.given !== undefined) {
+		appState.rootContainer.mainView.cardView.newCard.given = eventData.newCard.given;
 	}
-	if (eventData.wanted !== undefined) {
-		appState.rootContainer.mainView.cardView.newCard.wanted = eventData.wanted;
+	if (eventData.newCard && eventData.newCard.wanted !== undefined) {
+		appState.rootContainer.mainView.cardView.newCard.wanted = eventData.newCard.wanted;
 	}
-	if (eventData.index !== undefined) {
-		appState.rootContainer.mainView.cardView.newCard.index = eventData.index;
+	if (eventData.newCard && eventData.newCard.index !== undefined) {
+		appState.rootContainer.mainView.cardView.newCard.index = eventData.newCard.index;
 	}
-	if (eventData.displaySpinner !== undefined) {
-		appState.rootContainer.mainView.cardView.newCard.displaySpinner = eventData.displaySpinner;
+	if (eventData.newCard && eventData.newCard.displaySpinner !== undefined) {
+		appState.rootContainer.mainView.cardView.newCard.displaySpinner = eventData.newCard.displaySpinner;
 	}
 }
 
@@ -5157,6 +7558,27 @@ export function set_rootContainer_authorView_cardView_newCard_given(eventData) {
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		appState.rootContainer.mainView.cardView.newCard = {};
+	}
+	appState.rootContainer.mainView.cardView.newCard.given = eventData.given;
+}
+
+export function merge_rootContainer_authorView_cardView_newCard_given(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -5207,6 +7629,27 @@ export function set_rootContainer_authorView_cardView_newCard_wanted(eventData) 
 	appState.rootContainer.mainView.cardView.newCard.wanted = eventData.wanted;
 }
 
+export function merge_rootContainer_authorView_cardView_newCard_wanted(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		appState.rootContainer.mainView.cardView.newCard = {};
+	}
+	appState.rootContainer.mainView.cardView.newCard.wanted = eventData.wanted;
+}
+
 export function get_rootContainer_authorView_cardView_newCard_index() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -5244,6 +7687,27 @@ export function set_rootContainer_authorView_cardView_newCard_index(eventData) {
 	appState.rootContainer.mainView.cardView.newCard.index = eventData.index;
 }
 
+export function merge_rootContainer_authorView_cardView_newCard_index(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		appState.rootContainer.mainView.cardView.newCard = {};
+	}
+	appState.rootContainer.mainView.cardView.newCard.index = eventData.index;
+}
+
 export function get_rootContainer_authorView_cardView_newCard_displaySpinner() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -5268,6 +7732,27 @@ export function set_rootContainer_authorView_cardView_newCard_displaySpinner(eve
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	if (!appState.rootContainer.mainView.cardView.newCard) {
+		appState.rootContainer.mainView.cardView.newCard = {};
+	}
+	appState.rootContainer.mainView.cardView.newCard.displaySpinner = eventData.displaySpinner;
+}
+
+export function merge_rootContainer_authorView_cardView_newCard_displaySpinner(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -5353,8 +7838,13 @@ export function merge_rootContainer_authorView_cardView_deleteCard(eventData) {
 	if (!appState.rootContainer) {
 		appState.rootContainer = {};
 	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
 	if (!appState.rootContainer.mainView) {
-		appState.rootContainer.mainView = {};
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
 	}
 	if (!appState.rootContainer.mainView.cardView) {
 		appState.rootContainer.mainView.cardView = {};
@@ -5362,11 +7852,11 @@ export function merge_rootContainer_authorView_cardView_deleteCard(eventData) {
 	if (!appState.rootContainer.mainView.cardView.deleteCard) {
 		appState.rootContainer.mainView.cardView.deleteCard = {};
 	}
-	if (eventData.confirmDelete !== undefined) {
-		appState.rootContainer.mainView.cardView.deleteCard.confirmDelete = eventData.confirmDelete;
+	if (eventData.deleteCard && eventData.deleteCard.confirmDelete !== undefined) {
+		appState.rootContainer.mainView.cardView.deleteCard.confirmDelete = eventData.deleteCard.confirmDelete;
 	}
-	if (eventData.cardId !== undefined) {
-		appState.rootContainer.mainView.cardView.deleteCard.cardId = eventData.cardId;
+	if (eventData.deleteCard && eventData.deleteCard.cardId !== undefined) {
+		appState.rootContainer.mainView.cardView.deleteCard.cardId = eventData.deleteCard.cardId;
 	}
 }
 
@@ -5394,6 +7884,27 @@ export function set_rootContainer_authorView_cardView_deleteCard_confirmDelete(e
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	if (!appState.rootContainer.mainView.cardView.deleteCard) {
+		appState.rootContainer.mainView.cardView.deleteCard = {};
+	}
+	appState.rootContainer.mainView.cardView.deleteCard.confirmDelete = eventData.confirmDelete;
+}
+
+export function merge_rootContainer_authorView_cardView_deleteCard_confirmDelete(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -5444,6 +7955,27 @@ export function set_rootContainer_authorView_cardView_deleteCard_cardId(eventDat
 	appState.rootContainer.mainView.cardView.deleteCard.cardId = eventData.cardId;
 }
 
+export function merge_rootContainer_authorView_cardView_deleteCard_cardId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	if (!appState.rootContainer.mainView.cardView.deleteCard) {
+		appState.rootContainer.mainView.cardView.deleteCard = {};
+	}
+	appState.rootContainer.mainView.cardView.deleteCard.cardId = eventData.cardId;
+}
+
 export function get_rootContainer_authorView_cardView_dictionaryValue() {
 	if (!appState.rootContainer) {
 		return undefined;
@@ -5465,6 +7997,24 @@ export function set_rootContainer_authorView_cardView_dictionaryValue(eventData)
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	appState.rootContainer.mainView.cardView.dictionaryValue = eventData.dictionaryValue;
+}
+
+export function merge_rootContainer_authorView_cardView_dictionaryValue(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};
@@ -5558,6 +8108,24 @@ export function set_rootContainer_authorView_cardView_dragTargetCardId(eventData
 		appState.rootContainer = {};
 	}
 	if (!appState.rootContainer.mainView || appState.rootContainer.mainView.isAuthorView !== true) {
+		appState.rootContainer.mainView = {
+			isAuthorView : true
+		};
+	}
+	if (!appState.rootContainer.mainView.cardView) {
+		appState.rootContainer.mainView.cardView = {};
+	}
+	appState.rootContainer.mainView.cardView.dragTargetCardId = eventData.dragTargetCardId;
+}
+
+export function merge_rootContainer_authorView_cardView_dragTargetCardId(eventData) {
+	if (!appState.rootContainer) {
+		appState.rootContainer = {};
+	}
+	if (appState.rootContainer.mainView && !appState.rootContainer.mainView.isAuthorView) {
+		return;
+	}
+	if (!appState.rootContainer.mainView) {
 		appState.rootContainer.mainView = {
 			isAuthorView : true
 		};

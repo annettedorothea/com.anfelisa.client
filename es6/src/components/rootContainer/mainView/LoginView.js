@@ -13,6 +13,7 @@ import CryptoJS from "crypto-js";
 
 
 export const LoginView = (props) => {
+	// noinspection JSUnresolvedFunction
 	return <div className="center form">
 		<h1>{Texts.login.title[props.language]}</h1>
 		<div className="line">

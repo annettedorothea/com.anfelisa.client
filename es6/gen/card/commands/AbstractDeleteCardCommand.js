@@ -29,7 +29,7 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpDelete(`${Utils.settings.rootPath}/card/delete?cardId=${data.cardId}`, data.uuid, true).then(() => {
+			AppUtils.httpDelete(`${AppUtils.settings.rootPath}/card/delete?cardId=${data.cardId}`, data.uuid, true).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

@@ -34,7 +34,7 @@ export default class AbstractDeleteUserCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpDelete(`${Utils.settings.rootPath}/user/delete?usernameToBeDeleted=${data.usernameToBeDeleted}`, data.uuid, true).then(() => {
+			AppUtils.httpDelete(`${AppUtils.settings.rootPath}/user/delete?usernameToBeDeleted=${data.usernameToBeDeleted}`, data.uuid, true).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

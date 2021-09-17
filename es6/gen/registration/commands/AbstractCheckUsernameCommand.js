@@ -30,7 +30,7 @@ export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/users/username?username=${data.username}`, data.uuid, false).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/users/username?username=${data.username}`, data.uuid, false).then((response) => {
 				data.available = response.available;
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {

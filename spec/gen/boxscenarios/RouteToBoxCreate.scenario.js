@@ -51,49 +51,49 @@ describe("boxscenarios.RouteToBoxCreate", function () {
     });
     
 	it("allActiveCards", async () => {
-		expect(appState.rootContainer.mainView.allActiveCards, "allActiveCards").toEqual(undefined)
+		expect(appState.rootContainer.mainView.boxSettings.allActiveCards, "allActiveCards").toEqual(undefined)
 	});
 	it("allCards", async () => {
-		expect(appState.rootContainer.mainView.allCards, "allCards").toEqual(undefined)
+		expect(appState.rootContainer.mainView.boxSettings.allCards, "allCards").toEqual(undefined)
 	});
 	it("dictionaryLookup", async () => {
-		expect(appState.rootContainer.mainView.dictionaryLookup, "dictionaryLookup").toEqual(false)
+		expect(appState.rootContainer.mainView.boxSettings.dictionaryLookup, "dictionaryLookup").toEqual(false)
 	});
 	it("dictionaryLookupInvalid", async () => {
-		expect(appState.rootContainer.mainView.dictionaryLookupInvalid, "dictionaryLookupInvalid").toEqual(undefined)
+		expect(appState.rootContainer.mainView.boxSettings.dictionaryLookupInvalid, "dictionaryLookupInvalid").toEqual(undefined)
 	});
 	it("boxId", async () => {
-		expect(appState.rootContainer.mainView.boxId, "boxId").toEqual(``)
+		expect(appState.rootContainer.mainView.boxSettings.boxId, "boxId").toEqual(``)
 	});
 	it("categoryName", async () => {
-		expect(appState.rootContainer.mainView.categoryName, "categoryName").toEqual(``)
+		expect(appState.rootContainer.mainView.boxSettings.categoryName, "categoryName").toEqual(``)
 	});
 	it("categoryId", async () => {
-		expect(appState.rootContainer.mainView.categoryId, "categoryId").toEqual(undefined)
+		expect(appState.rootContainer.mainView.boxSettings.categoryId, "categoryId").toEqual(undefined)
 	});
 	it("givenLanguage", async () => {
-		expect(appState.rootContainer.mainView.givenLanguage, "givenLanguage").toEqual(``)
+		expect(appState.rootContainer.mainView.boxSettings.givenLanguage, "givenLanguage").toEqual(``)
 	});
 	it("maxCardsPerDay", async () => {
-		expect(appState.rootContainer.mainView.maxCardsPerDay, "maxCardsPerDay").toEqual(8)
+		expect(appState.rootContainer.mainView.boxSettings.maxCardsPerDay, "maxCardsPerDay").toEqual(8)
 	});
 	it("maxCardsPerDayInvalid", async () => {
-		expect(appState.rootContainer.mainView.maxCardsPerDayInvalid, "maxCardsPerDayInvalid").toEqual(undefined)
+		expect(appState.rootContainer.mainView.boxSettings.maxCardsPerDayInvalid, "maxCardsPerDayInvalid").toEqual(undefined)
 	});
 	it("maxInterval", async () => {
-		expect(appState.rootContainer.mainView.maxInterval, "maxInterval").toEqual(``)
+		expect(appState.rootContainer.mainView.boxSettings.maxInterval, "maxInterval").toEqual(``)
 	});
 	it("maxIntervalInvalid", async () => {
-		expect(appState.rootContainer.mainView.maxIntervalInvalid, "maxIntervalInvalid").toEqual(undefined)
+		expect(appState.rootContainer.mainView.boxSettings.maxIntervalInvalid, "maxIntervalInvalid").toEqual(undefined)
 	});
 	it("shared", async () => {
-		expect(appState.rootContainer.mainView.shared, "shared").toEqual(undefined)
+		expect(appState.rootContainer.mainView.boxSettings.shared, "shared").toEqual(undefined)
 	});
 	it("tooManyCardsStatus", async () => {
-		expect(appState.rootContainer.mainView.tooManyCardsStatus, "tooManyCardsStatus").toEqual(undefined)
+		expect(appState.rootContainer.mainView.boxSettings.tooManyCardsStatus, "tooManyCardsStatus").toEqual(undefined)
 	});
 	it("wantedLanguage", async () => {
-		expect(appState.rootContainer.mainView.wantedLanguage, "wantedLanguage").toEqual(``)
+		expect(appState.rootContainer.mainView.boxSettings.wantedLanguage, "wantedLanguage").toEqual(``)
 	});
     
 	it("saveDisabled", async () => {

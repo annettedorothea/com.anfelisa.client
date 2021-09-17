@@ -7,21 +7,21 @@ RouteToBoxCreate
 	WHEN common.Route(hash: "#box/create")
 	THEN 
 		expectedState
-			allActiveCards common.rootContainer.mainView.boxSettingsView.allActiveCards shouldBe undefined
-			allCards common.rootContainer.mainView.boxSettingsView.allCards shouldBe undefined
-			dictionaryLookup common.rootContainer.mainView.boxSettingsView.dictionaryLookup shouldBe false
-			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid shouldBe undefined
-			boxId common.rootContainer.mainView.boxSettingsView.boxId shouldBe ""
-			categoryName common.rootContainer.mainView.boxSettingsView.categoryName shouldBe ""
-			categoryId common.rootContainer.mainView.boxSettingsView.categoryId shouldBe undefined
-			givenLanguage common.rootContainer.mainView.boxSettingsView.givenLanguage shouldBe ""
-			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe 8
-			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe undefined
-			maxInterval common.rootContainer.mainView.boxSettingsView.maxInterval shouldBe ""
-			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe undefined
-			shared common.rootContainer.mainView.boxSettingsView.shared shouldBe undefined
-			tooManyCardsStatus common.rootContainer.mainView.boxSettingsView.tooManyCardsStatus shouldBe undefined
-			wantedLanguage common.rootContainer.mainView.boxSettingsView.wantedLanguage shouldBe ""
+			allActiveCards common.rootContainer.mainView.boxSettingsView.boxSettings.allActiveCards shouldBe undefined
+			allCards common.rootContainer.mainView.boxSettingsView.boxSettings.allCards shouldBe undefined
+			dictionaryLookup common.rootContainer.mainView.boxSettingsView.boxSettings.dictionaryLookup shouldBe false
+			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.boxSettings.dictionaryLookupInvalid shouldBe undefined
+			boxId common.rootContainer.mainView.boxSettingsView.boxSettings.boxId shouldBe ""
+			categoryName common.rootContainer.mainView.boxSettingsView.boxSettings.categoryName shouldBe ""
+			categoryId common.rootContainer.mainView.boxSettingsView.boxSettings.categoryId shouldBe undefined
+			givenLanguage common.rootContainer.mainView.boxSettingsView.boxSettings.givenLanguage shouldBe ""
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDay shouldBe 8
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDayInvalid shouldBe undefined
+			maxInterval common.rootContainer.mainView.boxSettingsView.boxSettings.maxInterval shouldBe ""
+			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.boxSettings.maxIntervalInvalid shouldBe undefined
+			shared common.rootContainer.mainView.boxSettingsView.boxSettings.shared shouldBe undefined
+			tooManyCardsStatus common.rootContainer.mainView.boxSettingsView.boxSettings.tooManyCardsStatus shouldBe undefined
+			wantedLanguage common.rootContainer.mainView.boxSettingsView.boxSettings.wantedLanguage shouldBe ""
 		verifications
 			saveDisabled
 			givenLanguageDisabled
@@ -43,7 +43,7 @@ CategoryNameChanged
 	WHEN box.CategoryNameChanged( categoryName: "categoryName" )
 	THEN 
 		expectedState
-			categoryName common.rootContainer.mainView.boxSettingsView.categoryName shouldBe "categoryName"
+			categoryName common.rootContainer.mainView.boxSettingsView.boxSettings.categoryName shouldBe "categoryName"
 		verifications
 			saveEnabled
 		
@@ -52,8 +52,8 @@ MaxCardsPerDayChanged
 	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: 12 )
 	THEN 
 		expectedState
-			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe "12"
-			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe false
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDay shouldBe "12"
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDayInvalid shouldBe false
 		verifications
 			saveEnabled
 		
@@ -62,8 +62,8 @@ MaxCardsPerDayChangedEmpty
 	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: "" )
 	THEN 
 		expectedState
-			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe ""
-			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe true
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDay shouldBe ""
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDayInvalid shouldBe true
 		verifications
 			saveDisabled
 		
@@ -72,8 +72,8 @@ MaxCardsPerDayChangedNaN
 	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: "xxx" )
 	THEN 
 		expectedState
-			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe "xxx"
-			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe true
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDay shouldBe "xxx"
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDayInvalid shouldBe true
 		verifications
 			saveDisabled
 		
@@ -82,8 +82,8 @@ MaxCardsPerDayChangedInvalid
 	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: "0" )
 	THEN 
 		expectedState
-			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.maxCardsPerDay shouldBe "0"
-			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.maxCardsPerDayInvalid shouldBe true
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDay shouldBe "0"
+			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDayInvalid shouldBe true
 		verifications
 			saveDisabled
 		
@@ -92,8 +92,8 @@ MaxIntervalChanged
 	WHEN box.MaxIntervalChanged( maxInterval: 30 )
 	THEN 
 		expectedState
-			maxInterval common.rootContainer.mainView.boxSettingsView.maxInterval shouldBe "30"
-			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe false
+			maxInterval common.rootContainer.mainView.boxSettingsView.boxSettings.maxInterval shouldBe "30"
+			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.boxSettings.maxIntervalInvalid shouldBe false
 		verifications
 			saveEnabled
 		
@@ -102,8 +102,8 @@ MaxIntervalChangedNaN
 	WHEN box.MaxIntervalChanged( maxInterval: "NaN" )
 	THEN 
 		expectedState
-			maxInterval common.rootContainer.mainView.boxSettingsView.maxInterval shouldBe "NaN"
-			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe true
+			maxInterval common.rootContainer.mainView.boxSettingsView.boxSettings.maxInterval shouldBe "NaN"
+			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.boxSettings.maxIntervalInvalid shouldBe true
 		verifications
 			saveDisabled
 		
@@ -112,8 +112,8 @@ MaxIntervalChangedInvalid
 	WHEN box.MaxIntervalChanged( maxInterval: "0" )
 	THEN 
 		expectedState
-			maxInterval common.rootContainer.mainView.boxSettingsView.maxInterval shouldBe "0"
-			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.maxIntervalInvalid shouldBe true
+			maxInterval common.rootContainer.mainView.boxSettingsView.boxSettings.maxInterval shouldBe "0"
+			maxIntervalInvalid common.rootContainer.mainView.boxSettingsView.boxSettings.maxIntervalInvalid shouldBe true
 		verifications
 			saveDisabled
 		
@@ -122,8 +122,8 @@ DictionaryLookupChanged
 	WHEN box.DictionaryLookupChanged
 	THEN 
 		expectedState
-			dictionaryLookup common.rootContainer.mainView.boxSettingsView.dictionaryLookup shouldBe true
-			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid shouldBe true
+			dictionaryLookup common.rootContainer.mainView.boxSettingsView.boxSettings.dictionaryLookup shouldBe true
+			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.boxSettings.dictionaryLookupInvalid shouldBe true
 		verifications
 			saveDisabled
 			givenLanguageEnabled
@@ -135,10 +135,10 @@ GivenLanguageChanged
 	WHEN box.GivenLanguageChanged(givenLanguage: "de")
 	THEN 
 		expectedState
-			dictionaryLookup common.rootContainer.mainView.boxSettingsView.dictionaryLookup shouldBe true
-			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid shouldBe true
-			givenLanguage common.rootContainer.mainView.boxSettingsView.givenLanguage shouldBe "de"
-			wantedLanguage common.rootContainer.mainView.boxSettingsView.wantedLanguage shouldBe ""
+			dictionaryLookup common.rootContainer.mainView.boxSettingsView.boxSettings.dictionaryLookup shouldBe true
+			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.boxSettings.dictionaryLookupInvalid shouldBe true
+			givenLanguage common.rootContainer.mainView.boxSettingsView.boxSettings.givenLanguage shouldBe "de"
+			wantedLanguage common.rootContainer.mainView.boxSettingsView.boxSettings.wantedLanguage shouldBe ""
 		verifications
 			saveDisabled
 			givenLanguageEnabled
@@ -149,10 +149,10 @@ WantedLanguageChanged
 	WHEN box.WantedLanguageChanged(wantedLanguage: "en")
 	THEN 
 		expectedState
-			dictionaryLookup common.rootContainer.mainView.boxSettingsView.dictionaryLookup shouldBe true
-			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.dictionaryLookupInvalid shouldBe false
-			givenLanguage common.rootContainer.mainView.boxSettingsView.givenLanguage shouldBe "de"
-			wantedLanguage common.rootContainer.mainView.boxSettingsView.wantedLanguage shouldBe "en"
+			dictionaryLookup common.rootContainer.mainView.boxSettingsView.boxSettings.dictionaryLookup shouldBe true
+			dictionaryLookupInvalid common.rootContainer.mainView.boxSettingsView.boxSettings.dictionaryLookupInvalid shouldBe false
+			givenLanguage common.rootContainer.mainView.boxSettingsView.boxSettings.givenLanguage shouldBe "de"
+			wantedLanguage common.rootContainer.mainView.boxSettingsView.boxSettings.wantedLanguage shouldBe "en"
 		verifications
 			saveEnabled
 			givenLanguageEnabled

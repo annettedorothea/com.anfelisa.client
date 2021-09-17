@@ -9,7 +9,7 @@ import AbstractCreateReverseBoxCommand from "../../../gen/category/commands/Abst
 
 export default class CreateReverseBoxCommand extends AbstractCreateReverseBoxCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 

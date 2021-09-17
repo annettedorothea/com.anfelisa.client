@@ -10,11 +10,11 @@ import * as AppUtils from "../../app/AppUtils";
 
 export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         data.hash = "#";
         data.message = AppUtils.createInfoMessage("emailConfirmed");
     	this.addOkOutcome(data);

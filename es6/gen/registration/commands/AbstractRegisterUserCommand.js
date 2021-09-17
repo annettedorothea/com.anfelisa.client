@@ -41,7 +41,7 @@ export default class AbstractRegisterUserCommand extends AsynchronousCommand {
 	    		email : data.email,
 	    		language : data.language
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/users/register`, data.uuid, false, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/users/register`, data.uuid, false, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

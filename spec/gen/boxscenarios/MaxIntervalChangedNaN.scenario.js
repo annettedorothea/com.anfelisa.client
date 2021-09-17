@@ -54,10 +54,10 @@ describe("boxscenarios.MaxIntervalChangedNaN", function () {
     });
     
 	it("maxInterval", async () => {
-		expect(appState.rootContainer.mainView.maxInterval, "maxInterval").toEqual(`NaN`)
+		expect(appState.rootContainer.mainView.boxSettings.maxInterval, "maxInterval").toEqual(`NaN`)
 	});
 	it("maxIntervalInvalid", async () => {
-		expect(appState.rootContainer.mainView.maxIntervalInvalid, "maxIntervalInvalid").toEqual(true)
+		expect(appState.rootContainer.mainView.boxSettings.maxIntervalInvalid, "maxIntervalInvalid").toEqual(true)
 	});
     
 	it("saveDisabled", async () => {

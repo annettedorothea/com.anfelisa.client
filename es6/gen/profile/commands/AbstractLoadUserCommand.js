@@ -27,7 +27,7 @@ export default class AbstractLoadUserCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/user/get`, data.uuid, true).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/user/get`, data.uuid, true).then((response) => {
 				data.email = response.email;
 				data.username = response.username;
 				data.userId = response.userId;

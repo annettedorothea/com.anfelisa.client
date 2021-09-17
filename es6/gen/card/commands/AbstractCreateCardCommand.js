@@ -36,7 +36,7 @@ export default class AbstractCreateCardCommand extends AsynchronousCommand {
 	    		given : data.given,
 	    		categoryId : data.categoryId
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/card/create`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/card/create`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

@@ -17,7 +17,7 @@ export default class AbstractLoadBoxStatisticsCommand extends AsynchronousComman
     }
     
     initCommandData(data) {
-        data.boxList = AppState.get_rootContainer_dashboardView_boxList();
+        data.dashboardView = AppState.get_rootContainer_dashboardView();
         data.outcomes = [];
     }
 
@@ -27,7 +27,7 @@ export default class AbstractLoadBoxStatisticsCommand extends AsynchronousComman
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/boxes/statistics/?todayAtMidnightInUTC=${data.todayAtMidnightInUTC}`, data.uuid, true).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/boxes/statistics/?todayAtMidnightInUTC=${data.todayAtMidnightInUTC}`, data.uuid, true).then((response) => {
 				data.boxStatisticsList = response.boxStatisticsList;
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {

@@ -35,7 +35,7 @@ export default class AbstractCreateCategoryCommand extends AsynchronousCommand {
 	    		categoryName : data.categoryName,
 	    		parentCategoryId : data.parentCategoryId
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/category/create`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/category/create`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

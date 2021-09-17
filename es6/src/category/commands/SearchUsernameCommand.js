@@ -14,7 +14,7 @@ export default class SearchUsernameCommand extends AbstractSearchUsernameCommand
 
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
     	this.addOkOutcome(data);
     	resolve(data);
     }

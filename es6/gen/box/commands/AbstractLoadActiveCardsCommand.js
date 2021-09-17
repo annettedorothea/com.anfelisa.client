@@ -27,7 +27,7 @@ export default class AbstractLoadActiveCardsCommand extends AsynchronousCommand 
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/box/active-cards/${data.boxId}`, data.uuid, true).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/box/active-cards/${data.boxId}`, data.uuid, true).then((response) => {
 				data.cardList = response.cardList;
 				data.editable = response.editable;
 				this.handleResponse(data, resolve, reject);

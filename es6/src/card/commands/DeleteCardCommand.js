@@ -9,7 +9,7 @@ import AbstractDeleteCardCommand from "../../../gen/card/commands/AbstractDelete
 
 export default class DeleteCardCommand extends AbstractDeleteCardCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 

@@ -9,11 +9,11 @@ import AbstractLoadActiveCardsCommand from "../../../gen/box/commands/AbstractLo
 
 export default class LoadActiveCardsCommand extends AbstractLoadActiveCardsCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         data.selectedCardIds = [];
         data.activeCardList = data.cardList;
     	this.addOkOutcome(data);

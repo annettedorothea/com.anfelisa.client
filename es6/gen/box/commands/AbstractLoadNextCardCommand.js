@@ -33,22 +33,11 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/box/next-card?boxId=${data.boxId}&todayAtMidnightInUTC=${data.todayAtMidnightInUTC}`, data.uuid, true).then((response) => {
-				data.cardId = response.cardId;
-				data.categoryId = response.categoryId;
-				data.count = response.count;
-				data.given = response.given;
-				data.lastQuality = response.lastQuality;
-				data.rootCategoryId = response.rootCategoryId;
-				data.scheduledCardId = response.scheduledCardId;
-				data.reinforceCardId = response.reinforceCardId;
-				data.scheduledDate = response.scheduledDate;
-				data.scoredDate = response.scoredDate;
-				data.wanted = response.wanted;
-				data.openTodaysCards = response.openTodaysCards;
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/box/next-card?boxId=${data.boxId}&todayAtMidnightInUTC=${data.todayAtMidnightInUTC}`, data.uuid, true).then((response) => {
+				data.nextCard = response.nextCard;
 				data.allTodaysCards = response.allTodaysCards;
+				data.openTodaysCards = response.openTodaysCards;
 				data.reverse = response.reverse;
-				data.categoryName = response.categoryName;
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

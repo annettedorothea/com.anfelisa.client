@@ -9,7 +9,7 @@ import AbstractScheduleSelectedCardsCommand from "../../../gen/box/commands/Abst
 
 export default class ScheduleSelectedCardsCommand extends AbstractScheduleSelectedCardsCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 

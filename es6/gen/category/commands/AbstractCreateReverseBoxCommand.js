@@ -31,7 +31,7 @@ export default class AbstractCreateReverseBoxCommand extends AsynchronousCommand
 	    	let payload = {
 	    		rootCategoryId : data.rootCategoryId
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/box/create-reverse`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/box/create-reverse`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

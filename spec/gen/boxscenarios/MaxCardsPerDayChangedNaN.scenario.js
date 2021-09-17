@@ -54,10 +54,10 @@ describe("boxscenarios.MaxCardsPerDayChangedNaN", function () {
     });
     
 	it("maxCardsPerDay", async () => {
-		expect(appState.rootContainer.mainView.maxCardsPerDay, "maxCardsPerDay").toEqual(`xxx`)
+		expect(appState.rootContainer.mainView.boxSettings.maxCardsPerDay, "maxCardsPerDay").toEqual(`xxx`)
 	});
 	it("maxCardsPerDayInvalid", async () => {
-		expect(appState.rootContainer.mainView.maxCardsPerDayInvalid, "maxCardsPerDayInvalid").toEqual(true)
+		expect(appState.rootContainer.mainView.boxSettings.maxCardsPerDayInvalid, "maxCardsPerDayInvalid").toEqual(true)
 	});
     
 	it("saveDisabled", async () => {

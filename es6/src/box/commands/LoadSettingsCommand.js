@@ -9,16 +9,16 @@ import AbstractLoadSettingsCommand from "../../../gen/box/commands/AbstractLoadS
 
 export default class LoadSettingsCommand extends AbstractLoadSettingsCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
     handleResponse(data, resolve) {
-        data.maxCardsPerDay = data.maxCardsPerDay ? data.maxCardsPerDay : "";
-        data.maxInterval = data.maxInterval ? data.maxInterval : "";
-        data.tooManyCardsWarning = !!(data.maxCardsPerDay && data.maxInterval && data.allActiveCards > data.maxCardsPerDay * data.maxInterval);
-        data.givenLanguage = !data.givenLanguage ? "": data.givenLanguage;
-        data.wantedLanguage = !data.wantedLanguage ? "": data.wantedLanguage;
+        data.boxSettings.maxCardsPerDay = data.boxSettings.maxCardsPerDay ? data.boxSettings.maxCardsPerDay : "";
+        data.boxSettings.maxInterval = data.boxSettings.maxInterval ? data.boxSettings.maxInterval : "";
+        data.boxSettings.tooManyCardsWarning = !!(data.boxSettings.maxCardsPerDay && data.boxSettings.maxInterval && data.boxSettings.allActiveCards > data.boxSettings.maxCardsPerDay * data.boxSettings.maxInterval);
+        data.boxSettings.givenLanguage = !data.boxSettings.givenLanguage ? "": data.boxSettings.givenLanguage;
+        data.boxSettings.wantedLanguage = !data.boxSettings.wantedLanguage ? "": data.boxSettings.wantedLanguage;
     	this.addOkOutcome(data);
     	resolve(data);
     }

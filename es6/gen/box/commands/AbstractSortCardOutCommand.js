@@ -18,7 +18,7 @@ export default class AbstractSortCardOutCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.cardId = AppState.get_rootContainer_queryCardView_cardId();
+        data.cardId = AppState.get_rootContainer_queryCardView_nextCard_cardId();
         data.boxId = AppState.get_rootContainer_queryCardView_boxId();
         data.outcomes = [];
     }
@@ -33,7 +33,7 @@ export default class AbstractSortCardOutCommand extends AsynchronousCommand {
 	    		cardIds : data.cardIds,
 	    		boxId : data.boxId
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/cards/sort-out`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/cards/sort-out`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

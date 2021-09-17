@@ -16,7 +16,7 @@ export default class AbstractDisplayWantedCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.index = AppState.get_rootContainer_queryCardView_index();
+        data.index = AppState.get_rootContainer_queryCardView_nextCard_index();
         data.outcomes = [];
     }
 

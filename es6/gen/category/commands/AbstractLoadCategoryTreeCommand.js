@@ -29,7 +29,7 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/category/tree?rootCategoryId=${data.rootCategoryId}&filterNonScheduled=${data.filterNonScheduled}&priority=${data.priority}&reverse=${data.reverse}`, data.uuid, true).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/category/tree?rootCategoryId=${data.rootCategoryId}&filterNonScheduled=${data.filterNonScheduled}&priority=${data.priority}&reverse=${data.reverse}`, data.uuid, true).then((response) => {
 				data.rootCategory = response.rootCategory;
 				data.reverseBoxExists = response.reverseBoxExists;
 				data.boxId = response.boxId;

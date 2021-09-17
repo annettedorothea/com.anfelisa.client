@@ -36,7 +36,7 @@ export default class AbstractUpdateCategoryCommand extends AsynchronousCommand {
 	    		categoryId : data.categoryId,
 	    		categoryName : data.categoryName
 	    	};
-			AppUtils.httpPut(`${Utils.settings.rootPath}/category/update`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/category/update`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

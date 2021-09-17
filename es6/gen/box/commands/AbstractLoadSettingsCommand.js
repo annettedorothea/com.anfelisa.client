@@ -29,17 +29,8 @@ export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/box/settings/${data.boxId}`, data.uuid, true).then((response) => {
-				data.maxCardsPerDay = response.maxCardsPerDay;
-				data.maxInterval = response.maxInterval;
-				data.categoryName = response.categoryName;
-				data.dictionaryLookup = response.dictionaryLookup;
-				data.givenLanguage = response.givenLanguage;
-				data.wantedLanguage = response.wantedLanguage;
-				data.categoryId = response.categoryId;
-				data.allCards = response.allCards;
-				data.allActiveCards = response.allActiveCards;
-				data.shared = response.shared;
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/box/settings/${data.boxId}`, data.uuid, true).then((response) => {
+				data.boxSettings = response.boxSettings;
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

@@ -31,7 +31,7 @@ export default class AbstractInviteUserCommand extends AsynchronousCommand {
 	    		categoryId : data.categoryId,
 	    		invitedUsername : data.invitedUsername
 	    	};
-			AppUtils.httpPut(`${Utils.settings.rootPath}/category/invite`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/category/invite`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

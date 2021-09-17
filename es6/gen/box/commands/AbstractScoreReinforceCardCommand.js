@@ -18,7 +18,7 @@ export default class AbstractScoreReinforceCardCommand extends AsynchronousComma
     }
     
     initCommandData(data) {
-        data.reinforceCardId = AppState.get_rootContainer_queryCardView_reinforceCardId();
+        data.reinforceCardId = AppState.get_rootContainer_queryCardView_nextCard_reinforceCardId();
         data.outcomes = [];
     }
 
@@ -32,7 +32,7 @@ export default class AbstractScoreReinforceCardCommand extends AsynchronousComma
 	    		reinforceCardId : data.reinforceCardId,
 	    		keep : data.keep
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/card/score-reinforce`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/card/score-reinforce`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

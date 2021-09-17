@@ -33,7 +33,7 @@ export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCom
 	    		cardIds : data.cardIds,
 	    		boxId : data.boxId
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/cards/sort-out`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/cards/sort-out`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

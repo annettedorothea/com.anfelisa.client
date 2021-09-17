@@ -55,16 +55,16 @@ describe("boxscenarios.GivenLanguageChanged", function () {
     });
     
 	it("dictionaryLookup", async () => {
-		expect(appState.rootContainer.mainView.dictionaryLookup, "dictionaryLookup").toEqual(true)
+		expect(appState.rootContainer.mainView.boxSettings.dictionaryLookup, "dictionaryLookup").toEqual(true)
 	});
 	it("dictionaryLookupInvalid", async () => {
-		expect(appState.rootContainer.mainView.dictionaryLookupInvalid, "dictionaryLookupInvalid").toEqual(true)
+		expect(appState.rootContainer.mainView.boxSettings.dictionaryLookupInvalid, "dictionaryLookupInvalid").toEqual(true)
 	});
 	it("givenLanguage", async () => {
-		expect(appState.rootContainer.mainView.givenLanguage, "givenLanguage").toEqual(`de`)
+		expect(appState.rootContainer.mainView.boxSettings.givenLanguage, "givenLanguage").toEqual(`de`)
 	});
 	it("wantedLanguage", async () => {
-		expect(appState.rootContainer.mainView.wantedLanguage, "wantedLanguage").toEqual(``)
+		expect(appState.rootContainer.mainView.boxSettings.wantedLanguage, "wantedLanguage").toEqual(``)
 	});
     
 	it("saveDisabled", async () => {

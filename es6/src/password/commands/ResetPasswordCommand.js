@@ -10,13 +10,11 @@ import * as AppUtils from "../../app/AppUtils";
 
 export default class ResetPasswordCommand extends AbstractResetPasswordCommand {
 
-    validateCommandData(data) {
-    	//data.password is mandatory String
-    	//data.token is mandatory String
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         data.hash = "#";
         data.message = AppUtils.createInfoMessage("passwordReset");
         this.addOkOutcome(data);

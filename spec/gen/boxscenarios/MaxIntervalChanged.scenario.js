@@ -55,10 +55,10 @@ describe("boxscenarios.MaxIntervalChanged", function () {
     });
     
 	it("maxInterval", async () => {
-		expect(appState.rootContainer.mainView.maxInterval, "maxInterval").toEqual(`30`)
+		expect(appState.rootContainer.mainView.boxSettings.maxInterval, "maxInterval").toEqual(`30`)
 	});
 	it("maxIntervalInvalid", async () => {
-		expect(appState.rootContainer.mainView.maxIntervalInvalid, "maxIntervalInvalid").toEqual(false)
+		expect(appState.rootContainer.mainView.boxSettings.maxIntervalInvalid, "maxIntervalInvalid").toEqual(false)
 	});
     
 	it("saveEnabled", async () => {

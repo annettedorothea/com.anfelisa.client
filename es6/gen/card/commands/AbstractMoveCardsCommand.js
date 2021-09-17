@@ -35,7 +35,7 @@ export default class AbstractMoveCardsCommand extends AsynchronousCommand {
 	    		cardIdList : data.cardIdList,
 	    		categoryId : data.categoryId
 	    	};
-			AppUtils.httpPut(`${Utils.settings.rootPath}/cards/move`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/cards/move`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

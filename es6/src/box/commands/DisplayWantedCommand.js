@@ -3,27 +3,18 @@
  ********************************************************************************/
 
 
-
-
 import AbstractDisplayWantedCommand from "../../../gen/box/commands/AbstractDisplayWantedCommand";
 
 export default class DisplayWantedCommand extends AbstractDisplayWantedCommand {
     execute(data) {
         data.index += 1;
-        if (data.wantedItemsLength <= data.index) {
-            if (data.image && data.wantedItemsLength + 1 === data.index) {
-                data.displayImage = true;
-                data.enableScoreButtons = true;
-            } else {
-                data.enableScoreButtons = true;
-            }
+        if (data.wantedItemsLength === data.index) {
+            data.enableScoreButtons = true;
         }
         this.addOkOutcome(data);
-    	return data;
+        return data;
     }
 }
-
-
 
 
 /******* S.D.G. *******/

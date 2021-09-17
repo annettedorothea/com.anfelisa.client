@@ -9,11 +9,11 @@ import AbstractChangeOrderCategoryCommand from "../../../gen/category/commands/A
 
 export default class ChangeOrderCategoryCommand extends AbstractChangeOrderCategoryCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         data.movedCategory = null;
         data.dropAllowed = null;
         data.dropTargetCategoryId = null;

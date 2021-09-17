@@ -6,7 +6,6 @@
 
 
 import * as AppUtils from "../../src/app/AppUtils";
-import * as Utils from "./Utils";
 import * as AppState from "./AppState";
 import Event from "./Event";
 
@@ -32,9 +31,9 @@ export function registerListener(eventName, listener) {
 }
 
 export function addItemToTimeLine(item) {
-	if (Utils.settings && Utils.settings.timelineSize > 0) {
+	if (AppUtils.settings && AppUtils.settings.timelineSize > 0) {
 	    timeline.push(AppUtils.deepCopy(item));
-		if (timeline.length > Utils.settings.timelineSize) {
+		if (timeline.length > AppUtils.settings.timelineSize) {
 		    timeline.shift();
 		    while (timeline.length > 0 && timeline.length > 0 && !timeline[0].appState) {
 		        timeline.shift();

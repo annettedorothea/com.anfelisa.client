@@ -9,8 +9,7 @@ import AbstractDeleteBoxCommand from "../../../gen/box/commands/AbstractDeleteBo
 
 export default class DeleteBoxCommand extends AbstractDeleteBoxCommand {
 
-    validateCommandData(data) {
-    	//data.boxId is mandatory String
+    validateCommandData() {
     	return true;
     }
 

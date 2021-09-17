@@ -18,13 +18,13 @@ export default class AbstractCreateRootCategoryCommand extends AsynchronousComma
     }
     
     initCommandData(data) {
-        data.maxInterval = AppState.get_rootContainer_boxSettingsView_maxInterval();
-        data.maxCardsPerDay = AppState.get_rootContainer_boxSettingsView_maxCardsPerDay();
-        data.categoryId = AppState.get_rootContainer_boxSettingsView_categoryId();
-        data.categoryName = AppState.get_rootContainer_boxSettingsView_categoryName();
-        data.dictionaryLookup = AppState.get_rootContainer_boxSettingsView_dictionaryLookup();
-        data.givenLanguage = AppState.get_rootContainer_boxSettingsView_givenLanguage();
-        data.wantedLanguage = AppState.get_rootContainer_boxSettingsView_wantedLanguage();
+        data.maxInterval = AppState.get_rootContainer_boxSettingsView_boxSettings_maxInterval();
+        data.maxCardsPerDay = AppState.get_rootContainer_boxSettingsView_boxSettings_maxCardsPerDay();
+        data.categoryId = AppState.get_rootContainer_boxSettingsView_boxSettings_categoryId();
+        data.categoryName = AppState.get_rootContainer_boxSettingsView_boxSettings_categoryName();
+        data.dictionaryLookup = AppState.get_rootContainer_boxSettingsView_boxSettings_dictionaryLookup();
+        data.givenLanguage = AppState.get_rootContainer_boxSettingsView_boxSettings_givenLanguage();
+        data.wantedLanguage = AppState.get_rootContainer_boxSettingsView_boxSettings_wantedLanguage();
         data.outcomes = [];
     }
 
@@ -42,7 +42,7 @@ export default class AbstractCreateRootCategoryCommand extends AsynchronousComma
 	    		maxCardsPerDay : data.maxCardsPerDay,
 	    		maxInterval : data.maxInterval
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/box/create`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/box/create`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

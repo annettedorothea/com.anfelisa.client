@@ -36,7 +36,7 @@ export default class AbstractUpdateCardCommand extends AsynchronousCommand {
 	    		given : data.given,
 	    		wanted : data.wanted
 	    	};
-			AppUtils.httpPut(`${Utils.settings.rootPath}/card/update`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/card/update`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

@@ -33,7 +33,7 @@ export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCo
 	    		cardIds : data.cardIds,
 	    		boxId : data.boxId
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/cards/schedule`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/cards/schedule`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

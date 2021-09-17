@@ -9,13 +9,11 @@ import AbstractScoreCardCommand from "../../../gen/box/commands/AbstractScoreCar
 
 export default class ScoreCardCommand extends AbstractScoreCardCommand {
 
-    validateCommandData(data) {
-    	//data.scheduledCardId is mandatory String
-    	//data.scoredCardQuality is mandatory Integer
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
     	this.addOkOutcome(data);
     	resolve(data);
     }

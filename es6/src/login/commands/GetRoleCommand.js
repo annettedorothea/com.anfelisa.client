@@ -10,7 +10,7 @@ import * as AppUtils from "../../app/AppUtils";
 
 export default class GetRoleCommand extends AbstractGetRoleCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 

@@ -74,8 +74,6 @@ RouteChanged
 		Route
 	)
 	
-	
-	
 Route ( hash ) 
 	on ok ( set rootContainer.hash )
 	
@@ -217,23 +215,26 @@ ui JSX rootContainer {
 	        }
 		}
 		boxSettingsView {
-	    	maxIntervalInvalid
-	    	maxCardsPerDayInvalid
-	    	tooManyCardsStatus
-			dictionaryLookupInvalid
-			
 			boxId
-			maxInterval
-			maxCardsPerDay
-			categoryName
-			dictionaryLookup
-			givenLanguage
-			wantedLanguage
-			categoryId
-			shared
-			
-			allActiveCards
-			allCards
+			boxSettings {
+		    	maxIntervalInvalid
+		    	maxCardsPerDayInvalid
+		    	tooManyCardsStatus
+				dictionaryLookupInvalid
+				
+				boxId
+				maxInterval
+				maxCardsPerDay
+				categoryName
+				dictionaryLookup
+				givenLanguage
+				wantedLanguage
+				categoryId
+				shared
+				
+				allActiveCards
+				allCards
+			}
 		} 
 		allActiveCardsView {
 			boxId
@@ -262,24 +263,26 @@ ui JSX rootContainer {
 			showDeleteUserDialog
 		}
 		queryCardView {
-			cardId
-			categoryId
-			categoryName
-			count
-			given
-			lastQuality
-			rootCategoryId
-			scheduledCardId
-			reinforceCardId
-			scheduledDate
-			scoredDate
-			wanted
+			nextCard {
+				cardId
+				categoryId
+				categoryName
+				count
+				given
+				lastQuality
+				rootCategoryId
+				scheduledCardId
+				reinforceCardId
+				scheduledDate
+				scoredDate
+				wanted
+				index
+			}
 			openTodaysCards
 			allTodaysCards
-			index
+			reverse
 			enableScoreButtons
 			boxId
-			reverse
 		}
 		authorView {
 

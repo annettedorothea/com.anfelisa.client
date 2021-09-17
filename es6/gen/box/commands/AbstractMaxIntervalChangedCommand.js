@@ -18,8 +18,8 @@ export default class AbstractMaxIntervalChangedCommand extends SynchronousComman
     }
 
     initCommandData(data) {
-        data.maxCardsPerDay = AppState.get_rootContainer_boxSettingsView_maxCardsPerDay();
-        data.allActiveCards = AppState.get_rootContainer_boxSettingsView_allActiveCards();
+        data.maxCardsPerDay = AppState.get_rootContainer_boxSettingsView_boxSettings_maxCardsPerDay();
+        data.allActiveCards = AppState.get_rootContainer_boxSettingsView_boxSettings_allActiveCards();
         data.outcomes = [];
     }
 
