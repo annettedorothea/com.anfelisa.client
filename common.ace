@@ -208,6 +208,7 @@ ui JSX rootContainer {
 				categoryAuthor
 				editable
 				reverse
+				archived
 	    	}
 	        deleteBox {
 	            confirmDelete

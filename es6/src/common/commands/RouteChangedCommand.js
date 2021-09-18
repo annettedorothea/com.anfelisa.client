@@ -50,13 +50,15 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             this.addAllActiveCardsOutcome(data);
         } else if (data.hash === "#box/create" && this.isUserLoggedIn(data)) {
             data.boxSettingsView = {
-                maxCardsPerDay: 8,
-                maxInterval: "",
-                boxId: "",
-                categoryName: "",
-                dictionaryLookup: false,
-                wantedLanguage: "",
-                givenLanguage: ""
+                boxSettings: {
+                    maxCardsPerDay: 8,
+                    maxInterval: "",
+                    boxId: "",
+                    categoryName: "",
+                    dictionaryLookup: false,
+                    wantedLanguage: "",
+                    givenLanguage: ""
+                }
             };
             this.addBoxCreateOutcome(data);
         } else if (data.hash.startsWith("#box") && hashes.length >= 1 && hashes[1] && this.isUserLoggedIn(data)) {

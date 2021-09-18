@@ -88,6 +88,11 @@ ACE
 			set common.rootContainer.mainView.dashboardView.deleteBox.boxId
 			set common.rootContainer.mainView.dashboardView.deleteBox.confirmDelete
 		) triggers (common.DisplayToast)
+		
+	ArchiveBox (archived, boxId)
+		call com.anfelisa.box.ArchiveBox
+		loadingFlag common.rootContainer.spinner.display 
+		on ok triggers (InitBoxesForDay)
 	
 	LoadNextCard
 		fromAppState (common.rootContainer.mainView.queryCardView.boxId)

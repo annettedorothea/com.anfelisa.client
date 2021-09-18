@@ -30,6 +30,8 @@ module.exports = {
 	
 	deleteBox : "box_deleteBox",
 	
+	archiveBox : "box_archiveBox",
+	
 	loadNextCard : "box_loadNextCard",
 	
 	displayWanted : "box_displayWanted",

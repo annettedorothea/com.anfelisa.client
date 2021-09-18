@@ -18,14 +18,16 @@ export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsC
             const boxWithStats = data.boxStatisticsList.find((bs) => {
                 return bs.boxId === box.boxId;
             });
-            box.countsPerDayNextWeek = boxWithStats.countsPerDayNextWeek;
-            box.maxCardsPerDay = boxWithStats.maxCardsPerDay;
-            box.quality0Count = boxWithStats.quality0Count;
-            box.quality1Count = boxWithStats.quality1Count;
-            box.quality2Count = boxWithStats.quality2Count;
-            box.quality3Count = boxWithStats.quality3Count;
-            box.quality4Count = boxWithStats.quality4Count;
-            box.quality5Count = boxWithStats.quality5Count;
+            if (boxWithStats) {
+                box.countsPerDayNextWeek = boxWithStats.countsPerDayNextWeek;
+                box.maxCardsPerDay = boxWithStats.maxCardsPerDay;
+                box.quality0Count = boxWithStats.quality0Count;
+                box.quality1Count = boxWithStats.quality1Count;
+                box.quality2Count = boxWithStats.quality2Count;
+                box.quality3Count = boxWithStats.quality3Count;
+                box.quality4Count = boxWithStats.quality4Count;
+                box.quality5Count = boxWithStats.quality5Count;
+            }
         });
         data.boxStatisticsList = undefined;
     	this.addOkOutcome(data);

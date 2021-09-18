@@ -184,7 +184,8 @@ CreateRootCategory
 					quality5Count: 0,
 					categoryAuthor: "username-${testId}",
 					reverse: false,
-					editable: true
+					editable: true,
+					archived: false
 				}
 			]
 			deleteBox common.rootContainer.mainView.dashboardView.deleteBox shouldBe {
@@ -217,7 +218,8 @@ CreateRootCategoryWithDefault
 					quality5Count: 0,
 					categoryAuthor: "username-${testId}",
 					reverse: false,
-					editable: true
+					editable: true,
+					archived: false
 				}
 			]
 			deleteBox common.rootContainer.mainView.dashboardView.deleteBox shouldBe {

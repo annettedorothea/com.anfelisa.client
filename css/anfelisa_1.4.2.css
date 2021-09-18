@@ -540,7 +540,7 @@ i.withmarginleft {
     }
 }
 
-a:hover.tile {
+a:hover.tile.active {
     border: 2px solid #ccc;
     border-radius: 4px;
     background-color: #fff;
@@ -550,10 +550,11 @@ a:hover.tile {
     text-align: center;
     max-height: 24px;
     overflow: hidden;
+    margin: 0 80px 16px 80px;
     text-overflow: ellipsis;
 }
 
-a:hover.tile h2 {
+a:hover.tile.active h2 {
     color: #ffa84c;
 }
 
@@ -578,14 +579,18 @@ a:hover.tile h2 {
 }
 
 .tile .button1 {
-    right: 56px;
+    right: 80px;
 }
 
 .tile .button2 {
-    right: 32px;
+    right: 56px;
 }
 
 .tile .button3 {
+    right: 32px;
+}
+
+.tile .button4 {
     right: 8px;
 }
 
