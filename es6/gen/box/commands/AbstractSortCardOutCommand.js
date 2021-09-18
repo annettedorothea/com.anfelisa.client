@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import InitBoxesForDayDuringScoreAction from "../../../src/box/actions/InitBoxesForDayDuringScoreAction";
 
 export default class AbstractSortCardOutCommand extends AsynchronousCommand {
@@ -18,8 +17,8 @@ export default class AbstractSortCardOutCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.cardId = AppState.get_rootContainer_queryCardView_nextCard_cardId();
-        data.boxId = AppState.get_rootContainer_queryCardView_boxId();
+        data.cardId = AppUtils.get(["rootContainer", ["mainView", "queryCardView"], "nextCard", "cardId"]);
+        data.boxId = AppUtils.get(["rootContainer", ["mainView", "queryCardView"], "boxId"]);
         data.outcomes = [];
     }
 

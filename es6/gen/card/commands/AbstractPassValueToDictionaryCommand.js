@@ -16,9 +16,9 @@ export default class AbstractPassValueToDictionaryCommand extends SynchronousCom
     }
 
     initCommandData(data) {
-        data.naturalInputOrder = AppState.get_rootContainer_authorView_cardView_naturalInputOrder();
-        data.given = AppState.get_rootContainer_authorView_cardView_newCard_given();
-        data.wanted = AppState.get_rootContainer_authorView_cardView_newCard_wanted();
+        data.naturalInputOrder = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "naturalInputOrder"]);
+        data.given = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "newCard", "given"]);
+        data.wanted = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "newCard", "wanted"]);
         data.outcomes = [];
     }
 

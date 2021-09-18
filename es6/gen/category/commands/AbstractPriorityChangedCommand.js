@@ -18,7 +18,7 @@ export default class AbstractPriorityChangedCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.selectedCategoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
+        data.selectedCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "categoryId"]);
         data.outcomes = [];
     }
 

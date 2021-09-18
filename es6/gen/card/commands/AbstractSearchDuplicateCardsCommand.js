@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractSearchDuplicateCardsCommand extends AsynchronousCommand {
     constructor() {
@@ -17,10 +16,10 @@ export default class AbstractSearchDuplicateCardsCommand extends AsynchronousCom
     }
     
     initCommandData(data) {
-        data.naturalInputOrder = AppState.get_rootContainer_authorView_cardView_naturalInputOrder();
-        data.given = AppState.get_rootContainer_authorView_cardView_newCard_given();
-        data.wanted = AppState.get_rootContainer_authorView_cardView_newCard_wanted();
-        data.categoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
+        data.naturalInputOrder = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "naturalInputOrder"]);
+        data.given = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "newCard", "given"]);
+        data.wanted = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "newCard", "wanted"]);
+        data.categoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "categoryId"]);
         data.outcomes = [];
     }
 

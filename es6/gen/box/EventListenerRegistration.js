@@ -6,45 +6,45 @@
 
 
 import * as ACEController from "../ace/ACEController";
-import * as AppState from "../ace/AppState";
+import * as AppUtils from "../../src/app/AppUtils";
 
 export default class EventListenerRegistrationBox {
 
 	static init() {
-		ACEController.registerListener('box.LoadBoxesOkEvent', AppState.merge_rootContainer_dashboardView);
-		ACEController.registerListener('box.LoadBoxStatisticsOkEvent', AppState.merge_rootContainer_dashboardView);
-		ACEController.registerListener('box.LoadActiveCardsOkEvent', AppState.set_rootContainer_allActiveCardsView_activeCardList);
-		ACEController.registerListener('box.LoadActiveCardsOkEvent', AppState.set_rootContainer_allActiveCardsView_selectedCardIds);
-		ACEController.registerListener('box.LoadActiveCardsOkEvent', AppState.set_rootContainer_allActiveCardsView_editable);
-		ACEController.registerListener('box.ToggleScheduleCardSelectionOkEvent', AppState.set_rootContainer_allActiveCardsView_selectedCardIds);
-		ACEController.registerListener('box.ToggleAllScheduleCardSelectionOkEvent', AppState.set_rootContainer_allActiveCardsView_selectedCardIds);
-		ACEController.registerListener('box.DeleteBoxClickOkEvent', AppState.set_rootContainer_dashboardView_deleteBox);
-		ACEController.registerListener('box.CancelDeleteBoxOkEvent', AppState.set_rootContainer_dashboardView_deleteBox_boxId);
-		ACEController.registerListener('box.CancelDeleteBoxOkEvent', AppState.set_rootContainer_dashboardView_deleteBox_confirmDelete);
-		ACEController.registerListener('box.DeleteBoxOkEvent', AppState.set_rootContainer_dashboardView_deleteBox_boxId);
-		ACEController.registerListener('box.DeleteBoxOkEvent', AppState.set_rootContainer_dashboardView_deleteBox_confirmDelete);
-		ACEController.registerListener('box.DeleteBoxErrorEvent', AppState.set_rootContainer_dashboardView_deleteBox_boxId);
-		ACEController.registerListener('box.DeleteBoxErrorEvent', AppState.set_rootContainer_dashboardView_deleteBox_confirmDelete);
-		ACEController.registerListener('box.LoadNextCardOkEvent', AppState.merge_rootContainer_queryCardView_nextCard);
-		ACEController.registerListener('box.LoadNextCardOkEvent', AppState.merge_rootContainer_queryCardView_reverse);
-		ACEController.registerListener('box.LoadNextCardOkEvent', AppState.merge_rootContainer_queryCardView_openTodaysCards);
-		ACEController.registerListener('box.LoadNextCardOkEvent', AppState.merge_rootContainer_queryCardView_allTodaysCards);
-		ACEController.registerListener('box.DisplayWantedOkEvent', AppState.merge_rootContainer_queryCardView_nextCard_index);
-		ACEController.registerListener('box.DisplayWantedOkEvent', AppState.merge_rootContainer_queryCardView_enableScoreButtons);
-		ACEController.registerListener('box.LoadSettingsOkEvent', AppState.merge_rootContainer_boxSettingsView_boxSettings);
-		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', AppState.set_rootContainer_boxSettingsView_boxSettings_maxCardsPerDay);
-		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', AppState.set_rootContainer_boxSettingsView_boxSettings_maxCardsPerDayInvalid);
-		ACEController.registerListener('box.MaxIntervalChangedOkEvent', AppState.set_rootContainer_boxSettingsView_boxSettings_maxInterval);
-		ACEController.registerListener('box.MaxIntervalChangedOkEvent', AppState.set_rootContainer_boxSettingsView_boxSettings_maxIntervalInvalid);
-		ACEController.registerListener('box.TooManyCardsStatusOkEvent', AppState.set_rootContainer_boxSettingsView_boxSettings_tooManyCardsStatus);
-		ACEController.registerListener('box.CategoryNameChangedOkEvent', AppState.set_rootContainer_boxSettingsView_boxSettings_categoryName);
-		ACEController.registerListener('box.DictionaryLookupChangedOkEvent', AppState.set_rootContainer_boxSettingsView_boxSettings_dictionaryLookup);
-		ACEController.registerListener('box.DictionaryLookupChangedOkEvent', AppState.set_rootContainer_boxSettingsView_boxSettings_dictionaryLookupInvalid);
-		ACEController.registerListener('box.GivenLanguageChangedOkEvent', AppState.set_rootContainer_boxSettingsView_boxSettings_givenLanguage);
-		ACEController.registerListener('box.GivenLanguageChangedOkEvent', AppState.set_rootContainer_boxSettingsView_boxSettings_dictionaryLookupInvalid);
-		ACEController.registerListener('box.WantedLanguageChangedOkEvent', AppState.set_rootContainer_boxSettingsView_boxSettings_wantedLanguage);
-		ACEController.registerListener('box.WantedLanguageChangedOkEvent', AppState.set_rootContainer_boxSettingsView_boxSettings_dictionaryLookupInvalid);
-		ACEController.registerListener('box.RootCategoryNameChangedOkEvent', AppState.set_rootContainer_boxSettingsView_boxSettings_categoryName);
+		ACEController.registerListener('box.LoadBoxesOkEvent', (data) => AppUtils.merge(data, ["rootContainer", ["mainView", "dashboardView"]]));
+		ACEController.registerListener('box.LoadBoxStatisticsOkEvent', (data) => AppUtils.merge(data, ["rootContainer", ["mainView", "dashboardView"]]));
+		ACEController.registerListener('box.LoadActiveCardsOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "allActiveCardsView"], "activeCardList"]));
+		ACEController.registerListener('box.LoadActiveCardsOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "allActiveCardsView"], "selectedCardIds"]));
+		ACEController.registerListener('box.LoadActiveCardsOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "allActiveCardsView"], "editable"]));
+		ACEController.registerListener('box.ToggleScheduleCardSelectionOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "allActiveCardsView"], "selectedCardIds"]));
+		ACEController.registerListener('box.ToggleAllScheduleCardSelectionOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "allActiveCardsView"], "selectedCardIds"]));
+		ACEController.registerListener('box.DeleteBoxClickOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "dashboardView"], "deleteBox"]));
+		ACEController.registerListener('box.CancelDeleteBoxOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "dashboardView"], "deleteBox", "boxId"]));
+		ACEController.registerListener('box.CancelDeleteBoxOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "dashboardView"], "deleteBox", "confirmDelete"]));
+		ACEController.registerListener('box.DeleteBoxOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "dashboardView"], "deleteBox", "boxId"]));
+		ACEController.registerListener('box.DeleteBoxOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "dashboardView"], "deleteBox", "confirmDelete"]));
+		ACEController.registerListener('box.DeleteBoxErrorEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "dashboardView"], "deleteBox", "boxId"]));
+		ACEController.registerListener('box.DeleteBoxErrorEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "dashboardView"], "deleteBox", "confirmDelete"]));
+		ACEController.registerListener('box.LoadNextCardOkEvent', (data) => AppUtils.merge(data, ["rootContainer", ["mainView", "queryCardView"], "nextCard"]));
+		ACEController.registerListener('box.LoadNextCardOkEvent', (data) => AppUtils.merge(data, ["rootContainer", ["mainView", "queryCardView"], "reverse"]));
+		ACEController.registerListener('box.LoadNextCardOkEvent', (data) => AppUtils.merge(data, ["rootContainer", ["mainView", "queryCardView"], "openTodaysCards"]));
+		ACEController.registerListener('box.LoadNextCardOkEvent', (data) => AppUtils.merge(data, ["rootContainer", ["mainView", "queryCardView"], "allTodaysCards"]));
+		ACEController.registerListener('box.DisplayWantedOkEvent', (data) => AppUtils.merge(data, ["rootContainer", ["mainView", "queryCardView"], "nextCard", "index"]));
+		ACEController.registerListener('box.DisplayWantedOkEvent', (data) => AppUtils.merge(data, ["rootContainer", ["mainView", "queryCardView"], "enableScoreButtons"]));
+		ACEController.registerListener('box.LoadSettingsOkEvent', (data) => AppUtils.merge(data, ["rootContainer", ["mainView", "boxSettingsView"], "boxSettings"]));
+		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "maxCardsPerDay"]));
+		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "maxCardsPerDayInvalid"]));
+		ACEController.registerListener('box.MaxIntervalChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "maxInterval"]));
+		ACEController.registerListener('box.MaxIntervalChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "maxIntervalInvalid"]));
+		ACEController.registerListener('box.TooManyCardsStatusOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "tooManyCardsStatus"]));
+		ACEController.registerListener('box.CategoryNameChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "categoryName"]));
+		ACEController.registerListener('box.DictionaryLookupChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "dictionaryLookup"]));
+		ACEController.registerListener('box.DictionaryLookupChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "dictionaryLookupInvalid"]));
+		ACEController.registerListener('box.GivenLanguageChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "givenLanguage"]));
+		ACEController.registerListener('box.GivenLanguageChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "dictionaryLookupInvalid"]));
+		ACEController.registerListener('box.WantedLanguageChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "wantedLanguage"]));
+		ACEController.registerListener('box.WantedLanguageChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "dictionaryLookupInvalid"]));
+		ACEController.registerListener('box.RootCategoryNameChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "categoryName"]));
 	}
 
 }

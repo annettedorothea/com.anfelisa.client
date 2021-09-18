@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractSearchUsernameCommand extends AsynchronousCommand {
     constructor() {
@@ -17,8 +16,8 @@ export default class AbstractSearchUsernameCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.usernameSearchString = AppState.get_rootContainer_authorView_categoryTree_inviteUserDialog_usernameSearchString();
-        data.categoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
+        data.usernameSearchString = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "inviteUserDialog", "usernameSearchString"]);
+        data.categoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory", "categoryId"]);
         data.outcomes = [];
     }
 

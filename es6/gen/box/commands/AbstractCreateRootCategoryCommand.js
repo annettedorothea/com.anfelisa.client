@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractCreateRootCategoryCommand extends AsynchronousCommand {
@@ -18,13 +17,13 @@ export default class AbstractCreateRootCategoryCommand extends AsynchronousComma
     }
     
     initCommandData(data) {
-        data.maxInterval = AppState.get_rootContainer_boxSettingsView_boxSettings_maxInterval();
-        data.maxCardsPerDay = AppState.get_rootContainer_boxSettingsView_boxSettings_maxCardsPerDay();
-        data.categoryId = AppState.get_rootContainer_boxSettingsView_boxSettings_categoryId();
-        data.categoryName = AppState.get_rootContainer_boxSettingsView_boxSettings_categoryName();
-        data.dictionaryLookup = AppState.get_rootContainer_boxSettingsView_boxSettings_dictionaryLookup();
-        data.givenLanguage = AppState.get_rootContainer_boxSettingsView_boxSettings_givenLanguage();
-        data.wantedLanguage = AppState.get_rootContainer_boxSettingsView_boxSettings_wantedLanguage();
+        data.maxInterval = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "maxInterval"]);
+        data.maxCardsPerDay = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "maxCardsPerDay"]);
+        data.categoryId = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "categoryId"]);
+        data.categoryName = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "categoryName"]);
+        data.dictionaryLookup = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "dictionaryLookup"]);
+        data.givenLanguage = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "givenLanguage"]);
+        data.wantedLanguage = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "wantedLanguage"]);
         data.outcomes = [];
     }
 

@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import TooManyCardsStatusAction from "../../../src/box/actions/TooManyCardsStatusAction";
 
 export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
@@ -19,7 +18,7 @@ export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.boxId = AppState.get_rootContainer_boxSettingsView_boxId();
+        data.boxId = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxId"]);
         data.outcomes = [];
     }
 

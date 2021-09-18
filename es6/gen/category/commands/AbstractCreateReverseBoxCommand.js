@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractCreateReverseBoxCommand extends AsynchronousCommand {
@@ -18,7 +17,7 @@ export default class AbstractCreateReverseBoxCommand extends AsynchronousCommand
     }
     
     initCommandData(data) {
-        data.rootCategoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_rootCategoryId();
+        data.rootCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory", "rootCategoryId"]);
         data.outcomes = [];
     }
 

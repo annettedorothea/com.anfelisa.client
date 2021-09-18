@@ -18,9 +18,9 @@ export default class AbstractLoginCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.username = AppState.get_rootContainer_loginView_username();
-        data.password = AppState.get_rootContainer_loginView_password();
-        data.saveInLocalStorage = AppState.get_rootContainer_loginView_saveInLocalStorage();
+        data.username = AppUtils.get(["rootContainer", ["mainView", "loginView"], "username"]);
+        data.password = AppUtils.get(["rootContainer", ["mainView", "loginView"], "password"]);
+        data.saveInLocalStorage = AppUtils.get(["rootContainer", ["mainView", "loginView"], "saveInLocalStorage"]);
         data.outcomes = [];
     }
 

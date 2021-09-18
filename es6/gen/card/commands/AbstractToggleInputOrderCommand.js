@@ -16,7 +16,7 @@ export default class AbstractToggleInputOrderCommand extends SynchronousCommand 
     }
 
     initCommandData(data) {
-        data.naturalInputOrder = AppState.get_rootContainer_authorView_cardView_naturalInputOrder();
+        data.naturalInputOrder = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "naturalInputOrder"]);
         data.outcomes = [];
     }
 

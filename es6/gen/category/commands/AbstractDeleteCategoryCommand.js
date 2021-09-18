@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
 
 export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
@@ -19,9 +18,9 @@ export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.categoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
-        data.selectedCategoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_parentCategoryId();
-        data.rootCategoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
+        data.categoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "categoryId"]);
+        data.selectedCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "parentCategoryId"]);
+        data.rootCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory", "categoryId"]);
         data.outcomes = [];
     }
 

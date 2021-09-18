@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
@@ -21,7 +20,7 @@ export default class AbstractDeleteUserCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.usernameToBeDeleted = AppState.get_rootContainer_profileView_username();
+        data.usernameToBeDeleted = AppUtils.get(["rootContainer", ["mainView", "profileView"], "username"]);
         data.outcomes = [];
     }
 

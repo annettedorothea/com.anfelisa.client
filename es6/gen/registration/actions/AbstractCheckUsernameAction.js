@@ -7,7 +7,6 @@
 
 import Action from "../../ace/AsynchronousAction";
 import CheckUsernameCommand from "../../../src/registration/commands/CheckUsernameCommand";
-import * as AppState from "../../ace/AppState";
 import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractCheckUsernameAction extends Action {
@@ -22,13 +21,13 @@ export default class AbstractCheckUsernameAction extends Action {
 	}
 
 	preCall() {
-		AppState.set_rootContainer_registrationView_displayUsernameSpinner({displayUsernameSpinner: true});
-		AppUtils.stateUpdated(AppState.getAppState());
+		AppUtils.set({displayUsernameSpinner: true}, ["rootContainer", ["mainView", "registrationView"], "displayUsernameSpinner"])
+		AppUtils.stateUpdated();
 	}
 	
 	postCall() {
-		AppState.set_rootContainer_registrationView_displayUsernameSpinner({displayUsernameSpinner: false});
-		AppUtils.stateUpdated(AppState.getAppState());
+		AppUtils.set({displayUsernameSpinner: false}, ["rootContainer", ["mainView", "registrationView"], "displayUsernameSpinner"])
+		AppUtils.stateUpdated();
 	}
 
 }

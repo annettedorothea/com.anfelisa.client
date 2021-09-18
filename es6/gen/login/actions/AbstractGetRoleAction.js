@@ -7,7 +7,6 @@
 
 import Action from "../../ace/AsynchronousAction";
 import GetRoleCommand from "../../../src/login/commands/GetRoleCommand";
-import * as AppState from "../../ace/AppState";
 import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractGetRoleAction extends Action {
@@ -22,13 +21,13 @@ export default class AbstractGetRoleAction extends Action {
 	}
 
 	preCall() {
-		AppState.set_rootContainer_spinner_display({display: true});
-		AppUtils.stateUpdated(AppState.getAppState());
+		AppUtils.set({display: true}, ["rootContainer", "spinner", "display"])
+		AppUtils.stateUpdated();
 	}
 	
 	postCall() {
-		AppState.set_rootContainer_spinner_display({display: false});
-		AppUtils.stateUpdated(AppState.getAppState());
+		AppUtils.set({display: false}, ["rootContainer", "spinner", "display"])
+		AppUtils.stateUpdated();
 	}
 
 }

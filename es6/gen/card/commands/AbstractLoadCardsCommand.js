@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractLoadCardsCommand extends AsynchronousCommand {
     constructor() {
@@ -17,11 +16,11 @@ export default class AbstractLoadCardsCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.selectedCategory = AppState.get_rootContainer_authorView_categoryTree_selectedCategory();
-        data.naturalInputOrder = AppState.get_rootContainer_authorView_cardView_naturalInputOrder();
-        data.filterNonScheduled = AppState.get_rootContainer_authorView_categoryTree_filterNonScheduled();
-        data.priority = AppState.get_rootContainer_authorView_categoryTree_priority();
-        data.reverse = AppState.get_rootContainer_authorView_reverse();
+        data.selectedCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory"]);
+        data.naturalInputOrder = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "naturalInputOrder"]);
+        data.filterNonScheduled = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "filterNonScheduled"]);
+        data.priority = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "priority"]);
+        data.reverse = AppUtils.get(["rootContainer", ["mainView", "authorView"], "reverse"]);
         data.outcomes = [];
     }
 

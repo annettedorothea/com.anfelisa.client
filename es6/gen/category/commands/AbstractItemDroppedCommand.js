@@ -18,8 +18,8 @@ export default class AbstractItemDroppedCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.movedCategory = AppState.get_rootContainer_authorView_categoryTree_movedCategory();
-        data.movedCardIds = AppState.get_rootContainer_authorView_cardView_movedCardIds();
+        data.movedCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "movedCategory"]);
+        data.movedCardIds = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "movedCardIds"]);
         data.outcomes = [];
     }
 

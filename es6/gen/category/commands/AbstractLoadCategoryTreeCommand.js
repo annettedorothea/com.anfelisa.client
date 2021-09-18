@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
 export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand {
@@ -19,7 +18,7 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
     }
     
     initCommandData(data) {
-        data.reverse = AppState.get_rootContainer_authorView_reverse();
+        data.reverse = AppUtils.get(["rootContainer", ["mainView", "authorView"], "reverse"]);
         data.outcomes = [];
     }
 

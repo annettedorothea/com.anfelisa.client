@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
 
@@ -19,9 +18,9 @@ export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCo
     }
     
     initCommandData(data) {
-        data.cardIds = AppState.get_rootContainer_authorView_cardView_selectedCardIds();
-        data.boxId = AppState.get_rootContainer_authorView_boxId();
-        data.filterNonScheduled = AppState.get_rootContainer_authorView_categoryTree_filterNonScheduled();
+        data.cardIds = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "selectedCardIds"]);
+        data.boxId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "boxId"]);
+        data.filterNonScheduled = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "filterNonScheduled"]);
         data.outcomes = [];
     }
 

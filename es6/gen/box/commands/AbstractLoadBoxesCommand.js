@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadBoxStatisticsAction from "../../../src/box/actions/LoadBoxStatisticsAction";
 
 export default class AbstractLoadBoxesCommand extends AsynchronousCommand {

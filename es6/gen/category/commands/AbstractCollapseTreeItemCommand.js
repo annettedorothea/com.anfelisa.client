@@ -18,8 +18,8 @@ export default class AbstractCollapseTreeItemCommand extends SynchronousCommand 
     }
 
     initCommandData(data) {
-        data.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
-        data.selectedCategory = AppState.get_rootContainer_authorView_categoryTree_selectedCategory();
+        data.rootCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory"]);
+        data.selectedCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory"]);
         data.outcomes = [];
     }
 

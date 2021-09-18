@@ -18,8 +18,8 @@ export default class AbstractFilterNonScheduledCardsCommand extends SynchronousC
     }
 
     initCommandData(data) {
-        data.filterNonScheduled = AppState.get_rootContainer_authorView_categoryTree_filterNonScheduled();
-        data.selectedCategoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
+        data.filterNonScheduled = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "filterNonScheduled"]);
+        data.selectedCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "categoryId"]);
         data.outcomes = [];
     }
 

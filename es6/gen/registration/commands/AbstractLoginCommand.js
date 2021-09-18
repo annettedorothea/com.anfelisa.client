@@ -18,7 +18,7 @@ export default class AbstractLoginCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.username = AppState.get_rootContainer_registrationView_username();
+        data.username = AppUtils.get(["rootContainer", ["mainView", "registrationView"], "username"]);
         data.outcomes = [];
     }
 

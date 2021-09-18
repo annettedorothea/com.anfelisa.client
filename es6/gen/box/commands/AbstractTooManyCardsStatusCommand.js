@@ -16,9 +16,9 @@ export default class AbstractTooManyCardsStatusCommand extends SynchronousComman
     }
 
     initCommandData(data) {
-        data.maxCardsPerDay = AppState.get_rootContainer_boxSettingsView_boxSettings_maxCardsPerDay();
-        data.maxInterval = AppState.get_rootContainer_boxSettingsView_boxSettings_maxInterval();
-        data.allActiveCards = AppState.get_rootContainer_boxSettingsView_boxSettings_allActiveCards();
+        data.maxCardsPerDay = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "maxCardsPerDay"]);
+        data.maxInterval = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "maxInterval"]);
+        data.allActiveCards = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "allActiveCards"]);
         data.outcomes = [];
     }
 

@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
@@ -19,8 +18,8 @@ export default class AbstractForgotPasswordCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.language = AppState.get_rootContainer_language();
-        data.username = AppState.get_rootContainer_forgotPasswordView_username();
+        data.language = AppUtils.get(["rootContainer", "language"]);
+        data.username = AppUtils.get(["rootContainer", ["mainView", "forgotPasswordView"], "username"]);
         data.outcomes = [];
     }
 

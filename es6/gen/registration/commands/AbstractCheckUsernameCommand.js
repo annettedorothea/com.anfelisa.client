@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
     constructor() {
@@ -17,7 +16,7 @@ export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.username = AppState.get_rootContainer_registrationView_username();
+        data.username = AppUtils.get(["rootContainer", ["mainView", "registrationView"], "username"]);
         data.outcomes = [];
     }
 

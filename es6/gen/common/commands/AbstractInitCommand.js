@@ -19,8 +19,8 @@ export default class AbstractInitCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.username = AppState.get_rootContainer_username();
-        data.password = AppState.get_rootContainer_password();
+        data.username = AppUtils.getStorage(["rootContainer", "username"]);
+        data.password = AppUtils.getStorage(["rootContainer", "password"]);
         data.outcomes = [];
     }
 

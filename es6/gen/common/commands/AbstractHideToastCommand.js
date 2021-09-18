@@ -18,7 +18,7 @@ export default class AbstractHideToastCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.messages = AppState.get_rootContainer_messages();
+        data.messages = AppUtils.get(["rootContainer", "messages"]);
         data.outcomes = [];
     }
 

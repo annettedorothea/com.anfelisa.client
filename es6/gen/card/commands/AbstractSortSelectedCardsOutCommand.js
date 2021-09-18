@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
 export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCommand {
@@ -18,8 +17,8 @@ export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCom
     }
     
     initCommandData(data) {
-        data.cardIds = AppState.get_rootContainer_authorView_cardView_selectedCardIds();
-        data.boxId = AppState.get_rootContainer_authorView_boxId();
+        data.cardIds = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "selectedCardIds"]);
+        data.boxId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "boxId"]);
         data.outcomes = [];
     }
 

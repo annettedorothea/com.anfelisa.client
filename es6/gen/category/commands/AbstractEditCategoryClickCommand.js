@@ -16,7 +16,7 @@ export default class AbstractEditCategoryClickCommand extends SynchronousCommand
     }
 
     initCommandData(data) {
-        data.categoryName = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryName();
+        data.categoryName = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "categoryName"]);
         data.outcomes = [];
     }
 

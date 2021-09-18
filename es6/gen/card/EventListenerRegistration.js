@@ -6,38 +6,38 @@
 
 
 import * as ACEController from "../ace/ACEController";
-import * as AppState from "../ace/AppState";
+import * as AppUtils from "../../src/app/AppUtils";
 
 export default class EventListenerRegistrationCard {
 
 	static init() {
-		ACEController.registerListener('card.LoadCardsOkEvent', AppState.merge_rootContainer_authorView_cardView);
-		ACEController.registerListener('card.CreateCardOkEvent', AppState.set_rootContainer_authorView_cardView_newCard);
-		ACEController.registerListener('card.UpdateCardOkEvent', AppState.set_rootContainer_authorView_cardView_editedCard);
-		ACEController.registerListener('card.DeleteCardOkEvent', AppState.set_rootContainer_authorView_cardView_deleteCard);
-		ACEController.registerListener('card.GivenOfNewCardChangedOkEvent', AppState.merge_rootContainer_authorView_cardView_newCard_given);
-		ACEController.registerListener('card.WantedOfNewCardChangedOkEvent', AppState.merge_rootContainer_authorView_cardView_newCard_wanted);
-		ACEController.registerListener('card.CancelNewCardOkEvent', AppState.set_rootContainer_authorView_cardView_newCard);
-		ACEController.registerListener('card.GivenOfEditedCardChangedOkEvent', AppState.merge_rootContainer_authorView_cardView_editedCard_given);
-		ACEController.registerListener('card.WantedOfEditedCardChangedOkEvent', AppState.merge_rootContainer_authorView_cardView_editedCard_wanted);
-		ACEController.registerListener('card.CancelEditCardOkEvent', AppState.set_rootContainer_authorView_cardView_editedCard);
-		ACEController.registerListener('card.EditCardOkEvent', AppState.set_rootContainer_authorView_cardView_editedCard);
-		ACEController.registerListener('card.DeleteCardClickOkEvent', AppState.set_rootContainer_authorView_cardView_deleteCard);
-		ACEController.registerListener('card.CancelDeleteCardOkEvent', AppState.set_rootContainer_authorView_cardView_deleteCard);
-		ACEController.registerListener('card.FilterCardsOkEvent', AppState.set_rootContainer_authorView_cardView_filter);
-		ACEController.registerListener('card.PassValueToDictionaryOkEvent', AppState.set_rootContainer_authorView_cardView_dictionaryValue);
-		ACEController.registerListener('card.ToggleInputOrderOkEvent', AppState.set_rootContainer_authorView_cardView_naturalInputOrder);
-		ACEController.registerListener('card.ToggleScheduleCardSelectionOkEvent', AppState.set_rootContainer_authorView_cardView_selectedCardIds);
-		ACEController.registerListener('card.ToggleAllScheduleCardSelectionOkEvent', AppState.set_rootContainer_authorView_cardView_selectedCardIds);
-		ACEController.registerListener('card.MoveCardsStartedOkEvent', AppState.set_rootContainer_authorView_cardView_movedCardIds);
-		ACEController.registerListener('card.MoveCardsOkEvent', AppState.set_rootContainer_authorView_cardView_movedCardIds);
-		ACEController.registerListener('card.MoveCardsOkEvent', AppState.set_rootContainer_authorView_categoryTree_dropTargetCategoryId);
-		ACEController.registerListener('card.MoveCardsOkEvent', AppState.set_rootContainer_authorView_categoryTree_dropAllowed);
-		ACEController.registerListener('card.ChangeCardOrderOkEvent', AppState.set_rootContainer_authorView_cardView_movedCardIds);
-		ACEController.registerListener('card.ChangeCardOrderOkEvent', AppState.set_rootContainer_authorView_cardView_dragTargetCardId);
-		ACEController.registerListener('card.OnDragEnterOkEvent', AppState.set_rootContainer_authorView_cardView_dragTargetCardId);
-		ACEController.registerListener('card.OnDragExitOkEvent', AppState.set_rootContainer_authorView_cardView_dragTargetCardId);
-		ACEController.registerListener('card.SearchDuplicateCardsOkEvent', AppState.set_rootContainer_authorView_cardView_cardDuplicates);
+		ACEController.registerListener('card.LoadCardsOkEvent', (data) => AppUtils.merge(data, ["rootContainer", ["mainView", "authorView"], "cardView"]));
+		ACEController.registerListener('card.CreateCardOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "newCard"]));
+		ACEController.registerListener('card.UpdateCardOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "editedCard"]));
+		ACEController.registerListener('card.DeleteCardOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "deleteCard"]));
+		ACEController.registerListener('card.GivenOfNewCardChangedOkEvent', (data) => AppUtils.merge(data, ["rootContainer", ["mainView", "authorView"], "cardView", "newCard", "given"]));
+		ACEController.registerListener('card.WantedOfNewCardChangedOkEvent', (data) => AppUtils.merge(data, ["rootContainer", ["mainView", "authorView"], "cardView", "newCard", "wanted"]));
+		ACEController.registerListener('card.CancelNewCardOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "newCard"]));
+		ACEController.registerListener('card.GivenOfEditedCardChangedOkEvent', (data) => AppUtils.merge(data, ["rootContainer", ["mainView", "authorView"], "cardView", "editedCard", "given"]));
+		ACEController.registerListener('card.WantedOfEditedCardChangedOkEvent', (data) => AppUtils.merge(data, ["rootContainer", ["mainView", "authorView"], "cardView", "editedCard", "wanted"]));
+		ACEController.registerListener('card.CancelEditCardOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "editedCard"]));
+		ACEController.registerListener('card.EditCardOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "editedCard"]));
+		ACEController.registerListener('card.DeleteCardClickOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "deleteCard"]));
+		ACEController.registerListener('card.CancelDeleteCardOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "deleteCard"]));
+		ACEController.registerListener('card.FilterCardsOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "filter"]));
+		ACEController.registerListener('card.PassValueToDictionaryOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "dictionaryValue"]));
+		ACEController.registerListener('card.ToggleInputOrderOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "naturalInputOrder"]));
+		ACEController.registerListener('card.ToggleScheduleCardSelectionOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "selectedCardIds"]));
+		ACEController.registerListener('card.ToggleAllScheduleCardSelectionOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "selectedCardIds"]));
+		ACEController.registerListener('card.MoveCardsStartedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "movedCardIds"]));
+		ACEController.registerListener('card.MoveCardsOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "movedCardIds"]));
+		ACEController.registerListener('card.MoveCardsOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "categoryTree", "dropTargetCategoryId"]));
+		ACEController.registerListener('card.MoveCardsOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "categoryTree", "dropAllowed"]));
+		ACEController.registerListener('card.ChangeCardOrderOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "movedCardIds"]));
+		ACEController.registerListener('card.ChangeCardOrderOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "dragTargetCardId"]));
+		ACEController.registerListener('card.OnDragEnterOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "dragTargetCardId"]));
+		ACEController.registerListener('card.OnDragExitOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "dragTargetCardId"]));
+		ACEController.registerListener('card.SearchDuplicateCardsOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"], "cardView", "cardDuplicates"]));
 	}
 
 }

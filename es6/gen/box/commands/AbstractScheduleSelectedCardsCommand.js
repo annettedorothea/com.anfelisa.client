@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadActiveCardsAction from "../../../src/box/actions/LoadActiveCardsAction";
 
 export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCommand {
@@ -18,8 +17,8 @@ export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCo
     }
     
     initCommandData(data) {
-        data.cardIds = AppState.get_rootContainer_allActiveCardsView_selectedCardIds();
-        data.boxId = AppState.get_rootContainer_allActiveCardsView_boxId();
+        data.cardIds = AppUtils.get(["rootContainer", ["mainView", "allActiveCardsView"], "selectedCardIds"]);
+        data.boxId = AppUtils.get(["rootContainer", ["mainView", "allActiveCardsView"], "boxId"]);
         data.outcomes = [];
     }
 

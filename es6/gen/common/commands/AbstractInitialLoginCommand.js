@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";

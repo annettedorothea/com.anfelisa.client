@@ -18,8 +18,8 @@ export default class AbstractDisplayToastCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.language = AppState.get_rootContainer_language();
-        data.messages = AppState.get_rootContainer_messages();
+        data.language = AppUtils.get(["rootContainer", "language"]);
+        data.messages = AppUtils.get(["rootContainer", "messages"]);
         data.outcomes = [];
     }
 

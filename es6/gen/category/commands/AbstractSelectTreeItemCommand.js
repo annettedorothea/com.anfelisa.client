@@ -18,7 +18,7 @@ export default class AbstractSelectTreeItemCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
+        data.rootCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory"]);
         data.outcomes = [];
     }
 

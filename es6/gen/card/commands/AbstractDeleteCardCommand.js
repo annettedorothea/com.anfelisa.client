@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
 export default class AbstractDeleteCardCommand extends AsynchronousCommand {
@@ -19,7 +18,7 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.cardId = AppState.get_rootContainer_authorView_cardView_deleteCard_cardId();
+        data.cardId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "deleteCard", "cardId"]);
         data.outcomes = [];
     }
 

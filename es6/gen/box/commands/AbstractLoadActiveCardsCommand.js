@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractLoadActiveCardsCommand extends AsynchronousCommand {
     constructor() {
@@ -17,7 +16,7 @@ export default class AbstractLoadActiveCardsCommand extends AsynchronousCommand 
     }
     
     initCommandData(data) {
-        data.boxId = AppState.get_rootContainer_allActiveCardsView_boxId();
+        data.boxId = AppUtils.get(["rootContainer", ["mainView", "allActiveCardsView"], "boxId"]);
         data.outcomes = [];
     }
 

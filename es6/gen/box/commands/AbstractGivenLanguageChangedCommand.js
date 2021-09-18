@@ -16,8 +16,8 @@ export default class AbstractGivenLanguageChangedCommand extends SynchronousComm
     }
 
     initCommandData(data) {
-        data.wantedLanguage = AppState.get_rootContainer_boxSettingsView_boxSettings_wantedLanguage();
-        data.dictionaryLookup = AppState.get_rootContainer_boxSettingsView_boxSettings_dictionaryLookup();
+        data.wantedLanguage = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "wantedLanguage"]);
+        data.dictionaryLookup = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "dictionaryLookup"]);
         data.outcomes = [];
     }
 

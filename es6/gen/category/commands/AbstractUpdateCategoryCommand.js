@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
 
 export default class AbstractUpdateCategoryCommand extends AsynchronousCommand {
@@ -19,10 +18,10 @@ export default class AbstractUpdateCategoryCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.rootCategoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
-        data.selectedCategoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
-        data.categoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
-        data.categoryName = AppState.get_rootContainer_authorView_categoryTree_categoryDialog_categoryName();
+        data.rootCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory", "categoryId"]);
+        data.selectedCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "categoryId"]);
+        data.categoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "categoryId"]);
+        data.categoryName = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "categoryDialog", "categoryName"]);
         data.outcomes = [];
     }
 

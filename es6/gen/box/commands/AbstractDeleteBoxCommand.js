@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 
@@ -20,7 +19,7 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.boxId = AppState.get_rootContainer_dashboardView_deleteBox_boxId();
+        data.boxId = AppUtils.get(["rootContainer", ["mainView", "dashboardView"], "deleteBox", "boxId"]);
         data.outcomes = [];
     }
 

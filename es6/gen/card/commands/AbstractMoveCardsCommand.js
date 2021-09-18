@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
 
 export default class AbstractMoveCardsCommand extends AsynchronousCommand {
@@ -19,9 +18,9 @@ export default class AbstractMoveCardsCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.movedCardIds = AppState.get_rootContainer_authorView_cardView_movedCardIds();
-        data.dropTargetCategoryId = AppState.get_rootContainer_authorView_categoryTree_dropTargetCategoryId();
-        data.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
+        data.movedCardIds = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "movedCardIds"]);
+        data.dropTargetCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "dropTargetCategoryId"]);
+        data.rootCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory"]);
         data.outcomes = [];
     }
 

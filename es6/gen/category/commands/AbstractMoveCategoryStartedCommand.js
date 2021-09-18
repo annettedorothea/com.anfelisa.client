@@ -16,7 +16,7 @@ export default class AbstractMoveCategoryStartedCommand extends SynchronousComma
     }
 
     initCommandData(data) {
-        data.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
+        data.rootCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory"]);
         data.outcomes = [];
     }
 

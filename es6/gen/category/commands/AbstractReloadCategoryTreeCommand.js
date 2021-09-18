@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
 export default class AbstractReloadCategoryTreeCommand extends AsynchronousCommand {
@@ -19,11 +18,11 @@ export default class AbstractReloadCategoryTreeCommand extends AsynchronousComma
     }
     
     initCommandData(data) {
-        data.previousRootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
-        data.selectedCategory = AppState.get_rootContainer_authorView_categoryTree_selectedCategory();
-        data.filterNonScheduled = AppState.get_rootContainer_authorView_categoryTree_filterNonScheduled();
-        data.priority = AppState.get_rootContainer_authorView_categoryTree_priority();
-        data.reverse = AppState.get_rootContainer_authorView_reverse();
+        data.previousRootCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory"]);
+        data.selectedCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory"]);
+        data.filterNonScheduled = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "filterNonScheduled"]);
+        data.priority = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "priority"]);
+        data.reverse = AppUtils.get(["rootContainer", ["mainView", "authorView"], "reverse"]);
         data.outcomes = [];
     }
 

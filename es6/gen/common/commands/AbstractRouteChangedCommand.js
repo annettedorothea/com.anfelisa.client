@@ -25,8 +25,8 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.hash = AppState.get_rootContainer_hash();
-        data.loggedInUser = AppState.get_rootContainer_loggedInUser();
+        data.hash = AppUtils.getHash(["rootContainer", "hash"]);
+        data.loggedInUser = AppUtils.get(["rootContainer", "loggedInUser"]);
         data.outcomes = [];
     }
 

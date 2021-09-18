@@ -16,7 +16,7 @@ export default class AbstractToggleScheduleCardSelectionCommand extends Synchron
     }
 
     initCommandData(data) {
-        data.selectedCardIds = AppState.get_rootContainer_allActiveCardsView_selectedCardIds();
+        data.selectedCardIds = AppUtils.get(["rootContainer", ["mainView", "allActiveCardsView"], "selectedCardIds"]);
         data.outcomes = [];
     }
 

@@ -31,6 +31,48 @@ import {RootContainer, setRootContainerState} from "../components/RootContainer"
 import React from "react";
 import ReactDOM from "react-dom";
 
+export function get(params) {
+    return undefined;
+}
+
+
+export function getHash(params) {
+    return undefined;
+}
+
+
+export function getStorage(params) {
+    return undefined;
+}
+
+
+export function set(data, params) {
+    return undefined;
+}
+
+export function setStorage(data, params) {
+    return undefined;
+}
+
+
+export function setHash(data, params) {
+    return undefined;
+}
+
+
+export function merge(data, params, attributes) {
+    return undefined;
+}
+
+export function mergeHash(data, params, attributes) {
+    return undefined;
+}
+
+export function mergeStorage(data, params, attributes) {
+    return undefined;
+}
+
+
 export let settings;
 
 function loadSettings() {
@@ -278,16 +320,14 @@ export function deepCopy(object) {
     return JSON.parse(JSON.stringify(object));
 }
 
-let container;
-
 export function stateUpdated() {
     const appState = AppState.getAppState();
     setRootContainerState(appState.rootContainer);
 }
 
 export function renderApp() {
-    container = <RootContainer {...AppState.getAppState()} />;
-    container = ReactDOM.render(
+    let container = <RootContainer {...AppState.getAppState()} />;
+    ReactDOM.render(
         container,
         document.getElementById('root')
     );

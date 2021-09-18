@@ -16,9 +16,9 @@ export default class AbstractDictionaryLookupChangedCommand extends SynchronousC
     }
 
     initCommandData(data) {
-        data.givenLanguage = AppState.get_rootContainer_boxSettingsView_boxSettings_givenLanguage();
-        data.wantedLanguage = AppState.get_rootContainer_boxSettingsView_boxSettings_wantedLanguage();
-        data.dictionaryLookup = AppState.get_rootContainer_boxSettingsView_boxSettings_dictionaryLookup();
+        data.givenLanguage = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "givenLanguage"]);
+        data.wantedLanguage = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "wantedLanguage"]);
+        data.dictionaryLookup = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "dictionaryLookup"]);
         data.outcomes = [];
     }
 

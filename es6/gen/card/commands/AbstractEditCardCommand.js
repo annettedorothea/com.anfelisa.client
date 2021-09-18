@@ -16,7 +16,7 @@ export default class AbstractEditCardCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.cardList = AppState.get_rootContainer_authorView_cardView_cardList();
+        data.cardList = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "cardList"]);
         data.outcomes = [];
     }
 

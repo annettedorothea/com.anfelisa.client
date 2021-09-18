@@ -16,10 +16,10 @@ export default class AbstractCheckDropAllowedCommand extends SynchronousCommand 
     }
 
     initCommandData(data) {
-        data.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
-        data.movedCategory = AppState.get_rootContainer_authorView_categoryTree_movedCategory();
-        data.movedCardIds = AppState.get_rootContainer_authorView_cardView_movedCardIds();
-        data.selectedCategory = AppState.get_rootContainer_authorView_categoryTree_selectedCategory();
+        data.rootCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory"]);
+        data.movedCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "movedCategory"]);
+        data.movedCardIds = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "movedCardIds"]);
+        data.selectedCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory"]);
         data.outcomes = [];
     }
 

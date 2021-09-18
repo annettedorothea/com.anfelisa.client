@@ -16,7 +16,7 @@ export default class AbstractToggleSaveInLocalStorageCommand extends Synchronous
     }
 
     initCommandData(data) {
-        data.saveInLocalStorage = AppState.get_rootContainer_loginView_saveInLocalStorage();
+        data.saveInLocalStorage = AppUtils.get(["rootContainer", ["mainView", "loginView"], "saveInLocalStorage"]);
         data.outcomes = [];
     }
 

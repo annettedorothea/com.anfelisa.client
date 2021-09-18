@@ -7,8 +7,12 @@ import AbstractDisplayWantedCommand from "../../../gen/box/commands/AbstractDisp
 
 export default class DisplayWantedCommand extends AbstractDisplayWantedCommand {
     execute(data) {
-        data.index += 1;
-        if (data.wantedItemsLength === data.index) {
+        if (data.index < data.wantedItemsLength) {
+            data.index += 1;
+            if (data.wantedItemsLength === data.index) {
+                data.enableScoreButtons = true;
+            }
+        } else {
             data.enableScoreButtons = true;
         }
         this.addOkOutcome(data);

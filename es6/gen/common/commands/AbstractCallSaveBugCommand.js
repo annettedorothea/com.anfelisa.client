@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import HideSaveBugDialogAction from "../../../src/common/actions/HideSaveBugDialogAction";
 
 export default class AbstractCallSaveBugCommand extends AsynchronousCommand {
@@ -18,7 +17,7 @@ export default class AbstractCallSaveBugCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.username = AppState.get_rootContainer_loggedInUser_username();
+        data.username = AppUtils.get(["rootContainer", "loggedInUser", "username"]);
         data.outcomes = [];
     }
 

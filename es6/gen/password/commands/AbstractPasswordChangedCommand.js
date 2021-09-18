@@ -16,7 +16,7 @@ export default class AbstractPasswordChangedCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.passwordRepetition = AppState.get_rootContainer_resetPasswordView_passwordRepetition();
+        data.passwordRepetition = AppUtils.get(["rootContainer", ["mainView", "resetPasswordView"], "passwordRepetition"]);
         data.outcomes = [];
     }
 
