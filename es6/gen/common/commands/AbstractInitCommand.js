@@ -7,7 +7,6 @@
 
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
-import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
 import InitialLoginAction from "../../../src/common/actions/InitialLoginAction";
 import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";

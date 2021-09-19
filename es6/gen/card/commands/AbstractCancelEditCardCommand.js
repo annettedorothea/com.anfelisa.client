@@ -8,7 +8,6 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractCancelEditCardCommand extends SynchronousCommand {
     constructor() {

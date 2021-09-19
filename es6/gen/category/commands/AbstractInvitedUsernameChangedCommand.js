@@ -7,7 +7,6 @@
 
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
-import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
 import SearchUsernameAction from "../../../src/category/actions/SearchUsernameAction";
 import * as AppUtils from "../../../src/app/AppUtils";
