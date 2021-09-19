@@ -18,7 +18,9 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.cardId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "deleteCard", "cardId"]);
+        data.cardId = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "deleteCard", "cardId"]
+        );
         data.outcomes = [];
     }
 
@@ -40,7 +42,7 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.DeleteCardOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadCardsAction(), 
 					{

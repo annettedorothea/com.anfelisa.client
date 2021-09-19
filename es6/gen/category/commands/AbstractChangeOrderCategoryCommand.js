@@ -18,10 +18,18 @@ export default class AbstractChangeOrderCategoryCommand extends AsynchronousComm
     }
     
     initCommandData(data) {
-        data.rootCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory", "categoryId"]);
-        data.selectedCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "movedCategory", "categoryId"]);
-        data.targetCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "dropTargetCategoryId"]);
-        data.movedCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "movedCategory", "categoryId"]);
+        data.rootCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory", "categoryId"]
+        );
+        data.selectedCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "movedCategory", "categoryId"]
+        );
+        data.targetCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "dropTargetCategoryId"]
+        );
+        data.movedCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "movedCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -47,7 +55,7 @@ export default class AbstractChangeOrderCategoryCommand extends AsynchronousComm
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.ChangeOrderCategoryOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new ReloadCategoryTreeAction(), 
 					{

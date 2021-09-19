@@ -16,7 +16,9 @@ export default class AbstractLoadBoxStatisticsCommand extends AsynchronousComman
     }
     
     initCommandData(data) {
-        data.dashboardView = AppUtils.get(["rootContainer", ["mainView", "dashboardView"]]);
+        data.boxList = AppUtils.get(
+        	["rootContainer", "mainView", "boxList"]
+        );
         data.outcomes = [];
     }
 
@@ -39,7 +41,7 @@ export default class AbstractLoadBoxStatisticsCommand extends AsynchronousComman
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.LoadBoxStatisticsOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

@@ -16,7 +16,9 @@ export default class AbstractInviteUserCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.categoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory", "categoryId"]);
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -42,7 +44,7 @@ export default class AbstractInviteUserCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.InviteUserOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

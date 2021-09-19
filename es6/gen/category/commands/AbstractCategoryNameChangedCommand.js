@@ -8,7 +8,7 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractCategoryNameChangedCommand extends SynchronousCommand {
     constructor() {
@@ -26,7 +26,7 @@ export default class AbstractCategoryNameChangedCommand extends SynchronousComma
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.CategoryNameChangedOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

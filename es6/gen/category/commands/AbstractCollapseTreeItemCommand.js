@@ -9,8 +9,8 @@ import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import SelectTreeItemAction from "../../../src/category/actions/SelectTreeItemAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractCollapseTreeItemCommand extends SynchronousCommand {
     constructor() {
@@ -18,8 +18,14 @@ export default class AbstractCollapseTreeItemCommand extends SynchronousCommand 
     }
 
     initCommandData(data) {
-        data.rootCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory"]);
-        data.selectedCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory"]);
+        data.rootCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+        );
+        data.selectedCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+        );
         data.outcomes = [];
     }
 
@@ -33,11 +39,11 @@ export default class AbstractCollapseTreeItemCommand extends SynchronousCommand 
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.CollapseTreeItemOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
 		if (data.outcomes.includes("selectParentCategory")) {
 			new Event('category.CollapseTreeItemSelectParentCategoryEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new SelectTreeItemAction(), 
 					{

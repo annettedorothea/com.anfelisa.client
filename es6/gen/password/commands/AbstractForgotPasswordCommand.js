@@ -18,8 +18,12 @@ export default class AbstractForgotPasswordCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.language = AppUtils.get(["rootContainer", "language"]);
-        data.username = AppUtils.get(["rootContainer", ["mainView", "forgotPasswordView"], "username"]);
+        data.language = AppUtils.get(
+        	["rootContainer", "language"]
+        );
+        data.username = AppUtils.get(
+        	["rootContainer", "mainView", "username"]
+        );
         data.outcomes = [];
     }
 

@@ -20,7 +20,9 @@ export default class AbstractDeleteUserCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.usernameToBeDeleted = AppUtils.get(["rootContainer", ["mainView", "profileView"], "username"]);
+        data.usernameToBeDeleted = AppUtils.get(
+        	["rootContainer", "mainView", "username"]
+        );
         data.outcomes = [];
     }
 
@@ -45,7 +47,7 @@ export default class AbstractDeleteUserCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('profile.DeleteUserOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LogoutAction(), 
 					{
@@ -54,7 +56,7 @@ export default class AbstractDeleteUserCommand extends AsynchronousCommand {
 		}
 		if (data.outcomes.includes("error")) {
 			new Event('profile.DeleteUserErrorEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadUserAction(), 
 					{

@@ -18,9 +18,15 @@ export default class AbstractCreateCardCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.wanted = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "newCard", "wanted"]);
-        data.given = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "newCard", "given"]);
-        data.categoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "categoryId"]);
+        data.wanted = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "newCard", "wanted"]
+        );
+        data.given = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "newCard", "given"]
+        );
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -47,7 +53,7 @@ export default class AbstractCreateCardCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.CreateCardOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadCardsAction(), 
 					{

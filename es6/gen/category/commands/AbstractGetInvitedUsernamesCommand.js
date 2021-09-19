@@ -16,7 +16,9 @@ export default class AbstractGetInvitedUsernamesCommand extends AsynchronousComm
     }
     
     initCommandData(data) {
-        data.categoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory", "categoryId"]);
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -39,7 +41,7 @@ export default class AbstractGetInvitedUsernamesCommand extends AsynchronousComm
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.GetInvitedUsernamesOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

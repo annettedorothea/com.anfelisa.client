@@ -16,7 +16,9 @@ export default class AbstractLoadUserCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.role = AppUtils.get(["rootContainer", "role"]);
+        data.role = AppUtils.get(
+        	["rootContainer", "role"]
+        );
         data.outcomes = [];
     }
 
@@ -41,7 +43,7 @@ export default class AbstractLoadUserCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('profile.LoadUserOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

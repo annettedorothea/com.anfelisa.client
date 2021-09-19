@@ -21,12 +21,20 @@ export default class AbstractInitBoxesForDayDuringScoreAction extends Action {
 	}
 
 	preCall() {
-		AppUtils.set({display: true}, ["rootContainer", "spinner", "display"])
+		AppUtils.set(
+			{display: true}, 
+			["rootContainer", "spinner", "display"], 
+			[]
+		)
 		AppUtils.stateUpdated();
 	}
 	
 	postCall() {
-		AppUtils.set({display: false}, ["rootContainer", "spinner", "display"])
+		AppUtils.set(
+			{display: false}, 
+			["rootContainer", "spinner", "display"], 
+			[]
+		)
 		AppUtils.stateUpdated();
 	}
 

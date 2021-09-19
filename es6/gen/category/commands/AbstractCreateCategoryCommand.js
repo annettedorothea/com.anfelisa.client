@@ -18,9 +18,15 @@ export default class AbstractCreateCategoryCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.categoryName = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "categoryDialog", "categoryName"]);
-        data.parentCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "categoryId"]);
-        data.rootCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory", "categoryId"]);
+        data.categoryName = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "categoryDialog", "categoryName"]
+        );
+        data.parentCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory", "categoryId"]
+        );
+        data.rootCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -46,7 +52,7 @@ export default class AbstractCreateCategoryCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.CreateCategoryOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new ReloadCategoryTreeAction(), 
 					{

@@ -17,14 +17,30 @@ export default class AbstractSaveBoxSettingsCommand extends AsynchronousCommand 
     }
     
     initCommandData(data) {
-        data.boxId = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxId"]);
-        data.maxInterval = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "maxInterval"]);
-        data.maxCardsPerDay = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "maxCardsPerDay"]);
-        data.categoryId = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "categoryId"]);
-        data.categoryName = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "categoryName"]);
-        data.dictionaryLookup = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "dictionaryLookup"]);
-        data.givenLanguage = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "givenLanguage"]);
-        data.wantedLanguage = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "wantedLanguage"]);
+        data.boxId = AppUtils.get(
+        	["rootContainer", "mainView", "boxId"]
+        );
+        data.maxInterval = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "maxInterval"]
+        );
+        data.maxCardsPerDay = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "maxCardsPerDay"]
+        );
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "categoryId"]
+        );
+        data.categoryName = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "categoryName"]
+        );
+        data.dictionaryLookup = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "dictionaryLookup"]
+        );
+        data.givenLanguage = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "givenLanguage"]
+        );
+        data.wantedLanguage = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "wantedLanguage"]
+        );
         data.outcomes = [];
     }
 

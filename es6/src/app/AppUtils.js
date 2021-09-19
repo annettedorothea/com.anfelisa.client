@@ -5,7 +5,6 @@
  ********************************************************************************/
 
 
-import * as AppState from "../../gen/ace/AppState";
 import * as App from "../index";
 
 import EventListenerRegistrationCategory from "../../gen/category/EventListenerRegistration";
@@ -30,46 +29,101 @@ import {Texts} from "./Texts";
 import {RootContainer, setRootContainerState} from "../components/RootContainer";
 import React from "react";
 import ReactDOM from "react-dom";
+import * as R from 'ramda'
 
-export function get(params) {
-    return undefined;
+export let appState = {};
+
+export function get(path) {
+    const lens = R.lensPath(path);
+    return R.view(lens, appState);
 }
 
-
-export function getHash(params) {
-    return undefined;
+export function getHash() {
+    return location.hash;
 }
 
-
-export function getStorage(params) {
-    return undefined;
+export function getStorage(path) {
+    return localStorage.getItem(R.last(path));
 }
 
-
-export function set(data, params) {
-    return undefined;
+function normalizeData(data, path, attributes) {
+    const value = data[R.last(path)];
+    if (!value) {
+        return value;
+    }
+    if (attributes) {
+        return R.pick(attributes, data[R.last(path)]);
+    } else {
+        return data[R.last(path)]
+    }
 }
 
-export function setStorage(data, params) {
-    return undefined;
+function verifyGroups(groupVerifications) {
+    if (!groupVerifications) {
+        return true;
+    }
+    for(let i=0; i<groupVerifications.length; i++) {
+        const groupVerification = groupVerifications[i];
+        const groupInAppState = get(groupVerification.path)
+        if (groupInAppState.group !== groupVerification.group) {
+            return false;
+        }
+    }
+    return true;
 }
 
-
-export function setHash(data, params) {
-    return undefined;
+export function set(data, path, groupVerifications, attributes) {
+    if (verifyGroups(groupVerifications) === false) {
+        return;
+    }
+    const normalizedData = normalizeData(data, path, attributes);
+    const lens = R.lensPath(path);
+    appState = R.set(lens, normalizedData, appState);
 }
 
-
-export function merge(data, params, attributes) {
-    return undefined;
+export function setHash(data, path) {
+    location.hash = data[R.last(path)];
 }
 
-export function mergeHash(data, params, attributes) {
-    return undefined;
+export function setStorage(data, path) {
+    const lastParam = R.last(path);
+    if (data[lastParam]) {
+        localStorage.setItem(lastParam, data[lastParam]);
+    } else {
+        localStorage.removeItem(lastParam);
+    }
 }
 
-export function mergeStorage(data, params, attributes) {
-    return undefined;
+export function merge(data, path, groupVerifications, attributes) {
+    if (verifyGroups(groupVerifications) === false) {
+        return;
+    }
+    if (attributes) {
+        const lens = R.lensPath(path);
+        const appStateValue = R.view(lens, appState);
+        const normalizedData = normalizeData(data, path, attributes);
+        const mergedData = R.mergeDeepRight(appStateValue, normalizedData);
+        appState = R.set(lens, mergedData, appState);
+    } else {
+        set(data, path, attributes);
+    }
+}
+
+export function mergeHash(data, path) {
+    if (data[R.last(path)]) {
+        location.hash = data[R.last(path)];
+    }
+}
+
+export function mergeStorage(data, path) {
+    const lastParam = R.last(path);
+    if (data[lastParam]) {
+        localStorage.setItem(lastParam, data[lastParam]);
+    }
+}
+
+export function createInitialAppState() {
+    appState = {};
 }
 
 
@@ -143,11 +197,6 @@ function loadActualClientVersion() {
 export function startReplay() {
     window.onhashchange = () => {
     };
-}
-
-export function createInitialAppState() {
-    const initialAppState = {};
-    AppState.setInitialAppState(initialAppState);
 }
 
 function createHeaders(authorize) {
@@ -224,8 +273,8 @@ export function httpDelete(url, uuid, authorize, data) {
 }
 
 function basicAuth() {
-    const username = AppState.get_rootContainer_loggedInUser_username();
-    const password = AppState.get_rootContainer_loggedInUser_password();
+    const username = get(["rootContainer", "loggedInUser", "username"]);
+    const password = get(["rootContainer", "loggedInUser", "password"]);
     // noinspection JSUnresolvedVariable
     if (username !== undefined && password !== undefined) {
         const wordArray = CryptoJS.enc.Utf8.parse(username + ':' + password);
@@ -249,7 +298,7 @@ export function displayUnexpectedError(error) {
     const currentVersion = settings.clientVersion;
     App.dumpAppState();
     dumpTimeline();
-    loadActualClientVersion().then((actualClientVersion) => {
+    /*loadActualClientVersion().then((actualClientVersion) => {
         if (actualClientVersion !== currentVersion) {
             displayVersionMismatchErrorDialog();
         } else {
@@ -260,7 +309,7 @@ export function displayUnexpectedError(error) {
             }
             displaySaveBugDialog();
         }
-    });
+    });*/
 }
 
 export function createInfoMessage(textKey) {
@@ -317,16 +366,15 @@ export function getMessageText(message, language) {
 }
 
 export function deepCopy(object) {
-    return JSON.parse(JSON.stringify(object));
+    return R.clone(object);
 }
 
 export function stateUpdated() {
-    const appState = AppState.getAppState();
     setRootContainerState(appState.rootContainer);
 }
 
 export function renderApp() {
-    let container = <RootContainer {...AppState.getAppState()} />;
+    let container = <RootContainer {...appState} />;
     ReactDOM.render(
         container,
         document.getElementById('root')

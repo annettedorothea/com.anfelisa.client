@@ -16,10 +16,18 @@ export default class AbstractSearchDuplicateCardsCommand extends AsynchronousCom
     }
     
     initCommandData(data) {
-        data.naturalInputOrder = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "naturalInputOrder"]);
-        data.given = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "newCard", "given"]);
-        data.wanted = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "newCard", "wanted"]);
-        data.categoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "categoryId"]);
+        data.naturalInputOrder = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "naturalInputOrder"]
+        );
+        data.given = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "newCard", "given"]
+        );
+        data.wanted = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "newCard", "wanted"]
+        );
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -42,7 +50,7 @@ export default class AbstractSearchDuplicateCardsCommand extends AsynchronousCom
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.SearchDuplicateCardsOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

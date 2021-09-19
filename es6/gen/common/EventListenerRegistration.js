@@ -11,37 +11,305 @@ import * as AppUtils from "../../src/app/AppUtils";
 export default class EventListenerRegistrationCommon {
 
 	static init() {
-		ACEController.registerListener('common.InitUserEvent', (data) => AppUtils.set(data, ["rootContainer", "loggedInUser"]));
-		ACEController.registerListener('common.InitUserEvent', (data) => AppUtils.set(data, ["rootContainer", "language"]));
-		ACEController.registerListener('common.InitUserEvent', (data) => AppUtils.set(data, ["rootContainer", "messages"]));
-		ACEController.registerListener('common.InitNoUserEvent', (data) => AppUtils.set(data, ["rootContainer", "loggedInUser"]));
-		ACEController.registerListener('common.InitNoUserEvent', (data) => AppUtils.set(data, ["rootContainer", "language"]));
-		ACEController.registerListener('common.InitNoUserEvent', (data) => AppUtils.set(data, ["rootContainer", "messages"]));
-		ACEController.registerListener('common.RouteChangedLoginEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "loginView"]]));
-		ACEController.registerListener('common.RouteChangedPrivacyPolicyEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "privacyPolicyView"]]));
-		ACEController.registerListener('common.RouteChangedRegistrationEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "registrationView"]]));
-		ACEController.registerListener('common.RouteChangedForgotPasswordEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "forgotPasswordView"]]));
-		ACEController.registerListener('common.RouteChangedResetPasswordEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "resetPasswordView"]]));
-		ACEController.registerListener('common.RouteChangedDashboardEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "dashboardView"]]));
-		ACEController.registerListener('common.RouteChangedCategoriesEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "authorView"]]));
-		ACEController.registerListener('common.RouteChangedNextCardEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "queryCardView"]]));
-		ACEController.registerListener('common.RouteChangedBoxSettingsEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"]]));
-		ACEController.registerListener('common.RouteChangedAllActiveCardsEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "allActiveCardsView"]]));
-		ACEController.registerListener('common.RouteChangedBoxCreateEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "boxSettingsView"]]));
-		ACEController.registerListener('common.RouteOkEvent', (data) => AppUtils.setHash(data, ["rootContainer", "hash"]));
-		ACEController.registerListener('common.InitialLoginOkEvent', (data) => AppUtils.set(data, ["rootContainer", "role"]));
-		ACEController.registerListener('common.LogoutOkEvent', (data) => AppUtils.set(data, ["rootContainer", "loggedInUser"]));
-		ACEController.registerListener('common.LogoutOkEvent', (data) => AppUtils.setStorage(data, ["rootContainer", "username"]));
-		ACEController.registerListener('common.LogoutOkEvent', (data) => AppUtils.setStorage(data, ["rootContainer", "password"]));
-		ACEController.registerListener('common.DisplayToastOkEvent', (data) => AppUtils.set(data, ["rootContainer", "messages"]));
-		ACEController.registerListener('common.HideToastOkEvent', (data) => AppUtils.set(data, ["rootContainer", "messages"]));
-		ACEController.registerListener('common.DestroyToastOkEvent', (data) => AppUtils.set(data, ["rootContainer", "messages"]));
-		ACEController.registerListener('common.DisplaySaveBugDialogOkEvent', (data) => AppUtils.set(data, ["rootContainer", "saveBugDialog", "display"]));
-		ACEController.registerListener('common.DisplayVersionMismatchDialogOkEvent', (data) => AppUtils.set(data, ["rootContainer", "versionMismatchDialog", "display"]));
-		ACEController.registerListener('common.CancelVersionMismatchDialogOkEvent', (data) => AppUtils.set(data, ["rootContainer", "versionMismatchDialog", "display"]));
-		ACEController.registerListener('common.DisplayVersionMismatchErrorDialogOkEvent', (data) => AppUtils.set(data, ["rootContainer", "versionMismatchErrorDialog", "display"]));
-		ACEController.registerListener('common.CancelSaveBugDialogOkEvent', (data) => AppUtils.set(data, ["rootContainer", "saveBugDialog", "display"]));
-		ACEController.registerListener('common.HideSaveBugDialogOkEvent', (data) => AppUtils.set(data, ["rootContainer", "saveBugDialog", "display"]));
+		ACEController.registerListener('common.InitUserEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "loggedInUser"], 
+				[], 
+				["username", "password"]
+			)
+		});
+		ACEController.registerListener('common.InitUserEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "language"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.InitUserEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "messages"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.InitNoUserEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "loggedInUser"], 
+				[], 
+				["username", "password"]
+			)
+		});
+		ACEController.registerListener('common.InitNoUserEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "language"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.InitNoUserEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "messages"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.RouteChangedLoginEvent', (data) => {
+			if (data.mainView) {
+				data.mainView.group = "loginView";
+			} else {
+				data.mainView = { group: "loginView" };
+			}
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView"], 
+				[], 
+				["group", "username", "password", "saveInLocalStorage"]
+			)
+		});
+		ACEController.registerListener('common.RouteChangedPrivacyPolicyEvent', (data) => {
+			if (data.mainView) {
+				data.mainView.group = "privacyPolicyView";
+			} else {
+				data.mainView = { group: "privacyPolicyView" };
+			}
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView"], 
+				[], 
+				["group", "display"]
+			)
+		});
+		ACEController.registerListener('common.RouteChangedRegistrationEvent', (data) => {
+			if (data.mainView) {
+				data.mainView.group = "registrationView";
+			} else {
+				data.mainView = { group: "registrationView" };
+			}
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView"], 
+				[], 
+				["group", "displayUsernameSpinner", "available", "username", "password", "passwordRepetition", "passwordMismatch", "email", "emailInvalid"]
+			)
+		});
+		ACEController.registerListener('common.RouteChangedForgotPasswordEvent', (data) => {
+			if (data.mainView) {
+				data.mainView.group = "forgotPasswordView";
+			} else {
+				data.mainView = { group: "forgotPasswordView" };
+			}
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView"], 
+				[], 
+				["group", "username"]
+			)
+		});
+		ACEController.registerListener('common.RouteChangedResetPasswordEvent', (data) => {
+			if (data.mainView) {
+				data.mainView.group = "resetPasswordView";
+			} else {
+				data.mainView = { group: "resetPasswordView" };
+			}
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView"], 
+				[], 
+				["group", "token", "password", "passwordRepetition", "passwordMismatch"]
+			)
+		});
+		ACEController.registerListener('common.RouteChangedDashboardEvent', (data) => {
+			if (data.mainView) {
+				data.mainView.group = "dashboardView";
+			} else {
+				data.mainView = { group: "dashboardView" };
+			}
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView"], 
+				[], 
+				["group", "boxList", "deleteBox"]
+			)
+		});
+		ACEController.registerListener('common.RouteChangedCategoriesEvent', (data) => {
+			if (data.mainView) {
+				data.mainView.group = "authorView";
+			} else {
+				data.mainView = { group: "authorView" };
+			}
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView"], 
+				[], 
+				["group", "boxId", "reverse", "categoryTree", "cardView"]
+			)
+		});
+		ACEController.registerListener('common.RouteChangedProfileEvent', (data) => {
+			if (data.mainView) {
+				data.mainView.group = "profileView";
+			} else {
+				data.mainView = { group: "profileView" };
+			}
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView"], 
+				[], 
+				["group", "username", "email", "role", "showDeleteUserDialog"]
+			)
+		});
+		ACEController.registerListener('common.RouteChangedNextCardEvent', (data) => {
+			if (data.mainView) {
+				data.mainView.group = "queryCardView";
+			} else {
+				data.mainView = { group: "queryCardView" };
+			}
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView"], 
+				[], 
+				["group", "nextCard", "openTodaysCards", "allTodaysCards", "reverse", "enableScoreButtons", "boxId"]
+			)
+		});
+		ACEController.registerListener('common.RouteChangedBoxSettingsEvent', (data) => {
+			if (data.mainView) {
+				data.mainView.group = "boxSettingsView";
+			} else {
+				data.mainView = { group: "boxSettingsView" };
+			}
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView"], 
+				[], 
+				["group", "boxId", "boxSettings"]
+			)
+		});
+		ACEController.registerListener('common.RouteChangedAllActiveCardsEvent', (data) => {
+			if (data.mainView) {
+				data.mainView.group = "allActiveCardsView";
+			} else {
+				data.mainView = { group: "allActiveCardsView" };
+			}
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView"], 
+				[], 
+				["group", "boxId", "editable", "activeCardList", "selectedCardIds"]
+			)
+		});
+		ACEController.registerListener('common.RouteChangedBoxCreateEvent', (data) => {
+			if (data.mainView) {
+				data.mainView.group = "boxSettingsView";
+			} else {
+				data.mainView = { group: "boxSettingsView" };
+			}
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView"], 
+				[], 
+				["group", "boxId", "boxSettings"]
+			)
+		});
+		ACEController.registerListener('common.RouteOkEvent', (data) => {
+			AppUtils.setHash(
+				data, 
+				["rootContainer", "hash"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.InitialLoginOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "role"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.LogoutOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "loggedInUser"], 
+				[], 
+				["username", "password"]
+			)
+		});
+		ACEController.registerListener('common.LogoutOkEvent', (data) => {
+			AppUtils.setStorage(
+				data, 
+				["rootContainer", "username"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.LogoutOkEvent', (data) => {
+			AppUtils.setStorage(
+				data, 
+				["rootContainer", "password"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.DisplayToastOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "messages"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.HideToastOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "messages"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.DestroyToastOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "messages"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.DisplaySaveBugDialogOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "saveBugDialog", "display"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.DisplayVersionMismatchDialogOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "versionMismatchDialog", "display"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.CancelVersionMismatchDialogOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "versionMismatchDialog", "display"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.DisplayVersionMismatchErrorDialogOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "versionMismatchErrorDialog", "display"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.CancelSaveBugDialogOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "saveBugDialog", "display"], 
+				[]
+			)
+		});
+		ACEController.registerListener('common.HideSaveBugDialogOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "saveBugDialog", "display"], 
+				[]
+			)
+		});
 	}
 
 }

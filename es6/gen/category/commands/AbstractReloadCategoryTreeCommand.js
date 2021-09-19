@@ -18,11 +18,23 @@ export default class AbstractReloadCategoryTreeCommand extends AsynchronousComma
     }
     
     initCommandData(data) {
-        data.previousRootCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory"]);
-        data.selectedCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory"]);
-        data.filterNonScheduled = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "filterNonScheduled"]);
-        data.priority = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "priority"]);
-        data.reverse = AppUtils.get(["rootContainer", ["mainView", "authorView"], "reverse"]);
+        data.previousRootCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+        );
+        data.selectedCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+        );
+        data.filterNonScheduled = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "filterNonScheduled"]
+        );
+        data.priority = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "priority"]
+        );
+        data.reverse = AppUtils.get(
+        	["rootContainer", "mainView", "reverse"]
+        );
         data.outcomes = [];
     }
 
@@ -47,7 +59,7 @@ export default class AbstractReloadCategoryTreeCommand extends AsynchronousComma
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.ReloadCategoryTreeOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadCardsAction(), 
 					{

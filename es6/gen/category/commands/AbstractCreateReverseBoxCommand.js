@@ -17,7 +17,9 @@ export default class AbstractCreateReverseBoxCommand extends AsynchronousCommand
     }
     
     initCommandData(data) {
-        data.rootCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory", "rootCategoryId"]);
+        data.rootCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory", "rootCategoryId"]
+        );
         data.outcomes = [];
     }
 

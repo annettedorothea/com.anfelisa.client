@@ -40,7 +40,7 @@ export default class AbstractLoadBoxesCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.LoadBoxesOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadBoxStatisticsAction(), 
 					{

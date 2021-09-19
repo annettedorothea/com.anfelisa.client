@@ -19,7 +19,9 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.boxId = AppUtils.get(["rootContainer", ["mainView", "dashboardView"], "deleteBox", "boxId"]);
+        data.boxId = AppUtils.get(
+        	["rootContainer", "mainView", "deleteBox", "boxId"]
+        );
         data.outcomes = [];
     }
 
@@ -44,7 +46,7 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.DeleteBoxOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadBoxesAction(), 
 					{
@@ -53,7 +55,7 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
 		}
 		if (data.outcomes.includes("error")) {
 			new Event('box.DeleteBoxErrorEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new DisplayToastAction(), 
 					{

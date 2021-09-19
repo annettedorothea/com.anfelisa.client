@@ -11,11 +11,41 @@ import * as AppUtils from "../../src/app/AppUtils";
 export default class EventListenerRegistrationPassword {
 
 	static init() {
-		ACEController.registerListener('password.UsernameForgotPasswordChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "forgotPasswordView"], "username"]));
-		ACEController.registerListener('password.PasswordChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "resetPasswordView"], "password"]));
-		ACEController.registerListener('password.PasswordChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "resetPasswordView"], "passwordMismatch"]));
-		ACEController.registerListener('password.PasswordRepetitionChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "resetPasswordView"], "passwordRepetition"]));
-		ACEController.registerListener('password.PasswordRepetitionChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "resetPasswordView"], "passwordMismatch"]));
+		ACEController.registerListener('password.UsernameForgotPasswordChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "username"], 
+				[{ path: ["rootContainer", "mainView"], group: "forgotPasswordView" }]
+			)
+		});
+		ACEController.registerListener('password.PasswordChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "password"], 
+				[{ path: ["rootContainer", "mainView"], group: "resetPasswordView" }]
+			)
+		});
+		ACEController.registerListener('password.PasswordChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "passwordMismatch"], 
+				[{ path: ["rootContainer", "mainView"], group: "resetPasswordView" }]
+			)
+		});
+		ACEController.registerListener('password.PasswordRepetitionChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "passwordRepetition"], 
+				[{ path: ["rootContainer", "mainView"], group: "resetPasswordView" }]
+			)
+		});
+		ACEController.registerListener('password.PasswordRepetitionChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "passwordMismatch"], 
+				[{ path: ["rootContainer", "mainView"], group: "resetPasswordView" }]
+			)
+		});
 	}
 
 }

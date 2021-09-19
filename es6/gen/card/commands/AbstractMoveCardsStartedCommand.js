@@ -8,7 +8,7 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractMoveCardsStartedCommand extends SynchronousCommand {
     constructor() {
@@ -16,7 +16,9 @@ export default class AbstractMoveCardsStartedCommand extends SynchronousCommand 
     }
 
     initCommandData(data) {
-        data.selectedCardIds = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "selectedCardIds"]);
+        data.selectedCardIds = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "selectedCardIds"]
+        );
         data.outcomes = [];
     }
 
@@ -27,7 +29,7 @@ export default class AbstractMoveCardsStartedCommand extends SynchronousCommand 
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.MoveCardsStartedOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

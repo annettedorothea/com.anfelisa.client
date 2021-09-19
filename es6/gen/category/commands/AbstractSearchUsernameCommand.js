@@ -16,8 +16,12 @@ export default class AbstractSearchUsernameCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.usernameSearchString = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "inviteUserDialog", "usernameSearchString"]);
-        data.categoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory", "categoryId"]);
+        data.usernameSearchString = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "inviteUserDialog", "usernameSearchString"]
+        );
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -40,7 +44,7 @@ export default class AbstractSearchUsernameCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.SearchUsernameOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

@@ -9,8 +9,8 @@ import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import RouteAction from "../../../src/common/actions/RouteAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractLogoutCommand extends SynchronousCommand {
     constructor() {
@@ -28,7 +28,7 @@ export default class AbstractLogoutCommand extends SynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('common.LogoutOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new RouteAction(), 
 					{

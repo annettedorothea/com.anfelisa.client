@@ -16,7 +16,9 @@ export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.username = AppUtils.get(["rootContainer", ["mainView", "registrationView"], "username"]);
+        data.username = AppUtils.get(
+        	["rootContainer", "mainView", "username"]
+        );
         data.outcomes = [];
     }
 
@@ -42,11 +44,11 @@ export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("empty")) {
 			new Event('registration.CheckUsernameEmptyEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
 		if (data.outcomes.includes("ok")) {
 			new Event('registration.CheckUsernameOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

@@ -17,7 +17,9 @@ export default class AbstractScoreCardCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.scheduledCardId = AppUtils.get(["rootContainer", ["mainView", "queryCardView"], "nextCard", "scheduledCardId"]);
+        data.scheduledCardId = AppUtils.get(
+        	["rootContainer", "mainView", "nextCard", "scheduledCardId"]
+        );
         data.outcomes = [];
     }
 

@@ -9,8 +9,8 @@ import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import HideToastAction from "../../../src/common/actions/HideToastAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractDisplayToastCommand extends SynchronousCommand {
     constructor() {
@@ -18,8 +18,12 @@ export default class AbstractDisplayToastCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.language = AppUtils.get(["rootContainer", "language"]);
-        data.messages = AppUtils.get(["rootContainer", "messages"]);
+        data.language = AppUtils.get(
+        	["rootContainer", "language"]
+        );
+        data.messages = AppUtils.get(
+        	["rootContainer", "messages"]
+        );
         data.outcomes = [];
     }
 
@@ -30,7 +34,7 @@ export default class AbstractDisplayToastCommand extends SynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('common.DisplayToastOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publishWithDelay(
 				new HideToastAction(), 
 					{

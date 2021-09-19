@@ -18,10 +18,18 @@ export default class AbstractUpdateCategoryCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.rootCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory", "categoryId"]);
-        data.selectedCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "categoryId"]);
-        data.categoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "categoryId"]);
-        data.categoryName = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "categoryDialog", "categoryName"]);
+        data.rootCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory", "categoryId"]
+        );
+        data.selectedCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory", "categoryId"]
+        );
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory", "categoryId"]
+        );
+        data.categoryName = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "categoryDialog", "categoryName"]
+        );
         data.outcomes = [];
     }
 
@@ -47,7 +55,7 @@ export default class AbstractUpdateCategoryCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.UpdateCategoryOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new ReloadCategoryTreeAction(), 
 					{

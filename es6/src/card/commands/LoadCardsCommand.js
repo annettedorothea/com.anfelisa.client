@@ -42,7 +42,6 @@ export default class LoadCardsCommand extends AbstractLoadCardsCommand {
             },
         }
     	this.addOkOutcome(data);
-        console.log("Load cards", data);
     	resolve(data);
     }
     handleError(data, resolve, reject) {

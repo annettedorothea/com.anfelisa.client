@@ -11,11 +11,47 @@ import * as AppUtils from "../../src/app/AppUtils";
 export default class EventListenerRegistrationProfile {
 
 	static init() {
-		ACEController.registerListener('profile.LoadUserOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "profileView"]]));
-		ACEController.registerListener('profile.DeleteUserOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "profileView"], "showDeleteUserDialog"]));
-		ACEController.registerListener('profile.DeleteUserErrorEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "profileView"], "showDeleteUserDialog"]));
-		ACEController.registerListener('profile.DeleteUserClickOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "profileView"], "showDeleteUserDialog"]));
-		ACEController.registerListener('profile.DeleteUserCancelOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "profileView"], "showDeleteUserDialog"]));
+		ACEController.registerListener('profile.LoadUserOkEvent', (data) => {
+			if (data.mainView) {
+				data.mainView.group = "profileView";
+			} else {
+				data.mainView = { group: "profileView" };
+			}
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView"], 
+				[], 
+				["group", "username", "email", "role", "showDeleteUserDialog"]
+			)
+		});
+		ACEController.registerListener('profile.DeleteUserOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "showDeleteUserDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "profileView" }]
+			)
+		});
+		ACEController.registerListener('profile.DeleteUserErrorEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "showDeleteUserDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "profileView" }]
+			)
+		});
+		ACEController.registerListener('profile.DeleteUserClickOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "showDeleteUserDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "profileView" }]
+			)
+		});
+		ACEController.registerListener('profile.DeleteUserCancelOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "showDeleteUserDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "profileView" }]
+			)
+		});
 	}
 
 }

@@ -9,8 +9,8 @@ import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import TooManyCardsStatusAction from "../../../src/box/actions/TooManyCardsStatusAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractMaxIntervalChangedCommand extends SynchronousCommand {
     constructor() {
@@ -18,8 +18,12 @@ export default class AbstractMaxIntervalChangedCommand extends SynchronousComman
     }
 
     initCommandData(data) {
-        data.maxCardsPerDay = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "maxCardsPerDay"]);
-        data.allActiveCards = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "allActiveCards"]);
+        data.maxCardsPerDay = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "maxCardsPerDay"]
+        );
+        data.allActiveCards = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "allActiveCards"]
+        );
         data.outcomes = [];
     }
 
@@ -30,7 +34,7 @@ export default class AbstractMaxIntervalChangedCommand extends SynchronousComman
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.MaxIntervalChangedOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new TooManyCardsStatusAction(), 
 					{

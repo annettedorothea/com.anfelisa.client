@@ -18,8 +18,12 @@ export default class AbstractResetPasswordCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.token = AppUtils.get(["rootContainer", ["mainView", "resetPasswordView"], "token"]);
-        data.password = AppUtils.get(["rootContainer", ["mainView", "resetPasswordView"], "password"]);
+        data.token = AppUtils.get(
+        	["rootContainer", "mainView", "token"]
+        );
+        data.password = AppUtils.get(
+        	["rootContainer", "mainView", "password"]
+        );
         data.outcomes = [];
     }
 

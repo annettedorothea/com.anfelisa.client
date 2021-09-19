@@ -11,18 +11,91 @@ import * as AppUtils from "../../src/app/AppUtils";
 export default class EventListenerRegistrationRegistration {
 
 	static init() {
-		ACEController.registerListener('registration.CheckUsernameEmptyEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "registrationView"], "available"]));
-		ACEController.registerListener('registration.CheckUsernameOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "registrationView"], "available"]));
-		ACEController.registerListener('registration.UsernameChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "registrationView"], "username"]));
-		ACEController.registerListener('registration.EmailChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "registrationView"], "emailInvalid"]));
-		ACEController.registerListener('registration.EmailChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "registrationView"], "email"]));
-		ACEController.registerListener('registration.PasswordChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "registrationView"], "password"]));
-		ACEController.registerListener('registration.PasswordChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "registrationView"], "passwordMismatch"]));
-		ACEController.registerListener('registration.PasswordRepetitionChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "registrationView"], "passwordRepetition"]));
-		ACEController.registerListener('registration.PasswordRepetitionChangedOkEvent', (data) => AppUtils.set(data, ["rootContainer", ["mainView", "registrationView"], "passwordMismatch"]));
-		ACEController.registerListener('registration.LoginOkEvent', (data) => AppUtils.set(data, ["rootContainer", "loggedInUser"]));
-		ACEController.registerListener('registration.LoginOkEvent', (data) => AppUtils.setStorage(data, ["rootContainer", "username"]));
-		ACEController.registerListener('registration.LoginOkEvent', (data) => AppUtils.setStorage(data, ["rootContainer", "password"]));
+		ACEController.registerListener('registration.CheckUsernameEmptyEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "available"], 
+				[{ path: ["rootContainer", "mainView"], group: "registrationView" }]
+			)
+		});
+		ACEController.registerListener('registration.CheckUsernameOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "available"], 
+				[{ path: ["rootContainer", "mainView"], group: "registrationView" }]
+			)
+		});
+		ACEController.registerListener('registration.UsernameChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "username"], 
+				[{ path: ["rootContainer", "mainView"], group: "registrationView" }]
+			)
+		});
+		ACEController.registerListener('registration.EmailChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "emailInvalid"], 
+				[{ path: ["rootContainer", "mainView"], group: "registrationView" }]
+			)
+		});
+		ACEController.registerListener('registration.EmailChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "email"], 
+				[{ path: ["rootContainer", "mainView"], group: "registrationView" }]
+			)
+		});
+		ACEController.registerListener('registration.PasswordChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "password"], 
+				[{ path: ["rootContainer", "mainView"], group: "registrationView" }]
+			)
+		});
+		ACEController.registerListener('registration.PasswordChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "passwordMismatch"], 
+				[{ path: ["rootContainer", "mainView"], group: "registrationView" }]
+			)
+		});
+		ACEController.registerListener('registration.PasswordRepetitionChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "passwordRepetition"], 
+				[{ path: ["rootContainer", "mainView"], group: "registrationView" }]
+			)
+		});
+		ACEController.registerListener('registration.PasswordRepetitionChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "passwordMismatch"], 
+				[{ path: ["rootContainer", "mainView"], group: "registrationView" }]
+			)
+		});
+		ACEController.registerListener('registration.LoginOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "loggedInUser"], 
+				[], 
+				["username", "password"]
+			)
+		});
+		ACEController.registerListener('registration.LoginOkEvent', (data) => {
+			AppUtils.setStorage(
+				data, 
+				["rootContainer", "username"], 
+				[]
+			)
+		});
+		ACEController.registerListener('registration.LoginOkEvent', (data) => {
+			AppUtils.setStorage(
+				data, 
+				["rootContainer", "password"], 
+				[]
+			)
+		});
 	}
 
 }

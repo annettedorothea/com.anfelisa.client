@@ -18,9 +18,16 @@ export default class AbstractMoveCardsCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.movedCardIds = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "movedCardIds"]);
-        data.dropTargetCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "dropTargetCategoryId"]);
-        data.rootCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory"]);
+        data.movedCardIds = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "movedCardIds"]
+        );
+        data.dropTargetCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "dropTargetCategoryId"]
+        );
+        data.rootCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+        );
         data.outcomes = [];
     }
 
@@ -46,7 +53,7 @@ export default class AbstractMoveCardsCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.MoveCardsOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new ReloadCategoryTreeAction(), 
 					{

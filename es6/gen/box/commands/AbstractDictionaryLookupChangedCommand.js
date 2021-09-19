@@ -8,7 +8,7 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractDictionaryLookupChangedCommand extends SynchronousCommand {
     constructor() {
@@ -16,9 +16,15 @@ export default class AbstractDictionaryLookupChangedCommand extends SynchronousC
     }
 
     initCommandData(data) {
-        data.givenLanguage = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "givenLanguage"]);
-        data.wantedLanguage = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "wantedLanguage"]);
-        data.dictionaryLookup = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxSettings", "dictionaryLookup"]);
+        data.givenLanguage = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "givenLanguage"]
+        );
+        data.wantedLanguage = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "wantedLanguage"]
+        );
+        data.dictionaryLookup = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "dictionaryLookup"]
+        );
         data.outcomes = [];
     }
 
@@ -29,7 +35,7 @@ export default class AbstractDictionaryLookupChangedCommand extends SynchronousC
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.DictionaryLookupChangedOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

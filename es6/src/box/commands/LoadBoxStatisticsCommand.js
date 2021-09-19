@@ -14,7 +14,7 @@ export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsC
     }
 
     handleResponse(data, resolve) {
-        data.dashboardView.boxList.forEach((box) => {
+        data.boxList.forEach((box) => {
             const boxWithStats = data.boxStatisticsList.find((bs) => {
                 return bs.boxId === box.boxId;
             });
@@ -29,7 +29,6 @@ export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsC
                 box.quality5Count = boxWithStats.quality5Count;
             }
         });
-        data.boxStatisticsList = undefined;
     	this.addOkOutcome(data);
     	resolve(data);
     }

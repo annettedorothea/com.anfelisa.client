@@ -18,7 +18,9 @@ export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.boxId = AppUtils.get(["rootContainer", ["mainView", "boxSettingsView"], "boxId"]);
+        data.boxId = AppUtils.get(
+        	["rootContainer", "mainView", "boxId"]
+        );
         data.outcomes = [];
     }
 
@@ -41,7 +43,7 @@ export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.LoadSettingsOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new TooManyCardsStatusAction(), 
 					{

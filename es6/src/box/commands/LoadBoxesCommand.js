@@ -14,14 +14,6 @@ export default class LoadBoxesCommand extends AbstractLoadBoxesCommand {
     }
 
     handleResponse(data, resolve) {
-        data.dashboardView = {
-            boxList: data.boxList,
-            deleteBox: {
-                confirmDelete: false,
-                boxId: undefined
-            },
-        };
-        data.boxList = undefined;
     	this.addOkOutcome(data);
     	resolve(data);
     }

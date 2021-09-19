@@ -7,26 +7,20 @@
 
 
 import * as AppUtils from "./app/AppUtils";
-import * as AppState from "../gen/ace/AppState";
-import * as ACEController from "../gen/ace/ACEController";
 
 export * from "../gen/ace/Timeline";
 
 export function dumpAppState() {
-    console.info(AppState.getAppState());
+    console.info(AppUtils.appState);
 }
 
-AppUtils.createInitialAppState();
-ACEController.addItemToTimeLine({
-	appState: AppState.getAppState()
-});
 AppUtils.initEventListeners();
 AppUtils.startApp();
 AppUtils.renderApp();
 
 // for Selenium tests
 export function getAppState() {
-    return AppState.getAppState();
+    return AppUtils.appState;
 }
 
 export function addSquishyValueClient(value) {

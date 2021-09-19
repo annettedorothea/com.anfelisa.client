@@ -18,7 +18,9 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
     }
     
     initCommandData(data) {
-        data.reverse = AppUtils.get(["rootContainer", ["mainView", "authorView"], "reverse"]);
+        data.reverse = AppUtils.get(
+        	["rootContainer", "mainView", "reverse"]
+        );
         data.outcomes = [];
     }
 
@@ -43,7 +45,7 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.LoadCategoryTreeOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadCardsAction(), 
 					{

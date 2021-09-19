@@ -14,7 +14,7 @@ export default class LoadUserCommand extends AbstractLoadUserCommand {
     }
 
     handleResponse(data, resolve) {
-        data.profileView = {
+        data.mainView = {
             username: data.username,
             email: data.email,
             role: data.role,

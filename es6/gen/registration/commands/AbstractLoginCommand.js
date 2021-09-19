@@ -9,8 +9,8 @@ import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import GetRoleAction from "../../../src/login/actions/GetRoleAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractLoginCommand extends SynchronousCommand {
     constructor() {
@@ -18,7 +18,9 @@ export default class AbstractLoginCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.username = AppUtils.get(["rootContainer", ["mainView", "registrationView"], "username"]);
+        data.username = AppUtils.get(
+        	["rootContainer", "mainView", "username"]
+        );
         data.outcomes = [];
     }
 
@@ -29,7 +31,7 @@ export default class AbstractLoginCommand extends SynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('registration.LoginOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new GetRoleAction(), 
 					{

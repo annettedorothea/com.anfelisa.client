@@ -16,11 +16,22 @@ export default class AbstractLoadCardsCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.selectedCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory"]);
-        data.naturalInputOrder = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "naturalInputOrder"]);
-        data.filterNonScheduled = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "filterNonScheduled"]);
-        data.priority = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "priority"]);
-        data.reverse = AppUtils.get(["rootContainer", ["mainView", "authorView"], "reverse"]);
+        data.selectedCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+        );
+        data.naturalInputOrder = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "naturalInputOrder"]
+        );
+        data.filterNonScheduled = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "filterNonScheduled"]
+        );
+        data.priority = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "priority"]
+        );
+        data.reverse = AppUtils.get(
+        	["rootContainer", "mainView", "reverse"]
+        );
         data.outcomes = [];
     }
 
@@ -43,7 +54,7 @@ export default class AbstractLoadCardsCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.LoadCardsOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

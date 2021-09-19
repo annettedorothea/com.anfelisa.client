@@ -17,7 +17,9 @@ export default class AbstractCallSaveBugCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.username = AppUtils.get(["rootContainer", "loggedInUser", "username"]);
+        data.username = AppUtils.get(
+        	["rootContainer", "loggedInUser", "username"]
+        );
         data.outcomes = [];
     }
 

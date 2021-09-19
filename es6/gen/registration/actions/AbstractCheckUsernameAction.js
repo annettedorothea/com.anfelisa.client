@@ -21,12 +21,20 @@ export default class AbstractCheckUsernameAction extends Action {
 	}
 
 	preCall() {
-		AppUtils.set({displayUsernameSpinner: true}, ["rootContainer", ["mainView", "registrationView"], "displayUsernameSpinner"])
+		AppUtils.set(
+			{displayUsernameSpinner: true}, 
+			["rootContainer", "mainView", "displayUsernameSpinner"], 
+			[{ path: ["rootContainer", "mainView"], group: "registrationView" }]
+		)
 		AppUtils.stateUpdated();
 	}
 	
 	postCall() {
-		AppUtils.set({displayUsernameSpinner: false}, ["rootContainer", ["mainView", "registrationView"], "displayUsernameSpinner"])
+		AppUtils.set(
+			{displayUsernameSpinner: false}, 
+			["rootContainer", "mainView", "displayUsernameSpinner"], 
+			[{ path: ["rootContainer", "mainView"], group: "registrationView" }]
+		)
 		AppUtils.stateUpdated();
 	}
 

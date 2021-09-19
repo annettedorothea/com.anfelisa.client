@@ -8,7 +8,7 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractCancelVersionMismatchDialogCommand extends SynchronousCommand {
     constructor() {
@@ -26,7 +26,7 @@ export default class AbstractCancelVersionMismatchDialogCommand extends Synchron
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('common.CancelVersionMismatchDialogOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

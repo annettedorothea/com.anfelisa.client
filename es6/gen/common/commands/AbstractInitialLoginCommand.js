@@ -45,7 +45,7 @@ export default class AbstractInitialLoginCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('common.InitialLoginOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new RouteChangedAction(), 
 					{

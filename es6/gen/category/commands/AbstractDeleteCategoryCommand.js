@@ -18,9 +18,15 @@ export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.categoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "categoryId"]);
-        data.selectedCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory", "parentCategoryId"]);
-        data.rootCategoryId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory", "categoryId"]);
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory", "categoryId"]
+        );
+        data.selectedCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory", "parentCategoryId"]
+        );
+        data.rootCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -42,7 +48,7 @@ export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.DeleteCategoryOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new ReloadCategoryTreeAction(), 
 					{

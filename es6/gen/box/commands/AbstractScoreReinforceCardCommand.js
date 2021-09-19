@@ -17,7 +17,9 @@ export default class AbstractScoreReinforceCardCommand extends AsynchronousComma
     }
     
     initCommandData(data) {
-        data.reinforceCardId = AppUtils.get(["rootContainer", ["mainView", "queryCardView"], "nextCard", "reinforceCardId"]);
+        data.reinforceCardId = AppUtils.get(
+        	["rootContainer", "mainView", "nextCard", "reinforceCardId"]
+        );
         data.outcomes = [];
     }
 

@@ -19,7 +19,9 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.boxId = AppUtils.get(["rootContainer", ["mainView", "queryCardView"], "boxId"]);
+        data.boxId = AppUtils.get(
+        	["rootContainer", "mainView", "boxId"]
+        );
         data.outcomes = [];
     }
 
@@ -48,7 +50,7 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.LoadNextCardOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
 		if (data.outcomes.includes("finished")) {
 			new TriggerAction().publish(

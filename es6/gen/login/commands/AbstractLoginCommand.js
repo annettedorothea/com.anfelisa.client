@@ -9,8 +9,8 @@ import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import GetRoleAction from "../../../src/login/actions/GetRoleAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractLoginCommand extends SynchronousCommand {
     constructor() {
@@ -18,9 +18,15 @@ export default class AbstractLoginCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.username = AppUtils.get(["rootContainer", ["mainView", "loginView"], "username"]);
-        data.password = AppUtils.get(["rootContainer", ["mainView", "loginView"], "password"]);
-        data.saveInLocalStorage = AppUtils.get(["rootContainer", ["mainView", "loginView"], "saveInLocalStorage"]);
+        data.username = AppUtils.get(
+        	["rootContainer", "mainView", "username"]
+        );
+        data.password = AppUtils.get(
+        	["rootContainer", "mainView", "password"]
+        );
+        data.saveInLocalStorage = AppUtils.get(
+        	["rootContainer", "mainView", "saveInLocalStorage"]
+        );
         data.outcomes = [];
     }
 
@@ -34,7 +40,7 @@ export default class AbstractLoginCommand extends SynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("saveInLocalStorage")) {
 			new Event('login.LoginSaveInLocalStorageEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new GetRoleAction(), 
 					{
@@ -43,7 +49,7 @@ export default class AbstractLoginCommand extends SynchronousCommand {
 		}
 		if (data.outcomes.includes("doNotSaveInLocalStorage")) {
 			new Event('login.LoginDoNotSaveInLocalStorageEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new GetRoleAction(), 
 					{

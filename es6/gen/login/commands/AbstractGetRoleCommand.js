@@ -45,7 +45,7 @@ export default class AbstractGetRoleCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('login.GetRoleOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new RouteAction(), 
 					{
@@ -55,7 +55,7 @@ export default class AbstractGetRoleCommand extends AsynchronousCommand {
 		}
 		if (data.outcomes.includes("unauthorized")) {
 			new Event('login.GetRoleUnauthorizedEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new DisplayToastAction(), 
 					{

@@ -18,9 +18,15 @@ export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCo
     }
     
     initCommandData(data) {
-        data.cardIds = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "selectedCardIds"]);
-        data.boxId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "boxId"]);
-        data.filterNonScheduled = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "filterNonScheduled"]);
+        data.cardIds = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "selectedCardIds"]
+        );
+        data.boxId = AppUtils.get(
+        	["rootContainer", "mainView", "boxId"]
+        );
+        data.filterNonScheduled = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "filterNonScheduled"]
+        );
         data.outcomes = [];
     }
 

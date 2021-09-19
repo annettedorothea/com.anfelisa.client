@@ -9,9 +9,9 @@ import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import InitialLoginAction from "../../../src/common/actions/InitialLoginAction";
 import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractInitCommand extends SynchronousCommand {
     constructor() {
@@ -19,8 +19,12 @@ export default class AbstractInitCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.username = AppUtils.getStorage(["rootContainer", "username"]);
-        data.password = AppUtils.getStorage(["rootContainer", "password"]);
+        data.username = AppUtils.getStorage(
+        	["rootContainer", "username"]
+        );
+        data.password = AppUtils.getStorage(
+        	["rootContainer", "password"]
+        );
         data.outcomes = [];
     }
 
@@ -34,7 +38,7 @@ export default class AbstractInitCommand extends SynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("user")) {
 			new Event('common.InitUserEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new InitialLoginAction(), 
 					{
@@ -43,7 +47,7 @@ export default class AbstractInitCommand extends SynchronousCommand {
 		}
 		if (data.outcomes.includes("noUser")) {
 			new Event('common.InitNoUserEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new RouteChangedAction(), 
 					{

@@ -6,7 +6,6 @@
 
 
 import * as AppUtils from "../../src/app/AppUtils";
-import * as AppState from "./AppState";
 import Event from "./Event";
 
 export let timeline = [];
@@ -84,7 +83,8 @@ export function startReplay(timeline, pauseInMillis) {
             });
         }
 		if (item.appState && !appStateWasSet) {
-		    AppState.setInitialAppState(item.appState);
+		    AppUtils.appState = item.appState;
+            AppUtils.stateUpdated();
 		    appStateWasSet = true;
 		}
     }

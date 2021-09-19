@@ -17,8 +17,12 @@ export default class AbstractSortCardOutCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.cardId = AppUtils.get(["rootContainer", ["mainView", "queryCardView"], "nextCard", "cardId"]);
-        data.boxId = AppUtils.get(["rootContainer", ["mainView", "queryCardView"], "boxId"]);
+        data.cardId = AppUtils.get(
+        	["rootContainer", "mainView", "nextCard", "cardId"]
+        );
+        data.boxId = AppUtils.get(
+        	["rootContainer", "mainView", "boxId"]
+        );
         data.outcomes = [];
     }
 

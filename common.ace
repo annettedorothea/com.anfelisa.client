@@ -50,7 +50,9 @@ RouteChanged
 	) triggers (
 		category.LoadCategoryTree
 	)
-	on profile triggers ( 
+	on profile (
+		set rootContainer.mainView.profileView
+	) triggers ( 
 		profile.LoadUser
 	)
 	on nextCard (

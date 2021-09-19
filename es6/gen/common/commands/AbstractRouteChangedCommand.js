@@ -9,7 +9,6 @@ import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import ConfirmEmailAction from "../../../src/registration/actions/ConfirmEmailAction";
 import InitBoxesForDayAction from "../../../src/box/actions/InitBoxesForDayAction";
 import LoadCategoryTreeAction from "../../../src/category/actions/LoadCategoryTreeAction";
@@ -18,6 +17,7 @@ import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 import LoadSettingsAction from "../../../src/box/actions/LoadSettingsAction";
 import LoadActiveCardsAction from "../../../src/box/actions/LoadActiveCardsAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractRouteChangedCommand extends SynchronousCommand {
     constructor() {
@@ -25,8 +25,13 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.hash = AppUtils.getHash(["rootContainer", "hash"]);
-        data.loggedInUser = AppUtils.get(["rootContainer", "loggedInUser"]);
+        data.hash = AppUtils.getHash(
+        	["rootContainer", "hash"]
+        );
+        data.loggedInUser = AppUtils.get(
+        	["rootContainer", "loggedInUser"], 
+        	["username", "password"]
+        );
         data.outcomes = [];
     }
 
@@ -76,15 +81,15 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("login")) {
 			new Event('common.RouteChangedLoginEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
 		if (data.outcomes.includes("privacyPolicy")) {
 			new Event('common.RouteChangedPrivacyPolicyEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
 		if (data.outcomes.includes("registration")) {
 			new Event('common.RouteChangedRegistrationEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
 		if (data.outcomes.includes("confirmEmail")) {
 			new TriggerAction().publish(
@@ -97,15 +102,15 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
 		}
 		if (data.outcomes.includes("forgotPassword")) {
 			new Event('common.RouteChangedForgotPasswordEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
 		if (data.outcomes.includes("resetPassword")) {
 			new Event('common.RouteChangedResetPasswordEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
 		if (data.outcomes.includes("dashboard")) {
 			new Event('common.RouteChangedDashboardEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new InitBoxesForDayAction(), 
 					{
@@ -114,7 +119,7 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
 		}
 		if (data.outcomes.includes("categories")) {
 			new Event('common.RouteChangedCategoriesEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadCategoryTreeAction(), 
 					{
@@ -124,6 +129,8 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
 			)
 		}
 		if (data.outcomes.includes("profile")) {
+			new Event('common.RouteChangedProfileEvent').publish(data);
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadUserAction(), 
 					{
@@ -132,7 +139,7 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
 		}
 		if (data.outcomes.includes("nextCard")) {
 			new Event('common.RouteChangedNextCardEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadNextCardAction(), 
 					{
@@ -141,7 +148,7 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
 		}
 		if (data.outcomes.includes("boxSettings")) {
 			new Event('common.RouteChangedBoxSettingsEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadSettingsAction(), 
 					{
@@ -150,7 +157,7 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
 		}
 		if (data.outcomes.includes("allActiveCards")) {
 			new Event('common.RouteChangedAllActiveCardsEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadActiveCardsAction(), 
 					{
@@ -159,7 +166,7 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
 		}
 		if (data.outcomes.includes("boxCreate")) {
 			new Event('common.RouteChangedBoxCreateEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
 		if (data.outcomes.includes("invalid")) {
 			new TriggerAction().publish(

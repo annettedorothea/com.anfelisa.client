@@ -18,8 +18,12 @@ export default class AbstractChangeCardOrderCommand extends AsynchronousCommand 
     }
     
     initCommandData(data) {
-        data.movedCardIds = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "movedCardIds"]);
-        data.cardId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "dragTargetCardId"]);
+        data.movedCardIds = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "movedCardIds"]
+        );
+        data.cardId = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "dragTargetCardId"]
+        );
         data.outcomes = [];
     }
 
@@ -45,7 +49,7 @@ export default class AbstractChangeCardOrderCommand extends AsynchronousCommand 
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.ChangeCardOrderOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadCardsAction(), 
 					{

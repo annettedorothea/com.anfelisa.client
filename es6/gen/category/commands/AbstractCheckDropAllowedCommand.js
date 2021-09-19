@@ -8,7 +8,7 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractCheckDropAllowedCommand extends SynchronousCommand {
     constructor() {
@@ -16,10 +16,21 @@ export default class AbstractCheckDropAllowedCommand extends SynchronousCommand 
     }
 
     initCommandData(data) {
-        data.rootCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "rootCategory"]);
-        data.movedCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "movedCategory"]);
-        data.movedCardIds = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "movedCardIds"]);
-        data.selectedCategory = AppUtils.get(["rootContainer", ["mainView", "authorView"], "categoryTree", "selectedCategory"]);
+        data.rootCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+        );
+        data.movedCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "movedCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories"]
+        );
+        data.movedCardIds = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "movedCardIds"]
+        );
+        data.selectedCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+        );
         data.outcomes = [];
     }
 
@@ -30,7 +41,7 @@ export default class AbstractCheckDropAllowedCommand extends SynchronousCommand 
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.CheckDropAllowedOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

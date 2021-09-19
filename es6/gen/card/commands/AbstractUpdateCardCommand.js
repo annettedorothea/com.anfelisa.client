@@ -18,9 +18,15 @@ export default class AbstractUpdateCardCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.wanted = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "editedCard", "wanted"]);
-        data.given = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "editedCard", "given"]);
-        data.cardId = AppUtils.get(["rootContainer", ["mainView", "authorView"], "cardView", "editedCard", "cardId"]);
+        data.wanted = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "editedCard", "wanted"]
+        );
+        data.given = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "editedCard", "given"]
+        );
+        data.cardId = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "editedCard", "cardId"]
+        );
         data.outcomes = [];
     }
 
@@ -47,7 +53,7 @@ export default class AbstractUpdateCardCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.UpdateCardOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadCardsAction(), 
 					{

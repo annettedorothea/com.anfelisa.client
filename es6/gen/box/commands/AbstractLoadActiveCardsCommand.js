@@ -16,7 +16,9 @@ export default class AbstractLoadActiveCardsCommand extends AsynchronousCommand 
     }
     
     initCommandData(data) {
-        data.boxId = AppUtils.get(["rootContainer", ["mainView", "allActiveCardsView"], "boxId"]);
+        data.boxId = AppUtils.get(
+        	["rootContainer", "mainView", "boxId"]
+        );
         data.outcomes = [];
     }
 
@@ -40,7 +42,7 @@ export default class AbstractLoadActiveCardsCommand extends AsynchronousCommand 
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.LoadActiveCardsOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 
