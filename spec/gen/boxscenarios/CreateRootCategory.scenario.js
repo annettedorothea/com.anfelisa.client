@@ -89,7 +89,8 @@ describe("boxscenarios.CreateRootCategory", function () {
 	});
 	it("deleteBox", async () => {
 		expect(appState.rootContainer.mainView.deleteBox, "deleteBox").toEqual({ 
-			confirmDelete : false
+			confirmDelete : false,
+			boxId : null
 		}
 		)
 	});

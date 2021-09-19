@@ -35,7 +35,8 @@ CancelCreateBox
 		expectedState 
 			boxList common.rootContainer.mainView.dashboardView.boxList shouldBe []
 			deleteBox common.rootContainer.mainView.dashboardView.deleteBox shouldBe {
-				confirmDelete: false
+				confirmDelete: false,
+				boxId: null
 			}
 		
 CategoryNameChanged
@@ -189,7 +190,8 @@ CreateRootCategory
 				}
 			]
 			deleteBox common.rootContainer.mainView.dashboardView.deleteBox shouldBe {
-				confirmDelete: false
+				confirmDelete: false,
+				boxId: null
 			}
 		
 CreateRootCategoryWithDefault
@@ -223,6 +225,7 @@ CreateRootCategoryWithDefault
 				}
 			]
 			deleteBox common.rootContainer.mainView.dashboardView.deleteBox shouldBe {
-				confirmDelete: false
+				confirmDelete: false,
+				boxId: null
 			}
 		

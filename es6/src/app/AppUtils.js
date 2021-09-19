@@ -298,7 +298,7 @@ export function displayUnexpectedError(error) {
     const currentVersion = settings.clientVersion;
     App.dumpAppState();
     dumpTimeline();
-    /*loadActualClientVersion().then((actualClientVersion) => {
+    loadActualClientVersion().then((actualClientVersion) => {
         if (actualClientVersion !== currentVersion) {
             displayVersionMismatchErrorDialog();
         } else {
@@ -309,7 +309,7 @@ export function displayUnexpectedError(error) {
             }
             displaySaveBugDialog();
         }
-    });*/
+    });
 }
 
 export function createInfoMessage(textKey) {
