@@ -71,11 +71,11 @@ function applyNextActions() {
 			}
 		}
     }
-    let nextTriggeredAction = triggeredActionsQueue.shift();
-    while (nextTriggeredAction) {
-        nextTriggeredAction.action.apply(nextTriggeredAction.data);
-        nextTriggeredAction = triggeredActionsQueue.shift();
-    }
+	let nextTriggeredAction = triggeredActionsQueue.shift();
+	while (nextTriggeredAction) {
+	    nextTriggeredAction.action.apply(nextTriggeredAction.data);
+	    nextTriggeredAction = triggeredActionsQueue.shift();
+	}
 }
 
 export function startReplay(timeline, pauseInMillis) {

@@ -17,7 +17,8 @@ export default class TriggerAction {
                 	actionName: action.actionName,
                 	data
                 }
-            }});
+            }
+        });
 		ACEController.addActionToTriggeredActionsQueue(action, data);
 	}
 	
