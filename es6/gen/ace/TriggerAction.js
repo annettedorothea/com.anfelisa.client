@@ -18,7 +18,7 @@ export default class TriggerAction {
                 	data
                 }
             }});
-        action.apply(data);
+		ACEController.addActionToTriggeredActionsQueue(action, data);
 	}
 	
 	publishWithDelay(action, data, delayInMillis) {

@@ -13,6 +13,7 @@ export let listeners = {};
 export let delayedActions = {};
 
 let actionQueue = [];
+let triggeredActionsQueue = [];
 
 export function registerListener(eventName, listener) {
     if (!eventName.trim()) {
@@ -46,6 +47,10 @@ export function addActionToQueue(action) {
     applyNextActions();
 }
 
+export function addActionToTriggeredActionsQueue(action, data) {
+	triggeredActionsQueue.push({action, data});
+}
+
 function applyNextActions() {
     let nextAction = actionQueue.shift();
     if (nextAction) {
@@ -66,6 +71,11 @@ function applyNextActions() {
 			}
 		}
     }
+    let nextTriggeredAction = triggeredActionsQueue.shift();
+    while (nextTriggeredAction) {
+        nextTriggeredAction.action.apply(nextTriggeredAction.data);
+        nextTriggeredAction = triggeredActionsQueue.shift();
+    }
 }
 
 export function startReplay(timeline, pauseInMillis) {
@@ -83,7 +93,7 @@ export function startReplay(timeline, pauseInMillis) {
             });
         }
 		if (item.appState && !appStateWasSet) {
-		    AppUtils.appState = item.appState;
+		    AppUtils.set(item.appState, []);
             AppUtils.stateUpdated();
 		    appStateWasSet = true;
 		}

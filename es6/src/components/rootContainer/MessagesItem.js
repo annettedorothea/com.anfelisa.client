@@ -8,11 +8,35 @@
 import React from "react";
 import * as AppUtils from "../../app/AppUtils";
 import {destroyToast} from "../../../gen/common/ActionFunctions";
+import {Texts} from "../../app/Texts";
 
 
 export const MessagesItem = (props) => {
+	const getMessageText = (message, language) => {
+		if (message && language) {
+			if (message.type === "error") {
+				if (message.textKey && Texts.messages[message.textKey] && Texts.messages[message.textKey][language]) {
+					return Texts.messages[message.textKey][language];
+				}
+				if (message.text && typeof message.text !== "object") {
+					return Texts.messages.unknownError[language].replace("{0}", message.text);
+				}
+				if (message.code && typeof message.code !== "object") {
+					return Texts.messages.unknownError[language].replace("{0}", message.code);
+				}
+				if (language) {
+					return Texts.messages.unknown[language];
+				}
+			}
+			if (message.textKey && Texts.messages[message.textKey] && Texts.messages[message.textKey][language]) {
+				return Texts.messages[message.textKey][language];
+			}
+		}
+		return "";
+	}
 
-	const text = AppUtils.getMessageText(props, props.language);
+
+	const text = getMessageText(props, props.language);
 	return <div
 		className={`toastWrapper ${props.visible === false ? "fadeOut" : ""}`}
 		onClick={() => destroyToast(props.id)}

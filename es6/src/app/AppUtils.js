@@ -25,13 +25,12 @@ import {
 } from "../../gen/common/ActionFunctions";
 import CryptoJS from "crypto-js";
 import {dumpTimeline} from "../../gen/ace/Timeline";
-import {Texts} from "./Texts";
 import {RootContainer, setRootContainerState} from "../components/RootContainer";
 import React from "react";
 import ReactDOM from "react-dom";
 import * as R from 'ramda'
 
-export let appState = {};
+let appState = {};
 
 export function get(path) {
     const lens = R.lensPath(path);
@@ -312,13 +311,6 @@ export function displayUnexpectedError(error) {
     });
 }
 
-export function createInfoMessage(textKey) {
-    return {
-        textKey,
-        type: "info"
-    }
-}
-
 function normalizeError(error) {
     return {
         code: error.code ? error.code : 0,
@@ -328,42 +320,6 @@ function normalizeError(error) {
     }
 }
 
-export function createError(textKey, text, code) {
-    return {
-        code,
-        text,
-        textKey: code && code === 401 ? "loginFailed" : textKey,
-        type: "error"
-    }
-}
-
-export function isUnauthorized(message) {
-    return (message && message.code && message.code === 401);
-}
-
-
-export function getMessageText(message, language) {
-    if (message && language) {
-        if (message.type === "error") {
-            if (message.textKey && Texts.messages[message.textKey] && Texts.messages[message.textKey][language]) {
-                return Texts.messages[message.textKey][language];
-            }
-            if (message.text && typeof message.text !== "object") {
-                return Texts.messages.unknownError[language].replace("{0}", message.text);
-            }
-            if (message.code && typeof message.code !== "object") {
-                return Texts.messages.unknownError[language].replace("{0}", message.code);
-            }
-            if (language) {
-                return Texts.messages.unknown[language];
-            }
-        }
-        if (message.textKey && Texts.messages[message.textKey] && Texts.messages[message.textKey][language]) {
-            return Texts.messages[message.textKey][language];
-        }
-    }
-    return "";
-}
 
 export function deepCopy(object) {
     return R.clone(object);
@@ -380,6 +336,27 @@ export function renderApp() {
         document.getElementById('root')
     );
 }
+
+export function createInfoMessage(textKey) {
+    return {
+        textKey,
+        type: "info"
+    }
+}
+
+export function createError(textKey, text, code) {
+    return {
+        code,
+        text,
+        textKey: code && code === 401 ? "loginFailed" : textKey,
+        type: "error"
+    }
+}
+
+export function isUnauthorized(message) {
+    return (message && message.code && message.code === 401);
+}
+
 
 
 /******* S.D.G. *******/

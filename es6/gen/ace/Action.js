@@ -17,7 +17,7 @@ export default class Action {
 
     apply(data) {
 		ACEController.addItemToTimeLine({
-		    appState: AppUtils.appState
+		    appState: AppUtils.get([])
 		});
         ACEController.addItemToTimeLine({
             action: {
