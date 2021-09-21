@@ -64,7 +64,7 @@ function verifyGroups(groupVerifications) {
     for(let i=0; i<groupVerifications.length; i++) {
         const groupVerification = groupVerifications[i];
         const groupInAppState = get(groupVerification.path)
-        if (groupInAppState.group !== groupVerification.group) {
+        if (groupInAppState && groupInAppState.group !== groupVerification.group) {
             return false;
         }
     }
@@ -123,6 +123,10 @@ export function mergeStorage(data, path) {
 
 export function createInitialAppState() {
     appState = {};
+}
+
+export function setInitialAppState(initialAppState) {
+    appState = initialAppState;
 }
 
 
