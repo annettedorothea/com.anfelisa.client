@@ -7,7 +7,6 @@
 
 import * as AppUtils from "../../src/app/AppUtils";
 import Event from "./Event";
-import {setInitialAppState} from "../../src/app/AppUtils";
 
 export let timeline = [];
 export let listeners = {};
@@ -99,7 +98,8 @@ export function startReplay(timeline, pauseInMillis) {
 		    appStateWasSet = true;
 		}
     }
-	console.info(`replay ${events.length} events`);
+    
+    console.info(`replay ${events.length} events`);
 
 	setTimeout(() => replayNextEvent(events, pauseInMillis), pauseInMillis);
 }
@@ -107,8 +107,8 @@ export function startReplay(timeline, pauseInMillis) {
 function replayNextEvent(events, pauseInMillis) {
     let nextEvent = events.shift();
     if (nextEvent) {
-		console.info("replay", nextEvent);
-		nextEvent.event.replay(nextEvent.data);
+    	console.info("replay", nextEvent);
+    	nextEvent.event.replay(nextEvent.data);
 		AppUtils.stateUpdated();
     	setTimeout(() => replayNextEvent(events, pauseInMillis), pauseInMillis);
     } else {
