@@ -10,14 +10,12 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import RouteAction from "../../../src/common/actions/RouteAction";
-import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
-export default class AbstractGetRoleCommand extends AsynchronousCommand {
+export default class AbstractGetUserInfoCommand extends AsynchronousCommand {
     constructor() {
-        super("login.GetRoleCommand");
+        super("common.GetUserInfoCommand");
     }
     
     initCommandData(data) {
@@ -27,14 +25,14 @@ export default class AbstractGetRoleCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
-	addUnauthorizedOutcome(data) {
-		data.outcomes.push("unauthorized");
+	addErrorOutcome(data) {
+		data.outcomes.push("error");
 	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/user/role`, data.uuid, true).then((response) => {
-				data.role = response.role;
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/user/info`, data.uuid, true).then((response) => {
+				data.username = response.username;
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;
@@ -45,8 +43,8 @@ export default class AbstractGetRoleCommand extends AsynchronousCommand {
 
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
-			new Event('login.GetRoleOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			new Event('common.GetUserInfoOkEvent').publish(data);
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new RouteAction(), 
 					{
@@ -54,16 +52,7 @@ export default class AbstractGetRoleCommand extends AsynchronousCommand {
 					}
 			)
 		}
-		if (data.outcomes.includes("unauthorized")) {
-			new Event('login.GetRoleUnauthorizedEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
-			new TriggerAction().publish(
-				new DisplayToastAction(), 
-					{
-						message: data.message, 
-						error: data.error
-					}
-			)
+		if (data.outcomes.includes("error")) {
 			new TriggerAction().publish(
 				new LogoutAction(), 
 					{

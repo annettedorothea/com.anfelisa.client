@@ -8,7 +8,6 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractToggleAllScheduleCardSelectionCommand extends SynchronousCommand {
     constructor() {
@@ -16,8 +15,12 @@ export default class AbstractToggleAllScheduleCardSelectionCommand extends Synch
     }
 
     initCommandData(data) {
-        data.selectedCardIds = AppState.get_rootContainer_allActiveCardsView_selectedCardIds();
-        data.activeCardList = AppState.get_rootContainer_allActiveCardsView_activeCardList();
+        data.selectedCardIds = AppUtils.get(
+        	["rootContainer", "mainView", "selectedCardIds"]
+        );
+        data.activeCardList = AppUtils.get(
+        	["rootContainer", "mainView", "activeCardList"]
+        );
         data.outcomes = [];
     }
 
@@ -28,7 +31,7 @@ export default class AbstractToggleAllScheduleCardSelectionCommand extends Synch
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.ToggleAllScheduleCardSelectionOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

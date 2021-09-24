@@ -54,12 +54,12 @@ ACE
 
 	GivenOfNewCardChanged ( given )
 		on ok (
-			merge common.rootContainer.mainView.authorView.cardView.newCard
+			merge common.rootContainer.mainView.authorView.cardView.newCard.given
 		) triggers ( delayInMillis 1000 takeLatest SearchDuplicateCards )
 	
 	WantedOfNewCardChanged ( wanted )
 		on ok (
-			merge common.rootContainer.mainView.authorView.cardView.newCard
+			merge common.rootContainer.mainView.authorView.cardView.newCard.wanted
 		)triggers ( delayInMillis 1000 takeLatest SearchDuplicateCards )
 	
 	CancelNewCard 
@@ -67,10 +67,10 @@ ACE
 	
 	
 	GivenOfEditedCardChanged ( given )
-		on ok (merge common.rootContainer.mainView.authorView.cardView.editedCard)
+		on ok (merge common.rootContainer.mainView.authorView.cardView.editedCard.given)
 	
 	WantedOfEditedCardChanged ( wanted )
-		on ok (merge common.rootContainer.mainView.authorView.cardView.editedCard)
+		on ok (merge common.rootContainer.mainView.authorView.cardView.editedCard.wanted)
 	
 	CancelEditCard 
 		on ok (set common.rootContainer.mainView.authorView.cardView.editedCard)

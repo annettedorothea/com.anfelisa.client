@@ -81,14 +81,16 @@ describe("boxscenarios.CreateRootCategory", function () {
 				quality5Count : 0,
 				categoryAuthor : `username-${testId}`,
 				reverse : false,
-				editable : true
+				editable : true,
+				archived : false
 			}
 		]
 		)
 	});
 	it("deleteBox", async () => {
 		expect(appState.rootContainer.mainView.deleteBox, "deleteBox").toEqual({ 
-			confirmDelete : false
+			confirmDelete : false,
+			boxId : null
 		}
 		)
 	});

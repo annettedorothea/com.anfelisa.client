@@ -16,45 +16,41 @@ import { DashboardView } from "./mainView/DashboardView";
 import { BoxSettingsView } from "./mainView/BoxSettingsView";
 import { AllActiveCardsView } from "./mainView/AllActiveCardsView";
 import { ProfileView } from "./mainView/ProfileView";
-import { UserListView } from "./mainView/UserListView";
 import { QueryCardView } from "./mainView/QueryCardView";
 import { AuthorView } from "./mainView/AuthorView";
 
 export const MainView = (props) => {
-	if (props.isPrivacyPolicyView === true) {
+	if (props.group === "privacyPolicyView") {
 		return <PrivacyPolicyView {...props}/>;
 	}
-	if (props.isLoginView === true) {
+	if (props.group === "loginView") {
 		return <LoginView {...props}/>;
 	}
-	if (props.isRegistrationView === true) {
+	if (props.group === "registrationView") {
 		return <RegistrationView {...props}/>;
 	}
-	if (props.isForgotPasswordView === true) {
+	if (props.group === "forgotPasswordView") {
 		return <ForgotPasswordView {...props}/>;
 	}
-	if (props.isResetPasswordView === true) {
+	if (props.group === "resetPasswordView") {
 		return <ResetPasswordView {...props}/>;
 	}
-	if (props.isDashboardView === true) {
+	if (props.group === "dashboardView") {
 		return <DashboardView {...props}/>;
 	}
-	if (props.isBoxSettingsView === true) {
+	if (props.group === "boxSettingsView") {
 		return <BoxSettingsView {...props}/>;
 	}
-	if (props.isAllActiveCardsView === true) {
+	if (props.group === "allActiveCardsView") {
 		return <AllActiveCardsView {...props}/>;
 	}
-	if (props.isProfileView === true) {
+	if (props.group === "profileView") {
 		return <ProfileView {...props}/>;
 	}
-	if (props.isUserListView === true) {
-		return <UserListView {...props}/>;
-	}
-	if (props.isQueryCardView === true) {
+	if (props.group === "queryCardView") {
 		return <QueryCardView {...props}/>;
 	}
-	if (props.isAuthorView === true) {
+	if (props.group === "authorView") {
 		return <AuthorView {...props}/>;
 	}
 	return null;

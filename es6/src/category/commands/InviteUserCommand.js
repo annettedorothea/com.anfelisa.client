@@ -9,11 +9,11 @@ import AbstractInviteUserCommand from "../../../gen/category/commands/AbstractIn
 
 export default class InviteUserCommand extends AbstractInviteUserCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         data.inviteUserDialog = {
             display: false,
             usernameSearchString: ""

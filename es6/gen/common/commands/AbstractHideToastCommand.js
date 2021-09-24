@@ -7,10 +7,9 @@
 
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
-import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import DestroyToastAction from "../../../src/common/actions/DestroyToastAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractHideToastCommand extends SynchronousCommand {
     constructor() {
@@ -18,7 +17,9 @@ export default class AbstractHideToastCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.messages = AppState.get_rootContainer_messages();
+        data.messages = AppUtils.get(
+        	["rootContainer", "messages"]
+        );
         data.outcomes = [];
     }
 
@@ -29,7 +30,7 @@ export default class AbstractHideToastCommand extends SynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('common.HideToastOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publishWithDelay(
 				new DestroyToastAction(), 
 					{

@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractLoadCardsCommand extends AsynchronousCommand {
     constructor() {
@@ -17,11 +16,22 @@ export default class AbstractLoadCardsCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.selectedCategory = AppState.get_rootContainer_authorView_categoryTree_selectedCategory();
-        data.naturalInputOrder = AppState.get_rootContainer_authorView_cardView_naturalInputOrder();
-        data.filterNonScheduled = AppState.get_rootContainer_authorView_categoryTree_filterNonScheduled();
-        data.priority = AppState.get_rootContainer_authorView_categoryTree_priority();
-        data.reverse = AppState.get_rootContainer_authorView_reverse();
+        data.selectedCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+        );
+        data.naturalInputOrder = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "naturalInputOrder"]
+        );
+        data.filterNonScheduled = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "filterNonScheduled"]
+        );
+        data.priority = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "priority"]
+        );
+        data.reverse = AppUtils.get(
+        	["rootContainer", "mainView", "reverse"]
+        );
         data.outcomes = [];
     }
 
@@ -31,7 +41,7 @@ export default class AbstractLoadCardsCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/cards?categoryId=${data.categoryId}&filterNonScheduled=${data.filterNonScheduled}&priority=${data.priority}&reverse=${data.reverse}`, data.uuid, true).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/cards?categoryId=${data.categoryId}&filterNonScheduled=${data.filterNonScheduled}&priority=${data.priority}&reverse=${data.reverse}`, data.uuid, true).then((response) => {
 				data.cardList = response.cardList;
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
@@ -44,7 +54,7 @@ export default class AbstractLoadCardsCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.LoadCardsOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

@@ -9,11 +9,11 @@ import AbstractInitBoxesForDayCommand from "../../../gen/box/commands/AbstractIn
 
 export default class InitBoxesForDayCommand extends AbstractInitBoxesForDayCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
     	this.addOkOutcome(data);
     	resolve(data);
     }

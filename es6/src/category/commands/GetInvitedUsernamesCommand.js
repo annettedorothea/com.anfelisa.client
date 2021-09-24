@@ -9,12 +9,11 @@ import AbstractGetInvitedUsernamesCommand from "../../../gen/category/commands/A
 
 export default class GetInvitedUsernamesCommand extends AbstractGetInvitedUsernamesCommand {
 
-    validateCommandData(data) {
-    	//data.categoryId is mandatory String
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
     	this.addOkOutcome(data);
     	resolve(data);
     }

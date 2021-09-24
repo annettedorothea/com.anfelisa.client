@@ -6,47 +6,285 @@
 
 
 import * as ACEController from "../ace/ACEController";
-import * as AppState from "../ace/AppState";
+import * as AppUtils from "../../src/app/AppUtils";
 
 export default class EventListenerRegistrationCategory {
 
 	static init() {
-		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_categoryTree);
-		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_cardView);
-		ACEController.registerListener('category.LoadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_boxId);
-		ACEController.registerListener('category.ReloadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_categoryTree_rootCategory);
-		ACEController.registerListener('category.ReloadCategoryTreeOkEvent', AppState.set_rootContainer_authorView_categoryTree_selectedCategory);
-		ACEController.registerListener('category.ExpandTreeItemOkEvent', AppState.set_rootContainer_authorView_categoryTree_rootCategory);
-		ACEController.registerListener('category.CollapseTreeItemOkEvent', AppState.set_rootContainer_authorView_categoryTree_rootCategory);
-		ACEController.registerListener('category.CollapseTreeItemSelectParentCategoryEvent', AppState.set_rootContainer_authorView_categoryTree_rootCategory);
-		ACEController.registerListener('category.SelectTreeItemOkEvent', AppState.set_rootContainer_authorView_categoryTree_selectedCategory);
-		ACEController.registerListener('category.NewCategoryClickOkEvent', AppState.set_rootContainer_authorView_categoryTree_categoryDialog);
-		ACEController.registerListener('category.CancelCategoryDialogOkEvent', AppState.set_rootContainer_authorView_categoryTree_categoryDialog);
-		ACEController.registerListener('category.CategoryNameChangedOkEvent', AppState.set_rootContainer_authorView_categoryTree_categoryDialog_categoryName);
-		ACEController.registerListener('category.CreateCategoryOkEvent', AppState.set_rootContainer_authorView_categoryTree_categoryDialog);
-		ACEController.registerListener('category.EditCategoryClickOkEvent', AppState.set_rootContainer_authorView_categoryTree_categoryDialog);
-		ACEController.registerListener('category.UpdateCategoryOkEvent', AppState.set_rootContainer_authorView_categoryTree_categoryDialog);
-		ACEController.registerListener('category.InviteUserClickOkEvent', AppState.set_rootContainer_authorView_categoryTree_inviteUserDialog);
-		ACEController.registerListener('category.GetInvitedUsernamesOkEvent', AppState.set_rootContainer_authorView_categoryTree_inviteUserDialog_invitedUsernames);
-		ACEController.registerListener('category.CancelInviteUserOkEvent', AppState.set_rootContainer_authorView_categoryTree_inviteUserDialog);
-		ACEController.registerListener('category.InvitedUsernameChangedOkEvent', AppState.set_rootContainer_authorView_categoryTree_inviteUserDialog_usernameSearchString);
-		ACEController.registerListener('category.InvitedUsernameChangedTooShortEvent', AppState.set_rootContainer_authorView_categoryTree_inviteUserDialog_usernames);
-		ACEController.registerListener('category.SearchUsernameOkEvent', AppState.set_rootContainer_authorView_categoryTree_inviteUserDialog_usernames);
-		ACEController.registerListener('category.InviteUserOkEvent', AppState.set_rootContainer_authorView_categoryTree_inviteUserDialog);
-		ACEController.registerListener('category.DeleteCategoryClickOkEvent', AppState.set_rootContainer_authorView_categoryTree_deleteCategoryDialog);
-		ACEController.registerListener('category.CancelDeleteCategoryOkEvent', AppState.set_rootContainer_authorView_categoryTree_deleteCategoryDialog);
-		ACEController.registerListener('category.DeleteCategoryOkEvent', AppState.set_rootContainer_authorView_categoryTree_deleteCategoryDialog);
-		ACEController.registerListener('category.CheckDropAllowedOkEvent', AppState.set_rootContainer_authorView_categoryTree_dropTargetCategoryId);
-		ACEController.registerListener('category.CheckDropAllowedOkEvent', AppState.set_rootContainer_authorView_categoryTree_dropAllowed);
-		ACEController.registerListener('category.MoveCategoryStartedOkEvent', AppState.set_rootContainer_authorView_categoryTree_movedCategory);
-		ACEController.registerListener('category.MoveCategoryOkEvent', AppState.set_rootContainer_authorView_categoryTree_dropTargetCategoryId);
-		ACEController.registerListener('category.MoveCategoryOkEvent', AppState.set_rootContainer_authorView_categoryTree_dropAllowed);
-		ACEController.registerListener('category.MoveCategoryOkEvent', AppState.set_rootContainer_authorView_categoryTree_movedCategory);
-		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', AppState.set_rootContainer_authorView_categoryTree_dropTargetCategoryId);
-		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', AppState.set_rootContainer_authorView_categoryTree_dropAllowed);
-		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', AppState.set_rootContainer_authorView_categoryTree_movedCategory);
-		ACEController.registerListener('category.FilterNonScheduledCardsOkEvent', AppState.set_rootContainer_authorView_categoryTree_filterNonScheduled);
-		ACEController.registerListener('category.PriorityChangedOkEvent', AppState.set_rootContainer_authorView_categoryTree_priority);
+		ACEController.registerListener('category.LoadCategoryTreeOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["filterNonScheduled", "reverseBoxExists", "priority", "selectedCategory", "rootCategory", "displayDeleteCategory", "categoryDialog", "inviteUserDialog", "deleteCategoryDialog", "dropAllowed", "dropTargetCategoryId", "movedCategory"]
+			)
+		});
+		ACEController.registerListener('category.LoadCategoryTreeOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "cardView"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["cardList", "naturalInputOrder", "filter", "editedCard", "newCard", "cardDuplicates", "deleteCard", "dictionaryValue", "selectedCardIds", "movedCardIds", "dragTargetCardId"]
+			)
+		});
+		ACEController.registerListener('category.LoadCategoryTreeOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "boxId"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }]
+			)
+		});
+		ACEController.registerListener('category.ReloadCategoryTreeOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "rootCategory"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+			)
+		});
+		ACEController.registerListener('category.ReloadCategoryTreeOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "selectedCategory"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+			)
+		});
+		ACEController.registerListener('category.ExpandTreeItemOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "rootCategory"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+			)
+		});
+		ACEController.registerListener('category.CollapseTreeItemOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "rootCategory"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+			)
+		});
+		ACEController.registerListener('category.CollapseTreeItemSelectParentCategoryEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "rootCategory"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+			)
+		});
+		ACEController.registerListener('category.SelectTreeItemOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "selectedCategory"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+			)
+		});
+		ACEController.registerListener('category.NewCategoryClickOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "categoryDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["categoryName", "newCategory", "display"]
+			)
+		});
+		ACEController.registerListener('category.CancelCategoryDialogOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "categoryDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["categoryName", "newCategory", "display"]
+			)
+		});
+		ACEController.registerListener('category.CategoryNameChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "categoryDialog", "categoryName"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }]
+			)
+		});
+		ACEController.registerListener('category.CreateCategoryOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "categoryDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["categoryName", "newCategory", "display"]
+			)
+		});
+		ACEController.registerListener('category.EditCategoryClickOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "categoryDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["categoryName", "newCategory", "display"]
+			)
+		});
+		ACEController.registerListener('category.UpdateCategoryOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "categoryDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["categoryName", "newCategory", "display"]
+			)
+		});
+		ACEController.registerListener('category.InviteUserClickOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "inviteUserDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["display", "usernameSearchString", "usernames", "invitedUsernames"]
+			)
+		});
+		ACEController.registerListener('category.GetInvitedUsernamesOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "inviteUserDialog", "invitedUsernames"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }]
+			)
+		});
+		ACEController.registerListener('category.CancelInviteUserOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "inviteUserDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["display", "usernameSearchString", "usernames", "invitedUsernames"]
+			)
+		});
+		ACEController.registerListener('category.InvitedUsernameChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "inviteUserDialog", "usernameSearchString"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }]
+			)
+		});
+		ACEController.registerListener('category.InvitedUsernameChangedTooShortEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "inviteUserDialog", "usernames"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }]
+			)
+		});
+		ACEController.registerListener('category.SearchUsernameOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "inviteUserDialog", "usernames"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }]
+			)
+		});
+		ACEController.registerListener('category.InviteUserOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "inviteUserDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["display", "usernameSearchString", "usernames", "invitedUsernames"]
+			)
+		});
+		ACEController.registerListener('category.DeleteCategoryClickOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "deleteCategoryDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["display"]
+			)
+		});
+		ACEController.registerListener('category.CancelDeleteCategoryOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "deleteCategoryDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["display"]
+			)
+		});
+		ACEController.registerListener('category.DeleteCategoryOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "deleteCategoryDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["display"]
+			)
+		});
+		ACEController.registerListener('category.CheckDropAllowedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "dropTargetCategoryId"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }]
+			)
+		});
+		ACEController.registerListener('category.CheckDropAllowedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "dropAllowed"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }]
+			)
+		});
+		ACEController.registerListener('category.MoveCategoryStartedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "movedCategory"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories"]
+			)
+		});
+		ACEController.registerListener('category.MoveCategoryOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "dropTargetCategoryId"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }]
+			)
+		});
+		ACEController.registerListener('category.MoveCategoryOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "dropAllowed"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }]
+			)
+		});
+		ACEController.registerListener('category.MoveCategoryOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "movedCategory"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories"]
+			)
+		});
+		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "dropTargetCategoryId"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }]
+			)
+		});
+		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "dropAllowed"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }]
+			)
+		});
+		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "movedCategory"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }], 
+				["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories"]
+			)
+		});
+		ACEController.registerListener('category.FilterNonScheduledCardsOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "filterNonScheduled"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }]
+			)
+		});
+		ACEController.registerListener('category.PriorityChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "categoryTree", "priority"], 
+				[{ path: ["rootContainer", "mainView"], group: "authorView" }]
+			)
+		});
 	}
 
 }

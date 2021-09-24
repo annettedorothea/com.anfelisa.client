@@ -8,7 +8,6 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractPasswordRepetitionChangedCommand extends SynchronousCommand {
     constructor() {
@@ -16,7 +15,9 @@ export default class AbstractPasswordRepetitionChangedCommand extends Synchronou
     }
 
     initCommandData(data) {
-        data.password = AppState.get_rootContainer_registrationView_password();
+        data.password = AppUtils.get(
+        	["rootContainer", "mainView", "password"]
+        );
         data.outcomes = [];
     }
 
@@ -27,7 +28,7 @@ export default class AbstractPasswordRepetitionChangedCommand extends Synchronou
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('registration.PasswordRepetitionChangedOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

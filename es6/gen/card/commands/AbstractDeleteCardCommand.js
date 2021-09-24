@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
 export default class AbstractDeleteCardCommand extends AsynchronousCommand {
@@ -19,7 +18,9 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.cardId = AppState.get_rootContainer_authorView_cardView_deleteCard_cardId();
+        data.cardId = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "deleteCard", "cardId"]
+        );
         data.outcomes = [];
     }
 
@@ -29,7 +30,7 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpDelete(`${Utils.settings.rootPath}/card/delete?cardId=${data.cardId}`, data.uuid, true).then(() => {
+			AppUtils.httpDelete(`${AppUtils.settings.rootPath}/card/delete?cardId=${data.cardId}`, data.uuid, true).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;
@@ -41,7 +42,7 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.DeleteCardOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadCardsAction(), 
 					{

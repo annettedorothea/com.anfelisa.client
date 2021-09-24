@@ -6,41 +6,259 @@
 
 
 import * as ACEController from "../ace/ACEController";
-import * as AppState from "../ace/AppState";
+import * as AppUtils from "../../src/app/AppUtils";
 
 export default class EventListenerRegistrationBox {
 
 	static init() {
-		ACEController.registerListener('box.LoadBoxesOkEvent', AppState.set_rootContainer_dashboardView);
-		ACEController.registerListener('box.LoadBoxStatisticsOkEvent', AppState.set_rootContainer_dashboardView_boxList);
-		ACEController.registerListener('box.LoadActiveCardsOkEvent', AppState.set_rootContainer_allActiveCardsView_activeCardList);
-		ACEController.registerListener('box.LoadActiveCardsOkEvent', AppState.set_rootContainer_allActiveCardsView_selectedCardIds);
-		ACEController.registerListener('box.LoadActiveCardsOkEvent', AppState.set_rootContainer_allActiveCardsView_editable);
-		ACEController.registerListener('box.ToggleScheduleCardSelectionOkEvent', AppState.set_rootContainer_allActiveCardsView_selectedCardIds);
-		ACEController.registerListener('box.ToggleAllScheduleCardSelectionOkEvent', AppState.set_rootContainer_allActiveCardsView_selectedCardIds);
-		ACEController.registerListener('box.DeleteBoxClickOkEvent', AppState.set_rootContainer_dashboardView_deleteBox);
-		ACEController.registerListener('box.CancelDeleteBoxOkEvent', AppState.set_rootContainer_dashboardView_deleteBox_boxId);
-		ACEController.registerListener('box.CancelDeleteBoxOkEvent', AppState.set_rootContainer_dashboardView_deleteBox_confirmDelete);
-		ACEController.registerListener('box.DeleteBoxOkEvent', AppState.set_rootContainer_dashboardView_deleteBox_boxId);
-		ACEController.registerListener('box.DeleteBoxOkEvent', AppState.set_rootContainer_dashboardView_deleteBox_confirmDelete);
-		ACEController.registerListener('box.DeleteBoxErrorEvent', AppState.set_rootContainer_dashboardView_deleteBox_boxId);
-		ACEController.registerListener('box.DeleteBoxErrorEvent', AppState.set_rootContainer_dashboardView_deleteBox_confirmDelete);
-		ACEController.registerListener('box.LoadNextCardOkEvent', AppState.merge_rootContainer_queryCardView);
-		ACEController.registerListener('box.DisplayWantedOkEvent', AppState.merge_rootContainer_queryCardView);
-		ACEController.registerListener('box.LoadSettingsOkEvent', AppState.merge_rootContainer_boxSettingsView);
-		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', AppState.set_rootContainer_boxSettingsView_maxCardsPerDay);
-		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', AppState.set_rootContainer_boxSettingsView_maxCardsPerDayInvalid);
-		ACEController.registerListener('box.MaxIntervalChangedOkEvent', AppState.set_rootContainer_boxSettingsView_maxInterval);
-		ACEController.registerListener('box.MaxIntervalChangedOkEvent', AppState.set_rootContainer_boxSettingsView_maxIntervalInvalid);
-		ACEController.registerListener('box.TooManyCardsStatusOkEvent', AppState.set_rootContainer_boxSettingsView_tooManyCardsStatus);
-		ACEController.registerListener('box.CategoryNameChangedOkEvent', AppState.set_rootContainer_boxSettingsView_categoryName);
-		ACEController.registerListener('box.DictionaryLookupChangedOkEvent', AppState.set_rootContainer_boxSettingsView_dictionaryLookup);
-		ACEController.registerListener('box.DictionaryLookupChangedOkEvent', AppState.set_rootContainer_boxSettingsView_dictionaryLookupInvalid);
-		ACEController.registerListener('box.GivenLanguageChangedOkEvent', AppState.set_rootContainer_boxSettingsView_givenLanguage);
-		ACEController.registerListener('box.GivenLanguageChangedOkEvent', AppState.set_rootContainer_boxSettingsView_dictionaryLookupInvalid);
-		ACEController.registerListener('box.WantedLanguageChangedOkEvent', AppState.set_rootContainer_boxSettingsView_wantedLanguage);
-		ACEController.registerListener('box.WantedLanguageChangedOkEvent', AppState.set_rootContainer_boxSettingsView_dictionaryLookupInvalid);
-		ACEController.registerListener('box.RootCategoryNameChangedOkEvent', AppState.set_rootContainer_boxSettingsView_categoryName);
+		ACEController.registerListener('box.LoadBoxesOkEvent', (data) => {
+			AppUtils.merge(
+				data, 
+				["rootContainer", "mainView", "boxList"], 
+				[{ path: ["rootContainer", "mainView"], group: "dashboardView" }]
+			)
+		});
+		ACEController.registerListener('box.LoadBoxStatisticsOkEvent', (data) => {
+			AppUtils.merge(
+				data, 
+				["rootContainer", "mainView", "boxList"], 
+				[{ path: ["rootContainer", "mainView"], group: "dashboardView" }]
+			)
+		});
+		ACEController.registerListener('box.LoadActiveCardsOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "activeCardList"], 
+				[{ path: ["rootContainer", "mainView"], group: "allActiveCardsView" }]
+			)
+		});
+		ACEController.registerListener('box.LoadActiveCardsOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "selectedCardIds"], 
+				[{ path: ["rootContainer", "mainView"], group: "allActiveCardsView" }]
+			)
+		});
+		ACEController.registerListener('box.LoadActiveCardsOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "editable"], 
+				[{ path: ["rootContainer", "mainView"], group: "allActiveCardsView" }]
+			)
+		});
+		ACEController.registerListener('box.ToggleScheduleCardSelectionOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "selectedCardIds"], 
+				[{ path: ["rootContainer", "mainView"], group: "allActiveCardsView" }]
+			)
+		});
+		ACEController.registerListener('box.ToggleAllScheduleCardSelectionOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "selectedCardIds"], 
+				[{ path: ["rootContainer", "mainView"], group: "allActiveCardsView" }]
+			)
+		});
+		ACEController.registerListener('box.DeleteBoxClickOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "deleteBox"], 
+				[{ path: ["rootContainer", "mainView"], group: "dashboardView" }], 
+				["confirmDelete", "boxId"]
+			)
+		});
+		ACEController.registerListener('box.CancelDeleteBoxOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "deleteBox", "boxId"], 
+				[{ path: ["rootContainer", "mainView"], group: "dashboardView" }]
+			)
+		});
+		ACEController.registerListener('box.CancelDeleteBoxOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "deleteBox", "confirmDelete"], 
+				[{ path: ["rootContainer", "mainView"], group: "dashboardView" }]
+			)
+		});
+		ACEController.registerListener('box.DeleteBoxOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "deleteBox", "boxId"], 
+				[{ path: ["rootContainer", "mainView"], group: "dashboardView" }]
+			)
+		});
+		ACEController.registerListener('box.DeleteBoxOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "deleteBox", "confirmDelete"], 
+				[{ path: ["rootContainer", "mainView"], group: "dashboardView" }]
+			)
+		});
+		ACEController.registerListener('box.DeleteBoxErrorEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "deleteBox", "boxId"], 
+				[{ path: ["rootContainer", "mainView"], group: "dashboardView" }]
+			)
+		});
+		ACEController.registerListener('box.DeleteBoxErrorEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "deleteBox", "confirmDelete"], 
+				[{ path: ["rootContainer", "mainView"], group: "dashboardView" }]
+			)
+		});
+		ACEController.registerListener('box.LoadNextCardOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "nextCard"], 
+				[{ path: ["rootContainer", "mainView"], group: "queryCardView" }], 
+				["cardId", "categoryId", "categoryName", "count", "given", "lastQuality", "rootCategoryId", "scheduledCardId", "reinforceCardId", "scheduledDate", "scoredDate", "wanted", "index"]
+			)
+		});
+		ACEController.registerListener('box.LoadNextCardOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "reverse"], 
+				[{ path: ["rootContainer", "mainView"], group: "queryCardView" }]
+			)
+		});
+		ACEController.registerListener('box.LoadNextCardOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "openTodaysCards"], 
+				[{ path: ["rootContainer", "mainView"], group: "queryCardView" }]
+			)
+		});
+		ACEController.registerListener('box.LoadNextCardOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "allTodaysCards"], 
+				[{ path: ["rootContainer", "mainView"], group: "queryCardView" }]
+			)
+		});
+		ACEController.registerListener('box.LoadNextCardOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "enableScoreButtons"], 
+				[{ path: ["rootContainer", "mainView"], group: "queryCardView" }]
+			)
+		});
+		ACEController.registerListener('box.DisplayWantedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "nextCard", "index"], 
+				[{ path: ["rootContainer", "mainView"], group: "queryCardView" }]
+			)
+		});
+		ACEController.registerListener('box.DisplayWantedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "enableScoreButtons"], 
+				[{ path: ["rootContainer", "mainView"], group: "queryCardView" }]
+			)
+		});
+		ACEController.registerListener('box.LoadSettingsOkEvent', (data) => {
+			AppUtils.merge(
+				data, 
+				["rootContainer", "mainView", "boxSettings"], 
+				[{ path: ["rootContainer", "mainView"], group: "boxSettingsView" }], 
+				["maxIntervalInvalid", "maxCardsPerDayInvalid", "tooManyCardsStatus", "dictionaryLookupInvalid", "boxId", "maxInterval", "maxCardsPerDay", "categoryName", "dictionaryLookup", "givenLanguage", "wantedLanguage", "categoryId", "shared", "allActiveCards", "allCards"]
+			)
+		});
+		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "boxSettings", "maxCardsPerDay"], 
+				[{ path: ["rootContainer", "mainView"], group: "boxSettingsView" }]
+			)
+		});
+		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "boxSettings", "maxCardsPerDayInvalid"], 
+				[{ path: ["rootContainer", "mainView"], group: "boxSettingsView" }]
+			)
+		});
+		ACEController.registerListener('box.MaxIntervalChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "boxSettings", "maxInterval"], 
+				[{ path: ["rootContainer", "mainView"], group: "boxSettingsView" }]
+			)
+		});
+		ACEController.registerListener('box.MaxIntervalChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "boxSettings", "maxIntervalInvalid"], 
+				[{ path: ["rootContainer", "mainView"], group: "boxSettingsView" }]
+			)
+		});
+		ACEController.registerListener('box.TooManyCardsStatusOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "boxSettings", "tooManyCardsStatus"], 
+				[{ path: ["rootContainer", "mainView"], group: "boxSettingsView" }]
+			)
+		});
+		ACEController.registerListener('box.CategoryNameChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "boxSettings", "categoryName"], 
+				[{ path: ["rootContainer", "mainView"], group: "boxSettingsView" }]
+			)
+		});
+		ACEController.registerListener('box.DictionaryLookupChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "boxSettings", "dictionaryLookup"], 
+				[{ path: ["rootContainer", "mainView"], group: "boxSettingsView" }]
+			)
+		});
+		ACEController.registerListener('box.DictionaryLookupChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "boxSettings", "dictionaryLookupInvalid"], 
+				[{ path: ["rootContainer", "mainView"], group: "boxSettingsView" }]
+			)
+		});
+		ACEController.registerListener('box.GivenLanguageChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "boxSettings", "givenLanguage"], 
+				[{ path: ["rootContainer", "mainView"], group: "boxSettingsView" }]
+			)
+		});
+		ACEController.registerListener('box.GivenLanguageChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "boxSettings", "dictionaryLookupInvalid"], 
+				[{ path: ["rootContainer", "mainView"], group: "boxSettingsView" }]
+			)
+		});
+		ACEController.registerListener('box.WantedLanguageChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "boxSettings", "wantedLanguage"], 
+				[{ path: ["rootContainer", "mainView"], group: "boxSettingsView" }]
+			)
+		});
+		ACEController.registerListener('box.WantedLanguageChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "boxSettings", "dictionaryLookupInvalid"], 
+				[{ path: ["rootContainer", "mainView"], group: "boxSettingsView" }]
+			)
+		});
+		ACEController.registerListener('box.RootCategoryNameChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "boxSettings", "categoryName"], 
+				[{ path: ["rootContainer", "mainView"], group: "boxSettingsView" }]
+			)
+		});
 	}
 
 }

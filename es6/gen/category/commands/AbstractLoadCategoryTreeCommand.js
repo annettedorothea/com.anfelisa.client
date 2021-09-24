@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
 export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand {
@@ -19,7 +18,9 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
     }
     
     initCommandData(data) {
-        data.reverse = AppState.get_rootContainer_authorView_reverse();
+        data.reverse = AppUtils.get(
+        	["rootContainer", "mainView", "reverse"]
+        );
         data.outcomes = [];
     }
 
@@ -29,7 +30,7 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/category/tree?rootCategoryId=${data.rootCategoryId}&filterNonScheduled=${data.filterNonScheduled}&priority=${data.priority}&reverse=${data.reverse}`, data.uuid, true).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/category/tree?rootCategoryId=${data.rootCategoryId}&filterNonScheduled=${data.filterNonScheduled}&priority=${data.priority}&reverse=${data.reverse}`, data.uuid, true).then((response) => {
 				data.rootCategory = response.rootCategory;
 				data.reverseBoxExists = response.reverseBoxExists;
 				data.boxId = response.boxId;
@@ -44,7 +45,7 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.LoadCategoryTreeOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadCardsAction(), 
 					{

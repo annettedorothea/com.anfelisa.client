@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractLoadActiveCardsCommand extends AsynchronousCommand {
     constructor() {
@@ -17,7 +16,9 @@ export default class AbstractLoadActiveCardsCommand extends AsynchronousCommand 
     }
     
     initCommandData(data) {
-        data.boxId = AppState.get_rootContainer_allActiveCardsView_boxId();
+        data.boxId = AppUtils.get(
+        	["rootContainer", "mainView", "boxId"]
+        );
         data.outcomes = [];
     }
 
@@ -27,7 +28,7 @@ export default class AbstractLoadActiveCardsCommand extends AsynchronousCommand 
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/box/active-cards/${data.boxId}`, data.uuid, true).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/box/active-cards/${data.boxId}`, data.uuid, true).then((response) => {
 				data.cardList = response.cardList;
 				data.editable = response.editable;
 				this.handleResponse(data, resolve, reject);
@@ -41,7 +42,7 @@ export default class AbstractLoadActiveCardsCommand extends AsynchronousCommand 
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.LoadActiveCardsOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

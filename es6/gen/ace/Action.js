@@ -8,8 +8,6 @@
 
 import * as ACEController from "./ACEController";
 import * as AppUtils from "../../src/app/AppUtils";
-import * as Utils from "./Utils";
-import * as AppState from "./AppState";
 
 export default class Action {
 
@@ -19,7 +17,7 @@ export default class Action {
 
     apply(data) {
 		ACEController.addItemToTimeLine({
-		    appState: AppState.getAppState()
+		    appState: AppUtils.get([])
 		});
         ACEController.addItemToTimeLine({
             action: {
@@ -27,7 +25,7 @@ export default class Action {
                 data
             }
         });
-        if (Utils.settings.mode === "dev") {
+        if (AppUtils.settings.mode === "dev") {
 			let squishyValues = JSON.parse(localStorage.getItem("squishyValues"));
 			if (squishyValues && squishyValues.length > 0) {
 			    const squishyValue = JSON.parse(squishyValues.shift());
@@ -52,6 +50,7 @@ export default class Action {
             data
         });
     }
+    
 }
 
 

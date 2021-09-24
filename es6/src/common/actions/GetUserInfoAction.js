@@ -5,9 +5,9 @@
 
 
 
-import AbstractInitialLoginAction from "../../../gen/common/actions/AbstractInitialLoginAction";
+import AbstractGetUserInfoAction from "../../../gen/common/actions/AbstractGetUserInfoAction";
 
-export default class InitialLoginAction extends AbstractInitialLoginAction {
+export default class GetUserInfoAction extends AbstractGetUserInfoAction {
 
     initActionData(data) {
     	return data;

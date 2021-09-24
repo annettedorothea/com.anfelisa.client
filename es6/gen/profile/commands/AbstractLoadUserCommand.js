@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractLoadUserCommand extends AsynchronousCommand {
     constructor() {
@@ -17,7 +16,6 @@ export default class AbstractLoadUserCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.role = AppState.get_rootContainer_role();
         data.outcomes = [];
     }
 
@@ -27,7 +25,7 @@ export default class AbstractLoadUserCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/user/get`, data.uuid, true).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/user/get`, data.uuid, true).then((response) => {
 				data.email = response.email;
 				data.username = response.username;
 				data.userId = response.userId;
@@ -42,7 +40,7 @@ export default class AbstractLoadUserCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('profile.LoadUserOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
 export default class AbstractCreateCardCommand extends AsynchronousCommand {
@@ -19,9 +18,15 @@ export default class AbstractCreateCardCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.wanted = AppState.get_rootContainer_authorView_cardView_newCard_wanted();
-        data.given = AppState.get_rootContainer_authorView_cardView_newCard_given();
-        data.categoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
+        data.wanted = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "newCard", "wanted"]
+        );
+        data.given = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "newCard", "given"]
+        );
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -36,7 +41,7 @@ export default class AbstractCreateCardCommand extends AsynchronousCommand {
 	    		given : data.given,
 	    		categoryId : data.categoryId
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/card/create`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/card/create`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;
@@ -48,7 +53,7 @@ export default class AbstractCreateCardCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.CreateCardOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadCardsAction(), 
 					{

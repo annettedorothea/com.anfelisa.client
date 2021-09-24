@@ -7,10 +7,9 @@
 
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
-import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import SearchDuplicateCardsAction from "../../../src/card/actions/SearchDuplicateCardsAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractGivenOfNewCardChangedCommand extends SynchronousCommand {
     constructor() {
@@ -28,7 +27,7 @@ export default class AbstractGivenOfNewCardChangedCommand extends SynchronousCom
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.GivenOfNewCardChangedOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publishWithDelayTakeLatest(
 				new SearchDuplicateCardsAction(), 
 					{

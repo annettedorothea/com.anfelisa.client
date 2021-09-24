@@ -30,7 +30,7 @@ export default class AbstractUpdateCardPriorityCommand extends AsynchronousComma
 	    		cardId : data.cardId,
 	    		priority : data.priority
 	    	};
-			AppUtils.httpPut(`${Utils.settings.rootPath}/card/update-priority`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/card/update-priority`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

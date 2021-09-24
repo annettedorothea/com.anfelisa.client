@@ -8,7 +8,6 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractGivenLanguageChangedCommand extends SynchronousCommand {
     constructor() {
@@ -16,8 +15,12 @@ export default class AbstractGivenLanguageChangedCommand extends SynchronousComm
     }
 
     initCommandData(data) {
-        data.wantedLanguage = AppState.get_rootContainer_boxSettingsView_wantedLanguage();
-        data.dictionaryLookup = AppState.get_rootContainer_boxSettingsView_dictionaryLookup();
+        data.wantedLanguage = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "wantedLanguage"]
+        );
+        data.dictionaryLookup = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "dictionaryLookup"]
+        );
         data.outcomes = [];
     }
 
@@ -28,7 +31,7 @@ export default class AbstractGivenLanguageChangedCommand extends SynchronousComm
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.GivenLanguageChangedOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 
@@ -20,7 +19,9 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.boxId = AppState.get_rootContainer_dashboardView_deleteBox_boxId();
+        data.boxId = AppUtils.get(
+        	["rootContainer", "mainView", "deleteBox", "boxId"]
+        );
         data.outcomes = [];
     }
 
@@ -33,7 +34,7 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpDelete(`${Utils.settings.rootPath}/box/delete?boxId=${data.boxId}`, data.uuid, true).then(() => {
+			AppUtils.httpDelete(`${AppUtils.settings.rootPath}/box/delete?boxId=${data.boxId}`, data.uuid, true).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;
@@ -45,7 +46,7 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.DeleteBoxOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadBoxesAction(), 
 					{
@@ -54,7 +55,7 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
 		}
 		if (data.outcomes.includes("error")) {
 			new Event('box.DeleteBoxErrorEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new DisplayToastAction(), 
 					{

@@ -11,7 +11,7 @@ import {Texts} from "../../app/Texts";
 
 
 export const LoggedInUser = (props) => {
-	if (props.role) {
+	if (props.username) {
 		return <div className="logout">
 			<a onClick={() => route("#profile")}>{props.username}</a>
 			<button id="logout" onClick={logout}>{Texts.logout.signout[props.language]}</button>

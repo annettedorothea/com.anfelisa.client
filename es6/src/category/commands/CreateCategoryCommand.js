@@ -9,11 +9,11 @@ import AbstractCreateCategoryCommand from "../../../gen/category/commands/Abstra
 
 export default class CreateCategoryCommand extends AbstractCreateCategoryCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         data.displayNewCategory = false;
         data.selectedCategoryId = data.parentCategoryId;
         data.categoryIdToBeExpanded = data.parentCategoryId;

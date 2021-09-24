@@ -8,7 +8,6 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractToggleSaveInLocalStorageCommand extends SynchronousCommand {
     constructor() {
@@ -16,7 +15,9 @@ export default class AbstractToggleSaveInLocalStorageCommand extends Synchronous
     }
 
     initCommandData(data) {
-        data.saveInLocalStorage = AppState.get_rootContainer_loginView_saveInLocalStorage();
+        data.saveInLocalStorage = AppUtils.get(
+        	["rootContainer", "mainView", "saveInLocalStorage"]
+        );
         data.outcomes = [];
     }
 
@@ -27,7 +28,7 @@ export default class AbstractToggleSaveInLocalStorageCommand extends Synchronous
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('login.ToggleSaveInLocalStorageOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

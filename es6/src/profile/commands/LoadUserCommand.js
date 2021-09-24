@@ -9,12 +9,12 @@ import AbstractLoadUserCommand from "../../../gen/profile/commands/AbstractLoadU
 
 export default class LoadUserCommand extends AbstractLoadUserCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
-        data.profileView = {
+    handleResponse(data, resolve) {
+        data.mainView = {
             username: data.username,
             email: data.email,
             role: data.role,

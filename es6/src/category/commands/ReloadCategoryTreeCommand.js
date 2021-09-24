@@ -18,7 +18,7 @@ export default class ReloadCategoryTreeCommand extends AbstractReloadCategoryTre
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         const expandedCategories = [];
         findExpandedCategories(data.previousRootCategory, expandedCategories);
         if (data.categoryIdToBeExpanded) {

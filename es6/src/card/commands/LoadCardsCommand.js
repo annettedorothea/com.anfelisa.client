@@ -15,31 +15,32 @@ export default class LoadCardsCommand extends AbstractLoadCardsCommand {
     }
 
     handleResponse(data, resolve) {
-        if (data.naturalInputOrder === undefined) {
-            data.naturalInputOrder = data.reverse === false;
+        data.cardView = {
+            cardList: data.cardList,
+            naturalInputOrder: data.naturalInputOrder === undefined ? data.reverse === false : data.naturalInputOrder,
+            newCard: {
+                given: "",
+                wanted: "",
+                image: "",
+                displaySpinner: false,
+            },
+            editedCard: {
+                cardId: "",
+                given: "",
+                wanted: "",
+                image: ""
+            },
+            filter: "",
+            dictionaryValue: null,
+            cardDuplicates: [],
+            selectedCardIds: [],
+            movedCardIds: [],
+            dragTargetCardId: null,
+            deleteCard: {
+                confirmDelete: false,
+                cardId: ""
+            },
         }
-        data.newCard = {
-            given: "",
-            wanted: "",
-            image: "",
-            displaySpinner: false,
-        };
-        data.editedCard = {
-            cardId: "",
-            given: "",
-            wanted: "",
-            image: ""
-        };
-        data.filter = "";
-        data.dictionaryValue = null;
-        data.cardDuplicates = [];
-        data.selectedCardIds = [];
-        data.movedCardIds = [];
-        data.dragTargetCardId = null;
-        data.deleteCard = {
-            confirmDelete: false,
-            cardId: ""
-        };
     	this.addOkOutcome(data);
     	resolve(data);
     }

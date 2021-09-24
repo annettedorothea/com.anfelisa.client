@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
 export default class AbstractCreateRootCategoryCommand extends AsynchronousCommand {
@@ -18,13 +17,27 @@ export default class AbstractCreateRootCategoryCommand extends AsynchronousComma
     }
     
     initCommandData(data) {
-        data.maxInterval = AppState.get_rootContainer_boxSettingsView_maxInterval();
-        data.maxCardsPerDay = AppState.get_rootContainer_boxSettingsView_maxCardsPerDay();
-        data.categoryId = AppState.get_rootContainer_boxSettingsView_categoryId();
-        data.categoryName = AppState.get_rootContainer_boxSettingsView_categoryName();
-        data.dictionaryLookup = AppState.get_rootContainer_boxSettingsView_dictionaryLookup();
-        data.givenLanguage = AppState.get_rootContainer_boxSettingsView_givenLanguage();
-        data.wantedLanguage = AppState.get_rootContainer_boxSettingsView_wantedLanguage();
+        data.maxInterval = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "maxInterval"]
+        );
+        data.maxCardsPerDay = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "maxCardsPerDay"]
+        );
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "categoryId"]
+        );
+        data.categoryName = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "categoryName"]
+        );
+        data.dictionaryLookup = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "dictionaryLookup"]
+        );
+        data.givenLanguage = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "givenLanguage"]
+        );
+        data.wantedLanguage = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "wantedLanguage"]
+        );
         data.outcomes = [];
     }
 
@@ -42,7 +55,7 @@ export default class AbstractCreateRootCategoryCommand extends AsynchronousComma
 	    		maxCardsPerDay : data.maxCardsPerDay,
 	    		maxInterval : data.maxInterval
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/box/create`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/box/create`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

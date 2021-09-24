@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
 export default class AbstractUpdateCardCommand extends AsynchronousCommand {
@@ -19,9 +18,15 @@ export default class AbstractUpdateCardCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.wanted = AppState.get_rootContainer_authorView_cardView_editedCard_wanted();
-        data.given = AppState.get_rootContainer_authorView_cardView_editedCard_given();
-        data.cardId = AppState.get_rootContainer_authorView_cardView_editedCard_cardId();
+        data.wanted = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "editedCard", "wanted"]
+        );
+        data.given = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "editedCard", "given"]
+        );
+        data.cardId = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "editedCard", "cardId"]
+        );
         data.outcomes = [];
     }
 
@@ -36,7 +41,7 @@ export default class AbstractUpdateCardCommand extends AsynchronousCommand {
 	    		given : data.given,
 	    		wanted : data.wanted
 	    	};
-			AppUtils.httpPut(`${Utils.settings.rootPath}/card/update`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/card/update`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;
@@ -48,7 +53,7 @@ export default class AbstractUpdateCardCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.UpdateCardOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadCardsAction(), 
 					{

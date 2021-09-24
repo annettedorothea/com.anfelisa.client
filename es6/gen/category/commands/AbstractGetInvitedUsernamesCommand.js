@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractGetInvitedUsernamesCommand extends AsynchronousCommand {
     constructor() {
@@ -17,7 +16,9 @@ export default class AbstractGetInvitedUsernamesCommand extends AsynchronousComm
     }
     
     initCommandData(data) {
-        data.categoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -27,7 +28,7 @@ export default class AbstractGetInvitedUsernamesCommand extends AsynchronousComm
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/category/invited-usernames?categoryId=${data.categoryId}`, data.uuid, true).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/category/invited-usernames?categoryId=${data.categoryId}`, data.uuid, true).then((response) => {
 				data.invitedUsernames = response.invitedUsernames;
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
@@ -40,7 +41,7 @@ export default class AbstractGetInvitedUsernamesCommand extends AsynchronousComm
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.GetInvitedUsernamesOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

@@ -7,10 +7,10 @@
 
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import MoveCardsAction from "../../../src/card/actions/MoveCardsAction";
 import MoveCategoryAction from "../../../src/category/actions/MoveCategoryAction";
 import ChangeOrderCategoryAction from "../../../src/category/actions/ChangeOrderCategoryAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractItemDroppedCommand extends SynchronousCommand {
     constructor() {
@@ -18,8 +18,13 @@ export default class AbstractItemDroppedCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.movedCategory = AppState.get_rootContainer_authorView_categoryTree_movedCategory();
-        data.movedCardIds = AppState.get_rootContainer_authorView_cardView_movedCardIds();
+        data.movedCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "movedCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories"]
+        );
+        data.movedCardIds = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "movedCardIds"]
+        );
         data.outcomes = [];
     }
 

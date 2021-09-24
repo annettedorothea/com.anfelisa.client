@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractSearchDuplicateCardsCommand extends AsynchronousCommand {
     constructor() {
@@ -17,10 +16,18 @@ export default class AbstractSearchDuplicateCardsCommand extends AsynchronousCom
     }
     
     initCommandData(data) {
-        data.naturalInputOrder = AppState.get_rootContainer_authorView_cardView_naturalInputOrder();
-        data.given = AppState.get_rootContainer_authorView_cardView_newCard_given();
-        data.wanted = AppState.get_rootContainer_authorView_cardView_newCard_wanted();
-        data.categoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
+        data.naturalInputOrder = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "naturalInputOrder"]
+        );
+        data.given = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "newCard", "given"]
+        );
+        data.wanted = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "newCard", "wanted"]
+        );
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -30,7 +37,7 @@ export default class AbstractSearchDuplicateCardsCommand extends AsynchronousCom
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/cards/search?given=${data.given}&wanted=${data.wanted}&naturalInputOrder=${data.naturalInputOrder}&categoryId=${data.categoryId}`, data.uuid, true).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/cards/search?given=${data.given}&wanted=${data.wanted}&naturalInputOrder=${data.naturalInputOrder}&categoryId=${data.categoryId}`, data.uuid, true).then((response) => {
 				data.cardList = response.cardList;
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
@@ -43,7 +50,7 @@ export default class AbstractSearchDuplicateCardsCommand extends AsynchronousCom
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.SearchDuplicateCardsOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

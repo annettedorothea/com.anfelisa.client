@@ -8,7 +8,6 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractDisplayWantedCommand extends SynchronousCommand {
     constructor() {
@@ -16,7 +15,9 @@ export default class AbstractDisplayWantedCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.index = AppState.get_rootContainer_queryCardView_index();
+        data.index = AppUtils.get(
+        	["rootContainer", "mainView", "nextCard", "index"]
+        );
         data.outcomes = [];
     }
 
@@ -27,7 +28,7 @@ export default class AbstractDisplayWantedCommand extends SynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.DisplayWantedOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

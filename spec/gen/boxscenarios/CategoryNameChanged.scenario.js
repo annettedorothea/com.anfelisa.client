@@ -53,7 +53,7 @@ describe("boxscenarios.CategoryNameChanged", function () {
     });
     
 	it("categoryName", async () => {
-		expect(appState.rootContainer.mainView.categoryName, "categoryName").toEqual(`categoryName`)
+		expect(appState.rootContainer.mainView.boxSettings.categoryName, "categoryName").toEqual(`categoryName`)
 	});
     
 	it("saveEnabled", async () => {

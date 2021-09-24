@@ -7,7 +7,6 @@
 
 import Action from "../../ace/AsynchronousAction";
 import UpdateCardCommand from "../../../src/card/commands/UpdateCardCommand";
-import * as AppState from "../../ace/AppState";
 import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractUpdateCardAction extends Action {
@@ -22,13 +21,21 @@ export default class AbstractUpdateCardAction extends Action {
 	}
 
 	preCall() {
-		AppState.set_rootContainer_spinner_display({display: true});
-		AppUtils.stateUpdated(AppState.getAppState());
+		AppUtils.set(
+			{display: true}, 
+			["rootContainer", "spinner", "display"], 
+			[]
+		)
+		AppUtils.stateUpdated();
 	}
 	
 	postCall() {
-		AppState.set_rootContainer_spinner_display({display: false});
-		AppUtils.stateUpdated(AppState.getAppState());
+		AppUtils.set(
+			{display: false}, 
+			["rootContainer", "spinner", "display"], 
+			[]
+		)
+		AppUtils.stateUpdated();
 	}
 
 }

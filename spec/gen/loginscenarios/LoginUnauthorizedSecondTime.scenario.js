@@ -41,10 +41,7 @@ describe("loginscenarios.LoginUnauthorizedSecondTime", function () {
 		expect(appState.rootContainer.loggedInUser, "loggedInUserIsNotSet").toEqual(null)
 	});
 	it("usernameInLocalStorateWasNotSet", async () => {
-		expect(appState.rootContainer.username, "usernameInLocalStorateWasNotSet").toEqual(undefined)
-	});
-	it("passwordInLocalStorateWasNotSet", async () => {
-		expect(appState.rootContainer.password, "passwordInLocalStorateWasNotSet").toEqual(undefined)
+		expect(appState.rootContainer.token, "usernameInLocalStorateWasNotSet").toEqual(undefined)
 	});
 	it("errorShown", async () => {
 		expect(appState.rootContainer.messages, "errorShown").toEqual([

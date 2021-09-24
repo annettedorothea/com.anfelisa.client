@@ -22,6 +22,9 @@ export const Texts = {
         }
     },
     box: {
+        archiveBox: {
+            de: "Archivieren"
+        },
         confirmDelete: {
             cancel: {
                 de: "Nein"
@@ -50,7 +53,10 @@ export const Texts = {
         },
         sharedTitle: {
             de: "{0} von {1}"
-        }
+        },
+        unarchiveBox: {
+            de: "Wieder aktivieren"
+        },
     },
     boxSettings : {
         boxInfo: {

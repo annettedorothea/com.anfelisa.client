@@ -96,7 +96,7 @@ export const CardView = (props) => {
 	return <div>
 		<h1>
 			{props.categoryTree.selectedCategory.categoryName}
-			{props.reverse === true ? i({class: "fas fa-arrows-alt-h"}) : null}
+			{props.reverse === true ? <i className="fas fa-arrows-alt-h"/> : null}
 		</h1>
 		<DeleteCard
 			{...props.deleteCard}

@@ -5,54 +5,91 @@
 
 
 
-import SynchronousCommand from "../../ace/SynchronousCommand";
+import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
-import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
-import GetRoleAction from "../../../src/login/actions/GetRoleAction";
+import * as Utils from "../../ace/Utils";
+import * as AppUtils from "../../../src/app/AppUtils";
+import RouteAction from "../../../src/common/actions/RouteAction";
+import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
+import LogoutAction from "../../../src/common/actions/LogoutAction";
 
-export default class AbstractLoginCommand extends SynchronousCommand {
+export default class AbstractLoginCommand extends AsynchronousCommand {
     constructor() {
         super("login.LoginCommand");
     }
-
+    
     initCommandData(data) {
-        data.username = AppState.get_rootContainer_loginView_username();
-        data.password = AppState.get_rootContainer_loginView_password();
-        data.saveInLocalStorage = AppState.get_rootContainer_loginView_saveInLocalStorage();
+        data.username = AppUtils.get(
+        	["rootContainer", "mainView", "username"]
+        );
+        data.password = AppUtils.get(
+        	["rootContainer", "mainView", "password"]
+        );
+        data.saveInLocalStorage = AppUtils.get(
+        	["rootContainer", "mainView", "saveInLocalStorage"]
+        );
         data.outcomes = [];
     }
 
 	addSaveInLocalStorageOutcome(data) {
 		data.outcomes.push("saveInLocalStorage");
 	}
-	addDoNotSaveInLocalStorageOutcome(data) {
-		data.outcomes.push("doNotSaveInLocalStorage");
+	addOkOutcome(data) {
+		data.outcomes.push("ok");
+	}
+	addUnauthorizedOutcome(data) {
+		data.outcomes.push("unauthorized");
+	}
+
+	execute(data) {
+	    return new Promise((resolve, reject) => {
+	    	let payload = {
+	    		username : data.username,
+	    		password : data.password
+	    	};
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/user/token`, data.uuid, false, payload).then((response) => {
+				data.token = response.token;
+				this.handleResponse(data, resolve, reject);
+			}, (error) => {
+				data.error = error;
+				this.handleError(data, resolve, reject);
+			});
+	    });
 	}
 
     publishEvents(data) {
 		if (data.outcomes.includes("saveInLocalStorage")) {
 			new Event('login.LoginSaveInLocalStorageEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
+		}
+		if (data.outcomes.includes("ok")) {
+			new Event('login.LoginOkEvent').publish(data);
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
-				new GetRoleAction(), 
+				new RouteAction(), 
 					{
+						hash: data.hash
 					}
 			)
 		}
-		if (data.outcomes.includes("doNotSaveInLocalStorage")) {
-			new Event('login.LoginDoNotSaveInLocalStorageEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+		if (data.outcomes.includes("unauthorized")) {
 			new TriggerAction().publish(
-				new GetRoleAction(), 
+				new DisplayToastAction(), 
+					{
+						message: data.message, 
+						error: data.error
+					}
+			)
+			new TriggerAction().publish(
+				new LogoutAction(), 
 					{
 					}
 			)
 		}
     }
-}
 
+}
 
 
 

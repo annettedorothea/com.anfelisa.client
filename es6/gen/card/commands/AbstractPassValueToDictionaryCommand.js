@@ -8,7 +8,6 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractPassValueToDictionaryCommand extends SynchronousCommand {
     constructor() {
@@ -16,9 +15,15 @@ export default class AbstractPassValueToDictionaryCommand extends SynchronousCom
     }
 
     initCommandData(data) {
-        data.naturalInputOrder = AppState.get_rootContainer_authorView_cardView_naturalInputOrder();
-        data.given = AppState.get_rootContainer_authorView_cardView_newCard_given();
-        data.wanted = AppState.get_rootContainer_authorView_cardView_newCard_wanted();
+        data.naturalInputOrder = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "naturalInputOrder"]
+        );
+        data.given = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "newCard", "given"]
+        );
+        data.wanted = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "newCard", "wanted"]
+        );
         data.outcomes = [];
     }
 
@@ -29,7 +34,7 @@ export default class AbstractPassValueToDictionaryCommand extends SynchronousCom
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.PassValueToDictionaryOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

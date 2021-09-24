@@ -7,11 +7,10 @@
 
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
-import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
-import InitialLoginAction from "../../../src/common/actions/InitialLoginAction";
+import GetUserInfoAction from "../../../src/common/actions/GetUserInfoAction";
 import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractInitCommand extends SynchronousCommand {
     constructor() {
@@ -19,11 +18,15 @@ export default class AbstractInitCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.username = AppState.get_rootContainer_username();
-        data.password = AppState.get_rootContainer_password();
+        data.token = AppUtils.getStorage(
+        	["rootContainer", "token"]
+        );
         data.outcomes = [];
     }
 
+	addOkOutcome(data) {
+		data.outcomes.push("ok");
+	}
 	addUserOutcome(data) {
 		data.outcomes.push("user");
 	}
@@ -32,18 +35,21 @@ export default class AbstractInitCommand extends SynchronousCommand {
 	}
 
     publishEvents(data) {
+		if (data.outcomes.includes("ok")) {
+			new Event('common.InitOkEvent').publish(data);
+			AppUtils.stateUpdated();
+		}
 		if (data.outcomes.includes("user")) {
 			new Event('common.InitUserEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
-				new InitialLoginAction(), 
+				new GetUserInfoAction(), 
 					{
+						token: data.token
 					}
 			)
 		}
 		if (data.outcomes.includes("noUser")) {
-			new Event('common.InitNoUserEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
 			new TriggerAction().publish(
 				new RouteChangedAction(), 
 					{

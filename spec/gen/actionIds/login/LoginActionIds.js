@@ -12,9 +12,7 @@ module.exports = {
 	
 	toggleSaveInLocalStorage : "login_toggleSaveInLocalStorage",
 	
-	login : "login_login",
-	
-	getRole : "login_getRole"
+	login : "login_login"
 	
 }
 

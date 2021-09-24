@@ -31,7 +31,7 @@ export default class AbstractConfirmEmailCommand extends AsynchronousCommand {
 	    		token : data.token,
 	    		username : data.username
 	    	};
-			AppUtils.httpPut(`${Utils.settings.rootPath}/users/confirm`, data.uuid, false, payload).then(() => {
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/users/confirm`, data.uuid, false, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

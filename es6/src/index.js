@@ -6,27 +6,21 @@
 
 
 
-import * as AppUtils from "../../src/app/AppUtils";
-import * as AppState from "../ace/AppState";
-import * as ACEController from "../ace/ACEController";
+import * as AppUtils from "./app/AppUtils";
 
-export * from "../ace/Timeline";
+export * from "../gen/ace/Timeline";
 
 export function dumpAppState() {
-    console.info(AppState.getAppState());
+    console.info(AppUtils.get([]));
 }
 
-AppUtils.createInitialAppState();
-ACEController.addItemToTimeLine({
-	appState: AppState.getAppState()
-});
 AppUtils.initEventListeners();
 AppUtils.startApp();
 AppUtils.renderApp();
 
 // for Selenium tests
 export function getAppState() {
-    return AppState.getAppState();
+    return AppUtils.get([])
 }
 
 export function addSquishyValueClient(value) {
@@ -39,7 +33,7 @@ export function addSquishyValueClient(value) {
 }
 
 export function addSquishyValueServer(uuid, key, value) {
-    return new Promise((resolve, reject) => {
+    return new Promise(() => {
         let url = "";
         if (key === "system-time") {
             url =`/api/test/squishy/system-time?uuid=${uuid}&system-time=${value}`;

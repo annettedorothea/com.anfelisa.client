@@ -6,9 +6,9 @@
 
 
 import InitAction from "../../src/common/actions/InitAction";
+import GetUserInfoAction from "../../src/common/actions/GetUserInfoAction";
 import RouteChangedAction from "../../src/common/actions/RouteChangedAction";
 import RouteAction from "../../src/common/actions/RouteAction";
-import InitialLoginAction from "../../src/common/actions/InitialLoginAction";
 import LogoutAction from "../../src/common/actions/LogoutAction";
 import DisplayToastAction from "../../src/common/actions/DisplayToastAction";
 import HideToastAction from "../../src/common/actions/HideToastAction";
@@ -25,16 +25,16 @@ export function init() {
     new InitAction().apply({});
 }
 
+export function getUserInfo(token) {
+    new GetUserInfoAction().apply({token});
+}
+
 export function routeChanged() {
     new RouteChangedAction().apply({});
 }
 
 export function route(hash) {
     new RouteAction().apply({hash});
-}
-
-export function initialLogin() {
-    new InitialLoginAction().apply({});
 }
 
 export function logout() {

@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractSearchUsernameCommand extends AsynchronousCommand {
     constructor() {
@@ -17,8 +16,12 @@ export default class AbstractSearchUsernameCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.usernameSearchString = AppState.get_rootContainer_authorView_categoryTree_inviteUserDialog_usernameSearchString();
-        data.categoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
+        data.usernameSearchString = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "inviteUserDialog", "usernameSearchString"]
+        );
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -28,7 +31,7 @@ export default class AbstractSearchUsernameCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/users/search?usernameSearchString=${data.usernameSearchString}&categoryId=${data.categoryId}`, data.uuid, true).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/users/search?usernameSearchString=${data.usernameSearchString}&categoryId=${data.categoryId}`, data.uuid, true).then((response) => {
 				data.usernames = response.usernames;
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
@@ -41,7 +44,7 @@ export default class AbstractSearchUsernameCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.SearchUsernameOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

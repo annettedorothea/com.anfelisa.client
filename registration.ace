@@ -42,18 +42,23 @@ RegisterUser
 	on ok triggers ( common.DisplayToast Login)
 	on error triggers (common.DisplayToast) 
 
+	Login 
+		fromAppState ( 
+			common.rootContainer.mainView.registrationView.username,
+			common.rootContainer.mainView.registrationView.password
+		)
+	 	call com.anfelisa.user.GetToken
+		loadingFlag common.rootContainer.spinner.display 
+		on ok (
+			set common.rootContainer.loggedInUser.username
+			set common.rootContainer.loggedInUser.token
+		) triggers ( 
+			common.Route
+		)
+	
 ConfirmEmail ( username, token )
 	call com.anfelisa.user.ConfirmEmail
 	loadingFlag common.rootContainer.spinner.display 
 	on ok triggers ( common.DisplayToast common.Route)
 
-Login ( password  )
-	fromAppState (
-		common.rootContainer.mainView.registrationView.username
-	)
-	on ok ( 
-		set common.rootContainer.loggedInUser
-		set common.rootContainer.username 
-		set common.rootContainer.password
-	) triggers ( login.GetRole )
 	

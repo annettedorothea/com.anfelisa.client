@@ -7,10 +7,9 @@
 
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
-import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractHideSaveBugDialogCommand extends SynchronousCommand {
     constructor() {
@@ -28,7 +27,7 @@ export default class AbstractHideSaveBugDialogCommand extends SynchronousCommand
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('common.HideSaveBugDialogOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new DisplayToastAction(), 
 					{

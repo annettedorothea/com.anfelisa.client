@@ -9,11 +9,11 @@ import AbstractInitBoxesForDayDuringScoreCommand from "../../../gen/box/commands
 
 export default class InitBoxesForDayDuringScoreCommand extends AbstractInitBoxesForDayDuringScoreCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
     	this.addOkOutcome(data);
     	resolve(data);
     }

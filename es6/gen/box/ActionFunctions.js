@@ -17,6 +17,7 @@ import UpdateCardPriorityAction from "../../src/box/actions/UpdateCardPriorityAc
 import DeleteBoxClickAction from "../../src/box/actions/DeleteBoxClickAction";
 import CancelDeleteBoxAction from "../../src/box/actions/CancelDeleteBoxAction";
 import DeleteBoxAction from "../../src/box/actions/DeleteBoxAction";
+import ArchiveBoxAction from "../../src/box/actions/ArchiveBoxAction";
 import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
@@ -81,6 +82,10 @@ export function cancelDeleteBox() {
 
 export function deleteBox() {
     new DeleteBoxAction().apply({});
+}
+
+export function archiveBox(archived, boxId) {
+    new ArchiveBoxAction().apply({archived, boxId});
 }
 
 export function loadNextCard() {

@@ -5,20 +5,25 @@
 
 
 
-import SynchronousCommand from "../../ace/SynchronousCommand";
+import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
-import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
-import GetRoleAction from "../../../src/login/actions/GetRoleAction";
+import * as Utils from "../../ace/Utils";
+import * as AppUtils from "../../../src/app/AppUtils";
+import RouteAction from "../../../src/common/actions/RouteAction";
 
-export default class AbstractLoginCommand extends SynchronousCommand {
+export default class AbstractLoginCommand extends AsynchronousCommand {
     constructor() {
         super("registration.LoginCommand");
     }
-
+    
     initCommandData(data) {
-        data.username = AppState.get_rootContainer_registrationView_username();
+        data.username = AppUtils.get(
+        	["rootContainer", "mainView", "username"]
+        );
+        data.password = AppUtils.get(
+        	["rootContainer", "mainView", "password"]
+        );
         data.outcomes = [];
     }
 
@@ -26,19 +31,36 @@ export default class AbstractLoginCommand extends SynchronousCommand {
 		data.outcomes.push("ok");
 	}
 
+	execute(data) {
+	    return new Promise((resolve, reject) => {
+	    	let payload = {
+	    		username : data.username,
+	    		password : data.password
+	    	};
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/user/token`, data.uuid, false, payload).then((response) => {
+				data.token = response.token;
+				this.handleResponse(data, resolve, reject);
+			}, (error) => {
+				data.error = error;
+				this.handleError(data, resolve, reject);
+			});
+	    });
+	}
+
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('registration.LoginOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
-				new GetRoleAction(), 
+				new RouteAction(), 
 					{
+						hash: data.hash
 					}
 			)
 		}
     }
-}
 
+}
 
 
 

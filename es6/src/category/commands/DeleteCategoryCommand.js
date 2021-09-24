@@ -9,11 +9,11 @@ import AbstractDeleteCategoryCommand from "../../../gen/category/commands/Abstra
 
 export default class DeleteCategoryCommand extends AbstractDeleteCategoryCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         data.deleteCategoryDialog = {
             display: false,
         };

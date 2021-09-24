@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
     constructor() {
@@ -17,7 +16,9 @@ export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.username = AppState.get_rootContainer_registrationView_username();
+        data.username = AppUtils.get(
+        	["rootContainer", "mainView", "username"]
+        );
         data.outcomes = [];
     }
 
@@ -30,7 +31,7 @@ export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/users/username?username=${data.username}`, data.uuid, false).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/users/username?username=${data.username}`, data.uuid, false).then((response) => {
 				data.available = response.available;
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
@@ -43,11 +44,11 @@ export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("empty")) {
 			new Event('registration.CheckUsernameEmptyEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
 		if (data.outcomes.includes("ok")) {
 			new Event('registration.CheckUsernameOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

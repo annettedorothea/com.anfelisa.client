@@ -9,13 +9,11 @@ import AbstractSortSelectedCardsOutCommand from "../../../gen/box/commands/Abstr
 
 export default class SortSelectedCardsOutCommand extends AbstractSortSelectedCardsOutCommand {
 
-    validateCommandData(data) {
-    	//data.cardIds is mandatory String
-    	//data.boxId is mandatory String
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
     	this.addOkOutcome(data);
     	resolve(data);
     }

@@ -13,6 +13,7 @@ import CryptoJS from "crypto-js";
 
 
 export const LoginView = (props) => {
+	// noinspection JSUnresolvedFunction
 	return <div className="center form">
 		<h1>{Texts.login.title[props.language]}</h1>
 		<div className="line">
@@ -23,6 +24,7 @@ export const LoginView = (props) => {
 				id="username"
 				type="text"
 				onChange={(e) => usernameChanged(e.target.value)}
+				autoComplete="username"
 			/>
 			<a id="registration" onClick={() => route("#registration")}>{Texts.login.registration[props.language]}</a>
 		</div>
@@ -34,6 +36,7 @@ export const LoginView = (props) => {
 				id="password"
 				type="password"
 				onChange={(e) => passwordChanged(CryptoJS.MD5(e.target.value).toString())}
+				autoComplete="current-password"
 			/>
 			<a onClick={() => route("#forgotpassword")}>{Texts.login.forgotPassword[props.language]}</a>
 		</div>

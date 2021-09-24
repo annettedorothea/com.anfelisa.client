@@ -7,7 +7,7 @@
 
 import React from "react";
 import {route} from "../../../../../gen/common/ActionFunctions";
-import {deleteBoxClick} from "../../../../../gen/box/ActionFunctions";
+import {archiveBox, deleteBoxClick} from "../../../../../gen/box/ActionFunctions";
 import {Texts} from "../../../../app/Texts";
 
 
@@ -24,6 +24,11 @@ export const BoxListItem = (props) => {
 		route(`#box/settings/${props.boxId}`);
 	}
 
+	const onArchiveClick = (e, archived) => {
+		e.stopPropagation();
+		archiveBox(archived, props.boxId);
+	}
+
 	const onDeleteClick = (e) => {
 		e.stopPropagation();
 		if (props.reverse || !props.shared) {
@@ -31,8 +36,27 @@ export const BoxListItem = (props) => {
 		}
 	}
 
+	if (props.archived === true) {
+		return <a className="tile box">
+			<h2>
+				{!props.editable ?
+					Texts.box.sharedTitle[props.language].replace("{0}", props.categoryName).replace("{1}", props.categoryAuthor) :
+					props.categoryName}
+				{props.reverse ? <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
+			</h2>
+			<br/>
+			<div className="buttons button4">
+				<i
+					className="fas fa-box-open"
+					onClick={(e) => onArchiveClick(e, false)}
+					title={Texts.box.unarchiveBox[props.language]}
+				/>
+			</div>
+		</a>
+	}
+
 	return <a
-		className="tile box"
+		className="tile box active"
 		onClick={() => props.openTodaysCards > 0 ?
 			route(`#box/${props.boxId}`) :
 			route(categoryRoute)}
@@ -61,6 +85,13 @@ export const BoxListItem = (props) => {
 			/>
 		</div>
 		<div className="buttons button3">
+			<i
+				className="fas fa-archive"
+				onClick={(e) => onArchiveClick(e, true)}
+				title={Texts.box.archiveBox[props.language]}
+			/>
+		</div>
+		<div className="buttons button4">
 			<i
 				className={`far fa-trash-alt ${props.shared && !props.reverse ? "disabled" : "danger"}`}
 				onClick={(e) => onDeleteClick(e)}

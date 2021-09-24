@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 import LoginAction from "../../../src/registration/actions/LoginAction";
 
@@ -19,10 +18,18 @@ export default class AbstractRegisterUserCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.email = AppState.get_rootContainer_registrationView_email();
-        data.language = AppState.get_rootContainer_language();
-        data.username = AppState.get_rootContainer_registrationView_username();
-        data.password = AppState.get_rootContainer_registrationView_password();
+        data.email = AppUtils.get(
+        	["rootContainer", "mainView", "email"]
+        );
+        data.language = AppUtils.get(
+        	["rootContainer", "language"]
+        );
+        data.username = AppUtils.get(
+        	["rootContainer", "mainView", "username"]
+        );
+        data.password = AppUtils.get(
+        	["rootContainer", "mainView", "password"]
+        );
         data.outcomes = [];
     }
 
@@ -41,7 +48,7 @@ export default class AbstractRegisterUserCommand extends AsynchronousCommand {
 	    		email : data.email,
 	    		language : data.language
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/users/register`, data.uuid, false, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/users/register`, data.uuid, false, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;
@@ -62,7 +69,6 @@ export default class AbstractRegisterUserCommand extends AsynchronousCommand {
 			new TriggerAction().publish(
 				new LoginAction(), 
 					{
-						password: data.password
 					}
 			)
 		}

@@ -10,20 +10,19 @@ import {createInfoMessage} from "../../app/AppUtils";
 
 export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         if (data.openTodaysCards === 0) {
             this.addFinishedOutcome(data);
             data.hash = "#dashboard";
             data.message = createInfoMessage("finished");
         } else {
             this.addOkOutcome(data);
-            data.index = 0;
+            data.nextCard.index = 0;
             data.enableScoreButtons = false;
-            data.displayImage = false;
         }
         resolve(data);
     }

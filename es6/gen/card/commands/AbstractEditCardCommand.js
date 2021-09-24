@@ -8,7 +8,6 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractEditCardCommand extends SynchronousCommand {
     constructor() {
@@ -16,7 +15,9 @@ export default class AbstractEditCardCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.cardList = AppState.get_rootContainer_authorView_cardView_cardList();
+        data.cardList = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "cardList"]
+        );
         data.outcomes = [];
     }
 
@@ -27,7 +28,7 @@ export default class AbstractEditCardCommand extends SynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.EditCardOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

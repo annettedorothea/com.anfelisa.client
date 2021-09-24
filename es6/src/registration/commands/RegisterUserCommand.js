@@ -10,11 +10,11 @@ import * as AppUtils from "../../app/AppUtils";
 
 export default class RegisterUserCommand extends AbstractRegisterUserCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         this.addOkOutcome(data);
         data.hash = "#";
         data.message = AppUtils.createInfoMessage("confirmEmail");

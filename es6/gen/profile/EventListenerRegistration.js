@@ -6,16 +6,52 @@
 
 
 import * as ACEController from "../ace/ACEController";
-import * as AppState from "../ace/AppState";
+import * as AppUtils from "../../src/app/AppUtils";
 
 export default class EventListenerRegistrationProfile {
 
 	static init() {
-		ACEController.registerListener('profile.LoadUserOkEvent', AppState.set_rootContainer_profileView);
-		ACEController.registerListener('profile.DeleteUserOkEvent', AppState.set_rootContainer_profileView_showDeleteUserDialog);
-		ACEController.registerListener('profile.DeleteUserErrorEvent', AppState.set_rootContainer_profileView_showDeleteUserDialog);
-		ACEController.registerListener('profile.DeleteUserClickOkEvent', AppState.set_rootContainer_profileView_showDeleteUserDialog);
-		ACEController.registerListener('profile.DeleteUserCancelOkEvent', AppState.set_rootContainer_profileView_showDeleteUserDialog);
+		ACEController.registerListener('profile.LoadUserOkEvent', (data) => {
+			if (data.mainView) {
+				data.mainView.group = "profileView";
+			} else {
+				data.mainView = { group: "profileView" };
+			}
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView"], 
+				[], 
+				["group", "username", "email", "role", "showDeleteUserDialog"]
+			)
+		});
+		ACEController.registerListener('profile.DeleteUserOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "showDeleteUserDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "profileView" }]
+			)
+		});
+		ACEController.registerListener('profile.DeleteUserErrorEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "showDeleteUserDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "profileView" }]
+			)
+		});
+		ACEController.registerListener('profile.DeleteUserClickOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "showDeleteUserDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "profileView" }]
+			)
+		});
+		ACEController.registerListener('profile.DeleteUserCancelOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "showDeleteUserDialog"], 
+				[{ path: ["rootContainer", "mainView"], group: "profileView" }]
+			)
+		});
 	}
 
 }

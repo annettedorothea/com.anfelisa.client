@@ -8,7 +8,6 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractTooManyCardsStatusCommand extends SynchronousCommand {
     constructor() {
@@ -16,9 +15,15 @@ export default class AbstractTooManyCardsStatusCommand extends SynchronousComman
     }
 
     initCommandData(data) {
-        data.maxCardsPerDay = AppState.get_rootContainer_boxSettingsView_maxCardsPerDay();
-        data.maxInterval = AppState.get_rootContainer_boxSettingsView_maxInterval();
-        data.allActiveCards = AppState.get_rootContainer_boxSettingsView_allActiveCards();
+        data.maxCardsPerDay = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "maxCardsPerDay"]
+        );
+        data.maxInterval = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "maxInterval"]
+        );
+        data.allActiveCards = AppUtils.get(
+        	["rootContainer", "mainView", "boxSettings", "allActiveCards"]
+        );
         data.outcomes = [];
     }
 
@@ -29,7 +34,7 @@ export default class AbstractTooManyCardsStatusCommand extends SynchronousComman
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.TooManyCardsStatusOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

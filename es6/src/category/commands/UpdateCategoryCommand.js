@@ -9,11 +9,11 @@ import AbstractUpdateCategoryCommand from "../../../gen/category/commands/Abstra
 
 export default class UpdateCategoryCommand extends AbstractUpdateCategoryCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         data.categoryDialog = null;
     	this.addOkOutcome(data);
     	resolve(data);

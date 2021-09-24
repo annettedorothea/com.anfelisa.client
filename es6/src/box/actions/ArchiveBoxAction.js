@@ -5,9 +5,9 @@
 
 
 
-import AbstractGetRoleAction from "../../../gen/login/actions/AbstractGetRoleAction";
+import AbstractArchiveBoxAction from "../../../gen/box/actions/AbstractArchiveBoxAction";
 
-export default class GetRoleAction extends AbstractGetRoleAction {
+export default class ArchiveBoxAction extends AbstractArchiveBoxAction {
 
     initActionData(data) {
     	return data;

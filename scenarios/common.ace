@@ -5,23 +5,20 @@ scenarios
 Init 
 	WHEN common.Init
 	THEN expectedState 
-		loggedInUser common.rootContainer.loggedInUser shouldBe null
-		language common.rootContainer.language shouldBe "de"
-		messages common.rootContainer.messages shouldBe []
-		username common.rootContainer.mainView.loginView.username shouldBe ""
-		password common.rootContainer.mainView.loginView.password shouldBe ""
-		saveInLocalStorage common.rootContainer.mainView.loginView.saveInLocalStorage shouldBe false
+		loggedInUser common.rootContainer.loggedInUser should be undefined
+		language common.rootContainer.language should be "de"
+		messages common.rootContainer.messages should be []
+		username common.rootContainer.mainView.loginView.username should be ""
+		password common.rootContainer.mainView.loginView.password should be ""
+		saveInLocalStorage common.rootContainer.mainView.loginView.saveInLocalStorage should be false
 
 InitWithInitialLogin 
 	GIVEN loginscenarios.LoginWithSaveInLocalStorage
 	WHEN common.Init
 	THEN 
 		expectedState 
-			userLoggedIn common.rootContainer.loggedInUser shouldBe {
-				password: "5f4dcc3b5aa765d61d8327deb882cf99",
-				username: "username-${testId}"
-			}
-			role common.rootContainer.role shouldBe "STUDENT"
+			userLoggedIn common.rootContainer.loggedInUser.username should be "username-${testId}"
+			tokenWasSet common.rootContainer.loggedInUser.token should not be null
 		verifications
 			loginDataWasSetInLocalStorage
 
@@ -29,7 +26,7 @@ HideToast
 	GIVEN loginscenarios.LoginUnauthorized 
 	WHEN delayInMillis 5000
 	THEN expectedState 
-		errorHidden common.rootContainer.messages shouldBe [
+		errorHidden common.rootContainer.messages should be [
 				{ 
 					code: 401,
 					text: "Unauthorized",
@@ -44,19 +41,19 @@ DestroyToast
 	GIVEN loginscenarios.LoginUnauthorized 
 	WHEN delayInMillis 7000
 	THEN expectedState 
-		errorDestroyed common.rootContainer.messages shouldBe []
+		errorDestroyed common.rootContainer.messages should be []
 		
 HideToastClick
 	GIVEN loginscenarios.LoginUnauthorized 
 	WHEN common.HideToast
 	THEN expectedState 
-		errorDestroyed common.rootContainer.messages shouldBe []
+		errorDestroyed common.rootContainer.messages should be []
 		
 Logout
 	GIVEN registrationscenarios.Register
 	WHEN common.Logout delayInMillis 1000
 	THEN expectedState
-		loggedInUser common.rootContainer.loggedInUser shouldBe null
+		loggedInUser common.rootContainer.loggedInUser should be null
 		
 		
 

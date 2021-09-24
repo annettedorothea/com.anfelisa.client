@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
 
 export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
@@ -19,9 +18,15 @@ export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.categoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
-        data.selectedCategoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_parentCategoryId();
-        data.rootCategoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory", "categoryId"]
+        );
+        data.selectedCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory", "parentCategoryId"]
+        );
+        data.rootCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -31,7 +36,7 @@ export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpDelete(`${Utils.settings.rootPath}/category/delete?categoryId=${data.categoryId}`, data.uuid, true).then(() => {
+			AppUtils.httpDelete(`${AppUtils.settings.rootPath}/category/delete?categoryId=${data.categoryId}`, data.uuid, true).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;
@@ -43,7 +48,7 @@ export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.DeleteCategoryOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new ReloadCategoryTreeAction(), 
 					{

@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
 
@@ -19,8 +18,12 @@ export default class AbstractResetPasswordCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.token = AppState.get_rootContainer_resetPasswordView_token();
-        data.password = AppState.get_rootContainer_resetPasswordView_password();
+        data.token = AppUtils.get(
+        	["rootContainer", "mainView", "token"]
+        );
+        data.password = AppUtils.get(
+        	["rootContainer", "mainView", "password"]
+        );
         data.outcomes = [];
     }
 
@@ -37,7 +40,7 @@ export default class AbstractResetPasswordCommand extends AsynchronousCommand {
 	    		password : data.password,
 	    		token : data.token
 	    	};
-			AppUtils.httpPut(`${Utils.settings.rootPath}/users/resetpassword`, data.uuid, false, payload).then(() => {
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/users/resetpassword`, data.uuid, false, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

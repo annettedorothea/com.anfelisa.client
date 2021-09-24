@@ -11,6 +11,7 @@ import { LoggedInUser } from "./rootContainer/LoggedInUser";
 import {route} from "../../gen/common/ActionFunctions";
 import {Texts} from "../app/Texts";
 import * as Utils from "../../gen/ace/Utils";
+import * as AppUtils from "../app/AppUtils";
 import {Spinner} from "./rootContainer/Spinner";
 import {MainView} from "./rootContainer/MainView";
 import {MessagesItem} from "./rootContainer/MessagesItem";
@@ -72,7 +73,7 @@ const content = (props) => (
 					+49 781 99078158 &middot; <a href="mailto:info@anfelisa.de">info@anfelisa.de</a>
 				</p>
 				<p>
-					{Texts.container.version[props.language]} {Utils.settings ? Utils.settings.clientVersion : ""}
+					{Texts.container.version[props.language]} {AppUtils.settings ? AppUtils.settings.clientVersion : ""} {AppUtils.settings && AppUtils.settings.mode === "dev" ? AppUtils.settings.mode : ""}
 				</p>
 				<p>
 					<a onClick={() =>

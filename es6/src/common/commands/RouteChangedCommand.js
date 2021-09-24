@@ -3,8 +3,6 @@
  ********************************************************************************/
 
 
-
-
 import AbstractRouteChangedCommand from "../../../gen/common/commands/AbstractRouteChangedCommand";
 
 export default class RouteChangedCommand extends AbstractRouteChangedCommand {
@@ -15,7 +13,7 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             data.token = hashes[2];
             this.addConfirmEmailOutcome(data);
         } else if (data.hash.startsWith("#resetpassword") && hashes.length >= 1 && hashes[1]) {
-            data.resetPasswordView = {
+            data.mainView = {
                 token: hashes[1],
                 passwordMismatch: false,
                 password: "",
@@ -23,56 +21,64 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             };
             this.addResetPasswordOutcome(data);
         } else if (data.hash === "#dashboard" && this.isUserLoggedIn(data)) {
-            data.dashboardView = {};
+            data.mainView = {
+                deleteBox: {
+                    confirmDelete: false,
+                    boxId: undefined
+                }
+            };
             this.addDashboardOutcome(data);
         } else if (data.hash === "#profile" && this.isUserLoggedIn(data)) {
+            data.mainView = {};
             this.addProfileOutcome(data);
         } else if (data.hash.startsWith("#categories") && hashes.length >= 2 && this.isUserLoggedIn(data)) {
             data.rootCategoryId = hashes[1];
-            data.authorView = {};
+            data.mainView = {};
             if (hashes[hashes.length - 1] === "reverse") {
-                data.authorView.reverse = true;
+                data.mainView.reverse = true;
                 data.selectedCategoryId = hashes.length === 3 ? data.rootCategoryId : hashes[2];
             } else {
-                data.authorView.reverse = false;
+                data.mainView.reverse = false;
                 data.selectedCategoryId = hashes.length === 2 ? data.rootCategoryId : hashes[2];
             }
             this.addCategoriesOutcome(data);
         } else if (data.hash.startsWith("#box/settings") && hashes.length >= 2 && hashes[2] && this.isUserLoggedIn(data)) {
-            data.boxSettingsView = {
+            data.mainView = {
                 boxId: hashes[2]
             };
             this.addBoxSettingsOutcome(data);
         } else if (data.hash.startsWith("#box/active-cards") && hashes.length >= 2 && hashes[2] && this.isUserLoggedIn(data)) {
-            data.allActiveCardsView = {
+            data.mainView = {
                 boxId: hashes[2]
             };
             this.addAllActiveCardsOutcome(data);
         } else if (data.hash === "#box/create" && this.isUserLoggedIn(data)) {
-            data.boxSettingsView = {
-                maxCardsPerDay: 8,
-                maxInterval: "",
-                boxId: "",
-                categoryName: "",
-                dictionaryLookup: false,
-                wantedLanguage: "",
-                givenLanguage: ""
+            data.mainView = {
+                boxSettings: {
+                    maxCardsPerDay: 8,
+                    maxInterval: "",
+                    boxId: "",
+                    categoryName: "",
+                    dictionaryLookup: false,
+                    wantedLanguage: "",
+                    givenLanguage: ""
+                }
             };
             this.addBoxCreateOutcome(data);
         } else if (data.hash.startsWith("#box") && hashes.length >= 1 && hashes[1] && this.isUserLoggedIn(data)) {
-            data.queryCardView = {
+            data.mainView = {
                 boxId: hashes[1]
             };
             this.addNextCardOutcome(data);
         } else if (data.hash === "" && !this.isUserLoggedIn(data)) {
-            data.loginView = {
+            data.mainView = {
                 username: "",
                 password: "",
                 saveInLocalStorage: false
             };
             this.addLoginOutcome(data);
         } else if (data.hash === "#registration" && !this.isUserLoggedIn(data)) {
-            data.registrationView = {
+            data.mainView = {
                 displayUsernameSpinner: false,
                 usernameAvailable: undefined,
                 username: "",
@@ -84,12 +90,12 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             };
             this.addRegistrationOutcome(data);
         } else if (data.hash === "#forgotpassword" && !this.isUserLoggedIn(data)) {
-            data.forgotPasswordView = {
+            data.mainView = {
                 username: ""
             };
             this.addForgotPasswordOutcome(data);
         } else if (data.hash === "#privacypolicy") {
-            data.privacyPolicyView = {};
+            data.mainView = {};
             this.addPrivacyPolicyOutcome(data);
         } else if (this.isUserLoggedIn(data)) {
             this.addInvalidOutcome(data);
@@ -102,11 +108,9 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
     }
 
     isUserLoggedIn(data) {
-        return (data.loggedInUser && data.loggedInUser.password && data.loggedInUser.username);
+        return (data.loggedInUser && data.loggedInUser.token);
     }
 }
-
-
 
 
 /******* S.D.G. *******/

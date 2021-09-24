@@ -10,8 +10,7 @@ import AbstractLogoutCommand from "../../../gen/common/commands/AbstractLogoutCo
 export default class LogoutCommand extends AbstractLogoutCommand {
     execute(data) {
         data.loggedInUser = null;
-        data.username = null;
-        data.password = null;
+        data.token = null;
         data.hash = "#";
     	this.addOkOutcome(data);
     	return data;

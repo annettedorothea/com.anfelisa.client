@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractLoadBoxStatisticsCommand extends AsynchronousCommand {
     constructor() {
@@ -17,7 +16,9 @@ export default class AbstractLoadBoxStatisticsCommand extends AsynchronousComman
     }
     
     initCommandData(data) {
-        data.boxList = AppState.get_rootContainer_dashboardView_boxList();
+        data.boxList = AppUtils.get(
+        	["rootContainer", "mainView", "boxList"]
+        );
         data.outcomes = [];
     }
 
@@ -27,7 +28,7 @@ export default class AbstractLoadBoxStatisticsCommand extends AsynchronousComman
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/boxes/statistics/?todayAtMidnightInUTC=${data.todayAtMidnightInUTC}`, data.uuid, true).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/boxes/statistics/?todayAtMidnightInUTC=${data.todayAtMidnightInUTC}`, data.uuid, true).then((response) => {
 				data.boxStatisticsList = response.boxStatisticsList;
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
@@ -40,7 +41,7 @@ export default class AbstractLoadBoxStatisticsCommand extends AsynchronousComman
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.LoadBoxStatisticsOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

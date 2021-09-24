@@ -10,11 +10,11 @@ import * as AppUtils from "../../app/AppUtils";
 
 export default class ForgotPasswordCommand extends AbstractForgotPasswordCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         data.hash = "#";
         data.message = AppUtils.createInfoMessage("passwordRequestSubmitted");
     	this.addOkOutcome(data);

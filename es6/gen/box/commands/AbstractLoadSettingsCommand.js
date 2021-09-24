@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import TooManyCardsStatusAction from "../../../src/box/actions/TooManyCardsStatusAction";
 
 export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
@@ -19,7 +18,9 @@ export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.boxId = AppState.get_rootContainer_boxSettingsView_boxId();
+        data.boxId = AppUtils.get(
+        	["rootContainer", "mainView", "boxId"]
+        );
         data.outcomes = [];
     }
 
@@ -29,17 +30,8 @@ export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/box/settings/${data.boxId}`, data.uuid, true).then((response) => {
-				data.maxCardsPerDay = response.maxCardsPerDay;
-				data.maxInterval = response.maxInterval;
-				data.categoryName = response.categoryName;
-				data.dictionaryLookup = response.dictionaryLookup;
-				data.givenLanguage = response.givenLanguage;
-				data.wantedLanguage = response.wantedLanguage;
-				data.categoryId = response.categoryId;
-				data.allCards = response.allCards;
-				data.allActiveCards = response.allActiveCards;
-				data.shared = response.shared;
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/box/settings/${data.boxId}`, data.uuid, true).then((response) => {
+				data.boxSettings = response.boxSettings;
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;
@@ -51,7 +43,7 @@ export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('box.LoadSettingsOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new TooManyCardsStatusAction(), 
 					{

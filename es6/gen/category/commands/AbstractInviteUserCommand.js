@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractInviteUserCommand extends AsynchronousCommand {
     constructor() {
@@ -17,7 +16,9 @@ export default class AbstractInviteUserCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.categoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
+        data.categoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -31,7 +32,7 @@ export default class AbstractInviteUserCommand extends AsynchronousCommand {
 	    		categoryId : data.categoryId,
 	    		invitedUsername : data.invitedUsername
 	    	};
-			AppUtils.httpPut(`${Utils.settings.rootPath}/category/invite`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/category/invite`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;
@@ -43,7 +44,7 @@ export default class AbstractInviteUserCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.InviteUserOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 

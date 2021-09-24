@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadActiveCardsAction from "../../../src/box/actions/LoadActiveCardsAction";
 
 export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCommand {
@@ -18,8 +17,12 @@ export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCom
     }
     
     initCommandData(data) {
-        data.cardIds = AppState.get_rootContainer_allActiveCardsView_selectedCardIds();
-        data.boxId = AppState.get_rootContainer_allActiveCardsView_boxId();
+        data.cardIds = AppUtils.get(
+        	["rootContainer", "mainView", "selectedCardIds"]
+        );
+        data.boxId = AppUtils.get(
+        	["rootContainer", "mainView", "boxId"]
+        );
         data.outcomes = [];
     }
 
@@ -33,7 +36,7 @@ export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCom
 	    		cardIds : data.cardIds,
 	    		boxId : data.boxId
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/cards/sort-out`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/cards/sort-out`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

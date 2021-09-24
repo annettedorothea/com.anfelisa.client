@@ -6,8 +6,6 @@
 
 
 import * as AppUtils from "../../src/app/AppUtils";
-import * as Utils from "./Utils";
-import * as AppState from "./AppState";
 import Event from "./Event";
 
 export let timeline = [];
@@ -15,6 +13,9 @@ export let listeners = {};
 export let delayedActions = {};
 
 let actionQueue = [];
+let triggeredActionsQueue = [];
+let idle = true;
+
 
 export function registerListener(eventName, listener) {
     if (!eventName.trim()) {
@@ -32,9 +33,9 @@ export function registerListener(eventName, listener) {
 }
 
 export function addItemToTimeLine(item) {
-	if (Utils.settings && Utils.settings.timelineSize > 0) {
+	if (AppUtils.settings && AppUtils.settings.timelineSize > 0) {
 	    timeline.push(AppUtils.deepCopy(item));
-		if (timeline.length > Utils.settings.timelineSize) {
+		if (timeline.length > AppUtils.settings.timelineSize) {
 		    timeline.shift();
 		    while (timeline.length > 0 && timeline.length > 0 && !timeline[0].appState) {
 		        timeline.shift();
@@ -48,7 +49,15 @@ export function addActionToQueue(action) {
     applyNextActions();
 }
 
+export function addActionToTriggeredActionsQueue(action, data) {
+	triggeredActionsQueue.push({action, data});
+	if (idle) {
+		applyNextActions();
+	}
+}
+
 function applyNextActions() {
+	idle = false;
     let nextAction = actionQueue.shift();
     if (nextAction) {
 		if (nextAction.action.asynchronous) {
@@ -68,6 +77,12 @@ function applyNextActions() {
 			}
 		}
     }
+	let nextTriggeredAction = triggeredActionsQueue.shift();
+	while (nextTriggeredAction) {
+	    nextTriggeredAction.action.apply(nextTriggeredAction.data);
+	    nextTriggeredAction = triggeredActionsQueue.shift();
+	}
+	idle = true;
 }
 
 export function startReplay(timeline, pauseInMillis) {
@@ -85,10 +100,13 @@ export function startReplay(timeline, pauseInMillis) {
             });
         }
 		if (item.appState && !appStateWasSet) {
-		    AppState.setInitialAppState(item.appState);
+		    AppUtils.setInitialAppState(item.appState);
+            AppUtils.stateUpdated();
 		    appStateWasSet = true;
 		}
     }
+    
+    console.info(`replay ${events.length} events`);
 
 	setTimeout(() => replayNextEvent(events, pauseInMillis), pauseInMillis);
 }
@@ -96,7 +114,9 @@ export function startReplay(timeline, pauseInMillis) {
 function replayNextEvent(events, pauseInMillis) {
     let nextEvent = events.shift();
     if (nextEvent) {
+    	console.info("replay", nextEvent);
     	nextEvent.event.replay(nextEvent.data);
+		AppUtils.stateUpdated();
     	setTimeout(() => replayNextEvent(events, pauseInMillis), pauseInMillis);
     } else {
         setTimeout(() => finishReplay(), pauseInMillis);

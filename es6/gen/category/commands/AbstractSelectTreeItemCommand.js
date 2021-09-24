@@ -7,10 +7,9 @@
 
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
-import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractSelectTreeItemCommand extends SynchronousCommand {
     constructor() {
@@ -18,7 +17,10 @@ export default class AbstractSelectTreeItemCommand extends SynchronousCommand {
     }
 
     initCommandData(data) {
-        data.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
+        data.rootCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+        );
         data.outcomes = [];
     }
 
@@ -29,7 +31,7 @@ export default class AbstractSelectTreeItemCommand extends SynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.SelectTreeItemOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadCardsAction(), 
 					{

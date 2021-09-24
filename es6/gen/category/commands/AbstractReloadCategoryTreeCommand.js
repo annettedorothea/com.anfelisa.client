@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
 export default class AbstractReloadCategoryTreeCommand extends AsynchronousCommand {
@@ -19,11 +18,23 @@ export default class AbstractReloadCategoryTreeCommand extends AsynchronousComma
     }
     
     initCommandData(data) {
-        data.previousRootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
-        data.selectedCategory = AppState.get_rootContainer_authorView_categoryTree_selectedCategory();
-        data.filterNonScheduled = AppState.get_rootContainer_authorView_categoryTree_filterNonScheduled();
-        data.priority = AppState.get_rootContainer_authorView_categoryTree_priority();
-        data.reverse = AppState.get_rootContainer_authorView_reverse();
+        data.previousRootCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+        );
+        data.selectedCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+        );
+        data.filterNonScheduled = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "filterNonScheduled"]
+        );
+        data.priority = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "priority"]
+        );
+        data.reverse = AppUtils.get(
+        	["rootContainer", "mainView", "reverse"]
+        );
         data.outcomes = [];
     }
 
@@ -33,7 +44,7 @@ export default class AbstractReloadCategoryTreeCommand extends AsynchronousComma
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${Utils.settings.rootPath}/category/tree?rootCategoryId=${data.rootCategoryId}&filterNonScheduled=${data.filterNonScheduled}&priority=${data.priority}&reverse=${data.reverse}`, data.uuid, true).then((response) => {
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/category/tree?rootCategoryId=${data.rootCategoryId}&filterNonScheduled=${data.filterNonScheduled}&priority=${data.priority}&reverse=${data.reverse}`, data.uuid, true).then((response) => {
 				data.rootCategory = response.rootCategory;
 				data.reverseBoxExists = response.reverseBoxExists;
 				data.boxId = response.boxId;
@@ -48,7 +59,7 @@ export default class AbstractReloadCategoryTreeCommand extends AsynchronousComma
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.ReloadCategoryTreeOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadCardsAction(), 
 					{

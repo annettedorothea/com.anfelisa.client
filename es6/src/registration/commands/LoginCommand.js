@@ -8,15 +8,17 @@
 import AbstractLoginCommand from "../../../gen/registration/commands/AbstractLoginCommand";
 
 export default class LoginCommand extends AbstractLoginCommand {
-    execute(data) {
-        data.loggedInUser = {
-            username: data.username,
-            password: data.password
-        };
-        data.username = undefined;
-        data.password = undefined;
+
+    validateCommandData() {
+    	return true;
+    }
+
+    handleResponse(data, resolve) {
     	this.addOkOutcome(data);
-    	return data;
+    	resolve(data);
+    }
+    handleError(data, resolve, reject) {
+    	reject(data.error);
     }
 }
 

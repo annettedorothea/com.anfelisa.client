@@ -9,11 +9,11 @@ import AbstractSearchDuplicateCardsCommand from "../../../gen/card/commands/Abst
 
 export default class SearchDuplicateCardsCommand extends AbstractSearchDuplicateCardsCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         data.cardDuplicates = data.cardList;
     	this.addOkOutcome(data);
     	resolve(data);

@@ -7,10 +7,9 @@
 
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
-import * as AppUtils from "../../../src/app/AppUtils";
 import TriggerAction from "../../ace/TriggerAction";
-import * as AppState from "../../ace/AppState";
 import SearchUsernameAction from "../../../src/category/actions/SearchUsernameAction";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractInvitedUsernameChangedCommand extends SynchronousCommand {
     constructor() {
@@ -34,7 +33,7 @@ export default class AbstractInvitedUsernameChangedCommand extends SynchronousCo
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.InvitedUsernameChangedOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
 		if (data.outcomes.includes("search")) {
 			new TriggerAction().publish(
@@ -45,7 +44,7 @@ export default class AbstractInvitedUsernameChangedCommand extends SynchronousCo
 		}
 		if (data.outcomes.includes("tooShort")) {
 			new Event('category.InvitedUsernameChangedTooShortEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

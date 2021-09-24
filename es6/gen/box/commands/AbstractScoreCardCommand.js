@@ -9,7 +9,6 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import InitBoxesForDayDuringScoreAction from "../../../src/box/actions/InitBoxesForDayDuringScoreAction";
 
 export default class AbstractScoreCardCommand extends AsynchronousCommand {
@@ -18,7 +17,9 @@ export default class AbstractScoreCardCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.scheduledCardId = AppState.get_rootContainer_queryCardView_scheduledCardId();
+        data.scheduledCardId = AppUtils.get(
+        	["rootContainer", "mainView", "nextCard", "scheduledCardId"]
+        );
         data.outcomes = [];
     }
 
@@ -32,7 +33,7 @@ export default class AbstractScoreCardCommand extends AsynchronousCommand {
 	    		scheduledCardId : data.scheduledCardId,
 	    		scoredCardQuality : data.scoredCardQuality
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/card/score`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/card/score`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;

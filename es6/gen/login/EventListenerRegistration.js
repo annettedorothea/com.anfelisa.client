@@ -6,20 +6,53 @@
 
 
 import * as ACEController from "../ace/ACEController";
-import * as AppState from "../ace/AppState";
+import * as AppUtils from "../../src/app/AppUtils";
 
 export default class EventListenerRegistrationLogin {
 
 	static init() {
-		ACEController.registerListener('login.UsernameChangedOkEvent', AppState.set_rootContainer_loginView_username);
-		ACEController.registerListener('login.PasswordChangedOkEvent', AppState.set_rootContainer_loginView_password);
-		ACEController.registerListener('login.ToggleSaveInLocalStorageOkEvent', AppState.set_rootContainer_loginView_saveInLocalStorage);
-		ACEController.registerListener('login.LoginSaveInLocalStorageEvent', AppState.set_rootContainer_loggedInUser);
-		ACEController.registerListener('login.LoginSaveInLocalStorageEvent', AppState.set_rootContainer_username);
-		ACEController.registerListener('login.LoginSaveInLocalStorageEvent', AppState.set_rootContainer_password);
-		ACEController.registerListener('login.LoginDoNotSaveInLocalStorageEvent', AppState.set_rootContainer_loggedInUser);
-		ACEController.registerListener('login.GetRoleOkEvent', AppState.set_rootContainer_role);
-		ACEController.registerListener('login.GetRoleUnauthorizedEvent', AppState.set_rootContainer_loggedInUser);
+		ACEController.registerListener('login.UsernameChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "username"], 
+				[{ path: ["rootContainer", "mainView"], group: "loginView" }]
+			)
+		});
+		ACEController.registerListener('login.PasswordChangedOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "password"], 
+				[{ path: ["rootContainer", "mainView"], group: "loginView" }]
+			)
+		});
+		ACEController.registerListener('login.ToggleSaveInLocalStorageOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "saveInLocalStorage"], 
+				[{ path: ["rootContainer", "mainView"], group: "loginView" }]
+			)
+		});
+		ACEController.registerListener('login.LoginSaveInLocalStorageEvent', (data) => {
+			AppUtils.setStorage(
+				data, 
+				["rootContainer", "token"], 
+				[]
+			)
+		});
+		ACEController.registerListener('login.LoginOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "loggedInUser", "username"], 
+				[]
+			)
+		});
+		ACEController.registerListener('login.LoginOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "loggedInUser", "token"], 
+				[]
+			)
+		});
 	}
 
 }

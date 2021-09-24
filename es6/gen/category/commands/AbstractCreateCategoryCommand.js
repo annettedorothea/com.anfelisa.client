@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
 
 export default class AbstractCreateCategoryCommand extends AsynchronousCommand {
@@ -19,9 +18,15 @@ export default class AbstractCreateCategoryCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.categoryName = AppState.get_rootContainer_authorView_categoryTree_categoryDialog_categoryName();
-        data.parentCategoryId = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryId();
-        data.rootCategoryId = AppState.get_rootContainer_authorView_categoryTree_rootCategory_categoryId();
+        data.categoryName = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "categoryDialog", "categoryName"]
+        );
+        data.parentCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory", "categoryId"]
+        );
+        data.rootCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory", "categoryId"]
+        );
         data.outcomes = [];
     }
 
@@ -35,7 +40,7 @@ export default class AbstractCreateCategoryCommand extends AsynchronousCommand {
 	    		categoryName : data.categoryName,
 	    		parentCategoryId : data.parentCategoryId
 	    	};
-			AppUtils.httpPost(`${Utils.settings.rootPath}/category/create`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPost(`${AppUtils.settings.rootPath}/category/create`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;
@@ -47,7 +52,7 @@ export default class AbstractCreateCategoryCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.CreateCategoryOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new ReloadCategoryTreeAction(), 
 					{

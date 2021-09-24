@@ -9,12 +9,11 @@ import AbstractUpdateCardPriorityCommand from "../../../gen/box/commands/Abstrac
 
 export default class UpdateCardPriorityCommand extends AbstractUpdateCardPriorityCommand {
 
-    validateCommandData(data) {
-    	//data.cardId is mandatory String
+    validateCommandData() {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
     	this.addOkOutcome(data);
     	resolve(data);
     }

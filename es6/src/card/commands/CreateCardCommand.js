@@ -9,7 +9,7 @@ import AbstractCreateCardCommand from "../../../gen/card/commands/AbstractCreate
 
 export default class CreateCardCommand extends AbstractCreateCardCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 

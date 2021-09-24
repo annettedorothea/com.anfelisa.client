@@ -8,7 +8,6 @@
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 
 export default class AbstractEditCategoryClickCommand extends SynchronousCommand {
     constructor() {
@@ -16,7 +15,9 @@ export default class AbstractEditCategoryClickCommand extends SynchronousCommand
     }
 
     initCommandData(data) {
-        data.categoryName = AppState.get_rootContainer_authorView_categoryTree_selectedCategory_categoryName();
+        data.categoryName = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "selectedCategory", "categoryName"]
+        );
         data.outcomes = [];
     }
 
@@ -27,7 +28,7 @@ export default class AbstractEditCategoryClickCommand extends SynchronousCommand
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('category.EditCategoryClickOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 		}
     }
 }

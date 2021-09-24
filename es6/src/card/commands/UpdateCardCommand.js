@@ -9,7 +9,7 @@ import AbstractUpdateCardCommand from "../../../gen/card/commands/AbstractUpdate
 
 export default class UpdateCardCommand extends AbstractUpdateCardCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 

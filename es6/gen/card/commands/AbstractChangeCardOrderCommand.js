@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
 export default class AbstractChangeCardOrderCommand extends AsynchronousCommand {
@@ -19,8 +18,12 @@ export default class AbstractChangeCardOrderCommand extends AsynchronousCommand 
     }
     
     initCommandData(data) {
-        data.movedCardIds = AppState.get_rootContainer_authorView_cardView_movedCardIds();
-        data.cardId = AppState.get_rootContainer_authorView_cardView_dragTargetCardId();
+        data.movedCardIds = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "movedCardIds"]
+        );
+        data.cardId = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "dragTargetCardId"]
+        );
         data.outcomes = [];
     }
 
@@ -34,7 +37,7 @@ export default class AbstractChangeCardOrderCommand extends AsynchronousCommand 
 	    		cardIdList : data.cardIdList,
 	    		cardId : data.cardId
 	    	};
-			AppUtils.httpPut(`${Utils.settings.rootPath}/cards/changeorder`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/cards/changeorder`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;
@@ -46,7 +49,7 @@ export default class AbstractChangeCardOrderCommand extends AsynchronousCommand 
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.ChangeCardOrderOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new LoadCardsAction(), 
 					{

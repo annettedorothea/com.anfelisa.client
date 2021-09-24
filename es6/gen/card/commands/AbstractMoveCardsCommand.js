@@ -10,7 +10,6 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import * as AppState from "../../ace/AppState";
 import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
 
 export default class AbstractMoveCardsCommand extends AsynchronousCommand {
@@ -19,9 +18,16 @@ export default class AbstractMoveCardsCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.movedCardIds = AppState.get_rootContainer_authorView_cardView_movedCardIds();
-        data.dropTargetCategoryId = AppState.get_rootContainer_authorView_categoryTree_dropTargetCategoryId();
-        data.rootCategory = AppState.get_rootContainer_authorView_categoryTree_rootCategory();
+        data.movedCardIds = AppUtils.get(
+        	["rootContainer", "mainView", "cardView", "movedCardIds"]
+        );
+        data.dropTargetCategoryId = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "dropTargetCategoryId"]
+        );
+        data.rootCategory = AppUtils.get(
+        	["rootContainer", "mainView", "categoryTree", "rootCategory"], 
+        	["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+        );
         data.outcomes = [];
     }
 
@@ -35,7 +41,7 @@ export default class AbstractMoveCardsCommand extends AsynchronousCommand {
 	    		cardIdList : data.cardIdList,
 	    		categoryId : data.categoryId
 	    	};
-			AppUtils.httpPut(`${Utils.settings.rootPath}/cards/move`, data.uuid, true, payload).then(() => {
+			AppUtils.httpPut(`${AppUtils.settings.rootPath}/cards/move`, data.uuid, true, payload).then(() => {
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;
@@ -47,7 +53,7 @@ export default class AbstractMoveCardsCommand extends AsynchronousCommand {
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
 			new Event('card.MoveCardsOkEvent').publish(data);
-			AppUtils.stateUpdated(AppState.getAppState());
+			AppUtils.stateUpdated();
 			new TriggerAction().publish(
 				new ReloadCategoryTreeAction(), 
 					{
