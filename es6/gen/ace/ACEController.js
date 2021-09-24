@@ -14,6 +14,8 @@ export let delayedActions = {};
 
 let actionQueue = [];
 let triggeredActionsQueue = [];
+let idle = true;
+
 
 export function registerListener(eventName, listener) {
     if (!eventName.trim()) {
@@ -49,9 +51,13 @@ export function addActionToQueue(action) {
 
 export function addActionToTriggeredActionsQueue(action, data) {
 	triggeredActionsQueue.push({action, data});
+	if (idle) {
+		applyNextActions();
+	}
 }
 
 function applyNextActions() {
+	idle = false;
     let nextAction = actionQueue.shift();
     if (nextAction) {
 		if (nextAction.action.asynchronous) {
@@ -76,6 +82,7 @@ function applyNextActions() {
 	    nextTriggeredAction.action.apply(nextTriggeredAction.data);
 	    nextTriggeredAction = triggeredActionsQueue.shift();
 	}
+	idle = true;
 }
 
 export function startReplay(timeline, pauseInMillis) {

@@ -8,8 +8,7 @@ const ScenarioUtils = require("../ScenarioUtils");
 
 module.exports = {
 	loginDataWasSetInLocalStorage: async function(driver, testId) {
-		expect(await ScenarioUtils.getValueFromLocalStorage(driver, "username")).toEqual(`username-${testId}`);
-		expect(await ScenarioUtils.getValueFromLocalStorage(driver, "password")).toEqual("5f4dcc3b5aa765d61d8327deb882cf99");
+		expect(await ScenarioUtils.getValueFromLocalStorage(driver, "token")).not.toEqual(null);
 	}
 }
 

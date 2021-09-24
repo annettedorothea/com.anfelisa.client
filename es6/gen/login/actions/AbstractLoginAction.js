@@ -5,19 +5,38 @@
 
 
 
-import Action from "../../ace/SynchronousAction";
+import Action from "../../ace/AsynchronousAction";
 import LoginCommand from "../../../src/login/commands/LoginCommand";
+import * as AppUtils from "../../../src/app/AppUtils";
 
 export default class AbstractLoginAction extends Action {
 
     constructor() {
         super('login.LoginAction');
+		this.postCall = this.postCall.bind(this);
 	}
 		
 	getCommand() {
 		return new LoginCommand();
 	}
 
+	preCall() {
+		AppUtils.set(
+			{display: true}, 
+			["rootContainer", "spinner", "display"], 
+			[]
+		)
+		AppUtils.stateUpdated();
+	}
+	
+	postCall() {
+		AppUtils.set(
+			{display: false}, 
+			["rootContainer", "spinner", "display"], 
+			[]
+		)
+		AppUtils.stateUpdated();
+	}
 
 }
 

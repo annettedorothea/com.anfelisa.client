@@ -3,10 +3,7 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
-import * as AppUtils from "../../app/AppUtils";
 import {destroyToast} from "../../../gen/common/ActionFunctions";
 import {Texts} from "../../app/Texts";
 

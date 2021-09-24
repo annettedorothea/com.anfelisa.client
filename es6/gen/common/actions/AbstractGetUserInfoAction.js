@@ -6,18 +6,18 @@
 
 
 import Action from "../../ace/AsynchronousAction";
-import GetRoleCommand from "../../../src/login/commands/GetRoleCommand";
+import GetUserInfoCommand from "../../../src/common/commands/GetUserInfoCommand";
 import * as AppUtils from "../../../src/app/AppUtils";
 
-export default class AbstractGetRoleAction extends Action {
+export default class AbstractGetUserInfoAction extends Action {
 
     constructor() {
-        super('login.GetRoleAction');
+        super('common.GetUserInfoAction');
 		this.postCall = this.postCall.bind(this);
 	}
 		
 	getCommand() {
-		return new GetRoleCommand();
+		return new GetUserInfoCommand();
 	}
 
 	preCall() {

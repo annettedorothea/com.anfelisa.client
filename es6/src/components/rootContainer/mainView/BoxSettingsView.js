@@ -3,18 +3,7 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
-import {Texts} from "../../../app/Texts";
-import {
-	createRootCategory,
-	dictionaryLookupChanged, givenLanguageChanged,
-	maxCardsPerDayChanged,
-	maxIntervalChanged,
-	rootCategoryNameChanged, saveBoxSettings, wantedLanguageChanged
-} from "../../../../gen/box/ActionFunctions";
-import {route} from "../../../../gen/common/ActionFunctions";
 import {BoxSettings} from "./boxSettingsView/BoxSettings";
 
 

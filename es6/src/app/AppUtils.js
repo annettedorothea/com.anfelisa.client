@@ -23,7 +23,6 @@ import {
     init,
     routeChanged,
 } from "../../gen/common/ActionFunctions";
-import CryptoJS from "crypto-js";
 import {dumpTimeline} from "../../gen/ace/Timeline";
 import {RootContainer, setRootContainerState} from "../components/RootContainer";
 import React from "react";
@@ -207,7 +206,7 @@ function createHeaders(authorize) {
     headers.append("Content-Type", "application/json");
     headers.append("Accept", "application/json");
     if (authorize === true) {
-        let authorization = basicAuth();
+        let authorization = oAuth();
         if (authorization !== undefined) {
             headers.append("Authorization", authorization);
         }
@@ -275,14 +274,10 @@ export function httpDelete(url, uuid, authorize, data) {
     return httpRequest("DELETE", url, uuid, authorize, data);
 }
 
-function basicAuth() {
-    const username = get(["rootContainer", "loggedInUser", "username"]);
-    const password = get(["rootContainer", "loggedInUser", "password"]);
-    // noinspection JSUnresolvedVariable
-    if (username !== undefined && password !== undefined) {
-        const wordArray = CryptoJS.enc.Utf8.parse(username + ':' + password);
-        const hash = CryptoJS.enc.Base64.stringify(wordArray);
-        return "anfelisaBasic " + hash;
+function oAuth() {
+    const token = get(["rootContainer", "loggedInUser", "token"]);
+    if (token !== undefined) {
+        return "Bearer " + token;
     }
     return undefined;
 }

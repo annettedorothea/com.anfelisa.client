@@ -6,19 +6,27 @@ HttpClient common
 
 ACE 
 Init 
-	fromAppState (rootContainer.username, rootContainer.password )
-	on user ( 
-		set rootContainer.loggedInUser 
+	fromAppState (rootContainer.token )
+	on ok (
 		set rootContainer.language
 		set rootContainer.messages
-	) triggers ( InitialLogin )
-	on noUser ( 
-		set rootContainer.loggedInUser 
-		set rootContainer.language
-		set rootContainer.messages
-	) triggers ( 
+	)
+	on user (
+		set rootContainer.loggedInUser.token
+	) triggers ( GetUserInfo )
+	on noUser triggers ( 
 		RouteChanged
 	)
+	
+GetUserInfo (token)
+	call com.anfelisa.user.GetUserInfo
+	loadingFlag rootContainer.spinner.display 
+	on ok (
+		set rootContainer.loggedInUser.username
+		set rootContainer.loggedInUser.token
+	) triggers (Route)
+	on error triggers (Logout) 
+	
 
 RouteChanged
 	fromAppState ( rootContainer.hash, rootContainer.loggedInUser ) 
@@ -80,19 +88,10 @@ RouteChanged
 Route ( hash ) 
 	on ok ( set rootContainer.hash )
 	
-InitialLogin
-	call com.anfelisa.user.GetRole
-	loadingFlag rootContainer.spinner.display 
-	on ok (
-		set rootContainer.role
-	) triggers ( RouteChanged )
-	on unauthorized triggers ( DisplayToast Logout )
-	
 Logout 
 	on ok ( 
 		set rootContainer.loggedInUser
-		set rootContainer.username
-		set rootContainer.password
+		set rootContainer.token
 	) triggers ( Route )
 	
 DisplayToast ( message, error ) 
@@ -139,12 +138,10 @@ HideSaveBugDialog
 ui JSX rootContainer {
 	loggedInUser {
 		username
-		password
+		token
 	}
 	hash location.hash
-	username storage
-	password storage
-	role
+	token storage
 	spinner { 
 		display
 	} 

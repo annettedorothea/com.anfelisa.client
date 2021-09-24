@@ -13,28 +13,25 @@ ACE
 		fromAppState ( common.rootContainer.mainView.loginView.saveInLocalStorage )
 		on ok (set common.rootContainer.mainView.loginView.saveInLocalStorage)
 	
-	Login
-		fromAppState (
+	Login 
+		fromAppState ( 
 			common.rootContainer.mainView.loginView.username,
 			common.rootContainer.mainView.loginView.password,
 			common.rootContainer.mainView.loginView.saveInLocalStorage
 		)
-		on saveInLocalStorage ( 
-			set common.rootContainer.loggedInUser 
-			set common.rootContainer.username 
-			set common.rootContainer.password
-		) triggers ( GetRole )
-		on doNotSaveInLocalStorage ( 
-			set common.rootContainer.loggedInUser
-		) triggers ( GetRole )
-	
-	GetRole 
-	 	call com.anfelisa.user.GetRole
+	 	call com.anfelisa.user.GetToken
 		loadingFlag common.rootContainer.spinner.display 
-		on ok (
-			set common.rootContainer.role
-		) triggers ( common.Route )
-		on unauthorized (set common.rootContainer.loggedInUser ) triggers ( common.DisplayToast common.Logout)
+		on saveInLocalStorage ( 
+			set common.rootContainer.token
+		) on ok (
+			set common.rootContainer.loggedInUser.username
+			set common.rootContainer.loggedInUser.token
+		) triggers ( 
+			common.Route
+		)
+		on unauthorized triggers ( 
+			common.DisplayToast 
+			common.Logout
+		)
 	
-
 

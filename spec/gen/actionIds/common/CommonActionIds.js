@@ -8,11 +8,11 @@
 module.exports = {
 	init : "common_init",
 	
+	getUserInfo : "common_getUserInfo",
+	
 	routeChanged : "common_routeChanged",
 	
 	route : "common_route",
-	
-	initialLogin : "common_initialLogin",
 	
 	logout : "common_logout",
 	

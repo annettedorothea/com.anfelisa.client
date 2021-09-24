@@ -33,7 +33,7 @@ describe("commonscenarios.Init", function () {
     });
     
 	it("loggedInUser", async () => {
-		expect(appState.rootContainer.loggedInUser, "loggedInUser").toEqual(null)
+		expect(appState.rootContainer.loggedInUser, "loggedInUser").toEqual(undefined)
 	});
 	it("language", async () => {
 		expect(appState.rootContainer.language, "language").toEqual(`de`)

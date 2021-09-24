@@ -11,14 +11,10 @@ export default class InitCommand extends AbstractInitCommand {
     execute(data) {
         data.language = "de";
         data.messages = [];
-        if (data.username && data.password) {
-            data.loggedInUser = {
-                username: data.username,
-                password: data.password
-            };
+        this.addOkOutcome(data);
+        if (data.token) {
             this.addUserOutcome(data);
         } else {
-            data.loggedInUser = null;
             this.addNoUserOutcome(data);
         }
     	return data;

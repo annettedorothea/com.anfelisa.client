@@ -77,22 +77,14 @@ export default class EventListenerRegistrationRegistration {
 		ACEController.registerListener('registration.LoginOkEvent', (data) => {
 			AppUtils.set(
 				data, 
-				["rootContainer", "loggedInUser"], 
-				[], 
-				["username", "password"]
-			)
-		});
-		ACEController.registerListener('registration.LoginOkEvent', (data) => {
-			AppUtils.setStorage(
-				data, 
-				["rootContainer", "username"], 
+				["rootContainer", "loggedInUser", "username"], 
 				[]
 			)
 		});
 		ACEController.registerListener('registration.LoginOkEvent', (data) => {
-			AppUtils.setStorage(
+			AppUtils.set(
 				data, 
-				["rootContainer", "password"], 
+				["rootContainer", "loggedInUser", "token"], 
 				[]
 			)
 		});

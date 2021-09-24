@@ -29,7 +29,7 @@ export default class AbstractRouteChangedCommand extends SynchronousCommand {
         );
         data.loggedInUser = AppUtils.get(
         	["rootContainer", "loggedInUser"], 
-        	["username", "password"]
+        	["username", "token"]
         );
         data.outcomes = [];
     }

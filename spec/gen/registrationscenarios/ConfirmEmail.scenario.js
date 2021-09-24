@@ -67,14 +67,10 @@ describe("registrationscenarios.ConfirmEmail", function () {
 		)
 	});
 	it("userLoggedIn", async () => {
-		expect(appState.rootContainer.loggedInUser, "userLoggedIn").toEqual({ 
-			password : `5f4dcc3b5aa765d61d8327deb882cf99`,
-			username : `username-${testId}`
-		}
-		)
+		expect(appState.rootContainer.loggedInUser.username, "userLoggedIn").toEqual(`username-${testId}`)
 	});
-	it("role", async () => {
-		expect(appState.rootContainer.role, "role").toEqual(`STUDENT`)
+	it("tokenWasSet", async () => {
+		expect(appState.rootContainer.loggedInUser.token, "tokenWasSet").not.toEqual(null)
 	});
     
     

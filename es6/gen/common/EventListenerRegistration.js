@@ -11,47 +11,38 @@ import * as AppUtils from "../../src/app/AppUtils";
 export default class EventListenerRegistrationCommon {
 
 	static init() {
-		ACEController.registerListener('common.InitUserEvent', (data) => {
-			AppUtils.set(
-				data, 
-				["rootContainer", "loggedInUser"], 
-				[], 
-				["username", "password"]
-			)
-		});
-		ACEController.registerListener('common.InitUserEvent', (data) => {
+		ACEController.registerListener('common.InitOkEvent', (data) => {
 			AppUtils.set(
 				data, 
 				["rootContainer", "language"], 
 				[]
 			)
 		});
+		ACEController.registerListener('common.InitOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "messages"], 
+				[]
+			)
+		});
 		ACEController.registerListener('common.InitUserEvent', (data) => {
 			AppUtils.set(
 				data, 
-				["rootContainer", "messages"], 
+				["rootContainer", "loggedInUser", "token"], 
 				[]
 			)
 		});
-		ACEController.registerListener('common.InitNoUserEvent', (data) => {
+		ACEController.registerListener('common.GetUserInfoOkEvent', (data) => {
 			AppUtils.set(
 				data, 
-				["rootContainer", "loggedInUser"], 
-				[], 
-				["username", "password"]
-			)
-		});
-		ACEController.registerListener('common.InitNoUserEvent', (data) => {
-			AppUtils.set(
-				data, 
-				["rootContainer", "language"], 
+				["rootContainer", "loggedInUser", "username"], 
 				[]
 			)
 		});
-		ACEController.registerListener('common.InitNoUserEvent', (data) => {
+		ACEController.registerListener('common.GetUserInfoOkEvent', (data) => {
 			AppUtils.set(
 				data, 
-				["rootContainer", "messages"], 
+				["rootContainer", "loggedInUser", "token"], 
 				[]
 			)
 		});
@@ -218,32 +209,18 @@ export default class EventListenerRegistrationCommon {
 				[]
 			)
 		});
-		ACEController.registerListener('common.InitialLoginOkEvent', (data) => {
-			AppUtils.set(
-				data, 
-				["rootContainer", "role"], 
-				[]
-			)
-		});
 		ACEController.registerListener('common.LogoutOkEvent', (data) => {
 			AppUtils.set(
 				data, 
 				["rootContainer", "loggedInUser"], 
 				[], 
-				["username", "password"]
+				["username", "token"]
 			)
 		});
 		ACEController.registerListener('common.LogoutOkEvent', (data) => {
 			AppUtils.setStorage(
 				data, 
-				["rootContainer", "username"], 
-				[]
-			)
-		});
-		ACEController.registerListener('common.LogoutOkEvent', (data) => {
-			AppUtils.setStorage(
-				data, 
-				["rootContainer", "password"], 
+				["rootContainer", "token"], 
 				[]
 			)
 		});

@@ -16,9 +16,6 @@ export default class AbstractLoadUserCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.role = AppUtils.get(
-        	["rootContainer", "role"]
-        );
         data.outcomes = [];
     }
 

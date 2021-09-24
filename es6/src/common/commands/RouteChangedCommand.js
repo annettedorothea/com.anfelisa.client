@@ -108,7 +108,7 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
     }
 
     isUserLoggedIn(data) {
-        return (data.loggedInUser && data.loggedInUser.password && data.loggedInUser.username);
+        return (data.loggedInUser && data.loggedInUser.token);
     }
 }
 

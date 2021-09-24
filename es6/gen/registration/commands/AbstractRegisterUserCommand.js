@@ -69,7 +69,6 @@ export default class AbstractRegisterUserCommand extends AsynchronousCommand {
 			new TriggerAction().publish(
 				new LoginAction(), 
 					{
-						password: data.password
 					}
 			)
 		}

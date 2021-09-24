@@ -5,20 +5,21 @@
 
 
 
-import AbstractLoginCommand from "../../../gen/registration/commands/AbstractLoginCommand";
+import AbstractGetUserInfoCommand from "../../../gen/common/commands/AbstractGetUserInfoCommand";
 
-export default class LoginCommand extends AbstractLoginCommand {
+export default class GetUserInfoCommand extends AbstractGetUserInfoCommand {
 
     validateCommandData() {
     	return true;
     }
 
     handleResponse(data, resolve) {
-    	this.addOkOutcome(data);
+        this.addOkOutcome(data);
     	resolve(data);
     }
-    handleError(data, resolve, reject) {
-    	reject(data.error);
+    handleError(data, resolve) {
+        this.addErrorOutcome(data);
+        resolve(data);
     }
 }
 

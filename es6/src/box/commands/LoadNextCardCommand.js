@@ -10,7 +10,7 @@ import {createInfoMessage} from "../../app/AppUtils";
 
 export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
 
-    validateCommandData(data) {
+    validateCommandData() {
     	return true;
     }
 

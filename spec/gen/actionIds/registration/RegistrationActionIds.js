@@ -18,9 +18,9 @@ module.exports = {
 	
 	registerUser : "registration_registerUser",
 	
-	confirmEmail : "registration_confirmEmail",
+	login : "registration_login",
 	
-	login : "registration_login"
+	confirmEmail : "registration_confirmEmail"
 	
 }
 

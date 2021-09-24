@@ -10,13 +10,12 @@ import Event from "../../ace/Event";
 import TriggerAction from "../../ace/TriggerAction";
 import * as Utils from "../../ace/Utils";
 import * as AppUtils from "../../../src/app/AppUtils";
-import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
-import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
+import RouteAction from "../../../src/common/actions/RouteAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
-export default class AbstractInitialLoginCommand extends AsynchronousCommand {
+export default class AbstractGetUserInfoCommand extends AsynchronousCommand {
     constructor() {
-        super("common.InitialLoginCommand");
+        super("common.GetUserInfoCommand");
     }
     
     initCommandData(data) {
@@ -26,14 +25,14 @@ export default class AbstractInitialLoginCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
-	addUnauthorizedOutcome(data) {
-		data.outcomes.push("unauthorized");
+	addErrorOutcome(data) {
+		data.outcomes.push("error");
 	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(`${AppUtils.settings.rootPath}/user/role`, data.uuid, true).then((response) => {
-				data.role = response.role;
+			AppUtils.httpGet(`${AppUtils.settings.rootPath}/user/info`, data.uuid, true).then((response) => {
+				data.username = response.username;
 				this.handleResponse(data, resolve, reject);
 			}, (error) => {
 				data.error = error;
@@ -44,22 +43,16 @@ export default class AbstractInitialLoginCommand extends AsynchronousCommand {
 
     publishEvents(data) {
 		if (data.outcomes.includes("ok")) {
-			new Event('common.InitialLoginOkEvent').publish(data);
+			new Event('common.GetUserInfoOkEvent').publish(data);
 			AppUtils.stateUpdated();
 			new TriggerAction().publish(
-				new RouteChangedAction(), 
+				new RouteAction(), 
 					{
+						hash: data.hash
 					}
 			)
 		}
-		if (data.outcomes.includes("unauthorized")) {
-			new TriggerAction().publish(
-				new DisplayToastAction(), 
-					{
-						message: data.message, 
-						error: data.error
-					}
-			)
+		if (data.outcomes.includes("error")) {
 			new TriggerAction().publish(
 				new LogoutAction(), 
 					{

@@ -4,8 +4,6 @@
 
 
 import React from "react";
-import {Texts} from "../../../app/Texts";
-import {displayWanted, scoreCard, scoreReinforceCard, sortCardOut} from "../../../../gen/box/ActionFunctions";
 import {route} from "../../../../gen/common/ActionFunctions";
 import {NextCard} from "./queryCardView/NextCard";
 

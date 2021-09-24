@@ -7,28 +7,29 @@ UsernameChanged
 	WHEN login.UsernameChanged(username: "username-${testId}")
 	THEN 
 		expectedState 
-			username common.rootContainer.mainView.loginView.username shouldBe "username-${testId}"
+			username common.rootContainer.mainView.loginView.username should be "username-${testId}"
+
 			
 PasswordChanged
 	GIVEN UsernameChanged
 	WHEN login.PasswordChanged(password: "password")
 	THEN 
 		expectedState 
-			password common.rootContainer.mainView.loginView.password shouldBe "5f4dcc3b5aa765d61d8327deb882cf99"
+			password common.rootContainer.mainView.loginView.password should be "5f4dcc3b5aa765d61d8327deb882cf99"
 			
 ToggleSaveInLocalStorage
 	GIVEN PasswordChanged
 	WHEN login.ToggleSaveInLocalStorage()
 	THEN 
 		expectedState 
-			saveInLocalStorageIsTrue common.rootContainer.mainView.loginView.saveInLocalStorage shouldBe true
+			saveInLocalStorageIsTrue common.rootContainer.mainView.loginView.saveInLocalStorage should be true
 			
 ToggleSaveInLocalStorageTwice
 	GIVEN ToggleSaveInLocalStorage
 	WHEN login.ToggleSaveInLocalStorage()
 	THEN 
 		expectedState 
-			saveInLocalStorageIsFalse common.rootContainer.mainView.loginView.saveInLocalStorage shouldBe false
+			saveInLocalStorageIsFalse common.rootContainer.mainView.loginView.saveInLocalStorage should be false
 			
 Login
 	GIVEN 
@@ -37,11 +38,8 @@ Login
 	WHEN login.Login
 	THEN 
 		expectedState 
-			userLoggedIn common.rootContainer.loggedInUser shouldBe {
-				password: "5f4dcc3b5aa765d61d8327deb882cf99",
-				username: "username-${testId}"
-			}
-			role common.rootContainer.role shouldBe "STUDENT"
+			userLoggedIn common.rootContainer.loggedInUser.username should be "username-${testId}"
+			tokenWasSet common.rootContainer.loggedInUser.token should not be null
 		verifications
 			loginDataWasNotSetInLocalStorage
 			
@@ -52,11 +50,8 @@ LoginWithSaveInLocalStorage
 	WHEN login.Login
 	THEN 
 		expectedState 
-			userLoggedIn common.rootContainer.loggedInUser shouldBe {
-				password: "5f4dcc3b5aa765d61d8327deb882cf99",
-				username: "username-${testId}"
-			}
-			role common.rootContainer.role shouldBe "STUDENT"
+			userLoggedIn common.rootContainer.loggedInUser.username should be "username-${testId}"
+			tokenWasSet common.rootContainer.loggedInUser.token should not be null
 		verifications
 			loginDataWasSetInLocalStorage
 			
@@ -65,10 +60,9 @@ LoginUnauthorized
 	WHEN login.Login
 	THEN 
 		expectedState 
-			loggedInUserIsNotSet common.rootContainer.loggedInUser shouldBe null
-			usernameInLocalStorateWasNotSet common.rootContainer.username shouldBe undefined
-			passwordInLocalStorateWasNotSet common.rootContainer.password shouldBe undefined
-			errorShown common.rootContainer.messages shouldBe [
+			loggedInUserIsNotSet common.rootContainer.loggedInUser should be null
+			usernameInLocalStorateWasNotSet common.rootContainer.token should be undefined
+			errorShown common.rootContainer.messages should be [
 				{ 
 					code: 401,
 					text: "Unauthorized",
@@ -84,10 +78,9 @@ LoginUnauthorizedSecondTime
 	WHEN login.Login
 	THEN 
 		expectedState 
-			loggedInUserIsNotSet common.rootContainer.loggedInUser shouldBe null
-			usernameInLocalStorateWasNotSet common.rootContainer.username shouldBe undefined
-			passwordInLocalStorateWasNotSet common.rootContainer.password shouldBe undefined
-			errorShown common.rootContainer.messages shouldBe [
+			loggedInUserIsNotSet common.rootContainer.loggedInUser should be null
+			usernameInLocalStorateWasNotSet common.rootContainer.token should be undefined
+			errorShown common.rootContainer.messages should be [
 				{ 
 					code: 401,
 					text: "Unauthorized",
