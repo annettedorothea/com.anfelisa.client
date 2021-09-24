@@ -1,12 +1,12 @@
 {
   "name": "anfelisa",
-  "version": "1.4.2",
+  "version": "1.5.0",
   "description": "anfelisa client",
   "repository": "https://github.com/annettedorothea/com.anfelisa.client",
   "scripts": {
-    "uglify": "uglifyjs lib/anfelisa_1.4.2.js --compress --mangle --output lib/anfelisa_1.4.2.min.js",
-    "build": "browserify --entry es6/src/index.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.4.2.js --standalone Anfelisa",
-    "start": "watchify --entry es6/src/index.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.4.2.js --debug --standalone Anfelisa & live-server --watch=lib/anfelisa_1.4.2.js --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --browser='Google Chrome'",
+    "uglify": "uglifyjs lib/anfelisa_1.5.0.js --compress --mangle --output lib/anfelisa_1.5.0.min.js",
+    "build": "browserify --entry es6/src/index.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.5.0.js --standalone Anfelisa",
+    "start": "watchify --entry es6/src/index.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.5.0.js --debug --standalone Anfelisa & live-server --watch=lib/anfelisa_1.5.0.js --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --browser='Google Chrome'",
     "test": "jasmine"
   },
   "author": "Annette Pohl",
