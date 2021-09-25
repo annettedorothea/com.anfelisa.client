@@ -1,0 +1,12 @@
+HttpClient
+
+profilescenarios
+
+scenarios 
+	RouteToProfile
+	GIVEN loginscenarios.Login
+	WHEN common.Route (hash: "#profile")
+	THEN
+		expectedState 
+			username common.rootContainer.mainView.profileView.username should be "username-${testId}"
+			email common.rootContainer.mainView.profileView.email should be "info@anfelisa.de"

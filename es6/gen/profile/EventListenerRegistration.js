@@ -12,16 +12,17 @@ export default class EventListenerRegistrationProfile {
 
 	static init() {
 		ACEController.registerListener('profile.LoadUserOkEvent', (data) => {
-			if (data.mainView) {
-				data.mainView.group = "profileView";
-			} else {
-				data.mainView = { group: "profileView" };
-			}
 			AppUtils.set(
 				data, 
-				["rootContainer", "mainView"], 
-				[], 
-				["group", "username", "email", "role", "showDeleteUserDialog"]
+				["rootContainer", "mainView", "email"], 
+				[{ path: ["rootContainer", "mainView"], group: "profileView" }]
+			)
+		});
+		ACEController.registerListener('profile.LoadUserOkEvent', (data) => {
+			AppUtils.set(
+				data, 
+				["rootContainer", "mainView", "username"], 
+				[{ path: ["rootContainer", "mainView"], group: "profileView" }]
 			)
 		});
 		ACEController.registerListener('profile.DeleteUserOkEvent', (data) => {

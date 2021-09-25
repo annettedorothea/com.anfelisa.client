@@ -30,6 +30,9 @@ module.exports = {
 			} else if (args[0] === "#dashboard") {
 				await click(driver, 'cancel');
 				await this.waitInMillis(1000);
+			} else if (args[0] === "#profile") {
+				await click(driver, 'profile');
+				await this.waitInMillis(1000);
 			}
 		}
 		if (CommonActionIds.logout === action) {
@@ -132,8 +135,8 @@ module.exports = {
 
 	defaultTimeout: 30 * 1000,
 	
-	browserName: "firefox"
-	//browserName: "chrome"
+	//browserName: "firefox"
+	browserName: "chrome"
 	
 }
 

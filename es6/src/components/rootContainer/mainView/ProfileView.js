@@ -12,7 +12,7 @@ import {route} from "../../../../gen/common/ActionFunctions";
 
 
 export const ProfileView = (props) => {
-	if (props.role === undefined) {
+	if (props.username === undefined) {
 		return null;
 	}
 	return <div className="center-wide">
@@ -59,17 +59,6 @@ export const ProfileView = (props) => {
 						type="text"
 						value={props.email}
 						id="email"
-						readOnly={true}
-					/>
-				</div>
-			</div>
-			<div className="line">
-				<label htmlFor="role">{Texts.profile.role[props.language]}</label>
-				<div className="inputContainer">
-					<input
-						type="text"
-						value={Texts.profile.role[props.role][props.language]}
-						id="role"
 						readOnly={true}
 					/>
 				</div>

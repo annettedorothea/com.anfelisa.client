@@ -6,10 +6,9 @@
 
 
 const ScenarioUtils = require("../../src/ScenarioUtils");
-const BoxActionIds  = require("../../gen/actionIds/box/BoxActionIds");
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
+const LoginActionIds  = require("../../gen/actionIds/login/LoginActionIds");
 const RegistrationActionIds  = require("../../gen/actionIds/registration/RegistrationActionIds");
-const Verifications = require("../../src/boxscenarios/MaxCardsPerDayChangedEmptyVerifications");
 const { Builder } = require('selenium-webdriver');
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
@@ -20,7 +19,7 @@ let driver;
 
 let appState;
     
-describe("boxscenarios.MaxCardsPerDayChangedEmpty", function () {
+describe("profilescenarios.RouteToProfile", function () {
     beforeAll(async function () {
     	driver = new Builder()
     			    .forBrowser(ScenarioUtils.browserName)
@@ -41,10 +40,14 @@ describe("boxscenarios.MaxCardsPerDayChangedEmpty", function () {
 		await ScenarioUtils.addSquishyValueServer(driver, `uuid-${testId}`, "token", `${testId}-TOKEN`);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.registerUser);
 		await ScenarioUtils.waitInMillis(1000);
-		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#box/create`]);
-		await ScenarioUtils.invokeAction(driver, BoxActionIds.categoryNameChanged, [`categoryName`]);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.logout);
+		await ScenarioUtils.waitInMillis(1000);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.usernameChanged, [`username-${testId}`]);
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.passwordChanged, [`password`]);
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.login);
 
-		await ScenarioUtils.invokeAction(driver, BoxActionIds.maxCardsPerDayChanged, [` `]);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#profile`]);
 		
 		appState = await ScenarioUtils.getAppState(driver);
     });
@@ -53,16 +56,13 @@ describe("boxscenarios.MaxCardsPerDayChangedEmpty", function () {
         await ScenarioUtils.tearDown(driver);
     });
     
-	it("maxCardsPerDay", async () => {
-		expect(appState.rootContainer.mainView.boxSettings.maxCardsPerDay, "maxCardsPerDay").toEqual(` `)
+	it("username", async () => {
+		expect(appState.rootContainer.mainView.username, "username").toEqual(`username-${testId}`)
 	});
-	it("maxCardsPerDayInvalid", async () => {
-		expect(appState.rootContainer.mainView.boxSettings.maxCardsPerDayInvalid, "maxCardsPerDayInvalid").toEqual(true)
+	it("email", async () => {
+		expect(appState.rootContainer.mainView.email, "email").toEqual(`info@anfelisa.de`)
 	});
     
-	it("saveDisabled", async () => {
-		await Verifications.saveDisabled(driver, testId);
-	});
     
 });
 
