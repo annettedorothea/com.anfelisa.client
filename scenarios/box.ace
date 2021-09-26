@@ -60,10 +60,10 @@ MaxCardsPerDayChanged
 		
 MaxCardsPerDayChangedEmpty
 	GIVEN CategoryNameChanged
-	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: " " )
+	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: "" )
 	THEN 
 		expectedState
-			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDay should be " "
+			maxCardsPerDay common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDay should be ""
 			maxCardsPerDayInvalid common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDayInvalid should be true
 		verifications
 			saveDisabled

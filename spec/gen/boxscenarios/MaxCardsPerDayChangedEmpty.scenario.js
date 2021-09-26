@@ -44,7 +44,7 @@ describe("boxscenarios.MaxCardsPerDayChangedEmpty", function () {
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#box/create`]);
 		await ScenarioUtils.invokeAction(driver, BoxActionIds.categoryNameChanged, [`categoryName`]);
 
-		await ScenarioUtils.invokeAction(driver, BoxActionIds.maxCardsPerDayChanged, [` `]);
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.maxCardsPerDayChanged, [``]);
 		
 		appState = await ScenarioUtils.getAppState(driver);
     });
@@ -54,7 +54,7 @@ describe("boxscenarios.MaxCardsPerDayChangedEmpty", function () {
     });
     
 	it("maxCardsPerDay", async () => {
-		expect(appState.rootContainer.mainView.boxSettings.maxCardsPerDay, "maxCardsPerDay").toEqual(` `)
+		expect(appState.rootContainer.mainView.boxSettings.maxCardsPerDay, "maxCardsPerDay").toEqual(``)
 	});
 	it("maxCardsPerDayInvalid", async () => {
 		expect(appState.rootContainer.mainView.boxSettings.maxCardsPerDayInvalid, "maxCardsPerDayInvalid").toEqual(true)
