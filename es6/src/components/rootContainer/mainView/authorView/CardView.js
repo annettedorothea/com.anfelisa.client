@@ -34,9 +34,9 @@ export const CardView = (props) => {
 			naturalInputOrder={props.naturalInputOrder}
 			editable={editable}
 			editedCard={props.editedCard}
-			dictionaryLookup={props.categoryTree.selectedCategory.dictionaryLookup}
-			givenLanguage={props.categoryTree.selectedCategory.givenLanguage}
-			wantedLanguage={props.categoryTree.selectedCategory.wantedLanguage}
+			dictionaryLookup={props.categoryTree.rootCategory.dictionaryLookup}
+			givenLanguage={props.categoryTree.rootCategory.givenLanguage}
+			wantedLanguage={props.categoryTree.rootCategory.wantedLanguage}
 		/>
 	});
 	const duplicateCards = props.cardDuplicates.map((card) => {
@@ -51,9 +51,9 @@ export const CardView = (props) => {
 		cardItems.push(
 			<NewCard
 				key={"new"}
-				dictionaryLookup={props.categoryTree.selectedCategory.dictionaryLookup}
-				givenLanguage={props.categoryTree.selectedCategory.givenLanguage}
-				wantedLanguage={props.categoryTree.selectedCategory.wantedLanguage}
+				dictionaryLookup={props.categoryTree.rootCategory.dictionaryLookup}
+				givenLanguage={props.categoryTree.rootCategory.givenLanguage}
+				wantedLanguage={props.categoryTree.rootCategory.wantedLanguage}
 				naturalInputOrder={props.naturalInputOrder}
 				language={props.language}
 				{...props.newCard}
@@ -62,7 +62,8 @@ export const CardView = (props) => {
 	}
 
 	const dictionary = () => {
-		if (!props.categoryTree.selectedCategory.givenLanguage || !props.categoryTree.selectedCategory.wantedLanguage) {
+		console.log("props.categoryTree.rootCategory", props.categoryTree.rootCategory);
+		if (!props.categoryTree.rootCategory.givenLanguage || !props.categoryTree.rootCategory.wantedLanguage) {
 			return null;
 		}
 		const setFocus = () => {
@@ -80,8 +81,8 @@ export const CardView = (props) => {
 			"fr": "franzoesisch",
 			"en": "englisch"
 		};
-		const sourceLanguage = props.naturalInputOrder === true ? props.categoryTree.selectedCategory.givenLanguage : props.categoryTree.selectedCategory.wantedLanguage;
-		const targetLanguage = props.naturalInputOrder === true ? props.categoryTree.selectedCategory.wantedLanguage : props.categoryTree.selectedCategory.givenLanguage;
+		const sourceLanguage = props.naturalInputOrder === true ? props.categoryTree.rootCategory.givenLanguage : props.categoryTree.rootCategory.wantedLanguage;
+		const targetLanguage = props.naturalInputOrder === true ? props.categoryTree.rootCategory.wantedLanguage : props.categoryTree.rootCategory.givenLanguage;
 
 		const src = `https://www.linguee.de/${languageMap[sourceLanguage]}-${languageMap[targetLanguage]}/search?query=${value}`;
 		return <div className="dictionaryWrapper">

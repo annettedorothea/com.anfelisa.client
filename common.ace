@@ -24,7 +24,7 @@ GetUserInfo (token)
 	on ok (
 		set rootContainer.loggedInUser.username
 		set rootContainer.loggedInUser.token
-	) triggers (Route)
+	) triggers (RouteChanged)
 	on error triggers (Logout) 
 	
 
