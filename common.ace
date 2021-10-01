@@ -209,6 +209,7 @@ ui JSX rootContainer {
 				editable
 				reverse
 				archived
+				shared
 	    	}
 	        deleteBox {
 	            confirmDelete
