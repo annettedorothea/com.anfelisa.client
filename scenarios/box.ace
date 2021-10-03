@@ -186,7 +186,8 @@ CreateRootCategory
 					categoryAuthor: "username-${testId}",
 					reverse: false,
 					editable: true,
-					archived: false
+					archived: false,
+					shared: false
 				}
 			]
 			deleteBox common.rootContainer.mainView.dashboardView.deleteBox should be {
@@ -221,7 +222,8 @@ CreateRootCategoryWithDefault
 					categoryAuthor: "username-${testId}",
 					reverse: false,
 					editable: true,
-					archived: false
+					archived: false,
+					shared: false
 				}
 			]
 			deleteBox common.rootContainer.mainView.dashboardView.deleteBox should be {
