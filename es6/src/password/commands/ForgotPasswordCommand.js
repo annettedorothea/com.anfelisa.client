@@ -6,7 +6,7 @@
 
 
 import AbstractForgotPasswordCommand from "../../../gen/password/commands/AbstractForgotPasswordCommand";
-import * as AppUtils from "../../app/AppUtils";
+import * as AppUtils from "../../AppUtils";
 
 export default class ForgotPasswordCommand extends AbstractForgotPasswordCommand {
 

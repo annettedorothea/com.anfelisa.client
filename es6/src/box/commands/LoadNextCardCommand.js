@@ -6,7 +6,7 @@
 
 
 import AbstractLoadNextCardCommand from "../../../gen/box/commands/AbstractLoadNextCardCommand";
-import {createInfoMessage} from "../../app/AppUtils";
+import {createInfoMessage} from "../../AppUtils";
 
 export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
 

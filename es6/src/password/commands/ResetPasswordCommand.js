@@ -6,7 +6,7 @@
 
 
 import AbstractResetPasswordCommand from "../../../gen/password/commands/AbstractResetPasswordCommand";
-import * as AppUtils from "../../app/AppUtils";
+import * as AppUtils from "../../AppUtils";
 
 export default class ResetPasswordCommand extends AbstractResetPasswordCommand {
 

@@ -3,7 +3,6 @@ HttpClient common
 
 
 
-
 ACE 
 Init 
 	fromAppState (rootContainer.token )
@@ -31,55 +30,55 @@ GetUserInfo (token)
 RouteChanged
 	fromAppState ( rootContainer.hash, rootContainer.loggedInUser ) 
 	on login ( 
-		set rootContainer.mainView.loginView 
+		set rootContainer.mainView 
 	)
 	on privacyPolicy ( 
-		set rootContainer.mainView.privacyPolicyView 
+		set rootContainer.mainView 
 	)
 	on registration ( 
-		set rootContainer.mainView.registrationView
+		set rootContainer.mainView
 	)
 	on confirmEmail triggers (
 		registration.ConfirmEmail
 	)
 	on forgotPassword ( 
-		set rootContainer.mainView.forgotPasswordView 
+		set rootContainer.mainView 
 	)
 	on resetPassword ( 
-		set rootContainer.mainView.resetPasswordView 
+		set rootContainer.mainView 
 	)
 	on dashboard (
-		set rootContainer.mainView.dashboardView
+		set rootContainer.mainView
 	) triggers (
 		box.InitBoxesForDay
 	)
 	on categories (
-		set rootContainer.mainView.authorView
+		set rootContainer.mainView
 	) triggers (
 		category.LoadCategoryTree
 	)
 	on profile (
-		set rootContainer.mainView.profileView
+		set rootContainer.mainView
 	) triggers ( 
 		profile.LoadUser
 	)
 	on nextCard (
-		set rootContainer.mainView.queryCardView
+		set rootContainer.mainView
 	) triggers (
 		box.LoadNextCard
 	)
 	on boxSettings (
-		set rootContainer.mainView.boxSettingsView
+		set rootContainer.mainView
 	) triggers (
 		box.LoadSettings
 	)
 	on allActiveCards (
-		set rootContainer.mainView.allActiveCardsView
+		set rootContainer.mainView
 	) triggers (
 		box.LoadActiveCards
 	)
 	on boxCreate ( 
-		set rootContainer.mainView.boxSettingsView
+		set rootContainer.mainView
 	)
 	on invalid triggers (
 		Route
@@ -131,8 +130,7 @@ CancelSaveBugDialog
 
 HideSaveBugDialog
 	on ok (set rootContainer.saveBugDialog.display) triggers (DisplayToast)
-
-
+	
 
 
 ui JSX rootContainer {
@@ -140,7 +138,7 @@ ui JSX rootContainer {
 		username
 		token
 	}
-	hash location.hash
+	hash location
 	token storage
 	spinner { 
 		display
@@ -163,7 +161,7 @@ ui JSX rootContainer {
 		code
 		textKey
 	}
-	group mainView {
+	mainView {
 		privacyPolicyView {
 			display
 		}
@@ -403,3 +401,10 @@ ui JSX rootContainer {
         }
 	}
 }
+
+
+
+
+
+
+

@@ -62,7 +62,6 @@ export const CardView = (props) => {
 	}
 
 	const dictionary = () => {
-		console.log("props.categoryTree.rootCategory", props.categoryTree.rootCategory);
 		if (!props.categoryTree.rootCategory.givenLanguage || !props.categoryTree.rootCategory.wantedLanguage) {
 			return null;
 		}

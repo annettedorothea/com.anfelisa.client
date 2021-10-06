@@ -20,38 +20,38 @@ import { QueryCardView } from "./mainView/QueryCardView";
 import { AuthorView } from "./mainView/AuthorView";
 
 export const MainView = (props) => {
-	if (props.group === "privacyPolicyView") {
-		return <PrivacyPolicyView {...props}/>;
+	if (props.privacyPolicyView) {
+		return <PrivacyPolicyView {...props.privacyPolicyView} language={props.language} {...props.loggedInUser}/>;
 	}
-	if (props.group === "loginView") {
-		return <LoginView {...props}/>;
+	if (props.loginView) {
+		return <LoginView {...props.loginView} language={props.language} {...props.loggedInUser}/>;
 	}
-	if (props.group === "registrationView") {
-		return <RegistrationView {...props}/>;
+	if (props.registrationView) {
+		return <RegistrationView {...props.registrationView} language={props.language} {...props.loggedInUser}/>;
 	}
-	if (props.group === "forgotPasswordView") {
-		return <ForgotPasswordView {...props}/>;
+	if (props.forgotPasswordView) {
+		return <ForgotPasswordView {...props.forgotPasswordView} language={props.language} {...props.loggedInUser}/>;
 	}
-	if (props.group === "resetPasswordView") {
-		return <ResetPasswordView {...props}/>;
+	if (props.resetPasswordView) {
+		return <ResetPasswordView {...props.resetPasswordView} language={props.language} {...props.loggedInUser}/>;
 	}
-	if (props.group === "dashboardView") {
-		return <DashboardView {...props}/>;
+	if (props.dashboardView) {
+		return <DashboardView {...props.dashboardView} language={props.language} {...props.loggedInUser}/>;
 	}
-	if (props.group === "boxSettingsView") {
-		return <BoxSettingsView {...props}/>;
+	if (props.boxSettingsView) {
+		return <BoxSettingsView {...props.boxSettingsView} language={props.language} {...props.loggedInUser}/>;
 	}
-	if (props.group === "allActiveCardsView") {
-		return <AllActiveCardsView {...props}/>;
+	if (props.allActiveCardsView) {
+		return <AllActiveCardsView {...props.allActiveCardsView} language={props.language} {...props.loggedInUser}/>;
 	}
-	if (props.group === "profileView") {
-		return <ProfileView {...props}/>;
+	if (props.profileView) {
+		return <ProfileView {...props.profileView} language={props.language} {...props.loggedInUser}/>;
 	}
-	if (props.group === "queryCardView") {
-		return <QueryCardView {...props}/>;
+	if (props.queryCardView) {
+		return <QueryCardView {...props.queryCardView} language={props.language} {...props.loggedInUser}/>;
 	}
-	if (props.group === "authorView") {
-		return <AuthorView {...props}/>;
+	if (props.authorView) {
+		return <AuthorView {...props.authorView} language={props.language} {...props.loggedInUser}/>;
 	}
 	return null;
 }

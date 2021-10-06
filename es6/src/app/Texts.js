@@ -446,6 +446,9 @@ export const Texts = {
         emailConfirmed: {
             de: "Die Email-Adresse wurde bestätigt."
         },
+        emailNotConfirmed: {
+            de: "Die Email-Adresse konnte nicht bestätigt werden."
+        },
         finished: {
             de: "Du bist für heute fertig!"
         },

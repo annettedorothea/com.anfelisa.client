@@ -60,5 +60,6 @@ ConfirmEmail ( username, token )
 	call com.anfelisa.user.ConfirmEmail
 	loadingFlag common.rootContainer.spinner.display 
 	on ok triggers ( common.DisplayToast common.Route)
+	on error triggers ( common.DisplayToast common.Route)
 
 	

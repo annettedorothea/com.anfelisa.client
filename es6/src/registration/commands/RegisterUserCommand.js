@@ -6,7 +6,7 @@
 
 
 import AbstractRegisterUserCommand from "../../../gen/registration/commands/AbstractRegisterUserCommand";
-import * as AppUtils from "../../app/AppUtils";
+import * as AppUtils from "../../AppUtils";
 
 export default class RegisterUserCommand extends AbstractRegisterUserCommand {
 

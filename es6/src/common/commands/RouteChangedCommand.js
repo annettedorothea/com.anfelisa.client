@@ -14,88 +14,112 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             this.addConfirmEmailOutcome(data);
         } else if (data.hash.startsWith("#resetpassword") && hashes.length >= 1 && hashes[1]) {
             data.mainView = {
-                token: hashes[1],
-                passwordMismatch: false,
-                password: "",
-                passwordRepetition: ""
+                resetPasswordView: {
+                    token: hashes[1],
+                    passwordMismatch: false,
+                    password: "",
+                    passwordRepetition: ""
+                }
             };
             this.addResetPasswordOutcome(data);
         } else if (data.hash === "#dashboard" && this.isUserLoggedIn(data)) {
             data.mainView = {
-                deleteBox: {
-                    confirmDelete: false,
-                    boxId: undefined
+                dashboardView: {
+                    deleteBox: {
+                        confirmDelete: false,
+                        boxId: undefined
+                    }
                 }
             };
             this.addDashboardOutcome(data);
         } else if (data.hash === "#profile" && this.isUserLoggedIn(data)) {
-            data.mainView = {};
+            data.mainView = {
+                profileView: {}
+            };
             this.addProfileOutcome(data);
         } else if (data.hash.startsWith("#categories") && hashes.length >= 2 && this.isUserLoggedIn(data)) {
             data.rootCategoryId = hashes[1];
-            data.mainView = {};
+            data.mainView = {
+                authorView: {}
+            };
             if (hashes[hashes.length - 1] === "reverse") {
-                data.mainView.reverse = true;
+                data.mainView.authorView.reverse = true;
                 data.selectedCategoryId = hashes.length === 3 ? data.rootCategoryId : hashes[2];
             } else {
-                data.mainView.reverse = false;
+                data.mainView.authorView.reverse = false;
                 data.selectedCategoryId = hashes.length === 2 ? data.rootCategoryId : hashes[2];
             }
             this.addCategoriesOutcome(data);
         } else if (data.hash.startsWith("#box/settings") && hashes.length >= 2 && hashes[2] && this.isUserLoggedIn(data)) {
             data.mainView = {
-                boxId: hashes[2]
+                boxSettingsView: {
+                    boxId: hashes[2]
+                }
             };
             this.addBoxSettingsOutcome(data);
         } else if (data.hash.startsWith("#box/active-cards") && hashes.length >= 2 && hashes[2] && this.isUserLoggedIn(data)) {
             data.mainView = {
-                boxId: hashes[2]
+                allActiveCardsView: {
+                    boxId: hashes[2]
+                }
             };
             this.addAllActiveCardsOutcome(data);
         } else if (data.hash === "#box/create" && this.isUserLoggedIn(data)) {
             data.mainView = {
-                boxSettings: {
-                    maxCardsPerDay: 8,
-                    maxInterval: "",
-                    boxId: "",
-                    categoryName: "",
-                    dictionaryLookup: false,
-                    wantedLanguage: "",
-                    givenLanguage: ""
+                boxSettingsView: {
+                    boxSettings: {
+                        maxCardsPerDay: 8,
+                        maxInterval: "",
+                        boxId: "",
+                        categoryName: "",
+                        dictionaryLookup: false,
+                        wantedLanguage: "",
+                        givenLanguage: ""
+                    }
                 }
             };
             this.addBoxCreateOutcome(data);
         } else if (data.hash.startsWith("#box") && hashes.length >= 1 && hashes[1] && this.isUserLoggedIn(data)) {
             data.mainView = {
-                boxId: hashes[1]
+                queryCardView: {
+                    boxId: hashes[1]
+                }
             };
             this.addNextCardOutcome(data);
         } else if (data.hash === "" && !this.isUserLoggedIn(data)) {
             data.mainView = {
-                username: "",
-                password: "",
-                saveInLocalStorage: false
+                loginView: {
+                    username: "",
+                    password: "",
+                    saveInLocalStorage: false
+                }
             };
             this.addLoginOutcome(data);
         } else if (data.hash === "#registration" && !this.isUserLoggedIn(data)) {
             data.mainView = {
-                displayUsernameSpinner: false,
-                usernameAvailable: undefined,
-                username: "",
-                email: "",
-                emailInvalid: false,
-                passwordMismatch: false,
-                password: "",
-                passwordRepetition: ""
+                registrationView: {
+                    displayUsernameSpinner: false,
+                    usernameAvailable: undefined,
+                    username: "",
+                    email: "",
+                    emailInvalid: false,
+                    passwordMismatch: false,
+                    password: "",
+                    passwordRepetition: ""
+                }
             };
             this.addRegistrationOutcome(data);
         } else if (data.hash === "#forgotpassword" && !this.isUserLoggedIn(data)) {
             data.mainView = {
-                username: ""
+                forgotPasswordView: {
+                    username: ""
+                }
             };
             this.addForgotPasswordOutcome(data);
         } else if (data.hash === "#privacypolicy") {
-            data.mainView = {};
+            data.mainView = {
+                privacyPolicyView: {}
+            };
             this.addPrivacyPolicyOutcome(data);
         } else if (this.isUserLoggedIn(data)) {
             this.addInvalidOutcome(data);

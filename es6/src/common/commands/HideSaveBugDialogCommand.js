@@ -6,7 +6,7 @@
 
 
 import AbstractHideSaveBugDialogCommand from "../../../gen/common/commands/AbstractHideSaveBugDialogCommand";
-import * as AppUtils from "../../app/AppUtils";
+import * as AppUtils from "../../AppUtils";
 
 export default class HideSaveBugDialogCommand extends AbstractHideSaveBugDialogCommand {
     execute(data) {

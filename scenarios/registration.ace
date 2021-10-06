@@ -138,7 +138,7 @@ ConfirmEmail
 
 ConfirmEmailTokenDoesNotExist
 	GIVEN Register
-	WHEN registration.ConfirmEmail(username: "username-${testId}", token: "XXX")
+	WHEN registration.ConfirmEmail(username: "username-${testId}", token: "DOES_NOT_EXIST")
 	THEN 
 		expectedState 
 			confirmEmailFails common.rootContainer.messages should be [

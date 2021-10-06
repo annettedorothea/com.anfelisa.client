@@ -6,12 +6,13 @@
 
 
 
-import * as AppUtils from "./app/AppUtils";
+import * as AppUtils from "./AppUtils";
+import * as AppState from "./AppState";
 
 export * from "../gen/ace/Timeline";
 
 export function dumpAppState() {
-    console.info(AppUtils.get([]));
+    console.info(AppState.get([]));
 }
 
 AppUtils.initEventListeners();
@@ -20,7 +21,7 @@ AppUtils.renderApp();
 
 // for Selenium tests
 export function getAppState() {
-    return AppUtils.get([])
+    return AppState.get([])
 }
 
 export function addSquishyValueClient(value) {

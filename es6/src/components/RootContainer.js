@@ -11,7 +11,7 @@ import { LoggedInUser } from "./rootContainer/LoggedInUser";
 import {route} from "../../gen/common/ActionFunctions";
 import {Texts} from "../app/Texts";
 import * as Utils from "../../gen/ace/Utils";
-import * as AppUtils from "../app/AppUtils";
+import * as AppUtils from "../AppUtils";
 import {Spinner} from "./rootContainer/Spinner";
 import {MainView} from "./rootContainer/MainView";
 import {MessagesItem} from "./rootContainer/MessagesItem";
@@ -26,6 +26,7 @@ export const RootContainer = (props) => {
 
 	const [rootContainer, setRootContainer] = useState(props.rootContainer);
 	setRootContainerState = setRootContainer;
+
 
 	if (rootContainer) {
 		if (rootContainer.loggedInUser) {
@@ -52,12 +53,12 @@ export const RootContainer = (props) => {
 
 }
 
-const content = (props) => (
-	<div>
+const content = (props) => {
+	return <div>
 		<Spinner {...props.spinner} language={props.language}/>
 		<SaveBugDialog {...props.saveBugDialog} language={props.language}/>
-		<VersionMismatchDialog {...props.versionMismatchDialog}  language={props.language}/>
-		<VersionMismatchErrorDialog {...props.versionMismatchErrorDialog}  language={props.language}/>
+		<VersionMismatchDialog {...props.versionMismatchDialog} language={props.language}/>
+		<VersionMismatchErrorDialog {...props.versionMismatchErrorDialog} language={props.language}/>
 		<div className="toastContainer">
 			{props.messages ? props.messages.map((message) =>
 				<MessagesItem {...message} language={props.language} key={message.id}/>) : []}
@@ -89,7 +90,7 @@ const content = (props) => (
 			</div>
 		</div>
 	</div>
-)
+}
 
 
 

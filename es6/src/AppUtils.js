@@ -5,16 +5,17 @@
  ********************************************************************************/
 
 
-import * as App from "../index";
+import * as App from "./index";
+import * as AppState from "./AppState";
 
-import EventListenerRegistrationCategory from "../../gen/category/EventListenerRegistration";
-import EventListenerRegistrationCard from "../../gen/card/EventListenerRegistration";
-import EventListenerRegistrationBox from "../../gen/box/EventListenerRegistration";
-import EventListenerRegistrationCommon from "../../gen/common/EventListenerRegistration";
-import EventListenerRegistrationProfile from "../../gen/profile/EventListenerRegistration";
-import EventListenerRegistrationRegistration from "../../gen/registration/EventListenerRegistration";
-import EventListenerRegistrationLogin from "../../gen/login/EventListenerRegistration";
-import EventListenerRegistrationPassword from "../../gen/password/EventListenerRegistration";
+import EventListenerRegistrationCategory from "../gen/category/EventListenerRegistration";
+import EventListenerRegistrationCard from "../gen/card/EventListenerRegistration";
+import EventListenerRegistrationBox from "../gen/box/EventListenerRegistration";
+import EventListenerRegistrationCommon from "../gen/common/EventListenerRegistration";
+import EventListenerRegistrationProfile from "../gen/profile/EventListenerRegistration";
+import EventListenerRegistrationRegistration from "../gen/registration/EventListenerRegistration";
+import EventListenerRegistrationLogin from "../gen/login/EventListenerRegistration";
+import EventListenerRegistrationPassword from "../gen/password/EventListenerRegistration";
 import {
     displaySaveBugDialog,
     displayToast,
@@ -22,112 +23,12 @@ import {
     displayVersionMismatchErrorDialog,
     init,
     routeChanged,
-} from "../../gen/common/ActionFunctions";
-import {dumpTimeline} from "../../gen/ace/Timeline";
-import {RootContainer, setRootContainerState} from "../components/RootContainer";
+} from "../gen/common/ActionFunctions";
+import {dumpTimeline} from "../gen/ace/Timeline";
+import {RootContainer} from "./components/RootContainer";
 import React from "react";
 import ReactDOM from "react-dom";
 import * as R from 'ramda'
-
-let appState = {};
-
-export function get(path) {
-    const lens = R.lensPath(path);
-    return R.view(lens, appState);
-}
-
-export function getHash() {
-    return location.hash;
-}
-
-export function getStorage(path) {
-    return localStorage.getItem(R.last(path));
-}
-
-function normalizeData(data, path, attributes) {
-    const value = data[R.last(path)];
-    if (!value) {
-        return value;
-    }
-    if (attributes) {
-        return R.pick(attributes, data[R.last(path)]);
-    } else {
-        return data[R.last(path)]
-    }
-}
-
-function verifyGroups(groupVerifications) {
-    if (!groupVerifications) {
-        return true;
-    }
-    for(let i=0; i<groupVerifications.length; i++) {
-        const groupVerification = groupVerifications[i];
-        const groupInAppState = get(groupVerification.path)
-        if (groupInAppState && groupInAppState.group !== groupVerification.group) {
-            return false;
-        }
-    }
-    return true;
-}
-
-export function set(data, path, groupVerifications, attributes) {
-    if (verifyGroups(groupVerifications) === false) {
-        return;
-    }
-    const normalizedData = normalizeData(data, path, attributes);
-    const lens = R.lensPath(path);
-    appState = R.set(lens, normalizedData, appState);
-}
-
-export function setHash(data, path) {
-    location.hash = data[R.last(path)];
-}
-
-export function setStorage(data, path) {
-    const lastParam = R.last(path);
-    if (data[lastParam]) {
-        localStorage.setItem(lastParam, data[lastParam]);
-    } else {
-        localStorage.removeItem(lastParam);
-    }
-}
-
-export function merge(data, path, groupVerifications, attributes) {
-    if (verifyGroups(groupVerifications) === false) {
-        return;
-    }
-    if (attributes) {
-        const lens = R.lensPath(path);
-        const appStateValue = R.view(lens, appState);
-        const normalizedData = normalizeData(data, path, attributes);
-        const mergedData = R.mergeDeepRight(appStateValue, normalizedData);
-        appState = R.set(lens, mergedData, appState);
-    } else {
-        set(data, path, attributes);
-    }
-}
-
-export function mergeHash(data, path) {
-    if (data[R.last(path)]) {
-        location.hash = data[R.last(path)];
-    }
-}
-
-export function mergeStorage(data, path) {
-    const lastParam = R.last(path);
-    if (data[lastParam]) {
-        localStorage.setItem(lastParam, data[lastParam]);
-    }
-}
-
-export function createInitialAppState() {
-    appState = {};
-}
-
-export function setInitialAppState(initialAppState) {
-    appState = initialAppState;
-}
-
 
 export let settings;
 
@@ -275,7 +176,7 @@ export function httpDelete(url, uuid, authorize, data) {
 }
 
 function oAuth() {
-    const token = get(["rootContainer", "loggedInUser", "token"]);
+    const token = AppState.get(["rootContainer", "loggedInUser", "token"]);
     if (token !== undefined) {
         return "Bearer " + token;
     }
@@ -324,12 +225,8 @@ export function deepCopy(object) {
     return R.clone(object);
 }
 
-export function stateUpdated() {
-    setRootContainerState(appState.rootContainer);
-}
-
 export function renderApp() {
-    let container = <RootContainer {...appState} />;
+    let container = <RootContainer {...AppState.appState} />;
     ReactDOM.render(
         container,
         document.getElementById('root')
