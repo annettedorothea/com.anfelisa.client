@@ -8,8 +8,7 @@
 
 import * as AppUtils from "./AppUtils";
 import * as AppState from "./AppState";
-
-export * from "../gen/ace/Timeline";
+import {replayTimeline, saveTimeline, dumpTimeline} from "../gen/ace/Timeline";
 
 export function dumpAppState() {
     console.info(AppState.get([]));
@@ -20,11 +19,11 @@ AppUtils.startApp();
 AppUtils.renderApp();
 
 // for Selenium tests
-export function getAppState() {
+function getAppState() {
     return AppState.get([])
 }
 
-export function addSquishyValueClient(value) {
+function addSquishyValueClient(value) {
     let squishyValues = JSON.parse(localStorage.getItem('squishyValues'));
     if (!squishyValues) {
         squishyValues = [];
@@ -33,7 +32,7 @@ export function addSquishyValueClient(value) {
     localStorage.setItem('squishyValues', JSON.stringify(squishyValues));
 }
 
-export function addSquishyValueServer(uuid, key, value) {
+function addSquishyValueServer(uuid, key, value) {
     return new Promise(() => {
         let url = "";
         if (key === "system-time") {
@@ -55,7 +54,20 @@ export function getValueFromLocalStorage(key) {
     return localStorage.getItem(key);
 }
 
-
+try {
+    window.Anfelisa = {
+        dumpAppState,
+        getAppState,
+        addSquishyValueClient,
+        addSquishyValueServer,
+        replayTimeline,
+        saveTimeline,
+        dumpTimeline,
+        getValueFromLocalStorage
+    }
+} catch {
+    console.error("cannot expose functions to window")
+}
 
 
 /******* S.D.G. *******/

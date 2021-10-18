@@ -4,10 +4,12 @@
   "description": "anfelisa client",
   "repository": "https://github.com/annettedorothea/com.anfelisa.client",
   "scripts": {
-    "uglify": "uglifyjs lib/anfelisa_1.5.2.js --compress --mangle --output lib/anfelisa_1.5.2.min.js",
-    "build": "browserify --entry es6/src/index.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.5.2.js --standalone Anfelisa",
-    "start": "watchify --entry es6/src/index.js --transform [ babelify --presets [ @babel/preset-env @babel/preset-react ] ] --outfile lib/anfelisa_1.5.2.js --debug --standalone Anfelisa & live-server --watch=lib/anfelisa_1.5.2.js --host=127.0.0.1 --port=8888 --proxy='/api/':'http://localhost:8080/api/' --browser='Google Chrome'",
-    "test": "jasmine"
+    "test": "jasmine",
+    "test-firefox": "jasmine SELENIUM_BROWSER=firefox",
+    "test-chrome": "jasmine SELENIUM_BROWSER=chrome",
+    "test-safari": "jasmine SELENIUM_BROWSER=safari",
+    "start": "webpack serve --config ./webpack.dev.js",
+    "build": "webpack --config webpack.prod.js"
   },
   "author": "Annette Pohl",
   "license": "ISC",
@@ -19,17 +21,19 @@
     "react-dom": "^16.14.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.13.14",
-    "@babel/preset-env": "^7.13.12",
-    "@babel/preset-react": "^7.13.13",
-    "babelify": "^10.0.0",
-    "browserify": "^16.5.2",
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
+    "@babel/preset-react": "^7.14.5",
+    "acorn": "^8.5.0",
+    "babel-loader": "^8.2.2",
     "chromedriver": "^93.0.1",
     "geckodriver": "^2.0.0",
     "jasmine": "^3.7.0",
-    "live-server": "^1.2.1",
+    "react-hot-loader": "^4.13.0",
     "selenium-webdriver": "^4.0.0-beta.3",
-    "uglify-js": "^3.13.3",
-    "watchify": "^3.11.1"
+    "webpack": "^5.58.2",
+    "webpack-cli": "^4.9.0",
+    "webpack-dev-server": "^4.3.1",
+    "webpack-merge": "^5.8.0"
   }
 }

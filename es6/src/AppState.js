@@ -6,7 +6,7 @@ import {setRootContainerState} from "./components/RootContainer";
  ********************************************************************************/
 
 
-let appState = {};
+export let appState = {};
 
 export function get(path) {
     const lens = R.lensPath(path);
