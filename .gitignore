@@ -5,3 +5,5 @@ node_modules
 settings.json
 lib
 target
+es6/gen
+spec/gen
