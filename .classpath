@@ -5,7 +5,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/server">
+	<classpathentry combineaccessrules="false" kind="src" path="/com.anfelisa.server">
 		<attributes>
 			<attribute name="module" value="true"/>
 		</attributes>
