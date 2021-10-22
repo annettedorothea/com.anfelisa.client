@@ -130,8 +130,8 @@ module.exports = {
 
 	defaultTimeout: 30 * 1000,
 	
-	browserName: "firefox"
-	//browserName: "chrome"
+	//browserName: "firefox"
+	browserName: "chrome"
 	//browserName: "safari" // execute: safaridriver --enable
 
 }

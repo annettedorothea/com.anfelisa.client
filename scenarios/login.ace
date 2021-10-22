@@ -76,6 +76,7 @@ LoginUnauthorized
 LoginUnauthorizedSecondTime
 	GIVEN LoginUnauthorized
 	WHEN login.Login
+		delayInMillis 50
 	THEN 
 		expectedState 
 			loggedInUserIsNotSet common.rootContainer.loggedInUser should be null
