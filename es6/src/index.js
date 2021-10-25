@@ -3,12 +3,10 @@
  ********************************************************************************/
 
 
-
-
-
 import * as AppUtils from "./AppUtils";
 import * as AppState from "./AppState";
 import {replayTimeline, saveTimeline, dumpTimeline} from "../gen/ace/Timeline";
+import {getValueFromLocalStorage} from "./AppUtils";
 
 export function dumpAppState() {
     console.info(AppState.get([]));
@@ -18,57 +16,22 @@ AppUtils.initEventListeners();
 AppUtils.startApp();
 AppUtils.renderApp();
 
-// for Selenium tests
-function getAppState() {
-    return AppState.get([])
+
+
+
+
+window.Anfelisa = {
+    dumpAppState,
+    replayTimeline,
+    saveTimeline,
+    dumpTimeline,
+    getValueFromLocalStorage: AppUtils.getValueFromLocalStorage,
+    getAppState: AppUtils.getAppState,
+    addSquishyValueClient: AppUtils.addSquishyValueClient,
+    addSquishyValueServer: AppUtils.addSquishyValueServer
 }
 
-function addSquishyValueClient(value) {
-    let squishyValues = JSON.parse(localStorage.getItem('squishyValues'));
-    if (!squishyValues) {
-        squishyValues = [];
-    }
-    squishyValues.push(value);
-    localStorage.setItem('squishyValues', JSON.stringify(squishyValues));
-}
-
-function addSquishyValueServer(uuid, key, value) {
-    return new Promise(() => {
-        let url = "";
-        if (key === "system-time") {
-            url =`/api/test/squishy/system-time?uuid=${uuid}&system-time=${value}`;
-        } else {
-            url =`/api/test/squishy/value?uuid=${uuid}&key=${key}&value=${value}`
-        }
-        return new Promise((resolve, reject) => {
-            AppUtils.httpPut(url).then(() => {
-                resolve();
-            }, (error) => {
-                reject(error);
-            });
-        });
-    })
-}
-
-export function getValueFromLocalStorage(key) {
-    return localStorage.getItem(key);
-}
-
-try {
-    window.Anfelisa = {
-        dumpAppState,
-        getAppState,
-        addSquishyValueClient,
-        addSquishyValueServer,
-        replayTimeline,
-        saveTimeline,
-        dumpTimeline,
-        getValueFromLocalStorage
-    }
-} catch {
-    console.error("cannot expose functions to window")
-}
-
+console.log("window.Anfelisa", window.Anfelisa);
 
 /******* S.D.G. *******/
 
