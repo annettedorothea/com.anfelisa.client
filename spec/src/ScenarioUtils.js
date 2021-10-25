@@ -6,6 +6,9 @@ const LoginActionIds = require("../gen/actionIds/login/LoginActionIds");
 const RegistrationActionIds = require("../gen/actionIds/registration/RegistrationActionIds");
 const BoxActionIds = require("../gen/actionIds/box/BoxActionIds");
 
+const browserParam = process.env.SELENIUM_BROWSER;
+const browser = browserParam ? browserParam : "chrome"
+
 module.exports = {
 	tearDown: async function(driver) {
 		await driver.quit();
@@ -130,8 +133,8 @@ module.exports = {
 
 	defaultTimeout: 30 * 1000,
 	
-	//browserName: "firefox"
-	browserName: "chrome"
+	browserName: browser
+	//browserName: "chrome"
 	//browserName: "safari" // execute: safaridriver --enable
 
 }
@@ -146,8 +149,16 @@ async function waitClearSendKeys(driver, id, value) {
 			text = await element.getAttribute("value")
 		}
 	} else {
-		await driver.findElement(By.id(id)).clear();
-		await driver.findElement(By.id(id)).sendKeys(value);
+		const element = await driver.findElement(By.id(id));
+		await element.clear();
+		if (browser === "firefox") {
+			const valueAsString = value.toString();
+			for (let i=0; i<valueAsString.length; i++) {
+                await element.sendKeys(valueAsString.charAt(i));
+            }
+		} else {
+			await element.sendKeys(value);
+		}
 	}
 }
 

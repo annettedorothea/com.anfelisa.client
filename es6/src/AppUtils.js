@@ -254,17 +254,15 @@ export function isUnauthorized(message) {
 }
 
 
-
-
 // for Selenium tests
 
 export function addSquishyValueServer(uuid, key, value) {
     return new Promise(() => {
         let url = "";
         if (key === "system-time") {
-            url =`/api/test/squishy/system-time?uuid=${uuid}&system-time=${value}`;
+            url = `/api/test/squishy/system-time?uuid=${uuid}&system-time=${value}`;
         } else {
-            url =`/api/test/squishy/value?uuid=${uuid}&key=${key}&value=${value}`
+            url = `/api/test/squishy/value?uuid=${uuid}&key=${key}&value=${value}`
         }
         return new Promise((resolve, reject) => {
             httpPut(url).then(() => {
@@ -275,32 +273,18 @@ export function addSquishyValueServer(uuid, key, value) {
         });
     })
 }
+
+const squishyClientValues = [];
+
 export function addSquishyValueClient(value) {
-    let squishyValues = JSON.parse(localStorage.getItem('squishyValues'));
-    if (!squishyValues) {
-        squishyValues = [];
-    }
-    squishyValues.push(value);
-    localStorage.setItem('squishyValues', JSON.stringify(squishyValues));
-}
-
-export function getValueFromLocalStorage(key) {
-    return localStorage.getItem(key);
-}
-
-export function getAppState() {
-    return AppState.get([])
+    squishyClientValues.push(JSON.parse(value));
 }
 
 export function readSquishyValuesClient(data) {
-    let squishyValues = JSON.parse(localStorage.getItem("squishyValues"));
-    if (squishyValues && squishyValues.length > 0) {
-        const squishyValue = JSON.parse(squishyValues.shift());
-        if (squishyValue) {
-            data.uuid = squishyValue.uuid;
-            data.clientSystemTime = squishyValue.clientSystemTime;
-        }
-        localStorage.setItem('squishyValues', JSON.stringify(squishyValues));
+    const squishyValue = squishyClientValues.shift();
+    if (squishyValue) {
+        data.uuid = squishyValue.uuid;
+        data.clientSystemTime = squishyValue.clientSystemTime;
     }
     if (!data.uuid) {
         data.uuid = createUUID();
@@ -310,7 +294,13 @@ export function readSquishyValuesClient(data) {
     }
 }
 
+export function getValueFromLocalStorage(key) {
+    return localStorage.getItem(key);
+}
 
+export function getAppState() {
+    return AppState.get([])
+}
 
 
 /******* S.D.G. *******/
