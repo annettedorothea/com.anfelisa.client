@@ -31,7 +31,6 @@ window.Anfelisa = {
     addSquishyValueServer: AppUtils.addSquishyValueServer
 }
 
-console.log("window.Anfelisa", window.Anfelisa);
 
 /******* S.D.G. *******/
 
