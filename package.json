@@ -26,7 +26,7 @@
     "@babel/preset-react": "^7.14.5",
     "acorn": "^8.5.0",
     "babel-loader": "^8.2.3",
-    "chromedriver": "^94.0.0",
+    "chromedriver": "^96.0.0",
     "geckodriver": "^2.0.4",
     "jasmine": "^3.10.0",
     "react-hot-loader": "^4.13.0",

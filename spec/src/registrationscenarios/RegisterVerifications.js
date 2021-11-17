@@ -8,7 +8,7 @@ const ScenarioUtils = require("../ScenarioUtils");
 
 module.exports = {
 	loginDataWasNotSetInLocalStorage: async function(driver, testId) {
-		expect(await ScenarioUtils.getValueFromLocalStorage(driver, "token")).toBeNull();
+		return await ScenarioUtils.getValueFromLocalStorage(driver, "token") === null
 	}
 }
 

@@ -6,26 +6,26 @@ const { By, until } = require('selenium-webdriver');
 module.exports = {
     saveDisabled: async function(driver, testId) {
         await driver.wait(until.elementLocated(By.id('save')), 5000);
-        expect(await driver.findElement(By.id("save")).isEnabled()).toBeFalse();
+        return await driver.findElement(By.id("save")).isEnabled() === false;
     },
     saveEnabled: async function(driver, testId) {
         await driver.wait(until.elementLocated(By.id('save')), 5000);
-        expect(await driver.findElement(By.id("save")).isEnabled()).toBeTrue();
+        return await driver.findElement(By.id("save")).isEnabled();
     },
     givenLanguageDisabled: async function(driver, testId) {
         await driver.wait(until.elementLocated(By.id('givenLanguage')), 5000);
-        expect(await driver.findElement(By.id("givenLanguage")).isEnabled()).toBeFalse();
+        return await driver.findElement(By.id("givenLanguage")).isEnabled() === false;
     },
     wantedLanguageDisabled: async function(driver, testId) {
         await driver.wait(until.elementLocated(By.id('wantedLanguage')), 5000);
-        expect(await driver.findElement(By.id("wantedLanguage")).isEnabled()).toBeFalse();
+        return await driver.findElement(By.id("wantedLanguage")).isEnabled() === false;
     },
     givenLanguageEnabled: async function(driver, testId) {
         await driver.wait(until.elementLocated(By.id('givenLanguage')), 5000);
-        expect(await driver.findElement(By.id("givenLanguage")).isEnabled()).toBeTrue();
+        return await driver.findElement(By.id("givenLanguage")).isEnabled();
     },
     wantedLanguageEnabled: async function(driver, testId) {
         await driver.wait(until.elementLocated(By.id('wantedLanguage')), 5000);
-        expect(await driver.findElement(By.id("wantedLanguage")).isEnabled()).toBeTrue();
+        return await driver.findElement(By.id("wantedLanguage")).isEnabled();
     }
 }
