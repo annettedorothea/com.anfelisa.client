@@ -5,7 +5,5 @@ node_modules
 dist/settings.json
 lib
 target
-es6/gen
-spec/gen
 bundle.js
 bundle.js.LICENSE.txt
