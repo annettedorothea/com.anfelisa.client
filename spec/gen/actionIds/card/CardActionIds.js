@@ -58,7 +58,9 @@ module.exports = {
 	
 	onDragExit : "card_onDragExit",
 	
-	searchDuplicateCards : "card_searchDuplicateCards"
+	searchDuplicateCards : "card_searchDuplicateCards",
+	
+	translate : "card_translate"
 	
 }
 

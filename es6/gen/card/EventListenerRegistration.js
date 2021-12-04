@@ -182,6 +182,18 @@ export default class EventListenerRegistrationCard {
 					["rootContainer", "mainView", "authorView", "cardView", "cardDuplicates"]
 				)
 			});
+		ACEController.registerListener('card.TranslateWantedFetchedEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "authorView", "cardView", "newCard", "wanted"]
+				)
+			});
+		ACEController.registerListener('card.TranslateGivenFetchedEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "authorView", "cardView", "newCard", "given"]
+				)
+			});
 	}
 
 }

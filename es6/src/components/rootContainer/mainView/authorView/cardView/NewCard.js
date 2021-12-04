@@ -11,6 +11,7 @@ import {
 	createCard,
 	givenOfNewCardChanged,
 	passValueToDictionary,
+	translate,
 	wantedOfNewCardChanged
 } from "../../../../../../gen/card/ActionFunctions";
 import {Texts} from "../../../../../app/Texts";
@@ -41,11 +42,17 @@ export const NewCard = (props) => {
 		if (props.naturalInputOrder === true && !!props.dictionaryLookup && (!props.wanted || props.wanted.length === 0)) {
 			passValueToDictionary();
 		}
+		if (props.naturalInputOrder === true && props.dictionaryLookup === true) {
+			translate();
+		}
 	}
 
 	const onBlurWanted = () => {
 		if (props.naturalInputOrder === false && !!props.dictionaryLookup && (!props.given || props.given.length === 0)) {
 			passValueToDictionary();
+		}
+		if (props.naturalInputOrder === false && props.dictionaryLookup === true) {
+			translate();
 		}
 	}
 

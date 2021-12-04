@@ -89,6 +89,7 @@ export const CardView = (props) => {
 				src={src}
 				frameBorder={0}
 				onLoad={setFocus}
+				sandbox="allow-scripts"
 			/>
 		</div>
 	}

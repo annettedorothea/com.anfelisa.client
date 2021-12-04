@@ -54,10 +54,9 @@ export const NextCard = (props) => {
                 className={i < props.index ? "" : "hidden"}
             >{lines[i]}</div>);
         }
-        return <div className={`wanted lastQuality_${props.lastQuality}`}>
+        return <div className={`wanted lastQuality_${props.lastQuality}`} onClick={onClick}>
             <div
                 className="wanted-word"
-                onClick={onClick}
             >{lineItems}</div>
         </div>
     }

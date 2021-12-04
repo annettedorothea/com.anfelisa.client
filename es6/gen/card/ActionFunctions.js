@@ -32,6 +32,7 @@ import ChangeCardOrderAction from "../../src/card/actions/ChangeCardOrderAction"
 import OnDragEnterAction from "../../src/card/actions/OnDragEnterAction";
 import OnDragExitAction from "../../src/card/actions/OnDragExitAction";
 import SearchDuplicateCardsAction from "../../src/card/actions/SearchDuplicateCardsAction";
+import TranslateAction from "../../src/card/actions/TranslateAction";
 
 export function loadCards() {
     return new LoadCardsAction().apply({});
@@ -139,6 +140,10 @@ export function onDragExit(dragTargetCardId) {
 
 export function searchDuplicateCards() {
     return new SearchDuplicateCardsAction().apply({});
+}
+
+export function translate() {
+    return new TranslateAction().apply({});
 }
 
 
