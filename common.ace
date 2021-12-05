@@ -255,6 +255,8 @@ ui JSX rootContainer {
 				lastQuality
 			}
 			List selectedCardIds
+
+			List selectedLastQualityFilters
 		} 
 		profileView {
 			username

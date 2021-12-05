@@ -9,11 +9,15 @@ import React from "react";
 
 import { ActiveCardListItem } from "./allActiveCardsView/ActiveCardListItem";
 import {
+	filterActiveCardListMaxEfChanged,
+	filterActiveCardListMinEfChanged,
+	filterActiveCardListWithLastQualityChanged,
 	scheduleSelectedCards,
 	sortSelectedCardsOut,
 	toggleAllScheduleCardSelection
 } from "../../../../gen/box/ActionFunctions";
 import {Texts} from "../../../app/Texts";
+import {filterNonScheduledCards} from "../../../../gen/category/ActionFunctions";
 
 export const AllActiveCardsView = (props) => {
 	if (!props.activeCardList || !props.selectedCardIds) {
@@ -28,7 +32,32 @@ export const AllActiveCardsView = (props) => {
 			language={props.language}
 		/>
 	});
+	const filterLastQuality = (lastQuality) => {
+		return <div className="form">
+			<input
+				type="checkbox"
+				onClick={() => filterActiveCardListWithLastQualityChanged(lastQuality)}
+				id={`lastQuality{lastQuality}`}
+				value={props.selectedLastQualityFilters.indexOf(lastQuality) >= 0}
+			/>
+			<label
+				htmlFor={`lastQuality{lastQuality}`}
+				className={`quality_${lastQuality}`}
+			>
+				{Texts.allActiveCards.filterLastQuality[lastQuality][props.language]}
+			</label>
+		</div>
+
+	}
 	return <div className="allActiveCards">
+		<div>
+			{filterLastQuality(5)}
+			{filterLastQuality(4)}
+			{filterLastQuality(3)}
+			{filterLastQuality(2)}
+			{filterLastQuality(1)}
+			{filterLastQuality(0)}
+		</div>
 		<table>
 			<thead>
 			<tr className="notPrinted">
@@ -36,7 +65,7 @@ export const AllActiveCardsView = (props) => {
 					<input
 						type="checkbox"
 						onChange={toggleAllScheduleCardSelection}
-						checked={props.activeCardList.length > 0 && props.selectedCardIds.length === props.activeCardList.length}
+						checked={props.activeCardList.filter(i => i.hide !== true).length > 0 && props.selectedCardIds.length === props.activeCardList.filter(i => i.hide !== true).length}
 					/>
 				</th>
 				<th colSpan={4}>

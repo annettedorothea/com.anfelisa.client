@@ -1156,27 +1156,27 @@ iframe {
     margin: 0 0;
 }
 
-.allActiveCards td.quality_0 {
+.allActiveCards .quality_0 {
     color: #FF5DB1;
 }
 
-.allActiveCards td.quality_1 {
+.allActiveCards .quality_1 {
     color: #E53C16;
 }
 
-.allActiveCards td.quality_2 {
+.allActiveCards .quality_2 {
     color: #ffa84c;
 }
 
-.allActiveCards td.quality_3 {
+.allActiveCards .quality_3 {
     color: #2AABD2;
 }
 
-.allActiveCards td.quality_4 {
+.allActiveCards .quality_4 {
     color: #337ab7;
 }
 
-.allActiveCards td.quality_5 {
+.allActiveCards .quality_5 {
     color: #669E00;
 }
 

@@ -31,6 +31,8 @@ ACE
 			set common.rootContainer.mainView.allActiveCardsView.activeCardList
 			set common.rootContainer.mainView.allActiveCardsView.selectedCardIds
 			set common.rootContainer.mainView.allActiveCardsView.editable
+		) triggers (
+			FilterActiveCardList
 		)
 	
 	ToggleScheduleCardSelection ( cardId )
@@ -67,6 +69,25 @@ ACE
 		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (LoadActiveCards)
 
+	FilterActiveCardListWithLastQualityChanged ( lastQualityFilter )
+		fromAppState (
+			common.rootContainer.mainView.allActiveCardsView.selectedLastQualityFilters
+		)
+		on ok (
+			set common.rootContainer.mainView.allActiveCardsView.selectedLastQualityFilters
+		) triggers (
+			FilterActiveCardList
+		)
+		
+	FilterActiveCardList
+		fromAppState (
+			common.rootContainer.mainView.allActiveCardsView.selectedLastQualityFilters,
+			common.rootContainer.mainView.allActiveCardsView.activeCardList
+		)
+		on ok (
+			set common.rootContainer.mainView.allActiveCardsView.activeCardList
+		)
+		
 	DeleteBoxClick ( boxId )
 		on ok (set common.rootContainer.mainView.dashboardView.deleteBox)
 	

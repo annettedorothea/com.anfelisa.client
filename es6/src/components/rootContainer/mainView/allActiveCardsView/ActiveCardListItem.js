@@ -55,21 +55,25 @@ export const ActiveCardListItem = (props) => {
 
 	const thumbsUp = () => {
 		if (props.ef > 2.5) {
-			return <div>
+			return <div title={props.ef}>
 				<i className="far fa-thumbs-up"/>
 				<i className="far fa-thumbs-up"/>
 				<i className="far fa-thumbs-up"/>
 			</div>
 		}
 		if (props.ef > 2.0) {
-			return <div>
+			return <div title={props.ef}>
 				<i className="far fa-thumbs-up"/>
 				<i className="far fa-thumbs-up"/>
 			</div>
 		}
-		return <div>
+		return <div title={props.ef}>
 			<i className="far fa-thumbs-up"/>
 		</div>
+	}
+
+	if (props.hide === true) {
+		return null;
 	}
 	return <tr key={props.cardId}>
 		<td className="notPrinted">

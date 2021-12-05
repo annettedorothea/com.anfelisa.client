@@ -14,12 +14,38 @@ export const Texts = {
         intervalOne: {
             de: "1 Tag"
         },
+        maxEf: {
+            de: "bis"
+        },
+        minEf: {
+            de: "von"
+        },
         scheduleSelectedCards: {
             de: "Heute abfragen"
         },
         sortSelectedCardsOut: {
             de: "Aussortieren"
-        }
+        },
+        filterLastQuality: {
+            0: {
+                de: "Keine Ahnung"
+            },
+            1: {
+                de: "Nicht gewusst"
+            },
+            2: {
+                de: "Knapp daneben"
+            },
+            3: {
+                de: "Mit Mühe"
+            },
+            4: {
+                de: "Gewusst"
+            },
+            5: {
+                de: "Perfekt"
+            }
+        },
     },
     box: {
         archiveBox: {

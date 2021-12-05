@@ -60,7 +60,8 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
         } else if (data.hash.startsWith("#box/active-cards") && hashes.length >= 2 && hashes[2] && this.isUserLoggedIn(data)) {
             data.mainView = {
                 allActiveCardsView: {
-                    boxId: hashes[2]
+                    boxId: hashes[2],
+                    selectedLastQualityFilters: [],
                 }
             };
             this.addAllActiveCardsOutcome(data);
