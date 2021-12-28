@@ -6,7 +6,6 @@
 import * as AppUtils from "./AppUtils";
 import * as AppState from "./AppState";
 import {replayTimeline, saveTimeline, dumpTimeline} from "../gen/ace/Timeline";
-import {getValueFromLocalStorage} from "./AppUtils";
 
 export function dumpAppState() {
     console.info(AppState.get([]));
