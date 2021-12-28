@@ -11,13 +11,17 @@ export default class MaxIntervalChangedCommand extends AbstractMaxIntervalChange
     execute(data) {
         if (data.maxInterval) {
             data.maxIntervalInvalid = isNaN(data.maxInterval)
-                || data.maxInterval%1 !== 0
+                || data.maxInterval % 1 !== 0
                 || data.maxInterval <= 0;
         } else {
             data.maxIntervalInvalid = false;
         }
     	this.addOkOutcome(data);
     	return data;
+        var x = 1;
+        if (x > 1) {
+
+        }
     }
 }
 

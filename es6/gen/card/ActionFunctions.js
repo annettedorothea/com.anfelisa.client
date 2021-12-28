@@ -23,6 +23,7 @@ import FilterCardsAction from "../../src/card/actions/FilterCardsAction";
 import PassValueToDictionaryAction from "../../src/card/actions/PassValueToDictionaryAction";
 import ToggleInputOrderAction from "../../src/card/actions/ToggleInputOrderAction";
 import ToggleScheduleCardSelectionAction from "../../src/card/actions/ToggleScheduleCardSelectionAction";
+import SelectScheduleCardRangeAction from "../../src/card/actions/SelectScheduleCardRangeAction";
 import ToggleAllScheduleCardSelectionAction from "../../src/card/actions/ToggleAllScheduleCardSelectionAction";
 import ScheduleSelectedCardsAction from "../../src/card/actions/ScheduleSelectedCardsAction";
 import SortSelectedCardsOutAction from "../../src/card/actions/SortSelectedCardsOutAction";
@@ -104,6 +105,10 @@ export function toggleInputOrder() {
 
 export function toggleScheduleCardSelection(cardId) {
     return new ToggleScheduleCardSelectionAction().apply({cardId});
+}
+
+export function selectScheduleCardRange(cardId) {
+    return new SelectScheduleCardRangeAction().apply({cardId});
 }
 
 export function toggleAllScheduleCardSelection() {

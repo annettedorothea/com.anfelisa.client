@@ -164,7 +164,7 @@ CreateRootCategory
 	WHEN box.CreateRootCategory
 		squishyValues {
 			uuid "box-${testId}"
-		}
+		} delayInMillis 500
 	THEN 
 		expectedState 
 			boxList common.rootContainer.mainView.dashboardView.boxList should be [
@@ -200,7 +200,7 @@ CreateRootCategoryWithDefault
 	WHEN box.CreateRootCategory
 		squishyValues {
 			uuid "box-${testId}"
-		}
+		} delayInMillis 500
 	THEN 
 		expectedState 
 			boxList common.rootContainer.mainView.dashboardView.boxList should be [

@@ -53,6 +53,7 @@ describe("boxscenarios.CreateRootCategoryWithDefault", function () {
 		);
 		await ScenarioUtils.invokeAction(driver, BoxActionIds.createRootCategory);
 		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(500);
 		
 		appState = await ScenarioUtils.getAppState(driver);
 		appStates.boxList = appState;

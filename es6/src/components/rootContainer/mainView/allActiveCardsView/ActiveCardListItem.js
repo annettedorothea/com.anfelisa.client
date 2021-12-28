@@ -8,11 +8,19 @@
 
 
 import React from "react";
-import {toggleScheduleCardSelection, updateCardPriority} from "../../../../../gen/box/ActionFunctions";
+import {toggleScheduleCardSelection, updateCardPriority, selectScheduleCardRange} from "../../../../../gen/box/ActionFunctions";
 import {Texts} from "../../../../app/Texts";
 
-
 export const ActiveCardListItem = (props) => {
+
+	const onCheckboxClicked = (e) => {
+		if (e.nativeEvent.shiftKey === true) {
+			selectScheduleCardRange(props.cardId)
+		} else {
+			toggleScheduleCardSelection(props.cardId)
+		}
+	}
+
 	const priority = () => {
 		const priorityChanged = (priority) => {
 			if (props.editable) {
@@ -79,7 +87,7 @@ export const ActiveCardListItem = (props) => {
 		<td className="notPrinted">
 			<input
 				type="checkbox"
-				onChange={() => toggleScheduleCardSelection(props.cardId)}
+				onChange={onCheckboxClicked}
 				checked={props.selectedCardIds.indexOf(props.cardId) >= 0}
 			/>
 		</td>

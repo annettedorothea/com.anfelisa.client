@@ -13,7 +13,7 @@ module.exports = merge(common, {
         static: path.resolve(__dirname, './dist'),
         proxy: {
             '/api/': {
-                target: 'http://localhost:8080/',
+                target: 'http://localhost:8088/',
             },
         }
     },

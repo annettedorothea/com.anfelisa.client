@@ -39,6 +39,18 @@ ACE
 		fromAppState (common.rootContainer.mainView.allActiveCardsView.selectedCardIds)
 		on ok (set common.rootContainer.mainView.allActiveCardsView.selectedCardIds)
 	
+	SelectScheduleCardRange ( cardId )
+		fromAppState (
+			common.rootContainer.mainView.allActiveCardsView.selectedCardIds,
+			common.rootContainer.mainView.allActiveCardsView.activeCardList
+		)
+		on ok (
+			set common.rootContainer.mainView.allActiveCardsView.selectedCardIds
+		)
+		on noSelection triggers (
+			ToggleScheduleCardSelection
+		)
+	
 	ToggleAllScheduleCardSelection 
 		fromAppState (
 			common.rootContainer.mainView.allActiveCardsView.selectedCardIds,

@@ -17,7 +17,7 @@ module.exports = {
 	invokeAction: async function(driver, action, args) {
 		//console.log("invokeAction", action);
 		if (CommonActionIds.init === action) {
-			await driver.get('http://localhost:8082/');
+			await driver.get('http://localhost:8080/');
 			await driver.wait(until.elementLocated(By.xpath("//*[contains(@id,'dashboard') or (contains(@id,'username'))]")), 5000);
 		}
 		if (CommonActionIds.route === action) {
@@ -71,7 +71,7 @@ module.exports = {
 			await driver.wait(until.elementLocated(By.id('dashboard')), 5000);
 		}
 		if (RegistrationActionIds.confirmEmail === action) {
-			await driver.get(`http://localhost:8082/#confirmemail/${args[0]}/${args[1]}`);
+			await driver.get(`http://localhost:8080/#confirmemail/${args[0]}/${args[1]}`);
 			await this.waitInMillis(1000);
 		}
 

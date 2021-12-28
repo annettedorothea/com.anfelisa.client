@@ -10,6 +10,7 @@ import LoadBoxesAction from "../../src/box/actions/LoadBoxesAction";
 import LoadBoxStatisticsAction from "../../src/box/actions/LoadBoxStatisticsAction";
 import LoadActiveCardsAction from "../../src/box/actions/LoadActiveCardsAction";
 import ToggleScheduleCardSelectionAction from "../../src/box/actions/ToggleScheduleCardSelectionAction";
+import SelectScheduleCardRangeAction from "../../src/box/actions/SelectScheduleCardRangeAction";
 import ToggleAllScheduleCardSelectionAction from "../../src/box/actions/ToggleAllScheduleCardSelectionAction";
 import ScheduleSelectedCardsAction from "../../src/box/actions/ScheduleSelectedCardsAction";
 import SortSelectedCardsOutAction from "../../src/box/actions/SortSelectedCardsOutAction";
@@ -56,6 +57,10 @@ export function loadActiveCards() {
 
 export function toggleScheduleCardSelection(cardId) {
     return new ToggleScheduleCardSelectionAction().apply({cardId});
+}
+
+export function selectScheduleCardRange(cardId) {
+    return new SelectScheduleCardRangeAction().apply({cardId});
 }
 
 export function toggleAllScheduleCardSelection() {

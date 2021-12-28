@@ -16,7 +16,6 @@ export default class FilterActiveCardListWithLastQualityChangedCommand extends A
             data.selectedLastQualityFilters.push(data.lastQualityFilter);
         }
     	this.addOkOutcome(data);
-        console.log(data);
     	return data;
     }
 }

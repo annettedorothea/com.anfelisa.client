@@ -11,14 +11,23 @@ import {
 	changeCardOrder, deleteCardClick, editCard, givenOfEditedCardChanged,
 	moveCardsStarted,
 	onDragEnter,
-	onDragExit, toggleScheduleCardSelection,
+	onDragExit, selectScheduleCardRange, toggleScheduleCardSelection,
 	updateCard, updateCardPriority, wantedOfEditedCardChanged
 } from "../../../../../../gen/card/ActionFunctions";
 import {Texts} from "../../../../../app/Texts";
 
 
 export const CardListItem = (props) => {
+
 	const editMode = props.cardId === props.editedCard.cardId && props.editable;
+
+	const onCheckboxClicked = (e) => {
+		if (e.nativeEvent.shiftKey === true) {
+			selectScheduleCardRange(props.cardId)
+		} else {
+			toggleScheduleCardSelection(props.cardId)
+		}
+	}
 
 	const onDragStart = (event) => {
 		if (props.editable) {
@@ -166,7 +175,7 @@ export const CardListItem = (props) => {
 		<td className="notPrinted">
 			<input
 				type="checkbox"
-				onChange={() => toggleScheduleCardSelection(props.cardId)}
+				onChange={onCheckboxClicked}
 				checked={props.selectedCardIds.indexOf(props.cardId) >= 0}
 			/>
 		</td>

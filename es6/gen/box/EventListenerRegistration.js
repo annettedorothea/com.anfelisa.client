@@ -47,6 +47,12 @@ export default class EventListenerRegistrationBox {
 					["rootContainer", "mainView", "allActiveCardsView", "selectedCardIds"]
 				)
 			});
+		ACEController.registerListener('box.SelectScheduleCardRangeOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "allActiveCardsView", "selectedCardIds"]
+				)
+			});
 		ACEController.registerListener('box.ToggleAllScheduleCardSelectionOkEvent', (data) => {
 				AppState.set(
 					data, 

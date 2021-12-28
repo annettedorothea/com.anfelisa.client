@@ -42,6 +42,8 @@ module.exports = {
 	
 	toggleScheduleCardSelection : "card_toggleScheduleCardSelection",
 	
+	selectScheduleCardRange : "card_selectScheduleCardRange",
+	
 	toggleAllScheduleCardSelection : "card_toggleAllScheduleCardSelection",
 	
 	scheduleSelectedCards : "card_scheduleSelectedCards",
