@@ -1,8 +1,6 @@
 # com.anfelisa.client
 
-This is the client for the anfelisa SuperMemo app.
-
-See [Anfelisa](https://anfelisa.de/#).
+This is the client for the [Anfelisa](https://anfelisa.de/#) SuperMemo app.
 
 It is a prrof of concept for the [Action - Command - Event Pattern](https://github.com/annettedorothea/ace).
 
