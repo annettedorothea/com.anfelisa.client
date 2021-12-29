@@ -40,7 +40,7 @@ export default class SelectScheduleCardRangeCommand extends AbstractSelectSchedu
             for (let i = start; i <= end; i++) {
                 const cardId = data.activeCardList[i].cardId
                 const index = data.selectedCardIds.indexOf(cardId);
-                if (index === -1) {
+                if (index === -1 && !data.activeCardList[i].hide) {
                     data.selectedCardIds.push(cardId);
                 }
             }

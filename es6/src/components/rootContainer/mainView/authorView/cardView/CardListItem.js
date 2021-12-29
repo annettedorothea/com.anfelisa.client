@@ -83,11 +83,17 @@ export const CardListItem = (props) => {
 		return props.given && props.given.length > 0 && (props.wanted && props.wanted.length > 0 || props.image.length > 0);
 	}
 
+	const onChange = (e, action) => {
+		if (e.keyCode !== 13 && !e.altKey) {
+			action(e.target.value);
+		}
+	}
+
 	const renderGiven = () => {
 		if (editMode === true) {
 			return <td className="textarea input">
                 <textarea
-					onChange={(event) => givenOfEditedCardChanged(event.target.value)}
+					onChange={(event) => onChange(event, givenOfEditedCardChanged)}
 					autoComplete="off"
 					value={props.editedCard.given}
 					placeholder={`${Texts.cardList.given[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.givenLanguage][props.language] + ")" : ""}`}
@@ -107,7 +113,7 @@ export const CardListItem = (props) => {
 		if (editMode === true) {
 			return <td className="textarea input">
                 <textarea
-					onChange={(event) => wantedOfEditedCardChanged(event.target.value)}
+					onChange={(event) => onChange(event, wantedOfEditedCardChanged)}
 					autoComplete="off"
 					value={props.editedCard.wanted}
 					placeholder={`${Texts.cardList.wanted[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.wantedLanguage][props.language] + ")" : ""}`}

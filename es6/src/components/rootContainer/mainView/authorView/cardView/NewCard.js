@@ -28,6 +28,12 @@ export const NewCard = (props) => {
 		}
 	}
 
+	const onChange = (e, action) => {
+		if (e.keyCode !== 13 && !e.altKey) {
+			action(e.target.value);
+		}
+	}
+
 	const onCreate = () => {
 		createCard();
 		document.getElementById(props.naturalInputOrder === true ? "given" : "wanted").focus();
@@ -59,7 +65,7 @@ export const NewCard = (props) => {
 	const renderGiven = () => {
 		return <td className="textarea input">
             <textarea
-				onChange={(event) => givenOfNewCardChanged(event.target.value)}
+				onChange={(event) => onChange(event, givenOfNewCardChanged)}
 				autoComplete="off"
 				value={props.given}
 				placeholder={`${Texts.cardList.given[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.givenLanguage][props.language] + ")" : ""}`}
@@ -73,7 +79,7 @@ export const NewCard = (props) => {
 	const renderWanted = () => {
 		return <td className="textarea input">
             <textarea
-				onChange={(event) => wantedOfNewCardChanged(event.target.value)}
+				onChange={(event) => onChange(event, wantedOfNewCardChanged)}
 				autoComplete="off"
 				value={props.wanted}
 				placeholder={`${Texts.cardList.wanted[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.wantedLanguage][props.language] + ")" : ""}`}

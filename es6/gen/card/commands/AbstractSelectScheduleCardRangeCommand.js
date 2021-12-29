@@ -25,6 +25,10 @@ export default class AbstractSelectScheduleCardRangeCommand extends SynchronousC
         	["rootContainer", "mainView", "authorView", "cardView", "cardList"]
         )
         ;
+        data.filter = AppState.get(
+        	["rootContainer", "mainView", "authorView", "cardView", "filter"]
+        )
+        ;
         data.outcomes = [];
     }
 

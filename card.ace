@@ -113,7 +113,8 @@ ACE
 	SelectScheduleCardRange ( cardId )
 		fromAppState (
 			common.rootContainer.mainView.authorView.cardView.selectedCardIds,
-			common.rootContainer.mainView.authorView.cardView.cardList
+			common.rootContainer.mainView.authorView.cardView.cardList,
+			common.rootContainer.mainView.authorView.cardView.filter
 		)
 		on ok (
 			set common.rootContainer.mainView.authorView.cardView.selectedCardIds
@@ -125,7 +126,8 @@ ACE
 	ToggleAllScheduleCardSelection 
 		fromAppState (
 			common.rootContainer.mainView.authorView.cardView.selectedCardIds,
-			common.rootContainer.mainView.authorView.cardView.cardList
+			common.rootContainer.mainView.authorView.cardView.cardList,
+			common.rootContainer.mainView.authorView.cardView.filter
 		)
 		on ok (set common.rootContainer.mainView.authorView.cardView.selectedCardIds)
 	

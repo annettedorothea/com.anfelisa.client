@@ -24,6 +24,10 @@ export default class AbstractToggleAllScheduleCardSelectionCommand extends Synch
         	["rootContainer", "mainView", "authorView", "cardView", "cardList"]
         )
         ;
+        data.filter = AppState.get(
+        	["rootContainer", "mainView", "authorView", "cardView", "filter"]
+        )
+        ;
         data.outcomes = [];
     }
 

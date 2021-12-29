@@ -12,7 +12,9 @@ export default class ToggleAllScheduleCardSelectionCommand extends AbstractToggl
         let selectedCardIds = [];
         if (data.selectedCardIds.length < data.cardList.length) {
             data.cardList.forEach(card => {
-                selectedCardIds.push(card.cardId)
+                if (card.given.indexOf(data.filter) >= 0 || card.wanted.indexOf(data.filter) >= 0) {
+                    selectedCardIds.push(card.cardId)
+                }
             });
         }
         data.selectedCardIds = selectedCardIds;
