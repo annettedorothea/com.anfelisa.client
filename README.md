@@ -1,10 +1,12 @@
 # com.anfelisa.client
 
-This is the client for the anfelisa vocabulary trainer.
+This is the client for the anfelisa SuperMemo app.
 
 See [Anfelisa](https://anfelisa.de/#).
 
-It is written with ES6 and React and 
+It is a prrof of concept for the [Action - Command - Event Pattern](https://github.com/annettedorothea/ace).
+
+It is a single page application written with ES6 and React and 
 is based on the [de.acegen](https://github.com/annettedorothea/de.acegen) 
 DSL and code generator.
 
@@ -13,7 +15,7 @@ See [com.anfelisa.server](https://github.com/annettedorothea/com.anfelisa.server
 ## Installation
 
 - Install npm on your system.
-- Create a settings.json file in the root directory of the project:
+- Create a settings.json file in the dist directory:
 
 ```
 {
@@ -28,7 +30,7 @@ See [com.anfelisa.server](https://github.com/annettedorothea/com.anfelisa.server
 
 - Run ```npm install```. 
 - Start with ```npm start```.
-- Run the E2E tests with ```npm run test```. You have to set mode to dev in the settings file. To change the browser edit [spec/src/ScenarioUtils.js](spec/src/ScenarioUtils.js).
+- Run the E2E tests with ```npm run test```. You have to set mode to dev in the settings file.
 
 If you want to use the [de.acegen](https://github.com/annettedorothea/de.acegen) 
 Eclpise plugin, see [de.anfelisa.server](https://github.com/annettedorothea/com.anfelisa.server)
