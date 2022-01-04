@@ -5,7 +5,7 @@
 
 
 
-import React from "react";
+import React, {useState} from "react";
 import {
 	cancelNewCard,
 	createCard,
@@ -18,6 +18,10 @@ import {Texts} from "../../../../../app/Texts";
 
 
 export const NewCard = (props) => {
+
+	const [given, setGiven] = useState("");
+	const [wanted, setWanted] = useState("");
+
 	const onAltKeyUp = (e) => {
 		e.preventDefault();
 		if (e.keyCode === 13 && e.altKey && isValid()) {
@@ -35,11 +39,13 @@ export const NewCard = (props) => {
 	}
 
 	const onCreate = () => {
+		reset();
 		createCard();
 		document.getElementById(props.naturalInputOrder === true ? "given" : "wanted").focus();
 	}
 
 	const onCancel = () => {
+		reset();
 		cancelNewCard();
 		document.getElementById(props.naturalInputOrder === true ? "given" : "wanted").focus();
 	}
@@ -62,12 +68,27 @@ export const NewCard = (props) => {
 		}
 	}
 
+	const onChangeGiven = (e) => {
+		setGiven(e.target.value);
+		onChange(e, givenOfNewCardChanged);
+	}
+
+	const onChangeWanted = (e) => {
+		setWanted(e.target.value);
+		onChange(e, wantedOfNewCardChanged);
+	}
+
+	const reset = () => {
+		setGiven("");
+		setWanted("");
+	}
+
 	const renderGiven = () => {
 		return <td className="textarea input">
             <textarea
-				onChange={(event) => onChange(event, givenOfNewCardChanged)}
+				onChange={onChangeGiven}
 				autoComplete="off"
-				value={props.given}
+				value={given}
 				placeholder={`${Texts.cardList.given[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.givenLanguage][props.language] + ")" : ""}`}
 				onKeyUp={onAltKeyUp}
 				onBlur={onBlurGiven}
@@ -79,9 +100,9 @@ export const NewCard = (props) => {
 	const renderWanted = () => {
 		return <td className="textarea input">
             <textarea
-				onChange={(event) => onChange(event, wantedOfNewCardChanged)}
+				onChange={onChangeWanted}
 				autoComplete="off"
-				value={props.wanted}
+				value={wanted}
 				placeholder={`${Texts.cardList.wanted[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.wantedLanguage][props.language] + ")" : ""}`}
 				onKeyUp={onAltKeyUp}
 				onBlur={onBlurWanted}
@@ -91,7 +112,7 @@ export const NewCard = (props) => {
 	}
 
 	const isValid = () => {
-		return props.given && props.given.length > 0 && (props.wanted && props.wanted.length > 0 || props.image.length > 0);
+		return props.given && props.given.length > 0 && (props.wanted && props.wanted.length > 0);
 	}
 	return <tr className="notPrinted inputRow">
 		<td/>

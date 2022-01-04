@@ -31,7 +31,7 @@ export const CategoryDialog = (props) => {
 					type="text"
 					onChange={(event) => categoryNameChanged(event.target.value)}
 					autoComplete="off"
-					value={props.categoryName}
+					defaultValue={props.categoryName}
 					placeholder={Texts.categoryTree.newCategory.newChildCategory[props.language]}
 				/>
 			</div>

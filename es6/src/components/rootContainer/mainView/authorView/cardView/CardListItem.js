@@ -95,7 +95,7 @@ export const CardListItem = (props) => {
                 <textarea
 					onChange={(event) => onChange(event, givenOfEditedCardChanged)}
 					autoComplete="off"
-					value={props.editedCard.given}
+					defaultValue={props.editedCard.given}
 					placeholder={`${Texts.cardList.given[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.givenLanguage][props.language] + ")" : ""}`}
 					onKeyUp={onAltKeyUp}
 				>
@@ -115,7 +115,7 @@ export const CardListItem = (props) => {
                 <textarea
 					onChange={(event) => onChange(event, wantedOfEditedCardChanged)}
 					autoComplete="off"
-					value={props.editedCard.wanted}
+					defaultValue={props.editedCard.wanted}
 					placeholder={`${Texts.cardList.wanted[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.wantedLanguage][props.language] + ")" : ""}`}
 					onKeyUp={onAltKeyUp}
 				>

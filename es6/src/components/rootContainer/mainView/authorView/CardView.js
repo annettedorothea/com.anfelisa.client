@@ -118,7 +118,6 @@ export const CardView = (props) => {
 						type="text"
 						onChange={(event) => filterCards(event.target.value)}
 						autoComplete="off"
-						value={props.filter}
 						placeholder={Texts.cardList.filterCards[props.language]}
 					/>
 				</th>

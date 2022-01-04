@@ -34,7 +34,7 @@ export const RegistrationView = (props) => {
 							type={"text"}
 							onChange={(e) => usernameChanged(e.target.value)}
 							autoComplete="off"
-							value={props.username}
+							defaultValue={props.username}
 							id="username"
 						/>
 						{props.displayUsernameSpinner === true &&
@@ -76,7 +76,7 @@ export const RegistrationView = (props) => {
 							type={"text"}
 							onChange={(e) => emailChanged(e.target.value)}
 							autoComplete="off"
-							value={props.email}
+							defaultValue={props.email}
 							id="email"
 						/>
 						{props.emailInvalid === true && props.email.length > 0 &&
