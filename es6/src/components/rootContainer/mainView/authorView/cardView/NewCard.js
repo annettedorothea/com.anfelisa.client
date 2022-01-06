@@ -5,7 +5,7 @@
 
 
 
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import {
 	cancelNewCard,
 	createCard,
@@ -21,6 +21,11 @@ export const NewCard = (props) => {
 
 	const [given, setGiven] = useState("");
 	const [wanted, setWanted] = useState("");
+
+	useEffect(() => {
+		setGiven(props.given)
+		setWanted(props.wanted)
+	}, [props.wanted, props.given])
 
 	const onAltKeyUp = (e) => {
 		e.preventDefault();
