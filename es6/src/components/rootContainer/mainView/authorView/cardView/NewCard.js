@@ -24,8 +24,11 @@ export const NewCard = (props) => {
 
 	useEffect(() => {
 		setGiven(props.given)
+	}, [props.given])
+
+	useEffect(() => {
 		setWanted(props.wanted)
-	}, [props.wanted, props.given])
+	}, [props.wanted])
 
 	const onAltKeyUp = (e) => {
 		e.preventDefault();
