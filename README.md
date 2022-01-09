@@ -2,7 +2,7 @@
 
 This is the client for the [Anfelisa](https://anfelisa.de/#) SuperMemo app.
 
-It is a prof of concept for the [Action - Command - Event Pattern](https://github.com/annettedorothea/de.acegen).
+It is a proof of concept for the [Action - Command - Event Pattern](https://github.com/annettedorothea/de.acegen).
 
 It is a single page application written with ES6 and React and 
 is based on the [de.acegen](https://github.com/annettedorothea/de.acegen) 
