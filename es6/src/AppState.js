@@ -53,6 +53,11 @@ export function setStorage(data, path) {
 }
 
 export function merge(data, path, attributes) {
+    const mainView = get(["rootContainer", "mainView"]);
+    const keys = R.keys(mainView);
+    if (path.length >= 2 && path[2] !== keys[0]) {
+        return;
+    }
     if (attributes) {
         const lens = R.lensPath(path);
         const appStateValue = R.view(lens, appState);

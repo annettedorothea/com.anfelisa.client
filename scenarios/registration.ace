@@ -107,7 +107,8 @@ Register
 					textKey: "confirmEmail",
 					type: "info",
 					visible: true,
-					id: 0
+					id: 0,
+					args: null
 				}
 			]
 		verifications
@@ -123,13 +124,15 @@ ConfirmEmail
 					textKey: "confirmEmail",
 					type: "info",
 					visible: true,
-					id: 0
+					id: 0,
+					args: null
 				},
 				{ 
 					textKey: "emailConfirmed",
 					type: "info",
 					visible: true,
-					id: 1
+					id: 1,
+					args: null
 				}
 			]
 			userLoggedIn common.rootContainer.loggedInUser.username should be "username-${testId}"
@@ -146,7 +149,8 @@ ConfirmEmailTokenDoesNotExist
 					textKey: "confirmEmail",
 					type: "info",
 					visible: true,
-					id: 0
+					id: 0,
+					args: null
 				},
 				{ 
 					code: 400,

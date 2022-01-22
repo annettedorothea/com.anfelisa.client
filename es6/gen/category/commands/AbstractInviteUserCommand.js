@@ -20,6 +20,14 @@ export default class AbstractInviteUserCommand extends AsynchronousCommand {
         	["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory", "categoryId"]
         )
         ;
+        data.editable = AppState.get(
+        	["rootContainer", "mainView", "authorView", "categoryTree", "inviteUserEditableDialog", "editable"]
+        )
+        ;
+        data.invitedUsername = AppState.get(
+        	["rootContainer", "mainView", "authorView", "categoryTree", "inviteUserEditableDialog", "invitedUsername"]
+        )
+        ;
         data.outcomes = [];
     }
 
@@ -31,7 +39,8 @@ export default class AbstractInviteUserCommand extends AsynchronousCommand {
 	    return new Promise((resolve, reject) => {
 	    	let payload = {
 	    		categoryId : data.categoryId,
-	    		invitedUsername : data.invitedUsername
+	    		invitedUsername : data.invitedUsername,
+	    		editable : data.editable
 	    	};
 			AppUtils.httpPut(
 					`${AppUtils.settings.rootPath}/category/invite`, 

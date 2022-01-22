@@ -155,6 +155,7 @@ ACE
 	 	call com.anfelisa.box.ScoreCard
 		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (InitBoxesForDayDuringScore)
+		on showToast triggers (common.DisplayToast)
 	
 	ScoreReinforceCard ( keep )
 		fromAppState (common.rootContainer.mainView.queryCardView.nextCard.reinforceCardId)

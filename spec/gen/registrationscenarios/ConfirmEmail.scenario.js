@@ -59,13 +59,15 @@ describe("registrationscenarios.ConfirmEmail", function () {
 				textKey : `confirmEmail`,
 				type : `info`,
 				visible : true,
-				id : 0
+				id : 0,
+				args : null
 			},
 			{ 
 				textKey : `emailConfirmed`,
 				type : `info`,
 				visible : true,
-				id : 1
+				id : 1,
+				args : null
 			}
 		]
 		)

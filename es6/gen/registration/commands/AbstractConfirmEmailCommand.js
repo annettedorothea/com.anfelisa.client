@@ -58,7 +58,8 @@ export default class AbstractConfirmEmailCommand extends AsynchronousCommand {
 						action: new DisplayToastAction(), 
 						data: {
 							message: data.message, 
-							error: data.error
+							error: data.error, 
+							warning: data.warning
 						}
 					}
 				);
@@ -78,7 +79,8 @@ export default class AbstractConfirmEmailCommand extends AsynchronousCommand {
 						action: new DisplayToastAction(), 
 						data: {
 							message: data.message, 
-							error: data.error
+							error: data.error, 
+							warning: data.warning
 						}
 					}
 				);

@@ -57,7 +57,8 @@ describe("registrationscenarios.ConfirmEmailTokenDoesNotExist", function () {
 				textKey : `confirmEmail`,
 				type : `info`,
 				visible : true,
-				id : 0
+				id : 0,
+				args : null
 			},
 			{ 
 				code : 400,

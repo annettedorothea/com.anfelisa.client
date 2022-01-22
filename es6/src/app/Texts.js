@@ -278,7 +278,7 @@ export const Texts = {
             }
         },
         filterNonScheduled: {
-            de: "Nie abgefragte anzeigen"
+            de: "Nie abgefragte und aussortierte anzeigen"
         },
         inviteUser: {
             alreadyInvited: {
@@ -286,6 +286,12 @@ export const Texts = {
             },
             cancel: {
                 de: "Abbrechen"
+            },
+            editable: {
+                de: "Kann Änderungen vornehmen"
+            },
+            invite: {
+                de: "Einladen"
             },
             rootCategory: {
                 de: "Lernkartei"
@@ -495,6 +501,18 @@ export const Texts = {
         },
         invalidRole: {
             de: "Ungültige Rolle."
+        },
+        intervalOffsetPostponed: {
+            de: "Die Karte wurde {0} Tage nach hinten verschoben, weil deine Box zu voll ist."
+        },
+        intervalOffsetPostponedSingular: {
+            de: "Die Karte wurde einen Tag nach hinten verschoben, weil deine Box zu voll ist."
+        },
+        intervalOffsetMovedForwardSingular: {
+            de: "Die Karte wurde einen Tag nach vorne verschoben, weil du eine maximale Anzahl an Tagen angegeben hast, wann die Karte erneut abgefragt werden soll."
+        },
+        intervalOffsetMovedForward: {
+            de: "Die Karte wurde {0} Tage nach vorne verschoben, weil du eine maximale Anzahl an Tagen angegeben hast, wann die Karte erneut abgefragt werden soll."
         },
         maxCardsPerDayMustNotBeZero: {
             de: "Die maximale Anzahl von Karten pro Tag darf nicht 0 sein."

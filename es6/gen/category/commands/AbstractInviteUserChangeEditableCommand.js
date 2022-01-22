@@ -7,16 +7,19 @@
 
 import SynchronousCommand from "../../ace/SynchronousCommand";
 import Event from "../../ace/Event";
-import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
 
-export default class AbstractHideSaveBugDialogCommand extends SynchronousCommand {
+export default class AbstractInviteUserChangeEditableCommand extends SynchronousCommand {
     constructor() {
-        super("common.HideSaveBugDialogCommand");
+        super("category.InviteUserChangeEditableCommand");
     }
 
     initCommandData(data) {
+        data.editable = AppState.get(
+        	["rootContainer", "mainView", "authorView", "categoryTree", "inviteUserEditableDialog", "editable"]
+        )
+        ;
         data.outcomes = [];
     }
 
@@ -29,17 +32,7 @@ export default class AbstractHideSaveBugDialogCommand extends SynchronousCommand
 			const events = [];
 			const actionsToBeTriggered = [];
 			if (data.outcomes.includes("ok")) {
-				events.push(new Event('common.HideSaveBugDialogOkEvent'));
-				actionsToBeTriggered.push(
-					{
-						action: new DisplayToastAction(), 
-						data: {
-							message: data.message, 
-							error: data.error, 
-							warning: data.warning
-						}
-					}
-				);
+				events.push(new Event('category.InviteUserChangeEditableOkEvent'));
 			}
 			
 			this.publish(events, data).then(() => {

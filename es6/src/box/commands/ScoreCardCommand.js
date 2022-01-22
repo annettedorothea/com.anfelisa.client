@@ -3,26 +3,36 @@
  ********************************************************************************/
 
 
-
-
 import AbstractScoreCardCommand from "../../../gen/box/commands/AbstractScoreCardCommand";
+import {createInfoMessage, createWarningMessage} from "../../AppUtils";
 
 export default class ScoreCardCommand extends AbstractScoreCardCommand {
 
     validateCommandData() {
-    	return true;
+        return true;
     }
 
     handleResponse(data, resolve) {
-    	this.addOkOutcome(data);
-    	resolve(data);
+        this.addOkOutcome(data);
+        if (data.intervalDifference !== 0) {
+            this.addShowToastOutcome(data);
+            if (data.intervalDifference === 1) {
+                data.message = createWarningMessage("intervalOffsetPostponedSingular");
+            } else if (data.intervalDifference > 1) {
+                data.message = createWarningMessage("intervalOffsetPostponed", [data.intervalDifference]);
+            } else if (data.intervalDifference === -1) {
+                data.message = createInfoMessage("intervalOffsetMovedForwardSingular");
+            } else if (data.intervalDifference < -1) {
+                data.message = createInfoMessage("intervalOffsetMovedForward", [data.intervalDifference * (-1)]);
+            }
+        }
+        resolve(data);
     }
+
     handleError(data, resolve, reject) {
-    	reject(data.error);
+        reject(data.error);
     }
 }
-
-
 
 
 /******* S.D.G. *******/

@@ -23,6 +23,7 @@ import {
 } from "../../../../../gen/category/ActionFunctions";
 import {route} from "../../../../../gen/common/ActionFunctions";
 import {Texts} from "../../../../app/Texts";
+import {InviteUserEditableDialog} from "./categoryTree/InviteUserEditableDialog";
 
 export const CategoryTree = (props) => {
 	if (!props.rootCategory) {
@@ -56,6 +57,7 @@ export const CategoryTree = (props) => {
 		<CategoryDialog {...props.categoryDialog} language={props.language} />
 		<InviteUserDialog {...props.inviteUserDialog} language={props.language} />
 		<DeleteCategoryDialog {...props.deleteCategoryDialog} language={props.language} />
+		<InviteUserEditableDialog {...props.inviteUserEditableDialog} language={props.language} />
 		<div>
 			<button
 				onClick={() => route("#dashboard")}

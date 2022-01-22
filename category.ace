@@ -107,11 +107,12 @@ InviteUserClick
 GetInvitedUsernames
 	fromAppState (common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId)
 	call com.anfelisa.category.GetInvitedUsers
-	on ok (set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog.invitedUsernames)
+	on ok (set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog.invitedUsers)
 	
 CancelInviteUser
 	on ok (
 		set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog
+		set common.rootContainer.mainView.authorView.categoryTree.inviteUserEditableDialog
 	)
 	
 InvitedUsernameChanged ( usernameSearchString )
@@ -128,12 +129,29 @@ SearchUsername
 	loadingFlag common.rootContainer.spinner.display 
 	on ok (set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog.usernames)
 
-InviteUser (invitedUsername)
+InviteUserNextStep (invitedUsername, editable)
 	fromAppState (common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId)
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.inviteUserEditableDialog
+		set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog
+	)
+	
+InviteUserChangeEditable (invitedUsername)
+	fromAppState (common.rootContainer.mainView.authorView.categoryTree.inviteUserEditableDialog.editable)
+	on ok (
+		set common.rootContainer.mainView.authorView.categoryTree.inviteUserEditableDialog.editable
+	)
+	
+InviteUser
+	fromAppState (
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId,
+		common.rootContainer.mainView.authorView.categoryTree.inviteUserEditableDialog.editable,
+		common.rootContainer.mainView.authorView.categoryTree.inviteUserEditableDialog.invitedUsername
+	)
 	call com.anfelisa.category.InviteUserToCategory
 	loadingFlag common.rootContainer.spinner.display 
 	on ok (
-		set common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog
+		set common.rootContainer.mainView.authorView.categoryTree.inviteUserEditableDialog
 	)
 	
 DeleteCategoryClick

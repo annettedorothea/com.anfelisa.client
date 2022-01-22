@@ -66,7 +66,8 @@ describe("registrationscenarios.Register", function () {
 				textKey : `confirmEmail`,
 				type : `info`,
 				visible : true,
-				id : 0
+				id : 0,
+				args : null
 			}
 		]
 		)

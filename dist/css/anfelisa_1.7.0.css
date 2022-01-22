@@ -458,6 +458,10 @@ i.withmarginleft {
     background-color: #337ab7;
 }
 
+.toast.warning {
+    background-color: #ffa84c;
+}
+
 /* form */
 
 .form .line {

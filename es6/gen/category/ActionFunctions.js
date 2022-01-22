@@ -21,6 +21,8 @@ import GetInvitedUsernamesAction from "../../src/category/actions/GetInvitedUser
 import CancelInviteUserAction from "../../src/category/actions/CancelInviteUserAction";
 import InvitedUsernameChangedAction from "../../src/category/actions/InvitedUsernameChangedAction";
 import SearchUsernameAction from "../../src/category/actions/SearchUsernameAction";
+import InviteUserNextStepAction from "../../src/category/actions/InviteUserNextStepAction";
+import InviteUserChangeEditableAction from "../../src/category/actions/InviteUserChangeEditableAction";
 import InviteUserAction from "../../src/category/actions/InviteUserAction";
 import DeleteCategoryClickAction from "../../src/category/actions/DeleteCategoryClickAction";
 import CancelDeleteCategoryAction from "../../src/category/actions/CancelDeleteCategoryAction";
@@ -98,8 +100,16 @@ export function searchUsername() {
     return new SearchUsernameAction().apply({});
 }
 
-export function inviteUser(invitedUsername) {
-    return new InviteUserAction().apply({invitedUsername});
+export function inviteUserNextStep(invitedUsername, editable) {
+    return new InviteUserNextStepAction().apply({invitedUsername, editable});
+}
+
+export function inviteUserChangeEditable(invitedUsername) {
+    return new InviteUserChangeEditableAction().apply({invitedUsername});
+}
+
+export function inviteUser() {
+    return new InviteUserAction().apply({});
 }
 
 export function deleteCategoryClick() {

@@ -93,7 +93,7 @@ Logout
 		set rootContainer.token
 	) triggers ( Route )
 	
-DisplayToast ( message, error ) 
+DisplayToast ( message, error, warning ) 
 	fromAppState( rootContainer.language, rootContainer.messages)
 	on ok ( 
 		set rootContainer.messages
@@ -160,6 +160,7 @@ ui JSX rootContainer {
 		visible
 		code
 		textKey
+		args
 	}
 	mainView {
 		privacyPolicyView {
@@ -333,7 +334,13 @@ ui JSX rootContainer {
 					display
 					usernameSearchString
 					List usernames
-					List invitedUsernames
+					List invitedUsers
+				}
+				
+				inviteUserEditableDialog {
+					invitedUsername
+					editable
+					display
 				}
 				
 				deleteCategoryDialog {

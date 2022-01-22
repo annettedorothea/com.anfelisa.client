@@ -6,7 +6,12 @@
 
 
 import React from "react";
-import {cancelInviteUser, invitedUsernameChanged, inviteUser} from "../../../../../../gen/category/ActionFunctions";
+import {
+	cancelInviteUser,
+	invitedUsernameChanged,
+	inviteUser,
+	inviteUserNextStep
+} from "../../../../../../gen/category/ActionFunctions";
 import {Texts} from "../../../../../app/Texts";
 
 
@@ -18,15 +23,15 @@ export const InviteUserDialog = (props) => {
 	if (props.usernames) {
 		usernames = props.usernames.map(username => {
 			return <li key={username}>
-				<a onClick={() => inviteUser(username)}>{username}</a>
+				<a onClick={() => inviteUserNextStep(username, false)}>{username}</a>
 			</li>
 		})
 	}
 	let invitedUsernames = [];
-	if (props.invitedUsernames) {
-		invitedUsernames = props.invitedUsernames.map(username => {
-			return <li key={username}>
-				<a>{username}</a>
+	if (props.invitedUsers) {
+		invitedUsernames = props.invitedUsers.map(user => {
+			return <li key={user.invitedUsername}>
+				<a onClick={() => inviteUserNextStep(user.invitedUsername, user.editable)}>{user.invitedUsername} {user.editable && <i className="fas fa-pen"/>}</a>
 			</li>
 		})
 	}

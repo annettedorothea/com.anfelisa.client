@@ -9,7 +9,7 @@ import {Texts} from "../../app/Texts";
 
 
 export const MessagesItem = (props) => {
-	const getMessageText = (message, language) => {
+	const getMessageText = (message, language, args) => {
 		if (message && language) {
 			if (message.type === "error") {
 				if (message.textKey && Texts.messages[message.textKey] && Texts.messages[message.textKey][language]) {
@@ -26,14 +26,20 @@ export const MessagesItem = (props) => {
 				}
 			}
 			if (message.textKey && Texts.messages[message.textKey] && Texts.messages[message.textKey][language]) {
-				return Texts.messages[message.textKey][language];
+				let text = Texts.messages[message.textKey][language];
+				if (args) {
+					for (let i=0; i<args.length; i++) {
+						text = text.replace(`{${i}}`, args[i]);
+					}
+				}
+				return text;
 			}
 		}
 		return "";
 	}
 
 
-	const text = getMessageText(props, props.language);
+	const text = getMessageText(props, props.language, props.args);
 	return <div
 		className={`toastWrapper ${props.visible === false ? "fadeOut" : ""}`}
 		onClick={() => destroyToast(props.id)}

@@ -15,7 +15,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree"], 
-					["filterNonScheduled", "reverseBoxExists", "priority", "selectedCategory", "rootCategory", "displayDeleteCategory", "categoryDialog", "inviteUserDialog", "deleteCategoryDialog", "dropAllowed", "dropTargetCategoryId", "movedCategory"]
+					["filterNonScheduled", "reverseBoxExists", "priority", "selectedCategory", "rootCategory", "displayDeleteCategory", "categoryDialog", "inviteUserDialog", "inviteUserEditableDialog", "deleteCategoryDialog", "dropAllowed", "dropTargetCategoryId", "movedCategory"]
 				)
 			});
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', (data) => {
@@ -118,20 +118,27 @@ export default class EventListenerRegistrationCategory {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "inviteUserDialog"], 
-					["display", "usernameSearchString", "usernames", "invitedUsernames"]
+					["display", "usernameSearchString", "usernames", "invitedUsers"]
 				)
 			});
 		ACEController.registerListener('category.GetInvitedUsernamesOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "inviteUserDialog", "invitedUsernames"]
+					["rootContainer", "mainView", "authorView", "categoryTree", "inviteUserDialog", "invitedUsers"]
 				)
 			});
 		ACEController.registerListener('category.CancelInviteUserOkEvent', (data) => {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "inviteUserDialog"], 
-					["display", "usernameSearchString", "usernames", "invitedUsernames"]
+					["display", "usernameSearchString", "usernames", "invitedUsers"]
+				)
+			});
+		ACEController.registerListener('category.CancelInviteUserOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "authorView", "categoryTree", "inviteUserEditableDialog"], 
+					["invitedUsername", "editable", "display"]
 				)
 			});
 		ACEController.registerListener('category.InvitedUsernameChangedOkEvent', (data) => {
@@ -152,11 +159,31 @@ export default class EventListenerRegistrationCategory {
 					["rootContainer", "mainView", "authorView", "categoryTree", "inviteUserDialog", "usernames"]
 				)
 			});
-		ACEController.registerListener('category.InviteUserOkEvent', (data) => {
+		ACEController.registerListener('category.InviteUserNextStepOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "authorView", "categoryTree", "inviteUserEditableDialog"], 
+					["invitedUsername", "editable", "display"]
+				)
+			});
+		ACEController.registerListener('category.InviteUserNextStepOkEvent', (data) => {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "inviteUserDialog"], 
-					["display", "usernameSearchString", "usernames", "invitedUsernames"]
+					["display", "usernameSearchString", "usernames", "invitedUsers"]
+				)
+			});
+		ACEController.registerListener('category.InviteUserChangeEditableOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "authorView", "categoryTree", "inviteUserEditableDialog", "editable"]
+				)
+			});
+		ACEController.registerListener('category.InviteUserOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "authorView", "categoryTree", "inviteUserEditableDialog"], 
+					["invitedUsername", "editable", "display"]
 				)
 			});
 		ACEController.registerListener('category.DeleteCategoryClickOkEvent', (data) => {

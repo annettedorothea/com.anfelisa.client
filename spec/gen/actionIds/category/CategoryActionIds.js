@@ -38,6 +38,10 @@ module.exports = {
 	
 	searchUsername : "category_searchUsername",
 	
+	inviteUserNextStep : "category_inviteUserNextStep",
+	
+	inviteUserChangeEditable : "category_inviteUserChangeEditable",
+	
 	inviteUser : "category_inviteUser",
 	
 	deleteCategoryClick : "category_deleteCategoryClick",

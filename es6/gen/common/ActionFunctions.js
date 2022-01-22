@@ -41,8 +41,8 @@ export function logout() {
     return new LogoutAction().apply({});
 }
 
-export function displayToast(message, error) {
-    return new DisplayToastAction().apply({message, error});
+export function displayToast(message, error, warning) {
+    return new DisplayToastAction().apply({message, error, warning});
 }
 
 export function hideToast(id) {

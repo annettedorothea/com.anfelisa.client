@@ -233,10 +233,21 @@ export function renderApp() {
     );
 }
 
-export function createInfoMessage(textKey) {
+
+
+export function createInfoMessage(textKey, args) {
     return {
         textKey,
-        type: "info"
+        type: "info",
+        args
+    }
+}
+
+export function createWarningMessage(textKey, args) {
+    return {
+        textKey,
+        type: "warning",
+        args
     }
 }
 

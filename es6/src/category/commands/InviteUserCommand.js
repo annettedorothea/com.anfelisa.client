@@ -14,9 +14,10 @@ export default class InviteUserCommand extends AbstractInviteUserCommand {
     }
 
     handleResponse(data, resolve) {
-        data.inviteUserDialog = {
+        data.inviteUserEditableDialog = {
             display: false,
-            usernameSearchString: ""
+            editable: false,
+            invitedUsername: ""
         };
     	this.addOkOutcome(data);
     	resolve(data);
