@@ -64,7 +64,6 @@ export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

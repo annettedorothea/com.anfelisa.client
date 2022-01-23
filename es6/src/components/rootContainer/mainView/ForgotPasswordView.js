@@ -19,7 +19,7 @@ export const ForgotPasswordView = (props) => {
 				<label htmlFor="username">{Texts.forgotPassword.username[props.language]}</label>
 				<input
 					id="username"
-					defaultValue={props.username}
+					value={props.username}
 					type="text"
 					autoComplete="new-password"
 					onChange={(e) => usernameForgotPasswordChanged(e.target.value)}

@@ -74,7 +74,6 @@ export default class AbstractLoadCardsCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

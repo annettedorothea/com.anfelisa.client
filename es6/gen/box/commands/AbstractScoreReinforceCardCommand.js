@@ -70,7 +70,6 @@ export default class AbstractScoreReinforceCardCommand extends AsynchronousComma
 	
 	}
 
-
 }
 
 

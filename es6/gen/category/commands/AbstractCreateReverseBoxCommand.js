@@ -70,7 +70,6 @@ export default class AbstractCreateReverseBoxCommand extends AsynchronousCommand
 	
 	}
 
-
 }
 
 

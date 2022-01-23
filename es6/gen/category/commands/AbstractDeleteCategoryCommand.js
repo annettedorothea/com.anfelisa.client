@@ -75,7 +75,6 @@ export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

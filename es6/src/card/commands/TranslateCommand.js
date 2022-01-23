@@ -34,7 +34,7 @@ export default class TranslateCommand extends AbstractTranslateCommand {
     	return true;
     }
 
-    handleResponse(data, resolve, reject) {
+    handleResponse(data, resolve) {
         if (data.naturalInputOrder === true) {
             this.addWantedFetchedOutcome(data)
             data.wanted = data.targetValue

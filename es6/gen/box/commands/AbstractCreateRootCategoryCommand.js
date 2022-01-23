@@ -99,7 +99,6 @@ export default class AbstractCreateRootCategoryCommand extends AsynchronousComma
 	
 	}
 
-
 }
 
 

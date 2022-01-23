@@ -5,144 +5,110 @@
 
 
 
-import React, {useState, useEffect} from "react";
+import React from "react";
 import {
-	cancelNewCard,
-	createCard,
-	givenOfNewCardChanged,
-	passValueToDictionary,
-	translate,
-	wantedOfNewCardChanged
+    cancelNewCard,
+    createCard,
+    givenOfNewCardChanged,
+    passValueToDictionary,
+    translate,
+    wantedOfNewCardChanged
 } from "../../../../../../gen/card/ActionFunctions";
 import {Texts} from "../../../../../app/Texts";
 
 
 export const NewCard = (props) => {
+    const onAltKeyUp = (e) => {
+        e.preventDefault();
+        if (e.keyCode === 13 && e.altKey && isValid()) {
+            onCreate();
+        }
+        if (e.keyCode === 27) {
+            onCancel();
+        }
+    }
 
-	const [given, setGiven] = useState("");
-	const [wanted, setWanted] = useState("");
+    const onCreate = () => {
+        createCard().then(() => {
+            document.getElementById(props.naturalInputOrder === true ? "given" : "wanted").focus();
+        });
+    }
 
-	useEffect(() => {
-		setGiven(props.given)
-	}, [props.given])
+    const onCancel = () => {
+        cancelNewCard();
+        document.getElementById(props.naturalInputOrder === true ? "given" : "wanted").focus();
+    }
 
-	useEffect(() => {
-		setWanted(props.wanted)
-	}, [props.wanted])
+    const onBlurGiven = () => {
+        if (props.naturalInputOrder === true && !!props.dictionaryLookup && (!props.wanted || props.wanted.length === 0)) {
+            passValueToDictionary();
+        }
+        if (props.naturalInputOrder === true && props.dictionaryLookup === true) {
+            translate().then();
+        }
+    }
 
-	const onAltKeyUp = (e) => {
-		e.preventDefault();
-		if (e.keyCode === 13 && e.altKey && isValid()) {
-			onCreate();
-		}
-		if (e.keyCode === 27) {
-			onCancel();
-		}
-	}
+    const onBlurWanted = () => {
+        if (props.naturalInputOrder === false && !!props.dictionaryLookup && (!props.given || props.given.length === 0)) {
+            passValueToDictionary();
+        }
+        if (props.naturalInputOrder === false && props.dictionaryLookup === true) {
+            translate().then();
+        }
+    }
 
-	const onChange = (e, action) => {
-		if (e.keyCode !== 13 && !e.altKey) {
-			action(e.target.value);
-		}
-	}
-
-	const onCreate = () => {
-		reset();
-		createCard();
-		document.getElementById(props.naturalInputOrder === true ? "given" : "wanted").focus();
-	}
-
-	const onCancel = () => {
-		reset();
-		cancelNewCard();
-		document.getElementById(props.naturalInputOrder === true ? "given" : "wanted").focus();
-	}
-
-	const onBlurGiven = () => {
-		if (props.naturalInputOrder === true && !!props.dictionaryLookup && (!props.wanted || props.wanted.length === 0)) {
-			passValueToDictionary();
-		}
-		if (props.naturalInputOrder === true && props.dictionaryLookup === true) {
-			translate();
-		}
-	}
-
-	const onBlurWanted = () => {
-		if (props.naturalInputOrder === false && !!props.dictionaryLookup && (!props.given || props.given.length === 0)) {
-			passValueToDictionary();
-		}
-		if (props.naturalInputOrder === false && props.dictionaryLookup === true) {
-			translate();
-		}
-	}
-
-	const onChangeGiven = (e) => {
-		setGiven(e.target.value);
-		onChange(e, givenOfNewCardChanged);
-	}
-
-	const onChangeWanted = (e) => {
-		setWanted(e.target.value);
-		onChange(e, wantedOfNewCardChanged);
-	}
-
-	const reset = () => {
-		setGiven("");
-		setWanted("");
-	}
-
-	const renderGiven = () => {
-		return <td className="textarea input">
+    const renderGiven = () => {
+        return <td className="textarea input">
             <textarea
-				onChange={onChangeGiven}
-				autoComplete="off"
-				value={given}
-				placeholder={`${Texts.cardList.given[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.givenLanguage][props.language] + ")" : ""}`}
-				onKeyUp={onAltKeyUp}
-				onBlur={onBlurGiven}
-				id="given"
-			/>
-		</td>
-	}
+                onChange={(event) => givenOfNewCardChanged(event.target.value)}
+                autoComplete="off"
+                value={props.given}
+                placeholder={`${Texts.cardList.given[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.givenLanguage][props.language] + ")" : ""}`}
+                onKeyUp={onAltKeyUp}
+                onBlur={onBlurGiven}
+                id="given"
+            />
+        </td>
+    }
 
-	const renderWanted = () => {
-		return <td className="textarea input">
+    const renderWanted = () => {
+        return <td className="textarea input">
             <textarea
-				onChange={onChangeWanted}
-				autoComplete="off"
-				value={wanted}
-				placeholder={`${Texts.cardList.wanted[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.wantedLanguage][props.language] + ")" : ""}`}
-				onKeyUp={onAltKeyUp}
-				onBlur={onBlurWanted}
-				id="wanted"
-			/>
-		</td>
-	}
+                onChange={(event) => wantedOfNewCardChanged(event.target.value)}
+                autoComplete="off"
+                value={props.wanted}
+                placeholder={`${Texts.cardList.wanted[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.wantedLanguage][props.language] + ")" : ""}`}
+                onKeyUp={onAltKeyUp}
+                onBlur={onBlurWanted}
+                id="wanted"
+            />
+        </td>
+    }
 
-	const isValid = () => {
-		return props.given && props.given.length > 0 && (props.wanted && props.wanted.length > 0);
-	}
-	return <tr className="notPrinted inputRow">
-		<td/>
-		{props.naturalInputOrder === true ? renderGiven() : renderWanted()}
-		{props.naturalInputOrder === true ? renderWanted() : renderGiven()}
-		<td className="top">
-			{props.displaySpinner ? <i className="fas fa-cog fa-spin"/> : null}
-		</td>
-		<td className="noBreak input">
-			<button
-				disabled={!isValid()}
-				onClick={onCreate}
-			>
-				<i className="fas fa-check"/>
-			</button>
-			<button
-				onClick={onCancel}
-			>
-				<i className="fas fa-times"/>
-			</button>
-		</td>
-	</tr>
+    const isValid = () => {
+        return props.given && props.given.length > 0 && (props.wanted && props.wanted.length > 0 || props.image.length > 0);
+    }
+    return <tr className="notPrinted inputRow">
+        <td/>
+        {props.naturalInputOrder === true ? renderGiven() : renderWanted()}
+        {props.naturalInputOrder === true ? renderWanted() : renderGiven()}
+        <td className="top">
+            {props.displaySpinner ? <i className="fas fa-cog fa-spin"/> : null}
+        </td>
+        <td className="noBreak input">
+            <button
+                disabled={!isValid()}
+                onClick={onCreate}
+            >
+                <i className="fas fa-check"/>
+            </button>
+            <button
+                onClick={onCancel}
+            >
+                <i className="fas fa-times"/>
+            </button>
+        </td>
+    </tr>
 }
 
 

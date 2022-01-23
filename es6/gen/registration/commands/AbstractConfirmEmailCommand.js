@@ -102,7 +102,6 @@ export default class AbstractConfirmEmailCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

@@ -14,7 +14,7 @@ export default class SelectScheduleCardRangeCommand extends AbstractSelectSchedu
             const selectedIndices = data.selectedCardIds.map(selectedCardId => data.cardList.findIndex(card => card.cardId === selectedCardId)).sort();
             const firstSelectedIndex = selectedIndices.length > 0 ? selectedIndices[0] : null;
             const lastSelectedIndex = selectedIndices.length > 0 ? selectedIndices[selectedIndices.length - 1] : null;
-            let start, end = 0;
+            let start, end;
             if (firstSelectedIndex === lastSelectedIndex) {
                 if (indexOfSelection < firstSelectedIndex) {
                     start = indexOfSelection;

@@ -26,7 +26,7 @@ export const BoxListItem = (props) => {
 
 	const onArchiveClick = (e, archived) => {
 		e.stopPropagation();
-		archiveBox(archived, props.boxId);
+		archiveBox(archived, props.boxId).then();
 	}
 
 	const onDeleteClick = (e) => {

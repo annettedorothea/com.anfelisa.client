@@ -18,10 +18,6 @@ export default class MaxIntervalChangedCommand extends AbstractMaxIntervalChange
         }
     	this.addOkOutcome(data);
     	return data;
-        var x = 1;
-        if (x > 1) {
-
-        }
     }
 }
 

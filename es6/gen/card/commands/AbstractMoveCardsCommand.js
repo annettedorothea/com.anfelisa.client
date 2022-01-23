@@ -80,7 +80,6 @@ export default class AbstractMoveCardsCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

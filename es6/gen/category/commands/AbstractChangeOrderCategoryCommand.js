@@ -84,7 +84,6 @@ export default class AbstractChangeOrderCategoryCommand extends AsynchronousComm
 	
 	}
 
-
 }
 
 

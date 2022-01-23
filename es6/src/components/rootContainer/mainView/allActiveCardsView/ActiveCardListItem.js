@@ -24,7 +24,7 @@ export const ActiveCardListItem = (props) => {
 	const priority = () => {
 		const priorityChanged = (priority) => {
 			if (props.editable) {
-				updateCardPriority(props.cardId, priority);
+				updateCardPriority(props.cardId, priority).then();
 			}
 		}
 		const priorityClass = (index) => {

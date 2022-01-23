@@ -82,7 +82,6 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

@@ -62,7 +62,6 @@ export default class AbstractSearchUsernameCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

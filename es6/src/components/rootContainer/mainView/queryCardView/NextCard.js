@@ -63,9 +63,9 @@ export const NextCard = (props) => {
 
     const scoreButtonClick = (quality) => {
         if (props.scheduledCardId) {
-            scoreCard(quality);
+            scoreCard(quality).then();
         } else {
-            scoreReinforceCard(quality);
+            scoreReinforceCard(quality).then();
         }
     }
 

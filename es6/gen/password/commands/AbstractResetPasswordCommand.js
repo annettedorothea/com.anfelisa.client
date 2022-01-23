@@ -110,7 +110,6 @@ export default class AbstractResetPasswordCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

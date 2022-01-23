@@ -76,7 +76,6 @@ export default class AbstractGetUserInfoCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

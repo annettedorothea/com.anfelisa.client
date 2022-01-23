@@ -74,7 +74,6 @@ export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCo
 	
 	}
 
-
 }
 
 

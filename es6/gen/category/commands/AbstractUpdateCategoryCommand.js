@@ -84,7 +84,6 @@ export default class AbstractUpdateCategoryCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

@@ -71,7 +71,6 @@ export default class AbstractInviteUserCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

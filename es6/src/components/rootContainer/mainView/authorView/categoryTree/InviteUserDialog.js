@@ -9,7 +9,6 @@ import React from "react";
 import {
 	cancelInviteUser,
 	invitedUsernameChanged,
-	inviteUser,
 	inviteUserNextStep
 } from "../../../../../../gen/category/ActionFunctions";
 import {Texts} from "../../../../../app/Texts";

@@ -70,7 +70,6 @@ export default class AbstractSearchDuplicateCardsCommand extends AsynchronousCom
 	
 	}
 
-
 }
 
 

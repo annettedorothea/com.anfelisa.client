@@ -58,7 +58,6 @@ export default class AbstractGetInvitedUsernamesCommand extends AsynchronousComm
 	
 	}
 
-
 }
 
 

@@ -111,7 +111,6 @@ export default class AbstractRegisterUserCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

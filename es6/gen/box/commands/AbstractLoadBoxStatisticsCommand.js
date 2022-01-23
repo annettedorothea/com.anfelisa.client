@@ -58,7 +58,6 @@ export default class AbstractLoadBoxStatisticsCommand extends AsynchronousComman
 	
 	}
 
-
 }
 
 

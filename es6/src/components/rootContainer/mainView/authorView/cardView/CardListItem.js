@@ -39,7 +39,7 @@ export const CardListItem = (props) => {
 	const onDrop = (event) => {
 		if (props.editable) {
 			event.preventDefault();
-			changeCardOrder();
+			changeCardOrder().then();
 		}
 	}
 
@@ -69,7 +69,7 @@ export const CardListItem = (props) => {
 	}
 
 	const onUpdate = () => {
-		updateCard();
+		updateCard().then();
 		document.getElementById(props.naturalInputOrder === true ? "given" : "wanted").focus();
 	}
 
@@ -83,19 +83,13 @@ export const CardListItem = (props) => {
 		return props.given && props.given.length > 0 && (props.wanted && props.wanted.length > 0 || props.image.length > 0);
 	}
 
-	const onChange = (e, action) => {
-		if (e.keyCode !== 13 && !e.altKey) {
-			action(e.target.value);
-		}
-	}
-
 	const renderGiven = () => {
 		if (editMode === true) {
 			return <td className="textarea input">
                 <textarea
-					onChange={(event) => onChange(event, givenOfEditedCardChanged)}
+					onChange={(event) => givenOfEditedCardChanged(event.target.value)}
 					autoComplete="off"
-					defaultValue={props.editedCard.given}
+					value={props.editedCard.given}
 					placeholder={`${Texts.cardList.given[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.givenLanguage][props.language] + ")" : ""}`}
 					onKeyUp={onAltKeyUp}
 				>
@@ -113,9 +107,9 @@ export const CardListItem = (props) => {
 		if (editMode === true) {
 			return <td className="textarea input">
                 <textarea
-					onChange={(event) => onChange(event, wantedOfEditedCardChanged)}
+					onChange={(event) => wantedOfEditedCardChanged(event.target.value)}
 					autoComplete="off"
-					defaultValue={props.editedCard.wanted}
+					value={props.editedCard.wanted}
 					placeholder={`${Texts.cardList.wanted[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.wantedLanguage][props.language] + ")" : ""}`}
 					onKeyUp={onAltKeyUp}
 				>
@@ -132,7 +126,7 @@ export const CardListItem = (props) => {
 	const priority = () => {
 		const priorityChanged = (priority) => {
 			if (props.editable) {
-				updateCardPriority(props.cardId, priority);
+				updateCardPriority(props.cardId, priority).then();
 			}
 		}
 		const priorityClass = (index) => {
@@ -189,35 +183,35 @@ export const CardListItem = (props) => {
 		{props.naturalInputOrder === true ? renderWanted() : renderGiven()}
 		{priority()}
 		{props.editable ? editMode === false ?
-			<td className="noBreak notPrinted">
-				<button onClick={() => editCard(props.cardId)}>
-					<i className="fas fa-pen"/>
-				</button>
-				<button onClick={() => deleteCardClick(props.cardId)}>
-					<i className="fas fa-times"/>
-				</button>
-				{props.selectedCardIds.indexOf(props.cardId) >= 0 ?
-					<i
-						className="fas fa-align-justify"
-						draggable={true}
-						onDragStart={(event) => onDragStart(event)}
-					/> :
-					null
-				}
-			</td> :
-			<td className="noBreak notPrinted">
-				<button
-					disabled={!isValid()}
-					onClick={onUpdate}
-				>
-					<i className="fas fa-check"/>
-				</button>
-				<button
-					onClick={onCancel}
-				>
-					<i className="fas fa-times"/>
-				</button>
-			</td> :
+				<td className="noBreak notPrinted">
+					<button onClick={() => editCard(props.cardId)}>
+						<i className="fas fa-pen"/>
+					</button>
+					<button onClick={() => deleteCardClick(props.cardId)}>
+						<i className="fas fa-times"/>
+					</button>
+					{props.selectedCardIds.indexOf(props.cardId) >= 0 ?
+						<i
+							className="fas fa-align-justify"
+							draggable={true}
+							onDragStart={(event) => onDragStart(event)}
+						/> :
+						null
+					}
+				</td> :
+				<td className="noBreak notPrinted">
+					<button
+						disabled={!isValid()}
+						onClick={onUpdate}
+					>
+						<i className="fas fa-check"/>
+					</button>
+					<button
+						onClick={onCancel}
+					>
+						<i className="fas fa-times"/>
+					</button>
+				</td> :
 			null
 		}
 		<td className="noBreak notPrinted alignRight">

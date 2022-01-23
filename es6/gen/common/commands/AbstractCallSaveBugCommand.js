@@ -52,7 +52,6 @@ export default class AbstractCallSaveBugCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

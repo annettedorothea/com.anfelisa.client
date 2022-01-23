@@ -65,7 +65,6 @@ export default class AbstractInitBoxesForDayCommand extends AsynchronousCommand 
 	
 	}
 
-
 }
 
 

@@ -105,7 +105,6 @@ export default class AbstractSaveBoxSettingsCommand extends AsynchronousCommand 
 	
 	}
 
-
 }
 
 

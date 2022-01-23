@@ -88,7 +88,6 @@ export default class AbstractScoreCardCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

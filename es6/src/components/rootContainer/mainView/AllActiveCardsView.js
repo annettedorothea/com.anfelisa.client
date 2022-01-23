@@ -9,15 +9,12 @@ import React from "react";
 
 import { ActiveCardListItem } from "./allActiveCardsView/ActiveCardListItem";
 import {
-	filterActiveCardListMaxEfChanged,
-	filterActiveCardListMinEfChanged,
 	filterActiveCardListWithLastQualityChanged,
 	scheduleSelectedCards,
 	sortSelectedCardsOut,
 	toggleAllScheduleCardSelection
 } from "../../../../gen/box/ActionFunctions";
 import {Texts} from "../../../app/Texts";
-import {filterNonScheduledCards} from "../../../../gen/category/ActionFunctions";
 
 export const AllActiveCardsView = (props) => {
 	if (!props.activeCardList || !props.selectedCardIds) {

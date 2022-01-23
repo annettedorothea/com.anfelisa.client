@@ -111,7 +111,6 @@ export default class AbstractLoginCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

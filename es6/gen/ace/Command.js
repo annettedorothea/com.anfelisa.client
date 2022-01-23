@@ -31,34 +31,6 @@ export default class Command {
 		}, delayInMillis);
 	}
 	
-	createEventPromise(event, data) {
-		return new Promise(resolve => {
-			event.publish(data).then(resolve);
-		})
-	}
-	
-	publish(events, data) {
-		if (events.length === 0) {
-			return new Promise(resolve => resolve());
-		}
-		return this.createEventPromise(events.shift(), data)
-			.then(event => events.length === 0 ? event : this.publish(events, data));
-	}
-	
-	createActionPromise(actionToBeTriggered) {
-		return new Promise(resolve => {
-			actionToBeTriggered.action.apply(actionToBeTriggered.data).then(resolve);
-		})
-	}
-	
-	trigger(actionsToBeTriggered) {
-		if (actionsToBeTriggered.length === 0) {
-			return new Promise(resolve => resolve());
-		}
-		return this.createActionPromise(actionsToBeTriggered.shift())
-			.then(actionToBeTriggered => actionsToBeTriggered.length === 0 ? actionToBeTriggered : this.trigger(actionsToBeTriggered));
-	}
-	
 
 }
 

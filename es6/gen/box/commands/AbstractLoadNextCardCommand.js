@@ -87,7 +87,6 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 

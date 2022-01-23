@@ -74,7 +74,6 @@ export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCom
 	
 	}
 
-
 }
 
 

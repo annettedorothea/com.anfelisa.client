@@ -83,7 +83,7 @@ export const BoxSettings = (props) => {
 					<input
 						onChange={(e) => rootCategoryNameChanged(e.target.value)}
 						type="text"
-						defaultValue={props.categoryName}
+						value={props.categoryName}
 						id="categoryName"
 						disabled={props.shared}
 					/>
@@ -98,7 +98,7 @@ export const BoxSettings = (props) => {
 					<input
 						onChange={(e) => maxCardsPerDayChanged(e.target.value)}
 						type="text"
-						defaultValue={props.maxCardsPerDay}
+						value={props.maxCardsPerDay}
 						id="maxCardsPerDay"
 					/>
 					{props.maxCardsPerDayInvalid === true ? <i className="fas fa-times outside error"/> : null}
@@ -112,7 +112,7 @@ export const BoxSettings = (props) => {
 					<input
 						onChange={(e) => maxIntervalChanged(e.target.value)}
 						type="text"
-						defaultValue={props.maxInterval}
+						value={props.maxInterval}
 						id="maxInterval"
 					/>
 					{props.maxIntervalInvalid === true ? <i className="fas fa-times outside error"/> : null}

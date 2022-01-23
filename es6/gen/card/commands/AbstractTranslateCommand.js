@@ -104,7 +104,6 @@ export default class AbstractTranslateCommand extends AsynchronousCommand {
 	
 	}
 
-
 }
 
 
