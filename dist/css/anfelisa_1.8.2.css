@@ -552,9 +552,8 @@ a:hover.tile.active {
 
 .tile h2 {
     text-align: center;
-    max-height: 24px;
     overflow: hidden;
-    margin: 0 80px 16px 80px;
+    margin: 24px 0 16px 0;
     text-overflow: ellipsis;
 }
 
