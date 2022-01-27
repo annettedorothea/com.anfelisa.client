@@ -16,7 +16,7 @@ export default class Command {
     
 	triggerWithDelay(action, data, delayInMillis) {
 		setTimeout(() => {
-			action.apply(data).then();
+			action.apply(data);
 		}, delayInMillis);
 	}
 	
@@ -27,7 +27,7 @@ export default class Command {
 		}
 		delayedActions[action.actionName] = setTimeout(() => {
 			delayedActions[action.actionName] = undefined;
-			action.apply(data).then();
+			action.apply(data);
 		}, delayInMillis);
 	}
 	
