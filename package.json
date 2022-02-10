@@ -14,26 +14,26 @@
   "author": "Annette Pohl",
   "license": "ISC",
   "dependencies": {
-    "crypto-js": "^4.0.0",
+    "crypto-js": "^4.1.1",
     "json-stable-stringify": "^1.0.1",
-    "ramda": "^0.27.1",
-    "react": "^16.14.0",
-    "react-dom": "^16.14.0"
+    "ramda": "^0.28.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.8",
-    "@babel/preset-env": "^7.15.8",
-    "@babel/preset-react": "^7.14.5",
-    "acorn": "^8.5.0",
+    "@babel/core": "^7.17.2",
+    "@babel/preset-env": "^7.16.11",
+    "@babel/preset-react": "^7.16.7",
+    "acorn": "^8.7.0",
     "babel-loader": "^8.2.3",
-    "chromedriver": "^96.0.0",
-    "geckodriver": "^2.0.4",
-    "jasmine": "^3.10.0",
+    "chromedriver": "^97.0.4",
+    "geckodriver": "^3.0.1",
+    "jasmine": "^4.0.2",
     "react-hot-loader": "^4.13.0",
-    "selenium-webdriver": "^4.0.0",
-    "webpack": "^5.59.1",
-    "webpack-cli": "^4.9.1",
-    "webpack-dev-server": "^4.3.1",
+    "selenium-webdriver": "^4.1.1",
+    "webpack": "^5.68.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4",
     "webpack-merge": "^5.8.0"
   }
 }
