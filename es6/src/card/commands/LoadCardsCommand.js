@@ -21,14 +21,12 @@ export default class LoadCardsCommand extends AbstractLoadCardsCommand {
             newCard: {
                 given: "",
                 wanted: "",
-                image: "",
                 displaySpinner: false,
             },
             editedCard: {
                 cardId: "",
                 given: "",
                 wanted: "",
-                image: ""
             },
             filter: "",
             dictionaryValue: null,

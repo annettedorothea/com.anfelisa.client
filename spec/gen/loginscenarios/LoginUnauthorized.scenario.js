@@ -26,9 +26,21 @@ describe("loginscenarios.LoginUnauthorized", function () {
     			    .build();
     	let appState;
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
-		await ScenarioUtils.invokeAction(driver, LoginActionIds.usernameChanged, [`username-${testId}`]);
-		await ScenarioUtils.invokeAction(driver, LoginActionIds.passwordChanged, [`password`]);
 
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.usernameChanged, [`username-${testId}`]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		appState = await ScenarioUtils.getAppState(driver);
+		appStates.username = appState;
+		
+		
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.passwordChanged, [`password`]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		appState = await ScenarioUtils.getAppState(driver);
+		appStates.password = appState;
+		
+		
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.login);
 		await ScenarioUtils.waitInMillis(10);
 		
@@ -40,6 +52,14 @@ describe("loginscenarios.LoginUnauthorized", function () {
 		
     });
 
+	it("username", async () => {
+		expect(appStates.username.rootContainer.mainView.loginView.username, "username").toEqual(`username-${testId}`)
+	});
+	
+	it("password", async () => {
+		expect(appStates.password.rootContainer.mainView.loginView.password, "password").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
+	});
+	
 	it("loggedInUserIsNotSet", async () => {
 		expect(appStates.loggedInUserIsNotSet.rootContainer.loggedInUser, "loggedInUserIsNotSet").toEqual(null)
 	});

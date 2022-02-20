@@ -2,39 +2,19 @@ HttpClient loginscenarios
 
 scenarios
 
-UsernameChanged
-	GIVEN commonscenarios.Init
+Login
+	GIVEN 
+		registrationscenarios.RegistrationHappyPath
 	WHEN login.UsernameChanged(username: "username-${testId}")
 	THEN 
 		expectedState 
 			username common.rootContainer.mainView.loginView.username should be "username-${testId}"
-
-			
-PasswordChanged
-	GIVEN UsernameChanged
+	AND
 	WHEN login.PasswordChanged(password: "password")
 	THEN 
 		expectedState 
 			password common.rootContainer.mainView.loginView.password should be "5f4dcc3b5aa765d61d8327deb882cf99"
-			
-ToggleSaveInLocalStorage
-	GIVEN PasswordChanged
-	WHEN login.ToggleSaveInLocalStorage()
-	THEN 
-		expectedState 
-			saveInLocalStorageIsTrue common.rootContainer.mainView.loginView.saveInLocalStorage should be true
-			
-ToggleSaveInLocalStorageTwice
-	GIVEN ToggleSaveInLocalStorage
-	WHEN login.ToggleSaveInLocalStorage()
-	THEN 
-		expectedState 
-			saveInLocalStorageIsFalse common.rootContainer.mainView.loginView.saveInLocalStorage should be false
-			
-Login
-	GIVEN 
-		commonscenarios.Logout
-		PasswordChanged
+	AND
 	WHEN login.Login
 	THEN 
 		expectedState 
@@ -45,8 +25,32 @@ Login
 			
 LoginWithSaveInLocalStorage
 	GIVEN 
-		commonscenarios.Logout
-		ToggleSaveInLocalStorage
+		registrationscenarios.RegistrationHappyPath
+	WHEN login.UsernameChanged(username: "username-${testId}")
+	THEN 
+		expectedState 
+			username common.rootContainer.mainView.loginView.username should be "username-${testId}"
+	AND
+	WHEN login.PasswordChanged(password: "password")
+	THEN 
+		expectedState 
+			password common.rootContainer.mainView.loginView.password should be "5f4dcc3b5aa765d61d8327deb882cf99"
+	AND
+	WHEN login.ToggleSaveInLocalStorage
+	THEN 
+		expectedState 
+			saveInLocalStorageIsTrue1 common.rootContainer.mainView.loginView.saveInLocalStorage should be true
+	AND
+	WHEN login.ToggleSaveInLocalStorage
+	THEN 
+		expectedState 
+			saveInLocalStorageIsFalse common.rootContainer.mainView.loginView.saveInLocalStorage should be false
+	AND
+	WHEN login.ToggleSaveInLocalStorage
+	THEN 
+		expectedState 
+			saveInLocalStorageIsTrue2 common.rootContainer.mainView.loginView.saveInLocalStorage should be true
+	AND
 	WHEN login.Login
 	THEN 
 		expectedState 
@@ -56,7 +60,17 @@ LoginWithSaveInLocalStorage
 			loginDataWasSetInLocalStorage
 			
 LoginUnauthorized
-	GIVEN PasswordChanged
+	GIVEN commonscenarios.Init
+	WHEN login.UsernameChanged(username: "username-${testId}")
+	THEN 
+		expectedState 
+			username common.rootContainer.mainView.loginView.username should be "username-${testId}"
+	AND
+	WHEN login.PasswordChanged(password: "password")
+	THEN 
+		expectedState 
+			password common.rootContainer.mainView.loginView.password should be "5f4dcc3b5aa765d61d8327deb882cf99"
+	AND
 	WHEN login.Login
 	THEN 
 		expectedState 
@@ -70,32 +84,5 @@ LoginUnauthorized
 					type: "error",
 					visible: true,
 					id: 0
-				}
-			]
-			
-LoginUnauthorizedSecondTime
-	GIVEN LoginUnauthorized
-	WHEN login.Login
-		delayInMillis 50
-	THEN 
-		expectedState 
-			loggedInUserIsNotSet common.rootContainer.loggedInUser should be null
-			usernameInLocalStorateWasNotSet common.rootContainer.token should be undefined
-			errorShown common.rootContainer.messages should be [
-				{ 
-					code: 401,
-					text: "Unauthorized",
-					textKey: "loginFailed",
-					type: "error",
-					visible: true,
-					id: 0
-				},
-				{ 
-					code: 401,
-					text: "Unauthorized",
-					textKey: "loginFailed",
-					type: "error",
-					visible: true,
-					id: 1
 				}
 			]

@@ -50,8 +50,8 @@ HideToastClick
 		errorDestroyed common.rootContainer.messages should be []
 		
 Logout
-	GIVEN registrationscenarios.Register
-	WHEN common.Logout delayInMillis 1000
+	GIVEN loginscenarios.Login
+	WHEN common.Logout
 	THEN expectedState
 		loggedInUser common.rootContainer.loggedInUser should be null
 		

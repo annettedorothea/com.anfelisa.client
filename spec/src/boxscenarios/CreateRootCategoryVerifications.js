@@ -5,18 +5,22 @@
 
 
 
+const {
+    saveDisabled,
+    saveEnabled,
+    givenLanguageDisabled,
+    wantedLanguageDisabled,
+    givenLanguageEnabled,
+	wantedLanguageEnabled
+} = require("./Utils");
 module.exports = {
-	saveEnabled: async function(driver, testId) {
-		fail("saveEnabled not implemented");
-	},
-	givenLanguageEnabled: async function(driver, testId) {
-		fail("givenLanguageEnabled not implemented");
-	},
-	wantedLanguageEnabled: async function(driver, testId) {
-		fail("wantedLanguageEnabled not implemented");
-	}
+    saveEnabled: saveEnabled,
+    givenLanguageEnabled: givenLanguageEnabled,
+	wantedLanguageEnabled: wantedLanguageEnabled,
+    saveDisabled: saveDisabled,
+    givenLanguageDisabled: givenLanguageDisabled,
+    wantedLanguageDisabled: wantedLanguageDisabled,
 }
-
 
 
 /******* S.D.G. *******/

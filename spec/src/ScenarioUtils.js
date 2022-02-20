@@ -21,6 +21,7 @@ module.exports = {
 			await driver.wait(until.elementLocated(By.xpath("//*[contains(@id,'dashboard') or (contains(@id,'username'))]")), 5000);
 		}
 		if (CommonActionIds.route === action) {
+			const hashes = args[0].split("/");
 			if (args[0] === "#registration") {
 				await click(driver, 'registration');
 			} else if (args[0] === "#box/create") {
@@ -30,6 +31,10 @@ module.exports = {
 				await this.waitInMillis(1000);
 			} else if (args[0] === "#profile") {
 				await click(driver, 'profile');
+				await this.waitInMillis(1000);
+			} else if (args[0].startsWith("#categories")) {
+				const categoryId = hashes[1];
+				await click(driver, categoryId);
 				await this.waitInMillis(1000);
 			}
 		}
@@ -98,13 +103,13 @@ module.exports = {
 			await driver.wait(until.elementLocated(By.css('.box')), 5000);
 		}
 	},
-	
+
 	waitInMillis: async function(millis) {
 		return new Promise(function(resolve){
 			setTimeout(resolve,millis);
 		});
 	},
-	
+
 	getAppState: async function(driver) {
 		return await driver.executeScript('return Anfelisa.getAppState()');
 	},
@@ -121,7 +126,7 @@ module.exports = {
 	        return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
 	    });
 	},
-		
+
 	addSquishyValueClient: async function(driver, value) {
 		const jsonValue = JSON.stringify(value);
 		await driver.executeScript(`Anfelisa.addSquishyValueClient('${jsonValue}')`);
@@ -132,7 +137,7 @@ module.exports = {
 	},
 
 	defaultTimeout: 30 * 1000,
-	
+
 	browserName: browser
 	//browserName: "chrome"
 	//browserName: "safari" // execute: safaridriver --enable

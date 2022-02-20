@@ -28,9 +28,9 @@ describe("registrationscenarios.ConfirmEmailTokenDoesNotExist", function () {
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#registration`]);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.usernameChanged, [`username-${testId}`]);
-		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordChanged, [`pas`]);
-		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordRepetitionChanged, [`password`]);
+		await ScenarioUtils.waitInMillis(200);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordChanged, [`password`]);
+		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordRepetitionChanged, [`password`]);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.emailChanged, [`info@anfelisa.de`]);
 		await ScenarioUtils.addSquishyValueClient(
 			driver,
@@ -40,7 +40,8 @@ describe("registrationscenarios.ConfirmEmailTokenDoesNotExist", function () {
 		);
 		await ScenarioUtils.addSquishyValueServer(driver, `uuid-${testId}`, "token", `${testId}-TOKEN`);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.registerUser);
-		await ScenarioUtils.waitInMillis(1000);
+		await ScenarioUtils.waitInMillis(200);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.logout);
 
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.confirmEmail, [`username-${testId}`,`DOES_NOT_EXIST`]);
 		await ScenarioUtils.waitInMillis(10);

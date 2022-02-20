@@ -57,6 +57,7 @@ export const BoxListItem = (props) => {
 
 	return <a
 		className="tile box active"
+		id={props.boxId}
 		onClick={() => props.openTodaysCards > 0 ?
 			route(`#box/${props.boxId}`) :
 			route(categoryRoute)}

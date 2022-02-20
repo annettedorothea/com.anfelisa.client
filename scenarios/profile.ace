@@ -3,7 +3,8 @@ HttpClient
 profilescenarios
 
 scenarios 
-	RouteToProfile
+
+RouteToProfile
 	GIVEN loginscenarios.Login
 	WHEN common.Route (hash: "#profile")
 	THEN

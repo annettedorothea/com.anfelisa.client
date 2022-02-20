@@ -306,6 +306,9 @@ ui JSX rootContainer {
 					List childCategories
 					nonScheduledCount
 					editable
+					dictionaryLookup
+					givenLanguage
+					wantedLanguage
 				}
 				rootCategory {
 					categoryId

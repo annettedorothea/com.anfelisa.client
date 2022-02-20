@@ -30,9 +30,9 @@ describe("loginscenarios.Login", function () {
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#registration`]);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.usernameChanged, [`username-${testId}`]);
-		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordChanged, [`pas`]);
-		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordRepetitionChanged, [`password`]);
+		await ScenarioUtils.waitInMillis(200);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordChanged, [`password`]);
+		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordRepetitionChanged, [`password`]);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.emailChanged, [`info@anfelisa.de`]);
 		await ScenarioUtils.addSquishyValueClient(
 			driver,
@@ -42,13 +42,23 @@ describe("loginscenarios.Login", function () {
 		);
 		await ScenarioUtils.addSquishyValueServer(driver, `uuid-${testId}`, "token", `${testId}-TOKEN`);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.registerUser);
-		await ScenarioUtils.waitInMillis(1000);
+		await ScenarioUtils.waitInMillis(200);
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.logout);
-		await ScenarioUtils.waitInMillis(1000);
-		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
-		await ScenarioUtils.invokeAction(driver, LoginActionIds.usernameChanged, [`username-${testId}`]);
-		await ScenarioUtils.invokeAction(driver, LoginActionIds.passwordChanged, [`password`]);
 
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.usernameChanged, [`username-${testId}`]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		appState = await ScenarioUtils.getAppState(driver);
+		appStates.username = appState;
+		
+		
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.passwordChanged, [`password`]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		appState = await ScenarioUtils.getAppState(driver);
+		appStates.password = appState;
+		
+		
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.login);
 		await ScenarioUtils.waitInMillis(10);
 		
@@ -60,6 +70,14 @@ describe("loginscenarios.Login", function () {
 		
     });
 
+	it("username", async () => {
+		expect(appStates.username.rootContainer.mainView.loginView.username, "username").toEqual(`username-${testId}`)
+	});
+	
+	it("password", async () => {
+		expect(appStates.password.rootContainer.mainView.loginView.password, "password").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
+	});
+	
 	it("userLoggedIn", async () => {
 		expect(appStates.userLoggedIn.rootContainer.loggedInUser.username, "userLoggedIn").toEqual(`username-${testId}`)
 	});

@@ -42,7 +42,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "selectedCategory"], 
-					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "rootCategoryId", "childCategories", "nonScheduledCount", "editable", "dictionaryLookup", "givenLanguage", "wantedLanguage"]
 				)
 			});
 		ACEController.registerListener('category.ExpandTreeItemOkEvent', (data) => {
@@ -70,7 +70,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "selectedCategory"], 
-					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "rootCategoryId", "childCategories", "nonScheduledCount", "editable", "dictionaryLookup", "givenLanguage", "wantedLanguage"]
 				)
 			});
 		ACEController.registerListener('category.NewCategoryClickOkEvent', (data) => {

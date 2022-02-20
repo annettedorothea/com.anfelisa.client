@@ -2,85 +2,62 @@ HttpClient registrationscenarios
 
 scenarios
 
-RouteToRegistration
-	GIVEN commonscenarios.Init
+RegisterUserValidations
+	GIVEN RegistrationHappyPath
 	WHEN common.Route (hash: "#registration")
-	THEN
-		expectedState 
-			displayUsernameSpinner common.rootContainer.mainView.registrationView.displayUsernameSpinner should be false
-			emailInvalid common.rootContainer.mainView.registrationView.emailInvalid should be false
-			passwordMismatch common.rootContainer.mainView.registrationView.emailInvalid should be false
-			email common.rootContainer.mainView.registrationView.email should be ""
-			username common.rootContainer.mainView.registrationView.username should be ""
-			password common.rootContainer.mainView.registrationView.password should be ""
-			passwordRepetition common.rootContainer.mainView.registrationView.password should be ""
-		verifications
-			registerDisabled
-
-UsernameChanged
-	GIVEN RouteToRegistration
-	WHEN registration.UsernameChanged(username: "username-${testId}")
+	AND 
+	WHEN registration.UsernameChanged(username: "username-${testId}") delayInMillis 200
 	THEN 
 		expectedState 
-			username common.rootContainer.mainView.registrationView.username should be "username-${testId}"
+			username1 common.rootContainer.mainView.registrationView.username should be "username-${testId}"
+			usernameNotAvailable1 common.rootContainer.mainView.registrationView.available should be false
 		verifications
 			registerDisabled
-			
-PasswordChanged
-	GIVEN UsernameChanged
+	AND
 	WHEN registration.PasswordChanged(password: "pas")
 	THEN 
 		expectedState 
-			password common.rootContainer.mainView.registrationView.password should be "cd0acfe085eeb0f874391fb9b8009bed"
-			passwordMismatch common.rootContainer.mainView.registrationView.passwordMismatch should be true
+			password1 common.rootContainer.mainView.registrationView.password should be "cd0acfe085eeb0f874391fb9b8009bed"
+			passwordMismatch1 common.rootContainer.mainView.registrationView.passwordMismatch should be true
 		verifications
 			registerDisabled
-
-PasswordRepetitionChangedMismatch
-	GIVEN PasswordChanged
+	AND
 	WHEN registration.PasswordRepetitionChanged(passwordRepetition: "password")
 	THEN 
 		expectedState 
-			password common.rootContainer.mainView.registrationView.password should be "cd0acfe085eeb0f874391fb9b8009bed"
-			passwordRepetition common.rootContainer.mainView.registrationView.passwordRepetition should be "5f4dcc3b5aa765d61d8327deb882cf99"
-			passwordMismatch common.rootContainer.mainView.registrationView.passwordMismatch should be true
+			password2 common.rootContainer.mainView.registrationView.password should be "cd0acfe085eeb0f874391fb9b8009bed"
+			passwordRepetition2 common.rootContainer.mainView.registrationView.passwordRepetition should be "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordMismatch2 common.rootContainer.mainView.registrationView.passwordMismatch should be true
 		verifications
 			registerDisabled
-
-PasswordRepetitionChanged
-	GIVEN PasswordRepetitionChangedMismatch
+	AND
 	WHEN registration.PasswordRepetitionChanged(passwordRepetition: "pas")
 	THEN 
 		expectedState 
-			password common.rootContainer.mainView.registrationView.password should be "cd0acfe085eeb0f874391fb9b8009bed"
-			passwordRepetition common.rootContainer.mainView.registrationView.passwordRepetition should be "cd0acfe085eeb0f874391fb9b8009bed"
-			passwordMatch common.rootContainer.mainView.registrationView.passwordMismatch should be false
+			password3 common.rootContainer.mainView.registrationView.password should be "cd0acfe085eeb0f874391fb9b8009bed"
+			passwordRepetition3 common.rootContainer.mainView.registrationView.passwordRepetition should be "cd0acfe085eeb0f874391fb9b8009bed"
+			passwordMatch3 common.rootContainer.mainView.registrationView.passwordMismatch should be false
 		verifications
 			registerDisabled
-
-PasswordChangedMatch
-	GIVEN PasswordRepetitionChangedMismatch
+	AND
+		WHEN registration.PasswordRepetitionChanged(passwordRepetition: "password")
+	THEN 
+		expectedState 
+			password4 common.rootContainer.mainView.registrationView.password should be "cd0acfe085eeb0f874391fb9b8009bed"
+			passwordRepetition4 common.rootContainer.mainView.registrationView.passwordRepetition should be "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordMismatch4 common.rootContainer.mainView.registrationView.passwordMismatch should be true
+		verifications
+			registerDisabled
+	AND
 	WHEN registration.PasswordChanged(password: "password")
 	THEN 
 		expectedState 
-			password common.rootContainer.mainView.registrationView.password should be "5f4dcc3b5aa765d61d8327deb882cf99"
-			passwordRepetition common.rootContainer.mainView.registrationView.passwordRepetition should be "5f4dcc3b5aa765d61d8327deb882cf99"
-			passwordMatch common.rootContainer.mainView.registrationView.passwordMismatch should be false
+			password5 common.rootContainer.mainView.registrationView.password should be "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordRepetition5 common.rootContainer.mainView.registrationView.passwordRepetition should be "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordMatch5 common.rootContainer.mainView.registrationView.passwordMismatch should be false
 		verifications
 			registerDisabled
-			
-EmailChanged
-	GIVEN PasswordChangedMatch
-	WHEN registration.EmailChanged(email: "info@anfelisa.de")
-	THEN 
-		expectedState 
-			email common.rootContainer.mainView.registrationView.email should be "info@anfelisa.de"
-			emailValid common.rootContainer.mainView.registrationView.emailInvalid should be false
-		verifications
-			registerEnabled
-			
-EmailChangedInvalid
-	GIVEN PasswordChangedMatch
+	AND
 	WHEN registration.EmailChanged(email: "email")
 	THEN 
 		expectedState 
@@ -88,34 +65,25 @@ EmailChangedInvalid
 			emailInvalid common.rootContainer.mainView.registrationView.emailInvalid should be true
 		verifications
 			registerDisabled
-
-
-Register
-	GIVEN EmailChanged
-	WHEN registration.RegisterUser
-		squishyValues {
-			uuid "uuid-${testId}"
-			squishy com.anfelisa.user.ConfirmEmail.token : "${testId}-TOKEN"
-		}
-		delayInMillis 1000
+	AND	
+	WHEN registration.EmailChanged(email: "info@anfelisa.de")
 	THEN 
 		expectedState 
-			userLoggedIn common.rootContainer.loggedInUser.username should be "username-${testId}"
-			tokenWasSet common.rootContainer.loggedInUser.token should not be null
-			infoShown common.rootContainer.messages should be [
-				{ 
-					textKey: "confirmEmail",
-					type: "info",
-					visible: true,
-					id: 0,
-					args: null
-				}
-			]
+			emailOk common.rootContainer.mainView.registrationView.email should be "info@anfelisa.de"
+			emailValid common.rootContainer.mainView.registrationView.emailInvalid should be false
 		verifications
-			loginDataWasNotSetInLocalStorage
-
+			registerDisabled
+	AND 
+	WHEN registration.UsernameChanged(username: "other-${testId}") delayInMillis 200
+	THEN 
+		expectedState 
+			username common.rootContainer.mainView.registrationView.username should be "other-${testId}"
+			usernameAvailable common.rootContainer.mainView.registrationView.available should be true
+		verifications
+			registerEnabled
+	
 ConfirmEmail
-	GIVEN Register
+	GIVEN RegistrationHappyPath
 	WHEN registration.ConfirmEmail(username: "username-${testId}", token: "${testId}-TOKEN")
 	THEN 
 		expectedState 
@@ -135,12 +103,10 @@ ConfirmEmail
 					args: null
 				}
 			]
-			userLoggedIn common.rootContainer.loggedInUser.username should be "username-${testId}"
-			tokenWasSet common.rootContainer.loggedInUser.token should not be null
 			
 
 ConfirmEmailTokenDoesNotExist
-	GIVEN Register
+	GIVEN RegistrationHappyPath
 	WHEN registration.ConfirmEmail(username: "username-${testId}", token: "DOES_NOT_EXIST")
 	THEN 
 		expectedState 
@@ -161,4 +127,79 @@ ConfirmEmailTokenDoesNotExist
 					id: 1
 				}
 			]
+			
+RegistrationHappyPath
+	GIVEN commonscenarios.Init
+	WHEN common.Route (hash: "#registration")
+	THEN
+		expectedState 
+			displayUsernameSpinner common.rootContainer.mainView.registrationView.displayUsernameSpinner should be false
+			emailInvalid common.rootContainer.mainView.registrationView.emailInvalid should be false
+			passwordMismatch common.rootContainer.mainView.registrationView.emailInvalid should be false
+			initialEmail common.rootContainer.mainView.registrationView.email should be ""
+			initialUsername common.rootContainer.mainView.registrationView.username should be ""
+			initialPassword common.rootContainer.mainView.registrationView.password should be ""
+			initialPasswordRepetition common.rootContainer.mainView.registrationView.password should be ""
+		verifications
+			registerDisabled
+	AND 
+	WHEN registration.UsernameChanged(username: "username-${testId}") delayInMillis 200
+	THEN 
+		expectedState 
+			username common.rootContainer.mainView.registrationView.username should be "username-${testId}"
+			usernameAvailable common.rootContainer.mainView.registrationView.available should be true
+		verifications
+			registerDisabled
+	AND
+	WHEN registration.PasswordChanged(password: "password")
+	THEN 
+		expectedState 
+			password common.rootContainer.mainView.registrationView.password should be "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordRepetition common.rootContainer.mainView.registrationView.passwordRepetition should be ""
+			passwordMatch common.rootContainer.mainView.registrationView.passwordMismatch should be true
+		verifications
+			registerDisabled
+	AND	
+	WHEN registration.PasswordRepetitionChanged(passwordRepetition: "password")
+	THEN 
+		expectedState 
+			password2 common.rootContainer.mainView.registrationView.password should be "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordRepetition2 common.rootContainer.mainView.registrationView.passwordRepetition should be "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordMismatch2 common.rootContainer.mainView.registrationView.passwordMismatch should be false
+		verifications
+			registerDisabled
+	AND	
+	WHEN registration.EmailChanged(email: "info@anfelisa.de")
+	THEN 
+		expectedState 
+			email common.rootContainer.mainView.registrationView.email should be "info@anfelisa.de"
+			emailValid common.rootContainer.mainView.registrationView.emailInvalid should be false
+		verifications
+			registerEnabled
+	AND
+	WHEN registration.RegisterUser
+		squishyValues {
+			uuid "uuid-${testId}"
+			squishy com.anfelisa.user.ConfirmEmail.token : "${testId}-TOKEN"
+		}
+		delayInMillis 200
+	THEN 
+		expectedState 
+			autoUserLoggedIn common.rootContainer.loggedInUser.username should be "username-${testId}"
+			autoTokenWasSet common.rootContainer.loggedInUser.token should not be null
+			infoShown common.rootContainer.messages should be [
+				{ 
+					textKey: "confirmEmail",
+					type: "info",
+					visible: true,
+					id: 0,
+					args: null
+				}
+			]
+		verifications
+			loginDataWasNotSetInLocalStorage
+	AND
+	WHEN
+		common.Logout
+		
 			
