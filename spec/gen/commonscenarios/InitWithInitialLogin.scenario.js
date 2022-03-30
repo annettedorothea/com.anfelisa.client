@@ -10,7 +10,6 @@ const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
 const LoginActionIds  = require("../../gen/actionIds/login/LoginActionIds");
 const RegistrationActionIds  = require("../../gen/actionIds/registration/RegistrationActionIds");
 const Verifications = require("../../src/commonscenarios/InitWithInitialLoginVerifications");
-const { Builder } = require('selenium-webdriver');
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
@@ -23,9 +22,7 @@ let verifications = {};
     
 describe("commonscenarios.InitWithInitialLogin", function () {
     beforeAll(async function () {
-    	driver = new Builder()
-    			    .forBrowser(ScenarioUtils.browserName)
-    			    .build();
+    	driver = ScenarioUtils.createDriver();
     	let appState;
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#registration`]);

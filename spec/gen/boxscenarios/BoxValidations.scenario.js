@@ -11,7 +11,6 @@ const LoginActionIds  = require("../../gen/actionIds/login/LoginActionIds");
 const RegistrationActionIds  = require("../../gen/actionIds/registration/RegistrationActionIds");
 const BoxActionIds  = require("../../gen/actionIds/box/BoxActionIds");
 const Verifications = require("../../src/boxscenarios/BoxValidationsVerifications");
-const { Builder } = require('selenium-webdriver');
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
@@ -24,9 +23,7 @@ let verifications = {};
     
 describe("boxscenarios.BoxValidations", function () {
     beforeAll(async function () {
-    	driver = new Builder()
-    			    .forBrowser(ScenarioUtils.browserName)
-    			    .build();
+    	driver = ScenarioUtils.createDriver();
     	let appState;
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#registration`]);

@@ -31,9 +31,13 @@ export const BoxListItem = (props) => {
 
 	const onDeleteClick = (e) => {
 		e.stopPropagation();
-		if (props.reverse || !props.shared) {
+		if (isDeletable()) {
 			deleteBoxClick(props.boxId);
 		}
+	}
+
+	const isDeletable = () => {
+		return props.reverse || !props.editable || !props.shared
 	}
 
 	if (props.archived === true) {
@@ -94,11 +98,11 @@ export const BoxListItem = (props) => {
 		</div>
 		<div className="buttons button4">
 			<i
-				className={`far fa-trash-alt ${props.shared && !props.reverse ? "disabled" : "danger"}`}
+				className={`far fa-trash-alt ${isDeletable() ? "danger" : "disabled"}`}
 				onClick={(e) => onDeleteClick(e)}
-				title={props.shared && !props.reverse ?
-					Texts.box.deleteTitleShared[props.language] :
-					Texts.box.deleteTitle[props.language]}
+				title={isDeletable() ?
+					Texts.box.deleteTitle[props.language] :
+					Texts.box.deleteTitleShared[props.language]}
 			/>
 		</div>
 		{props.openTodaysCards > 0 ? <span className="badge">{props.openTodaysCards}</span> : null}

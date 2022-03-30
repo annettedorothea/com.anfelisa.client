@@ -8,7 +8,6 @@
 const ScenarioUtils = require("../../src/ScenarioUtils");
 const LoginActionIds  = require("../../gen/actionIds/login/LoginActionIds");
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
-const { Builder } = require('selenium-webdriver');
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
@@ -21,9 +20,7 @@ let verifications = {};
     
 describe("loginscenarios.LoginUnauthorized", function () {
     beforeAll(async function () {
-    	driver = new Builder()
-    			    .forBrowser(ScenarioUtils.browserName)
-    			    .build();
+    	driver = ScenarioUtils.createDriver();
     	let appState;
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
 

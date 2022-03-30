@@ -1,3 +1,5 @@
+const { Builder} = require('selenium-webdriver');
+const chrome = require('selenium-webdriver/chrome');
 
 const { By, until, Key } = require('selenium-webdriver');
 
@@ -7,6 +9,7 @@ const RegistrationActionIds = require("../gen/actionIds/registration/Registratio
 const BoxActionIds = require("../gen/actionIds/box/BoxActionIds");
 
 const browserParam = process.env.SELENIUM_BROWSER;
+const headless = process.env.HEADLESS;
 const browser = browserParam ? browserParam : "chrome"
 
 module.exports = {
@@ -138,9 +141,20 @@ module.exports = {
 
 	defaultTimeout: 30 * 1000,
 
-	browserName: browser
+	browserName: browser,
 	//browserName: "chrome"
 	//browserName: "safari" // execute: safaridriver --enable
+
+	createDriver: function() {
+		const options = new chrome.Options();
+		if (headless) {
+			options.addArguments("--headless");
+		}
+		return new Builder()
+			.forBrowser(this.browserName)
+			.setChromeOptions(options)
+			.build();
+	}
 
 }
 
