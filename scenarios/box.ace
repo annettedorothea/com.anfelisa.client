@@ -73,7 +73,7 @@ CreateRootCategory
 			maxCardsPerDayInvalid0 common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDayInvalid should be undefined
 			maxInterval0 common.rootContainer.mainView.boxSettingsView.boxSettings.maxInterval should be ""
 			maxIntervalInvalid0 common.rootContainer.mainView.boxSettingsView.boxSettings.maxIntervalInvalid should be undefined
-			shared common.rootContainer.mainView.boxSettingsView.boxSettings.shared should be undefined
+			deletable common.rootContainer.mainView.boxSettingsView.boxSettings.deletable should be undefined
 			tooManyCardsStatus common.rootContainer.mainView.boxSettingsView.boxSettings.tooManyCardsStatus should be undefined
 			wantedLanguage common.rootContainer.mainView.boxSettingsView.boxSettings.wantedLanguage should be ""
 		verifications
@@ -164,7 +164,7 @@ CreateRootCategory
 					reverse: false,
 					editable: true,
 					archived: false,
-					shared: false
+					deletable: true
 				}
 			]
 			deleteBox common.rootContainer.mainView.dashboardView.deleteBox should be {
@@ -190,7 +190,7 @@ CreateRootCategoryWithDefault
 			maxCardsPerDayInvalid0 common.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDayInvalid should be undefined
 			maxInterval0 common.rootContainer.mainView.boxSettingsView.boxSettings.maxInterval should be ""
 			maxIntervalInvalid0 common.rootContainer.mainView.boxSettingsView.boxSettings.maxIntervalInvalid should be undefined
-			shared common.rootContainer.mainView.boxSettingsView.boxSettings.shared should be undefined
+			deletable common.rootContainer.mainView.boxSettingsView.boxSettings.deletable should be undefined
 			tooManyCardsStatus common.rootContainer.mainView.boxSettingsView.boxSettings.tooManyCardsStatus should be undefined
 			wantedLanguage common.rootContainer.mainView.boxSettingsView.boxSettings.wantedLanguage should be ""
 		verifications
@@ -231,7 +231,7 @@ CreateRootCategoryWithDefault
 					reverse: false,
 					editable: true,
 					archived: false,
-					shared: false
+					deletable: true
 				}
 			]
 			deleteBox common.rootContainer.mainView.dashboardView.deleteBox should be {

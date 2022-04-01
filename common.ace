@@ -208,7 +208,7 @@ ui JSX rootContainer {
 				editable
 				reverse
 				archived
-				shared
+				deletable
 	    	}
 	        deleteBox {
 	            confirmDelete
@@ -231,7 +231,7 @@ ui JSX rootContainer {
 				givenLanguage
 				wantedLanguage
 				categoryId
-				shared
+				deletable
 				
 				allActiveCards
 				allCards

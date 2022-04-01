@@ -62,7 +62,7 @@ describe("boxscenarios.CreateRootCategoryWithDefault", function () {
 		appStates.maxCardsPerDayInvalid0 = appState;
 		appStates.maxInterval0 = appState;
 		appStates.maxIntervalInvalid0 = appState;
-		appStates.shared = appState;
+		appStates.deletable = appState;
 		appStates.tooManyCardsStatus = appState;
 		appStates.wantedLanguage = appState;
 		
@@ -131,8 +131,8 @@ describe("boxscenarios.CreateRootCategoryWithDefault", function () {
 	it("maxIntervalInvalid0", async () => {
 		expect(appStates.maxIntervalInvalid0.rootContainer.mainView.boxSettingsView.boxSettings.maxIntervalInvalid, "maxIntervalInvalid0").toEqual(undefined)
 	});
-	it("shared", async () => {
-		expect(appStates.shared.rootContainer.mainView.boxSettingsView.boxSettings.shared, "shared").toEqual(undefined)
+	it("deletable", async () => {
+		expect(appStates.deletable.rootContainer.mainView.boxSettingsView.boxSettings.deletable, "deletable").toEqual(undefined)
 	});
 	it("tooManyCardsStatus", async () => {
 		expect(appStates.tooManyCardsStatus.rootContainer.mainView.boxSettingsView.boxSettings.tooManyCardsStatus, "tooManyCardsStatus").toEqual(undefined)
@@ -179,7 +179,7 @@ describe("boxscenarios.CreateRootCategoryWithDefault", function () {
 				reverse : false,
 				editable : true,
 				archived : false,
-				shared : false
+				deletable : true
 			}
 		]
 		)

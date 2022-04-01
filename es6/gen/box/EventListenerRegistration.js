@@ -161,7 +161,7 @@ export default class EventListenerRegistrationBox {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "boxSettingsView", "boxSettings"], 
-					["maxIntervalInvalid", "maxCardsPerDayInvalid", "tooManyCardsStatus", "dictionaryLookupInvalid", "boxId", "maxInterval", "maxCardsPerDay", "categoryName", "dictionaryLookup", "givenLanguage", "wantedLanguage", "categoryId", "shared", "allActiveCards", "allCards"]
+					["maxIntervalInvalid", "maxCardsPerDayInvalid", "tooManyCardsStatus", "dictionaryLookupInvalid", "boxId", "maxInterval", "maxCardsPerDay", "categoryName", "dictionaryLookup", "givenLanguage", "wantedLanguage", "categoryId", "deletable", "allActiveCards", "allCards"]
 				)
 			});
 		ACEController.registerListener('box.MaxCardsPerDayChangedOkEvent', (data) => {
