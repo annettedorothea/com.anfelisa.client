@@ -31,13 +31,9 @@ export const BoxListItem = (props) => {
 
 	const onDeleteClick = (e) => {
 		e.stopPropagation();
-		if (isDeletable()) {
+		if (props.deletable) {
 			deleteBoxClick(props.boxId);
 		}
-	}
-
-	const isDeletable = () => {
-		return props.reverse || !props.editable || !props.shared
 	}
 
 	if (props.archived === true) {
@@ -98,9 +94,9 @@ export const BoxListItem = (props) => {
 		</div>
 		<div className="buttons button4">
 			<i
-				className={`far fa-trash-alt ${isDeletable() ? "danger" : "disabled"}`}
+				className={`far fa-trash-alt ${props.deletable ? "danger" : "disabled"}`}
 				onClick={(e) => onDeleteClick(e)}
-				title={isDeletable() ?
+				title={props.deletable ?
 					Texts.box.deleteTitle[props.language] :
 					Texts.box.deleteTitleShared[props.language]}
 			/>
