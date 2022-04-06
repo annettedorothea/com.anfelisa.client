@@ -80,7 +80,7 @@ export const CardListItem = (props) => {
 
 
 	const isValid = () => {
-		return props.given && props.given.length > 0 && (props.wanted && props.wanted.length > 0 || props.image.length > 0);
+		return props.given && props.given.length > 0 && props.wanted && props.wanted.length > 0;
 	}
 
 	const renderGiven = () => {

@@ -12,8 +12,7 @@ export default class CancelEditCardCommand extends AbstractCancelEditCardCommand
         data.editedCard = {
             cardId: "",
             given: "",
-            wanted: "",
-            image: ""
+            wanted: ""
         };
     	this.addOkOutcome(data);
     	return data;

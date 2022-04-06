@@ -18,7 +18,6 @@ export default class UpdateCardCommand extends AbstractUpdateCardCommand {
             cardId: "",
             given: "",
             wanted: "",
-            image: ""
         };
     	this.addOkOutcome(data);
     	resolve(data);

@@ -14,7 +14,6 @@ export default class EditCardCommand extends AbstractEditCardCommand {
             cardId: data.cardId,
             given: card.given,
             wanted: card.wanted,
-            image: card.image
         };
     	this.addOkOutcome(data);
     	return data;

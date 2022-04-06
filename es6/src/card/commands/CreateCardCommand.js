@@ -17,7 +17,6 @@ export default class CreateCardCommand extends AbstractCreateCardCommand {
         data.newCard = {
             given: "",
             wanted: "",
-            image: "",
             displaySpinner: false,
         };
         data.cardDuplicates = [];
