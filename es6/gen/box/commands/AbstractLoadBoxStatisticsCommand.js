@@ -32,13 +32,15 @@ export default class AbstractLoadBoxStatisticsCommand extends AsynchronousComman
 			AppUtils.httpGet(
 					`${AppUtils.settings.rootPath}/boxes/statistics/?${data.todayAtMidnightInUTC ? `todayAtMidnightInUTC=${data.todayAtMidnightInUTC}` : ""}`, 
 					data.uuid, 
-					true).then((response) => {
-				data.boxStatisticsList = response.boxStatisticsList;
-				this.handleResponse(data, resolve, reject);
-			}, (error) => {
-				data.error = error;
-				this.handleError(data, resolve, reject);
-			});
+					true)
+				.then((response) => {
+					data.boxStatisticsList = response.boxStatisticsList;
+					this.handleResponse(data, resolve, reject);
+				}, (error) => {
+					data.error = error;
+					this.handleError(data, resolve, reject);
+				})
+				.catch(x => reject(x));
 	    });
 	}
 	

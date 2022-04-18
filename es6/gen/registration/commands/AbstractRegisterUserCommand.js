@@ -56,12 +56,14 @@ export default class AbstractRegisterUserCommand extends AsynchronousCommand {
 					`${AppUtils.settings.rootPath}/users/register`, 
 					data.uuid, 
 					false,
-					 payload).then(() => {
-				this.handleResponse(data, resolve, reject);
-			}, (error) => {
-				data.error = error;
-				this.handleError(data, resolve, reject);
-			});
+					 payload)
+				.then(() => {
+					this.handleResponse(data, resolve, reject);
+				}, (error) => {
+					data.error = error;
+					this.handleError(data, resolve, reject);
+				})
+				.catch(x => reject(x));
 	    });
 	}
 	

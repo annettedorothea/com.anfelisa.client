@@ -46,12 +46,14 @@ export default class AbstractMoveCardsCommand extends AsynchronousCommand {
 					`${AppUtils.settings.rootPath}/cards/move`, 
 					data.uuid, 
 					true,
-					 payload).then(() => {
-				this.handleResponse(data, resolve, reject);
-			}, (error) => {
-				data.error = error;
-				this.handleError(data, resolve, reject);
-			});
+					 payload)
+				.then(() => {
+					this.handleResponse(data, resolve, reject);
+				}, (error) => {
+					data.error = error;
+					this.handleError(data, resolve, reject);
+				})
+				.catch(x => reject(x));
 	    });
 	}
 	

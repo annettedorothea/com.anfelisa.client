@@ -42,12 +42,14 @@ export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCom
 					`${AppUtils.settings.rootPath}/cards/sort-out`, 
 					data.uuid, 
 					true,
-					 payload).then(() => {
-				this.handleResponse(data, resolve, reject);
-			}, (error) => {
-				data.error = error;
-				this.handleError(data, resolve, reject);
-			});
+					 payload)
+				.then(() => {
+					this.handleResponse(data, resolve, reject);
+				}, (error) => {
+					data.error = error;
+					this.handleError(data, resolve, reject);
+				})
+				.catch(x => reject(x));
 	    });
 	}
 	

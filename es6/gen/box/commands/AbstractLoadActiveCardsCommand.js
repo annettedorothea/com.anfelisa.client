@@ -33,14 +33,16 @@ export default class AbstractLoadActiveCardsCommand extends AsynchronousCommand 
 			AppUtils.httpGet(
 					`${AppUtils.settings.rootPath}/box/active-cards/${data.boxId}`, 
 					data.uuid, 
-					true).then((response) => {
-				data.cardList = response.cardList;
-				data.editable = response.editable;
-				this.handleResponse(data, resolve, reject);
-			}, (error) => {
-				data.error = error;
-				this.handleError(data, resolve, reject);
-			});
+					true)
+				.then((response) => {
+					data.cardList = response.cardList;
+					data.editable = response.editable;
+					this.handleResponse(data, resolve, reject);
+				}, (error) => {
+					data.error = error;
+					this.handleError(data, resolve, reject);
+				})
+				.catch(x => reject(x));
 	    });
 	}
 	

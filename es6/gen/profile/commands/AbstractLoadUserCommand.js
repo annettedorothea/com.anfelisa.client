@@ -28,15 +28,17 @@ export default class AbstractLoadUserCommand extends AsynchronousCommand {
 			AppUtils.httpGet(
 					`${AppUtils.settings.rootPath}/user/get`, 
 					data.uuid, 
-					true).then((response) => {
-				data.email = response.email;
-				data.username = response.username;
-				data.userId = response.userId;
-				this.handleResponse(data, resolve, reject);
-			}, (error) => {
-				data.error = error;
-				this.handleError(data, resolve, reject);
-			});
+					true)
+				.then((response) => {
+					data.email = response.email;
+					data.username = response.username;
+					data.userId = response.userId;
+					this.handleResponse(data, resolve, reject);
+				}, (error) => {
+					data.error = error;
+					this.handleError(data, resolve, reject);
+				})
+				.catch(x => reject(x));
 	    });
 	}
 	

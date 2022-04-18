@@ -37,12 +37,14 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
 			AppUtils.httpDelete(
 					`${AppUtils.settings.rootPath}/box/delete?${data.boxId ? `boxId=${data.boxId}` : ""}`, 
 					data.uuid, 
-					true).then(() => {
-				this.handleResponse(data, resolve, reject);
-			}, (error) => {
-				data.error = error;
-				this.handleError(data, resolve, reject);
-			});
+					true)
+				.then(() => {
+					this.handleResponse(data, resolve, reject);
+				}, (error) => {
+					data.error = error;
+					this.handleError(data, resolve, reject);
+				})
+				.catch(x => reject(x));
 	    });
 	}
 	

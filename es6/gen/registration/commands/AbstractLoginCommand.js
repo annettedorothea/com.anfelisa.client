@@ -42,13 +42,15 @@ export default class AbstractLoginCommand extends AsynchronousCommand {
 					`${AppUtils.settings.rootPath}/user/token`, 
 					data.uuid, 
 					false,
-					 payload).then((response) => {
-				data.token = response.token;
-				this.handleResponse(data, resolve, reject);
-			}, (error) => {
-				data.error = error;
-				this.handleError(data, resolve, reject);
-			});
+					 payload)
+				.then((response) => {
+					data.token = response.token;
+					this.handleResponse(data, resolve, reject);
+				}, (error) => {
+					data.error = error;
+					this.handleError(data, resolve, reject);
+				})
+				.catch(x => reject(x));
 	    });
 	}
 	

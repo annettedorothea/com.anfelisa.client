@@ -10,14 +10,13 @@ import * as ACEController from "./ACEController";
 import * as AppState from "../../src/AppState";
 import * as AppUtils from "../../src/AppUtils";
 
-
 export default class SynchronousAction extends Action {
 
     constructor(actionName, callback) {
     	super(actionName, callback);
     	this.asynchronous = false;
     }
-
+    
 	apply(data) {
 	    ACEController.addItemToTimeLine({
 	        appState: AppState.get([])

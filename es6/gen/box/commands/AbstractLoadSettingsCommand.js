@@ -33,13 +33,15 @@ export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
 			AppUtils.httpGet(
 					`${AppUtils.settings.rootPath}/box/settings/${data.boxId}`, 
 					data.uuid, 
-					true).then((response) => {
-				data.boxSettings = response.boxSettings;
-				this.handleResponse(data, resolve, reject);
-			}, (error) => {
-				data.error = error;
-				this.handleError(data, resolve, reject);
-			});
+					true)
+				.then((response) => {
+					data.boxSettings = response.boxSettings;
+					this.handleResponse(data, resolve, reject);
+				}, (error) => {
+					data.error = error;
+					this.handleError(data, resolve, reject);
+				})
+				.catch(x => reject(x));
 	    });
 	}
 	
