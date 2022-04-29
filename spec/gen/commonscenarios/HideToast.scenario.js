@@ -8,6 +8,7 @@
 const ScenarioUtils = require("../../src/ScenarioUtils");
 const LoginActionIds  = require("../../gen/actionIds/login/LoginActionIds");
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
+const Verifications = require("../../src/commonscenarios/HideToastVerifications");
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
@@ -30,25 +31,15 @@ describe("commonscenarios.HideToast", function () {
 		await ScenarioUtils.waitInMillis(5000);
 		
 		appState = await ScenarioUtils.getAppState(driver);
-		appStates.errorHidden = appState;
 		
+		verifications.errorWasHidden = await Verifications.errorWasHidden(appState.rootContainer.messages);
 		
     });
 
-	it("errorHidden", async () => {
-		expect(appStates.errorHidden.rootContainer.messages, "errorHidden").toEqual([
-			{ 
-				code : 401,
-				text : `Unauthorized`,
-				textKey : `loginFailed`,
-				type : `error`,
-				visible : false,
-				id : 0
-			}
-		]
-		)
-	});
 	
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@29608049 (functionName: errorWasHidden)", async () => {
+		expect(verifications.errorWasHidden, "verifications.errorWasHidden").toBeTrue();
+	});
 
     afterAll(async function () {
         await ScenarioUtils.tearDown(driver);

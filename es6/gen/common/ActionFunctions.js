@@ -11,6 +11,8 @@ import RouteChangedAction from "../../src/common/actions/RouteChangedAction";
 import RouteAction from "../../src/common/actions/RouteAction";
 import LogoutAction from "../../src/common/actions/LogoutAction";
 import DisplayToastAction from "../../src/common/actions/DisplayToastAction";
+import DisplayErrorToastAction from "../../src/common/actions/DisplayErrorToastAction";
+import DisplayWarningToastAction from "../../src/common/actions/DisplayWarningToastAction";
 import HideToastAction from "../../src/common/actions/HideToastAction";
 import DestroyToastAction from "../../src/common/actions/DestroyToastAction";
 import DisplaySaveBugDialogAction from "../../src/common/actions/DisplaySaveBugDialogAction";
@@ -41,8 +43,16 @@ export function logout() {
     return new LogoutAction().apply({});
 }
 
-export function displayToast(message, error, warning) {
-    return new DisplayToastAction().apply({message, error, warning});
+export function displayToast(textKey, args) {
+    return new DisplayToastAction().apply({textKey, args});
+}
+
+export function displayErrorToast(textKey, args) {
+    return new DisplayErrorToastAction().apply({textKey, args});
+}
+
+export function displayWarningToast(textKey, args) {
+    return new DisplayWarningToastAction().apply({textKey, args});
 }
 
 export function hideToast(id) {

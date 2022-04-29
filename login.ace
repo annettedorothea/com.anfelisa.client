@@ -30,7 +30,7 @@ ACE
 			common.Route
 		)
 		on unauthorized triggers ( 
-			common.DisplayToast 
+			common.DisplayErrorToast 
 			common.Logout
 		)
 	

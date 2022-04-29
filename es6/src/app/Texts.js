@@ -457,6 +457,9 @@ export const Texts = {
         boxDoesNotExist: {
             de: "Lernkartei wurde nicht gefunden."
         },
+        cannotDeleteSharedBox: {
+            de: "Das Löschen der Box ist fehlgeschlagen, weil sie geteilt wird und du der letzte Benutzer bist, der Schreibrechte für die Box hat."
+        },
         cannotMoveCategoryToItself: {
             de: "Drag&Drop-Fehler: Ordner kann nicht auf sich selbst verschoben werden."
         },

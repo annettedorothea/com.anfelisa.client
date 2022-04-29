@@ -8,24 +8,25 @@
 import React from "react";
 import {Texts} from "../../../../../app/Texts";
 import {cancelDeleteCard, deleteCard} from "../../../../../../gen/card/ActionFunctions";
+import {translate} from "../../../../../AppUtils";
 
 
 export const DeleteCard = (props) => {
 	if (props.confirmDelete === true) {
 		return <div className="modal">
 			<div className="modalContent">
-				<h2>{Texts.cardList.confirmDelete.title[props.language]}</h2>
-				<div className="message">{Texts.cardList.confirmDelete.message[props.language]}</div>
+				<h2>{translate(Texts.cardList.confirmDelete.title)}</h2>
+				<div className="message">{translate(Texts.cardList.confirmDelete.message)}</div>
 				<button
 					className="yes danger"
 					onClick={deleteCard}
 				>
-					{Texts.cardList.confirmDelete.ok[props.language]}
+					{translate(Texts.cardList.confirmDelete.ok)}
 				</button>
 				<button
 					onClick={cancelDeleteCard}
 				>
-					{Texts.cardList.confirmDelete.cancel[props.language]}
+					{translate(Texts.cardList.confirmDelete.cancel)}
 				</button>
 			</div>
 		</div>

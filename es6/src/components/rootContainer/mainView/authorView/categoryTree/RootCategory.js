@@ -13,6 +13,7 @@ import {
 	moveCategoryStarted, selectTreeItem
 } from "../../../../../../gen/category/ActionFunctions";
 import {Texts} from "../../../../../app/Texts";
+import {translate} from "../../../../../AppUtils";
 
 const categoryItem = (props) => {
 	const selected = props.selectedCategory && props.selectedCategory.categoryId === props.categoryId;
@@ -94,15 +95,15 @@ const selectableCategoryItem = (props) => {
 		>
             {props.categoryName}
 			{props.nonScheduledCount === 0 ?
-				<span className="nonScheduledCount">{Texts.categoryList.nonScheduledNone[props.language]}</span> : null
+				<span className="nonScheduledCount">{translate(Texts.categoryList.nonScheduledNone)}</span> : null
 			}
 			{props.nonScheduledCount === 1 ?
 				<span
-					className="nonScheduledCount">{Texts.categoryList.nonScheduledSingular[props.language]}</span> : null
+					className="nonScheduledCount">{translate(Texts.categoryList.nonScheduledSingular)}</span> : null
 			}
 			{props.nonScheduledCount > 1 ?
 				<span
-					className="nonScheduledCount">{Texts.categoryList.nonScheduled[props.language].replace("{0}", props.nonScheduledCount)}</span> : null
+					className="nonScheduledCount">{translate(Texts.categoryList.nonScheduled, [props.nonScheduledCount])}</span> : null
 			}
         </span>
     </span>

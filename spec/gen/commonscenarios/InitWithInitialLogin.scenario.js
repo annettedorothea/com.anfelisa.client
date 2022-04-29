@@ -66,7 +66,7 @@ describe("commonscenarios.InitWithInitialLogin", function () {
 		expect(appStates.tokenWasSet.rootContainer.loggedInUser.token, "tokenWasSet").not.toEqual(null)
 	});
 	
-	it("loginDataWasSetInLocalStorage", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@75331ffe (functionName: loginDataWasSetInLocalStorage)", async () => {
 		expect(verifications.loginDataWasSetInLocalStorage, "verifications.loginDataWasSetInLocalStorage").toBeTrue();
 	});
 

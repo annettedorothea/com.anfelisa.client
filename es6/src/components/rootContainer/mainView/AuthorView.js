@@ -12,8 +12,8 @@ import { CardView } from "./authorView/CardView";
 
 export const AuthorView = (props) => {
 	return <div className="categoryCardSplitView">
-		<CategoryTree language={props.language} {...props.categoryTree} />
-		<CardView language={props.language} {...props.cardView} categoryTree={props.categoryTree}/>
+		<CategoryTree {...props.categoryTree} />
+		<CardView {...props.cardView} categoryTree={props.categoryTree}/>
 	</div>
 }
 

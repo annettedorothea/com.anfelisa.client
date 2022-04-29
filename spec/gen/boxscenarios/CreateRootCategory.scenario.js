@@ -196,20 +196,20 @@ describe("boxscenarios.CreateRootCategory", function () {
 		expect(appStates.wantedLanguage.rootContainer.mainView.boxSettingsView.boxSettings.wantedLanguage, "wantedLanguage").toEqual(``)
 	});
 	
-	it("saveDisabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@d93ca54 (functionName: saveDisabled)", async () => {
 		expect(verifications.saveDisabled, "verifications.saveDisabled").toBeTrue();
 	});
-	it("givenLanguageDisabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@17acb150 (functionName: givenLanguageDisabled)", async () => {
 		expect(verifications.givenLanguageDisabled, "verifications.givenLanguageDisabled").toBeTrue();
 	});
-	it("wantedLanguageDisabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@3e9cd6db (functionName: wantedLanguageDisabled)", async () => {
 		expect(verifications.wantedLanguageDisabled, "verifications.wantedLanguageDisabled").toBeTrue();
 	});
 	it("categoryName", async () => {
 		expect(appStates.categoryName.rootContainer.mainView.boxSettingsView.boxSettings.categoryName, "categoryName").toEqual(`categoryWithDictionary`)
 	});
 	
-	it("saveEnabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@40ea596c (functionName: saveEnabled)", async () => {
 		expect(verifications.saveEnabled, "verifications.saveEnabled").toBeTrue();
 	});
 	it("maxCardsPerDay", async () => {
@@ -219,7 +219,7 @@ describe("boxscenarios.CreateRootCategory", function () {
 		expect(appStates.maxCardsPerDayInvalid.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDayInvalid, "maxCardsPerDayInvalid").toEqual(false)
 	});
 	
-	it("saveEnabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@5a2e93ea (functionName: saveEnabled)", async () => {
 		expect(verifications.saveEnabled, "verifications.saveEnabled").toBeTrue();
 	});
 	it("maxInterval", async () => {
@@ -229,7 +229,7 @@ describe("boxscenarios.CreateRootCategory", function () {
 		expect(appStates.maxIntervalInvalid.rootContainer.mainView.boxSettingsView.boxSettings.maxIntervalInvalid, "maxIntervalInvalid").toEqual(false)
 	});
 	
-	it("saveEnabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@515db6a3 (functionName: saveEnabled)", async () => {
 		expect(verifications.saveEnabled, "verifications.saveEnabled").toBeTrue();
 	});
 	it("dictionaryLookup", async () => {
@@ -239,13 +239,13 @@ describe("boxscenarios.CreateRootCategory", function () {
 		expect(appStates.dictionaryLookupInvalid.rootContainer.mainView.boxSettingsView.boxSettings.dictionaryLookupInvalid, "dictionaryLookupInvalid").toEqual(true)
 	});
 	
-	it("saveDisabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@6c9d1fe2 (functionName: saveDisabled)", async () => {
 		expect(verifications.saveDisabled, "verifications.saveDisabled").toBeTrue();
 	});
-	it("givenLanguageEnabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@f5e315e (functionName: givenLanguageEnabled)", async () => {
 		expect(verifications.givenLanguageEnabled, "verifications.givenLanguageEnabled").toBeTrue();
 	});
-	it("wantedLanguageEnabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@37f15015 (functionName: wantedLanguageEnabled)", async () => {
 		expect(verifications.wantedLanguageEnabled, "verifications.wantedLanguageEnabled").toBeTrue();
 	});
 	it("dictionaryLookup1", async () => {
@@ -261,13 +261,13 @@ describe("boxscenarios.CreateRootCategory", function () {
 		expect(appStates.wantedLanguage1.rootContainer.mainView.boxSettingsView.boxSettings.wantedLanguage, "wantedLanguage1").toEqual(``)
 	});
 	
-	it("saveDisabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@7fc02158 (functionName: saveDisabled)", async () => {
 		expect(verifications.saveDisabled, "verifications.saveDisabled").toBeTrue();
 	});
-	it("givenLanguageEnabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@35ea6530 (functionName: givenLanguageEnabled)", async () => {
 		expect(verifications.givenLanguageEnabled, "verifications.givenLanguageEnabled").toBeTrue();
 	});
-	it("wantedLanguageEnabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@799a5e34 (functionName: wantedLanguageEnabled)", async () => {
 		expect(verifications.wantedLanguageEnabled, "verifications.wantedLanguageEnabled").toBeTrue();
 	});
 	it("dictionaryLookup2", async () => {
@@ -283,13 +283,13 @@ describe("boxscenarios.CreateRootCategory", function () {
 		expect(appStates.wantedLanguage2.rootContainer.mainView.boxSettingsView.boxSettings.wantedLanguage, "wantedLanguage2").toEqual(`en`)
 	});
 	
-	it("saveEnabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@505a3215 (functionName: saveEnabled)", async () => {
 		expect(verifications.saveEnabled, "verifications.saveEnabled").toBeTrue();
 	});
-	it("givenLanguageEnabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@1e725f36 (functionName: givenLanguageEnabled)", async () => {
 		expect(verifications.givenLanguageEnabled, "verifications.givenLanguageEnabled").toBeTrue();
 	});
-	it("wantedLanguageEnabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@1db95bd (functionName: wantedLanguageEnabled)", async () => {
 		expect(verifications.wantedLanguageEnabled, "verifications.wantedLanguageEnabled").toBeTrue();
 	});
 	it("boxList", async () => {

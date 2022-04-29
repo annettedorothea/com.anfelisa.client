@@ -24,6 +24,7 @@ import {
 import {route} from "../../../../../gen/common/ActionFunctions";
 import {Texts} from "../../../../app/Texts";
 import {InviteUserEditableDialog} from "./categoryTree/InviteUserEditableDialog";
+import {translate} from "../../../../AppUtils";
 
 export const CategoryTree = (props) => {
 	if (!props.rootCategory) {
@@ -54,14 +55,14 @@ export const CategoryTree = (props) => {
 	}
 
 	return <div className="categoryTree">
-		<CategoryDialog {...props.categoryDialog} language={props.language} />
-		<InviteUserDialog {...props.inviteUserDialog} language={props.language} />
-		<DeleteCategoryDialog {...props.deleteCategoryDialog} language={props.language} />
-		<InviteUserEditableDialog {...props.inviteUserEditableDialog} language={props.language} />
+		<CategoryDialog {...props.categoryDialog}  />
+		<InviteUserDialog {...props.inviteUserDialog}  />
+		<DeleteCategoryDialog {...props.deleteCategoryDialog}  />
+		<InviteUserEditableDialog {...props.inviteUserEditableDialog}  />
 		<div>
 			<button
 				onClick={() => route("#dashboard")}
-				title={Texts.categoryTree.back[props.language]}
+				title={translate(Texts.categoryTree.back)}
 			>
 				<i className="fa fa-arrow-left"/>
 			</button>
@@ -69,7 +70,8 @@ export const CategoryTree = (props) => {
 				<button
 					disabled={!props.selectedCategory}
 					onClick={newCategoryClick}
-					title={Texts.categoryTree.newCategory.newChildCategory[props.language]}
+					title={translate(Texts.categoryTree.newCategory.newChildCategory)}
+					id="new"
 				>
 					<i className="fas fa-plus"/>
 				</button> :
@@ -79,7 +81,7 @@ export const CategoryTree = (props) => {
 				<button
 					disabled={!props.selectedCategory}
 					onClick={editCategoryClick}
-					title={Texts.categoryTree.editCategory.title[props.language]}
+					title={translate(Texts.categoryTree.editCategory.title)}
 				>
 					<i className="fas fa-pen"/>
 				</button> :
@@ -89,7 +91,7 @@ export const CategoryTree = (props) => {
 				<button
 					disabled={!props.selectedCategory}
 					onClick={inviteUserClick}
-					title={Texts.categoryTree.inviteUser.title[props.language]}
+					title={translate(Texts.categoryTree.inviteUser.title)}
 				>
 					<i className="fas fa-share"/>
 				</button> :
@@ -103,7 +105,7 @@ export const CategoryTree = (props) => {
 						props.rootCategory.categoryId === props.selectedCategory.categoryId
 					}
 					onClick={deleteCategoryClick}
-					title={Texts.categoryTree.delete[props.language]}
+					title={translate(Texts.categoryTree.delete)}
 				>
 					<i className="far fa-trash-alt"/>
 				</button> :
@@ -112,7 +114,7 @@ export const CategoryTree = (props) => {
 			{props.reverseBoxExists === false ?
 				<button
 					onClick={createReverseBox}
-					title={Texts.categoryTree.createReverseBox[props.language]}
+					title={translate(Texts.categoryTree.createReverseBox)}
 				>
 					<i className="fas fa-plus-circle"/>
 				</button> :
@@ -126,14 +128,14 @@ export const CategoryTree = (props) => {
 				value={props.filterNonScheduled}
 				id="filterNonScheduled"
 			/>
-			<label htmlFor="filterNonScheduled">{Texts.categoryTree.filterNonScheduled[props.language]}</label>
+			<label htmlFor="filterNonScheduled">{translate(Texts.categoryTree.filterNonScheduled)}</label>
 			{props.filterNonScheduled === true ? filterPriority(props.priority) : null}
 		</div>
 		<div className="categoryTreeItems">
 			<RootCategory
 				{...props.rootCategory}
 				selectedCategory={props.selectedCategory}
-				language={props.language}
+
 				dropAllowed={props.dropAllowed && props.rootCategory.editable}
 				dropTargetCategoryId={props.dropTargetCategoryId}
 			/>

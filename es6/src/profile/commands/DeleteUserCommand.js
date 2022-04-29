@@ -6,6 +6,7 @@
 
 
 import AbstractDeleteUserCommand from "../../../gen/profile/commands/AbstractDeleteUserCommand";
+import {Texts} from "../../app/Texts";
 
 export default class DeleteUserCommand extends AbstractDeleteUserCommand {
 
@@ -20,6 +21,7 @@ export default class DeleteUserCommand extends AbstractDeleteUserCommand {
     }
     handleError(data, resolve) {
         this.addErrorOutcome(data);
+        data.textKey = Texts.messages.lastAdminMustNotBeDeleted;
         data.showDeleteUserDialog = undefined;
         resolve(data);
     }

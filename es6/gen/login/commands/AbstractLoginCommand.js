@@ -10,7 +10,7 @@ import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
 import RouteAction from "../../../src/common/actions/RouteAction";
-import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
+import DisplayErrorToastAction from "../../../src/common/actions/DisplayErrorToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoginCommand extends AsynchronousCommand {
@@ -88,11 +88,10 @@ export default class AbstractLoginCommand extends AsynchronousCommand {
 				events.push(new Event('login.LoginUnauthorizedEvent'));
 				actionsToBeTriggered.push(
 					{
-						action: new DisplayToastAction(), 
+						action: new DisplayErrorToastAction(), 
 						data: {
-							message: data.message, 
-							error: data.error, 
-							warning: data.warning
+							textKey: data.textKey, 
+							args: data.args
 						}
 					}
 				);

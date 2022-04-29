@@ -4,7 +4,7 @@
 
 
 import AbstractScoreCardCommand from "../../../gen/box/commands/AbstractScoreCardCommand";
-import {createInfoMessage, createWarningMessage} from "../../AppUtils";
+import {Texts} from "../../app/Texts";
 
 export default class ScoreCardCommand extends AbstractScoreCardCommand {
 
@@ -14,16 +14,21 @@ export default class ScoreCardCommand extends AbstractScoreCardCommand {
 
     handleResponse(data, resolve) {
         this.addOkOutcome(data);
-        if (data.intervalDifference !== 0) {
-            this.addShowToastOutcome(data);
+        if (data.intervalDifference > 0) {
+            this.addShowWarningToastOutcome(data);
             if (data.intervalDifference === 1) {
-                data.message = createWarningMessage("intervalOffsetPostponedSingular");
+                data.textKey = Texts.messages.intervalOffsetPostponedSingular;
             } else if (data.intervalDifference > 1) {
-                data.message = createWarningMessage("intervalOffsetPostponed", [data.intervalDifference]);
-            } else if (data.intervalDifference === -1) {
-                data.message = createInfoMessage("intervalOffsetMovedForwardSingular");
+                data.textKey = Texts.messages.intervalOffsetPostponed;
+                data.args = [data.intervalDifference];
+            }
+        } else if (data.intervalDifference < 0) {
+            this.addShowInfoToastOutcome(data)
+            if (data.intervalDifference === -1) {
+                data.textKey = Texts.messages.intervalOffsetMovedForwardSingular;
             } else if (data.intervalDifference < -1) {
-                data.message = createInfoMessage("intervalOffsetMovedForward", [data.intervalDifference * (-1)]);
+                data.textKey = Texts.messages.intervalOffsetMovedForward;
+                data.args = [data.intervalDifference * (-1)];
             }
         }
         resolve(data);

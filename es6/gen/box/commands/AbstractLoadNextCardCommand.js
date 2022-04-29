@@ -73,9 +73,8 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
 					{
 						action: new DisplayToastAction(), 
 						data: {
-							message: data.message, 
-							error: data.error, 
-							warning: data.warning
+							textKey: data.textKey, 
+							args: data.args
 						}
 					}
 				);

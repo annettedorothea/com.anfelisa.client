@@ -6,6 +6,7 @@
 
 
 import React from "react";
+import {translate} from "../../../AppUtils";
 
 import { ActiveCardListItem } from "./allActiveCardsView/ActiveCardListItem";
 import {
@@ -26,7 +27,6 @@ export const AllActiveCardsView = (props) => {
 			key={`card_${index}`}
 			selectedCardIds={props.selectedCardIds}
 			editable={props.editable}
-			language={props.language}
 		/>
 	});
 	const filterLastQuality = (lastQuality) => {
@@ -41,7 +41,7 @@ export const AllActiveCardsView = (props) => {
 				htmlFor={`lastQuality{lastQuality}`}
 				className={`quality_${lastQuality}`}
 			>
-				{Texts.allActiveCards.filterLastQuality[lastQuality][props.language]}
+				{translate(Texts.allActiveCards.filterLastQuality[lastQuality])}
 			</label>
 		</div>
 
@@ -70,13 +70,13 @@ export const AllActiveCardsView = (props) => {
 						onClick={scheduleSelectedCards}
 						disabled={props.selectedCardIds.length === 0}
 					>
-						{Texts.allActiveCards.scheduleSelectedCards[props.language]}
+						{translate(Texts.allActiveCards.scheduleSelectedCards)}
 					</button>
 					<button
 						onClick={sortSelectedCardsOut}
 						disabled={props.selectedCardIds.length === 0}
 					>
-						{Texts.allActiveCards.sortSelectedCardsOut[props.language]}
+						{translate(Texts.allActiveCards.sortSelectedCardsOut)}
 					</button>
 				</th>
 			</tr>

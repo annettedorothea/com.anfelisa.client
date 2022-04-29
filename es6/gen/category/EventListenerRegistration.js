@@ -35,7 +35,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory"], 
-					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.ReloadCategoryTreeOkEvent', (data) => {
@@ -49,21 +49,21 @@ export default class EventListenerRegistrationCategory {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory"], 
-					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.CollapseTreeItemOkEvent', (data) => {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory"], 
-					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.CollapseTreeItemSelectParentCategoryEvent', (data) => {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory"], 
-					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories", "nonScheduledCount", "editable"]
+					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.SelectTreeItemOkEvent', (data) => {

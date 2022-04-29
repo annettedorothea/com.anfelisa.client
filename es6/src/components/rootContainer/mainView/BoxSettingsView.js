@@ -8,7 +8,7 @@ import {BoxSettings} from "./boxSettingsView/BoxSettings";
 
 
 export const BoxSettingsView = (props) => {
-	return <BoxSettings {...props.boxSettings} language={props.language}/>
+	return <BoxSettings {...props.boxSettings}/>
 }
 
 

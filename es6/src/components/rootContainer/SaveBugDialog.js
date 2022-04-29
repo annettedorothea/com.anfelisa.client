@@ -8,23 +8,24 @@
 import React from "react";
 import {Texts} from "../../app/Texts";
 import {callSaveBug, cancelSaveBugDialog} from "../../../gen/common/ActionFunctions";
+import {translate} from "../../AppUtils";
 
 export const SaveBugDialog = (props) => {
 	if (props.display === true) {
 		return <div className="modal">
 			<div className="modalContent">
-				<h2>{Texts.container.unexpectedBug[props.language]}</h2>
-				<div className="message">{Texts.container.unexpectedBugMessage[props.language]}</div>
+				<h2>{translate(Texts.container.unexpectedBug)}</h2>
+				<div className="message">{translate(Texts.container.unexpectedBugMessage)}</div>
 				<button
 					className="yes"
 					onClick={callSaveBug}
 				>
-					{Texts.container.yes[props.language]}
+					{translate(Texts.container.yes)}
 				</button>
 				<button
 					onClick={cancelSaveBugDialog}
 				>
-					{Texts.container.no[props.language]}
+					{translate(Texts.container.no)}
 				</button>
 			</div>
 

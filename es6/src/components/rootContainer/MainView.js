@@ -21,37 +21,37 @@ import { AuthorView } from "./mainView/AuthorView";
 
 export const MainView = (props) => {
 	if (props.privacyPolicyView) {
-		return <PrivacyPolicyView {...props.privacyPolicyView} language={props.language} {...props.loggedInUser}/>;
+		return <PrivacyPolicyView {...props.privacyPolicyView} {...props.loggedInUser}/>;
 	}
 	if (props.loginView) {
-		return <LoginView {...props.loginView} language={props.language} {...props.loggedInUser}/>;
+		return <LoginView {...props.loginView} {...props.loggedInUser}/>;
 	}
 	if (props.registrationView) {
-		return <RegistrationView {...props.registrationView} language={props.language} {...props.loggedInUser}/>;
+		return <RegistrationView {...props.registrationView} {...props.loggedInUser}/>;
 	}
 	if (props.forgotPasswordView) {
-		return <ForgotPasswordView {...props.forgotPasswordView} language={props.language} {...props.loggedInUser}/>;
+		return <ForgotPasswordView {...props.forgotPasswordView} {...props.loggedInUser}/>;
 	}
 	if (props.resetPasswordView) {
-		return <ResetPasswordView {...props.resetPasswordView} language={props.language} {...props.loggedInUser}/>;
+		return <ResetPasswordView {...props.resetPasswordView} {...props.loggedInUser}/>;
 	}
 	if (props.dashboardView) {
-		return <DashboardView {...props.dashboardView} language={props.language} {...props.loggedInUser}/>;
+		return <DashboardView {...props.dashboardView} {...props.loggedInUser}/>;
 	}
 	if (props.boxSettingsView) {
-		return <BoxSettingsView {...props.boxSettingsView} language={props.language} {...props.loggedInUser}/>;
+		return <BoxSettingsView {...props.boxSettingsView} {...props.loggedInUser}/>;
 	}
 	if (props.allActiveCardsView) {
-		return <AllActiveCardsView {...props.allActiveCardsView} language={props.language} {...props.loggedInUser}/>;
+		return <AllActiveCardsView {...props.allActiveCardsView} {...props.loggedInUser}/>;
 	}
 	if (props.profileView) {
-		return <ProfileView {...props.profileView} language={props.language} {...props.loggedInUser}/>;
+		return <ProfileView {...props.profileView} {...props.loggedInUser}/>;
 	}
 	if (props.queryCardView) {
-		return <QueryCardView {...props.queryCardView} language={props.language} {...props.loggedInUser}/>;
+		return <QueryCardView {...props.queryCardView} {...props.loggedInUser}/>;
 	}
 	if (props.authorView) {
-		return <AuthorView {...props.authorView} language={props.language} {...props.loggedInUser}/>;
+		return <AuthorView {...props.authorView} {...props.loggedInUser}/>;
 	}
 	return null;
 }

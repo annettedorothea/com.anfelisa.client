@@ -10,6 +10,8 @@ const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
 const LoginActionIds  = require("../../gen/actionIds/login/LoginActionIds");
 const RegistrationActionIds  = require("../../gen/actionIds/registration/RegistrationActionIds");
 const BoxActionIds  = require("../../gen/actionIds/box/BoxActionIds");
+const CategoryActionIds  = require("../../gen/actionIds/category/CategoryActionIds");
+const Verifications = require("../../src/categoryscenarios/CreateCategoriesAndCardsVerifications");
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
@@ -65,6 +67,34 @@ describe("categoryscenarios.CreateCategoriesAndCards", function () {
 		
 		appState = await ScenarioUtils.getAppState(driver);
 		appStates.init = appState;
+		
+		
+		await ScenarioUtils.invokeAction(driver, CategoryActionIds.newCategoryClick);
+		await ScenarioUtils.waitInMillis(10);
+		
+		appState = await ScenarioUtils.getAppState(driver);
+		appStates.newCategoryDialoShown = appState;
+		
+		verifications.okDisabled = await Verifications.okDisabled(driver, testId);
+		
+		await ScenarioUtils.invokeAction(driver, CategoryActionIds.categoryNameChanged, [`Ordner 1`]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		appState = await ScenarioUtils.getAppState(driver);
+		appStates.categoryNameChanged = appState;
+		
+		
+		await ScenarioUtils.addSquishyValueClient(
+			driver,
+			{
+				uuid: `folder1-${testId}`
+			}
+		);
+		await ScenarioUtils.invokeAction(driver, CategoryActionIds.createCategory);
+		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(500);
+		
+		appState = await ScenarioUtils.getAppState(driver);
 		
 		
     });
@@ -152,6 +182,28 @@ describe("categoryscenarios.CreateCategoriesAndCards", function () {
 		}
 		)
 	});
+	
+	it("newCategoryDialoShown", async () => {
+		expect(appStates.newCategoryDialoShown.rootContainer.mainView.authorView.categoryTree.categoryDialog, "newCategoryDialoShown").toEqual({ 
+			categoryName : ``,
+			display : true,
+			newCategory : true
+		}
+		)
+	});
+	
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@45120465 (functionName: okDisabled)", async () => {
+		expect(verifications.okDisabled, "verifications.okDisabled").toBeTrue();
+	});
+	it("categoryNameChanged", async () => {
+		expect(appStates.categoryNameChanged.rootContainer.mainView.authorView.categoryTree.categoryDialog, "categoryNameChanged").toEqual({ 
+			categoryName : `Ordner 1`,
+			display : true,
+			newCategory : true
+		}
+		)
+	});
+	
 	
 
     afterAll(async function () {

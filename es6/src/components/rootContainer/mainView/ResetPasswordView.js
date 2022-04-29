@@ -12,15 +12,16 @@ import {Texts} from "../../../app/Texts";
 import {passwordChanged, passwordRepetitionChanged, resetPassword} from "../../../../gen/password/ActionFunctions";
 import CryptoJS from "crypto-js";
 import {route} from "../../../../gen/common/ActionFunctions";
+import {translate} from "../../../AppUtils";
 
 
 export const ResetPasswordView = (props) => {
 	return (
 		<div className="center">
 			<div className="form">
-				<h1>{Texts.resetPassword.title[props.language]}</h1>
+				<h1>{translate(Texts.resetPassword.title)}</h1>
 				<div className="line">
-					<label>{Texts.resetPassword.password[props.language]}</label>
+					<label>{translate(Texts.resetPassword.password)}</label>
 					<div className="inputContainer">
 						<input
 							type={"password"}
@@ -30,7 +31,7 @@ export const ResetPasswordView = (props) => {
 					</div>
 				</div>
 				<div className="line">
-					<label>{Texts.resetPassword.passwordRepetition[props.language]}</label>
+					<label>{translate(Texts.resetPassword.passwordRepetition)}</label>
 					<div className="inputContainer">
 						<input
 							type={"password"}
@@ -48,10 +49,10 @@ export const ResetPasswordView = (props) => {
 							!props.password || props.password && props.password.length === 0 ||
 							props.passwordMismatch === true
 						}>
-						{Texts.resetPassword.submit[props.language]}
+						{translate(Texts.resetPassword.submit)}
 					</button>
 					<button
-						onClick={() => route("#")}>{Texts.resetPassword.cancel[props.language]}</button>
+						onClick={() => route("#")}>{translate(Texts.resetPassword.cancel)}</button>
 				</div>
 			</div>
 		</div>

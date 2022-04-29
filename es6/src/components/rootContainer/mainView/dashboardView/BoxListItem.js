@@ -9,6 +9,7 @@ import React from "react";
 import {route} from "../../../../../gen/common/ActionFunctions";
 import {archiveBox, deleteBoxClick} from "../../../../../gen/box/ActionFunctions";
 import {Texts} from "../../../../app/Texts";
+import {translate} from "../../../../AppUtils";
 
 
 export const BoxListItem = (props) => {
@@ -40,7 +41,7 @@ export const BoxListItem = (props) => {
 		return <a className="tile box">
 			<h2>
 				{!props.editable ?
-					Texts.box.sharedTitle[props.language].replace("{0}", props.categoryName).replace("{1}", props.categoryAuthor) :
+					translate(Texts.box.sharedTitle, [props.categoryName, props.categoryAuthor]) :
 					props.categoryName}
 				{props.reverse ? <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
 			</h2>
@@ -49,7 +50,7 @@ export const BoxListItem = (props) => {
 				<i
 					className="fas fa-box-open"
 					onClick={(e) => onArchiveClick(e, false)}
-					title={Texts.box.unarchiveBox[props.language]}
+					title={translate(Texts.box.unarchiveBox)}
 				/>
 			</div>
 		</a>
@@ -64,7 +65,7 @@ export const BoxListItem = (props) => {
 	>
 		<h2>
 			{!props.editable ?
-				Texts.box.sharedTitle[props.language].replace("{0}", props.categoryName).replace("{1}", props.categoryAuthor) :
+				translate(Texts.box.sharedTitle, [props.categoryName, props.categoryAuthor]) :
 				props.categoryName}
 			{props.reverse ? <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
 		</h2>
@@ -75,21 +76,21 @@ export const BoxListItem = (props) => {
 			<i
 				className="fas fa-edit"
 				onClick={(e) => onEditClick(e)}
-				title={Texts.box.edit[props.language]}
+				title={translate(Texts.box.edit)}
 			/>
 		</div>
 		<div className="buttons button2">
 			<i
 				className="fas fa-cog"
 				onClick={(e) => onSettingsClick(e)}
-				title={Texts.box.settings[props.language]}
+				title={translate(Texts.box.settings)}
 			/>
 		</div>
 		<div className="buttons button3">
 			<i
 				className="fas fa-archive"
 				onClick={(e) => onArchiveClick(e, true)}
-				title={Texts.box.archiveBox[props.language]}
+				title={translate(Texts.box.archiveBox)}
 			/>
 		</div>
 		<div className="buttons button4">
@@ -97,8 +98,8 @@ export const BoxListItem = (props) => {
 				className={`far fa-trash-alt ${props.deletable ? "danger" : "disabled"}`}
 				onClick={(e) => onDeleteClick(e)}
 				title={props.deletable ?
-					Texts.box.deleteTitle[props.language] :
-					Texts.box.deleteTitleShared[props.language]}
+					translate(Texts.box.deleteTitle) :
+					translate(Texts.box.deleteTitleShared)}
 			/>
 		</div>
 		{props.openTodaysCards > 0 ? <span className="badge">{props.openTodaysCards}</span> : null}

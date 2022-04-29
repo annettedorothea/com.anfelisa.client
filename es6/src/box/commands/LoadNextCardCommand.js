@@ -6,7 +6,7 @@
 
 
 import AbstractLoadNextCardCommand from "../../../gen/box/commands/AbstractLoadNextCardCommand";
-import {createInfoMessage} from "../../AppUtils";
+import {Texts} from "../../app/Texts";
 
 export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
 
@@ -18,7 +18,7 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
         if (data.openTodaysCards === 0) {
             this.addFinishedOutcome(data);
             data.hash = "#dashboard";
-            data.message = createInfoMessage("finished");
+            data.textKey = Texts.messages.finished;
         } else {
             this.addOkOutcome(data);
             data.nextCard.index = 0;

@@ -7,6 +7,7 @@ import React from "react";
 import {Texts} from "../../../../app/Texts";
 import {displayWanted, scoreCard, scoreReinforceCard, sortCardOut} from "../../../../../gen/box/ActionFunctions";
 import {route} from "../../../../../gen/common/ActionFunctions";
+import {translate} from "../../../../AppUtils";
 
 
 export const NextCard = (props) => {
@@ -23,15 +24,15 @@ export const NextCard = (props) => {
         return <div className={`given lastQuality_${props.lastQuality}`}>
             <div className="given-word">{lineItems}</div>
             {props.scheduledDate ? <div className="small-info">
-                {`${Texts.queryCards.scheduledDate[props.language]} ${new Date(props.scheduledDate).toLocaleDateString()}`}
+                {`${translate(Texts.queryCards.scheduledDate)} ${new Date(props.scheduledDate).toLocaleDateString()}`}
             </div> : null}
             <div className="small-info">{
                 props.count === 0 ?
-                    Texts.queryCards.never[props.language] :
-                    Texts.queryCards.count[props.language].replace("{0}", props.count)}
+                    translate(Texts.queryCards.never) :
+                    translate(Texts.queryCards.count, [props.count])}
             </div>
             {props.scoredDate ? <div className="small-info">
-                {`${Texts.queryCards.scoredDate[props.language]} ${new Date(props.scoredDate).toLocaleDateString()}`}
+                {`${translate(Texts.queryCards.scoredDate)} ${new Date(props.scoredDate).toLocaleDateString()}`}
             </div> : null}
         </div>
     }
@@ -75,7 +76,7 @@ export const NextCard = (props) => {
             disabled={!props.enableScoreButtons}
             className={`quality_${quality}`}
         >
-            {Texts.queryCards.scoreButtons[quality][props.language]}
+            {translate(Texts.queryCards.scoreButtons[quality])}
         </button>
     }
 
@@ -85,7 +86,7 @@ export const NextCard = (props) => {
             disabled={!props.enableScoreButtons}
             className={`keep_${keep}`}
         >
-            {Texts.queryCards.reinforceButtons[keep][props.language]}
+            {translate(Texts.queryCards.reinforceButtons[keep])}
         </button>
     }
 
@@ -108,7 +109,7 @@ export const NextCard = (props) => {
                 </div>
                 <div>
                     <button onClick={sortCardOut}>
-                        {Texts.queryCards.sortOut[props.language]}
+                        {translate(Texts.queryCards.sortOut)}
                     </button>
                 </div>
             </div> :
@@ -119,14 +120,14 @@ export const NextCard = (props) => {
                 </div>
                 <div>
                     <button onClick={sortCardOut}>
-                        {Texts.queryCards.sortOut[props.language]}
+                        {translate(Texts.queryCards.sortOut)}
                     </button>
                 </div>
             </div>}
         <div className="categoryLink">
             <a
                 onClick={() => route(`#categories/${props.rootCategoryId}${props.categoryId !== props.rootCategoryId ? "/" + props.categoryId : ""}${props.reverse === true ? "/reverse" : ""}`)}
-            >{Texts.queryCards.category[props.language]}</a>
+            >{translate(Texts.queryCards.category)}</a>
         </div>
     </div>
 

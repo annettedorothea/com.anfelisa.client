@@ -7,7 +7,6 @@ import React from "react";
 import {route} from "../../../../gen/common/ActionFunctions";
 import {NextCard} from "./queryCardView/NextCard";
 
-
 export const QueryCardView = (props) => {
     const progress = () => {
         const open = Math.round(props.openTodaysCards / props.allTodaysCards * 100);
@@ -36,7 +35,7 @@ export const QueryCardView = (props) => {
                 <i className="fas fa-arrows-alt-h withmarginleft"/> : null}</span>
         </h1>
         {progress()}
-        {props.openTodaysCards > 0 && <NextCard enableScoreButtons={props.enableScoreButtons} reverse={props.reverse} language={props.language} {...props.nextCard} />}
+        {props.openTodaysCards > 0 && <NextCard enableScoreButtons={props.enableScoreButtons} reverse={props.reverse} {...props.nextCard} />}
     </div>
 }
 

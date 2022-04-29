@@ -10,15 +10,16 @@ import {Texts} from "../../../app/Texts";
 import {login, passwordChanged, toggleSaveInLocalStorage, usernameChanged} from "../../../../gen/login/ActionFunctions";
 import {route} from "../../../../gen/common/ActionFunctions";
 import CryptoJS from "crypto-js";
+import {translate} from "../../../AppUtils";
 
 
-export const LoginView = (props) => {
+export const LoginView = () => {
 	// noinspection JSUnresolvedFunction
 	return <div className="center form">
-		<h1>{Texts.login.title[props.language]}</h1>
+		<h1>{translate(Texts.login.title)}</h1>
 		<div className="line">
 			<label htmlFor="username">
-				{Texts.login.username[props.language]}
+				{translate(Texts.login.username)}
 			</label>
 			<input
 				id="username"
@@ -26,11 +27,11 @@ export const LoginView = (props) => {
 				onChange={(e) => usernameChanged(e.target.value)}
 				autoComplete="username"
 			/>
-			<a id="registration" onClick={() => route("#registration")}>{Texts.login.registration[props.language]}</a>
+			<a id="registration" onClick={() => route("#registration")}>{translate(Texts.login.registration)}</a>
 		</div>
 		<div className="line">
 			<label htmlFor="password">
-				{Texts.login.password[props.language]}
+				{translate(Texts.login.password)}
 			</label>
 			<input
 				id="password"
@@ -38,7 +39,7 @@ export const LoginView = (props) => {
 				onChange={(e) => passwordChanged(CryptoJS.MD5(e.target.value).toString())}
 				autoComplete="current-password"
 			/>
-			<a onClick={() => route("#forgotpassword")}>{Texts.login.forgotPassword[props.language]}</a>
+			<a onClick={() => route("#forgotpassword")}>{translate(Texts.login.forgotPassword)}</a>
 		</div>
 		<div className="line">
 			<input
@@ -47,9 +48,9 @@ export const LoginView = (props) => {
 				onChange={toggleSaveInLocalStorage}
 			/>
 			<label htmlFor="saveInLocalStorage">
-				{Texts.login.saveInLocalStorage[props.language]}
+				{translate(Texts.login.saveInLocalStorage)}
 			</label>
-			<div className="small-font">{Texts.login.saveInLocalStorageHint[props.language]}</div>
+			<div className="small-font">{translate(Texts.login.saveInLocalStorageHint)}</div>
 		</div>
 		<div className="moreMarginLine hCenter">
 			<button
@@ -57,7 +58,7 @@ export const LoginView = (props) => {
 				id="login"
 				onClick={login}
 			>
-				{Texts.login.signin[props.language]}
+				{translate(Texts.login.signin)}
 			</button>
 		</div>
 	</div>

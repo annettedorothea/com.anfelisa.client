@@ -93,7 +93,19 @@ Logout
 		set rootContainer.token
 	) triggers ( Route )
 	
-DisplayToast ( message, error, warning ) 
+DisplayToast ( textKey, args ) 
+	fromAppState( rootContainer.language, rootContainer.messages)
+	on ok ( 
+		set rootContainer.messages
+	) triggers ( delayInMillis 5000 HideToast ) 
+
+DisplayErrorToast ( textKey, args  ) 
+	fromAppState( rootContainer.language, rootContainer.messages)
+	on ok ( 
+		set rootContainer.messages
+	) triggers ( delayInMillis 5000 HideToast ) 
+
+DisplayWarningToast ( textKey, args ) 
 	fromAppState( rootContainer.language, rootContainer.messages)
 	on ok ( 
 		set rootContainer.messages
@@ -320,9 +332,9 @@ ui JSX rootContainer {
 					givenLanguage
 					wantedLanguage
 					rootCategoryId
-					List childCategories
 					nonScheduledCount
 					editable
+					List childCategories
 				}
 				
 				displayDeleteCategory

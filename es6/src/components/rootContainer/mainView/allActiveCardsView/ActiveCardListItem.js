@@ -10,6 +10,7 @@
 import React from "react";
 import {toggleScheduleCardSelection, updateCardPriority, selectScheduleCardRange} from "../../../../../gen/box/ActionFunctions";
 import {Texts} from "../../../../app/Texts";
+import {translate} from "../../../../AppUtils";
 
 export const ActiveCardListItem = (props) => {
 
@@ -105,12 +106,12 @@ export const ActiveCardListItem = (props) => {
 			{thumbsUp()}
 		</td>
 		<td className="noBreak visibleMobile alignRight">
-			{Texts.allActiveCards.count[props.language].replace("{0}", props.count)}
+			{translate(Texts.allActiveCards.count, [props.count])}
 		</td>
 		<td className="noBreak visibleMobile alignRight">
 			{props.interval === 1 ?
-				Texts.allActiveCards.intervalOne[props.language] :
-				Texts.allActiveCards.interval[props.language].replace("{0}", props.interval)
+				translate(Texts.allActiveCards.intervalOne) :
+				translate(Texts.allActiveCards.interval, [props.interval])
 			}
 		</td>
 	</tr>

@@ -6,7 +6,7 @@
 
 
 import AbstractRegisterUserCommand from "../../../gen/registration/commands/AbstractRegisterUserCommand";
-import * as AppUtils from "../../AppUtils";
+import {Texts} from "../../app/Texts";
 
 export default class RegisterUserCommand extends AbstractRegisterUserCommand {
 
@@ -17,11 +17,12 @@ export default class RegisterUserCommand extends AbstractRegisterUserCommand {
     handleResponse(data, resolve) {
         this.addOkOutcome(data);
         data.hash = "#";
-        data.message = AppUtils.createInfoMessage("confirmEmail");
+        data.textKey = Texts.messages.confirmEmail;
     	resolve(data);
     }
     handleError(data, resolve) {
         this.addErrorOutcome(data);
+        data.textKey = Texts.messages.usernameAlreadyTaken;
         resolve(data);
     }
 }

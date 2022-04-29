@@ -86,47 +86,16 @@ ConfirmEmail
 	GIVEN RegistrationHappyPath
 	WHEN registration.ConfirmEmail(username: "username-${testId}", token: "${testId}-TOKEN")
 	THEN 
-		expectedState 
-			confirmsEmail common.rootContainer.messages should be [
-				{ 
-					textKey: "confirmEmail",
-					type: "info",
-					visible: true,
-					id: 0,
-					args: null
-				},
-				{ 
-					textKey: "emailConfirmed",
-					type: "info",
-					visible: true,
-					id: 1,
-					args: null
-				}
-			]
+		verifications
+			confirmEmailMessageShown(common.rootContainer.messages)
 			
 
 ConfirmEmailTokenDoesNotExist
 	GIVEN RegistrationHappyPath
 	WHEN registration.ConfirmEmail(username: "username-${testId}", token: "DOES_NOT_EXIST")
 	THEN 
-		expectedState 
-			confirmEmailFails common.rootContainer.messages should be [
-				{ 
-					textKey: "confirmEmail",
-					type: "info",
-					visible: true,
-					id: 0,
-					args: null
-				},
-				{ 
-					code: 400,
-					text: "Bad Request",
-					textKey: "tokenDoesNotExist",
-					type: "error",
-					visible: true,
-					id: 1
-				}
-			]
+		verifications
+			confirmEmailErrorMessageShown(common.rootContainer.messages)
 			
 RegistrationHappyPath
 	GIVEN commonscenarios.Init
@@ -187,17 +156,9 @@ RegistrationHappyPath
 		expectedState 
 			autoUserLoggedIn common.rootContainer.loggedInUser.username should be "username-${testId}"
 			autoTokenWasSet common.rootContainer.loggedInUser.token should not be null
-			infoShown common.rootContainer.messages should be [
-				{ 
-					textKey: "confirmEmail",
-					type: "info",
-					visible: true,
-					id: 0,
-					args: null
-				}
-			]
 		verifications
 			loginDataWasNotSetInLocalStorage
+			infoShown(common.rootContainer.messages)
 	AND
 	WHEN
 		common.Logout

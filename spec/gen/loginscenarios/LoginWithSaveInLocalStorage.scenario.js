@@ -115,7 +115,7 @@ describe("loginscenarios.LoginWithSaveInLocalStorage", function () {
 		expect(appStates.tokenWasSet.rootContainer.loggedInUser.token, "tokenWasSet").not.toEqual(null)
 	});
 	
-	it("loginDataWasSetInLocalStorage", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@1d912621 (functionName: loginDataWasSetInLocalStorage)", async () => {
 		expect(verifications.loginDataWasSetInLocalStorage, "verifications.loginDataWasSetInLocalStorage").toBeTrue();
 	});
 

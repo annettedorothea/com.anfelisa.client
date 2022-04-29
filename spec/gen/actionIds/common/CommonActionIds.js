@@ -18,6 +18,10 @@ module.exports = {
 	
 	displayToast : "common_displayToast",
 	
+	displayErrorToast : "common_displayErrorToast",
+	
+	displayWarningToast : "common_displayWarningToast",
+	
 	hideToast : "common_hideToast",
 	
 	destroyToast : "common_destroyToast",

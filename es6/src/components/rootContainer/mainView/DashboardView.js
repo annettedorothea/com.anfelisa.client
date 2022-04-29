@@ -15,11 +15,11 @@ export const DashboardView = (props) => {
 	return <div id="dashboard">
 		{props.loading === true && "LOADING"}
 		<div className="bottomMargin">
-			<DeleteBox {...props.deleteBox} language={props.language}/>
+			<DeleteBox {...props.deleteBox}/>
 			<div>
 				{
 					props.boxList ?
-						props.boxList.map((item) => <BoxListItem key={item.boxId}  {...item} language={props.language}/>) :
+						props.boxList.map((item) => <BoxListItem key={item.boxId}  {...item}/>) :
 						[]
 				}
 			</div>

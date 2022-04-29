@@ -15,6 +15,7 @@ import {
     wantedOfNewCardChanged
 } from "../../../../../../gen/card/ActionFunctions";
 import {Texts} from "../../../../../app/Texts";
+import {translate as translateText}  from "../../../../../AppUtils";
 
 
 export const NewCard = (props) => {
@@ -63,7 +64,7 @@ export const NewCard = (props) => {
                 onChange={(event) => givenOfNewCardChanged(event.target.value)}
                 autoComplete="off"
                 value={props.given}
-                placeholder={`${Texts.cardList.given[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.givenLanguage][props.language] + ")" : ""}`}
+                placeholder={`${translateText(Texts.cardList.given)} ${props.dictionaryLookup ? "(" + translateText(Texts.categoryList.languages[props.givenLanguage]) + ")" : ""}`}
                 onKeyUp={onAltKeyUp}
                 onBlur={onBlurGiven}
                 id="given"
@@ -77,7 +78,7 @@ export const NewCard = (props) => {
                 onChange={(event) => wantedOfNewCardChanged(event.target.value)}
                 autoComplete="off"
                 value={props.wanted}
-                placeholder={`${Texts.cardList.wanted[props.language]} ${props.dictionaryLookup ? "(" + Texts.categoryList.languages[props.wantedLanguage][props.language] + ")" : ""}`}
+                placeholder={`${translateText(Texts.cardList.wanted)} ${props.dictionaryLookup ? "(" + translateText(Texts.categoryList.languages[props.wantedLanguage]) + ")" : ""}`}
                 onKeyUp={onAltKeyUp}
                 onBlur={onBlurWanted}
                 id="wanted"

@@ -58,7 +58,7 @@ LoginWithSaveInLocalStorage
 			tokenWasSet common.rootContainer.loggedInUser.token should not be null
 		verifications
 			loginDataWasSetInLocalStorage
-			
+	
 LoginUnauthorized
 	GIVEN commonscenarios.Init
 	WHEN login.UsernameChanged(username: "username-${testId}")
@@ -75,14 +75,6 @@ LoginUnauthorized
 	THEN 
 		expectedState 
 			loggedInUserIsNotSet common.rootContainer.loggedInUser should be null
-			usernameInLocalStorateWasNotSet common.rootContainer.token should be undefined
-			errorShown common.rootContainer.messages should be [
-				{ 
-					code: 401,
-					text: "Unauthorized",
-					textKey: "loginFailed",
-					type: "error",
-					visible: true,
-					id: 0
-				}
-			]
+			usernameInLocalStorageWasNotSet common.rootContainer.token should be undefined
+		verifications
+			errorMessageShown(common.rootContainer.messages)

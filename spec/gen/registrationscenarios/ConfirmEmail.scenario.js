@@ -8,6 +8,7 @@
 const ScenarioUtils = require("../../src/ScenarioUtils");
 const RegistrationActionIds  = require("../../gen/actionIds/registration/RegistrationActionIds");
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
+const Verifications = require("../../src/registrationscenarios/ConfirmEmailVerifications");
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
@@ -44,31 +45,15 @@ describe("registrationscenarios.ConfirmEmail", function () {
 		await ScenarioUtils.waitInMillis(10);
 		
 		appState = await ScenarioUtils.getAppState(driver);
-		appStates.confirmsEmail = appState;
 		
+		verifications.confirmEmailMessageShown = await Verifications.confirmEmailMessageShown(appState.rootContainer.messages);
 		
     });
 
-	it("confirmsEmail", async () => {
-		expect(appStates.confirmsEmail.rootContainer.messages, "confirmsEmail").toEqual([
-			{ 
-				textKey : `confirmEmail`,
-				type : `info`,
-				visible : true,
-				id : 0,
-				args : null
-			},
-			{ 
-				textKey : `emailConfirmed`,
-				type : `info`,
-				visible : true,
-				id : 1,
-				args : null
-			}
-		]
-		)
-	});
 	
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@5c2e46a2 (functionName: confirmEmailMessageShown)", async () => {
+		expect(verifications.confirmEmailMessageShown, "verifications.confirmEmailMessageShown").toBeTrue();
+	});
 
     afterAll(async function () {
         await ScenarioUtils.tearDown(driver);

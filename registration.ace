@@ -40,7 +40,7 @@ RegisterUser
 	call com.anfelisa.user.RegisterUser
 	loadingFlag common.rootContainer.spinner.display 
 	on ok triggers ( common.DisplayToast Login)
-	on error triggers (common.DisplayToast) 
+	on error triggers (common.DisplayErrorToast) 
 
 	Login 
 		fromAppState ( 
@@ -60,6 +60,6 @@ ConfirmEmail ( username, token )
 	call com.anfelisa.user.ConfirmEmail
 	loadingFlag common.rootContainer.spinner.display 
 	on ok triggers ( common.DisplayToast common.Route)
-	on error triggers ( common.DisplayToast common.Route)
+	on error triggers ( common.DisplayErrorToast common.Route)
 
 	

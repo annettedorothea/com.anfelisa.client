@@ -150,6 +150,18 @@ export default class EventListenerRegistrationCommon {
 					["rootContainer", "messages"]
 				)
 			});
+		ACEController.registerListener('common.DisplayErrorToastOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "messages"]
+				)
+			});
+		ACEController.registerListener('common.DisplayWarningToastOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "messages"]
+				)
+			});
 		ACEController.registerListener('common.HideToastOkEvent', (data) => {
 				AppState.set(
 					data, 

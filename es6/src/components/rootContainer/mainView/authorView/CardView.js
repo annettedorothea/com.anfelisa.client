@@ -18,6 +18,7 @@ import {
 	toggleAllScheduleCardSelection,
 	toggleInputOrder
 } from "../../../../../gen/card/ActionFunctions";
+import {translate} from "../../../../AppUtils";
 
 export const CardView = (props) => {
 	if (!props.categoryTree || !props.cardList) {
@@ -30,7 +31,6 @@ export const CardView = (props) => {
 			key={card.cardId}
 			selectedCardIds={props.selectedCardIds}
 			dragTargetCardId={props.dragTargetCardId}
-			language={props.language}
 			naturalInputOrder={props.naturalInputOrder}
 			editable={editable}
 			editedCard={props.editedCard}
@@ -55,7 +55,6 @@ export const CardView = (props) => {
 				givenLanguage={props.categoryTree.rootCategory.givenLanguage}
 				wantedLanguage={props.categoryTree.rootCategory.wantedLanguage}
 				naturalInputOrder={props.naturalInputOrder}
-				language={props.language}
 				{...props.newCard}
 			/>
 		);
@@ -101,7 +100,6 @@ export const CardView = (props) => {
 		</h1>
 		<DeleteCard
 			{...props.deleteCard}
-			language={props.language}
 		/>
 		{props.deleteCard.confirmDelete === true && editable ? <div/> : null}
 		<table>
@@ -109,7 +107,7 @@ export const CardView = (props) => {
 			<tr className="notPrinted">
 				<th colSpan={4}>
 					<button
-						title={Texts.cardList.toggleInputOrder[props.language]}
+						title={translate(Texts.cardList.toggleInputOrder)}
 						onClick={toggleInputOrder}
 					>
 						<i className="fas fa-arrows-alt-h"/>
@@ -118,7 +116,7 @@ export const CardView = (props) => {
 						type="text"
 						onChange={(event) => filterCards(event.target.value)}
 						autoComplete="off"
-						placeholder={Texts.cardList.filterCards[props.language]}
+						placeholder={translate(Texts.cardList.filterCards)}
 						value={props.filter}
 					/>
 				</th>
@@ -136,13 +134,13 @@ export const CardView = (props) => {
 						disabled={props.selectedCardIds.length === 0}
 						onClick={scheduleSelectedCards}
 					>
-						{Texts.cardList.scheduleSelectedCards[props.language]}
+						{translate(Texts.cardList.scheduleSelectedCards)}
 					</button>
 					<button
 						disabled={props.selectedCardIds.length === 0}
 						onClick={sortSelectedCardsOut}
 					>
-						{Texts.cardList.sortSelectedCardsOut[props.language]}
+						{translate(Texts.cardList.sortSelectedCardsOut)}
 					</button>
 				</th>
 			</tr>
@@ -152,7 +150,7 @@ export const CardView = (props) => {
 			{duplicateCards.length > 0 && editable ?
 				<tr>
 					<td/>
-					<td colSpan={5}>{Texts.cardList.duplicateCards[props.language]}</td>
+					<td colSpan={5}>{translate(Texts.cardList.duplicateCards)}</td>
 				</tr> : null}
 			{duplicateCards}
 			</tbody>

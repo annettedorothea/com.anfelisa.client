@@ -92,9 +92,9 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		appState = await ScenarioUtils.getAppState(driver);
 		appStates.autoUserLoggedIn = appState;
 		appStates.autoTokenWasSet = appState;
-		appStates.infoShown = appState;
 		
 		verifications.loginDataWasNotSetInLocalStorage = await Verifications.loginDataWasNotSetInLocalStorage(driver, testId);
+		verifications.infoShown = await Verifications.infoShown(appState.rootContainer.messages);
 		
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.logout);
 		await ScenarioUtils.waitInMillis(10);
@@ -123,7 +123,7 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		expect(appStates.initialPasswordRepetition.rootContainer.mainView.registrationView.password, "initialPasswordRepetition").toEqual(``)
 	});
 	
-	it("registerDisabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@7f44ef03 (functionName: registerDisabled)", async () => {
 		expect(verifications.registerDisabled, "verifications.registerDisabled").toBeTrue();
 	});
 	it("username", async () => {
@@ -133,7 +133,7 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		expect(appStates.usernameAvailable.rootContainer.mainView.registrationView.available, "usernameAvailable").toEqual(true)
 	});
 	
-	it("registerDisabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@386be43 (functionName: registerDisabled)", async () => {
 		expect(verifications.registerDisabled, "verifications.registerDisabled").toBeTrue();
 	});
 	it("password", async () => {
@@ -146,7 +146,7 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		expect(appStates.passwordMatch.rootContainer.mainView.registrationView.passwordMismatch, "passwordMatch").toEqual(true)
 	});
 	
-	it("registerDisabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@409c5e20 (functionName: registerDisabled)", async () => {
 		expect(verifications.registerDisabled, "verifications.registerDisabled").toBeTrue();
 	});
 	it("password2", async () => {
@@ -159,7 +159,7 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		expect(appStates.passwordMismatch2.rootContainer.mainView.registrationView.passwordMismatch, "passwordMismatch2").toEqual(false)
 	});
 	
-	it("registerDisabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@2e03e39c (functionName: registerDisabled)", async () => {
 		expect(verifications.registerDisabled, "verifications.registerDisabled").toBeTrue();
 	});
 	it("email", async () => {
@@ -169,7 +169,7 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		expect(appStates.emailValid.rootContainer.mainView.registrationView.emailInvalid, "emailValid").toEqual(false)
 	});
 	
-	it("registerEnabled", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@7b396049 (functionName: registerEnabled)", async () => {
 		expect(verifications.registerEnabled, "verifications.registerEnabled").toBeTrue();
 	});
 	it("autoUserLoggedIn", async () => {
@@ -178,21 +178,12 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 	it("autoTokenWasSet", async () => {
 		expect(appStates.autoTokenWasSet.rootContainer.loggedInUser.token, "autoTokenWasSet").not.toEqual(null)
 	});
-	it("infoShown", async () => {
-		expect(appStates.infoShown.rootContainer.messages, "infoShown").toEqual([
-			{ 
-				textKey : `confirmEmail`,
-				type : `info`,
-				visible : true,
-				id : 0,
-				args : null
-			}
-		]
-		)
-	});
 	
-	it("loginDataWasNotSetInLocalStorage", async () => {
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@21b7d0f5 (functionName: loginDataWasNotSetInLocalStorage)", async () => {
 		expect(verifications.loginDataWasNotSetInLocalStorage, "verifications.loginDataWasNotSetInLocalStorage").toBeTrue();
+	});
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@4ac956d0 (functionName: infoShown)", async () => {
+		expect(verifications.infoShown, "verifications.infoShown").toBeTrue();
 	});
 	
 

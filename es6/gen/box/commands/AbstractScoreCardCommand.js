@@ -11,6 +11,7 @@ import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
 import InitBoxesForDayDuringScoreAction from "../../../src/box/actions/InitBoxesForDayDuringScoreAction";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
+import DisplayWarningToastAction from "../../../src/common/actions/DisplayWarningToastAction";
 
 export default class AbstractScoreCardCommand extends AsynchronousCommand {
     constructor() {
@@ -28,8 +29,11 @@ export default class AbstractScoreCardCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
-	addShowToastOutcome(data) {
-		data.outcomes.push("showToast");
+	addShowInfoToastOutcome(data) {
+		data.outcomes.push("showInfoToast");
+	}
+	addShowWarningToastOutcome(data) {
+		data.outcomes.push("showWarningToast");
 	}
 
 	execute(data) {
@@ -68,15 +72,26 @@ export default class AbstractScoreCardCommand extends AsynchronousCommand {
 					}
 				);
 			}
-			if (data.outcomes.includes("showToast")) {
-				events.push(new Event('box.ScoreCardShowToastEvent'));
+			if (data.outcomes.includes("showInfoToast")) {
+				events.push(new Event('box.ScoreCardShowInfoToastEvent'));
 				actionsToBeTriggered.push(
 					{
 						action: new DisplayToastAction(), 
 						data: {
-							message: data.message, 
-							error: data.error, 
-							warning: data.warning
+							textKey: data.textKey, 
+							args: data.args
+						}
+					}
+				);
+			}
+			if (data.outcomes.includes("showWarningToast")) {
+				events.push(new Event('box.ScoreCardShowWarningToastEvent'));
+				actionsToBeTriggered.push(
+					{
+						action: new DisplayWarningToastAction(), 
+						data: {
+							textKey: data.textKey, 
+							args: data.args
 						}
 					}
 				);

@@ -8,24 +8,25 @@
 import React from "react";
 import {Texts} from "../../../../../app/Texts";
 import {cancelDeleteCategory, deleteCategory} from "../../../../../../gen/category/ActionFunctions";
+import {translate} from "../../../../../AppUtils";
 
 
 export const DeleteCategoryDialog = (props) => {
 	if (props.display === true) {
 		return <div className="modal">
 			<div className="modalContent">
-				<h2>{Texts.categoryTree.confirmDelete.title[props.language]}</h2>
-				<div className="message">{Texts.categoryTree.confirmDelete.message[props.language]}</div>
+				<h2>{translate(Texts.categoryTree.confirmDelete.title)}</h2>
+				<div className="message">{translate(Texts.categoryTree.confirmDelete.message)}</div>
 				<button
 					className="yes danger"
 					onClick={deleteCategory}
 				>
-					{Texts.categoryTree.confirmDelete.ok[props.language]}
+					{translate(Texts.categoryTree.confirmDelete.ok)}
 				</button>
 				<button
 					onClick={cancelDeleteCategory}
 				>
-					{Texts.categoryTree.confirmDelete.cancel[props.language]}
+					{translate(Texts.categoryTree.confirmDelete.cancel)}
 				</button>
 			</div>
 		</div>

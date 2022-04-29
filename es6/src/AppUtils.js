@@ -18,7 +18,7 @@ import EventListenerRegistrationLogin from "../gen/login/EventListenerRegistrati
 import EventListenerRegistrationPassword from "../gen/password/EventListenerRegistration";
 import {
     displaySaveBugDialog,
-    displayToast,
+    displayErrorToast,
     displayVersionMismatchDialog,
     displayVersionMismatchErrorDialog,
     init,
@@ -29,6 +29,7 @@ import {RootContainer} from "./components/RootContainer";
 import React from "react";
 import ReactDOM from "react-dom";
 import * as R from 'ramda'
+import {Texts} from "./app/Texts";
 
 export let settings;
 
@@ -201,25 +202,11 @@ export function displayUnexpectedError(error) {
         if (actualClientVersion !== currentVersion) {
             displayVersionMismatchErrorDialog();
         } else {
-            if (typeof error !== "object") {
-                displayToast({}, createError("unknownError", error));
-            } else {
-                displayToast({}, normalizeError(error));
-            }
+            displayErrorToast(Texts.messages.unknownError, [error.textKey ? error.textKey : error]);
             displaySaveBugDialog();
         }
     });
 }
-
-function normalizeError(error) {
-    return {
-        code: error.code ? error.code : 0,
-        text: error.text ? error.text : "unknownError",
-        textKey: error.textKey ? error.textKey : error.code && error.code === 401 ? "loginFailed" : "unknownError",
-        type: "error"
-    }
-}
-
 
 export function deepCopy(object) {
     return R.clone(object);
@@ -233,31 +220,26 @@ export function renderApp() {
     );
 }
 
-
-
-export function createInfoMessage(textKey, args) {
-    return {
-        textKey,
-        type: "info",
-        args
-    }
-}
-
-export function createWarningMessage(textKey, args) {
-    return {
-        textKey,
-        type: "warning",
-        args
-    }
-}
-
 export function createError(textKey, text, code) {
     return {
         code,
         text,
         textKey: code && code === 401 ? "loginFailed" : textKey,
-        type: "error"
     }
+}
+
+export function translate(path, args) {
+    let language = AppState.get(["rootContainer", "language"]);
+    if (!language) {
+        language = "de";
+    }
+    const value = path[language]
+    if (!value) {
+        return path
+    }
+    return value.replace(/{([0-9]+)}/g, function (match, index) {
+        return typeof args[index] == 'undefined' ? match : args[index];
+    });
 }
 
 export function isUnauthorized(message) {

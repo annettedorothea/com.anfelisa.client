@@ -11,7 +11,7 @@ import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 import LoadUserAction from "../../../src/profile/actions/LoadUserAction";
-import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
+import DisplayErrorToastAction from "../../../src/common/actions/DisplayErrorToastAction";
 
 export default class AbstractDeleteUserCommand extends AsynchronousCommand {
     constructor() {
@@ -74,11 +74,10 @@ export default class AbstractDeleteUserCommand extends AsynchronousCommand {
 				);
 				actionsToBeTriggered.push(
 					{
-						action: new DisplayToastAction(), 
+						action: new DisplayErrorToastAction(), 
 						data: {
-							message: data.message, 
-							error: data.error, 
-							warning: data.warning
+							textKey: data.textKey, 
+							args: data.args
 						}
 					}
 				);

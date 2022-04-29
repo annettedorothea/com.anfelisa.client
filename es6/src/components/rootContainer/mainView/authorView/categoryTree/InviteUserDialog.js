@@ -12,6 +12,7 @@ import {
 	inviteUserNextStep
 } from "../../../../../../gen/category/ActionFunctions";
 import {Texts} from "../../../../../app/Texts";
+import {translate} from "../../../../../AppUtils";
 
 
 export const InviteUserDialog = (props) => {
@@ -36,10 +37,10 @@ export const InviteUserDialog = (props) => {
 	}
 	return <div className="modal">
 		<div className="modalContent form">
-			<h2>{Texts.categoryTree.inviteUser.title[props.language]}</h2>
+			<h2>{translate(Texts.categoryTree.inviteUser.title)}</h2>
 			{invitedUsernames.length > 0 ?
 				<div className="line">
-					<h3>{Texts.categoryTree.inviteUser.alreadyInvited[props.language]}</h3>
+					<h3>{translate(Texts.categoryTree.inviteUser.alreadyInvited)}</h3>
 					<ul>{invitedUsernames}</ul>
 				</div> :
 				null
@@ -50,7 +51,7 @@ export const InviteUserDialog = (props) => {
 					onChange={(event) => invitedUsernameChanged(event.target.value)}
 					autoComplete="off"
 					value={props.usernameSearchString}
-					placeholder={Texts.categoryTree.inviteUser.username[props.language]}
+					placeholder={translate(Texts.categoryTree.inviteUser.username)}
 				/>
 			</div>
 			{usernames.length > 0 ?
@@ -59,7 +60,7 @@ export const InviteUserDialog = (props) => {
 				</div> :
 				null
 			}
-			<button onClick={cancelInviteUser}>{Texts.categoryTree.inviteUser.cancel[props.language]}</button>
+			<button onClick={cancelInviteUser}>{translate(Texts.categoryTree.inviteUser.cancel)}</button>
 		</div>
 	</div>
 }

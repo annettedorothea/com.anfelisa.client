@@ -6,7 +6,7 @@
 
 
 import AbstractResetPasswordCommand from "../../../gen/password/commands/AbstractResetPasswordCommand";
-import * as AppUtils from "../../AppUtils";
+import {Texts} from "../../app/Texts";
 
 export default class ResetPasswordCommand extends AbstractResetPasswordCommand {
 
@@ -16,12 +16,13 @@ export default class ResetPasswordCommand extends AbstractResetPasswordCommand {
 
     handleResponse(data, resolve) {
         data.hash = "#";
-        data.message = AppUtils.createInfoMessage("passwordReset");
+        data.textKey = Texts.messages.passwordReset;
         this.addOkOutcome(data);
         resolve(data);
     }
     handleError(data, resolve) {
         data.hash = "#";
+        data.textKey = Texts.messages.tokenDoesNotExist;
         this.addErrorOutcome(data);
         resolve(data);
     }

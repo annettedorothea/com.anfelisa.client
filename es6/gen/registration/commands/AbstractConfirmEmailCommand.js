@@ -11,6 +11,7 @@ import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 import RouteAction from "../../../src/common/actions/RouteAction";
+import DisplayErrorToastAction from "../../../src/common/actions/DisplayErrorToastAction";
 
 export default class AbstractConfirmEmailCommand extends AsynchronousCommand {
     constructor() {
@@ -59,9 +60,8 @@ export default class AbstractConfirmEmailCommand extends AsynchronousCommand {
 					{
 						action: new DisplayToastAction(), 
 						data: {
-							message: data.message, 
-							error: data.error, 
-							warning: data.warning
+							textKey: data.textKey, 
+							args: data.args
 						}
 					}
 				);
@@ -78,11 +78,10 @@ export default class AbstractConfirmEmailCommand extends AsynchronousCommand {
 				events.push(new Event('registration.ConfirmEmailErrorEvent'));
 				actionsToBeTriggered.push(
 					{
-						action: new DisplayToastAction(), 
+						action: new DisplayErrorToastAction(), 
 						data: {
-							message: data.message, 
-							error: data.error, 
-							warning: data.warning
+							textKey: data.textKey, 
+							args: data.args
 						}
 					}
 				);

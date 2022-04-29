@@ -8,24 +8,25 @@
 import React from "react";
 import {Texts} from "../../../../app/Texts";
 import {cancelDeleteBox, deleteBox} from "../../../../../gen/box/ActionFunctions";
+import {translate} from "../../../../AppUtils";
 
 
 export const DeleteBox = (props) => {
 	if (props.confirmDelete === true) {
 		return <div className="modal">
 			<div className="modalContent">
-				<h2>{Texts.box.confirmDelete.title[props.language]}</h2>
-				<div className="message">{Texts.box.confirmDelete.message[props.language]}</div>
+				<h2>{translate(Texts.box.confirmDelete.title)}</h2>
+				<div className="message">{translate(Texts.box.confirmDelete.message)}</div>
 				<button
 					className="yes danger"
 					onClick={deleteBox}
 				>
-					{Texts.box.confirmDelete.ok[props.language]}
+					{translate(Texts.box.confirmDelete.ok)}
 				</button>
 				<button
 					onClick={cancelDeleteBox}
 				>
-					{Texts.box.confirmDelete.cancel[props.language]}
+					{translate(Texts.box.confirmDelete.cancel)}
 				</button>
 			</div>
 		</div>

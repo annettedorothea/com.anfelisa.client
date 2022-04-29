@@ -8,6 +8,7 @@
 const ScenarioUtils = require("../../src/ScenarioUtils");
 const LoginActionIds  = require("../../gen/actionIds/login/LoginActionIds");
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
+const Verifications = require("../../src/loginscenarios/LoginUnauthorizedVerifications");
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
@@ -43,9 +44,9 @@ describe("loginscenarios.LoginUnauthorized", function () {
 		
 		appState = await ScenarioUtils.getAppState(driver);
 		appStates.loggedInUserIsNotSet = appState;
-		appStates.usernameInLocalStorateWasNotSet = appState;
-		appStates.errorShown = appState;
+		appStates.usernameInLocalStorageWasNotSet = appState;
 		
+		verifications.errorMessageShown = await Verifications.errorMessageShown(appState.rootContainer.messages);
 		
     });
 
@@ -60,23 +61,13 @@ describe("loginscenarios.LoginUnauthorized", function () {
 	it("loggedInUserIsNotSet", async () => {
 		expect(appStates.loggedInUserIsNotSet.rootContainer.loggedInUser, "loggedInUserIsNotSet").toEqual(null)
 	});
-	it("usernameInLocalStorateWasNotSet", async () => {
-		expect(appStates.usernameInLocalStorateWasNotSet.rootContainer.token, "usernameInLocalStorateWasNotSet").toEqual(undefined)
-	});
-	it("errorShown", async () => {
-		expect(appStates.errorShown.rootContainer.messages, "errorShown").toEqual([
-			{ 
-				code : 401,
-				text : `Unauthorized`,
-				textKey : `loginFailed`,
-				type : `error`,
-				visible : true,
-				id : 0
-			}
-		]
-		)
+	it("usernameInLocalStorageWasNotSet", async () => {
+		expect(appStates.usernameInLocalStorageWasNotSet.rootContainer.token, "usernameInLocalStorageWasNotSet").toEqual(undefined)
 	});
 	
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@a745e25 (functionName: errorMessageShown)", async () => {
+		expect(verifications.errorMessageShown, "verifications.errorMessageShown").toBeTrue();
+	});
 
     afterAll(async function () {
         await ScenarioUtils.tearDown(driver);

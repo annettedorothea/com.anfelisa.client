@@ -10,7 +10,7 @@ import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
 import LoadBoxesAction from "../../../src/box/actions/LoadBoxesAction";
-import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
+import DisplayErrorToastAction from "../../../src/common/actions/DisplayErrorToastAction";
 
 export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
     constructor() {
@@ -66,11 +66,10 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
 				events.push(new Event('box.DeleteBoxErrorEvent'));
 				actionsToBeTriggered.push(
 					{
-						action: new DisplayToastAction(), 
+						action: new DisplayErrorToastAction(), 
 						data: {
-							message: data.message, 
-							error: data.error, 
-							warning: data.warning
+							textKey: data.textKey, 
+							args: data.args
 						}
 					}
 				);

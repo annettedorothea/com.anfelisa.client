@@ -8,24 +8,25 @@
 import React from "react";
 import {Texts} from "../../app/Texts";
 import {cancelVersionMismatchDialog} from "../../../gen/common/ActionFunctions";
+import {translate} from "../../AppUtils";
 
 
 export const VersionMismatchDialog = (props) => {
 	if (props.display === true) {
 		return <div className="modal">
 			<div className="modalContent">
-				<h2>{Texts.container.versionMismatch[props.language]}</h2>
-				<div className="message">{Texts.container.versionMismatchMessage[props.language]}</div>
+				<h2>{translate(Texts.container.versionMismatch)}</h2>
+				<div className="message">{translate(Texts.container.versionMismatchMessage)}</div>
 				<button
 					className="yes"
 					onClick={() => window.location.reload(true)}
 				>
-					{Texts.container.yes[props.language]}
+					{translate(Texts.container.yes)}
 				</button>
 				<button
 					onClick={() => cancelVersionMismatchDialog()}
 				>
-					{Texts.container.no[props.language]}
+					{translate(Texts.container.no)}
 				</button>
 			</div>
 		</div>

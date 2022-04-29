@@ -120,7 +120,7 @@ ACE
 		on error (
 			set common.rootContainer.mainView.dashboardView.deleteBox.boxId
 			set common.rootContainer.mainView.dashboardView.deleteBox.confirmDelete
-		) triggers (common.DisplayToast)
+		) triggers (common.DisplayErrorToast)
 		
 	ArchiveBox (archived, boxId)
 		call com.anfelisa.box.ArchiveBox
@@ -155,7 +155,12 @@ ACE
 	 	call com.anfelisa.box.ScoreCard
 		loadingFlag common.rootContainer.spinner.display 
 		on ok triggers (InitBoxesForDayDuringScore)
-		on showToast triggers (common.DisplayToast)
+		on showInfoToast triggers (
+			common.DisplayToast
+		)
+		on showWarningToast triggers (
+			common.DisplayWarningToast
+		)
 	
 	ScoreReinforceCard ( keep )
 		fromAppState (common.rootContainer.mainView.queryCardView.nextCard.reinforceCardId)

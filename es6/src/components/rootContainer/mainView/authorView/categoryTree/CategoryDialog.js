@@ -13,6 +13,7 @@ import {
 	createCategory,
 	updateCategory
 } from "../../../../../../gen/category/ActionFunctions";
+import {translate} from "../../../../../AppUtils";
 
 
 export const CategoryDialog = (props) => {
@@ -25,26 +26,28 @@ export const CategoryDialog = (props) => {
 
 	return <div className="modal">
 		<div className="modalContent form">
-			<h2>{props.newCategory ? Texts.categoryTree.newCategory.title[props.language] : Texts.categoryTree.editCategory.title[props.language]}</h2>
+			<h2>{props.newCategory ? translate(Texts.categoryTree.newCategory.title) : translate(Texts.categoryTree.editCategory.title)}</h2>
 			<div className="line">
 				<input
 					type="text"
 					onChange={(event) => categoryNameChanged(event.target.value)}
 					autoComplete="off"
 					value={props.categoryName}
-					placeholder={Texts.categoryTree.newCategory.newChildCategory[props.language]}
+					placeholder={translate(Texts.categoryTree.newCategory.newChildCategory)}
+					id="categoryName"
 				/>
 			</div>
 			<button
 				disabled={disabled}
 				onClick={() => props.newCategory ? createCategory() : updateCategory()}
+				id="ok"
 			>
-				{Texts.categoryTree.newCategory.ok[props.language]}
+				{translate(Texts.categoryTree.newCategory.ok)}
 			</button>
 			<button
 				onClick={cancelCategoryDialog}
 			>
-				{Texts.categoryTree.newCategory.cancel[props.language]}
+				{translate(Texts.categoryTree.newCategory.cancel)}
 			</button>
 		</div>
 	</div>;

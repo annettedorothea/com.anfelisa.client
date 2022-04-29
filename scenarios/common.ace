@@ -25,17 +25,8 @@ InitWithInitialLogin
 HideToast
 	GIVEN loginscenarios.LoginUnauthorized 
 	WHEN delayInMillis 5000
-	THEN expectedState 
-		errorHidden common.rootContainer.messages should be [
-				{ 
-					code: 401,
-					text: "Unauthorized",
-					textKey: "loginFailed",
-					type: "error",
-					visible: false,
-					id: 0
-				}
-			]
+	THEN verifications
+			errorWasHidden(common.rootContainer.messages)
 		
 DestroyToast
 	GIVEN loginscenarios.LoginUnauthorized 

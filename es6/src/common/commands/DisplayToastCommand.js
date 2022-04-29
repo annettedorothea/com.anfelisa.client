@@ -5,15 +5,22 @@
 
 import AbstractDisplayToastCommand from "../../../gen/common/commands/AbstractDisplayToastCommand";
 
+export function pushMessage(data, type) {
+    const message = {
+        id: data.messages.length,
+        visible: true,
+        type,
+        textKey: data.textKey,
+        args: data.args
+    }
+    data.messages.push(message);
+    data.id = message.id;
+    return data
+}
+
 export default class DisplayToastCommand extends AbstractDisplayToastCommand {
     execute(data) {
-        if (data.error) {
-            data.message = data.error;
-        }
-        data.message.id = data.messages.length;
-        data.message.visible = true;
-        data.messages.push(data.message);
-        data.id = data.message.id;
+        pushMessage(data, "info");
         this.addOkOutcome(data);
         return data;
     }

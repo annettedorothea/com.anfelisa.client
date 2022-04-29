@@ -17,6 +17,7 @@ import {
 } from "../../../../gen/registration/ActionFunctions";
 import CryptoJS from "crypto-js";
 import {route} from "../../../../gen/common/ActionFunctions";
+import {translate} from "../../../AppUtils";
 
 
 export const RegistrationView = (props) => {
@@ -26,9 +27,9 @@ export const RegistrationView = (props) => {
 	return (
 		<div className="center">
 			<div className="form">
-				<h1>{Texts.registration.title[props.language]}</h1>
+				<h1>{translate(Texts.registration.title)}</h1>
 				<div className="line">
-					<label>{Texts.registration.username[props.language]}</label>
+					<label>{translate(Texts.registration.username)}</label>
 					<div className="inputContainer">
 						<input
 							type={"text"}
@@ -46,7 +47,7 @@ export const RegistrationView = (props) => {
 					</div>
 				</div>
 				<div className="line">
-					<label>{Texts.registration.password[props.language]}</label>
+					<label>{translate(Texts.registration.password)}</label>
 					<div className="inputContainer">
 						<input
 							type={"password"}
@@ -57,7 +58,7 @@ export const RegistrationView = (props) => {
 					</div>
 				</div>
 				<div className="line">
-					<label>{Texts.registration.passwordRepetition[props.language]}</label>
+					<label>{translate(Texts.registration.passwordRepetition)}</label>
 					<div className="inputContainer">
 						<input
 							type={"password"}
@@ -70,7 +71,7 @@ export const RegistrationView = (props) => {
 					</div>
 				</div>
 				<div className="line">
-					<label>{Texts.registration.email[props.language]}</label>
+					<label>{translate(Texts.registration.email)}</label>
 					<div className="inputContainer">
 						<input
 							type={"text"}
@@ -95,15 +96,15 @@ export const RegistrationView = (props) => {
 							(!props.email || props.email && props.email.length === 0) ||
 							(!props.password || props.password && props.password.length === 0)
 						}>
-						{Texts.registration.register[props.language]}
+						{translate(Texts.registration.register)}
 					</button>
 					<button
-						onClick={() => route("#")}>{Texts.registration.cancel[props.language]}
+						onClick={() => route("#")}>{translate(Texts.registration.cancel)}
 					</button>
 				</div>
 				<div className="line">
 					<div
-						className="small-font">{Texts.registration.terms[props.language]}</div>
+						className="small-font">{translate(Texts.registration.terms)}</div>
 				</div>
 			</div>
 		</div>

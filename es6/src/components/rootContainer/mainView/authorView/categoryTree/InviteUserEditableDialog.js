@@ -6,6 +6,7 @@
 import React from "react";
 import {cancelInviteUser, inviteUser, inviteUserChangeEditable} from "../../../../../../gen/category/ActionFunctions";
 import {Texts} from "../../../../../app/Texts";
+import {translate} from "../../../../../AppUtils";
 
 
 export const InviteUserEditableDialog = (props) => {
@@ -14,7 +15,7 @@ export const InviteUserEditableDialog = (props) => {
     }
     return <div className="modal">
         <div className="modalContent form">
-            <h2>{Texts.categoryTree.inviteUser.title[props.language]}</h2>
+            <h2>{translate(Texts.categoryTree.inviteUser.title)}</h2>
             <div className="line">
                 {props.invitedUsername}
             </div>
@@ -28,11 +29,11 @@ export const InviteUserEditableDialog = (props) => {
                 <label
                     htmlFor="editable"
                 >
-                    {Texts.categoryTree.inviteUser.editable[props.language]}
+                    {translate(Texts.categoryTree.inviteUser.editable)}
                 </label>
             </div>
-            <button onClick={inviteUser}>{Texts.categoryTree.inviteUser.invite[props.language]}</button>
-            <button onClick={cancelInviteUser}>{Texts.categoryTree.inviteUser.cancel[props.language]}</button>
+            <button onClick={inviteUser}>{translate(Texts.categoryTree.inviteUser.invite)}</button>
+            <button onClick={cancelInviteUser}>{translate(Texts.categoryTree.inviteUser.cancel)}</button>
         </div>
     </div>
 }

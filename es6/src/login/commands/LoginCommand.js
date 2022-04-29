@@ -6,6 +6,7 @@
 
 
 import AbstractLoginCommand from "../../../gen/login/commands/AbstractLoginCommand";
+import {Texts} from "../../app/Texts";
 
 export default class LoginCommand extends AbstractLoginCommand {
 
@@ -21,6 +22,7 @@ export default class LoginCommand extends AbstractLoginCommand {
     	resolve(data);
     }
     handleError(data, resolve) {
+        data.textKey = Texts.messages.loginFailed;
         this.addUnauthorizedOutcome(data);
         resolve(data);
     }

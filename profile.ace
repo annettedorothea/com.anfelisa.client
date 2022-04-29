@@ -16,8 +16,19 @@ ACE
 		fromAppState (common.rootContainer.mainView.profileView.username as usernameToBeDeleted)
 		call com.anfelisa.user.DeleteUser
 		loadingFlag common.rootContainer.spinner.display 
-		on ok ( set common.rootContainer.mainView.profileView.showDeleteUserDialog ) triggers ( common.Logout )
-		on error ( set common.rootContainer.mainView.profileView.showDeleteUserDialog ) triggers (LoadUser common.DisplayToast common.Logout)
+		on ok ( 
+			set common.rootContainer.mainView.profileView.showDeleteUserDialog
+		) triggers ( 
+			common.Logout
+		)
+		on error ( 
+			set common.rootContainer.mainView.profileView.showDeleteUserDialog
+		) 
+		triggers (
+			LoadUser 
+			common.DisplayErrorToast 
+			common.Logout
+		)
 	
 	DeleteUserClick 
 		on ok (set common.rootContainer.mainView.profileView.showDeleteUserDialog)

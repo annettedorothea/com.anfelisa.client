@@ -9,6 +9,7 @@ import React from "react";
 import {Texts} from "../../../app/Texts";
 import {deleteUser, deleteUserCancel, deleteUserClick} from "../../../../gen/profile/ActionFunctions";
 import {route} from "../../../../gen/common/ActionFunctions";
+import {translate} from "../../../AppUtils";
 
 
 export const ProfileView = (props) => {
@@ -19,18 +20,18 @@ export const ProfileView = (props) => {
 		{props.showDeleteUserDialog === true ?
 			<div className="modal">
 				<div className="modalContent danger">
-					<h2>{Texts.profile.confirmDelete.title[props.language]}</h2>
-					<div className="message">{Texts.profile.confirmDelete.message[props.language]}</div>
+					<h2>{translate(Texts.profile.confirmDelete.title)}</h2>
+					<div className="message">{translate(Texts.profile.confirmDelete.message)}</div>
 					<button
 						className="yes"
 						onClick={deleteUser}
 					>
-						{Texts.profile.confirmDelete.ok[props.language]}
+						{translate(Texts.profile.confirmDelete.ok)}
 					</button>
 					<button
 						onClick={deleteUserCancel}
 					>
-						{Texts.profile.confirmDelete.cancel[props.language]}
+						{translate(Texts.profile.confirmDelete.cancel)}
 					</button>
 				</div>
 			</div> :
@@ -39,10 +40,10 @@ export const ProfileView = (props) => {
 		<div className="form">
 			<h1>
 				<button onClick={() => route("#dashboard")}><i className="fa fa-arrow-left"/></button>
-				{Texts.profile.title[props.language]}
+				{translate(Texts.profile.title)}
 			</h1>
 			<div className="line">
-				<label htmlFor="username">{Texts.profile.username[props.language]}</label>
+				<label htmlFor="username">{translate(Texts.profile.username)}</label>
 				<div className="inputContainer">
 					<input
 						type="text"
@@ -53,7 +54,7 @@ export const ProfileView = (props) => {
 				</div>
 			</div>
 			<div className="line">
-				<label htmlFor="email">{Texts.profile.email[props.language]}</label>
+				<label htmlFor="email">{translate(Texts.profile.email)}</label>
 				<div className="inputContainer">
 					<input
 						type="text"
@@ -68,7 +69,7 @@ export const ProfileView = (props) => {
 					className="danger"
 					onClick={deleteUserClick}
 				>
-					{Texts.profile.delete[props.language]}
+					{translate(Texts.profile.delete)}
 				</button>
 			</div>
 		</div>

@@ -8,6 +8,7 @@
 const ScenarioUtils = require("../../src/ScenarioUtils");
 const RegistrationActionIds  = require("../../gen/actionIds/registration/RegistrationActionIds");
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
+const Verifications = require("../../src/registrationscenarios/ConfirmEmailTokenDoesNotExistVerifications");
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
@@ -44,32 +45,15 @@ describe("registrationscenarios.ConfirmEmailTokenDoesNotExist", function () {
 		await ScenarioUtils.waitInMillis(10);
 		
 		appState = await ScenarioUtils.getAppState(driver);
-		appStates.confirmEmailFails = appState;
 		
+		verifications.confirmEmailErrorMessageShown = await Verifications.confirmEmailErrorMessageShown(appState.rootContainer.messages);
 		
     });
 
-	it("confirmEmailFails", async () => {
-		expect(appStates.confirmEmailFails.rootContainer.messages, "confirmEmailFails").toEqual([
-			{ 
-				textKey : `confirmEmail`,
-				type : `info`,
-				visible : true,
-				id : 0,
-				args : null
-			},
-			{ 
-				code : 400,
-				text : `Bad Request`,
-				textKey : `tokenDoesNotExist`,
-				type : `error`,
-				visible : true,
-				id : 1
-			}
-		]
-		)
-	});
 	
+	it("de.acegen.aceGen.impl.CustomVerificationImpl@581f9347 (functionName: confirmEmailErrorMessageShown)", async () => {
+		expect(verifications.confirmEmailErrorMessageShown, "verifications.confirmEmailErrorMessageShown").toBeTrue();
+	});
 
     afterAll(async function () {
         await ScenarioUtils.tearDown(driver);

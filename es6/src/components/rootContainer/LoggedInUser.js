@@ -8,13 +8,14 @@
 import React from "react";
 import {logout, route} from "../../../gen/common/ActionFunctions";
 import {Texts} from "../../app/Texts";
+import {translate} from "../../AppUtils";
 
 
 export const LoggedInUser = (props) => {
 	if (props.username) {
 		return <div className="logout">
 			<a id="profile" onClick={() => route("#profile")}>{props.username}</a>
-			<button id="logout" onClick={logout}>{Texts.logout.signout[props.language]}</button>
+			<button id="logout" onClick={logout}>{translate(Texts.logout.signout)}</button>
 		</div>
 	}
 	return null;

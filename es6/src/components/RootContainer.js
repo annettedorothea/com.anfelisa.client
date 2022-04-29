@@ -3,15 +3,14 @@
  ********************************************************************************/
 
 
-
-
 import React, {useState} from "react";
 
-import { LoggedInUser } from "./rootContainer/LoggedInUser";
+import {LoggedInUser} from "./rootContainer/LoggedInUser";
 import {route} from "../../gen/common/ActionFunctions";
 import {Texts} from "../app/Texts";
 import * as Utils from "../../gen/ace/Utils";
 import * as AppUtils from "../AppUtils";
+import {translate} from "../AppUtils";
 import {Spinner} from "./rootContainer/Spinner";
 import {MainView} from "./rootContainer/MainView";
 import {MessagesItem} from "./rootContainer/MessagesItem";
@@ -24,76 +23,73 @@ export let setRootContainerState;
 export const RootContainer = (props) => {
 
 
-	const [rootContainer, setRootContainer] = useState(props.rootContainer);
-	setRootContainerState = setRootContainer;
+    const [rootContainer, setRootContainer] = useState(props.rootContainer);
+    setRootContainerState = setRootContainer;
 
 
-	if (rootContainer) {
-		if (rootContainer.loggedInUser) {
-			return <div id="rootContainer" className="wrapper">
-				<div className="header">
-					<a
-						onClick={() => route("#dashboard")}
-						className="title"
-					>
-						Anfelisa
-					</a>
-					<LoggedInUser role={rootContainer.role} language={rootContainer.language} {...rootContainer.loggedInUser}/>
-				</div>
-				<div className="content">{content(rootContainer)}</div>
-			</div>
-		}
-		return <div id="rootContainer">
-			<LoggedInUser />
-			{content(rootContainer)}
-		</div>
-	}
+    if (rootContainer) {
+        if (rootContainer.loggedInUser) {
+            return <div id="rootContainer" className="wrapper">
+                <div className="header">
+                    <a
+                        onClick={() => route("#dashboard")}
+                        className="title"
+                    >
+                        Anfelisa
+                    </a>
+                    <LoggedInUser role={rootContainer.role} {...rootContainer.loggedInUser}/>
+                </div>
+                <div className="content">{content(rootContainer)}</div>
+            </div>
+        }
+        return <div id="rootContainer">
+            <LoggedInUser/>
+            {content(rootContainer)}
+        </div>
+    }
 
-	return null;
+    return null;
 
 }
 
 const content = (props) => {
-	return <div>
-		<Spinner {...props.spinner} language={props.language}/>
-		<SaveBugDialog {...props.saveBugDialog} language={props.language}/>
-		<VersionMismatchDialog {...props.versionMismatchDialog} language={props.language}/>
-		<VersionMismatchErrorDialog {...props.versionMismatchErrorDialog} language={props.language}/>
-		<div className="toastContainer">
-			{props.messages ? props.messages.map((message) =>
-				<MessagesItem {...message} language={props.language} key={message.id}/>) : []}
-		</div>
-		<MainView role={props.role} language={props.language} {...props.mainView}/>
-		<div className={`footer ${props.loggedInUser === undefined ? "fixed" : ""}`}>
-			<div className="footerContent">
-				<h1>{Texts.container.about[props.language]}</h1>
-				<p>
-					Annette Pohl &middot; Im Sommerhäldele 9 &middot; 77799 Ortenberg &middot; Deutschland
-				</p>
-				<p>
-					+49 781 99078158 &middot; <a href="mailto:info@anfelisa.de">info@anfelisa.de</a>
-				</p>
-				<p>
-					{Texts.container.version[props.language]} {AppUtils.settings ? AppUtils.settings.clientVersion : ""} {AppUtils.settings && AppUtils.settings.mode === "dev" ? AppUtils.settings.mode : ""}
-				</p>
-				<p>
-					<a onClick={() =>
-						Utils.saveTimeline(
-							"no description",
-							props.mainView && props.mainView.loggedInUser ? props.mainView.loggedInUser.username : "anonymous"
-						)}
-					   target="ace">save timeline</a>
-				</p>
-				<p>
-					<a onClick={() => route("#privacypolicy")}>{Texts.login.privacyPolicy[props.language]}</a>
-				</p>
-			</div>
-		</div>
-	</div>
+    return <div>
+        <Spinner {...props.spinner}/>
+        <SaveBugDialog {...props.saveBugDialog} />
+        <VersionMismatchDialog {...props.versionMismatchDialog} />
+        <VersionMismatchErrorDialog {...props.versionMismatchErrorDialog} />
+        <div className="toastContainer">
+            {props.messages ? props.messages.map((message) =>
+                <MessagesItem {...message} key={message.id}/>) : []}
+        </div>
+        <MainView role={props.role}  {...props.mainView}/>
+        <div className={`footer ${props.loggedInUser === undefined ? "fixed" : ""}`}>
+            <div className="footerContent">
+                <h1>{translate(Texts.container.about)}</h1>
+                <p>
+                    Annette Pohl &middot; Im Sommerhäldele 9 &middot; 77799 Ortenberg &middot; Deutschland
+                </p>
+                <p>
+                    +49 781 99078158 &middot; <a href="mailto:info@anfelisa.de">info@anfelisa.de</a>
+                </p>
+                <p>
+                    {translate(Texts.container.version)} {AppUtils.settings ? AppUtils.settings.clientVersion : ""} {AppUtils.settings && AppUtils.settings.mode === "dev" ? AppUtils.settings.mode : ""}
+                </p>
+                <p>
+                    <a onClick={() =>
+                        Utils.saveTimeline(
+                            "no description",
+                            props.mainView && props.mainView.loggedInUser ? props.mainView.loggedInUser.username : "anonymous"
+                        )}
+                       target="ace">save timeline</a>
+                </p>
+                <p>
+                    <a onClick={() => route("#privacypolicy")}>{translate(Texts.login.privacyPolicy)}</a>
+                </p>
+            </div>
+        </div>
+    </div>
 }
-
-
-
 
 
 /******* S.D.G. *******/

@@ -9,14 +9,15 @@ import React from "react";
 import {Texts} from "../../../app/Texts";
 import {forgotPassword, usernameForgotPasswordChanged} from "../../../../gen/password/ActionFunctions";
 import {route} from "../../../../gen/common/ActionFunctions";
+import {translate} from "../../../AppUtils";
 
 
 export const ForgotPasswordView = (props) => {
 	return <div className="center">
 		<div className="form">
-			<h1>{Texts.forgotPassword.title[props.language]}</h1>
+			<h1>{translate(Texts.forgotPassword.title)}</h1>
 			<div className="line">
-				<label htmlFor="username">{Texts.forgotPassword.username[props.language]}</label>
+				<label htmlFor="username">{translate(Texts.forgotPassword.username)}</label>
 				<input
 					id="username"
 					value={props.username}
@@ -28,10 +29,10 @@ export const ForgotPasswordView = (props) => {
 			<div className="moreMarginLine hCenter">
 				<button onClick={forgotPassword}
 						disabled={!props.username || props.username && props.username.length === 0}>
-					{Texts.forgotPassword.submit[props.language]}
+					{translate(Texts.forgotPassword.submit)}
 				</button>
 				<button
-					onClick={() => route("#")}>{Texts.forgotPassword.cancel[props.language]}</button>
+					onClick={() => route("#")}>{translate(Texts.forgotPassword.cancel)}</button>
 			</div>
 		</div>
 	</div>

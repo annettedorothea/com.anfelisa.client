@@ -6,12 +6,16 @@
 
 const {registerDisabled, registerEnabled} = require("./Utils");
 const ScenarioUtils = require("../ScenarioUtils");
+const {assertMessage} = require("../registrationscenarios/Utils");
 
 module.exports = {
 	registerDisabled: registerDisabled,
 	registerEnabled: registerEnabled,
 	loginDataWasNotSetInLocalStorage: async function(driver, testId) {
 		return await ScenarioUtils.getValueFromLocalStorage(driver, "token") === null
+	},
+	infoShown: async function(actual) {
+		return assertMessage(actual[0], {type: "info", id: 0, visible: true})
 	}
 }
 
