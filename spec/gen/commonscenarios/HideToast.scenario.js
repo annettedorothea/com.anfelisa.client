@@ -37,7 +37,7 @@ describe("commonscenarios.HideToast", function () {
     });
 
 	
-	it("de.acegen.aceGen.impl.CustomVerificationImpl@29608049 (functionName: errorWasHidden)", async () => {
+	it("errorWasHidden", async () => {
 		expect(verifications.errorWasHidden, "verifications.errorWasHidden").toBeTrue();
 	});
 

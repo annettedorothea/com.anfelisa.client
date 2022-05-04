@@ -192,7 +192,7 @@ describe("categoryscenarios.CreateCategoriesAndCards", function () {
 		)
 	});
 	
-	it("de.acegen.aceGen.impl.CustomVerificationImpl@45120465 (functionName: okDisabled)", async () => {
+	it("okDisabled", async () => {
 		expect(verifications.okDisabled, "verifications.okDisabled").toBeTrue();
 	});
 	it("categoryNameChanged", async () => {

@@ -65,7 +65,7 @@ describe("loginscenarios.LoginUnauthorized", function () {
 		expect(appStates.usernameInLocalStorageWasNotSet.rootContainer.token, "usernameInLocalStorageWasNotSet").toEqual(undefined)
 	});
 	
-	it("de.acegen.aceGen.impl.CustomVerificationImpl@a745e25 (functionName: errorMessageShown)", async () => {
+	it("errorMessageShown", async () => {
 		expect(verifications.errorMessageShown, "verifications.errorMessageShown").toBeTrue();
 	});
 

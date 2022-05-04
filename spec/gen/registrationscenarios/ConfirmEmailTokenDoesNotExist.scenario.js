@@ -51,7 +51,7 @@ describe("registrationscenarios.ConfirmEmailTokenDoesNotExist", function () {
     });
 
 	
-	it("de.acegen.aceGen.impl.CustomVerificationImpl@581f9347 (functionName: confirmEmailErrorMessageShown)", async () => {
+	it("confirmEmailErrorMessageShown", async () => {
 		expect(verifications.confirmEmailErrorMessageShown, "verifications.confirmEmailErrorMessageShown").toBeTrue();
 	});
 

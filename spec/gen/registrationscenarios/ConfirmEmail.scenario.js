@@ -51,7 +51,7 @@ describe("registrationscenarios.ConfirmEmail", function () {
     });
 
 	
-	it("de.acegen.aceGen.impl.CustomVerificationImpl@5c2e46a2 (functionName: confirmEmailMessageShown)", async () => {
+	it("confirmEmailMessageShown", async () => {
 		expect(verifications.confirmEmailMessageShown, "verifications.confirmEmailMessageShown").toBeTrue();
 	});
 

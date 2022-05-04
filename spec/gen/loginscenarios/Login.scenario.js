@@ -82,7 +82,7 @@ describe("loginscenarios.Login", function () {
 		expect(appStates.tokenWasSet.rootContainer.loggedInUser.token, "tokenWasSet").not.toEqual(null)
 	});
 	
-	it("de.acegen.aceGen.impl.CustomVerificationImpl@6a66352e (functionName: loginDataWasNotSetInLocalStorage)", async () => {
+	it("loginDataWasNotSetInLocalStorage", async () => {
 		expect(verifications.loginDataWasNotSetInLocalStorage, "verifications.loginDataWasNotSetInLocalStorage").toBeTrue();
 	});
 

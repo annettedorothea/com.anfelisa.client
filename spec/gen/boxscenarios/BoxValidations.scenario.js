@@ -112,7 +112,7 @@ describe("boxscenarios.BoxValidations", function () {
 		expect(appStates.maxCardsPerDayInvalid1.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDayInvalid, "maxCardsPerDayInvalid1").toEqual(true)
 	});
 	
-	it("de.acegen.aceGen.impl.CustomVerificationImpl@1cdc9841 (functionName: saveDisabled)", async () => {
+	it("saveDisabled", async () => {
 		expect(verifications.saveDisabled, "verifications.saveDisabled").toBeTrue();
 	});
 	it("maxCardsPerDay2", async () => {
@@ -122,7 +122,7 @@ describe("boxscenarios.BoxValidations", function () {
 		expect(appStates.maxCardsPerDayInvalid2.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDayInvalid, "maxCardsPerDayInvalid2").toEqual(true)
 	});
 	
-	it("de.acegen.aceGen.impl.CustomVerificationImpl@1c838a39 (functionName: saveDisabled)", async () => {
+	it("saveDisabled", async () => {
 		expect(verifications.saveDisabled, "verifications.saveDisabled").toBeTrue();
 	});
 	it("maxCardsPerDay", async () => {
@@ -132,7 +132,7 @@ describe("boxscenarios.BoxValidations", function () {
 		expect(appStates.maxCardsPerDayInvalid.rootContainer.mainView.boxSettingsView.boxSettings.maxCardsPerDayInvalid, "maxCardsPerDayInvalid").toEqual(true)
 	});
 	
-	it("de.acegen.aceGen.impl.CustomVerificationImpl@5ad9b1ba (functionName: saveDisabled)", async () => {
+	it("saveDisabled", async () => {
 		expect(verifications.saveDisabled, "verifications.saveDisabled").toBeTrue();
 	});
 	it("maxInterval1", async () => {
@@ -142,7 +142,7 @@ describe("boxscenarios.BoxValidations", function () {
 		expect(appStates.maxIntervalInvalid1.rootContainer.mainView.boxSettingsView.boxSettings.maxIntervalInvalid, "maxIntervalInvalid1").toEqual(true)
 	});
 	
-	it("de.acegen.aceGen.impl.CustomVerificationImpl@36e9e723 (functionName: saveDisabled)", async () => {
+	it("saveDisabled", async () => {
 		expect(verifications.saveDisabled, "verifications.saveDisabled").toBeTrue();
 	});
 	it("maxInterval2", async () => {
@@ -152,7 +152,7 @@ describe("boxscenarios.BoxValidations", function () {
 		expect(appStates.maxIntervalInvalid2.rootContainer.mainView.boxSettingsView.boxSettings.maxIntervalInvalid, "maxIntervalInvalid2").toEqual(true)
 	});
 	
-	it("de.acegen.aceGen.impl.CustomVerificationImpl@1ef98be0 (functionName: saveDisabled)", async () => {
+	it("saveDisabled", async () => {
 		expect(verifications.saveDisabled, "verifications.saveDisabled").toBeTrue();
 	});
 	it("boxList", async () => {
