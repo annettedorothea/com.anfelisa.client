@@ -53,9 +53,9 @@ export const BoxSettings = (props) => {
             return translate(Texts.boxSettings.boxInfoOneOne);
         }
         if (props.allActiveCards === 1) {
-            return translate(Texts.boxSettings.boxInfoOne).replace("{0}", possibleCards);
+            return translate(Texts.boxSettings.boxInfoOne, [possibleCards])
         }
-        return translate(Texts.boxSettings.boxInfo).replace("{0}", possibleCards).replace("{1}", props.allActiveCards)
+        return translate(Texts.boxSettings.boxInfo, [possibleCards, props.allActiveCards])
     }
 
     if (props.categoryName === undefined) {
