@@ -12,7 +12,7 @@ import { NewCard } from "../../../../../../src/components/rootContainer/mainView
 
 export const NewCardContainer = ( props ) => {
 	
-	return <NewCard {...props} /> 
+	return <NewCard {...props}  /> 
 }
 
 

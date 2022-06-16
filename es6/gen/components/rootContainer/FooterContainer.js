@@ -12,7 +12,7 @@ import { Footer } from "../../../src/components/rootContainer/Footer";
 
 export const FooterContainer = ( props ) => {
 	
-	return <Footer {...props} /> 
+	return <Footer {...props}  /> 
 }
 
 

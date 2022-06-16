@@ -15,14 +15,7 @@ export const Register = (props) => {
 	return <button
 		id="register"
 		onClick={registerUser}
-		disabled={
-			props.available === false ||
-			props.emailInvalid === true ||
-			props.passwordMismatch === true ||
-			(!props.username || props.username && props.username.length === 0) ||
-			(!props.email || props.email && props.email.length === 0) ||
-			(!props.password || props.password && props.password.length === 0)
-		}>
+		disabled={props.disabled}>
 		{translate(Texts.registration.register)}
 	</button>
 }

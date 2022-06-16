@@ -12,7 +12,7 @@ import { CardListItem } from "../../../../../../src/components/rootContainer/mai
 
 export const CardListItemContainer = ( props ) => {
 	
-	return <CardListItem {...props} /> 
+	return <CardListItem {...props}  /> 
 }
 
 

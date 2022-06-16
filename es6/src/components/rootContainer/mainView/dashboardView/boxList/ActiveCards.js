@@ -7,12 +7,14 @@
 
 import React from "react";
 
-import { MessagesItem } from "../../../src/components/rootContainer/MessagesItem";
-
-
-export const MessagesItemContainer = ( props ) => {
-	
-	return <MessagesItem {...props} /> 
+export const ActiveCards = (props) => {
+	return <button 
+		boxId={props.boxId}
+		className="button"
+		onClick={(event) => props.onClick(props.boxId)}
+	>
+		activeCards
+	</button>
 }
 
 

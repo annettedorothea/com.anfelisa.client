@@ -12,7 +12,7 @@ import { Spinner } from "../../../src/components/rootContainer/Spinner";
 
 export const SpinnerContainer = ( props ) => {
 	
-	return <Spinner {...props} /> 
+	return <Spinner {...props}  /> 
 }
 
 

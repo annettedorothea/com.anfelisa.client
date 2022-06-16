@@ -14,9 +14,9 @@ import { CardViewContainer } from "./authorView/CardViewContainer";
 
 export const AuthorViewContainer = ( props ) => {
 	
-	return <AuthorView {...props}>
-		<CategoryTreeContainer {...props.categoryTree }   />
-		<CardViewContainer {...props.cardView }   />
+	return <AuthorView {...props} >
+		<CategoryTreeContainer {...props.categoryTree }    />
+		<CardViewContainer {...props.cardView }    />
 	</AuthorView> 
 }
 

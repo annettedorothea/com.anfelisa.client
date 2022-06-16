@@ -12,7 +12,7 @@ import { CategoryDialog } from "../../../../../../src/components/rootContainer/m
 
 export const CategoryDialogContainer = ( props ) => {
 	
-	return <CategoryDialog {...props} /> 
+	return <CategoryDialog {...props}  /> 
 }
 
 

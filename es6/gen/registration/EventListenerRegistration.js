@@ -59,6 +59,12 @@ export default class EventListenerRegistrationRegistration {
 					["rootContainer", "mainView", "registrationView", "passwordRepetition", "passwordMismatch"]
 				)
 			});
+		ACEController.registerListener('registration.ValidateOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "registrationView", "buttons", "register", "disabled"]
+				)
+			});
 		ACEController.registerListener('registration.LoginOkEvent', (data) => {
 				AppState.set(
 					data, 

@@ -12,7 +12,7 @@ import { ActiveCardListItem } from "../../../../../src/components/rootContainer/
 
 export const ActiveCardListItemContainer = ( props ) => {
 	
-	return <ActiveCardListItem {...props} /> 
+	return <ActiveCardListItem {...props}  /> 
 }
 
 

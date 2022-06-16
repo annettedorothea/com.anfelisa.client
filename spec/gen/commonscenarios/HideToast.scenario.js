@@ -32,7 +32,7 @@ describe("commonscenarios.HideToast", function () {
 		
 		appState = await ScenarioUtils.getAppState(driver);
 		
-		verifications.errorWasHidden = await Verifications.errorWasHidden(appState.rootContainer.messages);
+		verifications.errorWasHidden = await Verifications.errorWasHidden(appState.rootContainer.messageContainer.messages);
 		
     });
 

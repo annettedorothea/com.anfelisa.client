@@ -94,7 +94,7 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		appStates.autoTokenWasSet = appState;
 		
 		verifications.loginDataWasNotSetInLocalStorage = await Verifications.loginDataWasNotSetInLocalStorage(driver, testId);
-		verifications.infoShown = await Verifications.infoShown(appState.rootContainer.messages);
+		verifications.infoShown = await Verifications.infoShown(appState.rootContainer.messageContainer.messages);
 		
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.logout);
 		await ScenarioUtils.waitInMillis(10);

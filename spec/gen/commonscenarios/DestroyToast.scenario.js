@@ -36,7 +36,7 @@ describe("commonscenarios.DestroyToast", function () {
     });
 
 	it("errorDestroyed", async () => {
-		expect(appStates.errorDestroyed.rootContainer.messages, "errorDestroyed").toEqual([
+		expect(appStates.errorDestroyed.rootContainer.messageContainer.messages, "errorDestroyed").toEqual([
 		]
 		)
 	});

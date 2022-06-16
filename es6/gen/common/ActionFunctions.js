@@ -9,6 +9,16 @@ import InitAction from "../../src/common/actions/InitAction";
 import GetUserInfoAction from "../../src/common/actions/GetUserInfoAction";
 import RouteChangedAction from "../../src/common/actions/RouteChangedAction";
 import RouteAction from "../../src/common/actions/RouteAction";
+import RouteToHomeAction from "../../src/common/actions/RouteToHomeAction";
+import RouteToDashboardAction from "../../src/common/actions/RouteToDashboardAction";
+import RouteToQueryCardsAction from "../../src/common/actions/RouteToQueryCardsAction";
+import RouteToAuthorViewAction from "../../src/common/actions/RouteToAuthorViewAction";
+import RouteToBoxSettingsAction from "../../src/common/actions/RouteToBoxSettingsAction";
+import RouteToActiveCardsAction from "../../src/common/actions/RouteToActiveCardsAction";
+import RouteToForgotPasswordAction from "../../src/common/actions/RouteToForgotPasswordAction";
+import RouteToPrivacyPolicyAction from "../../src/common/actions/RouteToPrivacyPolicyAction";
+import RouteToRegistrationAction from "../../src/common/actions/RouteToRegistrationAction";
+import RouteToProfileViewAction from "../../src/common/actions/RouteToProfileViewAction";
 import LogoutAction from "../../src/common/actions/LogoutAction";
 import DisplayToastAction from "../../src/common/actions/DisplayToastAction";
 import DisplayErrorToastAction from "../../src/common/actions/DisplayErrorToastAction";
@@ -37,6 +47,46 @@ export function routeChanged() {
 
 export function route(hash) {
     return new RouteAction().apply({hash});
+}
+
+export function routeToHome() {
+    return new RouteToHomeAction().apply({});
+}
+
+export function routeToDashboard() {
+    return new RouteToDashboardAction().apply({});
+}
+
+export function routeToQueryCards(boxId) {
+    return new RouteToQueryCardsAction().apply({boxId});
+}
+
+export function routeToAuthorView(categoryId, reverse) {
+    return new RouteToAuthorViewAction().apply({categoryId, reverse});
+}
+
+export function routeToBoxSettings(boxId) {
+    return new RouteToBoxSettingsAction().apply({boxId});
+}
+
+export function routeToActiveCards(boxId) {
+    return new RouteToActiveCardsAction().apply({boxId});
+}
+
+export function routeToForgotPassword() {
+    return new RouteToForgotPasswordAction().apply({});
+}
+
+export function routeToPrivacyPolicy() {
+    return new RouteToPrivacyPolicyAction().apply({});
+}
+
+export function routeToRegistration() {
+    return new RouteToRegistrationAction().apply({});
+}
+
+export function routeToProfileView() {
+    return new RouteToProfileViewAction().apply({});
 }
 
 export function logout() {

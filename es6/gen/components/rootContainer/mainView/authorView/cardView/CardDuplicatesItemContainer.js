@@ -12,7 +12,7 @@ import { CardDuplicatesItem } from "../../../../../../src/components/rootContain
 
 export const CardDuplicatesItemContainer = ( props ) => {
 	
-	return <CardDuplicatesItem {...props} /> 
+	return <CardDuplicatesItem {...props}  /> 
 }
 
 

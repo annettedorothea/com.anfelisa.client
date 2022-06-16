@@ -12,7 +12,7 @@ import { LoggedInUser } from "../../../src/components/rootContainer/LoggedInUser
 
 export const LoggedInUserContainer = ( props ) => {
 	
-	return <LoggedInUser {...props} /> 
+	return <LoggedInUser {...props}  /> 
 }
 
 

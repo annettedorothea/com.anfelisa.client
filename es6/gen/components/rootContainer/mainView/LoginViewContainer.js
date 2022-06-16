@@ -9,18 +9,23 @@ import React from "react";
 
 import { LoginView } from "../../../../src/components/rootContainer/mainView/LoginView";
 import { Username } from "../../../../src/components/rootContainer/mainView/loginView/Username";
+import { usernameChanged } from "../../../login/ActionFunctions";
+import { routeToRegistration } from "../../../common/ActionFunctions";
 import { Password } from "../../../../src/components/rootContainer/mainView/loginView/Password";
+import { passwordChanged } from "../../../login/ActionFunctions";
 import { SaveInLocalStorage } from "../../../../src/components/rootContainer/mainView/loginView/SaveInLocalStorage";
+import { toggleSaveInLocalStorage } from "../../../login/ActionFunctions";
 import { Login } from "../../../../src/components/rootContainer/mainView/loginView/Login";
+import { login } from "../../../login/ActionFunctions";
 
 
 export const LoginViewContainer = ( props ) => {
 	
-	return <LoginView {...props}>
-		<Username {...props.username }   />
-		<Password {...props.password }   />
-		<SaveInLocalStorage {...props.saveInLocalStorage }   />
-		<Login {...props.login }   />
+	return <LoginView {...props} >
+		<Username {...props.username }   onChange={usernameChanged} onClick={routeToRegistration}  />
+		<Password {...props.password }   onChange={passwordChanged}  />
+		<SaveInLocalStorage {...props.saveInLocalStorage }   onChange={toggleSaveInLocalStorage}  />
+		<Login {...props.login }   onClick={login}  />
 	</LoginView> 
 }
 

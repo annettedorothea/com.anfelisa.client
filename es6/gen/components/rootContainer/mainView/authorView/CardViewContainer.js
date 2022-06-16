@@ -16,11 +16,11 @@ import { DeleteCardContainer } from "./cardView/DeleteCardContainer";
 
 export const CardViewContainer = ( props ) => {
 	
-	return <CardView {...props}>
-		{ props.cardList ? props.cardList.map(i => <CardListItemContainer {...i} key={i.id}   />) : [] }
-		<NewCardContainer {...props.newCard }   />
-		{ props.cardDuplicates ? props.cardDuplicates.map(i => <CardDuplicatesItemContainer {...i} key={i.id}   />) : [] }
-		<DeleteCardContainer {...props.deleteCard }   />
+	return <CardView {...props} >
+		{ props.cardList ? props.cardList.map(i => <CardListItemContainer {...i} key={i.id}    />) : [] }
+		<NewCardContainer {...props.newCard }    />
+		{ props.cardDuplicates ? props.cardDuplicates.map(i => <CardDuplicatesItemContainer {...i} key={i.id}    />) : [] }
+		<DeleteCardContainer {...props.deleteCard }    />
 	</CardView> 
 }
 

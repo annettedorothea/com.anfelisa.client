@@ -9,7 +9,7 @@ Init
 	fromAppState (rootContainer.token )
 	on ok (
 		set rootContainer.language
-		set rootContainer.messages
+		set rootContainer.messageContainer.messages
 	)
 	on user (
 		set rootContainer.loggedInUser.token
@@ -88,6 +88,17 @@ RouteChanged
 Route ( hash ) 
 	on ok ( set rootContainer.hash )
 	
+RouteToHome on ok ( set rootContainer.hash )
+RouteToDashboard on ok ( set rootContainer.hash )
+RouteToQueryCards (boxId) on ok ( set rootContainer.hash )
+RouteToAuthorView (categoryId, reverse) on ok ( set rootContainer.hash )
+RouteToBoxSettings (boxId) on ok ( set rootContainer.hash )
+RouteToActiveCards (boxId) on ok ( set rootContainer.hash )
+RouteToForgotPassword on ok ( set rootContainer.hash )
+RouteToPrivacyPolicy on ok ( set rootContainer.hash )
+RouteToRegistration on ok ( set rootContainer.hash )
+RouteToProfileView on ok ( set rootContainer.hash )
+	
 Logout 
 	on ok ( 
 		set rootContainer.loggedInUser
@@ -95,32 +106,32 @@ Logout
 	) triggers ( Route )
 	
 DisplayToast ( textKey, args ) 
-	fromAppState( rootContainer.language, rootContainer.messages)
+	fromAppState( rootContainer.language, rootContainer.messageContainer.messages)
 	on ok ( 
-		set rootContainer.messages
+		set rootContainer.messageContainer.messages
 	) triggers ( delayInMillis 5000 HideToast ) 
 
 DisplayErrorToast ( textKey, args  ) 
-	fromAppState( rootContainer.language, rootContainer.messages)
+	fromAppState( rootContainer.language, rootContainer.messageContainer.messages)
 	on ok ( 
-		set rootContainer.messages
+		set rootContainer.messageContainer.messages
 	) triggers ( delayInMillis 5000 HideToast ) 
 
 DisplayWarningToast ( textKey, args ) 
-	fromAppState( rootContainer.language, rootContainer.messages)
+	fromAppState( rootContainer.language, rootContainer.messageContainer.messages)
 	on ok ( 
-		set rootContainer.messages
+		set rootContainer.messageContainer.messages
 	) triggers ( delayInMillis 5000 HideToast ) 
 
 HideToast (id)
-	fromAppState( rootContainer.messages)
+	fromAppState( rootContainer.messageContainer.messages)
 	on ok (
-		set rootContainer.messages
+		set rootContainer.messageContainer.messages
 	) triggers ( delayInMillis 1200 DestroyToast ) 
 	
 DestroyToast (id)
-	fromAppState( rootContainer.messages)
-	on ok (set rootContainer.messages)
+	fromAppState( rootContainer.messageContainer.messages)
+	on ok (set rootContainer.messageContainer.messages)
 	
 DisplaySaveBugDialog
 	on ok (set rootContainer.saveBugDialog.display)
@@ -148,9 +159,6 @@ HideSaveBugDialog
 
 
 
-	
-
-
 ui JSX rootContainer {
 	loggedInUser {
 		username
@@ -171,14 +179,16 @@ ui JSX rootContainer {
 	versionMismatchErrorDialog {
 		display
 	}
-	List messages {
-		type
-		text
-		id
-		visible
-		code
-		textKey
-		args
+	messageContainer {
+		List messages {
+			type
+			text
+			id
+			visible
+			code
+			textKey
+			args
+		}
 	}
 	group mainView {
 		privacyPolicyView {
@@ -189,6 +199,7 @@ ui JSX rootContainer {
 				value
 				actions {
 					"onChange" login.UsernameChanged
+					"onClick" RouteToRegistration
 				}
 			}
 			password PasswordInput {
@@ -240,6 +251,7 @@ ui JSX rootContainer {
 	        }
 	        buttons {
 				register Button {
+					disabled
 					actions {
 						"onClick" registration.RegisterUser
 					}
@@ -252,20 +264,61 @@ ui JSX rootContainer {
 			}
 		}
 		forgotPasswordView {
-			username
+			username TextInput {
+	        	value
+	        	actions {
+	        		"onChange" password.UsernameForgotPasswordChanged
+	        	}
+	        }
+	        buttons {
+				forgotPassword Button {
+					disabled
+					actions {
+						"onClick" password.ForgotPassword
+					}
+				}
+				cancel Button {
+					actions {
+						"onClick" Route
+					}
+				}
+			}
 		}
 		resetPasswordView {
 			token
-			password
-			passwordRepetition
-			passwordMismatch
+			password PasswordInput {
+				value
+				actions {
+	        		"onChange" password.PasswordChanged
+	        	}
+			}
+			passwordRepetition PasswordInput {
+				value
+				passwordMismatch
+				actions {
+	        		"onChange" password.PasswordRepetitionChanged
+	        	}
+			}
+	        buttons {
+				resetPassword Button {
+					disabled
+					actions {
+						"onClick" password.ResetPassword
+					}
+				}
+				cancel Button {
+					actions {
+						"onClick" Route
+					}
+				}
+			}
 		}
 		dashboardView {
 	    	List boxList {
 				openTodaysCards
 				categoryName
 				categoryId
-				boxId
+				listId boxId
 				quality0Count
 				quality1Count
 				quality2Count
@@ -279,10 +332,57 @@ ui JSX rootContainer {
 				reverse
 				archived
 				deletable
+				edit Button {
+					categoryId
+					reverse
+					actions {
+						"onClick" RouteToAuthorView
+					}
+				}
+				settings Button {
+					boxId
+					actions {
+						"onClick" RouteToBoxSettings
+					}
+				}
+				archive Button {
+					boxId
+					archived
+					actions {
+						"onClick" box.ArchiveBox
+					}
+				}
+				delete Button {
+					boxId
+					deletable
+					actions {
+						"onClick" box.DeleteBoxClick
+					}
+				}
+				queryCards Button {
+					boxId
+					actions {
+						"onClick" RouteToQueryCards
+					}
+				}
+				activeCards Button {
+					boxId
+					actions {
+						"onClick" RouteToActiveCards
+					}
+				}
+				actions {
+					"onClick" box.BoxClick
+				}
 	    	}
 	        deleteBox {
 	            confirmDelete
 	            boxId
+	        }
+	        newBox Button {
+	        	actions {
+	        		"onClick" Route
+	        	}
 	        }
 		}
 		boxSettingsView {

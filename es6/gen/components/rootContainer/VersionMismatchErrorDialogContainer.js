@@ -12,7 +12,7 @@ import { VersionMismatchErrorDialog } from "../../../src/components/rootContaine
 
 export const VersionMismatchErrorDialogContainer = ( props ) => {
 	
-	return <VersionMismatchErrorDialog {...props} /> 
+	return <VersionMismatchErrorDialog {...props}  /> 
 }
 
 

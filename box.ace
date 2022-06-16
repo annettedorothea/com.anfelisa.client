@@ -100,6 +100,10 @@ ACE
 			set common.rootContainer.mainView.allActiveCardsView.activeCardList
 		)
 		
+	BoxClick ( boxId, openTodaysCards )
+		on queryCards triggers (common.RouteToQueryCards)
+		on authorView triggers (common.RouteToAuthorView)
+	
 	DeleteBoxClick ( boxId )
 		on ok (set common.rootContainer.mainView.dashboardView.deleteBox)
 	

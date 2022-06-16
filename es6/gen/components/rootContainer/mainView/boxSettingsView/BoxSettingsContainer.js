@@ -12,7 +12,7 @@ import { BoxSettings } from "../../../../../src/components/rootContainer/mainVie
 
 export const BoxSettingsContainer = ( props ) => {
 	
-	return <BoxSettings {...props} /> 
+	return <BoxSettings {...props}  /> 
 }
 
 

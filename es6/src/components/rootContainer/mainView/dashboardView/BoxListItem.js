@@ -7,9 +7,9 @@
 
 import React from "react";
 
-
 export const BoxListItem = (props) => {
 	return <>
+		<div>boxList</div>
 		<div>openTodaysCards: {props.openTodaysCards !== null && props.openTodaysCards !== undefined ? props.openTodaysCards.toString() : ""}</div>
 		<div>categoryName: {props.categoryName !== null && props.categoryName !== undefined ? props.categoryName.toString() : ""}</div>
 		<div>categoryId: {props.categoryId !== null && props.categoryId !== undefined ? props.categoryId.toString() : ""}</div>
@@ -27,6 +27,10 @@ export const BoxListItem = (props) => {
 		<div>reverse: {props.reverse !== null && props.reverse !== undefined ? props.reverse.toString() : ""}</div>
 		<div>archived: {props.archived !== null && props.archived !== undefined ? props.archived.toString() : ""}</div>
 		<div>deletable: {props.deletable !== null && props.deletable !== undefined ? props.deletable.toString() : ""}</div>
+		<div onClick={(event) => props.onClick(props.boxId,props.openTodaysCards)}>
+			onClick
+		</div>
+		{props.children}
 	</> 
 }
 

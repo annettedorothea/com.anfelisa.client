@@ -7,6 +7,7 @@
 
 	import SynchronousCommand from "../../ace/SynchronousCommand";
 	import Event from "../../ace/Event";
+	import ValidateAction from "../../../src/registration/actions/ValidateAction";
 	import * as AppUtils from "../../../src/AppUtils";
 	import * as AppState from "../../../src/AppState";
 	
@@ -28,6 +29,13 @@
 			const actionsToBeTriggered = [];
 			if (data.outcomes.includes("ok")) {
 				events.push(new Event('registration.EmailChangedOkEvent'));
+				actionsToBeTriggered.push(
+					{
+						action: new ValidateAction(), 
+						data: {
+						}
+					}
+				);
 			}
 			
 			this.publish(events, data);

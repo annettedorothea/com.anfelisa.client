@@ -6,8 +6,8 @@
 
 
 import React from "react";
-import {translate} from "../../AppUtils";
-import {destroyToast} from "../../../gen/common/ActionFunctions";
+import {translate} from "../../../AppUtils";
+import {destroyToast} from "../../../../gen/common/ActionFunctions";
 
 
 export const MessagesItem = (props) => {

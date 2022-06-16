@@ -13,8 +13,8 @@ import { NextCardContainer } from "./queryCardView/NextCardContainer";
 
 export const QueryCardViewContainer = ( props ) => {
 	
-	return <QueryCardView {...props}>
-		<NextCardContainer {...props.nextCard }   />
+	return <QueryCardView {...props} >
+		<NextCardContainer {...props.nextCard }    />
 	</QueryCardView> 
 }
 

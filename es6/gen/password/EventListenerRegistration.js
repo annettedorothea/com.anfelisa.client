@@ -14,31 +14,43 @@ export default class EventListenerRegistrationPassword {
 		ACEController.registerListener('password.UsernameForgotPasswordChangedOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "forgotPasswordView", "username"]
+					["rootContainer", "mainView", "forgotPasswordView", "username", "value"]
+				)
+			});
+		ACEController.registerListener('password.ValidateUsernameOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "forgotPasswordView", "buttons", "forgotPassword", "disabled"]
 				)
 			});
 		ACEController.registerListener('password.PasswordChangedOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "resetPasswordView", "password"]
+					["rootContainer", "mainView", "resetPasswordView", "password", "value"]
 				)
 			});
 		ACEController.registerListener('password.PasswordChangedOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "resetPasswordView", "passwordMismatch"]
+					["rootContainer", "mainView", "resetPasswordView", "passwordRepetition", "passwordMismatch"]
 				)
 			});
 		ACEController.registerListener('password.PasswordRepetitionChangedOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "resetPasswordView", "passwordRepetition"]
+					["rootContainer", "mainView", "resetPasswordView", "passwordRepetition", "value"]
 				)
 			});
 		ACEController.registerListener('password.PasswordRepetitionChangedOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "resetPasswordView", "passwordMismatch"]
+					["rootContainer", "mainView", "resetPasswordView", "passwordRepetition", "passwordMismatch"]
+				)
+			});
+		ACEController.registerListener('password.ValidatePasswordOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "resetPasswordView", "buttons", "resetPassword", "disabled"]
 				)
 			});
 	}

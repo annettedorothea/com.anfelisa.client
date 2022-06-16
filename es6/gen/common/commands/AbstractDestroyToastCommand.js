@@ -17,7 +17,7 @@
 	
 	    initCommandData(data) {
 	        data.messages = AppState.get(
-	        	["rootContainer", "messages"]
+	        	["rootContainer", "messageContainer", "messages"]
 	        )
 	        ;
 	        data.outcomes = [];

@@ -8,11 +8,17 @@
 import React from "react";
 
 import { ForgotPasswordView } from "../../../../src/components/rootContainer/mainView/ForgotPasswordView";
+import { Username } from "../../../../src/components/rootContainer/mainView/forgotPasswordView/Username";
+import { usernameForgotPasswordChanged } from "../../../password/ActionFunctions";
+import { ButtonsContainer } from "./forgotPasswordView/ButtonsContainer";
 
 
 export const ForgotPasswordViewContainer = ( props ) => {
 	
-	return <ForgotPasswordView {...props} /> 
+	return <ForgotPasswordView {...props} >
+		<Username {...props.username }   onChange={usernameForgotPasswordChanged}  />
+		<ButtonsContainer {...props.buttons }    />
+	</ForgotPasswordView> 
 }
 
 

@@ -46,7 +46,7 @@ describe("registrationscenarios.ConfirmEmail", function () {
 		
 		appState = await ScenarioUtils.getAppState(driver);
 		
-		verifications.confirmEmailMessageShown = await Verifications.confirmEmailMessageShown(appState.rootContainer.messages);
+		verifications.confirmEmailMessageShown = await Verifications.confirmEmailMessageShown(appState.rootContainer.messageContainer.messages);
 		
     });
 

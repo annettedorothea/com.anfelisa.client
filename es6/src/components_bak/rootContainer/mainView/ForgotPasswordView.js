@@ -3,8 +3,6 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 import {Texts} from "../../../app/Texts";
 import {forgotPassword, usernameForgotPasswordChanged} from "../../../../gen/password/ActionFunctions";
@@ -13,31 +11,31 @@ import {translate} from "../../../AppUtils";
 
 
 export const ForgotPasswordView = (props) => {
-	return <div className="center">
-		<div className="form">
-			<h1>{translate(Texts.forgotPassword.title)}</h1>
-			<div className="line">
-				<label htmlFor="username">{translate(Texts.forgotPassword.username)}</label>
-				<input
-					id="username"
-					value={props.username}
-					type="text"
-					autoComplete="new-password"
-					onChange={(e) => usernameForgotPasswordChanged(e.target.value)}
-				/>
-			</div>
-			<div className="moreMarginLine hCenter">
-				<button onClick={forgotPassword}
-						disabled={!props.username || props.username && props.username.length === 0}>
-					{translate(Texts.forgotPassword.submit)}
-				</button>
-				<button
-					onClick={() => route("#")}>{translate(Texts.forgotPassword.cancel)}</button>
-			</div>
-		</div>
-	</div>
+    return <div className="center">
+        <div className="form">
+            <h1>{translate(Texts.forgotPassword.title)}</h1>
+            <div className="line">
+                <label htmlFor="username">{translate(Texts.forgotPassword.username)}</label>
+                <input
+                    id="username"
+                    value={props.username}
+                    type="text"
+                    autoComplete="new-password"
+                    onChange={(e) => usernameForgotPasswordChanged(e.target.value)}
+                />
+            </div>
+            <div className="moreMarginLine hCenter">
+                <button onClick={forgotPassword}
+                        disabled={!props.username || props.username && props.username.length === 0}>
+                    {translate(Texts.forgotPassword.submit)}
+                </button>
+                <button
+                    onClick={() => route("#")}>{translate(Texts.forgotPassword.cancel)}
+                </button>
+            </div>
+        </div>
+    </div>
 }
-
 
 
 /******* S.D.G. *******/

@@ -23,18 +23,18 @@ import { AuthorViewContainer } from "./mainView/AuthorViewContainer";
 
 export const MainViewContainer = ( props ) => {
 	
-	return <MainView {...props}>
-		{ props.privacyPolicyView && <PrivacyPolicyViewContainer {...props.privacyPolicyView }   /> }
-		{ props.loginView && <LoginViewContainer {...props.loginView }   /> }
-		{ props.registrationView && <RegistrationViewContainer {...props.registrationView }   /> }
-		{ props.forgotPasswordView && <ForgotPasswordViewContainer {...props.forgotPasswordView }   /> }
-		{ props.resetPasswordView && <ResetPasswordViewContainer {...props.resetPasswordView }   /> }
-		{ props.dashboardView && <DashboardViewContainer {...props.dashboardView }   /> }
-		{ props.boxSettingsView && <BoxSettingsViewContainer {...props.boxSettingsView }   /> }
-		{ props.allActiveCardsView && <AllActiveCardsViewContainer {...props.allActiveCardsView }   /> }
-		{ props.profileView && <ProfileViewContainer {...props.profileView }   /> }
-		{ props.queryCardView && <QueryCardViewContainer {...props.queryCardView }   /> }
-		{ props.authorView && <AuthorViewContainer {...props.authorView }   /> }
+	return <MainView {...props} >
+		{ props.privacyPolicyView && <PrivacyPolicyViewContainer {...props.privacyPolicyView }    /> }
+		{ props.loginView && <LoginViewContainer {...props.loginView }    /> }
+		{ props.registrationView && <RegistrationViewContainer {...props.registrationView }    /> }
+		{ props.forgotPasswordView && <ForgotPasswordViewContainer {...props.forgotPasswordView }    /> }
+		{ props.resetPasswordView && <ResetPasswordViewContainer {...props.resetPasswordView }    /> }
+		{ props.dashboardView && <DashboardViewContainer {...props.dashboardView }    /> }
+		{ props.boxSettingsView && <BoxSettingsViewContainer {...props.boxSettingsView }    /> }
+		{ props.allActiveCardsView && <AllActiveCardsViewContainer {...props.allActiveCardsView }    /> }
+		{ props.profileView && <ProfileViewContainer {...props.profileView }    /> }
+		{ props.queryCardView && <QueryCardViewContainer {...props.queryCardView }    /> }
+		{ props.authorView && <AuthorViewContainer {...props.authorView }    /> }
 	</MainView> 
 }
 

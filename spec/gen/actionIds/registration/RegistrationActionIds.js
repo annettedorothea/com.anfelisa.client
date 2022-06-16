@@ -16,6 +16,8 @@ module.exports = {
 	
 	passwordRepetitionChanged : "registration_passwordRepetitionChanged",
 	
+	validate : "registration_validate",
+	
 	registerUser : "registration_registerUser",
 	
 	login : "registration_login",

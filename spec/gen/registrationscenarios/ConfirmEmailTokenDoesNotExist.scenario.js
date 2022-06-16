@@ -46,7 +46,7 @@ describe("registrationscenarios.ConfirmEmailTokenDoesNotExist", function () {
 		
 		appState = await ScenarioUtils.getAppState(driver);
 		
-		verifications.confirmEmailErrorMessageShown = await Verifications.confirmEmailErrorMessageShown(appState.rootContainer.messages);
+		verifications.confirmEmailErrorMessageShown = await Verifications.confirmEmailErrorMessageShown(appState.rootContainer.messageContainer.messages);
 		
     });
 

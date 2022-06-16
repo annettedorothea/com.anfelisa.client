@@ -9,14 +9,16 @@ import React from "react";
 
 import { Buttons } from "../../../../../src/components/rootContainer/mainView/registrationView/Buttons";
 import { Register } from "../../../../../src/components/rootContainer/mainView/registrationView/buttons/Register";
+import { registerUser } from "../../../../registration/ActionFunctions";
 import { Cancel } from "../../../../../src/components/rootContainer/mainView/registrationView/buttons/Cancel";
+import { route } from "../../../../common/ActionFunctions";
 
 
 export const ButtonsContainer = ( props ) => {
 	
-	return <Buttons {...props}>
-		<Register {...props.register }   />
-		<Cancel {...props.cancel }   />
+	return <Buttons {...props} >
+		<Register {...props.register }   onClick={registerUser}  />
+		<Cancel {...props.cancel }   onClick={route}  />
 	</Buttons> 
 }
 

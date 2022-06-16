@@ -3,17 +3,19 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
+import {translate} from "../../../AppUtils";
+import {Texts} from "../../../app/Texts";
 
 
 export const ForgotPasswordView = (props) => {
-	return <>
-		<div>username: {props.username !== null && props.username !== undefined ? props.username.toString() : ""}</div>
-	</> 
+    return <div className="center">
+        <div className="form">
+            <h1>{translate(Texts.forgotPassword.title)}</h1>
+            {props.children}
+        </div>
+    </div>
 }
-
 
 
 /******* S.D.G. *******/

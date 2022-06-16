@@ -87,7 +87,7 @@ ConfirmEmail
 	WHEN registration.ConfirmEmail(username: "username-${testId}", token: "${testId}-TOKEN")
 	THEN 
 		verifications
-			confirmEmailMessageShown(common.rootContainer.messages)
+			confirmEmailMessageShown(common.rootContainer.messageContainer.messages)
 			
 
 ConfirmEmailTokenDoesNotExist
@@ -95,7 +95,7 @@ ConfirmEmailTokenDoesNotExist
 	WHEN registration.ConfirmEmail(username: "username-${testId}", token: "DOES_NOT_EXIST")
 	THEN 
 		verifications
-			confirmEmailErrorMessageShown(common.rootContainer.messages)
+			confirmEmailErrorMessageShown(common.rootContainer.messageContainer.messages)
 			
 RegistrationHappyPath
 	GIVEN commonscenarios.Init
@@ -158,7 +158,7 @@ RegistrationHappyPath
 			autoTokenWasSet common.rootContainer.loggedInUser.token should not be null
 		verifications
 			loginDataWasNotSetInLocalStorage
-			infoShown(common.rootContainer.messages)
+			infoShown(common.rootContainer.messageContainer.messages)
 	AND
 	WHEN
 		common.Logout

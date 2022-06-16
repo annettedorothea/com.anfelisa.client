@@ -9,20 +9,24 @@ import React from "react";
 
 import { RegistrationView } from "../../../../src/components/rootContainer/mainView/RegistrationView";
 import { Username } from "../../../../src/components/rootContainer/mainView/registrationView/Username";
+import { usernameChanged } from "../../../registration/ActionFunctions";
 import { Password } from "../../../../src/components/rootContainer/mainView/registrationView/Password";
+import { passwordChanged } from "../../../registration/ActionFunctions";
 import { PasswordRepetition } from "../../../../src/components/rootContainer/mainView/registrationView/PasswordRepetition";
+import { passwordRepetitionChanged } from "../../../registration/ActionFunctions";
 import { Email } from "../../../../src/components/rootContainer/mainView/registrationView/Email";
+import { emailChanged } from "../../../registration/ActionFunctions";
 import { ButtonsContainer } from "./registrationView/ButtonsContainer";
 
 
 export const RegistrationViewContainer = ( props ) => {
 	
-	return <RegistrationView {...props}>
-		<Username {...props.username }   />
-		<Password {...props.password }   />
-		<PasswordRepetition {...props.passwordRepetition }   />
-		<Email {...props.email }   />
-		<ButtonsContainer {...props.buttons }   />
+	return <RegistrationView {...props} >
+		<Username {...props.username }   onChange={usernameChanged}  />
+		<Password {...props.password }   onChange={passwordChanged}  />
+		<PasswordRepetition {...props.passwordRepetition }   onChange={passwordRepetitionChanged}  />
+		<Email {...props.email }   onChange={emailChanged}  />
+		<ButtonsContainer {...props.buttons }    />
 	</RegistrationView> 
 }
 

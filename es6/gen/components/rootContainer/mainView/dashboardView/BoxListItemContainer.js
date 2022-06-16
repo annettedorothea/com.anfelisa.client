@@ -8,11 +8,31 @@
 import React from "react";
 
 import { BoxListItem } from "../../../../../src/components/rootContainer/mainView/dashboardView/BoxListItem";
+import { Edit } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/Edit";
+import { routeToAuthorView } from "../../../../common/ActionFunctions";
+import { Settings } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/Settings";
+import { routeToBoxSettings } from "../../../../common/ActionFunctions";
+import { Archive } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/Archive";
+import { archiveBox } from "../../../../box/ActionFunctions";
+import { Delete } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/Delete";
+import { deleteBoxClick } from "../../../../box/ActionFunctions";
+import { QueryCards } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/QueryCards";
+import { routeToQueryCards } from "../../../../common/ActionFunctions";
+import { ActiveCards } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/ActiveCards";
+import { routeToActiveCards } from "../../../../common/ActionFunctions";
+import { boxClick } from "../../../../box/ActionFunctions";
 
 
 export const BoxListItemContainer = ( props ) => {
 	
-	return <BoxListItem {...props} /> 
+	return <BoxListItem {...props} onClick={boxClick} >
+		<Edit {...props.edit }  categoryId={props.categoryId} reverse={props.reverse}  onClick={routeToAuthorView}  />
+		<Settings {...props.settings }  boxId={props.boxId}  onClick={routeToBoxSettings}  />
+		<Archive {...props.archive }  boxId={props.boxId} archived={props.archived}  onClick={archiveBox}  />
+		<Delete {...props.delete }  boxId={props.boxId} deletable={props.deletable}  onClick={deleteBoxClick}  />
+		<QueryCards {...props.queryCards }  boxId={props.boxId}  onClick={routeToQueryCards}  />
+		<ActiveCards {...props.activeCards }  boxId={props.boxId}  onClick={routeToActiveCards}  />
+	</BoxListItem> 
 }
 
 

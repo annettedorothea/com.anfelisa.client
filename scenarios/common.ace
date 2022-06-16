@@ -7,7 +7,7 @@ Init
 	THEN expectedState 
 		loggedInUser common.rootContainer.loggedInUser should be undefined
 		language common.rootContainer.language should be "de"
-		messages common.rootContainer.messages should be []
+		messages common.rootContainer.messageContainer.messages should be []
 		username common.rootContainer.mainView.loginView.username.value should be ""
 		password common.rootContainer.mainView.loginView.password.value should be ""
 		saveInLocalStorage common.rootContainer.mainView.loginView.saveInLocalStorage.checked should be false
@@ -26,19 +26,19 @@ HideToast
 	GIVEN loginscenarios.LoginUnauthorized 
 	WHEN delayInMillis 5000
 	THEN verifications
-			errorWasHidden(common.rootContainer.messages)
+			errorWasHidden(common.rootContainer.messageContainer.messages)
 		
 DestroyToast
 	GIVEN loginscenarios.LoginUnauthorized 
 	WHEN delayInMillis 7000
 	THEN expectedState 
-		errorDestroyed common.rootContainer.messages should be []
+		errorDestroyed common.rootContainer.messageContainer.messages should be []
 		
 HideToastClick
 	GIVEN loginscenarios.LoginUnauthorized 
 	WHEN common.HideToast
 	THEN expectedState 
-		errorDestroyed common.rootContainer.messages should be []
+		errorDestroyed common.rootContainer.messageContainer.messages should be []
 		
 Logout
 	GIVEN loginscenarios.Login

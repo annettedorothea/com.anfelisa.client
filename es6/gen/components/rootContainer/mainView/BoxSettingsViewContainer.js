@@ -13,8 +13,8 @@ import { BoxSettingsContainer } from "./boxSettingsView/BoxSettingsContainer";
 
 export const BoxSettingsViewContainer = ( props ) => {
 	
-	return <BoxSettingsView {...props}>
-		<BoxSettingsContainer {...props.boxSettings }  boxId={props.boxId}  />
+	return <BoxSettingsView {...props} >
+		<BoxSettingsContainer {...props.boxSettings }  boxId={props.boxId}   />
 	</BoxSettingsView> 
 }
 

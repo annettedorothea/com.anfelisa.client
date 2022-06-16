@@ -7,6 +7,7 @@
 
 	import SynchronousCommand from "../../ace/SynchronousCommand";
 	import Event from "../../ace/Event";
+	import ValidatePasswordAction from "../../../src/password/actions/ValidatePasswordAction";
 	import * as AppUtils from "../../../src/AppUtils";
 	import * as AppState from "../../../src/AppState";
 	
@@ -17,7 +18,7 @@
 	
 	    initCommandData(data) {
 	        data.password = AppState.get(
-	        	["rootContainer", "mainView", "resetPasswordView", "password"]
+	        	["rootContainer", "mainView", "resetPasswordView", "password", "value"]
 	        )
 	        ;
 	        data.outcomes = [];
@@ -32,6 +33,13 @@
 			const actionsToBeTriggered = [];
 			if (data.outcomes.includes("ok")) {
 				events.push(new Event('password.PasswordRepetitionChangedOkEvent'));
+				actionsToBeTriggered.push(
+					{
+						action: new ValidatePasswordAction(), 
+						data: {
+						}
+					}
+				);
 			}
 			
 			this.publish(events, data);

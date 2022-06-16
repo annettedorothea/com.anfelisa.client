@@ -46,7 +46,7 @@ describe("loginscenarios.LoginUnauthorized", function () {
 		appStates.loggedInUserIsNotSet = appState;
 		appStates.usernameInLocalStorageWasNotSet = appState;
 		
-		verifications.errorMessageShown = await Verifications.errorMessageShown(appState.rootContainer.messages);
+		verifications.errorMessageShown = await Verifications.errorMessageShown(appState.rootContainer.messageContainer.messages);
 		
     });
 

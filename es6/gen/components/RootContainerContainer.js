@@ -13,7 +13,7 @@ import { SpinnerContainer } from "./rootContainer/SpinnerContainer";
 import { SaveBugDialogContainer } from "./rootContainer/SaveBugDialogContainer";
 import { VersionMismatchDialogContainer } from "./rootContainer/VersionMismatchDialogContainer";
 import { VersionMismatchErrorDialogContainer } from "./rootContainer/VersionMismatchErrorDialogContainer";
-import { MessagesItemContainer } from "./rootContainer/MessagesItemContainer";
+import { MessageContainerContainer } from "./rootContainer/MessageContainerContainer";
 import { MainViewContainer } from "./rootContainer/MainViewContainer";
 import { FooterContainer } from "./rootContainer/FooterContainer";
 import * as AppState from "../../src/AppState";
@@ -29,15 +29,15 @@ export const RootContainerContainer = () => {
 		return null;
 	}
 	
-	return <RootContainer {...props}>
-		<LoggedInUserContainer {...props.loggedInUser }  token={props.token}  />
-		<SpinnerContainer {...props.spinner }   />
-		<SaveBugDialogContainer {...props.saveBugDialog }   />
-		<VersionMismatchDialogContainer {...props.versionMismatchDialog }   />
-		<VersionMismatchErrorDialogContainer {...props.versionMismatchErrorDialog }   />
-		{ props.messages ? props.messages.map(i => <MessagesItemContainer {...i} key={i.id}   />) : [] }
-		<MainViewContainer {...props.mainView }   />
-		<FooterContainer {...props.footer }  loggedInUser={props.loggedInUser}  />
+	return <RootContainer {...props} >
+		<LoggedInUserContainer {...props.loggedInUser }  token={props.token}   />
+		<SpinnerContainer {...props.spinner }    />
+		<SaveBugDialogContainer {...props.saveBugDialog }    />
+		<VersionMismatchDialogContainer {...props.versionMismatchDialog }    />
+		<VersionMismatchErrorDialogContainer {...props.versionMismatchErrorDialog }    />
+		<MessageContainerContainer {...props.messageContainer }    />
+		<MainViewContainer {...props.mainView }    />
+		<FooterContainer {...props.footer }  loggedInUser={props.loggedInUser}   />
 	</RootContainer> 
 }
 

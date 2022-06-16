@@ -3,17 +3,16 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 
 
 export const DashboardView = (props) => {
-	return <>
-		{props.children}
-	</> 
+    return <div id="dashboard">
+        <div className="bottomMargin">
+            {props.children}
+        </div>
+    </div>
 }
-
 
 
 /******* S.D.G. *******/

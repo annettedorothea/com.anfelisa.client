@@ -8,11 +8,15 @@
 module.exports = {
 	usernameForgotPasswordChanged : "password_usernameForgotPasswordChanged",
 	
+	validateUsername : "password_validateUsername",
+	
 	forgotPassword : "password_forgotPassword",
 	
 	passwordChanged : "password_passwordChanged",
 	
 	passwordRepetitionChanged : "password_passwordRepetitionChanged",
+	
+	validatePassword : "password_validatePassword",
 	
 	resetPassword : "password_resetPassword"
 	

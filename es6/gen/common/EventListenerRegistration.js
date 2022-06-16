@@ -20,7 +20,7 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.InitOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "messages"]
+					["rootContainer", "messageContainer", "messages"]
 				)
 			});
 		ACEController.registerListener('common.InitUserEvent', (data) => {
@@ -131,6 +131,66 @@ export default class EventListenerRegistrationCommon {
 					["rootContainer", "hash"]
 				)
 			});
+		ACEController.registerListener('common.RouteToHomeOkEvent', (data) => {
+				AppState.setLocation(
+					data, 
+					["rootContainer", "hash"]
+				)
+			});
+		ACEController.registerListener('common.RouteToDashboardOkEvent', (data) => {
+				AppState.setLocation(
+					data, 
+					["rootContainer", "hash"]
+				)
+			});
+		ACEController.registerListener('common.RouteToQueryCardsOkEvent', (data) => {
+				AppState.setLocation(
+					data, 
+					["rootContainer", "hash"]
+				)
+			});
+		ACEController.registerListener('common.RouteToAuthorViewOkEvent', (data) => {
+				AppState.setLocation(
+					data, 
+					["rootContainer", "hash"]
+				)
+			});
+		ACEController.registerListener('common.RouteToBoxSettingsOkEvent', (data) => {
+				AppState.setLocation(
+					data, 
+					["rootContainer", "hash"]
+				)
+			});
+		ACEController.registerListener('common.RouteToActiveCardsOkEvent', (data) => {
+				AppState.setLocation(
+					data, 
+					["rootContainer", "hash"]
+				)
+			});
+		ACEController.registerListener('common.RouteToForgotPasswordOkEvent', (data) => {
+				AppState.setLocation(
+					data, 
+					["rootContainer", "hash"]
+				)
+			});
+		ACEController.registerListener('common.RouteToPrivacyPolicyOkEvent', (data) => {
+				AppState.setLocation(
+					data, 
+					["rootContainer", "hash"]
+				)
+			});
+		ACEController.registerListener('common.RouteToRegistrationOkEvent', (data) => {
+				AppState.setLocation(
+					data, 
+					["rootContainer", "hash"]
+				)
+			});
+		ACEController.registerListener('common.RouteToProfileViewOkEvent', (data) => {
+				AppState.setLocation(
+					data, 
+					["rootContainer", "hash"]
+				)
+			});
 		ACEController.registerListener('common.LogoutOkEvent', (data) => {
 				AppState.set(
 					data, 
@@ -147,31 +207,31 @@ export default class EventListenerRegistrationCommon {
 		ACEController.registerListener('common.DisplayToastOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "messages"]
+					["rootContainer", "messageContainer", "messages"]
 				)
 			});
 		ACEController.registerListener('common.DisplayErrorToastOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "messages"]
+					["rootContainer", "messageContainer", "messages"]
 				)
 			});
 		ACEController.registerListener('common.DisplayWarningToastOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "messages"]
+					["rootContainer", "messageContainer", "messages"]
 				)
 			});
 		ACEController.registerListener('common.HideToastOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "messages"]
+					["rootContainer", "messageContainer", "messages"]
 				)
 			});
 		ACEController.registerListener('common.DestroyToastOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "messages"]
+					["rootContainer", "messageContainer", "messages"]
 				)
 			});
 		ACEController.registerListener('common.DisplaySaveBugDialogOkEvent', (data) => {

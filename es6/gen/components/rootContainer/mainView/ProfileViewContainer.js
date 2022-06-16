@@ -12,7 +12,7 @@ import { ProfileView } from "../../../../src/components/rootContainer/mainView/P
 
 export const ProfileViewContainer = ( props ) => {
 	
-	return <ProfileView {...props} /> 
+	return <ProfileView {...props}  /> 
 }
 
 

@@ -23,7 +23,7 @@ export default class AbstractForgotPasswordCommand extends AsynchronousCommand {
         )
         ;
         data.username = AppState.get(
-        	["rootContainer", "mainView", "forgotPasswordView", "username"]
+        	["rootContainer", "mainView", "forgotPasswordView", "username", "value"]
         )
         ;
         data.outcomes = [];

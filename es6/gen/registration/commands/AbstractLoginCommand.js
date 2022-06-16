@@ -22,7 +22,7 @@ export default class AbstractLoginCommand extends AsynchronousCommand {
         )
         ;
         data.password = AppState.get(
-        	["rootContainer", "mainView", "registrationView", "password"]
+        	["rootContainer", "mainView", "registrationView", "password", "value"]
         )
         ;
         data.outcomes = [];

@@ -16,9 +16,18 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             data.mainView = {
                 resetPasswordView: {
                     token: hashes[1],
-                    passwordMismatch: false,
-                    password: "",
-                    passwordRepetition: ""
+                    password: {
+                        value: ""
+                    },
+                    passwordRepetition: {
+                        value: "",
+                        passwordMismatch: false
+                    },
+                    buttons: {
+                        resetPassword: {
+                            disabled: true
+                        }
+                    }
                 }
             };
             this.addResetPasswordOutcome(data);
@@ -120,6 +129,11 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
                     passwordRepetition: {
                         value: "",
                         passwordMismatch: false,
+                    },
+                    buttons: {
+                        register: {
+                            disabled: true
+                        }
                     }
                 }
             };
@@ -127,7 +141,14 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
         } else if (data.hash === "#forgotpassword" && !this.isUserLoggedIn(data)) {
             data.mainView = {
                 forgotPasswordView: {
-                    username: ""
+                    username: {
+                        value: ""
+                    },
+                    buttons: {
+                        forgotPassword: {
+                            disabled: true
+                        }
+                    }
                 }
             };
             this.addForgotPasswordOutcome(data);

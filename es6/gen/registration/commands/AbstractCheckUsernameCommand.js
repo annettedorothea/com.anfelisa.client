@@ -9,6 +9,7 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
+import ValidateAction from "../../../src/registration/actions/ValidateAction";
 
 export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
     constructor() {
@@ -53,9 +54,23 @@ export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
 			const actionsToBeTriggered = [];
 			if (data.outcomes.includes("empty")) {
 				events.push(new Event('registration.CheckUsernameEmptyEvent'));
+				actionsToBeTriggered.push(
+					{
+						action: new ValidateAction(), 
+						data: {
+						}
+					}
+				);
 			}
 			if (data.outcomes.includes("ok")) {
 				events.push(new Event('registration.CheckUsernameOkEvent'));
+				actionsToBeTriggered.push(
+					{
+						action: new ValidateAction(), 
+						data: {
+						}
+					}
+				);
 			}
 			
 			this.publish(events, data).then(() => {

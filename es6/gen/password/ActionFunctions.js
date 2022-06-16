@@ -6,25 +6,35 @@
 
 
 import UsernameForgotPasswordChangedAction from "../../src/password/actions/UsernameForgotPasswordChangedAction";
+import ValidateUsernameAction from "../../src/password/actions/ValidateUsernameAction";
 import ForgotPasswordAction from "../../src/password/actions/ForgotPasswordAction";
 import PasswordChangedAction from "../../src/password/actions/PasswordChangedAction";
 import PasswordRepetitionChangedAction from "../../src/password/actions/PasswordRepetitionChangedAction";
+import ValidatePasswordAction from "../../src/password/actions/ValidatePasswordAction";
 import ResetPasswordAction from "../../src/password/actions/ResetPasswordAction";
 
-export function usernameForgotPasswordChanged(username) {
-    return new UsernameForgotPasswordChangedAction().apply({username});
+export function usernameForgotPasswordChanged(value) {
+    return new UsernameForgotPasswordChangedAction().apply({value});
+}
+
+export function validateUsername() {
+    return new ValidateUsernameAction().apply({});
 }
 
 export function forgotPassword() {
     return new ForgotPasswordAction().apply({});
 }
 
-export function passwordChanged(password) {
-    return new PasswordChangedAction().apply({password});
+export function passwordChanged(value) {
+    return new PasswordChangedAction().apply({value});
 }
 
-export function passwordRepetitionChanged(passwordRepetition) {
-    return new PasswordRepetitionChangedAction().apply({passwordRepetition});
+export function passwordRepetitionChanged(value) {
+    return new PasswordRepetitionChangedAction().apply({value});
+}
+
+export function validatePassword() {
+    return new ValidatePasswordAction().apply({});
 }
 
 export function resetPassword() {

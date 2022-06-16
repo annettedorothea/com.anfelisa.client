@@ -30,6 +30,8 @@ module.exports = {
 	
 	filterActiveCardList : "box_filterActiveCardList",
 	
+	boxClick : "box_boxClick",
+	
 	deleteBoxClick : "box_deleteBoxClick",
 	
 	cancelDeleteBox : "box_cancelDeleteBox",

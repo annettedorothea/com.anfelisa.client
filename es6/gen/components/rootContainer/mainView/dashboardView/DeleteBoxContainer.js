@@ -12,7 +12,7 @@ import { DeleteBox } from "../../../../../src/components/rootContainer/mainView/
 
 export const DeleteBoxContainer = ( props ) => {
 	
-	return <DeleteBox {...props} /> 
+	return <DeleteBox {...props}  /> 
 }
 
 

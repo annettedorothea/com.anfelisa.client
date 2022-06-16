@@ -12,7 +12,7 @@ import { InviteUserDialog } from "../../../../../../src/components/rootContainer
 
 export const InviteUserDialogContainer = ( props ) => {
 	
-	return <InviteUserDialog {...props} /> 
+	return <InviteUserDialog {...props}  /> 
 }
 
 

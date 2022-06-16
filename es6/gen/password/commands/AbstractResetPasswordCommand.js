@@ -24,7 +24,7 @@ export default class AbstractResetPasswordCommand extends AsynchronousCommand {
         )
         ;
         data.password = AppState.get(
-        	["rootContainer", "mainView", "resetPasswordView", "password"]
+        	["rootContainer", "mainView", "resetPasswordView", "password", "value"]
         )
         ;
         data.outcomes = [];

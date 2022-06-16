@@ -17,6 +17,7 @@ import SortSelectedCardsOutAction from "../../src/box/actions/SortSelectedCardsO
 import UpdateCardPriorityAction from "../../src/box/actions/UpdateCardPriorityAction";
 import FilterActiveCardListWithLastQualityChangedAction from "../../src/box/actions/FilterActiveCardListWithLastQualityChangedAction";
 import FilterActiveCardListAction from "../../src/box/actions/FilterActiveCardListAction";
+import BoxClickAction from "../../src/box/actions/BoxClickAction";
 import DeleteBoxClickAction from "../../src/box/actions/DeleteBoxClickAction";
 import CancelDeleteBoxAction from "../../src/box/actions/CancelDeleteBoxAction";
 import DeleteBoxAction from "../../src/box/actions/DeleteBoxAction";
@@ -85,6 +86,10 @@ export function filterActiveCardListWithLastQualityChanged(lastQualityFilter) {
 
 export function filterActiveCardList() {
     return new FilterActiveCardListAction().apply({});
+}
+
+export function boxClick(boxId, openTodaysCards) {
+    return new BoxClickAction().apply({boxId, openTodaysCards});
 }
 
 export function deleteBoxClick(boxId) {

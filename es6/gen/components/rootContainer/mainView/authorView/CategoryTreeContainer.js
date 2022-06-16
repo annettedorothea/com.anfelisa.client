@@ -17,12 +17,12 @@ import { DeleteCategoryDialogContainer } from "./categoryTree/DeleteCategoryDial
 
 export const CategoryTreeContainer = ( props ) => {
 	
-	return <CategoryTree {...props}>
-		<RootCategoryContainer {...props.rootCategory }   />
-		<CategoryDialogContainer {...props.categoryDialog }   />
-		<InviteUserDialogContainer {...props.inviteUserDialog }   />
-		<InviteUserEditableDialogContainer {...props.inviteUserEditableDialog }   />
-		<DeleteCategoryDialogContainer {...props.deleteCategoryDialog }   />
+	return <CategoryTree {...props} >
+		<RootCategoryContainer {...props.rootCategory }    />
+		<CategoryDialogContainer {...props.categoryDialog }    />
+		<InviteUserDialogContainer {...props.inviteUserDialog }    />
+		<InviteUserEditableDialogContainer {...props.inviteUserEditableDialog }    />
+		<DeleteCategoryDialogContainer {...props.deleteCategoryDialog }    />
 	</CategoryTree> 
 }
 

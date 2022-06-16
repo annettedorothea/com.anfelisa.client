@@ -14,6 +14,26 @@ module.exports = {
 	
 	route : "common_route",
 	
+	routeToHome : "common_routeToHome",
+	
+	routeToDashboard : "common_routeToDashboard",
+	
+	routeToQueryCards : "common_routeToQueryCards",
+	
+	routeToAuthorView : "common_routeToAuthorView",
+	
+	routeToBoxSettings : "common_routeToBoxSettings",
+	
+	routeToActiveCards : "common_routeToActiveCards",
+	
+	routeToForgotPassword : "common_routeToForgotPassword",
+	
+	routeToPrivacyPolicy : "common_routeToPrivacyPolicy",
+	
+	routeToRegistration : "common_routeToRegistration",
+	
+	routeToProfileView : "common_routeToProfileView",
+	
 	logout : "common_logout",
 	
 	displayToast : "common_displayToast",

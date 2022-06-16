@@ -12,7 +12,7 @@ import { RootCategory } from "../../../../../../src/components/rootContainer/mai
 
 export const RootCategoryContainer = ( props ) => {
 	
-	return <RootCategory {...props} /> 
+	return <RootCategory {...props}  /> 
 }
 
 

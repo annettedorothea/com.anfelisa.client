@@ -12,7 +12,7 @@ import { DeleteCategoryDialog } from "../../../../../../src/components/rootConta
 
 export const DeleteCategoryDialogContainer = ( props ) => {
 	
-	return <DeleteCategoryDialog {...props} /> 
+	return <DeleteCategoryDialog {...props}  /> 
 }
 
 

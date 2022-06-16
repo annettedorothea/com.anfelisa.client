@@ -12,7 +12,7 @@ import { PrivacyPolicyView } from "../../../../src/components/rootContainer/main
 
 export const PrivacyPolicyViewContainer = ( props ) => {
 	
-	return <PrivacyPolicyView {...props} /> 
+	return <PrivacyPolicyView {...props}  /> 
 }
 
 

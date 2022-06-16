@@ -3,20 +3,19 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
+import {translate} from "../../../AppUtils";
+import {Texts} from "../../../app/Texts";
 
 
 export const ResetPasswordView = (props) => {
-	return <>
-		<div>token: {props.token !== null && props.token !== undefined ? props.token.toString() : ""}</div>
-		<div>password: {props.password !== null && props.password !== undefined ? props.password.toString() : ""}</div>
-		<div>passwordRepetition: {props.passwordRepetition !== null && props.passwordRepetition !== undefined ? props.passwordRepetition.toString() : ""}</div>
-		<div>passwordMismatch: {props.passwordMismatch !== null && props.passwordMismatch !== undefined ? props.passwordMismatch.toString() : ""}</div>
-	</> 
+    return <div className="center">
+        <div className="form">
+            <h1>{translate(Texts.resetPassword.title)}</h1>
+            {props.children}
+        </div>
+    </div>
 }
-
 
 
 /******* S.D.G. *******/

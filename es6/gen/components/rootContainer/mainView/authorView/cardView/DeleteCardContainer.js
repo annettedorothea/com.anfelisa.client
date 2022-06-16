@@ -12,7 +12,7 @@ import { DeleteCard } from "../../../../../../src/components/rootContainer/mainV
 
 export const DeleteCardContainer = ( props ) => {
 	
-	return <DeleteCard {...props} /> 
+	return <DeleteCard {...props}  /> 
 }
 
 

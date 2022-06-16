@@ -43,7 +43,7 @@ describe("commonscenarios.Init", function () {
 		expect(appStates.language.rootContainer.language, "language").toEqual(`de`)
 	});
 	it("messages", async () => {
-		expect(appStates.messages.rootContainer.messages, "messages").toEqual([
+		expect(appStates.messages.rootContainer.messageContainer.messages, "messages").toEqual([
 		]
 		)
 	});

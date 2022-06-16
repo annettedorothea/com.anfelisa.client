@@ -12,7 +12,7 @@ import { SaveBugDialog } from "../../../src/components/rootContainer/SaveBugDial
 
 export const SaveBugDialogContainer = ( props ) => {
 	
-	return <SaveBugDialog {...props} /> 
+	return <SaveBugDialog {...props}  /> 
 }
 
 

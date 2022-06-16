@@ -12,7 +12,7 @@ import { NextCard } from "../../../../../src/components/rootContainer/mainView/q
 
 export const NextCardContainer = ( props ) => {
 	
-	return <NextCard {...props} /> 
+	return <NextCard {...props}  /> 
 }
 
 

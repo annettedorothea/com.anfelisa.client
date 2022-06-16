@@ -77,4 +77,4 @@ LoginUnauthorized
 			loggedInUserIsNotSet common.rootContainer.loggedInUser should be null
 			usernameInLocalStorageWasNotSet common.rootContainer.token should be undefined
 		verifications
-			errorMessageShown(common.rootContainer.messages)
+			errorMessageShown(common.rootContainer.messageContainer.messages)

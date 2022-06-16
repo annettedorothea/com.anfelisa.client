@@ -10,6 +10,7 @@ import UsernameChangedAction from "../../src/registration/actions/UsernameChange
 import EmailChangedAction from "../../src/registration/actions/EmailChangedAction";
 import PasswordChangedAction from "../../src/registration/actions/PasswordChangedAction";
 import PasswordRepetitionChangedAction from "../../src/registration/actions/PasswordRepetitionChangedAction";
+import ValidateAction from "../../src/registration/actions/ValidateAction";
 import RegisterUserAction from "../../src/registration/actions/RegisterUserAction";
 import LoginAction from "../../src/registration/actions/LoginAction";
 import ConfirmEmailAction from "../../src/registration/actions/ConfirmEmailAction";
@@ -32,6 +33,10 @@ export function passwordChanged(value) {
 
 export function passwordRepetitionChanged(value) {
     return new PasswordRepetitionChangedAction().apply({value});
+}
+
+export function validate() {
+    return new ValidateAction().apply({});
 }
 
 export function registerUser() {
