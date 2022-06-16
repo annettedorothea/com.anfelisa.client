@@ -4,38 +4,40 @@ registration
 
 ACE 
 CheckUsername
-	fromAppState (common.rootContainer.mainView.registrationView.username)
+	fromAppState (common.rootContainer.mainView.registrationView.username.value as username)
 	call com.anfelisa.user.UsernameAvailable
-	loadingFlag common.rootContainer.mainView.registrationView.displayUsernameSpinner 
-	on empty ( set common.rootContainer.mainView.registrationView.available )
-	on ok ( set common.rootContainer.mainView.registrationView.available )
+	loadingFlag common.rootContainer.mainView.registrationView.username.displayUsernameSpinner 
+	on empty ( set common.rootContainer.mainView.registrationView.username.available )
+	on ok ( set common.rootContainer.mainView.registrationView.username.available )
 
-UsernameChanged ( username )
-	on ok (set common.rootContainer.mainView.registrationView.username) triggers (CheckUsername)
+UsernameChanged ( value )
+	on ok (set common.rootContainer.mainView.registrationView.username.value) triggers (CheckUsername)
 
-EmailChanged ( email )
-	on ok (set common.rootContainer.mainView.registrationView.emailInvalid set common.rootContainer.mainView.registrationView.email)
-
-PasswordChanged ( password  )
-	fromAppState (common.rootContainer.mainView.registrationView.passwordRepetition)
-	on ok ( 
-		set common.rootContainer.mainView.registrationView.password
-		set common.rootContainer.mainView.registrationView.passwordMismatch
+EmailChanged ( value )
+	on ok (
+		set common.rootContainer.mainView.registrationView.email.emailInvalid 
+		set common.rootContainer.mainView.registrationView.email.value
 	)
 
-PasswordRepetitionChanged ( passwordRepetition  )
-	fromAppState (common.rootContainer.mainView.registrationView.password)
+PasswordChanged ( value  )
+	fromAppState (common.rootContainer.mainView.registrationView.passwordRepetition.value as passwordRepetition)
 	on ok ( 
-		set common.rootContainer.mainView.registrationView.passwordRepetition
-		set common.rootContainer.mainView.registrationView.passwordMismatch
+		set common.rootContainer.mainView.registrationView.password.value
+	)
+
+PasswordRepetitionChanged ( value  )
+	fromAppState (common.rootContainer.mainView.registrationView.password.value as password)
+	on ok ( 
+		set common.rootContainer.mainView.registrationView.passwordRepetition.value
+		set common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch
 	)
 
 RegisterUser
 	fromAppState ( 
-		common.rootContainer.mainView.registrationView.email, 
+		common.rootContainer.mainView.registrationView.email.value as email, 
 		common.rootContainer.language, 
-		common.rootContainer.mainView.registrationView.username,
-		common.rootContainer.mainView.registrationView.password
+		common.rootContainer.mainView.registrationView.username.value as username,
+		common.rootContainer.mainView.registrationView.password.value as password
 	)
 	call com.anfelisa.user.RegisterUser
 	loadingFlag common.rootContainer.spinner.display 
@@ -44,7 +46,7 @@ RegisterUser
 
 	Login 
 		fromAppState ( 
-			common.rootContainer.mainView.registrationView.username,
+			common.rootContainer.mainView.registrationView.username.value as username,
 			common.rootContainer.mainView.registrationView.password
 		)
 	 	call com.anfelisa.user.GetToken

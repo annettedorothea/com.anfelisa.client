@@ -3,6 +3,7 @@ HttpClient common
 
 
 
+
 ACE 
 Init 
 	fromAppState (rootContainer.token )
@@ -141,7 +142,12 @@ CancelSaveBugDialog
 	on ok (set rootContainer.saveBugDialog.display)
 
 HideSaveBugDialog
-	on ok (set rootContainer.saveBugDialog.display) triggers (DisplayToast)
+	on ok (set rootContainer.saveBugDialog.display) triggers (DisplayToast )
+	
+
+
+
+
 	
 
 
@@ -174,24 +180,76 @@ ui JSX rootContainer {
 		textKey
 		args
 	}
-	mainView {
+	group mainView {
 		privacyPolicyView {
 			display
 		}
 		loginView {
-			username
-			password
-			saveInLocalStorage
+			username TextInput {
+				value
+				actions {
+					"onChange" login.UsernameChanged
+				}
+			}
+			password PasswordInput {
+				value
+				actions {
+					"onChange" login.PasswordChanged
+				}
+			}
+			saveInLocalStorage CheckBox {
+				checked
+				actions {
+					"onChange" login.ToggleSaveInLocalStorage
+				}			
+			}
+			login Button {
+				actions {
+					"onClick" login.Login
+				}
+			}
 		}
 		registrationView {
-			displayUsernameSpinner
-	        available
-	        username
-			password
-			passwordRepetition
-	        passwordMismatch
-	        email
+	        username TextInput {
+	        	value
+	        	displayUsernameSpinner
+	        	available
+	        	actions {
+	        		"onChange" registration.UsernameChanged
+	        	}
+	        }
+			password PasswordInput {
+				value
+				actions {
+	        		"onChange" registration.PasswordChanged
+	        	}
+			}
+			passwordRepetition PasswordInput {
+				value
+				passwordMismatch
+				actions {
+	        		"onChange" registration.PasswordRepetitionChanged
+	        	}
+			}
+	        email TextInput {
+	        	value
 	        emailInvalid
+	        	actions {
+	        		"onChange" registration.EmailChanged
+	        	}
+	        }
+	        buttons {
+				register Button {
+					actions {
+						"onClick" registration.RegisterUser
+					}
+				}
+				cancel Button {
+					actions {
+						"onClick" Route
+					}
+				}
+			}
 		}
 		forgotPasswordView {
 			username
@@ -424,7 +482,11 @@ ui JSX rootContainer {
 	        }
         }
 	}
+	footer {
+		loggedInUser
+	}
 }
+
 
 
 

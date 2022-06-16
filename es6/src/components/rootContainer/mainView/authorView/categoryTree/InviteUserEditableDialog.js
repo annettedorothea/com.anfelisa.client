@@ -3,40 +3,19 @@
  ********************************************************************************/
 
 
+
+
 import React from "react";
-import {cancelInviteUser, inviteUser, inviteUserChangeEditable} from "../../../../../../gen/category/ActionFunctions";
-import {Texts} from "../../../../../app/Texts";
-import {translate} from "../../../../../AppUtils";
 
 
 export const InviteUserEditableDialog = (props) => {
-    if (props.display !== true) {
-        return null;
-    }
-    return <div className="modal">
-        <div className="modalContent form">
-            <h2>{translate(Texts.categoryTree.inviteUser.title)}</h2>
-            <div className="line">
-                {props.invitedUsername}
-            </div>
-            <div className="line">
-                <input
-                    type="checkbox"
-                    onChange={inviteUserChangeEditable}
-                    checked={props.editable}
-                    id="editable"
-                />
-                <label
-                    htmlFor="editable"
-                >
-                    {translate(Texts.categoryTree.inviteUser.editable)}
-                </label>
-            </div>
-            <button onClick={inviteUser}>{translate(Texts.categoryTree.inviteUser.invite)}</button>
-            <button onClick={cancelInviteUser}>{translate(Texts.categoryTree.inviteUser.cancel)}</button>
-        </div>
-    </div>
+	return <>
+		<div>invitedUsername: {props.invitedUsername !== null && props.invitedUsername !== undefined ? props.invitedUsername.toString() : ""}</div>
+		<div>editable: {props.editable !== null && props.editable !== undefined ? props.editable.toString() : ""}</div>
+		<div>display: {props.display !== null && props.display !== undefined ? props.display.toString() : ""}</div>
+	</> 
 }
+
 
 
 /******* S.D.G. *******/

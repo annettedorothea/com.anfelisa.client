@@ -90,23 +90,37 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
         } else if (data.hash === "" && !this.isUserLoggedIn(data)) {
             data.mainView = {
                 loginView: {
-                    username: "",
-                    password: "",
-                    saveInLocalStorage: false
+                    username: {
+                        value: ""
+                    },
+                    password: {
+                        value: ""
+                    },
+                    saveInLocalStorage: {
+                        checked: false
+                    }
                 }
             };
             this.addLoginOutcome(data);
         } else if (data.hash === "#registration" && !this.isUserLoggedIn(data)) {
             data.mainView = {
                 registrationView: {
-                    displayUsernameSpinner: false,
-                    usernameAvailable: undefined,
-                    username: "",
-                    email: "",
-                    emailInvalid: false,
-                    passwordMismatch: false,
-                    password: "",
-                    passwordRepetition: ""
+                    username: {
+                        value: "",
+                        displayUsernameSpinner: false,
+                        usernameAvailable: undefined,
+                    },
+                    email: {
+                        value: "",
+                        emailInvalid: false,
+                    },
+                    password: {
+                        value: ""
+                    },
+                    passwordRepetition: {
+                        value: "",
+                        passwordMismatch: false,
+                    }
                 }
             };
             this.addRegistrationOutcome(data);

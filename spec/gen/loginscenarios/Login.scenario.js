@@ -68,11 +68,11 @@ describe("loginscenarios.Login", function () {
     });
 
 	it("username", async () => {
-		expect(appStates.username.rootContainer.mainView.loginView.username, "username").toEqual(`username-${testId}`)
+		expect(appStates.username.rootContainer.mainView.loginView.username.value, "username").toEqual(`username-${testId}`)
 	});
 	
 	it("password", async () => {
-		expect(appStates.password.rootContainer.mainView.loginView.password, "password").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
+		expect(appStates.password.rootContainer.mainView.loginView.password.value, "password").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
 	});
 	
 	it("userLoggedIn", async () => {

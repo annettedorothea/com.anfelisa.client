@@ -30,6 +30,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import * as R from 'ramda'
 import {Texts} from "./app/Texts";
+import {RootContainerContainer} from "../gen/components/RootContainerContainer";
 
 export let settings;
 
@@ -198,14 +199,14 @@ export function displayUnexpectedError(error) {
     const currentVersion = settings.clientVersion;
     App.dumpAppState();
     dumpTimeline();
-    loadActualClientVersion().then((actualClientVersion) => {
+    /*loadActualClientVersion().then((actualClientVersion) => {
         if (actualClientVersion !== currentVersion) {
             displayVersionMismatchErrorDialog();
         } else {
             displayErrorToast(Texts.messages.unknownError, [error.textKey ? error.textKey : error]);
             displaySaveBugDialog();
         }
-    });
+    });*/
 }
 
 export function deepCopy(object) {
@@ -213,7 +214,7 @@ export function deepCopy(object) {
 }
 
 export function renderApp() {
-    let container = <RootContainer {...AppState.appState} />;
+    let container = <RootContainerContainer {...AppState.appState} />;
     ReactDOM.render(
         container,
         document.getElementById('root')

@@ -9,7 +9,7 @@ import AbstractPasswordRepetitionChangedCommand from "../../../gen/registration/
 
 export default class PasswordRepetitionChangedCommand extends AbstractPasswordRepetitionChangedCommand {
     execute(data) {
-        data.passwordMismatch = data.password !== data.passwordRepetition;
+        data.passwordMismatch = data.password !== data.value;
     	this.addOkOutcome(data);
     	return data;
     }

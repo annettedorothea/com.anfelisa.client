@@ -12,8 +12,8 @@ export function dumpAppState() {
 }
 
 AppUtils.initEventListeners();
-AppUtils.startApp();
 AppUtils.renderApp();
+AppUtils.startApp();
 
 
 

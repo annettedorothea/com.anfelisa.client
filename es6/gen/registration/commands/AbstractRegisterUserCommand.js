@@ -20,7 +20,7 @@ export default class AbstractRegisterUserCommand extends AsynchronousCommand {
     
     initCommandData(data) {
         data.email = AppState.get(
-        	["rootContainer", "mainView", "registrationView", "email"]
+        	["rootContainer", "mainView", "registrationView", "email", "value"]
         )
         ;
         data.language = AppState.get(
@@ -28,11 +28,11 @@ export default class AbstractRegisterUserCommand extends AsynchronousCommand {
         )
         ;
         data.username = AppState.get(
-        	["rootContainer", "mainView", "registrationView", "username"]
+        	["rootContainer", "mainView", "registrationView", "username", "value"]
         )
         ;
         data.password = AppState.get(
-        	["rootContainer", "mainView", "registrationView", "password"]
+        	["rootContainer", "mainView", "registrationView", "password", "value"]
         )
         ;
         data.outcomes = [];

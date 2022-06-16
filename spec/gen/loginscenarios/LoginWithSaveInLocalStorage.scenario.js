@@ -89,23 +89,23 @@ describe("loginscenarios.LoginWithSaveInLocalStorage", function () {
     });
 
 	it("username", async () => {
-		expect(appStates.username.rootContainer.mainView.loginView.username, "username").toEqual(`username-${testId}`)
+		expect(appStates.username.rootContainer.mainView.loginView.username.value, "username").toEqual(`username-${testId}`)
 	});
 	
 	it("password", async () => {
-		expect(appStates.password.rootContainer.mainView.loginView.password, "password").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
+		expect(appStates.password.rootContainer.mainView.loginView.password.value, "password").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
 	});
 	
 	it("saveInLocalStorageIsTrue1", async () => {
-		expect(appStates.saveInLocalStorageIsTrue1.rootContainer.mainView.loginView.saveInLocalStorage, "saveInLocalStorageIsTrue1").toEqual(true)
+		expect(appStates.saveInLocalStorageIsTrue1.rootContainer.mainView.loginView.saveInLocalStorage.checked, "saveInLocalStorageIsTrue1").toEqual(true)
 	});
 	
 	it("saveInLocalStorageIsFalse", async () => {
-		expect(appStates.saveInLocalStorageIsFalse.rootContainer.mainView.loginView.saveInLocalStorage, "saveInLocalStorageIsFalse").toEqual(false)
+		expect(appStates.saveInLocalStorageIsFalse.rootContainer.mainView.loginView.saveInLocalStorage.checked, "saveInLocalStorageIsFalse").toEqual(false)
 	});
 	
 	it("saveInLocalStorageIsTrue2", async () => {
-		expect(appStates.saveInLocalStorageIsTrue2.rootContainer.mainView.loginView.saveInLocalStorage, "saveInLocalStorageIsTrue2").toEqual(true)
+		expect(appStates.saveInLocalStorageIsTrue2.rootContainer.mainView.loginView.saveInLocalStorage.checked, "saveInLocalStorageIsTrue2").toEqual(true)
 	});
 	
 	it("userLoggedIn", async () => {

@@ -14,19 +14,19 @@ export default class EventListenerRegistrationLogin {
 		ACEController.registerListener('login.UsernameChangedOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "loginView", "username"]
+					["rootContainer", "mainView", "loginView", "username", "value"]
 				)
 			});
 		ACEController.registerListener('login.PasswordChangedOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "loginView", "password"]
+					["rootContainer", "mainView", "loginView", "password", "value"]
 				)
 			});
 		ACEController.registerListener('login.ToggleSaveInLocalStorageOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "loginView", "saveInLocalStorage"]
+					["rootContainer", "mainView", "loginView", "saveInLocalStorage", "checked"]
 				)
 			});
 		ACEController.registerListener('login.LoginSaveInLocalStorageEvent', (data) => {

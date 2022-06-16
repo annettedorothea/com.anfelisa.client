@@ -18,20 +18,20 @@ export function checkUsername() {
     return new CheckUsernameAction().apply({});
 }
 
-export function usernameChanged(username) {
-    return new UsernameChangedAction().apply({username});
+export function usernameChanged(value) {
+    return new UsernameChangedAction().apply({value});
 }
 
-export function emailChanged(email) {
-    return new EmailChangedAction().apply({email});
+export function emailChanged(value) {
+    return new EmailChangedAction().apply({value});
 }
 
-export function passwordChanged(password) {
-    return new PasswordChangedAction().apply({password});
+export function passwordChanged(value) {
+    return new PasswordChangedAction().apply({value});
 }
 
-export function passwordRepetitionChanged(passwordRepetition) {
-    return new PasswordRepetitionChangedAction().apply({passwordRepetition});
+export function passwordRepetitionChanged(value) {
+    return new PasswordRepetitionChangedAction().apply({value});
 }
 
 export function registerUser() {

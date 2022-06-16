@@ -3,21 +3,21 @@ HttpClient
 login
 
 ACE 
-	UsernameChanged ( username  )
-		on ok (set common.rootContainer.mainView.loginView.username)
+	UsernameChanged ( value  )
+		on ok (set common.rootContainer.mainView.loginView.username.value)
 	
-	PasswordChanged ( password )
-		on ok (set common.rootContainer.mainView.loginView.password)
+	PasswordChanged ( value )
+		on ok (set common.rootContainer.mainView.loginView.password.value)
 	
 	ToggleSaveInLocalStorage 
-		fromAppState ( common.rootContainer.mainView.loginView.saveInLocalStorage )
-		on ok (set common.rootContainer.mainView.loginView.saveInLocalStorage)
+		fromAppState ( common.rootContainer.mainView.loginView.saveInLocalStorage.checked )
+		on ok (set common.rootContainer.mainView.loginView.saveInLocalStorage.checked)
 	
 	Login 
 		fromAppState ( 
-			common.rootContainer.mainView.loginView.username,
-			common.rootContainer.mainView.loginView.password,
-			common.rootContainer.mainView.loginView.saveInLocalStorage
+			common.rootContainer.mainView.loginView.username.value as username,
+			common.rootContainer.mainView.loginView.password.value as password,
+			common.rootContainer.mainView.loginView.saveInLocalStorage.checked as saveInLocalStorage
 		)
 	 	call com.anfelisa.user.GetToken
 		loadingFlag common.rootContainer.spinner.display 

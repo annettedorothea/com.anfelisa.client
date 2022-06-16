@@ -6,79 +6,79 @@ RegisterUserValidations
 	GIVEN RegistrationHappyPath
 	WHEN common.Route (hash: "#registration")
 	AND 
-	WHEN registration.UsernameChanged(username: "username-${testId}") delayInMillis 200
+	WHEN registration.UsernameChanged(value: "username-${testId}") delayInMillis 200
 	THEN 
 		expectedState 
-			username1 common.rootContainer.mainView.registrationView.username should be "username-${testId}"
-			usernameNotAvailable1 common.rootContainer.mainView.registrationView.available should be false
+			username1 common.rootContainer.mainView.registrationView.username.value should be "username-${testId}"
+			usernameNotAvailable1 common.rootContainer.mainView.registrationView.username.available should be false
 		verifications
 			registerDisabled
 	AND
-	WHEN registration.PasswordChanged(password: "pas")
+	WHEN registration.PasswordChanged(value: "pas")
 	THEN 
 		expectedState 
-			password1 common.rootContainer.mainView.registrationView.password should be "cd0acfe085eeb0f874391fb9b8009bed"
-			passwordMismatch1 common.rootContainer.mainView.registrationView.passwordMismatch should be true
+			password1 common.rootContainer.mainView.registrationView.password.value should be "cd0acfe085eeb0f874391fb9b8009bed"
+			passwordMismatch1 common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be true
 		verifications
 			registerDisabled
 	AND
-	WHEN registration.PasswordRepetitionChanged(passwordRepetition: "password")
+	WHEN registration.PasswordRepetitionChanged(value: "password")
 	THEN 
 		expectedState 
-			password2 common.rootContainer.mainView.registrationView.password should be "cd0acfe085eeb0f874391fb9b8009bed"
+			password2 common.rootContainer.mainView.registrationView.password.value should be "cd0acfe085eeb0f874391fb9b8009bed"
 			passwordRepetition2 common.rootContainer.mainView.registrationView.passwordRepetition should be "5f4dcc3b5aa765d61d8327deb882cf99"
-			passwordMismatch2 common.rootContainer.mainView.registrationView.passwordMismatch should be true
+			passwordMismatch2 common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be true
 		verifications
 			registerDisabled
 	AND
-	WHEN registration.PasswordRepetitionChanged(passwordRepetition: "pas")
+	WHEN registration.PasswordRepetitionChanged(value: "pas")
 	THEN 
 		expectedState 
-			password3 common.rootContainer.mainView.registrationView.password should be "cd0acfe085eeb0f874391fb9b8009bed"
+			password3 common.rootContainer.mainView.registrationView.password.value should be "cd0acfe085eeb0f874391fb9b8009bed"
 			passwordRepetition3 common.rootContainer.mainView.registrationView.passwordRepetition should be "cd0acfe085eeb0f874391fb9b8009bed"
-			passwordMatch3 common.rootContainer.mainView.registrationView.passwordMismatch should be false
+			passwordMatch3 common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be false
 		verifications
 			registerDisabled
 	AND
-		WHEN registration.PasswordRepetitionChanged(passwordRepetition: "password")
+		WHEN registration.PasswordRepetitionChanged(value: "password")
 	THEN 
 		expectedState 
-			password4 common.rootContainer.mainView.registrationView.password should be "cd0acfe085eeb0f874391fb9b8009bed"
+			password4 common.rootContainer.mainView.registrationView.password.value should be "cd0acfe085eeb0f874391fb9b8009bed"
 			passwordRepetition4 common.rootContainer.mainView.registrationView.passwordRepetition should be "5f4dcc3b5aa765d61d8327deb882cf99"
-			passwordMismatch4 common.rootContainer.mainView.registrationView.passwordMismatch should be true
+			passwordMismatch4 common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be true
 		verifications
 			registerDisabled
 	AND
-	WHEN registration.PasswordChanged(password: "password")
+	WHEN registration.PasswordChanged(value: "password")
 	THEN 
 		expectedState 
-			password5 common.rootContainer.mainView.registrationView.password should be "5f4dcc3b5aa765d61d8327deb882cf99"
+			password5 common.rootContainer.mainView.registrationView.password.value should be "5f4dcc3b5aa765d61d8327deb882cf99"
 			passwordRepetition5 common.rootContainer.mainView.registrationView.passwordRepetition should be "5f4dcc3b5aa765d61d8327deb882cf99"
-			passwordMatch5 common.rootContainer.mainView.registrationView.passwordMismatch should be false
+			passwordMatch5 common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be false
 		verifications
 			registerDisabled
 	AND
-	WHEN registration.EmailChanged(email: "email")
+	WHEN registration.EmailChanged(value: "email")
 	THEN 
 		expectedState 
-			email common.rootContainer.mainView.registrationView.email should be "email"
-			emailInvalid common.rootContainer.mainView.registrationView.emailInvalid should be true
+			email common.rootContainer.mainView.registrationView.email.value should be "email"
+			emailInvalid common.rootContainer.mainView.registrationView.email.emailInvalid should be true
 		verifications
 			registerDisabled
 	AND	
-	WHEN registration.EmailChanged(email: "info@anfelisa.de")
+	WHEN registration.EmailChanged(value: "info@anfelisa.de")
 	THEN 
 		expectedState 
 			emailOk common.rootContainer.mainView.registrationView.email should be "info@anfelisa.de"
-			emailValid common.rootContainer.mainView.registrationView.emailInvalid should be false
+			emailValid common.rootContainer.mainView.registrationView.email.emailInvalid should be false
 		verifications
 			registerDisabled
 	AND 
-	WHEN registration.UsernameChanged(username: "other-${testId}") delayInMillis 200
+	WHEN registration.UsernameChanged(value: "other-${testId}") delayInMillis 200
 	THEN 
 		expectedState 
-			username common.rootContainer.mainView.registrationView.username should be "other-${testId}"
-			usernameAvailable common.rootContainer.mainView.registrationView.available should be true
+			username common.rootContainer.mainView.registrationView.username.value should be "other-${testId}"
+			usernameAvailable common.rootContainer.mainView.registrationView.username.available should be true
 		verifications
 			registerEnabled
 	
@@ -102,47 +102,47 @@ RegistrationHappyPath
 	WHEN common.Route (hash: "#registration")
 	THEN
 		expectedState 
-			displayUsernameSpinner common.rootContainer.mainView.registrationView.displayUsernameSpinner should be false
-			emailInvalid common.rootContainer.mainView.registrationView.emailInvalid should be false
-			passwordMismatch common.rootContainer.mainView.registrationView.emailInvalid should be false
+			displayUsernameSpinner common.rootContainer.mainView.registrationView.username.displayUsernameSpinner should be false
+			emailInvalid common.rootContainer.mainView.registrationView.email.emailInvalid should be false
 			initialEmail common.rootContainer.mainView.registrationView.email should be ""
-			initialUsername common.rootContainer.mainView.registrationView.username should be ""
-			initialPassword common.rootContainer.mainView.registrationView.password should be ""
-			initialPasswordRepetition common.rootContainer.mainView.registrationView.password should be ""
+			initialUsername common.rootContainer.mainView.registrationView.username.value should be ""
+			initialPassword common.rootContainer.mainView.registrationView.password.value should be ""
+			initialPasswordRepetition common.rootContainer.mainView.registrationView.passwordRepetition should be ""
+			passwordRepetitionMismatch common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be false
 		verifications
 			registerDisabled
 	AND 
-	WHEN registration.UsernameChanged(username: "username-${testId}") delayInMillis 200
+	WHEN registration.UsernameChanged(value: "username-${testId}") delayInMillis 200
 	THEN 
 		expectedState 
-			username common.rootContainer.mainView.registrationView.username should be "username-${testId}"
-			usernameAvailable common.rootContainer.mainView.registrationView.available should be true
+			username common.rootContainer.mainView.registrationView.username.value should be "username-${testId}"
+			usernameAvailable common.rootContainer.mainView.registrationView.username.available should be true
 		verifications
 			registerDisabled
 	AND
-	WHEN registration.PasswordChanged(password: "password")
+	WHEN registration.PasswordChanged(value: "password")
 	THEN 
 		expectedState 
-			password common.rootContainer.mainView.registrationView.password should be "5f4dcc3b5aa765d61d8327deb882cf99"
+			password common.rootContainer.mainView.registrationView.password.value should be "5f4dcc3b5aa765d61d8327deb882cf99"
 			passwordRepetition common.rootContainer.mainView.registrationView.passwordRepetition should be ""
-			passwordMatch common.rootContainer.mainView.registrationView.passwordMismatch should be true
+			passwordRepetitionMatch common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be true
 		verifications
 			registerDisabled
 	AND	
-	WHEN registration.PasswordRepetitionChanged(passwordRepetition: "password")
+	WHEN registration.PasswordRepetitionChanged(value: "password")
 	THEN 
 		expectedState 
-			password2 common.rootContainer.mainView.registrationView.password should be "5f4dcc3b5aa765d61d8327deb882cf99"
-			passwordRepetition2 common.rootContainer.mainView.registrationView.passwordRepetition should be "5f4dcc3b5aa765d61d8327deb882cf99"
-			passwordMismatch2 common.rootContainer.mainView.registrationView.passwordMismatch should be false
+			password2 common.rootContainer.mainView.registrationView.password.value should be "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordRepetition2 common.rootContainer.mainView.registrationView.passwordRepetition.value should be "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordRepetitionMismatch2 common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be false
 		verifications
 			registerDisabled
 	AND	
-	WHEN registration.EmailChanged(email: "info@anfelisa.de")
+	WHEN registration.EmailChanged(value: "info@anfelisa.de")
 	THEN 
 		expectedState 
-			email common.rootContainer.mainView.registrationView.email should be "info@anfelisa.de"
-			emailValid common.rootContainer.mainView.registrationView.emailInvalid should be false
+			email common.rootContainer.mainView.registrationView.email.value should be "info@anfelisa.de"
+			emailValid common.rootContainer.mainView.registrationView.email.emailInvalid should be false
 		verifications
 			registerEnabled
 	AND

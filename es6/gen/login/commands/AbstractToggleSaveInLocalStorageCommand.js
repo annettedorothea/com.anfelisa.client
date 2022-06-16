@@ -16,8 +16,8 @@
 	    }
 	
 	    initCommandData(data) {
-	        data.saveInLocalStorage = AppState.get(
-	        	["rootContainer", "mainView", "loginView", "saveInLocalStorage"]
+	        data.checked = AppState.get(
+	        	["rootContainer", "mainView", "loginView", "saveInLocalStorage", "checked"]
 	        )
 	        ;
 	        data.outcomes = [];

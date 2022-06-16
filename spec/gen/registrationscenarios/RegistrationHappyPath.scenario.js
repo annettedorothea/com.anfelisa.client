@@ -31,11 +31,11 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		appState = await ScenarioUtils.getAppState(driver);
 		appStates.displayUsernameSpinner = appState;
 		appStates.emailInvalid = appState;
-		appStates.passwordMismatch = appState;
 		appStates.initialEmail = appState;
 		appStates.initialUsername = appState;
 		appStates.initialPassword = appState;
 		appStates.initialPasswordRepetition = appState;
+		appStates.passwordRepetitionMismatch = appState;
 		
 		verifications.registerDisabled = await Verifications.registerDisabled(driver, testId);
 		
@@ -55,7 +55,7 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		appState = await ScenarioUtils.getAppState(driver);
 		appStates.password = appState;
 		appStates.passwordRepetition = appState;
-		appStates.passwordMatch = appState;
+		appStates.passwordRepetitionMatch = appState;
 		
 		verifications.registerDisabled = await Verifications.registerDisabled(driver, testId);
 		
@@ -65,7 +65,7 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		appState = await ScenarioUtils.getAppState(driver);
 		appStates.password2 = appState;
 		appStates.passwordRepetition2 = appState;
-		appStates.passwordMismatch2 = appState;
+		appStates.passwordRepetitionMismatch2 = appState;
 		
 		verifications.registerDisabled = await Verifications.registerDisabled(driver, testId);
 		
@@ -102,71 +102,71 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
     });
 
 	it("displayUsernameSpinner", async () => {
-		expect(appStates.displayUsernameSpinner.rootContainer.mainView.registrationView.displayUsernameSpinner, "displayUsernameSpinner").toEqual(false)
+		expect(appStates.displayUsernameSpinner.rootContainer.mainView.registrationView.username.displayUsernameSpinner, "displayUsernameSpinner").toEqual(false)
 	});
 	it("emailInvalid", async () => {
-		expect(appStates.emailInvalid.rootContainer.mainView.registrationView.emailInvalid, "emailInvalid").toEqual(false)
-	});
-	it("passwordMismatch", async () => {
-		expect(appStates.passwordMismatch.rootContainer.mainView.registrationView.emailInvalid, "passwordMismatch").toEqual(false)
+		expect(appStates.emailInvalid.rootContainer.mainView.registrationView.email.emailInvalid, "emailInvalid").toEqual(false)
 	});
 	it("initialEmail", async () => {
 		expect(appStates.initialEmail.rootContainer.mainView.registrationView.email, "initialEmail").toEqual(``)
 	});
 	it("initialUsername", async () => {
-		expect(appStates.initialUsername.rootContainer.mainView.registrationView.username, "initialUsername").toEqual(``)
+		expect(appStates.initialUsername.rootContainer.mainView.registrationView.username.value, "initialUsername").toEqual(``)
 	});
 	it("initialPassword", async () => {
-		expect(appStates.initialPassword.rootContainer.mainView.registrationView.password, "initialPassword").toEqual(``)
+		expect(appStates.initialPassword.rootContainer.mainView.registrationView.password.value, "initialPassword").toEqual(``)
 	});
 	it("initialPasswordRepetition", async () => {
-		expect(appStates.initialPasswordRepetition.rootContainer.mainView.registrationView.password, "initialPasswordRepetition").toEqual(``)
+		expect(appStates.initialPasswordRepetition.rootContainer.mainView.registrationView.passwordRepetition, "initialPasswordRepetition").toEqual(``)
+	});
+	it("passwordRepetitionMismatch", async () => {
+		expect(appStates.passwordRepetitionMismatch.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch, "passwordRepetitionMismatch").toEqual(false)
 	});
 	
 	it("registerDisabled", async () => {
 		expect(verifications.registerDisabled, "verifications.registerDisabled").toBeTrue();
 	});
 	it("username", async () => {
-		expect(appStates.username.rootContainer.mainView.registrationView.username, "username").toEqual(`username-${testId}`)
+		expect(appStates.username.rootContainer.mainView.registrationView.username.value, "username").toEqual(`username-${testId}`)
 	});
 	it("usernameAvailable", async () => {
-		expect(appStates.usernameAvailable.rootContainer.mainView.registrationView.available, "usernameAvailable").toEqual(true)
+		expect(appStates.usernameAvailable.rootContainer.mainView.registrationView.username.available, "usernameAvailable").toEqual(true)
 	});
 	
 	it("registerDisabled", async () => {
 		expect(verifications.registerDisabled, "verifications.registerDisabled").toBeTrue();
 	});
 	it("password", async () => {
-		expect(appStates.password.rootContainer.mainView.registrationView.password, "password").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
+		expect(appStates.password.rootContainer.mainView.registrationView.password.value, "password").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
 	});
 	it("passwordRepetition", async () => {
 		expect(appStates.passwordRepetition.rootContainer.mainView.registrationView.passwordRepetition, "passwordRepetition").toEqual(``)
 	});
-	it("passwordMatch", async () => {
-		expect(appStates.passwordMatch.rootContainer.mainView.registrationView.passwordMismatch, "passwordMatch").toEqual(true)
+	it("passwordRepetitionMatch", async () => {
+		expect(appStates.passwordRepetitionMatch.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch, "passwordRepetitionMatch").toEqual(true)
 	});
 	
 	it("registerDisabled", async () => {
 		expect(verifications.registerDisabled, "verifications.registerDisabled").toBeTrue();
 	});
 	it("password2", async () => {
-		expect(appStates.password2.rootContainer.mainView.registrationView.password, "password2").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
+		expect(appStates.password2.rootContainer.mainView.registrationView.password.value, "password2").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
 	});
 	it("passwordRepetition2", async () => {
-		expect(appStates.passwordRepetition2.rootContainer.mainView.registrationView.passwordRepetition, "passwordRepetition2").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
+		expect(appStates.passwordRepetition2.rootContainer.mainView.registrationView.passwordRepetition.value, "passwordRepetition2").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
 	});
-	it("passwordMismatch2", async () => {
-		expect(appStates.passwordMismatch2.rootContainer.mainView.registrationView.passwordMismatch, "passwordMismatch2").toEqual(false)
+	it("passwordRepetitionMismatch2", async () => {
+		expect(appStates.passwordRepetitionMismatch2.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch, "passwordRepetitionMismatch2").toEqual(false)
 	});
 	
 	it("registerDisabled", async () => {
 		expect(verifications.registerDisabled, "verifications.registerDisabled").toBeTrue();
 	});
 	it("email", async () => {
-		expect(appStates.email.rootContainer.mainView.registrationView.email, "email").toEqual(`info@anfelisa.de`)
+		expect(appStates.email.rootContainer.mainView.registrationView.email.value, "email").toEqual(`info@anfelisa.de`)
 	});
 	it("emailValid", async () => {
-		expect(appStates.emailValid.rootContainer.mainView.registrationView.emailInvalid, "emailValid").toEqual(false)
+		expect(appStates.emailValid.rootContainer.mainView.registrationView.email.emailInvalid, "emailValid").toEqual(false)
 	});
 	
 	it("registerEnabled", async () => {

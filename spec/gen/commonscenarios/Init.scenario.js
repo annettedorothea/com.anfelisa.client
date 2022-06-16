@@ -48,13 +48,13 @@ describe("commonscenarios.Init", function () {
 		)
 	});
 	it("username", async () => {
-		expect(appStates.username.rootContainer.mainView.loginView.username, "username").toEqual(``)
+		expect(appStates.username.rootContainer.mainView.loginView.username.value, "username").toEqual(``)
 	});
 	it("password", async () => {
-		expect(appStates.password.rootContainer.mainView.loginView.password, "password").toEqual(``)
+		expect(appStates.password.rootContainer.mainView.loginView.password.value, "password").toEqual(``)
 	});
 	it("saveInLocalStorage", async () => {
-		expect(appStates.saveInLocalStorage.rootContainer.mainView.loginView.saveInLocalStorage, "saveInLocalStorage").toEqual(false)
+		expect(appStates.saveInLocalStorage.rootContainer.mainView.loginView.saveInLocalStorage.checked, "saveInLocalStorage").toEqual(false)
 	});
 	
 

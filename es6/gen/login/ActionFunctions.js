@@ -10,12 +10,12 @@ import PasswordChangedAction from "../../src/login/actions/PasswordChangedAction
 import ToggleSaveInLocalStorageAction from "../../src/login/actions/ToggleSaveInLocalStorageAction";
 import LoginAction from "../../src/login/actions/LoginAction";
 
-export function usernameChanged(username) {
-    return new UsernameChangedAction().apply({username});
+export function usernameChanged(value) {
+    return new UsernameChangedAction().apply({value});
 }
 
-export function passwordChanged(password) {
-    return new PasswordChangedAction().apply({password});
+export function passwordChanged(value) {
+    return new PasswordChangedAction().apply({value});
 }
 
 export function toggleSaveInLocalStorage() {

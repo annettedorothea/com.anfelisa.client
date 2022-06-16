@@ -23,7 +23,7 @@ export default class AbstractCheckUsernameAction extends Action {
 	preCall() {
 		AppState.set(
 			{displayUsernameSpinner: true}, 
-			["rootContainer", "mainView", "registrationView", "displayUsernameSpinner"]
+			["rootContainer", "mainView", "registrationView", "username", "displayUsernameSpinner"]
 		)
 		AppState.stateUpdated();
 	}
@@ -31,7 +31,7 @@ export default class AbstractCheckUsernameAction extends Action {
 	postCall() {
 		AppState.set(
 			{displayUsernameSpinner: false}, 
-			["rootContainer", "mainView", "registrationView", "displayUsernameSpinner"]
+			["rootContainer", "mainView", "registrationView", "username", "displayUsernameSpinner"]
 		)
 		AppState.stateUpdated();
 	}

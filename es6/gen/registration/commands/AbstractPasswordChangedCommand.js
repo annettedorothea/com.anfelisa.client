@@ -17,7 +17,7 @@
 	
 	    initCommandData(data) {
 	        data.passwordRepetition = AppState.get(
-	        	["rootContainer", "mainView", "registrationView", "passwordRepetition"]
+	        	["rootContainer", "mainView", "registrationView", "passwordRepetition", "value"]
 	        )
 	        ;
 	        data.outcomes = [];
