@@ -8,11 +8,13 @@
 import React from "react";
 
 import { DeleteCategoryDialog } from "../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/DeleteCategoryDialog";
+import { cancelDeleteCategory } from "../../../../../category/ActionFunctions";
+import { deleteCategory } from "../../../../../category/ActionFunctions";
 
 
 export const DeleteCategoryDialogContainer = ( props ) => {
 	
-	return <DeleteCategoryDialog {...props}  /> 
+	return <DeleteCategoryDialog {...props} cancelDeleteCategory={cancelDeleteCategory} deleteCategory={deleteCategory}  /> 
 }
 
 

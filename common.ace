@@ -593,11 +593,16 @@ ui JSX rootContainer {
 
 				displayDeleteCategory
 				
-				
 				categoryDialog {
 					categoryName
 					newCategory
 					display
+					actions {
+						"cancelCategoryDialog" category.CancelCategoryDialog
+						"categoryNameChanged" category.CategoryNameChanged
+						"createCategory" category.CreateCategory
+						"updateCategory" category.UpdateCategory
+					}
 				}
 				
 				inviteUserDialog {
@@ -605,16 +610,30 @@ ui JSX rootContainer {
 					usernameSearchString
 					List usernames
 					List invitedUsers
+					actions {
+						"cancelInviteUser" category.CancelInviteUser
+						"invitedUsernameChanged" category.InvitedUsernameChanged
+						"inviteUserNextStep" category.InviteUserNextStep
+					}
 				}
 				
 				inviteUserEditableDialog {
 					invitedUsername
 					editable
 					display
+					actions {
+						"cancelInviteUser" category.CancelInviteUser
+						"inviteUser" category.InviteUser
+						"inviteUserChangeEditable" category.InviteUserChangeEditable
+					}
 				}
 				
 				deleteCategoryDialog {
 					display
+					actions {
+						"cancelDeleteCategory" category.CancelDeleteCategory
+						"deleteCategory" category.DeleteCategory
+					}
 				}
 				
 				dropAllowed

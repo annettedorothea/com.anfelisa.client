@@ -6,14 +6,30 @@
 
 
 import React from "react";
+import {translate} from "../../../../../AppUtils";
+import {Texts} from "../../../../../app/Texts";
 
 export const DeleteCategoryDialog = (props) => {
-	return <>
-		<h1>DeleteCategoryDialog</h1>
-		<ul>
-			<li>display: {props.display !== null && props.display !== undefined ? props.display.toString() : ""}</li>
-		</ul>
-	</> 
+	if (props.display === true) {
+		return <div className="modal">
+			<div className="modalContent">
+				<h2>{translate(Texts.categoryTree.confirmDelete.title)}</h2>
+				<div className="message">{translate(Texts.categoryTree.confirmDelete.message)}</div>
+				<button
+					className="yes danger"
+					onClick={props.deleteCategory}
+				>
+					{translate(Texts.categoryTree.confirmDelete.ok)}
+				</button>
+				<button
+					onClick={props.cancelDeleteCategory}
+				>
+					{translate(Texts.categoryTree.confirmDelete.cancel)}
+				</button>
+			</div>
+		</div>
+	}
+	return null;
 }
 
 

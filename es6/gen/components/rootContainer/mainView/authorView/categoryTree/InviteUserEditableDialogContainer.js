@@ -8,11 +8,14 @@
 import React from "react";
 
 import { InviteUserEditableDialog } from "../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/InviteUserEditableDialog";
+import { cancelInviteUser } from "../../../../../category/ActionFunctions";
+import { inviteUser } from "../../../../../category/ActionFunctions";
+import { inviteUserChangeEditable } from "../../../../../category/ActionFunctions";
 
 
 export const InviteUserEditableDialogContainer = ( props ) => {
 	
-	return <InviteUserEditableDialog {...props}  /> 
+	return <InviteUserEditableDialog {...props} cancelInviteUser={cancelInviteUser} inviteUser={inviteUser} inviteUserChangeEditable={inviteUserChangeEditable}  /> 
 }
 
 
