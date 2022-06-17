@@ -33,7 +33,7 @@ export const Footer = (props) => {
 				   target="ace">save timeline</a>
 			</p>
 			<p>
-				<a onClick={() => props.onClick()}>{translate(Texts.login.privacyPolicy)}</a>
+				<a onClick={props.onClick}>{translate(Texts.login.privacyPolicy)}</a>
 			</p>
 		</div>
 	</div>

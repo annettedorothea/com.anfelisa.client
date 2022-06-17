@@ -9,8 +9,8 @@ import React from "react";
 
 import { Buttons } from "../../../../../src/components/rootContainer/mainView/registrationView/Buttons";
 import { Register } from "../../../../../src/components/rootContainer/mainView/registrationView/buttons/Register";
-import { registerUser } from "../../../../registration/ActionFunctions";
 import { Cancel } from "../../../../../src/components/rootContainer/mainView/registrationView/buttons/Cancel";
+import { registerUser } from "../../../../registration/ActionFunctions";
 import { routeToDefault } from "../../../../common/ActionFunctions";
 
 

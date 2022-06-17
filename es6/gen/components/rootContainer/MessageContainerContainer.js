@@ -14,7 +14,7 @@ import { MessagesItemContainer } from "./messageContainer/MessagesItemContainer"
 export const MessageContainerContainer = ( props ) => {
 	
 	return <MessageContainer {...props} >
-		{ props.messages ? props.messages.map(i => <MessagesItemContainer {...i} key={i.id}    />) : [] }
+		{ props.messages ? props.messages.map((item, index) => <MessagesItemContainer {...item} key={item.id} index={index}    />) : [] }
 	</MessageContainer> 
 }
 

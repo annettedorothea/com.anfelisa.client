@@ -7,9 +7,8 @@
 
 import React from "react";
 
-
-export const AuthorView = (props) => {
-	return <div className="categoryCardSplitView">
+export const Filter = (props) => {
+	return <div className="form">
 		{props.children}
 	</div>
 }

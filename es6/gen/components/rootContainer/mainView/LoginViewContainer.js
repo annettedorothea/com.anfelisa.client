@@ -9,14 +9,14 @@ import React from "react";
 
 import { LoginView } from "../../../../src/components/rootContainer/mainView/LoginView";
 import { Username } from "../../../../src/components/rootContainer/mainView/loginView/Username";
+import { Password } from "../../../../src/components/rootContainer/mainView/loginView/Password";
+import { SaveInLocalStorage } from "../../../../src/components/rootContainer/mainView/loginView/SaveInLocalStorage";
+import { Login } from "../../../../src/components/rootContainer/mainView/loginView/Login";
 import { usernameChanged } from "../../../login/ActionFunctions";
 import { routeToRegistration } from "../../../common/ActionFunctions";
-import { Password } from "../../../../src/components/rootContainer/mainView/loginView/Password";
 import { passwordChanged } from "../../../login/ActionFunctions";
 import { routeToForgotPassword } from "../../../common/ActionFunctions";
-import { SaveInLocalStorage } from "../../../../src/components/rootContainer/mainView/loginView/SaveInLocalStorage";
 import { toggleSaveInLocalStorage } from "../../../login/ActionFunctions";
-import { Login } from "../../../../src/components/rootContainer/mainView/loginView/Login";
 import { login } from "../../../login/ActionFunctions";
 
 

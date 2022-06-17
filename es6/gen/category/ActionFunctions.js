@@ -148,8 +148,8 @@ export function filterNonScheduledCards() {
     return new FilterNonScheduledCardsAction().apply({});
 }
 
-export function priorityChanged(priority) {
-    return new PriorityChangedAction().apply({priority});
+export function priorityChanged(value) {
+    return new PriorityChangedAction().apply({value});
 }
 
 export function createReverseBox() {

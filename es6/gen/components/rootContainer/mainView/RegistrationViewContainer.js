@@ -9,14 +9,14 @@ import React from "react";
 
 import { RegistrationView } from "../../../../src/components/rootContainer/mainView/RegistrationView";
 import { Username } from "../../../../src/components/rootContainer/mainView/registrationView/Username";
-import { usernameChanged } from "../../../registration/ActionFunctions";
 import { Password } from "../../../../src/components/rootContainer/mainView/registrationView/Password";
-import { passwordChanged } from "../../../registration/ActionFunctions";
 import { PasswordRepetition } from "../../../../src/components/rootContainer/mainView/registrationView/PasswordRepetition";
-import { passwordRepetitionChanged } from "../../../registration/ActionFunctions";
 import { Email } from "../../../../src/components/rootContainer/mainView/registrationView/Email";
-import { emailChanged } from "../../../registration/ActionFunctions";
 import { ButtonsContainer } from "./registrationView/ButtonsContainer";
+import { usernameChanged } from "../../../registration/ActionFunctions";
+import { passwordChanged } from "../../../registration/ActionFunctions";
+import { passwordRepetitionChanged } from "../../../registration/ActionFunctions";
+import { emailChanged } from "../../../registration/ActionFunctions";
 
 
 export const RegistrationViewContainer = ( props ) => {

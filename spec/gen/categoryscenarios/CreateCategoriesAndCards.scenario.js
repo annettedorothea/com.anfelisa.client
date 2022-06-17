@@ -104,9 +104,17 @@ describe("categoryscenarios.CreateCategoriesAndCards", function () {
 			boxId : `box-${testId}`,
 			reverse : false,
 			categoryTree : { 
-				filterNonScheduled : false,
+				filter : { 
+					filterNonScheduled : { 
+						value : false
+					},
+					
+					priority : { 
+						value : null
+					}
+				},
+				
 				reverseBoxExists : false,
-				priority : null,
 				selectedCategory : { 
 					categoryId : `box-${testId}`,
 					categoryName : `categoryWithDictionary`,

@@ -16,8 +16,8 @@ import { VersionMismatchErrorDialogContainer } from "./rootContainer/VersionMism
 import { MessageContainerContainer } from "./rootContainer/MessageContainerContainer";
 import { MainViewContainer } from "./rootContainer/MainViewContainer";
 import { FooterContainer } from "./rootContainer/FooterContainer";
-import { routeToPrivacyPolicy } from "../common/ActionFunctions";
 import * as AppState from "../../src/AppState";
+import { routeToPrivacyPolicy } from "../common/ActionFunctions";
 
 export let setContainerState;
 

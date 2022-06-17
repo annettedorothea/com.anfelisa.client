@@ -14,7 +14,7 @@ import { ActiveCardListItemContainer } from "./allActiveCardsView/ActiveCardList
 export const AllActiveCardsViewContainer = ( props ) => {
 	
 	return <AllActiveCardsView {...props} >
-		{ props.activeCardList ? props.activeCardList.map(i => <ActiveCardListItemContainer {...i} key={i.id}    />) : [] }
+		{ props.activeCardList ? props.activeCardList.map((item, index) => <ActiveCardListItemContainer {...item} key={item.id} index={index}    />) : [] }
 	</AllActiveCardsView> 
 }
 

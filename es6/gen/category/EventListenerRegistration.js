@@ -15,7 +15,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree"], 
-					["filterNonScheduled", "reverseBoxExists", "priority", "rootCategory", "displayDeleteCategory", "categoryDialog", "inviteUserDialog", "inviteUserEditableDialog", "deleteCategoryDialog", "dropAllowed", "dropTargetCategoryId", "selectedCategory", "movedCategory"]
+					["reverseBoxExists", "buttons", "filter", "rootCategory", "displayDeleteCategory", "categoryDialog", "inviteUserDialog", "inviteUserEditableDialog", "deleteCategoryDialog", "dropAllowed", "dropTargetCategoryId", "selectedCategory", "movedCategory"]
 				)
 			});
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', (data) => {
@@ -35,7 +35,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory"], 
-					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
+					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.ReloadCategoryTreeOkEvent', (data) => {
@@ -49,21 +49,21 @@ export default class EventListenerRegistrationCategory {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory"], 
-					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
+					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.CollapseTreeItemOkEvent', (data) => {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory"], 
-					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
+					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.CollapseTreeItemSelectParentCategoryEvent', (data) => {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory"], 
-					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
+					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.SelectTreeItemOkEvent', (data) => {
@@ -267,13 +267,13 @@ export default class EventListenerRegistrationCategory {
 		ACEController.registerListener('category.FilterNonScheduledCardsOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "filterNonScheduled"]
+					["rootContainer", "mainView", "authorView", "categoryTree", "filter", "filterNonScheduled", "value"]
 				)
 			});
 		ACEController.registerListener('category.PriorityChangedOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "priority"]
+					["rootContainer", "mainView", "authorView", "categoryTree", "filter", "priority", "value"]
 				)
 			});
 	}

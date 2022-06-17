@@ -9,17 +9,17 @@ import React from "react";
 
 import { BoxListItem } from "../../../../../src/components/rootContainer/mainView/dashboardView/BoxListItem";
 import { Edit } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/Edit";
-import { routeToAuthorView } from "../../../../common/ActionFunctions";
 import { Settings } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/Settings";
-import { routeToBoxSettings } from "../../../../common/ActionFunctions";
 import { Archive } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/Archive";
-import { archiveBox } from "../../../../box/ActionFunctions";
 import { Delete } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/Delete";
-import { deleteBoxClick } from "../../../../box/ActionFunctions";
 import { StatisticsContainer } from "./boxList/StatisticsContainer";
 import { CardsNextDaysContainer } from "./boxList/CardsNextDaysContainer";
-import { routeToActiveCards } from "../../../../common/ActionFunctions";
 import { boxClick } from "../../../../box/ActionFunctions";
+import { routeToAuthorView } from "../../../../common/ActionFunctions";
+import { routeToBoxSettings } from "../../../../common/ActionFunctions";
+import { archiveBox } from "../../../../box/ActionFunctions";
+import { deleteBoxClick } from "../../../../box/ActionFunctions";
+import { routeToActiveCards } from "../../../../common/ActionFunctions";
 
 
 export const BoxListItemContainer = ( props ) => {

@@ -9,7 +9,6 @@ import React from "react";
 
 import { MainView } from "../../../src/components/rootContainer/MainView";
 import { PrivacyPolicyViewContainer } from "./mainView/PrivacyPolicyViewContainer";
-import { routeToDefault } from "../../common/ActionFunctions";
 import { LoginViewContainer } from "./mainView/LoginViewContainer";
 import { RegistrationViewContainer } from "./mainView/RegistrationViewContainer";
 import { ForgotPasswordViewContainer } from "./mainView/ForgotPasswordViewContainer";
@@ -20,6 +19,7 @@ import { AllActiveCardsViewContainer } from "./mainView/AllActiveCardsViewContai
 import { ProfileViewContainer } from "./mainView/ProfileViewContainer";
 import { QueryCardViewContainer } from "./mainView/QueryCardViewContainer";
 import { AuthorViewContainer } from "./mainView/AuthorViewContainer";
+import { routeToDefault } from "../../common/ActionFunctions";
 
 
 export const MainViewContainer = ( props ) => {

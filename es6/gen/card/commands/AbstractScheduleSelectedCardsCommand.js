@@ -27,7 +27,7 @@ export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCo
         )
         ;
         data.filterNonScheduled = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "filterNonScheduled"]
+        	["rootContainer", "mainView", "authorView", "categoryTree", "filter", "filterNonScheduled", "value"]
         )
         ;
         data.outcomes = [];

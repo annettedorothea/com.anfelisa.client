@@ -8,17 +8,27 @@
 import React from "react";
 
 import { CategoryTree } from "../../../../../src/components/rootContainer/mainView/authorView/CategoryTree";
+import { ButtonsContainer } from "./categoryTree/ButtonsContainer";
+import { FilterContainer } from "./categoryTree/FilterContainer";
 import { RootCategoryContainer } from "./categoryTree/RootCategoryContainer";
 import { CategoryDialogContainer } from "./categoryTree/CategoryDialogContainer";
 import { InviteUserDialogContainer } from "./categoryTree/InviteUserDialogContainer";
 import { InviteUserEditableDialogContainer } from "./categoryTree/InviteUserEditableDialogContainer";
 import { DeleteCategoryDialogContainer } from "./categoryTree/DeleteCategoryDialogContainer";
+import { checkDropAllowed } from "../../../../category/ActionFunctions";
+import { collapseTreeItem } from "../../../../category/ActionFunctions";
+import { expandTreeItem } from "../../../../category/ActionFunctions";
+import { itemDropped } from "../../../../category/ActionFunctions";
+import { moveCategoryStarted } from "../../../../category/ActionFunctions";
+import { selectTreeItem } from "../../../../category/ActionFunctions";
 
 
 export const CategoryTreeContainer = ( props ) => {
 	
 	return <CategoryTree {...props} >
-		<RootCategoryContainer {...props.rootCategory }    />
+		<ButtonsContainer {...props.buttons }  selectedCategory={props.selectedCategory} rootCategory={props.rootCategory} reverseBoxExists={props.reverseBoxExists}   />
+		<FilterContainer {...props.filter }    />
+		<RootCategoryContainer {...props.rootCategory }  selectedCategory={props.selectedCategory} dropAllowed={props.dropAllowed} dropTargetCategoryId={props.dropTargetCategoryId}  checkDropAllowed={checkDropAllowed} collapseTreeItem={collapseTreeItem} expandTreeItem={expandTreeItem} itemDropped={itemDropped} moveCategoryStarted={moveCategoryStarted} selectTreeItem={selectTreeItem}  />
 		<CategoryDialogContainer {...props.categoryDialog }    />
 		<InviteUserDialogContainer {...props.inviteUserDialog }    />
 		<InviteUserEditableDialogContainer {...props.inviteUserEditableDialog }    />

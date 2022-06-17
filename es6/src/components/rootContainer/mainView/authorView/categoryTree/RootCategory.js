@@ -6,25 +6,97 @@
 
 
 import React from "react";
+import {translate} from "../../../../../AppUtils";
+import {Texts} from "../../../../../app/Texts";
+
+export const collapsedCategoryItem = (props) => {
+	return <div className="collapsedCategoryItem">
+		{props.empty === false ?
+			<i
+				className="fas fa-caret-right"
+				onClick={() => props.expandTreeItem(props.categoryId)}
+			/> :
+			<i className="fas fa-caret-right disabled"/>
+		}
+		{
+			selectableCategoryItem({...props})
+		}
+	</div>
+}
+
+export const selectableCategoryItem = (props) => {
+	const dropAllowed = props.dropAllowed && props.selectedCategory.editable
+
+	const onDragStart = (event) => {
+		event.dataTransfer.setData('Text', props.categoryName);
+		props.moveCategoryStarted(props.categoryId)
+	}
+
+	const drop = (event) => {
+		event.preventDefault();
+		props.itemDropped(event.altKey);
+	}
+
+	const onDragOver = (event) => {
+		if (!!dropAllowed) {
+			event.preventDefault();
+		}
+	}
+
+	const onDragEnter = (event) => {
+		props.checkDropAllowed(props.categoryId, event.altKey);
+	}
+	const selected = props.selectedCategory && props.selectedCategory.categoryId === props.categoryId
+	return <span
+		draggable={true}
+		onDragStart={(event) => onDragStart(event)}
+		onDragEnter={(event) => onDragEnter(event)}
+		onDragOver={onDragOver}
+		onDrop={drop}
+	>
+        <span
+			className={`item ${selected ? "selected" : "notSelected"} ${dropAllowed && props.dropTargetCategoryId === props.categoryId ? "dropAllowed" : ""}`}
+			onClick={() => selected ? "" : props.selectTreeItem(props.categoryId)}
+		>
+            {props.categoryName}
+			{props.nonScheduledCount === 0 ?
+				<span className="nonScheduledCount">{translate(Texts.categoryList.nonScheduledNone)}</span> : null
+			}
+			{props.nonScheduledCount === 1 ?
+				<span
+					className="nonScheduledCount">{translate(Texts.categoryList.nonScheduledSingular)}</span> : null
+			}
+			{props.nonScheduledCount > 1 ?
+				<span
+					className="nonScheduledCount">{translate(Texts.categoryList.nonScheduled, [props.nonScheduledCount])}</span> : null
+			}
+        </span>
+    </span>
+}
+
+export const expandedCategoryItem = (props) => {
+	return <div className="expandedCategoryItem">
+		{props.depth > 0 ?
+			<i
+				className="fas fa-caret-down"
+				onClick={() => props.collapseTreeItem(props.categoryId)}
+			/> : null
+		}
+		{selectableCategoryItem({...props})}
+		<div>
+			{props.children}
+		</div>
+	</div>
+}
 
 export const RootCategory = (props) => {
-	return <>
-		<h1>RootCategory</h1>
-		<ul>
-			<li>categoryId: {props.categoryId !== null && props.categoryId !== undefined ? props.categoryId.toString() : ""}</li>
-			<li>categoryName: {props.categoryName !== null && props.categoryName !== undefined ? props.categoryName.toString() : ""}</li>
-			<li>categoryIndex: {props.categoryIndex !== null && props.categoryIndex !== undefined ? props.categoryIndex.toString() : ""}</li>
-			<li>empty: {props.empty !== null && props.empty !== undefined ? props.empty.toString() : ""}</li>
-			<li>parentCategoryId: {props.parentCategoryId !== null && props.parentCategoryId !== undefined ? props.parentCategoryId.toString() : ""}</li>
-			<li>dictionaryLookup: {props.dictionaryLookup !== null && props.dictionaryLookup !== undefined ? props.dictionaryLookup.toString() : ""}</li>
-			<li>givenLanguage: {props.givenLanguage !== null && props.givenLanguage !== undefined ? props.givenLanguage.toString() : ""}</li>
-			<li>wantedLanguage: {props.wantedLanguage !== null && props.wantedLanguage !== undefined ? props.wantedLanguage.toString() : ""}</li>
-			<li>rootCategoryId: {props.rootCategoryId !== null && props.rootCategoryId !== undefined ? props.rootCategoryId.toString() : ""}</li>
-			<li>nonScheduledCount: {props.nonScheduledCount !== null && props.nonScheduledCount !== undefined ? props.nonScheduledCount.toString() : ""}</li>
-			<li>editable: {props.editable !== null && props.editable !== undefined ? props.editable.toString() : ""}</li>
-		</ul>
-		{props.children}
-	</> 
+	return <div className="categoryTreeItems">
+		<div className="categoryItem depth_1">
+			{expandedCategoryItem({
+				...props,
+			})}
+		</div>
+	</div>
 }
 
 

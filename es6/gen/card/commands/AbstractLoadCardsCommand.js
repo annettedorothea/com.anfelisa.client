@@ -25,11 +25,11 @@ export default class AbstractLoadCardsCommand extends AsynchronousCommand {
         )
         ;
         data.filterNonScheduled = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "filterNonScheduled"]
+        	["rootContainer", "mainView", "authorView", "categoryTree", "filter", "filterNonScheduled", "value"]
         )
         ;
         data.priority = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "priority"]
+        	["rootContainer", "mainView", "authorView", "categoryTree", "filter", "priority", "value"]
         )
         ;
         data.reverse = AppState.get(

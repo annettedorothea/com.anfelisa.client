@@ -9,7 +9,7 @@ import AbstractFilterNonScheduledCardsCommand from "../../../gen/category/comman
 
 export default class FilterNonScheduledCardsCommand extends AbstractFilterNonScheduledCardsCommand {
     execute(data) {
-        data.filterNonScheduled = !data.filterNonScheduled;
+        data.value = !data.value;
     	this.addOkOutcome(data);
     	return data;
     }

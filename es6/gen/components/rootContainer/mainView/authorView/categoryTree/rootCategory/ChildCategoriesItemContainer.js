@@ -8,12 +8,18 @@
 import React from "react";
 
 import { ChildCategoriesItem } from "../../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/rootCategory/ChildCategoriesItem";
+import { checkDropAllowed } from "../../../../../../category/ActionFunctions";
+import { collapseTreeItem } from "../../../../../../category/ActionFunctions";
+import { expandTreeItem } from "../../../../../../category/ActionFunctions";
+import { itemDropped } from "../../../../../../category/ActionFunctions";
+import { moveCategoryStarted } from "../../../../../../category/ActionFunctions";
+import { selectTreeItem } from "../../../../../../category/ActionFunctions";
 
 
 export const ChildCategoriesItemContainer = ( props ) => {
 	
-	return <ChildCategoriesItem {...props} >
-		{ props.childCategories ? props.childCategories.map(i => <ChildCategoriesItemContainer {...i} key={i.categoryId}   />) : [] }
+	return <ChildCategoriesItem {...props} checkDropAllowed={checkDropAllowed} collapseTreeItem={collapseTreeItem} expandTreeItem={expandTreeItem} itemDropped={itemDropped} moveCategoryStarted={moveCategoryStarted} selectTreeItem={selectTreeItem} >
+		{ props.childCategories ? props.childCategories.map((item, index) => <ChildCategoriesItemContainer {...item} key={item.categoryId} depth={props.depth+1} index={index} selectedCategory={props.selectedCategory} dropAllowed={props.dropAllowed} dropTargetCategoryId={props.dropTargetCategoryId}   checkDropAllowed={checkDropAllowed} collapseTreeItem={collapseTreeItem} expandTreeItem={expandTreeItem} itemDropped={itemDropped} moveCategoryStarted={moveCategoryStarted} selectTreeItem={selectTreeItem}  />) : [] }
 	</ChildCategoriesItem> 
 }
 

@@ -17,9 +17,9 @@ import { DeleteCardContainer } from "./cardView/DeleteCardContainer";
 export const CardViewContainer = ( props ) => {
 	
 	return <CardView {...props} >
-		{ props.cardList ? props.cardList.map(i => <CardListItemContainer {...i} key={i.cardId}    />) : [] }
+		{ props.cardList ? props.cardList.map((item, index) => <CardListItemContainer {...item} key={item.cardId} index={index}    />) : [] }
 		<NewCardContainer {...props.newCard }    />
-		{ props.cardDuplicates ? props.cardDuplicates.map(i => <CardDuplicatesItemContainer {...i} key={i.cardId}    />) : [] }
+		{ props.cardDuplicates ? props.cardDuplicates.map((item, index) => <CardDuplicatesItemContainer {...item} key={item.cardId} index={index}    />) : [] }
 		<DeleteCardContainer {...props.deleteCard }    />
 	</CardView> 
 }

@@ -474,12 +474,77 @@ ui JSX rootContainer {
 			boxId
 	        reverse
 
+
 			
+
+
 			categoryTree {
-		        filterNonScheduled
 				reverseBoxExists
-		        priority
+				buttons {
+					selectedCategory
+					rootCategory
+					reverseBoxExists
+					back Button {
+						actions {
+							"onClick" RouteToDefault
+						}
+					}
+					new Button {
+						selectedCategory
+						rootCategory
+						actions {
+							"onClick" category.NewCategoryClick
+						}
+					}
+					edit Button {
+						selectedCategory
+						rootCategory
+						actions {
+							"onClick" category.EditCategoryClick
+						}
+					}
+					invite Button {
+						selectedCategory
+						rootCategory
+						actions {
+							"onClick" category.InviteUserClick
+						}
+					}
+					delete Button {
+						selectedCategory
+						rootCategory
+						actions {
+							"onClick" category.DeleteCategoryClick
+						}
+					}
+					reverse Button {
+						selectedCategory
+						rootCategory
+						reverseBoxExists
+						actions {
+							"onClick" category.CreateReverseBox
+						}
+					}
+				}
+				filter {
+			        filterNonScheduled CheckBox {
+			        	value
+			        	actions {
+			        		"onChange" category.FilterNonScheduledCards
+			        	}
+			        }
+		        	priority {
+		        		value
+			        	actions {
+			        		"onClick" category.PriorityChanged
+				        }
+		        	}
+				}
 				rootCategory {
+					selectedCategory
+					dropAllowed
+					dropTargetCategoryId
+
 					categoryId
 					categoryName
 					categoryIndex
@@ -492,6 +557,10 @@ ui JSX rootContainer {
 					nonScheduledCount
 					editable
 					Tree childCategories {
+						selectedCategory fromParent
+						dropAllowed fromParent
+						dropTargetCategoryId fromParent
+
 						listId categoryId
 						categoryName
 						categoryIndex
@@ -503,10 +572,27 @@ ui JSX rootContainer {
 						rootCategoryId
 						nonScheduledCount
 						editable
+						actions {
+							"checkDropAllowed" category.CheckDropAllowed
+							"collapseTreeItem" category.CollapseTreeItem
+							"expandTreeItem" category.ExpandTreeItem
+							"itemDropped" category.ItemDropped
+							"moveCategoryStarted" category.MoveCategoryStarted
+							"selectTreeItem" category.SelectTreeItem
+						}
+					}
+					actions {
+						"checkDropAllowed" category.CheckDropAllowed
+						"collapseTreeItem" category.CollapseTreeItem
+						"expandTreeItem" category.ExpandTreeItem
+						"itemDropped" category.ItemDropped
+						"moveCategoryStarted" category.MoveCategoryStarted
+						"selectTreeItem" category.SelectTreeItem
 					}
 				}
 
 				displayDeleteCategory
+				
 				
 				categoryDialog {
 					categoryName

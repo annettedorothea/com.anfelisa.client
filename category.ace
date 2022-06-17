@@ -20,8 +20,8 @@ ReloadCategoryTree ( selectedCategoryId, categoryIdToBeExpanded )
 	fromAppState (
 		common.rootContainer.mainView.authorView.categoryTree.rootCategory as previousRootCategory, 
 		common.rootContainer.mainView.authorView.categoryTree.selectedCategory as selectedCategory, 
-		common.rootContainer.mainView.authorView.categoryTree.filterNonScheduled,
-		common.rootContainer.mainView.authorView.categoryTree.priority,
+		common.rootContainer.mainView.authorView.categoryTree.filter.filterNonScheduled.value as filterNonScheduled,
+		common.rootContainer.mainView.authorView.categoryTree.filter.priority.value as priority,
 		common.rootContainer.mainView.authorView.reverse
 	)
 	call com.anfelisa.category.GetCategoryTree
@@ -235,19 +235,19 @@ ChangeOrderCategory
 
 FilterNonScheduledCards
 	fromAppState (
-		common.rootContainer.mainView.authorView.categoryTree.filterNonScheduled, 
+		common.rootContainer.mainView.authorView.categoryTree.filter.filterNonScheduled.value, 
 		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId as selectedCategoryId
 	)
 	on ok (
-		set common.rootContainer.mainView.authorView.categoryTree.filterNonScheduled
+		set common.rootContainer.mainView.authorView.categoryTree.filter.filterNonScheduled.value
 	) triggers (category.ReloadCategoryTree)
 
-PriorityChanged(priority)
+PriorityChanged(value)
 	fromAppState (
 		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId as selectedCategoryId
 	)
 	on ok (
-		set common.rootContainer.mainView.authorView.categoryTree.priority
+		set common.rootContainer.mainView.authorView.categoryTree.filter.priority.value
 	) triggers (category.ReloadCategoryTree)
 	
 CreateReverseBox

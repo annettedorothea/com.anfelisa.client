@@ -9,8 +9,8 @@ import React from "react";
 
 import { Buttons } from "../../../../../src/components/rootContainer/mainView/forgotPasswordView/Buttons";
 import { ForgotPassword } from "../../../../../src/components/rootContainer/mainView/forgotPasswordView/buttons/ForgotPassword";
-import { forgotPassword } from "../../../../password/ActionFunctions";
 import { Cancel } from "../../../../../src/components/rootContainer/mainView/forgotPasswordView/buttons/Cancel";
+import { forgotPassword } from "../../../../password/ActionFunctions";
 import { routeToDefault } from "../../../../common/ActionFunctions";
 
 

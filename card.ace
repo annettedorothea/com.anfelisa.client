@@ -7,8 +7,8 @@ ACE
 		fromAppState (
 			common.rootContainer.mainView.authorView.categoryTree.selectedCategory, 
 			common.rootContainer.mainView.authorView.cardView.naturalInputOrder,
-			common.rootContainer.mainView.authorView.categoryTree.filterNonScheduled,
-			common.rootContainer.mainView.authorView.categoryTree.priority,
+			common.rootContainer.mainView.authorView.categoryTree.filter.filterNonScheduled.value as filterNonScheduled,
+			common.rootContainer.mainView.authorView.categoryTree.filter.priority.value as priority,
 			common.rootContainer.mainView.authorView.reverse
 		)
 		call com.anfelisa.card.GetCards
@@ -135,7 +135,7 @@ ACE
 		fromAppState (
 			common.rootContainer.mainView.authorView.cardView.selectedCardIds as cardIds,
 			common.rootContainer.mainView.authorView.boxId,
-			common.rootContainer.mainView.authorView.categoryTree.filterNonScheduled
+			common.rootContainer.mainView.authorView.categoryTree.filter.filterNonScheduled.value as filterNonScheduled
 		) 
 	 	call com.anfelisa.box.ScheduleCards
 		loadingFlag common.rootContainer.spinner.display 

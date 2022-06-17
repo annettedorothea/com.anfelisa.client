@@ -17,8 +17,8 @@
 	    }
 	
 	    initCommandData(data) {
-	        data.filterNonScheduled = AppState.get(
-	        	["rootContainer", "mainView", "authorView", "categoryTree", "filterNonScheduled"]
+	        data.value = AppState.get(
+	        	["rootContainer", "mainView", "authorView", "categoryTree", "filter", "filterNonScheduled", "value"]
 	        )
 	        ;
 	        data.selectedCategoryId = AppState.get(
