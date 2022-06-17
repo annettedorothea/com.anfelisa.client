@@ -18,7 +18,7 @@ export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCom
     
     initCommandData(data) {
         data.cardIds = AppState.get(
-        	["rootContainer", "mainView", "authorView", "cardView", "selectedCardIds"]
+        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "selectedCardIds"]
         )
         ;
         data.boxId = AppState.get(

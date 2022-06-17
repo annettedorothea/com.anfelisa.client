@@ -34,6 +34,8 @@ module.exports = {
 	
 	routeToProfileView : "common_routeToProfileView",
 	
+	routeToSelectedCategory : "common_routeToSelectedCategory",
+	
 	logout : "common_logout",
 	
 	displayToast : "common_displayToast",

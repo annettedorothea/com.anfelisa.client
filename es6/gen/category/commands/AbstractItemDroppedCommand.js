@@ -24,7 +24,7 @@
 	        )
 	        ;
 	        data.movedCardIds = AppState.get(
-	        	["rootContainer", "mainView", "authorView", "cardView", "movedCardIds"]
+	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "movedCardIds"]
 	        )
 	        ;
 	        data.outcomes = [];

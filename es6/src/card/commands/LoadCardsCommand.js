@@ -16,21 +16,24 @@ export default class LoadCardsCommand extends AbstractLoadCardsCommand {
 
     handleResponse(data, resolve) {
         data.cardView = {
-            cardList: data.cardList,
+
             naturalInputOrder: data.naturalInputOrder === undefined ? data.reverse === false : data.naturalInputOrder,
-            newCard: {
-                given: "",
-                wanted: "",
-                displaySpinner: false,
+            cardTable: {
+                cardList: data.cardList,
+                filter: "",
+                newCard: {
+                    given: "",
+                    wanted: "",
+                    displaySpinner: false,
+                },
+                cardDuplicates: [],
             },
             editedCard: {
                 cardId: "",
                 given: "",
                 wanted: "",
             },
-            filter: "",
             dictionaryValue: null,
-            cardDuplicates: [],
             selectedCardIds: [],
             movedCardIds: [],
             dragTargetCardId: null,

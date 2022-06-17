@@ -18,11 +18,11 @@ export default class AbstractCreateCardCommand extends AsynchronousCommand {
     
     initCommandData(data) {
         data.wanted = AppState.get(
-        	["rootContainer", "mainView", "authorView", "cardView", "newCard", "wanted"]
+        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "cardTable", "newCard", "wanted"]
         )
         ;
         data.given = AppState.get(
-        	["rootContainer", "mainView", "authorView", "cardView", "newCard", "given"]
+        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "cardTable", "newCard", "given"]
         )
         ;
         data.categoryId = AppState.get(

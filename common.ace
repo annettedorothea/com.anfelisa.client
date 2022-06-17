@@ -95,6 +95,7 @@ RouteToForgotPassword on ok ( set rootContainer.hash )
 RouteToPrivacyPolicy on ok ( set rootContainer.hash )
 RouteToRegistration on ok ( set rootContainer.hash )
 RouteToProfileView on ok ( set rootContainer.hash )
+RouteToSelectedCategory (rootCategoryId, categoryId) on ok ( set rootContainer.hash )
 	
 Logout 
 	on ok ( 
@@ -474,11 +475,8 @@ ui JSX rootContainer {
 			boxId
 	        reverse
 
-
-			
-
-
 			categoryTree {
+		        reverse
 				reverseBoxExists
 				buttons {
 					selectedCategory
@@ -664,52 +662,109 @@ ui JSX rootContainer {
 					rootCategoryId
 					List childCategories
 				}
+		        cardView {
+		        	rootCategory
+		        	selectedCategory
+		        	reverse
+			        naturalInputOrder
+		        	cardTable {
+		        		List selectedCardIds
+		        		editedCard
+		        		rootCategory
+		        		filter
+		        		naturalInputOrder
+		        		dragTargetCardId
+				        List cardList {
+				        	rootCategory
+				        	editedCard
+				        	List selectedCardIds
+				        	naturalInputOrder
+				        	filter
+				        	dragTargetCardId
+							listId cardId
+							given
+							wanted
+							cardAuthor
+							cardIndex
+							categoryId
+							rootCategoryId
+				        	next
+				        	actions {
+				        		"cancelEditCard" card.CancelEditCard
+				        		"changeCardOrder" card.ChangeCardOrder
+				        		"deleteCardClick" card.DeleteCardClick
+				        		"editCard" card.EditCard
+				        		"givenOfEditedCardChanged" card.GivenOfEditedCardChanged
+				        		"selectScheduleCardRange" card.SelectScheduleCardRange
+				        		"toggleScheduleCardSelection" card.ToggleScheduleCardSelection
+				        		"updateCard" card.UpdateCard
+				        		"updateCardPriority" card.UpdateCardPriority
+				        		"wantedOfEditedCardChanged" card.WantedOfEditedCardChanged
+				        		"moveCardsStarted" card.MoveCardsStarted
+				        		"onDragEnter" card.OnDragEnter
+				        		"onDragExit" card.OnDragExit
+				        	}
+				        }
+				        newCard {
+				        	naturalInputOrder
+				        	rootCategory
+				        	given
+				        	wanted
+				        	index
+				        	displaySpinner
+				        	actions {
+				        		"cancelNewCard" card.CancelNewCard
+				        		"createCard" card.CreateCard
+				        		"givenOfNewCardChanged" card.GivenOfNewCardChanged
+				        		"passValueToDictionary" card.PassValueToDictionary
+				        		"translate" card.Translate
+				        		"wantedOfNewCardChanged" card.WantedOfNewCardChanged
+				        	}
+				        }
+				        List cardDuplicates {
+				        	naturalInputOrder
+				        	rootCategory
+							listId cardId
+							given
+							wanted
+							cardAuthor
+							cardIndex
+							categoryId
+							rootCategoryId
+				        	next
+				        	categoryName
+				        	actions {
+				        		"routeToSelectedCategory" RouteToSelectedCategory
+				        	}
+				        }
+				        actions {
+				        	"toggleInputOrder" card.ToggleInputOrder
+				        	"filterCards" card.FilterCards
+				        	"toggleAllScheduleCardSelection" card.ToggleAllScheduleCardSelection
+				        	"scheduleSelectedCards" card.ScheduleSelectedCards
+				        	"sortSelectedCardsOut" card.SortSelectedCardsOut
+				        }
+		        	}
+			        deleteCard {
+			        	confirmDelete
+			        	cardId
+			        	actions {
+			        		"deleteCard" card.DeleteCard
+			        		"cancelDeleteCard" card.CancelDeleteCard
+			        	}
+			        }
+			        dictionaryValue
+			        List selectedCardIds
+			        List movedCardIds
+			        dragTargetCardId
+			        noComponent editedCard {
+			        	cardId
+			        	given
+			        	wanted
+			        	index
+			        }
+		        }
 			}
-	        cardView {
-		        List cardList {
-					listId cardId
-					given
-					wanted
-					cardAuthor
-					cardIndex
-					categoryId
-					rootCategoryId
-		        	next
-		        }
-		        naturalInputOrder
-		        filter
-		        noComponent editedCard {
-		        	cardId
-		        	given
-		        	wanted
-		        	index
-		        }
-		        newCard {
-		        	given
-		        	wanted
-		        	index
-		        	displaySpinner
-		        }
-		        List cardDuplicates {
-					listId cardId
-					given
-					wanted
-					cardAuthor
-					cardIndex
-					categoryId
-					rootCategoryId
-		        	next
-		        	categoryName
-		        }
-		        deleteCard {
-		        	confirmDelete
-		        	cardId
-		        }
-		        dictionaryValue
-		        List selectedCardIds
-		        List movedCardIds
-		        dragTargetCardId
-	        }
         }
 	}
 	footer {

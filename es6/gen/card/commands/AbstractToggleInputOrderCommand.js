@@ -17,7 +17,7 @@
 	
 	    initCommandData(data) {
 	        data.naturalInputOrder = AppState.get(
-	        	["rootContainer", "mainView", "authorView", "cardView", "naturalInputOrder"]
+	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "naturalInputOrder"]
 	        )
 	        ;
 	        data.outcomes = [];

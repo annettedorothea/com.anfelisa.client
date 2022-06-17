@@ -9,14 +9,12 @@ import React from "react";
 
 import { AuthorView } from "../../../../src/components/rootContainer/mainView/AuthorView";
 import { CategoryTreeContainer } from "./authorView/CategoryTreeContainer";
-import { CardViewContainer } from "./authorView/CardViewContainer";
 
 
 export const AuthorViewContainer = ( props ) => {
 	
 	return <AuthorView {...props} >
-		<CategoryTreeContainer {...props.categoryTree }    />
-		<CardViewContainer {...props.cardView }    />
+		<CategoryTreeContainer {...props.categoryTree }  reverse={props.reverse}   />
 	</AuthorView> 
 }
 

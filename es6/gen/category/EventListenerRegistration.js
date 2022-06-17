@@ -15,14 +15,14 @@ export default class EventListenerRegistrationCategory {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree"], 
-					["reverseBoxExists", "buttons", "filter", "rootCategory", "displayDeleteCategory", "categoryDialog", "inviteUserDialog", "inviteUserEditableDialog", "deleteCategoryDialog", "dropAllowed", "dropTargetCategoryId", "selectedCategory", "movedCategory"]
+					["reverse", "reverseBoxExists", "buttons", "filter", "rootCategory", "displayDeleteCategory", "categoryDialog", "inviteUserDialog", "inviteUserEditableDialog", "deleteCategoryDialog", "dropAllowed", "dropTargetCategoryId", "selectedCategory", "movedCategory", "cardView"]
 				)
 			});
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "authorView", "cardView"], 
-					["cardList", "naturalInputOrder", "filter", "editedCard", "newCard", "cardDuplicates", "deleteCard", "dictionaryValue", "selectedCardIds", "movedCardIds", "dragTargetCardId"]
+					["rootContainer", "mainView", "authorView", "categoryTree", "cardView"], 
+					["rootCategory", "selectedCategory", "reverse", "naturalInputOrder", "cardTable", "deleteCard", "dictionaryValue", "selectedCardIds", "movedCardIds", "dragTargetCardId", "editedCard"]
 				)
 			});
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', (data) => {

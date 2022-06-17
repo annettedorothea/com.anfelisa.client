@@ -18,7 +18,7 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
     
     initCommandData(data) {
         data.cardId = AppState.get(
-        	["rootContainer", "mainView", "authorView", "cardView", "deleteCard", "cardId"]
+        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "deleteCard", "cardId"]
         )
         ;
         data.outcomes = [];

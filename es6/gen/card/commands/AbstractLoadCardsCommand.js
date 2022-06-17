@@ -21,7 +21,7 @@ export default class AbstractLoadCardsCommand extends AsynchronousCommand {
         )
         ;
         data.naturalInputOrder = AppState.get(
-        	["rootContainer", "mainView", "authorView", "cardView", "naturalInputOrder"]
+        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "naturalInputOrder"]
         )
         ;
         data.filterNonScheduled = AppState.get(

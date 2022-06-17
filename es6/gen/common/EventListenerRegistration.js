@@ -191,6 +191,12 @@ export default class EventListenerRegistrationCommon {
 					["rootContainer", "hash"]
 				)
 			});
+		ACEController.registerListener('common.RouteToSelectedCategoryOkEvent', (data) => {
+				AppState.setLocation(
+					data, 
+					["rootContainer", "hash"]
+				)
+			});
 		ACEController.registerListener('common.LogoutOkEvent', (data) => {
 				AppState.set(
 					data, 

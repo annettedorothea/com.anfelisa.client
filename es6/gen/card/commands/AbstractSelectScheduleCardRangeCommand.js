@@ -18,15 +18,15 @@
 	
 	    initCommandData(data) {
 	        data.selectedCardIds = AppState.get(
-	        	["rootContainer", "mainView", "authorView", "cardView", "selectedCardIds"]
+	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "selectedCardIds"]
 	        )
 	        ;
 	        data.cardList = AppState.get(
-	        	["rootContainer", "mainView", "authorView", "cardView", "cardList"]
+	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "cardTable", "cardList"]
 	        )
 	        ;
 	        data.filter = AppState.get(
-	        	["rootContainer", "mainView", "authorView", "cardView", "filter"]
+	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "cardTable", "filter"]
 	        )
 	        ;
 	        data.outcomes = [];

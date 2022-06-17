@@ -6,7 +6,6 @@
 
 
 import React from "react";
-import {deleteCategoryClick} from "../../../../../../../gen/category/ActionFunctions";
 import {translate} from "../../../../../../AppUtils";
 import {Texts} from "../../../../../../app/Texts";
 

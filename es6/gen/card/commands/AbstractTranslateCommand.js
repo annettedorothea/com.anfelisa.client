@@ -18,15 +18,15 @@ export default class AbstractTranslateCommand extends AsynchronousCommand {
     
     initCommandData(data) {
         data.naturalInputOrder = AppState.get(
-        	["rootContainer", "mainView", "authorView", "cardView", "naturalInputOrder"]
+        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "naturalInputOrder"]
         )
         ;
         data.given = AppState.get(
-        	["rootContainer", "mainView", "authorView", "cardView", "newCard", "given"]
+        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "cardTable", "newCard", "given"]
         )
         ;
         data.wanted = AppState.get(
-        	["rootContainer", "mainView", "authorView", "cardView", "newCard", "wanted"]
+        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "cardTable", "newCard", "wanted"]
         )
         ;
         data.givenLanguage = AppState.get(

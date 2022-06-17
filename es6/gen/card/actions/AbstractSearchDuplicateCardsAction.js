@@ -23,7 +23,7 @@ export default class AbstractSearchDuplicateCardsAction extends Action {
 	preCall() {
 		AppState.set(
 			{displaySpinner: true}, 
-			["rootContainer", "mainView", "authorView", "cardView", "newCard", "displaySpinner"]
+			["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "cardTable", "newCard", "displaySpinner"]
 		)
 		AppState.stateUpdated();
 	}
@@ -31,7 +31,7 @@ export default class AbstractSearchDuplicateCardsAction extends Action {
 	postCall() {
 		AppState.set(
 			{displaySpinner: false}, 
-			["rootContainer", "mainView", "authorView", "cardView", "newCard", "displaySpinner"]
+			["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "cardTable", "newCard", "displaySpinner"]
 		)
 		AppState.stateUpdated();
 	}

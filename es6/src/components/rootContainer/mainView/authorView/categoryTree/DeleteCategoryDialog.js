@@ -3,35 +3,24 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 import {translate} from "../../../../../AppUtils";
 import {Texts} from "../../../../../app/Texts";
+import {Modal} from "../../../../common/Modal";
 
 export const DeleteCategoryDialog = (props) => {
-	if (props.display === true) {
-		return <div className="modal">
-			<div className="modalContent">
-				<h2>{translate(Texts.categoryTree.confirmDelete.title)}</h2>
-				<div className="message">{translate(Texts.categoryTree.confirmDelete.message)}</div>
-				<button
-					className="yes danger"
-					onClick={props.deleteCategory}
-				>
-					{translate(Texts.categoryTree.confirmDelete.ok)}
-				</button>
-				<button
-					onClick={props.cancelDeleteCategory}
-				>
-					{translate(Texts.categoryTree.confirmDelete.cancel)}
-				</button>
-			</div>
-		</div>
-	}
-	return null;
+    if (props.display === true) {
+        return <Modal
+            title={translate(Texts.categoryTree.confirmDelete.title)}
+            message={translate(Texts.categoryTree.confirmDelete.message)}
+            confirm={translate(Texts.categoryTree.confirmDelete.ok)}
+            cancel={translate(Texts.categoryTree.confirmDelete.cancel)}
+            onConfirm={props.deleteCategory}
+            onCancel={props.cancelDeleteCategory}
+        />
+    }
+    return null;
 }
-
 
 
 /******* S.D.G. *******/

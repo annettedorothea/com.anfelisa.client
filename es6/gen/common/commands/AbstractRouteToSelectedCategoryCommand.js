@@ -10,24 +10,12 @@
 	import * as AppUtils from "../../../src/AppUtils";
 	import * as AppState from "../../../src/AppState";
 	
-	export default class AbstractToggleAllScheduleCardSelectionCommand extends SynchronousCommand {
+	export default class AbstractRouteToSelectedCategoryCommand extends SynchronousCommand {
 	    constructor() {
-	        super("card.ToggleAllScheduleCardSelectionCommand");
+	        super("common.RouteToSelectedCategoryCommand");
 	    }
 	
 	    initCommandData(data) {
-	        data.selectedCardIds = AppState.get(
-	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "selectedCardIds"]
-	        )
-	        ;
-	        data.cardList = AppState.get(
-	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "cardTable", "cardList"]
-	        )
-	        ;
-	        data.filter = AppState.get(
-	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "cardTable", "filter"]
-	        )
-	        ;
 	        data.outcomes = [];
 	    }
 
@@ -39,7 +27,7 @@
 			const events = [];
 			const actionsToBeTriggered = [];
 			if (data.outcomes.includes("ok")) {
-				events.push(new Event('card.ToggleAllScheduleCardSelectionOkEvent'));
+				events.push(new Event('common.RouteToSelectedCategoryOkEvent'));
 			}
 			
 			this.publish(events, data);

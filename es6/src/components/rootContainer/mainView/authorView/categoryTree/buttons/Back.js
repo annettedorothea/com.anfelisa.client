@@ -4,7 +4,6 @@
 
 
 import React from "react";
-import {route} from "../../../../../../../gen/common/ActionFunctions";
 import {translate} from "../../../../../../AppUtils";
 import {Texts} from "../../../../../../app/Texts";
 

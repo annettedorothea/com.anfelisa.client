@@ -17,7 +17,7 @@
 	
 	    initCommandData(data) {
 	        data.selectedCardIds = AppState.get(
-	        	["rootContainer", "mainView", "authorView", "cardView", "selectedCardIds"]
+	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "selectedCardIds"]
 	        )
 	        ;
 	        data.outcomes = [];

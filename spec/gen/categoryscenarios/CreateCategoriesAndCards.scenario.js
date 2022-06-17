@@ -149,43 +149,44 @@ describe("categoryscenarios.CreateCategoriesAndCards", function () {
 					editable : true
 				},
 				
-				displayDeleteCategory : false
-			},
-			
-			cardView : { 
-				cardList : [
-				],
-				
-				naturalInputOrder : true,
-				filter : ``,
-				editedCard : { 
-					cardId : ``,
-					given : ``,
-					wanted : ``
-				},
-				
-				newCard : { 
-					given : ``,
-					wanted : ``,
-					displaySpinner : false
-				},
-				
-				cardDuplicates : [
-				],
-				
-				deleteCard : { 
-					cardId : ``,
-					confirmDelete : false
-				},
-				
-				dictionaryValue : null,
-				selectedCardIds : [
-				],
-				
-				movedCardIds : [
-				],
-				
-				dragTargetCardId : null
+				displayDeleteCategory : false,
+				cardView : { 
+					cardTable : { 
+						filter : ``,
+						cardList : [
+						],
+						
+						newCard : { 
+							given : ``,
+							wanted : ``,
+							displaySpinner : false
+						},
+						
+						cardDuplicates : [
+						]
+					},
+					
+					naturalInputOrder : true,
+					editedCard : { 
+						cardId : ``,
+						given : ``,
+						wanted : ``
+					},
+					
+					deleteCard : { 
+						cardId : ``,
+						confirmDelete : false
+					},
+					
+					dictionaryValue : null,
+					selectedCardIds : [
+					],
+					
+					movedCardIds : [
+					],
+					
+					dragTargetCardId : null
+				}
 			}
 		}
 		)

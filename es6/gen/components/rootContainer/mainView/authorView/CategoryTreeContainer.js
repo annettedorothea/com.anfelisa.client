@@ -15,6 +15,7 @@ import { CategoryDialogContainer } from "./categoryTree/CategoryDialogContainer"
 import { InviteUserDialogContainer } from "./categoryTree/InviteUserDialogContainer";
 import { InviteUserEditableDialogContainer } from "./categoryTree/InviteUserEditableDialogContainer";
 import { DeleteCategoryDialogContainer } from "./categoryTree/DeleteCategoryDialogContainer";
+import { CardViewContainer } from "./categoryTree/CardViewContainer";
 import { checkDropAllowed } from "../../../../category/ActionFunctions";
 import { collapseTreeItem } from "../../../../category/ActionFunctions";
 import { expandTreeItem } from "../../../../category/ActionFunctions";
@@ -37,13 +38,14 @@ import { deleteCategory } from "../../../../category/ActionFunctions";
 export const CategoryTreeContainer = ( props ) => {
 	
 	return <CategoryTree {...props} >
-		<ButtonsContainer {...props.buttons }  selectedCategory={props.selectedCategory} rootCategory={props.rootCategory} reverseBoxExists={props.reverseBoxExists}   />
+		<ButtonsContainer {...props.buttons }  selectedCategory={props.selectedCategory} rootCategory={props.rootCategory} reverseBoxExists={props.reverseBoxExists} reverse={props.reverse}   />
 		<FilterContainer {...props.filter }    />
 		<RootCategoryContainer {...props.rootCategory }  selectedCategory={props.selectedCategory} dropAllowed={props.dropAllowed} dropTargetCategoryId={props.dropTargetCategoryId}  checkDropAllowed={checkDropAllowed} collapseTreeItem={collapseTreeItem} expandTreeItem={expandTreeItem} itemDropped={itemDropped} moveCategoryStarted={moveCategoryStarted} selectTreeItem={selectTreeItem}  />
 		<CategoryDialogContainer {...props.categoryDialog }   cancelCategoryDialog={cancelCategoryDialog} categoryNameChanged={categoryNameChanged} createCategory={createCategory} updateCategory={updateCategory}  />
 		<InviteUserDialogContainer {...props.inviteUserDialog }   cancelInviteUser={cancelInviteUser} invitedUsernameChanged={invitedUsernameChanged} inviteUserNextStep={inviteUserNextStep}  />
 		<InviteUserEditableDialogContainer {...props.inviteUserEditableDialog }   cancelInviteUser={cancelInviteUser} inviteUser={inviteUser} inviteUserChangeEditable={inviteUserChangeEditable}  />
 		<DeleteCategoryDialogContainer {...props.deleteCategoryDialog }   cancelDeleteCategory={cancelDeleteCategory} deleteCategory={deleteCategory}  />
+		<CardViewContainer {...props.cardView }  rootCategory={props.rootCategory} selectedCategory={props.selectedCategory} reverse={props.reverse}   />
 	</CategoryTree> 
 }
 

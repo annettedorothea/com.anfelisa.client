@@ -7,7 +7,6 @@ import React from "react";
 import {collapsedCategoryItem, expandedCategoryItem} from "../RootCategory";
 
 export const ChildCategoriesItem = (props) => {
-    console.log("ChildCategoriesItem", props);
     return <div
         className={`categoryItem depth_${props.depth}`}
     >

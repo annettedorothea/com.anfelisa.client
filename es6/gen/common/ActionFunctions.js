@@ -19,6 +19,7 @@ import RouteToForgotPasswordAction from "../../src/common/actions/RouteToForgotP
 import RouteToPrivacyPolicyAction from "../../src/common/actions/RouteToPrivacyPolicyAction";
 import RouteToRegistrationAction from "../../src/common/actions/RouteToRegistrationAction";
 import RouteToProfileViewAction from "../../src/common/actions/RouteToProfileViewAction";
+import RouteToSelectedCategoryAction from "../../src/common/actions/RouteToSelectedCategoryAction";
 import LogoutAction from "../../src/common/actions/LogoutAction";
 import DisplayToastAction from "../../src/common/actions/DisplayToastAction";
 import DisplayErrorToastAction from "../../src/common/actions/DisplayErrorToastAction";
@@ -87,6 +88,10 @@ export function routeToRegistration() {
 
 export function routeToProfileView() {
     return new RouteToProfileViewAction().apply({});
+}
+
+export function routeToSelectedCategory(rootCategoryId, categoryId) {
+    return new RouteToSelectedCategoryAction().apply({rootCategoryId, categoryId});
 }
 
 export function logout() {
