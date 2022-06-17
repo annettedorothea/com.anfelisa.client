@@ -4,7 +4,7 @@ scenarios
 
 RegisterUserValidations
 	GIVEN RegistrationHappyPath
-	WHEN common.Route (hash: "#registration")
+	WHEN common.RouteToRegistration
 	AND 
 	WHEN registration.UsernameChanged(value: "username-${testId}") delayInMillis 200
 	THEN 
@@ -99,7 +99,7 @@ ConfirmEmailTokenDoesNotExist
 			
 RegistrationHappyPath
 	GIVEN commonscenarios.Init
-	WHEN common.Route (hash: "#registration")
+	WHEN common.RouteToRegistration
 	THEN
 		expectedState 
 			displayUsernameSpinner common.rootContainer.mainView.registrationView.username.displayUsernameSpinner should be false

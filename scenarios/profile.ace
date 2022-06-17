@@ -6,7 +6,7 @@ scenarios
 
 RouteToProfile
 	GIVEN loginscenarios.Login
-	WHEN common.Route (hash: "#profile")
+	WHEN common.RouteToProfileView
 	THEN
 		expectedState 
 			username common.rootContainer.mainView.profileView.username should be "username-${testId}"

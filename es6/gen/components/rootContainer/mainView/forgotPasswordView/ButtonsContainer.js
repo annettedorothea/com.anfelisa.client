@@ -11,14 +11,14 @@ import { Buttons } from "../../../../../src/components/rootContainer/mainView/fo
 import { ForgotPassword } from "../../../../../src/components/rootContainer/mainView/forgotPasswordView/buttons/ForgotPassword";
 import { forgotPassword } from "../../../../password/ActionFunctions";
 import { Cancel } from "../../../../../src/components/rootContainer/mainView/forgotPasswordView/buttons/Cancel";
-import { route } from "../../../../common/ActionFunctions";
+import { routeToDefault } from "../../../../common/ActionFunctions";
 
 
 export const ButtonsContainer = ( props ) => {
 	
 	return <Buttons {...props} >
 		<ForgotPassword {...props.forgotPassword }   onClick={forgotPassword}  />
-		<Cancel {...props.cancel }   onClick={route}  />
+		<Cancel {...props.cancel }   onClick={routeToDefault}  />
 	</Buttons> 
 }
 

@@ -26,7 +26,7 @@ describe("boxscenarios.BoxValidations", function () {
     	driver = ScenarioUtils.createDriver();
     	let appState;
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
-		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#registration`]);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToRegistration);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.usernameChanged, [`username-${testId}`]);
 		await ScenarioUtils.waitInMillis(200);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordChanged, [`password`]);
@@ -46,7 +46,7 @@ describe("boxscenarios.BoxValidations", function () {
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.passwordChanged, [`password`]);
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.login);
 
-		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#box/create`]);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToBoxCreate);
 		await ScenarioUtils.waitInMillis(10);
 		
 		await ScenarioUtils.invokeAction(driver, BoxActionIds.maxCardsPerDayChanged, [``]);
@@ -94,7 +94,7 @@ describe("boxscenarios.BoxValidations", function () {
 		
 		verifications.saveDisabled = await Verifications.saveDisabled(driver, testId);
 		
-		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#dashboard`]);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToDefault);
 		await ScenarioUtils.waitInMillis(10);
 		
 		appState = await ScenarioUtils.getAppState(driver);
@@ -162,7 +162,6 @@ describe("boxscenarios.BoxValidations", function () {
 	});
 	it("deleteBox", async () => {
 		expect(appStates.deleteBox.rootContainer.mainView.dashboardView.deleteBox, "deleteBox").toEqual({ 
-			confirmDelete : false,
 			boxId : null
 		}
 		)

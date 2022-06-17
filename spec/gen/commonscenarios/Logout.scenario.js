@@ -24,7 +24,7 @@ describe("commonscenarios.Logout", function () {
     	driver = ScenarioUtils.createDriver();
     	let appState;
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
-		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#registration`]);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToRegistration);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.usernameChanged, [`username-${testId}`]);
 		await ScenarioUtils.waitInMillis(200);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordChanged, [`password`]);

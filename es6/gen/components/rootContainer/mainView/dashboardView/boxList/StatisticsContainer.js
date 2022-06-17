@@ -7,14 +7,12 @@
 
 import React from "react";
 
-export const ActiveCards = (props) => {
-	return <button 
-		boxId={props.boxId}
-		className="button"
-		onClick={(event) => props.onClick(props.boxId)}
-	>
-		activeCards
-	</button>
+import { Statistics } from "../../../../../../src/components/rootContainer/mainView/dashboardView/boxList/Statistics";
+
+
+export const StatisticsContainer = ( props ) => {
+	
+	return <Statistics {...props}  /> 
 }
 
 

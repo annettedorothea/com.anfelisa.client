@@ -9,9 +9,9 @@ import React from "react";
 
 
 export const RootContainer = (props) => {
-	return <>
+	return <div id="rootContainer" className={props.loggedInUser? "wrapper" : ""}>
 		{props.children}
-	</>
+	</div>
 }
 
 

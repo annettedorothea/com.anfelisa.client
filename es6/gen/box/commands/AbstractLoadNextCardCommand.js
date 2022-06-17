@@ -9,7 +9,7 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
-import RouteAction from "../../../src/common/actions/RouteAction";
+import RouteToDefaultAction from "../../../src/common/actions/RouteToDefaultAction";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 
 export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
@@ -63,9 +63,8 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
 				events.push(new Event('box.LoadNextCardFinishedEvent'));
 				actionsToBeTriggered.push(
 					{
-						action: new RouteAction(), 
+						action: new RouteToDefaultAction(), 
 						data: {
-							hash: data.hash
 						}
 					}
 				);

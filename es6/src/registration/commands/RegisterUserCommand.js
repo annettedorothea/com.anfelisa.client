@@ -16,7 +16,6 @@ export default class RegisterUserCommand extends AbstractRegisterUserCommand {
 
     handleResponse(data, resolve) {
         this.addOkOutcome(data);
-        data.hash = "#";
         data.textKey = Texts.messages.confirmEmail;
     	resolve(data);
     }

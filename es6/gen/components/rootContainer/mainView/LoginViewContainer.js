@@ -13,6 +13,7 @@ import { usernameChanged } from "../../../login/ActionFunctions";
 import { routeToRegistration } from "../../../common/ActionFunctions";
 import { Password } from "../../../../src/components/rootContainer/mainView/loginView/Password";
 import { passwordChanged } from "../../../login/ActionFunctions";
+import { routeToForgotPassword } from "../../../common/ActionFunctions";
 import { SaveInLocalStorage } from "../../../../src/components/rootContainer/mainView/loginView/SaveInLocalStorage";
 import { toggleSaveInLocalStorage } from "../../../login/ActionFunctions";
 import { Login } from "../../../../src/components/rootContainer/mainView/loginView/Login";
@@ -23,7 +24,7 @@ export const LoginViewContainer = ( props ) => {
 	
 	return <LoginView {...props} >
 		<Username {...props.username }   onChange={usernameChanged} onClick={routeToRegistration}  />
-		<Password {...props.password }   onChange={passwordChanged}  />
+		<Password {...props.password }   onChange={passwordChanged} onClick={routeToForgotPassword}  />
 		<SaveInLocalStorage {...props.saveInLocalStorage }   onChange={toggleSaveInLocalStorage}  />
 		<Login {...props.login }   onClick={login}  />
 	</LoginView> 

@@ -7,7 +7,6 @@
 
 import React from "react";
 
-import { passwordRepetitionChanged } from "../../../../../gen/password/ActionFunctions";
 import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 import CryptoJS from "crypto-js";
@@ -18,7 +17,7 @@ export const PasswordRepetition = (props) => {
 		<div className="inputContainer">
 			<input
 				type={"password"}
-				onChange={(e) => passwordRepetitionChanged(CryptoJS.MD5(e.target.value).toString())}
+				onChange={(e) => props.onChange(CryptoJS.MD5(e.target.value).toString())}
 				autoComplete="off"
 			/>
 			{props.passwordMismatch === true &&

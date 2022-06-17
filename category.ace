@@ -256,7 +256,7 @@ CreateReverseBox
 	)
 	call com.anfelisa.box.CreateReverseBox
 	loadingFlag common.rootContainer.spinner.display 
-	on ok triggers (common.Route)
+	on ok triggers (common.RouteToDefault)
 	
 
 

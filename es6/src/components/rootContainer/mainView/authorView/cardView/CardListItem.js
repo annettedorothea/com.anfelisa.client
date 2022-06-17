@@ -7,17 +7,19 @@
 
 import React from "react";
 
-
 export const CardListItem = (props) => {
 	return <>
-		<div>cardId: {props.cardId !== null && props.cardId !== undefined ? props.cardId.toString() : ""}</div>
-		<div>given: {props.given !== null && props.given !== undefined ? props.given.toString() : ""}</div>
-		<div>wanted: {props.wanted !== null && props.wanted !== undefined ? props.wanted.toString() : ""}</div>
-		<div>cardAuthor: {props.cardAuthor !== null && props.cardAuthor !== undefined ? props.cardAuthor.toString() : ""}</div>
-		<div>cardIndex: {props.cardIndex !== null && props.cardIndex !== undefined ? props.cardIndex.toString() : ""}</div>
-		<div>categoryId: {props.categoryId !== null && props.categoryId !== undefined ? props.categoryId.toString() : ""}</div>
-		<div>rootCategoryId: {props.rootCategoryId !== null && props.rootCategoryId !== undefined ? props.rootCategoryId.toString() : ""}</div>
-		<div>next: {props.next !== null && props.next !== undefined ? props.next.toString() : ""}</div>
+		<h1>CardListItem</h1>
+		<ul>
+			<li>cardId: {props.cardId !== null && props.cardId !== undefined ? props.cardId.toString() : ""}</li>
+			<li>given: {props.given !== null && props.given !== undefined ? props.given.toString() : ""}</li>
+			<li>wanted: {props.wanted !== null && props.wanted !== undefined ? props.wanted.toString() : ""}</li>
+			<li>cardAuthor: {props.cardAuthor !== null && props.cardAuthor !== undefined ? props.cardAuthor.toString() : ""}</li>
+			<li>cardIndex: {props.cardIndex !== null && props.cardIndex !== undefined ? props.cardIndex.toString() : ""}</li>
+			<li>categoryId: {props.categoryId !== null && props.categoryId !== undefined ? props.categoryId.toString() : ""}</li>
+			<li>rootCategoryId: {props.rootCategoryId !== null && props.rootCategoryId !== undefined ? props.rootCategoryId.toString() : ""}</li>
+			<li>next: {props.next !== null && props.next !== undefined ? props.next.toString() : ""}</li>
+		</ul>
 	</> 
 }
 

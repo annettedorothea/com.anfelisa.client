@@ -75,7 +75,7 @@ export default class EventListenerRegistrationBox {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "dashboardView", "deleteBox"], 
-					["confirmDelete", "boxId"]
+					["boxId"]
 				)
 			});
 		ACEController.registerListener('box.CancelDeleteBoxOkEvent', (data) => {
@@ -84,25 +84,7 @@ export default class EventListenerRegistrationBox {
 					["rootContainer", "mainView", "dashboardView", "deleteBox", "boxId"]
 				)
 			});
-		ACEController.registerListener('box.CancelDeleteBoxOkEvent', (data) => {
-				AppState.set(
-					data, 
-					["rootContainer", "mainView", "dashboardView", "deleteBox", "confirmDelete"]
-				)
-			});
 		ACEController.registerListener('box.DeleteBoxOkEvent', (data) => {
-				AppState.set(
-					data, 
-					["rootContainer", "mainView", "dashboardView", "deleteBox", "boxId"]
-				)
-			});
-		ACEController.registerListener('box.DeleteBoxOkEvent', (data) => {
-				AppState.set(
-					data, 
-					["rootContainer", "mainView", "dashboardView", "deleteBox", "confirmDelete"]
-				)
-			});
-		ACEController.registerListener('box.DeleteBoxErrorEvent', (data) => {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "dashboardView", "deleteBox", "boxId"]
@@ -111,7 +93,7 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.DeleteBoxErrorEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "dashboardView", "deleteBox", "confirmDelete"]
+					["rootContainer", "mainView", "dashboardView", "deleteBox", "boxId"]
 				)
 			});
 		ACEController.registerListener('box.LoadNextCardOkEvent', (data) => {

@@ -10,9 +10,9 @@
 	import * as AppUtils from "../../../src/AppUtils";
 	import * as AppState from "../../../src/AppState";
 	
-	export default class AbstractRouteToHomeCommand extends SynchronousCommand {
+	export default class AbstractRouteToBoxCreateCommand extends SynchronousCommand {
 	    constructor() {
-	        super("common.RouteToHomeCommand");
+	        super("common.RouteToBoxCreateCommand");
 	    }
 	
 	    initCommandData(data) {
@@ -27,7 +27,7 @@
 			const events = [];
 			const actionsToBeTriggered = [];
 			if (data.outcomes.includes("ok")) {
-				events.push(new Event('common.RouteToHomeOkEvent'));
+				events.push(new Event('common.RouteToBoxCreateOkEvent'));
 			}
 			
 			this.publish(events, data);

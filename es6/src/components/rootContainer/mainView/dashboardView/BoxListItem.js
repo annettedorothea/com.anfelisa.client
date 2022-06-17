@@ -3,37 +3,38 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
+import {translate} from "../../../../AppUtils";
+import {Texts} from "../../../../app/Texts";
 
 export const BoxListItem = (props) => {
-	return <>
-		<div>boxList</div>
-		<div>openTodaysCards: {props.openTodaysCards !== null && props.openTodaysCards !== undefined ? props.openTodaysCards.toString() : ""}</div>
-		<div>categoryName: {props.categoryName !== null && props.categoryName !== undefined ? props.categoryName.toString() : ""}</div>
-		<div>categoryId: {props.categoryId !== null && props.categoryId !== undefined ? props.categoryId.toString() : ""}</div>
-		<div>boxId: {props.boxId !== null && props.boxId !== undefined ? props.boxId.toString() : ""}</div>
-		<div>quality0Count: {props.quality0Count !== null && props.quality0Count !== undefined ? props.quality0Count.toString() : ""}</div>
-		<div>quality1Count: {props.quality1Count !== null && props.quality1Count !== undefined ? props.quality1Count.toString() : ""}</div>
-		<div>quality2Count: {props.quality2Count !== null && props.quality2Count !== undefined ? props.quality2Count.toString() : ""}</div>
-		<div>quality3Count: {props.quality3Count !== null && props.quality3Count !== undefined ? props.quality3Count.toString() : ""}</div>
-		<div>quality4Count: {props.quality4Count !== null && props.quality4Count !== undefined ? props.quality4Count.toString() : ""}</div>
-		<div>quality5Count: {props.quality5Count !== null && props.quality5Count !== undefined ? props.quality5Count.toString() : ""}</div>
-		<div>countsPerDayNextWeek: {props.countsPerDayNextWeek !== null && props.countsPerDayNextWeek !== undefined ? props.countsPerDayNextWeek.toString() : ""}</div>
-		<div>maxCardsPerDay: {props.maxCardsPerDay !== null && props.maxCardsPerDay !== undefined ? props.maxCardsPerDay.toString() : ""}</div>
-		<div>categoryAuthor: {props.categoryAuthor !== null && props.categoryAuthor !== undefined ? props.categoryAuthor.toString() : ""}</div>
-		<div>editable: {props.editable !== null && props.editable !== undefined ? props.editable.toString() : ""}</div>
-		<div>reverse: {props.reverse !== null && props.reverse !== undefined ? props.reverse.toString() : ""}</div>
-		<div>archived: {props.archived !== null && props.archived !== undefined ? props.archived.toString() : ""}</div>
-		<div>deletable: {props.deletable !== null && props.deletable !== undefined ? props.deletable.toString() : ""}</div>
-		<div onClick={(event) => props.onClick(props.boxId,props.openTodaysCards)}>
-			onClick
-		</div>
-		{props.children}
-	</> 
-}
+    if (props.archived === true) {
+        return <a className="tile box">
+            <h2>
+                {!props.editable ?
+                    translate(Texts.box.sharedTitle, [props.categoryName, props.categoryAuthor]) :
+                    props.categoryName}
+                {props.reverse ? <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
+            </h2>
+            <br/>
+            {props.children}
+        </a>
+    }
 
+    return <a
+        className="tile box active"
+        id={props.boxId}
+        onClick={() => props.onClick(props.boxId, props.openTodaysCards, props.categoryId, props.reverse)}>
+        <h2>
+            {!props.editable ?
+                translate(Texts.box.sharedTitle, [props.categoryName, props.categoryAuthor]) :
+                props.categoryName}
+            {props.reverse ? <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
+        </h2>
+        {props.openTodaysCards > 0 ? <span className="badge">{props.openTodaysCards}</span> : null}
+        {props.children}
+    </a>
+}
 
 
 /******* S.D.G. *******/

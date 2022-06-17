@@ -6,15 +6,28 @@
 
 
 import React from "react";
+import {translate} from "../../../../../AppUtils";
+import {Texts} from "../../../../../app/Texts";
 
 export const Settings = (props) => {
-	return <button 
-		boxId={props.boxId}
-		className="button"
-		onClick={(event) => props.onClick(props.boxId)}
-	>
-		settings
-	</button>
+	if (props.archived === true) {
+		return null;
+	}
+
+	const onSettingsClick = (e) => {
+		e.stopPropagation();
+		props.onClick(props.boxId)
+	}
+
+	return (
+		<div className="buttons button2">
+			<i
+				className="fas fa-cog"
+				onClick={(e) => onSettingsClick(e)}
+				title={translate(Texts.box.settings)}
+			/>
+		</div>
+	)
 }
 
 

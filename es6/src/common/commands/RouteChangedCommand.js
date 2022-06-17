@@ -31,138 +31,135 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
                 }
             };
             this.addResetPasswordOutcome(data);
-        } else if (data.hash === "#dashboard" && this.isUserLoggedIn(data)) {
-            data.mainView = {
-                dashboardView: {
-                    deleteBox: {
-                        confirmDelete: false,
-                        boxId: undefined
-                    }
-                }
-            };
-            this.addDashboardOutcome(data);
-        } else if (data.hash === "#profile" && this.isUserLoggedIn(data)) {
-            data.mainView = {
-                profileView: {}
-            };
-            this.addProfileOutcome(data);
-        } else if (data.hash.startsWith("#categories") && hashes.length >= 2 && this.isUserLoggedIn(data)) {
-            data.rootCategoryId = hashes[1];
-            data.mainView = {
-                authorView: {}
-            };
-            if (hashes[hashes.length - 1] === "reverse") {
-                data.mainView.authorView.reverse = true;
-                data.selectedCategoryId = hashes.length === 3 ? data.rootCategoryId : hashes[2];
-            } else {
-                data.mainView.authorView.reverse = false;
-                data.selectedCategoryId = hashes.length === 2 ? data.rootCategoryId : hashes[2];
-            }
-            this.addCategoriesOutcome(data);
-        } else if (data.hash.startsWith("#box/settings") && hashes.length >= 2 && hashes[2] && this.isUserLoggedIn(data)) {
-            data.mainView = {
-                boxSettingsView: {
-                    boxId: hashes[2]
-                }
-            };
-            this.addBoxSettingsOutcome(data);
-        } else if (data.hash.startsWith("#box/active-cards") && hashes.length >= 2 && hashes[2] && this.isUserLoggedIn(data)) {
-            data.mainView = {
-                allActiveCardsView: {
-                    boxId: hashes[2],
-                    selectedLastQualityFilters: [],
-                }
-            };
-            this.addAllActiveCardsOutcome(data);
-        } else if (data.hash === "#box/create" && this.isUserLoggedIn(data)) {
-            data.mainView = {
-                boxSettingsView: {
-                    boxSettings: {
-                        maxCardsPerDay: 8,
-                        maxInterval: "",
-                        boxId: "",
-                        categoryName: "",
-                        dictionaryLookup: false,
-                        wantedLanguage: "",
-                        givenLanguage: ""
-                    }
-                }
-            };
-            this.addBoxCreateOutcome(data);
-        } else if (data.hash.startsWith("#box") && hashes.length >= 1 && hashes[1] && this.isUserLoggedIn(data)) {
-            data.mainView = {
-                queryCardView: {
-                    boxId: hashes[1]
-                }
-            };
-            this.addNextCardOutcome(data);
-        } else if (data.hash === "" && !this.isUserLoggedIn(data)) {
-            data.mainView = {
-                loginView: {
-                    username: {
-                        value: ""
-                    },
-                    password: {
-                        value: ""
-                    },
-                    saveInLocalStorage: {
-                        checked: false
-                    }
-                }
-            };
-            this.addLoginOutcome(data);
-        } else if (data.hash === "#registration" && !this.isUserLoggedIn(data)) {
-            data.mainView = {
-                registrationView: {
-                    username: {
-                        value: "",
-                        displayUsernameSpinner: false,
-                        usernameAvailable: undefined,
-                    },
-                    email: {
-                        value: "",
-                        emailInvalid: false,
-                    },
-                    password: {
-                        value: ""
-                    },
-                    passwordRepetition: {
-                        value: "",
-                        passwordMismatch: false,
-                    },
-                    buttons: {
-                        register: {
-                            disabled: true
-                        }
-                    }
-                }
-            };
-            this.addRegistrationOutcome(data);
-        } else if (data.hash === "#forgotpassword" && !this.isUserLoggedIn(data)) {
-            data.mainView = {
-                forgotPasswordView: {
-                    username: {
-                        value: ""
-                    },
-                    buttons: {
-                        forgotPassword: {
-                            disabled: true
-                        }
-                    }
-                }
-            };
-            this.addForgotPasswordOutcome(data);
         } else if (data.hash === "#privacypolicy") {
             data.mainView = {
                 privacyPolicyView: {}
             };
             this.addPrivacyPolicyOutcome(data);
         } else if (this.isUserLoggedIn(data)) {
-            this.addInvalidOutcome(data);
-            data.hash = "#dashboard";
+            if (data.hash === "#profile") {
+                data.mainView = {
+                    profileView: {}
+                };
+                this.addProfileOutcome(data);
+            } else if (data.hash.startsWith("#categories") && hashes.length >= 2) {
+                data.rootCategoryId = hashes[1];
+                data.mainView = {
+                    authorView: {}
+                };
+                if (hashes[hashes.length - 1] === "reverse") {
+                    data.mainView.authorView.reverse = true;
+                    data.selectedCategoryId = hashes.length === 3 ? data.rootCategoryId : hashes[2];
+                } else {
+                    data.mainView.authorView.reverse = false;
+                    data.selectedCategoryId = hashes.length === 2 ? data.rootCategoryId : hashes[2];
+                }
+                this.addCategoriesOutcome(data);
+            } else if (data.hash.startsWith("#box/settings") && hashes.length >= 2 && hashes[2]) {
+                data.mainView = {
+                    boxSettingsView: {
+                        boxId: hashes[2]
+                    }
+                };
+                this.addBoxSettingsOutcome(data);
+            } else if (data.hash.startsWith("#box/active-cards") && hashes.length >= 2 && hashes[2]) {
+                data.mainView = {
+                    allActiveCardsView: {
+                        boxId: hashes[2],
+                        selectedLastQualityFilters: [],
+                    }
+                };
+                this.addAllActiveCardsOutcome(data);
+            } else if (data.hash === "#box/create") {
+                data.mainView = {
+                    boxSettingsView: {
+                        boxSettings: {
+                            maxCardsPerDay: 8,
+                            maxInterval: "",
+                            boxId: "",
+                            categoryName: "",
+                            dictionaryLookup: false,
+                            wantedLanguage: "",
+                            givenLanguage: ""
+                        }
+                    }
+                };
+                this.addBoxCreateOutcome(data);
+            } else if (data.hash.startsWith("#box") && hashes.length >= 1 && hashes[1]) {
+                data.mainView = {
+                    queryCardView: {
+                        boxId: hashes[1]
+                    }
+                };
+                this.addNextCardOutcome(data);
+            } else {
+                data.mainView = {
+                    dashboardView: {
+                        deleteBox: {
+                            boxId: undefined
+                        }
+                    }
+                };
+                this.addDashboardOutcome(data);
+            }
         } else {
-            this.addInvalidOutcome(data);
-            data.hash = "#";
+            if (data.hash === "#registration") {
+                data.mainView = {
+                    registrationView: {
+                        username: {
+                            value: "",
+                            displayUsernameSpinner: false,
+                            usernameAvailable: undefined,
+                        },
+                        email: {
+                            value: "",
+                            emailInvalid: false,
+                        },
+                        password: {
+                            value: ""
+                        },
+                        passwordRepetition: {
+                            value: "",
+                            passwordMismatch: false,
+                        },
+                        buttons: {
+                            register: {
+                                disabled: true
+                            }
+                        }
+                    }
+                };
+                this.addRegistrationOutcome(data);
+            } else if (data.hash === "#forgotpassword") {
+                data.mainView = {
+                    forgotPasswordView: {
+                        username: {
+                            value: ""
+                        },
+                        buttons: {
+                            forgotPassword: {
+                                disabled: true
+                            }
+                        }
+                    }
+                };
+                this.addForgotPasswordOutcome(data);
+            } else {
+                data.mainView = {
+                    loginView: {
+                        username: {
+                            value: ""
+                        },
+                        password: {
+                            value: ""
+                        },
+                        saveInLocalStorage: {
+                            checked: false
+                        }
+                    }
+                };
+                this.addLoginOutcome(data);
+            }
         }
         return data;
     }

@@ -7,10 +7,12 @@
 
 import React from "react";
 
-
 export const DeleteCategoryDialog = (props) => {
 	return <>
-		<div>display: {props.display !== null && props.display !== undefined ? props.display.toString() : ""}</div>
+		<h1>DeleteCategoryDialog</h1>
+		<ul>
+			<li>display: {props.display !== null && props.display !== undefined ? props.display.toString() : ""}</li>
+		</ul>
 	</> 
 }
 

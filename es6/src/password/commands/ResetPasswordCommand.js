@@ -15,13 +15,11 @@ export default class ResetPasswordCommand extends AbstractResetPasswordCommand {
     }
 
     handleResponse(data, resolve) {
-        data.hash = "#";
         data.textKey = Texts.messages.passwordReset;
         this.addOkOutcome(data);
         resolve(data);
     }
     handleError(data, resolve) {
-        data.hash = "#";
         data.textKey = Texts.messages.tokenDoesNotExist;
         this.addErrorOutcome(data);
         resolve(data);

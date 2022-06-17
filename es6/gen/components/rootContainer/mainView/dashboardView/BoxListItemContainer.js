@@ -16,9 +16,8 @@ import { Archive } from "../../../../../src/components/rootContainer/mainView/da
 import { archiveBox } from "../../../../box/ActionFunctions";
 import { Delete } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/Delete";
 import { deleteBoxClick } from "../../../../box/ActionFunctions";
-import { QueryCards } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/QueryCards";
-import { routeToQueryCards } from "../../../../common/ActionFunctions";
-import { ActiveCards } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/ActiveCards";
+import { StatisticsContainer } from "./boxList/StatisticsContainer";
+import { CardsNextDaysContainer } from "./boxList/CardsNextDaysContainer";
 import { routeToActiveCards } from "../../../../common/ActionFunctions";
 import { boxClick } from "../../../../box/ActionFunctions";
 
@@ -26,12 +25,12 @@ import { boxClick } from "../../../../box/ActionFunctions";
 export const BoxListItemContainer = ( props ) => {
 	
 	return <BoxListItem {...props} onClick={boxClick} >
-		<Edit {...props.edit }  categoryId={props.categoryId} reverse={props.reverse}  onClick={routeToAuthorView}  />
-		<Settings {...props.settings }  boxId={props.boxId}  onClick={routeToBoxSettings}  />
+		<Edit {...props.edit }  categoryId={props.categoryId} reverse={props.reverse} archived={props.archived}  onClick={routeToAuthorView}  />
+		<Settings {...props.settings }  boxId={props.boxId} archived={props.archived}  onClick={routeToBoxSettings}  />
 		<Archive {...props.archive }  boxId={props.boxId} archived={props.archived}  onClick={archiveBox}  />
-		<Delete {...props.delete }  boxId={props.boxId} deletable={props.deletable}  onClick={deleteBoxClick}  />
-		<QueryCards {...props.queryCards }  boxId={props.boxId}  onClick={routeToQueryCards}  />
-		<ActiveCards {...props.activeCards }  boxId={props.boxId}  onClick={routeToActiveCards}  />
+		<Delete {...props.delete }  boxId={props.boxId} deletable={props.deletable} archived={props.archived}  onClick={deleteBoxClick}  />
+		<StatisticsContainer {...props.statistics }  quality0Count={props.quality0Count} quality1Count={props.quality1Count} quality2Count={props.quality2Count} quality3Count={props.quality3Count} quality4Count={props.quality4Count} quality5Count={props.quality5Count} archived={props.archived}   />
+		<CardsNextDaysContainer {...props.cardsNextDays }  boxId={props.boxId} countsPerDayNextWeek={props.countsPerDayNextWeek} maxCardsPerDay={props.maxCardsPerDay} archived={props.archived}  onClick={routeToActiveCards}  />
 	</BoxListItem> 
 }
 

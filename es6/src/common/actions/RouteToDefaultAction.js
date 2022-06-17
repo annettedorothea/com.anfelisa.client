@@ -5,14 +5,14 @@
 
 
 
-import AbstractRouteToHomeCommand from "../../../gen/common/commands/AbstractRouteToHomeCommand";
+import AbstractRouteToDefaultAction from "../../../gen/common/actions/AbstractRouteToDefaultAction";
 
-export default class RouteToHomeCommand extends AbstractRouteToHomeCommand {
-    execute(data) {
-    	this.addOkOutcome(data);
-        data.hash = "#"
+export default class RouteToDefaultAction extends AbstractRouteToDefaultAction {
+
+    initActionData(data) {
     	return data;
     }
+
 }
 
 

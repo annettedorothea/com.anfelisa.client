@@ -6,13 +6,22 @@
 
 
 import React from "react";
-
+import {Modal} from "../../../common/Modal";
+import {translate} from "../../../../AppUtils";
+import {Texts} from "../../../../app/Texts";
 
 export const DeleteBox = (props) => {
-	return <>
-		<div>confirmDelete: {props.confirmDelete !== null && props.confirmDelete !== undefined ? props.confirmDelete.toString() : ""}</div>
-		<div>boxId: {props.boxId !== null && props.boxId !== undefined ? props.boxId.toString() : ""}</div>
-	</> 
+	if (!props.boxId) {
+		return null
+	}
+	return <Modal
+		title={translate(Texts.box.confirmDelete.title)}
+		message={translate(Texts.box.confirmDelete.message)}
+		confirm={translate(Texts.box.confirmDelete.ok)}
+		cancel={translate(Texts.box.confirmDelete.cancel)}
+		onConfirm={props.onConfirm}
+		onCancel={props.onCancel}
+	/>
 }
 
 

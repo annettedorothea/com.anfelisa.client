@@ -16,6 +16,7 @@ import { VersionMismatchErrorDialogContainer } from "./rootContainer/VersionMism
 import { MessageContainerContainer } from "./rootContainer/MessageContainerContainer";
 import { MainViewContainer } from "./rootContainer/MainViewContainer";
 import { FooterContainer } from "./rootContainer/FooterContainer";
+import { routeToPrivacyPolicy } from "../common/ActionFunctions";
 import * as AppState from "../../src/AppState";
 
 export let setContainerState;
@@ -37,7 +38,7 @@ export const RootContainerContainer = () => {
 		<VersionMismatchErrorDialogContainer {...props.versionMismatchErrorDialog }    />
 		<MessageContainerContainer {...props.messageContainer }    />
 		<MainViewContainer {...props.mainView }    />
-		<FooterContainer {...props.footer }  loggedInUser={props.loggedInUser}   />
+		<FooterContainer {...props.footer }  loggedInUser={props.loggedInUser}  onClick={routeToPrivacyPolicy}  />
 	</RootContainer> 
 }
 

@@ -5,7 +5,6 @@
 
 import React from "react";
 
-import {passwordChanged} from "../../../../../gen/registration/ActionFunctions";
 import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 import CryptoJS from "crypto-js";
@@ -16,7 +15,7 @@ export const Password = (props) => {
         <div className="inputContainer">
             <input
                 type="password"
-                onChange={(e) => passwordChanged(CryptoJS.MD5(e.target.value).toString())}
+                onChange={(e) => props.onChange(CryptoJS.MD5(e.target.value).toString())}
                 autoComplete="off"
                 id="password"
             />

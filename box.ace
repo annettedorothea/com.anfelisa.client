@@ -100,7 +100,7 @@ ACE
 			set common.rootContainer.mainView.allActiveCardsView.activeCardList
 		)
 		
-	BoxClick ( boxId, openTodaysCards )
+	BoxClick ( boxId, openTodaysCards, categoryId, reverse )
 		on queryCards triggers (common.RouteToQueryCards)
 		on authorView triggers (common.RouteToAuthorView)
 	
@@ -110,7 +110,6 @@ ACE
 	CancelDeleteBox 
 		on ok (
 			set common.rootContainer.mainView.dashboardView.deleteBox.boxId
-			set common.rootContainer.mainView.dashboardView.deleteBox.confirmDelete
 		)
 	
 	DeleteBox
@@ -119,11 +118,9 @@ ACE
 		loadingFlag common.rootContainer.spinner.display 
 		on ok (
 			set common.rootContainer.mainView.dashboardView.deleteBox.boxId
-			set common.rootContainer.mainView.dashboardView.deleteBox.confirmDelete
 		) triggers (LoadBoxes)
 		on error (
 			set common.rootContainer.mainView.dashboardView.deleteBox.boxId
-			set common.rootContainer.mainView.dashboardView.deleteBox.confirmDelete
 		) triggers (common.DisplayErrorToast)
 		
 	ArchiveBox (archived, boxId)
@@ -143,7 +140,7 @@ ACE
 			set common.rootContainer.mainView.queryCardView.enableScoreButtons
 		)
 		on finished triggers (
-			common.Route 
+			common.RouteToDefault 
 			common.DisplayToast
 		)
 	
@@ -206,7 +203,7 @@ ACE
 		)
 	 	call com.anfelisa.box.UpdateBox
 		loadingFlag common.rootContainer.spinner.display 
-		on ok triggers (common.Route)
+		on ok triggers (common.RouteToDefault)
 	
 
 	MaxCardsPerDayChanged ( maxCardsPerDay )
@@ -249,7 +246,7 @@ ACE
 		)
 		call com.anfelisa.box.CreateBox
 		loadingFlag common.rootContainer.spinner.display 
-		on ok triggers (common.Route)
+		on ok triggers (common.RouteToDefault)
 	
 	CategoryNameChanged ( categoryName )
 		on ok (

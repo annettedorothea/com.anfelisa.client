@@ -5,7 +5,6 @@
 
 import React from "react";
 
-import {toggleSaveInLocalStorage} from "../../../../../gen/login/ActionFunctions";
 import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 
@@ -14,7 +13,7 @@ export const SaveInLocalStorage = (props) => {
         <input
             id="saveInLocalStorage"
             type="checkbox"
-            onChange={toggleSaveInLocalStorage}
+            onChange={props.onChange}
         />
         <label htmlFor="saveInLocalStorage">
             {translate(Texts.login.saveInLocalStorage)}

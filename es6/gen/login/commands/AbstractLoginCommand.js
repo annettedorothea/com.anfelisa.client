@@ -9,7 +9,8 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
-import RouteAction from "../../../src/common/actions/RouteAction";
+import RouteToDefaultAction from "../../../src/common/actions/RouteToDefaultAction";
+import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
 import DisplayErrorToastAction from "../../../src/common/actions/DisplayErrorToastAction";
 import LogoutAction from "../../../src/common/actions/LogoutAction";
 
@@ -77,9 +78,15 @@ export default class AbstractLoginCommand extends AsynchronousCommand {
 				events.push(new Event('login.LoginOkEvent'));
 				actionsToBeTriggered.push(
 					{
-						action: new RouteAction(), 
+						action: new RouteToDefaultAction(), 
 						data: {
-							hash: data.hash
+						}
+					}
+				);
+				actionsToBeTriggered.push(
+					{
+						action: new RouteChangedAction(), 
+						data: {
 						}
 					}
 				);

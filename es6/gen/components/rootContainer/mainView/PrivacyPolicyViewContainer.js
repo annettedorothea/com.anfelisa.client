@@ -8,11 +8,12 @@
 import React from "react";
 
 import { PrivacyPolicyView } from "../../../../src/components/rootContainer/mainView/PrivacyPolicyView";
+import { routeToDefault } from "../../../common/ActionFunctions";
 
 
 export const PrivacyPolicyViewContainer = ( props ) => {
 	
-	return <PrivacyPolicyView {...props}  /> 
+	return <PrivacyPolicyView {...props} onClick={routeToDefault}  /> 
 }
 
 

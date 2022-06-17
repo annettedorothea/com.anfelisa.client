@@ -10,6 +10,7 @@ import AbstractRouteToPrivacyPolicyCommand from "../../../gen/common/commands/Ab
 export default class RouteToPrivacyPolicyCommand extends AbstractRouteToPrivacyPolicyCommand {
     execute(data) {
     	this.addOkOutcome(data);
+        data.hash = "#privacypolicy"
     	return data;
     }
 }

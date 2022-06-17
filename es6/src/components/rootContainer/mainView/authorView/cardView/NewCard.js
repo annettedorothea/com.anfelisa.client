@@ -7,13 +7,15 @@
 
 import React from "react";
 
-
 export const NewCard = (props) => {
 	return <>
-		<div>given: {props.given !== null && props.given !== undefined ? props.given.toString() : ""}</div>
-		<div>wanted: {props.wanted !== null && props.wanted !== undefined ? props.wanted.toString() : ""}</div>
-		<div>index: {props.index !== null && props.index !== undefined ? props.index.toString() : ""}</div>
-		<div>displaySpinner: {props.displaySpinner !== null && props.displaySpinner !== undefined ? props.displaySpinner.toString() : ""}</div>
+		<h1>NewCard</h1>
+		<ul>
+			<li>given: {props.given !== null && props.given !== undefined ? props.given.toString() : ""}</li>
+			<li>wanted: {props.wanted !== null && props.wanted !== undefined ? props.wanted.toString() : ""}</li>
+			<li>index: {props.index !== null && props.index !== undefined ? props.index.toString() : ""}</li>
+			<li>displaySpinner: {props.displaySpinner !== null && props.displaySpinner !== undefined ? props.displaySpinner.toString() : ""}</li>
+		</ul>
 	</> 
 }
 

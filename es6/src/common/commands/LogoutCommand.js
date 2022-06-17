@@ -11,7 +11,6 @@ export default class LogoutCommand extends AbstractLogoutCommand {
     execute(data) {
         data.loggedInUser = null;
         data.token = null;
-        data.hash = "#";
     	this.addOkOutcome(data);
     	return data;
     }

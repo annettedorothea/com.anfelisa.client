@@ -9,6 +9,11 @@ import AbstractBoxClickCommand from "../../../gen/box/commands/AbstractBoxClickC
 
 export default class BoxClickCommand extends AbstractBoxClickCommand {
     execute(data) {
+        if (data.openTodaysCards > 0) {
+            this.addQueryCardsOutcome(data)
+        } else {
+            this.addAuthorViewOutcome(data)
+        }
     	return data;
     }
 }

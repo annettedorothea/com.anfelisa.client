@@ -10,6 +10,7 @@ import AbstractRouteToProfileViewCommand from "../../../gen/common/commands/Abst
 export default class RouteToProfileViewCommand extends AbstractRouteToProfileViewCommand {
     execute(data) {
     	this.addOkOutcome(data);
+        data.hash = "#profile"
     	return data;
     }
 }

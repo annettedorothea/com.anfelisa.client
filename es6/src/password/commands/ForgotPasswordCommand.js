@@ -15,7 +15,6 @@ export default class ForgotPasswordCommand extends AbstractForgotPasswordCommand
     }
 
     handleResponse(data, resolve) {
-        data.hash = "#";
         data.textKey = Texts.messages.passwordRequestSubmitted;
     	this.addOkOutcome(data);
     	resolve(data);

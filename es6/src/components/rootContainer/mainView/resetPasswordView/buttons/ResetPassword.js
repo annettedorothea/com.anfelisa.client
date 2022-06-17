@@ -5,13 +5,12 @@
 
 import React from "react";
 
-import {resetPassword} from "../../../../../../gen/password/ActionFunctions";
 import {translate} from "../../../../../AppUtils";
 import {Texts} from "../../../../../app/Texts";
 
 export const ResetPassword = (props) => {
     return <button
-        onClick={resetPassword}
+        onClick={props.onClick}
         disabled={props.disabled}>
         {translate(Texts.resetPassword.submit)}
     </button>

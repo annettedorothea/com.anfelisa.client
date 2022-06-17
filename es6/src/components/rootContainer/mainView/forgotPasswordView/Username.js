@@ -19,7 +19,7 @@ export const Username = (props) => {
 			value={props.username}
 			type="text"
 			autoComplete="new-password"
-			onChange={(e) => usernameForgotPasswordChanged(e.target.value)}
+			onChange={(e) => props.onChange(e.target.value)}
 		/>
 	</div>
 }

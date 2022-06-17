@@ -9,11 +9,11 @@ import InitAction from "../../src/common/actions/InitAction";
 import GetUserInfoAction from "../../src/common/actions/GetUserInfoAction";
 import RouteChangedAction from "../../src/common/actions/RouteChangedAction";
 import RouteAction from "../../src/common/actions/RouteAction";
-import RouteToHomeAction from "../../src/common/actions/RouteToHomeAction";
-import RouteToDashboardAction from "../../src/common/actions/RouteToDashboardAction";
+import RouteToDefaultAction from "../../src/common/actions/RouteToDefaultAction";
 import RouteToQueryCardsAction from "../../src/common/actions/RouteToQueryCardsAction";
 import RouteToAuthorViewAction from "../../src/common/actions/RouteToAuthorViewAction";
 import RouteToBoxSettingsAction from "../../src/common/actions/RouteToBoxSettingsAction";
+import RouteToBoxCreateAction from "../../src/common/actions/RouteToBoxCreateAction";
 import RouteToActiveCardsAction from "../../src/common/actions/RouteToActiveCardsAction";
 import RouteToForgotPasswordAction from "../../src/common/actions/RouteToForgotPasswordAction";
 import RouteToPrivacyPolicyAction from "../../src/common/actions/RouteToPrivacyPolicyAction";
@@ -49,12 +49,8 @@ export function route(hash) {
     return new RouteAction().apply({hash});
 }
 
-export function routeToHome() {
-    return new RouteToHomeAction().apply({});
-}
-
-export function routeToDashboard() {
-    return new RouteToDashboardAction().apply({});
+export function routeToDefault() {
+    return new RouteToDefaultAction().apply({});
 }
 
 export function routeToQueryCards(boxId) {
@@ -67,6 +63,10 @@ export function routeToAuthorView(categoryId, reverse) {
 
 export function routeToBoxSettings(boxId) {
     return new RouteToBoxSettingsAction().apply({boxId});
+}
+
+export function routeToBoxCreate(boxId) {
+    return new RouteToBoxCreateAction().apply({boxId});
 }
 
 export function routeToActiveCards(boxId) {

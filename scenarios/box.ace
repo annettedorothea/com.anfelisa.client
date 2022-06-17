@@ -4,7 +4,7 @@ scenarios
 
 BoxValidations
 	GIVEN loginscenarios.Login
-	WHEN common.Route(hash: "#box/create")
+	WHEN common.RouteToBoxCreate
 	AND
 	WHEN box.MaxCardsPerDayChanged( maxCardsPerDay: "" )
 	THEN 
@@ -46,19 +46,18 @@ BoxValidations
 		verifications
 			saveDisabled
 	AND
-	WHEN common.Route( hash: "#dashboard" )
+	WHEN common.RouteToDefault
 	THEN 
 		expectedState 
 			boxList common.rootContainer.mainView.dashboardView.boxList should be []
 			deleteBox common.rootContainer.mainView.dashboardView.deleteBox should be {
-				confirmDelete: false,
 				boxId: null
 			}
 		
 CreateRootCategory
 	GIVEN 
 		loginscenarios.Login
-	WHEN common.Route(hash: "#box/create")
+	WHEN common.RouteToBoxCreate
 	THEN 
 		expectedState
 			allActiveCards common.rootContainer.mainView.boxSettingsView.boxSettings.allActiveCards should be undefined
@@ -168,14 +167,13 @@ CreateRootCategory
 				}
 			]
 			deleteBox common.rootContainer.mainView.dashboardView.deleteBox should be {
-				confirmDelete: false,
 				boxId: null
 			}
 		
 CreateRootCategoryWithDefault
 	GIVEN 
 		loginscenarios.Login
-	WHEN common.Route(hash: "#box/create")
+	WHEN common.RouteToBoxCreate
 	THEN 
 		expectedState
 			allActiveCards common.rootContainer.mainView.boxSettingsView.boxSettings.allActiveCards should be undefined
@@ -235,7 +233,6 @@ CreateRootCategoryWithDefault
 				}
 			]
 			deleteBox common.rootContainer.mainView.dashboardView.deleteBox should be {
-				confirmDelete: false,
 				boxId: null
 			}
 		

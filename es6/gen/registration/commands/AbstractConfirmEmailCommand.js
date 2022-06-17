@@ -10,7 +10,7 @@ import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
-import RouteAction from "../../../src/common/actions/RouteAction";
+import RouteToDefaultAction from "../../../src/common/actions/RouteToDefaultAction";
 import DisplayErrorToastAction from "../../../src/common/actions/DisplayErrorToastAction";
 
 export default class AbstractConfirmEmailCommand extends AsynchronousCommand {
@@ -67,9 +67,8 @@ export default class AbstractConfirmEmailCommand extends AsynchronousCommand {
 				);
 				actionsToBeTriggered.push(
 					{
-						action: new RouteAction(), 
+						action: new RouteToDefaultAction(), 
 						data: {
-							hash: data.hash
 						}
 					}
 				);
@@ -87,9 +86,8 @@ export default class AbstractConfirmEmailCommand extends AsynchronousCommand {
 				);
 				actionsToBeTriggered.push(
 					{
-						action: new RouteAction(), 
+						action: new RouteToDefaultAction(), 
 						data: {
-							hash: data.hash
 						}
 					}
 				);

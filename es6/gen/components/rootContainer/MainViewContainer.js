@@ -9,6 +9,7 @@ import React from "react";
 
 import { MainView } from "../../../src/components/rootContainer/MainView";
 import { PrivacyPolicyViewContainer } from "./mainView/PrivacyPolicyViewContainer";
+import { routeToDefault } from "../../common/ActionFunctions";
 import { LoginViewContainer } from "./mainView/LoginViewContainer";
 import { RegistrationViewContainer } from "./mainView/RegistrationViewContainer";
 import { ForgotPasswordViewContainer } from "./mainView/ForgotPasswordViewContainer";
@@ -24,7 +25,7 @@ import { AuthorViewContainer } from "./mainView/AuthorViewContainer";
 export const MainViewContainer = ( props ) => {
 	
 	return <MainView {...props} >
-		{ props.privacyPolicyView && <PrivacyPolicyViewContainer {...props.privacyPolicyView }    /> }
+		{ props.privacyPolicyView && <PrivacyPolicyViewContainer {...props.privacyPolicyView }   onClick={routeToDefault}  /> }
 		{ props.loginView && <LoginViewContainer {...props.loginView }    /> }
 		{ props.registrationView && <RegistrationViewContainer {...props.registrationView }    /> }
 		{ props.forgotPasswordView && <ForgotPasswordViewContainer {...props.forgotPasswordView }    /> }

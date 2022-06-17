@@ -7,7 +7,8 @@
 
 	import SynchronousCommand from "../../ace/SynchronousCommand";
 	import Event from "../../ace/Event";
-	import RouteAction from "../../../src/common/actions/RouteAction";
+	import RouteToDefaultAction from "../../../src/common/actions/RouteToDefaultAction";
+	import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
 	import * as AppUtils from "../../../src/AppUtils";
 	import * as AppState from "../../../src/AppState";
 	
@@ -31,9 +32,15 @@
 				events.push(new Event('common.LogoutOkEvent'));
 				actionsToBeTriggered.push(
 					{
-						action: new RouteAction(), 
+						action: new RouteToDefaultAction(), 
 						data: {
-							hash: data.hash
+						}
+					}
+				);
+				actionsToBeTriggered.push(
+					{
+						action: new RouteChangedAction(), 
+						data: {
 						}
 					}
 				);

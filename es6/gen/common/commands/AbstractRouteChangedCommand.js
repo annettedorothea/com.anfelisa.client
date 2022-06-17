@@ -14,7 +14,6 @@
 	import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 	import LoadSettingsAction from "../../../src/box/actions/LoadSettingsAction";
 	import LoadActiveCardsAction from "../../../src/box/actions/LoadActiveCardsAction";
-	import RouteAction from "../../../src/common/actions/RouteAction";
 	import * as AppUtils from "../../../src/AppUtils";
 	import * as AppState from "../../../src/AppState";
 	
@@ -73,9 +72,6 @@
 		}
 		addBoxCreateOutcome(data) {
 			data.outcomes.push("boxCreate");
-		}
-		addInvalidOutcome(data) {
-			data.outcomes.push("invalid");
 		}
 		
 		publishEvents(data) {
@@ -172,17 +168,6 @@
 			}
 			if (data.outcomes.includes("boxCreate")) {
 				events.push(new Event('common.RouteChangedBoxCreateEvent'));
-			}
-			if (data.outcomes.includes("invalid")) {
-				events.push(new Event('common.RouteChangedInvalidEvent'));
-				actionsToBeTriggered.push(
-					{
-						action: new RouteAction(), 
-						data: {
-							hash: data.hash
-						}
-					}
-				);
 			}
 			
 			this.publish(events, data);

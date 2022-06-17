@@ -5,12 +5,12 @@
 
 
 
-import AbstractRouteToDashboardCommand from "../../../gen/common/commands/AbstractRouteToDashboardCommand";
+import AbstractRouteToBoxCreateCommand from "../../../gen/common/commands/AbstractRouteToBoxCreateCommand";
 
-export default class RouteToDashboardCommand extends AbstractRouteToDashboardCommand {
+export default class RouteToBoxCreateCommand extends AbstractRouteToBoxCreateCommand {
     execute(data) {
     	this.addOkOutcome(data);
-        data.hash = "#dashboard"
+        data.hash = "#box/create"
     	return data;
     }
 }

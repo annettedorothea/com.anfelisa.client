@@ -26,7 +26,6 @@ export default class SaveBoxSettingsCommand extends AbstractSaveBoxSettingsComma
         data.maxCardsPerDay = undefined;
         data.categoryId = undefined;
         data.categoryName = undefined;
-        data.hash = "#dashboard";
     	this.addOkOutcome(data);
     	resolve(data);
     }

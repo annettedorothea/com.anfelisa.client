@@ -9,11 +9,11 @@ import React from "react";
 
 
 export const AuthorView = (props) => {
-	return <>
+	return <div className="categoryCardSplitView">
 		<div>boxId: {props.boxId !== null && props.boxId !== undefined ? props.boxId.toString() : ""}</div>
 		<div>reverse: {props.reverse !== null && props.reverse !== undefined ? props.reverse.toString() : ""}</div>
 		{props.children}
-	</> 
+	</div>
 }
 
 

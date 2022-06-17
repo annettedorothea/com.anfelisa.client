@@ -5,7 +5,6 @@
 
 import React from "react";
 
-import {usernameChanged} from "../../../../../gen/login/ActionFunctions";
 import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 import {route} from "../../../../../gen/common/ActionFunctions";
@@ -18,9 +17,9 @@ export const Username = (props) => {
         <input
             id="username"
             type="text"
-            onChange={(event) => usernameChanged(event.target.value)}
+            onChange={(event) => props.onChange(event.target.value)}
         />
-        <a id="registration" onClick={() => route("#registration")}>{translate(Texts.login.registration)}</a>
+        <a id="registration" onClick={props.onClick}>{translate(Texts.login.registration)}</a>
     </div>
 }
 

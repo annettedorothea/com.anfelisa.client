@@ -15,7 +15,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree"], 
-					["filterNonScheduled", "reverseBoxExists", "priority", "selectedCategory", "rootCategory", "displayDeleteCategory", "categoryDialog", "inviteUserDialog", "inviteUserEditableDialog", "deleteCategoryDialog", "dropAllowed", "dropTargetCategoryId", "movedCategory"]
+					["filterNonScheduled", "reverseBoxExists", "priority", "rootCategory", "displayDeleteCategory", "categoryDialog", "inviteUserDialog", "inviteUserEditableDialog", "deleteCategoryDialog", "dropAllowed", "dropTargetCategoryId", "selectedCategory", "movedCategory"]
 				)
 			});
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', (data) => {

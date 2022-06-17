@@ -5,7 +5,6 @@
 
 import React from "react";
 
-import {usernameChanged} from "../../../../../gen/registration/ActionFunctions";
 import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 
@@ -16,7 +15,7 @@ export const Username = (props) => {
             <input
                 type="text"
                 value={props.value}
-                onChange={(event) => usernameChanged(event.target.value)}
+                onChange={(event) => props.onChange(event.target.value)}
                 autoComplete="off"
                 id="username"
             />

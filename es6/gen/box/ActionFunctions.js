@@ -88,8 +88,8 @@ export function filterActiveCardList() {
     return new FilterActiveCardListAction().apply({});
 }
 
-export function boxClick(boxId, openTodaysCards) {
-    return new BoxClickAction().apply({boxId, openTodaysCards});
+export function boxClick(boxId, openTodaysCards, categoryId, reverse) {
+    return new BoxClickAction().apply({boxId, openTodaysCards, categoryId, reverse});
 }
 
 export function deleteBoxClick(boxId) {

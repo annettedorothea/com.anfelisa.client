@@ -17,7 +17,6 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
     handleResponse(data, resolve) {
         if (data.openTodaysCards === 0) {
             this.addFinishedOutcome(data);
-            data.hash = "#dashboard";
             data.textKey = Texts.messages.finished;
         } else {
             this.addOkOutcome(data);

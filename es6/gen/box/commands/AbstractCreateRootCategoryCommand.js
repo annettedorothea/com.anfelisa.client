@@ -9,7 +9,7 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
-import RouteAction from "../../../src/common/actions/RouteAction";
+import RouteToDefaultAction from "../../../src/common/actions/RouteToDefaultAction";
 
 export default class AbstractCreateRootCategoryCommand extends AsynchronousCommand {
     constructor() {
@@ -85,9 +85,8 @@ export default class AbstractCreateRootCategoryCommand extends AsynchronousComma
 				events.push(new Event('box.CreateRootCategoryOkEvent'));
 				actionsToBeTriggered.push(
 					{
-						action: new RouteAction(), 
+						action: new RouteToDefaultAction(), 
 						data: {
-							hash: data.hash
 						}
 					}
 				);

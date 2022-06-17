@@ -6,16 +6,16 @@
 
 
 import Action from "../../ace/SynchronousAction";
-import RouteToHomeCommand from "../../../src/common/commands/RouteToHomeCommand";
+import RouteToBoxCreateCommand from "../../../src/common/commands/RouteToBoxCreateCommand";
 
-export default class AbstractRouteToHomeAction extends Action {
+export default class AbstractRouteToBoxCreateAction extends Action {
 
     constructor() {
-        super('common.RouteToHomeAction');
+        super('common.RouteToBoxCreateAction');
 	}
 		
 	getCommand() {
-		return new RouteToHomeCommand();
+		return new RouteToBoxCreateCommand();
 	}
 
 

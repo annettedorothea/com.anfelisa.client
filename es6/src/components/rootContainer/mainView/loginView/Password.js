@@ -5,7 +5,6 @@
 
 import React from "react";
 
-import {passwordChanged} from "../../../../../gen/login/ActionFunctions";
 import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 import CryptoJS from "crypto-js";
@@ -19,10 +18,10 @@ export const Password = (props) => {
         <input
             id="password"
             type="password"
-            onChange={(event) => passwordChanged(CryptoJS.MD5(event.target.value).toString())}
+            onChange={(event) => props.onChange(CryptoJS.MD5(event.target.value).toString())}
             autoComplete="current-password"
         />
-        <a onClick={() => route("#forgotpassword")}>{translate(Texts.login.forgotPassword)}</a>
+        <a onClick={props.onClick}>{translate(Texts.login.forgotPassword)}</a>
     </div>
 }
 

@@ -9,7 +9,6 @@ import AbstractCancelDeleteBoxCommand from "../../../gen/box/commands/AbstractCa
 
 export default class CancelDeleteBoxCommand extends AbstractCancelDeleteBoxCommand {
     execute(data) {
-        data.confirmDelete = false;
         data.boxId = undefined;
     	this.addOkOutcome(data);
     	return data;

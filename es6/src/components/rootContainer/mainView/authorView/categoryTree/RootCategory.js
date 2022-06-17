@@ -7,21 +7,23 @@
 
 import React from "react";
 
-
 export const RootCategory = (props) => {
 	return <>
-		<div>categoryId: {props.categoryId !== null && props.categoryId !== undefined ? props.categoryId.toString() : ""}</div>
-		<div>categoryName: {props.categoryName !== null && props.categoryName !== undefined ? props.categoryName.toString() : ""}</div>
-		<div>categoryIndex: {props.categoryIndex !== null && props.categoryIndex !== undefined ? props.categoryIndex.toString() : ""}</div>
-		<div>empty: {props.empty !== null && props.empty !== undefined ? props.empty.toString() : ""}</div>
-		<div>parentCategoryId: {props.parentCategoryId !== null && props.parentCategoryId !== undefined ? props.parentCategoryId.toString() : ""}</div>
-		<div>dictionaryLookup: {props.dictionaryLookup !== null && props.dictionaryLookup !== undefined ? props.dictionaryLookup.toString() : ""}</div>
-		<div>givenLanguage: {props.givenLanguage !== null && props.givenLanguage !== undefined ? props.givenLanguage.toString() : ""}</div>
-		<div>wantedLanguage: {props.wantedLanguage !== null && props.wantedLanguage !== undefined ? props.wantedLanguage.toString() : ""}</div>
-		<div>rootCategoryId: {props.rootCategoryId !== null && props.rootCategoryId !== undefined ? props.rootCategoryId.toString() : ""}</div>
-		<div>nonScheduledCount: {props.nonScheduledCount !== null && props.nonScheduledCount !== undefined ? props.nonScheduledCount.toString() : ""}</div>
-		<div>editable: {props.editable !== null && props.editable !== undefined ? props.editable.toString() : ""}</div>
-		<div>childCategories: {props.childCategories !== null && props.childCategories !== undefined ? props.childCategories.toString() : ""}</div>
+		<h1>RootCategory</h1>
+		<ul>
+			<li>categoryId: {props.categoryId !== null && props.categoryId !== undefined ? props.categoryId.toString() : ""}</li>
+			<li>categoryName: {props.categoryName !== null && props.categoryName !== undefined ? props.categoryName.toString() : ""}</li>
+			<li>categoryIndex: {props.categoryIndex !== null && props.categoryIndex !== undefined ? props.categoryIndex.toString() : ""}</li>
+			<li>empty: {props.empty !== null && props.empty !== undefined ? props.empty.toString() : ""}</li>
+			<li>parentCategoryId: {props.parentCategoryId !== null && props.parentCategoryId !== undefined ? props.parentCategoryId.toString() : ""}</li>
+			<li>dictionaryLookup: {props.dictionaryLookup !== null && props.dictionaryLookup !== undefined ? props.dictionaryLookup.toString() : ""}</li>
+			<li>givenLanguage: {props.givenLanguage !== null && props.givenLanguage !== undefined ? props.givenLanguage.toString() : ""}</li>
+			<li>wantedLanguage: {props.wantedLanguage !== null && props.wantedLanguage !== undefined ? props.wantedLanguage.toString() : ""}</li>
+			<li>rootCategoryId: {props.rootCategoryId !== null && props.rootCategoryId !== undefined ? props.rootCategoryId.toString() : ""}</li>
+			<li>nonScheduledCount: {props.nonScheduledCount !== null && props.nonScheduledCount !== undefined ? props.nonScheduledCount.toString() : ""}</li>
+			<li>editable: {props.editable !== null && props.editable !== undefined ? props.editable.toString() : ""}</li>
+		</ul>
+		{props.children}
 	</> 
 }
 

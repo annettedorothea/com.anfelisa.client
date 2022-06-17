@@ -7,15 +7,17 @@
 
 import React from "react";
 
-
 export const CardView = (props) => {
 	return <>
-		<div>naturalInputOrder: {props.naturalInputOrder !== null && props.naturalInputOrder !== undefined ? props.naturalInputOrder.toString() : ""}</div>
-		<div>filter: {props.filter !== null && props.filter !== undefined ? props.filter.toString() : ""}</div>
-		<div>dictionaryValue: {props.dictionaryValue !== null && props.dictionaryValue !== undefined ? props.dictionaryValue.toString() : ""}</div>
-		<div>selectedCardIds: {props.selectedCardIds !== null && props.selectedCardIds !== undefined ? props.selectedCardIds.toString() : ""}</div>
-		<div>movedCardIds: {props.movedCardIds !== null && props.movedCardIds !== undefined ? props.movedCardIds.toString() : ""}</div>
-		<div>dragTargetCardId: {props.dragTargetCardId !== null && props.dragTargetCardId !== undefined ? props.dragTargetCardId.toString() : ""}</div>
+		<h1>CardView</h1>
+		<ul>
+			<li>naturalInputOrder: {props.naturalInputOrder !== null && props.naturalInputOrder !== undefined ? props.naturalInputOrder.toString() : ""}</li>
+			<li>filter: {props.filter !== null && props.filter !== undefined ? props.filter.toString() : ""}</li>
+			<li>dictionaryValue: {props.dictionaryValue !== null && props.dictionaryValue !== undefined ? props.dictionaryValue.toString() : ""}</li>
+			<li>selectedCardIds: {props.selectedCardIds !== null && props.selectedCardIds !== undefined ? props.selectedCardIds.toString() : ""}</li>
+			<li>movedCardIds: {props.movedCardIds !== null && props.movedCardIds !== undefined ? props.movedCardIds.toString() : ""}</li>
+			<li>dragTargetCardId: {props.dragTargetCardId !== null && props.dragTargetCardId !== undefined ? props.dragTargetCardId.toString() : ""}</li>
+		</ul>
 		{props.children}
 	</> 
 }

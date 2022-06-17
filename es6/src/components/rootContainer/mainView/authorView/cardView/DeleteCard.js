@@ -7,11 +7,13 @@
 
 import React from "react";
 
-
 export const DeleteCard = (props) => {
 	return <>
-		<div>confirmDelete: {props.confirmDelete !== null && props.confirmDelete !== undefined ? props.confirmDelete.toString() : ""}</div>
-		<div>cardId: {props.cardId !== null && props.cardId !== undefined ? props.cardId.toString() : ""}</div>
+		<h1>DeleteCard</h1>
+		<ul>
+			<li>confirmDelete: {props.confirmDelete !== null && props.confirmDelete !== undefined ? props.confirmDelete.toString() : ""}</li>
+			<li>cardId: {props.cardId !== null && props.cardId !== undefined ? props.cardId.toString() : ""}</li>
+		</ul>
 	</> 
 }
 

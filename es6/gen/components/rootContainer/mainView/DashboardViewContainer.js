@@ -10,17 +10,19 @@ import React from "react";
 import { DashboardView } from "../../../../src/components/rootContainer/mainView/DashboardView";
 import { BoxListItemContainer } from "./dashboardView/BoxListItemContainer";
 import { boxClick } from "../../../box/ActionFunctions";
-import { DeleteBoxContainer } from "./dashboardView/DeleteBoxContainer";
 import { NewBox } from "../../../../src/components/rootContainer/mainView/dashboardView/NewBox";
-import { route } from "../../../common/ActionFunctions";
+import { routeToBoxCreate } from "../../../common/ActionFunctions";
+import { DeleteBoxContainer } from "./dashboardView/DeleteBoxContainer";
+import { deleteBox } from "../../../box/ActionFunctions";
+import { cancelDeleteBox } from "../../../box/ActionFunctions";
 
 
 export const DashboardViewContainer = ( props ) => {
 	
 	return <DashboardView {...props} >
 		{ props.boxList ? props.boxList.map(i => <BoxListItemContainer {...i} key={i.boxId}   onClick={boxClick}  />) : [] }
-		<DeleteBoxContainer {...props.deleteBox }    />
-		<NewBox {...props.newBox }   onClick={route}  />
+		<NewBox {...props.newBox }   onClick={routeToBoxCreate}  />
+		<DeleteBoxContainer {...props.deleteBox }   onConfirm={deleteBox} onCancel={cancelDeleteBox}  />
 	</DashboardView> 
 }
 

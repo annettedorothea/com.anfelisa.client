@@ -5,9 +5,9 @@
 
 
 
-import AbstractRouteToDashboardAction from "../../../gen/common/actions/AbstractRouteToDashboardAction";
+import AbstractRouteToBoxCreateAction from "../../../gen/common/actions/AbstractRouteToBoxCreateAction";
 
-export default class RouteToDashboardAction extends AbstractRouteToDashboardAction {
+export default class RouteToBoxCreateAction extends AbstractRouteToBoxCreateAction {
 
     initActionData(data) {
     	return data;

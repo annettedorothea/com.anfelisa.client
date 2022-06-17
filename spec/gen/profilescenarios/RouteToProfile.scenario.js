@@ -24,7 +24,7 @@ describe("profilescenarios.RouteToProfile", function () {
     	driver = ScenarioUtils.createDriver();
     	let appState;
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
-		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#registration`]);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToRegistration);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.usernameChanged, [`username-${testId}`]);
 		await ScenarioUtils.waitInMillis(200);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordChanged, [`password`]);
@@ -44,7 +44,7 @@ describe("profilescenarios.RouteToProfile", function () {
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.passwordChanged, [`password`]);
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.login);
 
-		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#profile`]);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToProfileView);
 		await ScenarioUtils.waitInMillis(10);
 		
 		appState = await ScenarioUtils.getAppState(driver);

@@ -25,7 +25,7 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
     	let appState;
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
 
-		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#registration`]);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToRegistration);
 		await ScenarioUtils.waitInMillis(10);
 		
 		appState = await ScenarioUtils.getAppState(driver);

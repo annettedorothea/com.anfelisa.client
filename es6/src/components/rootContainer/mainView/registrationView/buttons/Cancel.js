@@ -3,20 +3,16 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 
-import { route } from "../../../../../../gen/common/ActionFunctions";
 import {translate} from "../../../../../AppUtils";
 import {Texts} from "../../../../../app/Texts";
 
 export const Cancel = (props) => {
-	return <button
-		onClick={() => route("#")}>{translate(Texts.registration.cancel)}
-	</button>
+    return <button onClick={props.onClick}>
+        {translate(Texts.registration.cancel)}
+    </button>
 }
-
 
 
 /******* S.D.G. *******/

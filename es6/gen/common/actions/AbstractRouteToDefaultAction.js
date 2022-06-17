@@ -6,16 +6,16 @@
 
 
 import Action from "../../ace/SynchronousAction";
-import RouteToDashboardCommand from "../../../src/common/commands/RouteToDashboardCommand";
+import RouteToDefaultCommand from "../../../src/common/commands/RouteToDefaultCommand";
 
-export default class AbstractRouteToDashboardAction extends Action {
+export default class AbstractRouteToDefaultAction extends Action {
 
     constructor() {
-        super('common.RouteToDashboardAction');
+        super('common.RouteToDefaultAction');
 	}
 		
 	getCommand() {
-		return new RouteToDashboardCommand();
+		return new RouteToDefaultCommand();
 	}
 
 

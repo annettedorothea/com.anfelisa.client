@@ -10,7 +10,7 @@ import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
-import RouteAction from "../../../src/common/actions/RouteAction";
+import RouteToDefaultAction from "../../../src/common/actions/RouteToDefaultAction";
 
 export default class AbstractForgotPasswordCommand extends AsynchronousCommand {
     constructor() {
@@ -71,9 +71,8 @@ export default class AbstractForgotPasswordCommand extends AsynchronousCommand {
 				);
 				actionsToBeTriggered.push(
 					{
-						action: new RouteAction(), 
+						action: new RouteToDefaultAction(), 
 						data: {
-							hash: data.hash
 						}
 					}
 				);

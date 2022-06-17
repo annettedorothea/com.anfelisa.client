@@ -5,7 +5,6 @@
 
 import React from "react";
 
-import {emailChanged} from "../../../../../gen/registration/ActionFunctions";
 import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 
@@ -17,7 +16,7 @@ export const Email = (props) => {
                 type="text"
                 value={props.value}
                 autoComplete="off"
-                onChange={(event) => emailChanged(event.target.value)}
+                onChange={(event) => props.onChange(event.target.value)}
                 id="email"
             />
             {props.emailInvalid === true && props.value.length > 0 &&

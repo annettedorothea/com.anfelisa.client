@@ -7,13 +7,15 @@
 
 import React from "react";
 
-
 export const InviteUserDialog = (props) => {
 	return <>
-		<div>display: {props.display !== null && props.display !== undefined ? props.display.toString() : ""}</div>
-		<div>usernameSearchString: {props.usernameSearchString !== null && props.usernameSearchString !== undefined ? props.usernameSearchString.toString() : ""}</div>
-		<div>usernames: {props.usernames !== null && props.usernames !== undefined ? props.usernames.toString() : ""}</div>
-		<div>invitedUsers: {props.invitedUsers !== null && props.invitedUsers !== undefined ? props.invitedUsers.toString() : ""}</div>
+		<h1>InviteUserDialog</h1>
+		<ul>
+			<li>display: {props.display !== null && props.display !== undefined ? props.display.toString() : ""}</li>
+			<li>usernameSearchString: {props.usernameSearchString !== null && props.usernameSearchString !== undefined ? props.usernameSearchString.toString() : ""}</li>
+			<li>usernames: {props.usernames !== null && props.usernames !== undefined ? props.usernames.toString() : ""}</li>
+			<li>invitedUsers: {props.invitedUsers !== null && props.invitedUsers !== undefined ? props.invitedUsers.toString() : ""}</li>
+		</ul>
 	</> 
 }
 

@@ -10,9 +10,9 @@
 	import * as AppUtils from "../../../src/AppUtils";
 	import * as AppState from "../../../src/AppState";
 	
-	export default class AbstractRouteToDashboardCommand extends SynchronousCommand {
+	export default class AbstractRouteToDefaultCommand extends SynchronousCommand {
 	    constructor() {
-	        super("common.RouteToDashboardCommand");
+	        super("common.RouteToDefaultCommand");
 	    }
 	
 	    initCommandData(data) {
@@ -27,7 +27,7 @@
 			const events = [];
 			const actionsToBeTriggered = [];
 			if (data.outcomes.includes("ok")) {
-				events.push(new Event('common.RouteToDashboardOkEvent'));
+				events.push(new Event('common.RouteToDefaultOkEvent'));
 			}
 			
 			this.publish(events, data);

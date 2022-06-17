@@ -5,16 +5,15 @@
 
 import React from "react";
 
-import {login} from "../../../../../gen/login/ActionFunctions";
 import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 
-export const Login = () => {
+export const Login = (props) => {
     return <div className="moreMarginLine hCenter">
         <button
             className="primary"
             id="login"
-            onClick={login}
+            onClick={props.onClick}
         >
             {translate(Texts.login.signin)}
         </button>

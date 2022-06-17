@@ -6,16 +6,31 @@
 
 
 import React from "react";
+import {translate} from "../../../../../AppUtils";
+import {Texts} from "../../../../../app/Texts";
 
 export const Archive = (props) => {
-	return <button
-		boxId={props.boxId}
-		archived={props.archived}
-		className="button"
-		onClick={(event) => props.onClick(props.archived,props.boxId)}
-	>
-		archive
-	</button>
+	let buttonPosition;
+	if (props.archived) {
+		buttonPosition = "button4"
+	} else {
+		buttonPosition = "button3"
+	}
+
+	const onArchiveClick = (e) => {
+		e.stopPropagation();
+		props.onClick(!props.archived,props.boxId).then();
+	}
+
+	return (
+		<div className={`buttons ${buttonPosition}`}>
+			<i
+				className="fas fa-archive"
+				onClick={(e) => onArchiveClick(e)}
+				title={translate(Texts.box.archiveBox)}
+			/>
+		</div>
+	)
 }
 
 

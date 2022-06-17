@@ -15,7 +15,6 @@ export default class DeleteBoxCommand extends AbstractDeleteBoxCommand {
     }
 
     handleResponse(data, resolve) {
-        data.confirmDelete = false;
         data.boxId = undefined;
         this.addOkOutcome(data);
     	resolve(data);
@@ -23,7 +22,6 @@ export default class DeleteBoxCommand extends AbstractDeleteBoxCommand {
     handleError(data, resolve) {
         this.addErrorOutcome(data);
         data.textKey = Texts.messages.cannotDeleteSharedBox;
-        data.confirmDelete = false;
         data.boxId = undefined;
         resolve(data);
     }

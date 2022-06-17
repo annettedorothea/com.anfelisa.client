@@ -81,18 +81,15 @@ RouteChanged
 	on boxCreate ( 
 		set rootContainer.mainView
 	)
-	on invalid triggers (
-		Route
-	)
 	
 Route ( hash ) 
 	on ok ( set rootContainer.hash )
 	
-RouteToHome on ok ( set rootContainer.hash )
-RouteToDashboard on ok ( set rootContainer.hash )
+RouteToDefault on ok ( set rootContainer.hash )
 RouteToQueryCards (boxId) on ok ( set rootContainer.hash )
 RouteToAuthorView (categoryId, reverse) on ok ( set rootContainer.hash )
 RouteToBoxSettings (boxId) on ok ( set rootContainer.hash )
+RouteToBoxCreate (boxId) on ok ( set rootContainer.hash )
 RouteToActiveCards (boxId) on ok ( set rootContainer.hash )
 RouteToForgotPassword on ok ( set rootContainer.hash )
 RouteToPrivacyPolicy on ok ( set rootContainer.hash )
@@ -103,7 +100,7 @@ Logout
 	on ok ( 
 		set rootContainer.loggedInUser
 		set rootContainer.token
-	) triggers ( Route )
+	) triggers ( RouteToDefault RouteChanged )
 	
 DisplayToast ( textKey, args ) 
 	fromAppState( rootContainer.language, rootContainer.messageContainer.messages)
@@ -158,7 +155,6 @@ HideSaveBugDialog
 
 
 
-
 ui JSX rootContainer {
 	loggedInUser {
 		username
@@ -192,7 +188,9 @@ ui JSX rootContainer {
 	}
 	group mainView {
 		privacyPolicyView {
-			display
+			actions {
+				"onClick" RouteToDefault
+			}
 		}
 		loginView {
 			username TextInput {
@@ -206,6 +204,7 @@ ui JSX rootContainer {
 				value
 				actions {
 					"onChange" login.PasswordChanged
+					"onClick" RouteToForgotPassword
 				}
 			}
 			saveInLocalStorage CheckBox {
@@ -258,7 +257,7 @@ ui JSX rootContainer {
 				}
 				cancel Button {
 					actions {
-						"onClick" Route
+						"onClick" RouteToDefault
 					}
 				}
 			}
@@ -279,7 +278,7 @@ ui JSX rootContainer {
 				}
 				cancel Button {
 					actions {
-						"onClick" Route
+						"onClick" RouteToDefault
 					}
 				}
 			}
@@ -308,7 +307,7 @@ ui JSX rootContainer {
 				}
 				cancel Button {
 					actions {
-						"onClick" Route
+						"onClick" RouteToDefault
 					}
 				}
 			}
@@ -335,12 +334,14 @@ ui JSX rootContainer {
 				edit Button {
 					categoryId
 					reverse
+					archived
 					actions {
 						"onClick" RouteToAuthorView
 					}
 				}
 				settings Button {
 					boxId
+					archived
 					actions {
 						"onClick" RouteToBoxSettings
 					}
@@ -355,18 +356,25 @@ ui JSX rootContainer {
 				delete Button {
 					boxId
 					deletable
+					archived
 					actions {
 						"onClick" box.DeleteBoxClick
 					}
 				}
-				queryCards Button {
-					boxId
-					actions {
-						"onClick" RouteToQueryCards
-					}
+				statistics {
+					quality0Count
+					quality1Count
+					quality2Count
+					quality3Count
+					quality4Count
+					quality5Count
+					archived
 				}
-				activeCards Button {
+				cardsNextDays {
 					boxId
+					countsPerDayNextWeek
+					maxCardsPerDay
+					archived
 					actions {
 						"onClick" RouteToActiveCards
 					}
@@ -375,14 +383,18 @@ ui JSX rootContainer {
 					"onClick" box.BoxClick
 				}
 	    	}
-	        deleteBox {
-	            confirmDelete
-	            boxId
-	        }
 	        newBox Button {
 	        	actions {
-	        		"onClick" Route
+	        		"onClick" RouteToBoxCreate
 	        	}
+	        }
+	        
+	        deleteBox {
+	            boxId
+	            actions {
+	            	"onConfirm" box.DeleteBox
+	            	"onCancel" box.CancelDeleteBox
+	            }
 	        }
 		}
 		boxSettingsView {
@@ -461,25 +473,12 @@ ui JSX rootContainer {
 
 			boxId
 	        reverse
+
 			
 			categoryTree {
 		        filterNonScheduled
 				reverseBoxExists
 		        priority
-				noComponent selectedCategory {
-					categoryId
-					categoryName
-					categoryIndex
-					empty
-					parentCategoryId
-					rootCategoryId
-					List childCategories
-					nonScheduledCount
-					editable
-					dictionaryLookup
-					givenLanguage
-					wantedLanguage
-				}
 				rootCategory {
 					categoryId
 					categoryName
@@ -492,9 +491,21 @@ ui JSX rootContainer {
 					rootCategoryId
 					nonScheduledCount
 					editable
-					List childCategories
+					Tree childCategories {
+						listId categoryId
+						categoryName
+						categoryIndex
+						empty
+						parentCategoryId
+						dictionaryLookup
+						givenLanguage
+						wantedLanguage
+						rootCategoryId
+						nonScheduledCount
+						editable
+					}
 				}
-				
+
 				displayDeleteCategory
 				
 				categoryDialog {
@@ -522,6 +533,20 @@ ui JSX rootContainer {
 				
 				dropAllowed
 				dropTargetCategoryId
+				noComponent selectedCategory {
+					categoryId
+					categoryName
+					categoryIndex
+					empty
+					parentCategoryId
+					rootCategoryId
+					List childCategories
+					nonScheduledCount
+					editable
+					dictionaryLookup
+					givenLanguage
+					wantedLanguage
+				}
 				noComponent movedCategory {
 					categoryId
 					categoryName
@@ -537,7 +562,7 @@ ui JSX rootContainer {
 			}
 	        cardView {
 		        List cardList {
-					cardId
+					listId cardId
 					given
 					wanted
 					cardAuthor
@@ -561,7 +586,7 @@ ui JSX rootContainer {
 		        	displaySpinner
 		        }
 		        List cardDuplicates {
-					cardId
+					listId cardId
 					given
 					wanted
 					cardAuthor
@@ -584,6 +609,9 @@ ui JSX rootContainer {
 	}
 	footer {
 		loggedInUser
+		actions {
+			"onClick" RouteToPrivacyPolicy
+		}
 	}
 }
 

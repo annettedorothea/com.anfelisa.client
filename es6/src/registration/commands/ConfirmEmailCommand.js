@@ -15,13 +15,11 @@ export default class ConfirmEmailCommand extends AbstractConfirmEmailCommand {
     }
 
     handleResponse(data, resolve) {
-        data.hash = "#";
         data.textKey = Texts.messages.emailConfirmed;
     	this.addOkOutcome(data);
     	resolve(data);
     }
     handleError(data, resolve) {
-        data.hash = "#";
         data.textKey = Texts.messages.emailNotConfirmed;
         this.addErrorOutcome(data);
         resolve(data);

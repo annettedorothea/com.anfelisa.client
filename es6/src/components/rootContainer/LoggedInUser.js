@@ -3,24 +3,29 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
-import {logout, route} from "../../../gen/common/ActionFunctions";
+import {logout, route, routeToProfileView} from "../../../gen/common/ActionFunctions";
 import {translate} from "../../AppUtils";
 import {Texts} from "../../app/Texts";
 
 
 export const LoggedInUser = (props) => {
-	if (props.username) {
-		return <div className="logout">
-			<a id="profile" onClick={() => route("#profile")}>{props.username}</a>
-			<button id="logout" onClick={logout}>{translate(Texts.logout.signout)}</button>
-		</div>
-	}
-	return null;
+    if (props.username) {
+        return <div className="header">
+            <a
+                onClick={() => route("#dashboard")}
+                className="title"
+            >
+                Anfelisa
+            </a>
+            <div className="logout">
+                <a id="profile" onClick={() => routeToProfileView()}>{props.username}</a>
+                <button id="logout" onClick={logout}>{translate(Texts.logout.signout)}</button>
+            </div>
+        </div>
+    }
+    return null;
 }
-
 
 
 /******* S.D.G. *******/

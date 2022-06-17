@@ -131,13 +131,7 @@ export default class EventListenerRegistrationCommon {
 					["rootContainer", "hash"]
 				)
 			});
-		ACEController.registerListener('common.RouteToHomeOkEvent', (data) => {
-				AppState.setLocation(
-					data, 
-					["rootContainer", "hash"]
-				)
-			});
-		ACEController.registerListener('common.RouteToDashboardOkEvent', (data) => {
+		ACEController.registerListener('common.RouteToDefaultOkEvent', (data) => {
 				AppState.setLocation(
 					data, 
 					["rootContainer", "hash"]
@@ -156,6 +150,12 @@ export default class EventListenerRegistrationCommon {
 				)
 			});
 		ACEController.registerListener('common.RouteToBoxSettingsOkEvent', (data) => {
+				AppState.setLocation(
+					data, 
+					["rootContainer", "hash"]
+				)
+			});
+		ACEController.registerListener('common.RouteToBoxCreateOkEvent', (data) => {
 				AppState.setLocation(
 					data, 
 					["rootContainer", "hash"]

@@ -10,6 +10,7 @@ import AbstractRouteToRegistrationCommand from "../../../gen/common/commands/Abs
 export default class RouteToRegistrationCommand extends AbstractRouteToRegistrationCommand {
     execute(data) {
     	this.addOkOutcome(data);
+        data.hash = "#registration"
     	return data;
     }
 }

@@ -8,11 +8,14 @@
 import React from "react";
 
 import { RootCategory } from "../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/RootCategory";
+import { ChildCategoriesItemContainer } from "./rootCategory/ChildCategoriesItemContainer";
 
 
 export const RootCategoryContainer = ( props ) => {
 	
-	return <RootCategory {...props}  /> 
+	return <RootCategory {...props} >
+		{ props.childCategories ? props.childCategories.map(i => <ChildCategoriesItemContainer {...i} key={i.categoryId}    />) : [] }
+	</RootCategory> 
 }
 
 

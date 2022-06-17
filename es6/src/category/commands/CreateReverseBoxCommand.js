@@ -14,7 +14,6 @@ export default class CreateReverseBoxCommand extends AbstractCreateReverseBoxCom
     }
 
     handleResponse(data, resolve) {
-        data.hash = "#dashboard"
     	this.addOkOutcome(data);
     	resolve(data);
     }

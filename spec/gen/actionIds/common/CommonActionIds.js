@@ -14,15 +14,15 @@ module.exports = {
 	
 	route : "common_route",
 	
-	routeToHome : "common_routeToHome",
-	
-	routeToDashboard : "common_routeToDashboard",
+	routeToDefault : "common_routeToDefault",
 	
 	routeToQueryCards : "common_routeToQueryCards",
 	
 	routeToAuthorView : "common_routeToAuthorView",
 	
 	routeToBoxSettings : "common_routeToBoxSettings",
+	
+	routeToBoxCreate : "common_routeToBoxCreate",
 	
 	routeToActiveCards : "common_routeToActiveCards",
 	

@@ -11,14 +11,14 @@ import { Buttons } from "../../../../../src/components/rootContainer/mainView/re
 import { Register } from "../../../../../src/components/rootContainer/mainView/registrationView/buttons/Register";
 import { registerUser } from "../../../../registration/ActionFunctions";
 import { Cancel } from "../../../../../src/components/rootContainer/mainView/registrationView/buttons/Cancel";
-import { route } from "../../../../common/ActionFunctions";
+import { routeToDefault } from "../../../../common/ActionFunctions";
 
 
 export const ButtonsContainer = ( props ) => {
 	
 	return <Buttons {...props} >
 		<Register {...props.register }   onClick={registerUser}  />
-		<Cancel {...props.cancel }   onClick={route}  />
+		<Cancel {...props.cancel }   onClick={routeToDefault}  />
 	</Buttons> 
 }
 

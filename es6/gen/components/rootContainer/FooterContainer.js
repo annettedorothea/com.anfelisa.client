@@ -8,11 +8,12 @@
 import React from "react";
 
 import { Footer } from "../../../src/components/rootContainer/Footer";
+import { routeToPrivacyPolicy } from "../../common/ActionFunctions";
 
 
 export const FooterContainer = ( props ) => {
 	
-	return <Footer {...props}  /> 
+	return <Footer {...props} onClick={routeToPrivacyPolicy}  /> 
 }
 
 

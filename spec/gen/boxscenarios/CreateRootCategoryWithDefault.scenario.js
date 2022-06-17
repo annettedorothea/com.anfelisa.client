@@ -26,7 +26,7 @@ describe("boxscenarios.CreateRootCategoryWithDefault", function () {
     	driver = ScenarioUtils.createDriver();
     	let appState;
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.init);
-		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#registration`]);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToRegistration);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.usernameChanged, [`username-${testId}`]);
 		await ScenarioUtils.waitInMillis(200);
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.passwordChanged, [`password`]);
@@ -46,7 +46,7 @@ describe("boxscenarios.CreateRootCategoryWithDefault", function () {
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.passwordChanged, [`password`]);
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.login);
 
-		await ScenarioUtils.invokeAction(driver, CommonActionIds.route, [`#box/create`]);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToBoxCreate);
 		await ScenarioUtils.waitInMillis(10);
 		
 		appState = await ScenarioUtils.getAppState(driver);
@@ -186,7 +186,6 @@ describe("boxscenarios.CreateRootCategoryWithDefault", function () {
 	});
 	it("deleteBox", async () => {
 		expect(appStates.deleteBox.rootContainer.mainView.dashboardView.deleteBox, "deleteBox").toEqual({ 
-			confirmDelete : false,
 			boxId : null
 		}
 		)

@@ -7,14 +7,13 @@
 
 import React from "react";
 
-import { registerUser } from "../../../../../../gen/registration/ActionFunctions";
 import {translate} from "../../../../../AppUtils";
 import {Texts} from "../../../../../app/Texts";
 
 export const Register = (props) => {
 	return <button
 		id="register"
-		onClick={registerUser}
+		onClick={props.onClick}
 		disabled={props.disabled}>
 		{translate(Texts.registration.register)}
 	</button>

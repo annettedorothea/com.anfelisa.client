@@ -27,7 +27,7 @@ ACE
 			set common.rootContainer.loggedInUser.username
 			set common.rootContainer.loggedInUser.token
 		) triggers ( 
-			common.Route
+			common.RouteToDefault common.RouteChanged
 		)
 		on unauthorized triggers ( 
 			common.DisplayErrorToast 
