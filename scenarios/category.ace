@@ -7,82 +7,13 @@ scenarios
 CreateCategoriesAndCards
 	GIVEN 
 		boxscenarios.CreateRootCategory
-	WHEN common.RouteToAuthorView(categoryId: "${testId}", reverse: "false")
+	WHEN common.RouteToAuthorView(categoryId: "box-${testId}", reverse: "false")
 	THEN 
 	expectedState 
-		init common.rootContainer.mainView.authorView should be {
-			boxId: "box-${testId}",
-	        reverse: false,
-			categoryTree: {
-				filter: {
-			        filterNonScheduled: {
-			        	value: false
-			        },
-			        priority: {
-			        	value: null
-			        }
-				},
-				reverseBoxExists: false,
-				selectedCategory: {
-					categoryId: "box-${testId}",
-					categoryName: "categoryWithDictionary",
-					categoryIndex: null,
-					empty: true,
-					parentCategoryId: null,
-					dictionaryLookup: true,
-					givenLanguage: "de",
-					wantedLanguage: "en",
-					rootCategoryId: "box-${testId}",
-					childCategories: [],
-					nonScheduledCount: null,
-					editable: true
-				},
-				rootCategory: {
-					categoryId: "box-${testId}",
-					categoryName: "categoryWithDictionary",
-					categoryIndex: null,
-					empty: true,
-					parentCategoryId: null,
-					dictionaryLookup: true,
-					givenLanguage: "de",
-					wantedLanguage: "en",
-					rootCategoryId: "box-${testId}",
-					childCategories: [],
-					nonScheduledCount: null,
-					editable: true
-				},
-				displayDeleteCategory: false,
-		        cardView: {
-		        	cardTable : {
-				        filter: "",
-				        cardList: [],
-				        newCard: {
-				        	given: "",
-				        	wanted: "",
-				        	displaySpinner: false
-				        },
-			        	cardDuplicates: []
-		        	},
-			        naturalInputOrder: true,
-			        editedCard: {
-			        	cardId: "",
-			        	given: "",
-			        	wanted: ""
-			        },
-			        deleteCard: {
-			        	cardId: "",
-			        	confirmDelete: false
-			        },
-			        dictionaryValue: null,
-			        selectedCardIds: [],
-			        movedCardIds: [],
-			        dragTargetCardId: null
-		        }
-			}
-		}
+		init common.rootContainer.mainView.authorView.boxId should be "box-${testId}"
 	AND WHEN category.NewCategoryClick
 	THEN expectedState
-		newCategoryDialoShown common.rootContainer.mainView.authorView.categoryTree.categoryDialog should be {
+		newCategoryDialogShown common.rootContainer.mainView.authorView.categoryTree.categoryDialog should be {
 			categoryName: "",
 			display: true,
 			newCategory: true

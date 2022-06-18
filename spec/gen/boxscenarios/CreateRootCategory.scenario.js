@@ -44,6 +44,9 @@ describe("boxscenarios.CreateRootCategory", function () {
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.logout);
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.usernameChanged, [`username-${testId}`]);
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.passwordChanged, [`password`]);
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.toggleSaveInLocalStorage);
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.toggleSaveInLocalStorage);
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.toggleSaveInLocalStorage);
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.login);
 
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToBoxCreate);

@@ -9,17 +9,36 @@ import React from "react";
 
 
 export const QueryCardView = (props) => {
-	return <>
-		<div>openTodaysCards: {props.openTodaysCards !== null && props.openTodaysCards !== undefined ? props.openTodaysCards.toString() : ""}</div>
-		<div>allTodaysCards: {props.allTodaysCards !== null && props.allTodaysCards !== undefined ? props.allTodaysCards.toString() : ""}</div>
-		<div>reverse: {props.reverse !== null && props.reverse !== undefined ? props.reverse.toString() : ""}</div>
-		<div>enableScoreButtons: {props.enableScoreButtons !== null && props.enableScoreButtons !== undefined ? props.enableScoreButtons.toString() : ""}</div>
-		<div>boxId: {props.boxId !== null && props.boxId !== undefined ? props.boxId.toString() : ""}</div>
+	const progress = () => {
+		const open = Math.round(props.openTodaysCards / props.allTodaysCards * 100);
+		const done = 100 - open;
+		return <div className="progress">
+			<div
+				className={`${done === 100 ? 'all-done' : 'done'}`}
+				style={{width: `${done}%`}}
+			/>
+			<div
+				className={`${open === 100 ? 'all-open' : 'open'}`}
+				style={{width: `${open}%`}}
+			/>
+		</div>
+	}
+
+	return <div className="box">
+		<h1>
+			<button
+				className="backButton"
+				onClick={props.routeToDefault}
+			>
+				<i className="fa fa-arrow-left"/>
+			</button>
+			<span>{props.categoryName} {props.reverse ?
+				<i className="fas fa-arrows-alt-h withmarginleft"/> : null}</span>
+		</h1>
+		{progress()}
 		{props.children}
-	</> 
+	</div>
 }
-
-
 
 /******* S.D.G. *******/
 

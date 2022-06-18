@@ -22,7 +22,7 @@ import { cancelDeleteCard } from "../../../../../card/ActionFunctions";
 export const CardViewContainer = ( props ) => {
 	
 	return <CardView {...props} >
-		<CardTableContainer {...props.cardTable }  selectedCardIds={props.selectedCardIds} editedCard={props.editedCard} rootCategory={props.rootCategory} naturalInputOrder={props.naturalInputOrder} dragTargetCardId={props.dragTargetCardId}  toggleInputOrder={toggleInputOrder} filterCards={filterCards} toggleAllScheduleCardSelection={toggleAllScheduleCardSelection} scheduleSelectedCards={scheduleSelectedCards} sortSelectedCardsOut={sortSelectedCardsOut}  />
+		<CardTableContainer {...props.cardTable }  selectedCardIds={props.selectedCardIds} editedCard={props.editedCard} rootCategory={props.rootCategory} naturalInputOrder={props.naturalInputOrder} dragTargetCardId={props.dragTargetCardId} reverse={props.reverse}  toggleInputOrder={toggleInputOrder} filterCards={filterCards} toggleAllScheduleCardSelection={toggleAllScheduleCardSelection} scheduleSelectedCards={scheduleSelectedCards} sortSelectedCardsOut={sortSelectedCardsOut}  />
 		<DeleteCardContainer {...props.deleteCard }   deleteCard={deleteCard} cancelDeleteCard={cancelDeleteCard}  />
 	</CardView> 
 }

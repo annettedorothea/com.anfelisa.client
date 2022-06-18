@@ -3,29 +3,132 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
+import {translate} from "../../../../AppUtils";
+import {Texts} from "../../../../app/Texts";
 
 
 export const NextCard = (props) => {
-	return <>
-		<div>cardId: {props.cardId !== null && props.cardId !== undefined ? props.cardId.toString() : ""}</div>
-		<div>categoryId: {props.categoryId !== null && props.categoryId !== undefined ? props.categoryId.toString() : ""}</div>
-		<div>categoryName: {props.categoryName !== null && props.categoryName !== undefined ? props.categoryName.toString() : ""}</div>
-		<div>count: {props.count !== null && props.count !== undefined ? props.count.toString() : ""}</div>
-		<div>given: {props.given !== null && props.given !== undefined ? props.given.toString() : ""}</div>
-		<div>lastQuality: {props.lastQuality !== null && props.lastQuality !== undefined ? props.lastQuality.toString() : ""}</div>
-		<div>rootCategoryId: {props.rootCategoryId !== null && props.rootCategoryId !== undefined ? props.rootCategoryId.toString() : ""}</div>
-		<div>scheduledCardId: {props.scheduledCardId !== null && props.scheduledCardId !== undefined ? props.scheduledCardId.toString() : ""}</div>
-		<div>reinforceCardId: {props.reinforceCardId !== null && props.reinforceCardId !== undefined ? props.reinforceCardId.toString() : ""}</div>
-		<div>scheduledDate: {props.scheduledDate !== null && props.scheduledDate !== undefined ? props.scheduledDate.toString() : ""}</div>
-		<div>scoredDate: {props.scoredDate !== null && props.scoredDate !== undefined ? props.scoredDate.toString() : ""}</div>
-		<div>wanted: {props.wanted !== null && props.wanted !== undefined ? props.wanted.toString() : ""}</div>
-		<div>index: {props.index !== null && props.index !== undefined ? props.index.toString() : ""}</div>
-	</> 
-}
 
+    if (!props.given || !props.wanted || props.openTodaysCards === 0) {
+        return null;
+    }
+    const given = () => {
+        let lines = [];
+        if (props.given.length > 0) {
+            lines = props.given.split("\n");
+        }
+
+        let lineItems = [];
+        for (let i = 0; i < lines.length; i++) {
+            lineItems.push(<div key={`line${i}`}>{lines[i]}</div>)
+        }
+        return <div className={`given lastQuality_${props.lastQuality}`}>
+            <div className="given-word">{lineItems}</div>
+            {props.scheduledDate ? <div className="small-info">
+                {`${translate(Texts.queryCards.scheduledDate)} ${new Date(props.scheduledDate).toLocaleDateString()}`}
+            </div> : null}
+            <div className="small-info">{
+                props.count === 0 ?
+                    translate(Texts.queryCards.never) :
+                    translate(Texts.queryCards.count, [props.count])}
+            </div>
+            {props.scoredDate ? <div className="small-info">
+                {`${translate(Texts.queryCards.scoredDate)} ${new Date(props.scoredDate).toLocaleDateString()}`}
+            </div> : null}
+        </div>
+    }
+
+    const wanted = () => {
+        let lines = [];
+        if (props.wanted.length > 0) {
+            lines = props.wanted.split("\n");
+        }
+
+        const onClick = () => {
+            const wantedItemsLength = lines.length;
+            props.displayWanted(wantedItemsLength);
+        }
+
+        let lineItems = [];
+        for (let i = 0; i < lines.length; i++) {
+            lineItems.push(<div
+                key={`line${i}`}
+                className={i < props.index ? "" : "hidden"}
+            >{lines[i]}</div>);
+        }
+        return <div className={`wanted lastQuality_${props.lastQuality}`} onClick={onClick}>
+            <div
+                className="wanted-word"
+            >{lineItems}</div>
+        </div>
+    }
+
+    const scoreButtonClick = (quality) => {
+        props.scoreCard(quality).then();
+    }
+
+    const scoreButton = (quality) => {
+        return <button
+            onClick={() => scoreButtonClick(quality)}
+            disabled={!props.enableScoreButtons}
+            className={`quality_${quality}`}
+        >
+            {translate(Texts.queryCards.scoreButtons[quality])}
+        </button>
+    }
+
+    const reinforceButton = (keep) => {
+        return <button
+            onClick={() => props.scoreReinforceCard(keep)}
+            disabled={!props.enableScoreButtons}
+            className={`keep_${keep}`}
+        >
+            {translate(Texts.queryCards.reinforceButtons[keep])}
+        </button>
+    }
+
+    return <div>
+        {given()}
+        {wanted()}
+        {props.scheduledCardId ?
+            <div className="scoreButtons">
+                <div>
+                    {scoreButton(5)}
+                    {scoreButton(2)}
+                </div>
+                <div>
+                    {scoreButton(4)}
+                    {scoreButton(1)}
+                </div>
+                <div>
+                    {scoreButton(3)}
+                    {scoreButton(0)}
+                </div>
+                <div>
+                    <button onClick={props.sortCardOut}>
+                        {translate(Texts.queryCards.sortOut)}
+                    </button>
+                </div>
+            </div> :
+            <div className="scoreButtons">
+                <div>
+                    {reinforceButton(false)}
+                    {reinforceButton(true)}
+                </div>
+                <div>
+                    <button onClick={props.sortCardOut}>
+                        {translate(Texts.queryCards.sortOut)}
+                    </button>
+                </div>
+            </div>}
+        <div className="categoryLink">
+            <a
+                onClick={() => props.routeToSelectedCategory(props.rootCategoryId, props.categoryId, props.reverse)}
+            >{translate(Texts.queryCards.category)}</a>
+        </div>
+    </div>
+}
 
 
 /******* S.D.G. *******/

@@ -25,7 +25,6 @@ import {
     routeChanged,
 } from "../gen/common/ActionFunctions";
 import {dumpTimeline} from "../gen/ace/Timeline";
-import {RootContainer} from "./components/RootContainer";
 import React from "react";
 import ReactDOM from "react-dom";
 import * as R from 'ramda'
@@ -199,14 +198,14 @@ export function displayUnexpectedError(error) {
     const currentVersion = settings.clientVersion;
     App.dumpAppState();
     dumpTimeline();
-    /*loadActualClientVersion().then((actualClientVersion) => {
+    loadActualClientVersion().then((actualClientVersion) => {
         if (actualClientVersion !== currentVersion) {
             displayVersionMismatchErrorDialog();
         } else {
             displayErrorToast(Texts.messages.unknownError, [error.textKey ? error.textKey : error]);
             displaySaveBugDialog();
         }
-    });*/
+    });
 }
 
 export function deepCopy(object) {

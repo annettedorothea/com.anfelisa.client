@@ -12,8 +12,6 @@ module.exports = {
 	
 	routeChanged : "common_routeChanged",
 	
-	route : "common_route",
-	
 	routeToDefault : "common_routeToDefault",
 	
 	routeToQueryCards : "common_routeToQueryCards",

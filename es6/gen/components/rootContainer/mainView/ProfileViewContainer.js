@@ -8,11 +8,15 @@
 import React from "react";
 
 import { ProfileView } from "../../../../src/components/rootContainer/mainView/ProfileView";
+import { deleteUser } from "../../../profile/ActionFunctions";
+import { deleteUserCancel } from "../../../profile/ActionFunctions";
+import { deleteUserClick } from "../../../profile/ActionFunctions";
+import { routeToDefault } from "../../../common/ActionFunctions";
 
 
 export const ProfileViewContainer = ( props ) => {
 	
-	return <ProfileView {...props}  /> 
+	return <ProfileView {...props} deleteUser={deleteUser} deleteUserCancel={deleteUserCancel} deleteUserClick={deleteUserClick} routeToDefault={routeToDefault}  /> 
 }
 
 

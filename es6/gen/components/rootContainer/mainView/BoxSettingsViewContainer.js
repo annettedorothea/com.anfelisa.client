@@ -9,12 +9,21 @@ import React from "react";
 
 import { BoxSettingsView } from "../../../../src/components/rootContainer/mainView/BoxSettingsView";
 import { BoxSettingsContainer } from "./boxSettingsView/BoxSettingsContainer";
+import { createRootCategory } from "../../../box/ActionFunctions";
+import { dictionaryLookupChanged } from "../../../box/ActionFunctions";
+import { givenLanguageChanged } from "../../../box/ActionFunctions";
+import { maxCardsPerDayChanged } from "../../../box/ActionFunctions";
+import { maxIntervalChanged } from "../../../box/ActionFunctions";
+import { rootCategoryNameChanged } from "../../../box/ActionFunctions";
+import { saveBoxSettings } from "../../../box/ActionFunctions";
+import { wantedLanguageChanged } from "../../../box/ActionFunctions";
+import { routeToDefault } from "../../../common/ActionFunctions";
 
 
 export const BoxSettingsViewContainer = ( props ) => {
 	
 	return <BoxSettingsView {...props} >
-		<BoxSettingsContainer {...props.boxSettings }  boxId={props.boxId}   />
+		<BoxSettingsContainer {...props.boxSettings }  boxId={props.boxId}  createRootCategory={createRootCategory} dictionaryLookupChanged={dictionaryLookupChanged} givenLanguageChanged={givenLanguageChanged} maxCardsPerDayChanged={maxCardsPerDayChanged} maxIntervalChanged={maxIntervalChanged} rootCategoryNameChanged={rootCategoryNameChanged} saveBoxSettings={saveBoxSettings} wantedLanguageChanged={wantedLanguageChanged} routeToDefault={routeToDefault}  />
 	</BoxSettingsView> 
 }
 

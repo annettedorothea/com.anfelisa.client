@@ -29,7 +29,7 @@ export const PrivacyPolicyView = (props) => {
         <h2>Keine Anbindung an soziale Netzwerke</h2>
         <p>Diese Website ist mit keinem sozialen Netzwerk verbunden.</p>
         <p>
-            <a onClick={(event) => props.onClick()}>
+            <a onClick={props.onClick}>
                 Zurück
             </a>
         </p>

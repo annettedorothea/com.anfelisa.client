@@ -17,6 +17,12 @@ import { MessageContainerContainer } from "./rootContainer/MessageContainerConta
 import { MainViewContainer } from "./rootContainer/MainViewContainer";
 import { FooterContainer } from "./rootContainer/FooterContainer";
 import * as AppState from "../../src/AppState";
+import { routeToDefault } from "../common/ActionFunctions";
+import { logout } from "../common/ActionFunctions";
+import { routeToProfileView } from "../common/ActionFunctions";
+import { callSaveBug } from "../common/ActionFunctions";
+import { cancelSaveBugDialog } from "../common/ActionFunctions";
+import { cancelVersionMismatchDialog } from "../common/ActionFunctions";
 import { routeToPrivacyPolicy } from "../common/ActionFunctions";
 
 export let setContainerState;
@@ -31,10 +37,10 @@ export const RootContainerContainer = () => {
 	}
 	
 	return <RootContainer {...props} >
-		<LoggedInUserContainer {...props.loggedInUser }  token={props.token}   />
+		<LoggedInUserContainer {...props.loggedInUser }  token={props.token}  routeToDefault={routeToDefault} logout={logout} routeToProfileView={routeToProfileView}  />
 		<SpinnerContainer {...props.spinner }    />
-		<SaveBugDialogContainer {...props.saveBugDialog }    />
-		<VersionMismatchDialogContainer {...props.versionMismatchDialog }    />
+		<SaveBugDialogContainer {...props.saveBugDialog }   callSaveBug={callSaveBug} cancelSaveBugDialog={cancelSaveBugDialog}  />
+		<VersionMismatchDialogContainer {...props.versionMismatchDialog }   cancelVersionMismatchDialog={cancelVersionMismatchDialog}  />
 		<VersionMismatchErrorDialogContainer {...props.versionMismatchErrorDialog }    />
 		<MessageContainerContainer {...props.messageContainer }    />
 		<MainViewContainer {...props.mainView }    />

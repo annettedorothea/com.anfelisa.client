@@ -45,6 +45,9 @@ describe("categoryscenarios.CreateCategoriesAndCards", function () {
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.logout);
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.usernameChanged, [`username-${testId}`]);
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.passwordChanged, [`password`]);
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.toggleSaveInLocalStorage);
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.toggleSaveInLocalStorage);
+		await ScenarioUtils.invokeAction(driver, LoginActionIds.toggleSaveInLocalStorage);
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.login);
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToBoxCreate);
 		await ScenarioUtils.invokeAction(driver, BoxActionIds.categoryNameChanged, [`categoryWithDictionary`]);
@@ -62,7 +65,7 @@ describe("categoryscenarios.CreateCategoriesAndCards", function () {
 		await ScenarioUtils.invokeAction(driver, BoxActionIds.createRootCategory);
 		await ScenarioUtils.waitInMillis(500);
 
-		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToAuthorView, [`${testId}`,`false`]);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToAuthorView, [`box-${testId}`,`false`]);
 		await ScenarioUtils.waitInMillis(10);
 		
 		appState = await ScenarioUtils.getAppState(driver);
@@ -73,7 +76,7 @@ describe("categoryscenarios.CreateCategoriesAndCards", function () {
 		await ScenarioUtils.waitInMillis(10);
 		
 		appState = await ScenarioUtils.getAppState(driver);
-		appStates.newCategoryDialoShown = appState;
+		appStates.newCategoryDialogShown = appState;
 		
 		verifications.okDisabled = await Verifications.okDisabled(driver, testId);
 		
@@ -100,100 +103,11 @@ describe("categoryscenarios.CreateCategoriesAndCards", function () {
     });
 
 	it("init", async () => {
-		expect(appStates.init.rootContainer.mainView.authorView, "init").toEqual({ 
-			boxId : `box-${testId}`,
-			reverse : false,
-			categoryTree : { 
-				filter : { 
-					filterNonScheduled : { 
-						value : false
-					},
-					
-					priority : { 
-						value : null
-					}
-				},
-				
-				reverseBoxExists : false,
-				selectedCategory : { 
-					categoryId : `box-${testId}`,
-					categoryName : `categoryWithDictionary`,
-					categoryIndex : null,
-					empty : true,
-					parentCategoryId : null,
-					dictionaryLookup : true,
-					givenLanguage : `de`,
-					wantedLanguage : `en`,
-					rootCategoryId : `box-${testId}`,
-					childCategories : [
-					],
-					
-					nonScheduledCount : null,
-					editable : true
-				},
-				
-				rootCategory : { 
-					categoryId : `box-${testId}`,
-					categoryName : `categoryWithDictionary`,
-					categoryIndex : null,
-					empty : true,
-					parentCategoryId : null,
-					dictionaryLookup : true,
-					givenLanguage : `de`,
-					wantedLanguage : `en`,
-					rootCategoryId : `box-${testId}`,
-					childCategories : [
-					],
-					
-					nonScheduledCount : null,
-					editable : true
-				},
-				
-				displayDeleteCategory : false,
-				cardView : { 
-					cardTable : { 
-						filter : ``,
-						cardList : [
-						],
-						
-						newCard : { 
-							given : ``,
-							wanted : ``,
-							displaySpinner : false
-						},
-						
-						cardDuplicates : [
-						]
-					},
-					
-					naturalInputOrder : true,
-					editedCard : { 
-						cardId : ``,
-						given : ``,
-						wanted : ``
-					},
-					
-					deleteCard : { 
-						cardId : ``,
-						confirmDelete : false
-					},
-					
-					dictionaryValue : null,
-					selectedCardIds : [
-					],
-					
-					movedCardIds : [
-					],
-					
-					dragTargetCardId : null
-				}
-			}
-		}
-		)
+		expect(appStates.init.rootContainer.mainView.authorView.boxId, "init").toEqual(`box-${testId}`)
 	});
 	
-	it("newCategoryDialoShown", async () => {
-		expect(appStates.newCategoryDialoShown.rootContainer.mainView.authorView.categoryTree.categoryDialog, "newCategoryDialoShown").toEqual({ 
+	it("newCategoryDialogShown", async () => {
+		expect(appStates.newCategoryDialogShown.rootContainer.mainView.authorView.categoryTree.categoryDialog, "newCategoryDialogShown").toEqual({ 
 			categoryName : ``,
 			display : true,
 			newCategory : true

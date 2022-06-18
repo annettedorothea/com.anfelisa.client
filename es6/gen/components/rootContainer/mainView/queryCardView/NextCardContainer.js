@@ -8,11 +8,16 @@
 import React from "react";
 
 import { NextCard } from "../../../../../src/components/rootContainer/mainView/queryCardView/NextCard";
+import { displayWanted } from "../../../../box/ActionFunctions";
+import { scoreCard } from "../../../../box/ActionFunctions";
+import { scoreReinforceCard } from "../../../../box/ActionFunctions";
+import { sortCardOut } from "../../../../box/ActionFunctions";
+import { routeToSelectedCategory } from "../../../../common/ActionFunctions";
 
 
 export const NextCardContainer = ( props ) => {
 	
-	return <NextCard {...props}  /> 
+	return <NextCard {...props} displayWanted={displayWanted} scoreCard={scoreCard} scoreReinforceCard={scoreReinforceCard} sortCardOut={sortCardOut} routeToSelectedCategory={routeToSelectedCategory}  /> 
 }
 
 

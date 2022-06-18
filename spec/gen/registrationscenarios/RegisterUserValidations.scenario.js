@@ -158,7 +158,7 @@ describe("registrationscenarios.RegisterUserValidations", function () {
 		expect(appStates.password2.rootContainer.mainView.registrationView.password.value, "password2").toEqual(`cd0acfe085eeb0f874391fb9b8009bed`)
 	});
 	it("passwordRepetition2", async () => {
-		expect(appStates.passwordRepetition2.rootContainer.mainView.registrationView.passwordRepetition, "passwordRepetition2").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
+		expect(appStates.passwordRepetition2.rootContainer.mainView.registrationView.passwordRepetition.value, "passwordRepetition2").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
 	});
 	it("passwordMismatch2", async () => {
 		expect(appStates.passwordMismatch2.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch, "passwordMismatch2").toEqual(true)
@@ -171,7 +171,7 @@ describe("registrationscenarios.RegisterUserValidations", function () {
 		expect(appStates.password3.rootContainer.mainView.registrationView.password.value, "password3").toEqual(`cd0acfe085eeb0f874391fb9b8009bed`)
 	});
 	it("passwordRepetition3", async () => {
-		expect(appStates.passwordRepetition3.rootContainer.mainView.registrationView.passwordRepetition, "passwordRepetition3").toEqual(`cd0acfe085eeb0f874391fb9b8009bed`)
+		expect(appStates.passwordRepetition3.rootContainer.mainView.registrationView.passwordRepetition.value, "passwordRepetition3").toEqual(`cd0acfe085eeb0f874391fb9b8009bed`)
 	});
 	it("passwordMatch3", async () => {
 		expect(appStates.passwordMatch3.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch, "passwordMatch3").toEqual(false)
@@ -184,7 +184,7 @@ describe("registrationscenarios.RegisterUserValidations", function () {
 		expect(appStates.password4.rootContainer.mainView.registrationView.password.value, "password4").toEqual(`cd0acfe085eeb0f874391fb9b8009bed`)
 	});
 	it("passwordRepetition4", async () => {
-		expect(appStates.passwordRepetition4.rootContainer.mainView.registrationView.passwordRepetition, "passwordRepetition4").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
+		expect(appStates.passwordRepetition4.rootContainer.mainView.registrationView.passwordRepetition.value, "passwordRepetition4").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
 	});
 	it("passwordMismatch4", async () => {
 		expect(appStates.passwordMismatch4.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch, "passwordMismatch4").toEqual(true)
@@ -197,7 +197,7 @@ describe("registrationscenarios.RegisterUserValidations", function () {
 		expect(appStates.password5.rootContainer.mainView.registrationView.password.value, "password5").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
 	});
 	it("passwordRepetition5", async () => {
-		expect(appStates.passwordRepetition5.rootContainer.mainView.registrationView.passwordRepetition, "passwordRepetition5").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
+		expect(appStates.passwordRepetition5.rootContainer.mainView.registrationView.passwordRepetition.value, "passwordRepetition5").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
 	});
 	it("passwordMatch5", async () => {
 		expect(appStates.passwordMatch5.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch, "passwordMatch5").toEqual(false)
@@ -217,7 +217,7 @@ describe("registrationscenarios.RegisterUserValidations", function () {
 		expect(verifications.registerDisabled, "verifications.registerDisabled").toBeTrue();
 	});
 	it("emailOk", async () => {
-		expect(appStates.emailOk.rootContainer.mainView.registrationView.email, "emailOk").toEqual(`info@anfelisa.de`)
+		expect(appStates.emailOk.rootContainer.mainView.registrationView.email.value, "emailOk").toEqual(`info@anfelisa.de`)
 	});
 	it("emailValid", async () => {
 		expect(appStates.emailValid.rootContainer.mainView.registrationView.email.emailInvalid, "emailValid").toEqual(false)

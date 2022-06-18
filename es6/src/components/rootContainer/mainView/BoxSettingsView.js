@@ -10,9 +10,8 @@ import React from "react";
 
 export const BoxSettingsView = (props) => {
 	return <>
-		<div>boxId: {props.boxId !== null && props.boxId !== undefined ? props.boxId.toString() : ""}</div>
 		{props.children}
-	</> 
+	</>
 }
 
 

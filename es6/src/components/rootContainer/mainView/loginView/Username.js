@@ -7,7 +7,6 @@ import React from "react";
 
 import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
-import {route} from "../../../../../gen/common/ActionFunctions";
 
 export const Username = (props) => {
     return <div className="line">

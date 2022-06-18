@@ -21,7 +21,7 @@ export const CardDuplicatesItem = (props) => {
 	}
 	const renderPath = () => {
 		return <td colSpan={2}>
-			<a onClick={() => props.routeToSelectedCategory(props.rootCategory.rootCategoryId, props.categoryId)}>
+			<a onClick={() => props.routeToSelectedCategory(props.rootCategory.rootCategoryId, props.categoryId, props.reverse)}>
 				{props.categoryName}
 			</a>
 		</td>

@@ -8,11 +8,14 @@
 import React from "react";
 
 import { ActiveCardListItem } from "../../../../../src/components/rootContainer/mainView/allActiveCardsView/ActiveCardListItem";
+import { selectScheduleCardRange } from "../../../../box/ActionFunctions";
+import { toggleScheduleCardSelection } from "../../../../box/ActionFunctions";
+import { updateCardPriority } from "../../../../box/ActionFunctions";
 
 
 export const ActiveCardListItemContainer = ( props ) => {
 	
-	return <ActiveCardListItem {...props}  /> 
+	return <ActiveCardListItem {...props} selectScheduleCardRange={selectScheduleCardRange} toggleScheduleCardSelection={toggleScheduleCardSelection} updateCardPriority={updateCardPriority}  /> 
 }
 
 

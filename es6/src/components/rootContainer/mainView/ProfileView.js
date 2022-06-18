@@ -6,15 +6,64 @@
 
 
 import React from "react";
+import {translate} from "../../../AppUtils";
+import {Texts} from "../../../app/Texts";
+import {Modal} from "../../common/Modal";
 
 
 export const ProfileView = (props) => {
-	return <>
-		<div>username: {props.username !== null && props.username !== undefined ? props.username.toString() : ""}</div>
-		<div>email: {props.email !== null && props.email !== undefined ? props.email.toString() : ""}</div>
-		<div>role: {props.role !== null && props.role !== undefined ? props.role.toString() : ""}</div>
-		<div>showDeleteUserDialog: {props.showDeleteUserDialog !== null && props.showDeleteUserDialog !== undefined ? props.showDeleteUserDialog.toString() : ""}</div>
-	</> 
+	if (props.username === undefined) {
+		return null;
+	}
+	return <div className="center-wide">
+		{props.showDeleteUserDialog === true &&
+			<Modal
+				title={translate(Texts.profile.confirmDelete.title)}
+				message={translate(Texts.profile.confirmDelete.message)}
+				confirm={translate(Texts.profile.confirmDelete.ok)}
+				cancel={translate(Texts.profile.confirmDelete.cancel)}
+				onConfirm={props.deleteUser}
+				onCancel={props.deleteUserCancel}
+			/>
+		}
+		<div className="form">
+			<h1>
+				<button onClick={props.routeToDefault}><i className="fa fa-arrow-left"/></button>
+				{translate(Texts.profile.title)}
+			</h1>
+			<div className="line">
+				<label htmlFor="username">{translate(Texts.profile.username)}</label>
+				<div className="inputContainer">
+					<input
+						type="text"
+						value={props.username}
+						id="username"
+						readOnly={true}
+					/>
+				</div>
+			</div>
+			<div className="line">
+				<label htmlFor="email">{translate(Texts.profile.email)}</label>
+				<div className="inputContainer">
+					<input
+						type="text"
+						value={props.email}
+						id="email"
+						readOnly={true}
+					/>
+				</div>
+			</div>
+			<div className="moreMarginLine hCenter">
+				<button
+					className="danger"
+					onClick={props.deleteUserClick}
+				>
+					{translate(Texts.profile.delete)}
+				</button>
+			</div>
+		</div>
+	</div>
+
 }
 
 

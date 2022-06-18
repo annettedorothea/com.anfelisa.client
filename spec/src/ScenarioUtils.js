@@ -23,23 +23,30 @@ module.exports = {
         if (CommonActionIds.init === action) {
             await driver.get('http://localhost:8080/');
             await driver.wait(until.elementLocated(By.xpath("//*[contains(@id,'dashboard') or (contains(@id,'username'))]")), 5000);
-        } else if (CommonActionIds.route === action) {
-            const hashes = args[0].split("/");
-            if (args[0] === "#registration") {
-                await click(driver, 'registration');
-            } else if (args[0] === "#box/create") {
-                await clickByClass(driver, 'box-create');
-            } else if (args[0] === "#dashboard") {
-                await click(driver, 'cancel');
-                await this.waitInMillis(1000);
-            } else if (args[0] === "#profile") {
-                await click(driver, 'profile');
-                await this.waitInMillis(1000);
-            } else if (args[0].startsWith("#categories")) {
-                const categoryId = hashes[1];
-                await click(driver, categoryId);
-                await this.waitInMillis(1000);
-            }
+        } else if (CommonActionIds.routeToDefault === action) {
+            await driver.get('http://localhost:8080/#');
+            await this.waitInMillis(1000);
+        } else if (CommonActionIds.routeToActiveCards === action) {
+            await driver.get(`http://localhost:8080/#box/active-cards/${args[0]}`);
+        } else if (CommonActionIds.routeToForgotPassword === action) {
+            await driver.get('http://localhost:8080/#forgotpassword');
+        } else if (CommonActionIds.routeToAuthorView === action) {
+            await driver.get(`http://localhost:8080/#categories/${args[0]}`);
+            await this.waitInMillis(1000);
+        } else if (CommonActionIds.routeToBoxCreate === action) {
+            await driver.get(`http://localhost:8080/#box/create`);
+        } else if (CommonActionIds.routeToBoxSettings === action) {
+            await driver.get(`http://localhost:8080/#box/settings/${args[0]}`);
+        } else if (CommonActionIds.routeToPrivacyPolicy === action) {
+            await driver.get(`http://localhost:8080/#privacypolicy`);
+        } else if (CommonActionIds.routeToProfileView === action) {
+            await driver.get(`http://localhost:8080/#profile`);
+            await this.waitInMillis(1000);
+        } else if (CommonActionIds.routeToQueryCards === action) {
+            await driver.get(`http://localhost:8080/#box/${args[0]}`);
+            await this.waitInMillis(1000);
+        } else if (CommonActionIds.routeToRegistration === action) {
+            await driver.get(`http://localhost:8080/#registration`);
         } else if (CommonActionIds.logout === action) {
             await click(driver, 'logout');
         } else if (CommonActionIds.hideToast === action) {

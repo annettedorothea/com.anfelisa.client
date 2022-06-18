@@ -8,7 +8,6 @@
 import InitAction from "../../src/common/actions/InitAction";
 import GetUserInfoAction from "../../src/common/actions/GetUserInfoAction";
 import RouteChangedAction from "../../src/common/actions/RouteChangedAction";
-import RouteAction from "../../src/common/actions/RouteAction";
 import RouteToDefaultAction from "../../src/common/actions/RouteToDefaultAction";
 import RouteToQueryCardsAction from "../../src/common/actions/RouteToQueryCardsAction";
 import RouteToAuthorViewAction from "../../src/common/actions/RouteToAuthorViewAction";
@@ -44,10 +43,6 @@ export function getUserInfo(token) {
 
 export function routeChanged() {
     return new RouteChangedAction().apply({});
-}
-
-export function route(hash) {
-    return new RouteAction().apply({hash});
 }
 
 export function routeToDefault() {
@@ -90,8 +85,8 @@ export function routeToProfileView() {
     return new RouteToProfileViewAction().apply({});
 }
 
-export function routeToSelectedCategory(rootCategoryId, categoryId) {
-    return new RouteToSelectedCategoryAction().apply({rootCategoryId, categoryId});
+export function routeToSelectedCategory(rootCategoryId, categoryId, reverse) {
+    return new RouteToSelectedCategoryAction().apply({rootCategoryId, categoryId, reverse});
 }
 
 export function logout() {

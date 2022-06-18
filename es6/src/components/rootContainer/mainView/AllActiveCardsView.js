@@ -6,16 +6,71 @@
 
 
 import React from "react";
+import {translate} from "../../../AppUtils";
+import {Texts} from "../../../app/Texts";
 
 
 export const AllActiveCardsView = (props) => {
-	return <>
-		<div>boxId: {props.boxId !== null && props.boxId !== undefined ? props.boxId.toString() : ""}</div>
-		<div>editable: {props.editable !== null && props.editable !== undefined ? props.editable.toString() : ""}</div>
-		<div>selectedCardIds: {props.selectedCardIds !== null && props.selectedCardIds !== undefined ? props.selectedCardIds.toString() : ""}</div>
-		<div>selectedLastQualityFilters: {props.selectedLastQualityFilters !== null && props.selectedLastQualityFilters !== undefined ? props.selectedLastQualityFilters.toString() : ""}</div>
-		{props.children}
-	</> 
+	if (!props.activeCardList || !props.selectedCardIds) {
+		return null;
+	}
+	const filterLastQuality = (lastQuality) => {
+		return <div className="form">
+			<input
+				type="checkbox"
+				onClick={() => props.filterActiveCardListWithLastQualityChanged(lastQuality)}
+				id={`lastQuality{lastQuality}`}
+				value={props.selectedLastQualityFilters.indexOf(lastQuality) >= 0}
+			/>
+			<label
+				htmlFor={`lastQuality{lastQuality}`}
+				className={`quality_${lastQuality}`}
+			>
+				{translate(Texts.allActiveCards.filterLastQuality[lastQuality])}
+			</label>
+		</div>
+
+	}
+	return <div className="allActiveCards">
+		<div>
+			{filterLastQuality(5)}
+			{filterLastQuality(4)}
+			{filterLastQuality(3)}
+			{filterLastQuality(2)}
+			{filterLastQuality(1)}
+			{filterLastQuality(0)}
+		</div>
+		<table>
+			<thead>
+			<tr className="notPrinted">
+				<th>
+					<input
+						type="checkbox"
+						onChange={props.toggleAllScheduleCardSelection}
+						checked={props.activeCardList.filter(i => i.hide !== true).length > 0 && props.selectedCardIds.length === props.activeCardList.filter(i => i.hide !== true).length}
+					/>
+				</th>
+				<th colSpan={4}>
+					<button
+						onClick={props.scheduleSelectedCards}
+						disabled={props.selectedCardIds.length === 0}
+					>
+						{translate(Texts.allActiveCards.scheduleSelectedCards)}
+					</button>
+					<button
+						onClick={props.sortSelectedCardsOut}
+						disabled={props.selectedCardIds.length === 0}
+					>
+						{translate(Texts.allActiveCards.sortSelectedCardsOut)}
+					</button>
+				</th>
+			</tr>
+			</thead>
+			<tbody>
+			{props.children}
+			</tbody>
+		</table>
+	</div>
 }
 
 

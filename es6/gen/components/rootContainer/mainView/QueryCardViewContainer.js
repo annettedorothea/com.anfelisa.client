@@ -9,12 +9,18 @@ import React from "react";
 
 import { QueryCardView } from "../../../../src/components/rootContainer/mainView/QueryCardView";
 import { NextCardContainer } from "./queryCardView/NextCardContainer";
+import { routeToDefault } from "../../../common/ActionFunctions";
+import { displayWanted } from "../../../box/ActionFunctions";
+import { scoreCard } from "../../../box/ActionFunctions";
+import { scoreReinforceCard } from "../../../box/ActionFunctions";
+import { sortCardOut } from "../../../box/ActionFunctions";
+import { routeToSelectedCategory } from "../../../common/ActionFunctions";
 
 
 export const QueryCardViewContainer = ( props ) => {
 	
-	return <QueryCardView {...props} >
-		<NextCardContainer {...props.nextCard }    />
+	return <QueryCardView {...props} routeToDefault={routeToDefault} >
+		<NextCardContainer {...props.nextCard }  enableScoreButtons={props.enableScoreButtons}  displayWanted={displayWanted} scoreCard={scoreCard} scoreReinforceCard={scoreReinforceCard} sortCardOut={sortCardOut} routeToSelectedCategory={routeToSelectedCategory}  />
 	</QueryCardView> 
 }
 

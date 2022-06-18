@@ -531,10 +531,14 @@ i.withmarginleft {
     background-color: #eee;
     margin: 12px auto;
     position: relative;
-    min-height: 128px;
+    min-height: 160px;
 }
 
 .box-create {
+    min-height: auto;
+}
+
+.box-archived {
     min-height: auto;
 }
 

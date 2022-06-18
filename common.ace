@@ -1,9 +1,5 @@
 HttpClient common
 
-
-
-
-
 ACE 
 Init 
 	fromAppState (rootContainer.token )
@@ -82,9 +78,6 @@ RouteChanged
 		set rootContainer.mainView
 	)
 	
-Route ( hash ) 
-	on ok ( set rootContainer.hash )
-	
 RouteToDefault on ok ( set rootContainer.hash )
 RouteToQueryCards (boxId) on ok ( set rootContainer.hash )
 RouteToAuthorView (categoryId, reverse) on ok ( set rootContainer.hash )
@@ -95,7 +88,7 @@ RouteToForgotPassword on ok ( set rootContainer.hash )
 RouteToPrivacyPolicy on ok ( set rootContainer.hash )
 RouteToRegistration on ok ( set rootContainer.hash )
 RouteToProfileView on ok ( set rootContainer.hash )
-RouteToSelectedCategory (rootCategoryId, categoryId) on ok ( set rootContainer.hash )
+RouteToSelectedCategory (rootCategoryId, categoryId, reverse) on ok ( set rootContainer.hash )
 	
 Logout 
 	on ok ( 
@@ -160,6 +153,11 @@ ui JSX rootContainer {
 	loggedInUser {
 		username
 		token
+		actions {
+			"routeToDefault" RouteToDefault
+			"logout" Logout
+			"routeToProfileView" RouteToProfileView
+		}
 	}
 	hash location
 	token storage
@@ -169,9 +167,16 @@ ui JSX rootContainer {
 	language
 	saveBugDialog {
 		display
+		actions {
+			"callSaveBug" CallSaveBug
+			"cancelSaveBugDialog" CancelSaveBugDialog
+		}
 	}
 	versionMismatchDialog {
 		display
+		actions {
+			"cancelVersionMismatchDialog" CancelVersionMismatchDialog
+		}
 	}
 	versionMismatchErrorDialog {
 		display
@@ -185,6 +190,9 @@ ui JSX rootContainer {
 			code
 			textKey
 			args
+			actions {
+				"destroyToast" DestroyToast
+			}
 		}
 	}
 	group mainView {
@@ -418,13 +426,26 @@ ui JSX rootContainer {
 				
 				allActiveCards
 				allCards
+				actions {
+					"createRootCategory" box.CreateRootCategory
+					"dictionaryLookupChanged" box.DictionaryLookupChanged
+					"givenLanguageChanged" box.GivenLanguageChanged
+					"maxCardsPerDayChanged" box.MaxCardsPerDayChanged
+					"maxIntervalChanged" box.MaxIntervalChanged
+					"rootCategoryNameChanged" box.RootCategoryNameChanged
+					"saveBoxSettings" box.SaveBoxSettings
+					"wantedLanguageChanged" box.WantedLanguageChanged
+					"routeToDefault" RouteToDefault
+				}
 			}
 		} 
 		allActiveCardsView {
 			boxId
 			editable
 			List activeCardList {
-				cardId
+				List selectedCardIds
+				editable
+				listId cardId
 				given
 				wanted
 				cardAuthor
@@ -437,19 +458,37 @@ ui JSX rootContainer {
 				interval
 				count
 				lastQuality
+				actions {
+					"selectScheduleCardRange" box.SelectScheduleCardRange
+					"toggleScheduleCardSelection" box.ToggleScheduleCardSelection
+					"updateCardPriority" box.UpdateCardPriority
+				}
 			}
 			List selectedCardIds
 
 			List selectedLastQualityFilters
+			actions {
+				"filterActiveCardListWithLastQualityChanged" box.FilterActiveCardListWithLastQualityChanged
+				"scheduleSelectedCards" box.ScheduleSelectedCards
+				"sortSelectedCardsOut" box.SortSelectedCardsOut
+				"toggleAllScheduleCardSelection" box.ToggleAllScheduleCardSelection
+			}
 		} 
 		profileView {
 			username
 			email
 			role
 			showDeleteUserDialog
+			actions {
+				"deleteUser" profile.DeleteUser
+				"deleteUserCancel" profile.DeleteUserCancel
+				"deleteUserClick" profile.DeleteUserClick
+				"routeToDefault" RouteToDefault
+			}
 		}
 		queryCardView {
 			nextCard {
+				enableScoreButtons
 				cardId
 				categoryId
 				categoryName
@@ -463,12 +502,22 @@ ui JSX rootContainer {
 				scoredDate
 				wanted
 				index
+				actions {
+					"displayWanted" box.DisplayWanted
+					"scoreCard" box.ScoreCard
+					"scoreReinforceCard" box.ScoreReinforceCard
+					"sortCardOut" box.SortCardOut
+					"routeToSelectedCategory" RouteToSelectedCategory
+				}
 			}
 			openTodaysCards
 			allTodaysCards
 			reverse
 			enableScoreButtons
 			boxId
+			actions {
+				"routeToDefault" RouteToDefault
+			}
 		}
 		authorView {
 
@@ -674,6 +723,7 @@ ui JSX rootContainer {
 		        		filter
 		        		naturalInputOrder
 		        		dragTargetCardId
+		        		reverse
 				        List cardList {
 				        	rootCategory
 				        	editedCard
@@ -724,6 +774,7 @@ ui JSX rootContainer {
 				        List cardDuplicates {
 				        	naturalInputOrder
 				        	rootCategory
+				        	reverse
 							listId cardId
 							given
 							wanted

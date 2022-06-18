@@ -10,6 +10,7 @@ import React from "react";
 export const NewBox = (props) => {
 	return <a
 		className="tile box-create"
+		id="new"
 		onClick={props.onClick}
 	>
 		<div className="text-center">

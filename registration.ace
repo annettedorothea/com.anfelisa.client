@@ -23,6 +23,7 @@ PasswordChanged ( value  )
 	fromAppState (common.rootContainer.mainView.registrationView.passwordRepetition.value as passwordRepetition)
 	on ok ( 
 		set common.rootContainer.mainView.registrationView.password.value
+		set common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch
 	) triggers (Validate)
 
 PasswordRepetitionChanged ( value  )

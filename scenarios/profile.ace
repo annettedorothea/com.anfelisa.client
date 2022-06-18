@@ -5,7 +5,7 @@ profilescenarios
 scenarios 
 
 RouteToProfile
-	GIVEN loginscenarios.Login
+	GIVEN loginscenarios.LoginWithSaveInLocalStorage
 	WHEN common.RouteToProfileView
 	THEN
 		expectedState 

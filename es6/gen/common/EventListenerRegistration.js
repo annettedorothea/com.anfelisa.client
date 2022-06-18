@@ -125,12 +125,6 @@ export default class EventListenerRegistrationCommon {
 					["privacyPolicyView", "loginView", "registrationView", "forgotPasswordView", "resetPasswordView", "dashboardView", "boxSettingsView", "allActiveCardsView", "profileView", "queryCardView", "authorView"]
 				)
 			});
-		ACEController.registerListener('common.RouteOkEvent', (data) => {
-				AppState.setLocation(
-					data, 
-					["rootContainer", "hash"]
-				)
-			});
 		ACEController.registerListener('common.RouteToDefaultOkEvent', (data) => {
 				AppState.setLocation(
 					data, 

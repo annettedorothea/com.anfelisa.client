@@ -8,11 +8,12 @@
 import React from "react";
 
 import { MessagesItem } from "../../../../src/components/rootContainer/messageContainer/MessagesItem";
+import { destroyToast } from "../../../common/ActionFunctions";
 
 
 export const MessagesItemContainer = ( props ) => {
 	
-	return <MessagesItem {...props}  /> 
+	return <MessagesItem {...props} destroyToast={destroyToast}  /> 
 }
 
 

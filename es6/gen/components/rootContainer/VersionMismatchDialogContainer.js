@@ -8,11 +8,12 @@
 import React from "react";
 
 import { VersionMismatchDialog } from "../../../src/components/rootContainer/VersionMismatchDialog";
+import { cancelVersionMismatchDialog } from "../../common/ActionFunctions";
 
 
 export const VersionMismatchDialogContainer = ( props ) => {
 	
-	return <VersionMismatchDialog {...props}  /> 
+	return <VersionMismatchDialog {...props} cancelVersionMismatchDialog={cancelVersionMismatchDialog}  /> 
 }
 
 

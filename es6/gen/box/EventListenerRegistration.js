@@ -100,7 +100,7 @@ export default class EventListenerRegistrationBox {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "queryCardView", "nextCard"], 
-					["cardId", "categoryId", "categoryName", "count", "given", "lastQuality", "rootCategoryId", "scheduledCardId", "reinforceCardId", "scheduledDate", "scoredDate", "wanted", "index"]
+					["enableScoreButtons", "cardId", "categoryId", "categoryName", "count", "given", "lastQuality", "rootCategoryId", "scheduledCardId", "reinforceCardId", "scheduledDate", "scoredDate", "wanted", "index"]
 				)
 			});
 		ACEController.registerListener('box.LoadNextCardOkEvent', (data) => {

@@ -20,6 +20,13 @@ import { ProfileViewContainer } from "./mainView/ProfileViewContainer";
 import { QueryCardViewContainer } from "./mainView/QueryCardViewContainer";
 import { AuthorViewContainer } from "./mainView/AuthorViewContainer";
 import { routeToDefault } from "../../common/ActionFunctions";
+import { filterActiveCardListWithLastQualityChanged } from "../../box/ActionFunctions";
+import { scheduleSelectedCards } from "../../box/ActionFunctions";
+import { sortSelectedCardsOut } from "../../box/ActionFunctions";
+import { toggleAllScheduleCardSelection } from "../../box/ActionFunctions";
+import { deleteUser } from "../../profile/ActionFunctions";
+import { deleteUserCancel } from "../../profile/ActionFunctions";
+import { deleteUserClick } from "../../profile/ActionFunctions";
 
 
 export const MainViewContainer = ( props ) => {
@@ -32,9 +39,9 @@ export const MainViewContainer = ( props ) => {
 		{ props.resetPasswordView && <ResetPasswordViewContainer {...props.resetPasswordView }    /> }
 		{ props.dashboardView && <DashboardViewContainer {...props.dashboardView }    /> }
 		{ props.boxSettingsView && <BoxSettingsViewContainer {...props.boxSettingsView }    /> }
-		{ props.allActiveCardsView && <AllActiveCardsViewContainer {...props.allActiveCardsView }    /> }
-		{ props.profileView && <ProfileViewContainer {...props.profileView }    /> }
-		{ props.queryCardView && <QueryCardViewContainer {...props.queryCardView }    /> }
+		{ props.allActiveCardsView && <AllActiveCardsViewContainer {...props.allActiveCardsView }   filterActiveCardListWithLastQualityChanged={filterActiveCardListWithLastQualityChanged} scheduleSelectedCards={scheduleSelectedCards} sortSelectedCardsOut={sortSelectedCardsOut} toggleAllScheduleCardSelection={toggleAllScheduleCardSelection}  /> }
+		{ props.profileView && <ProfileViewContainer {...props.profileView }   deleteUser={deleteUser} deleteUserCancel={deleteUserCancel} deleteUserClick={deleteUserClick} routeToDefault={routeToDefault}  /> }
+		{ props.queryCardView && <QueryCardViewContainer {...props.queryCardView }   routeToDefault={routeToDefault}  /> }
 		{ props.authorView && <AuthorViewContainer {...props.authorView }    /> }
 	</MainView> 
 }

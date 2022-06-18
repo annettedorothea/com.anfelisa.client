@@ -3,37 +3,25 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 import {translate} from "../../AppUtils";
 import {Texts} from "../../app/Texts";
-import {callSaveBug, cancelSaveBugDialog} from "../../../gen/common/ActionFunctions";
+import {Modal} from "../common/Modal";
 
 
 export const SaveBugDialog = (props) => {
-	if (props.display === true) {
-		return <div className="modal">
-			<div className="modalContent">
-				<h2>{translate(Texts.container.unexpectedBug)}</h2>
-				<div className="message">{translate(Texts.container.unexpectedBugMessage)}</div>
-				<button
-					className="yes"
-					onClick={callSaveBug}
-				>
-					{translate(Texts.container.yes)}
-				</button>
-				<button
-					onClick={cancelSaveBugDialog}
-				>
-					{translate(Texts.container.no)}
-				</button>
-			</div>
-
-		</div>
-	}
-	return null;}
-
+    if (props.display === true) {
+        return <Modal
+            title={translate(Texts.container.unexpectedBug)}
+            message={translate(Texts.container.unexpectedBugMessage)}
+            confirm={translate(Texts.container.yes)}
+            cancel={translate(Texts.container.no)}
+            onConfirm={props.callSaveBug}
+            onCancel={props.cancelSaveBugDialog}
+        />
+    }
+    return null;
+}
 
 
 /******* S.D.G. *******/

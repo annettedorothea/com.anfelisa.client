@@ -7,7 +7,6 @@
 
 import React from "react";
 
-import { usernameForgotPasswordChanged } from "../../../../../gen/password/ActionFunctions";
 import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 

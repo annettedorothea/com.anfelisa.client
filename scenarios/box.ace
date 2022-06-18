@@ -56,7 +56,7 @@ BoxValidations
 		
 CreateRootCategory
 	GIVEN 
-		loginscenarios.Login
+		loginscenarios.LoginWithSaveInLocalStorage
 	WHEN common.RouteToBoxCreate
 	THEN 
 		expectedState

@@ -4,7 +4,6 @@
 
 
 import React from "react";
-import {logout, route, routeToProfileView} from "../../../gen/common/ActionFunctions";
 import {translate} from "../../AppUtils";
 import {Texts} from "../../app/Texts";
 
@@ -13,14 +12,14 @@ export const LoggedInUser = (props) => {
     if (props.username) {
         return <div className="header">
             <a
-                onClick={() => route("#dashboard")}
+                onClick={props.routeToDefault}
                 className="title"
             >
                 Anfelisa
             </a>
             <div className="logout">
-                <a id="profile" onClick={() => routeToProfileView()}>{props.username}</a>
-                <button id="logout" onClick={logout}>{translate(Texts.logout.signout)}</button>
+                <a id="profile" onClick={props.routeToProfileView}>{props.username}</a>
+                <button id="logout" onClick={props.logout}>{translate(Texts.logout.signout)}</button>
             </div>
         </div>
     }

@@ -9,7 +9,7 @@ import {Texts} from "../../../../app/Texts";
 
 export const BoxListItem = (props) => {
     if (props.archived === true) {
-        return <a className="tile box">
+        return <a className="tile box box-archived">
             <h2>
                 {!props.editable ?
                     translate(Texts.box.sharedTitle, [props.categoryName, props.categoryAuthor]) :

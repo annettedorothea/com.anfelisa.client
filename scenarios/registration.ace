@@ -26,7 +26,7 @@ RegisterUserValidations
 	THEN 
 		expectedState 
 			password2 common.rootContainer.mainView.registrationView.password.value should be "cd0acfe085eeb0f874391fb9b8009bed"
-			passwordRepetition2 common.rootContainer.mainView.registrationView.passwordRepetition should be "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordRepetition2 common.rootContainer.mainView.registrationView.passwordRepetition.value should be "5f4dcc3b5aa765d61d8327deb882cf99"
 			passwordMismatch2 common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be true
 		verifications
 			registerDisabled
@@ -35,7 +35,7 @@ RegisterUserValidations
 	THEN 
 		expectedState 
 			password3 common.rootContainer.mainView.registrationView.password.value should be "cd0acfe085eeb0f874391fb9b8009bed"
-			passwordRepetition3 common.rootContainer.mainView.registrationView.passwordRepetition should be "cd0acfe085eeb0f874391fb9b8009bed"
+			passwordRepetition3 common.rootContainer.mainView.registrationView.passwordRepetition.value should be "cd0acfe085eeb0f874391fb9b8009bed"
 			passwordMatch3 common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be false
 		verifications
 			registerDisabled
@@ -44,7 +44,7 @@ RegisterUserValidations
 	THEN 
 		expectedState 
 			password4 common.rootContainer.mainView.registrationView.password.value should be "cd0acfe085eeb0f874391fb9b8009bed"
-			passwordRepetition4 common.rootContainer.mainView.registrationView.passwordRepetition should be "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordRepetition4 common.rootContainer.mainView.registrationView.passwordRepetition.value should be "5f4dcc3b5aa765d61d8327deb882cf99"
 			passwordMismatch4 common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be true
 		verifications
 			registerDisabled
@@ -53,7 +53,7 @@ RegisterUserValidations
 	THEN 
 		expectedState 
 			password5 common.rootContainer.mainView.registrationView.password.value should be "5f4dcc3b5aa765d61d8327deb882cf99"
-			passwordRepetition5 common.rootContainer.mainView.registrationView.passwordRepetition should be "5f4dcc3b5aa765d61d8327deb882cf99"
+			passwordRepetition5 common.rootContainer.mainView.registrationView.passwordRepetition.value should be "5f4dcc3b5aa765d61d8327deb882cf99"
 			passwordMatch5 common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be false
 		verifications
 			registerDisabled
@@ -69,7 +69,7 @@ RegisterUserValidations
 	WHEN registration.EmailChanged(value: "info@anfelisa.de")
 	THEN 
 		expectedState 
-			emailOk common.rootContainer.mainView.registrationView.email should be "info@anfelisa.de"
+			emailOk common.rootContainer.mainView.registrationView.email.value should be "info@anfelisa.de"
 			emailValid common.rootContainer.mainView.registrationView.email.emailInvalid should be false
 		verifications
 			registerDisabled
@@ -104,10 +104,10 @@ RegistrationHappyPath
 		expectedState 
 			displayUsernameSpinner common.rootContainer.mainView.registrationView.username.displayUsernameSpinner should be false
 			emailInvalid common.rootContainer.mainView.registrationView.email.emailInvalid should be false
-			initialEmail common.rootContainer.mainView.registrationView.email should be ""
+			initialEmail common.rootContainer.mainView.registrationView.email.value should be ""
 			initialUsername common.rootContainer.mainView.registrationView.username.value should be ""
 			initialPassword common.rootContainer.mainView.registrationView.password.value should be ""
-			initialPasswordRepetition common.rootContainer.mainView.registrationView.passwordRepetition should be ""
+			initialPasswordRepetition common.rootContainer.mainView.registrationView.passwordRepetition.value should be ""
 			passwordRepetitionMismatch common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be false
 		verifications
 			registerDisabled
@@ -124,8 +124,8 @@ RegistrationHappyPath
 	THEN 
 		expectedState 
 			password common.rootContainer.mainView.registrationView.password.value should be "5f4dcc3b5aa765d61d8327deb882cf99"
-			passwordRepetition common.rootContainer.mainView.registrationView.passwordRepetition should be ""
-			passwordRepetitionMatch common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be true
+			passwordRepetition common.rootContainer.mainView.registrationView.passwordRepetition.value should be ""
+			passwordRepetitionMatch common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be false
 		verifications
 			registerDisabled
 	AND	

@@ -9,12 +9,13 @@ import React from "react";
 
 import { MessageContainer } from "../../../src/components/rootContainer/MessageContainer";
 import { MessagesItemContainer } from "./messageContainer/MessagesItemContainer";
+import { destroyToast } from "../../common/ActionFunctions";
 
 
 export const MessageContainerContainer = ( props ) => {
 	
 	return <MessageContainer {...props} >
-		{ props.messages ? props.messages.map((item, index) => <MessagesItemContainer {...item} key={item.id} index={index}    />) : [] }
+		{ props.messages ? props.messages.map((item, index) => <MessagesItemContainer {...item} key={item.id} index={index}   destroyToast={destroyToast}  />) : [] }
 	</MessageContainer> 
 }
 

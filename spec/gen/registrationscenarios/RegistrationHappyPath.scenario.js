@@ -108,7 +108,7 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		expect(appStates.emailInvalid.rootContainer.mainView.registrationView.email.emailInvalid, "emailInvalid").toEqual(false)
 	});
 	it("initialEmail", async () => {
-		expect(appStates.initialEmail.rootContainer.mainView.registrationView.email, "initialEmail").toEqual(``)
+		expect(appStates.initialEmail.rootContainer.mainView.registrationView.email.value, "initialEmail").toEqual(``)
 	});
 	it("initialUsername", async () => {
 		expect(appStates.initialUsername.rootContainer.mainView.registrationView.username.value, "initialUsername").toEqual(``)
@@ -117,7 +117,7 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		expect(appStates.initialPassword.rootContainer.mainView.registrationView.password.value, "initialPassword").toEqual(``)
 	});
 	it("initialPasswordRepetition", async () => {
-		expect(appStates.initialPasswordRepetition.rootContainer.mainView.registrationView.passwordRepetition, "initialPasswordRepetition").toEqual(``)
+		expect(appStates.initialPasswordRepetition.rootContainer.mainView.registrationView.passwordRepetition.value, "initialPasswordRepetition").toEqual(``)
 	});
 	it("passwordRepetitionMismatch", async () => {
 		expect(appStates.passwordRepetitionMismatch.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch, "passwordRepetitionMismatch").toEqual(false)
@@ -140,10 +140,10 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		expect(appStates.password.rootContainer.mainView.registrationView.password.value, "password").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
 	});
 	it("passwordRepetition", async () => {
-		expect(appStates.passwordRepetition.rootContainer.mainView.registrationView.passwordRepetition, "passwordRepetition").toEqual(``)
+		expect(appStates.passwordRepetition.rootContainer.mainView.registrationView.passwordRepetition.value, "passwordRepetition").toEqual(``)
 	});
 	it("passwordRepetitionMatch", async () => {
-		expect(appStates.passwordRepetitionMatch.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch, "passwordRepetitionMatch").toEqual(true)
+		expect(appStates.passwordRepetitionMatch.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch, "passwordRepetitionMatch").toEqual(false)
 	});
 	
 	it("registerDisabled", async () => {
