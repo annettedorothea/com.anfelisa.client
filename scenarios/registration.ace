@@ -125,7 +125,7 @@ RegistrationHappyPath
 		expectedState 
 			password common.rootContainer.mainView.registrationView.password.value should be "5f4dcc3b5aa765d61d8327deb882cf99"
 			passwordRepetition common.rootContainer.mainView.registrationView.passwordRepetition.value should be ""
-			passwordRepetitionMatch common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be false
+			passwordRepetitionMismatch2 common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be true
 		verifications
 			registerDisabled
 	AND	
@@ -134,7 +134,7 @@ RegistrationHappyPath
 		expectedState 
 			password2 common.rootContainer.mainView.registrationView.password.value should be "5f4dcc3b5aa765d61d8327deb882cf99"
 			passwordRepetition2 common.rootContainer.mainView.registrationView.passwordRepetition.value should be "5f4dcc3b5aa765d61d8327deb882cf99"
-			passwordRepetitionMismatch2 common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be false
+			passwordRepetitionMatch common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch should be false
 		verifications
 			registerDisabled
 	AND	

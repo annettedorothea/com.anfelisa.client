@@ -19,7 +19,7 @@ import { selectTreeItem } from "../../../../../../category/ActionFunctions";
 export const ChildCategoriesItemContainer = ( props ) => {
 	
 	return <ChildCategoriesItem {...props} checkDropAllowed={checkDropAllowed} collapseTreeItem={collapseTreeItem} expandTreeItem={expandTreeItem} itemDropped={itemDropped} moveCategoryStarted={moveCategoryStarted} selectTreeItem={selectTreeItem} >
-		{ props.childCategories ? props.childCategories.map((item, index) => <ChildCategoriesItemContainer {...item} key={item.categoryId} depth={props.depth+1} index={index} selectedCategory={props.selectedCategory} dropAllowed={props.dropAllowed} dropTargetCategoryId={props.dropTargetCategoryId}   checkDropAllowed={checkDropAllowed} collapseTreeItem={collapseTreeItem} expandTreeItem={expandTreeItem} itemDropped={itemDropped} moveCategoryStarted={moveCategoryStarted} selectTreeItem={selectTreeItem}  />) : [] }
+		{ props.childCategories ? props.childCategories.map((item, index) => <ChildCategoriesItemContainer {...item} key={item.categoryId} depth={props.depth+1} index={index} selectedCategory={props.selectedCategory} dropAllowed={props.dropAllowed} dropTargetCategoryId={props.dropTargetCategoryId}   />) : [] }
 	</ChildCategoriesItem> 
 }
 

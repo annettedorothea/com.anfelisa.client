@@ -55,7 +55,7 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		appState = await ScenarioUtils.getAppState(driver);
 		appStates.password = appState;
 		appStates.passwordRepetition = appState;
-		appStates.passwordRepetitionMatch = appState;
+		appStates.passwordRepetitionMismatch2 = appState;
 		
 		verifications.registerDisabled = await Verifications.registerDisabled(driver, testId);
 		
@@ -65,7 +65,7 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 		appState = await ScenarioUtils.getAppState(driver);
 		appStates.password2 = appState;
 		appStates.passwordRepetition2 = appState;
-		appStates.passwordRepetitionMismatch2 = appState;
+		appStates.passwordRepetitionMatch = appState;
 		
 		verifications.registerDisabled = await Verifications.registerDisabled(driver, testId);
 		
@@ -142,8 +142,8 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 	it("passwordRepetition", async () => {
 		expect(appStates.passwordRepetition.rootContainer.mainView.registrationView.passwordRepetition.value, "passwordRepetition").toEqual(``)
 	});
-	it("passwordRepetitionMatch", async () => {
-		expect(appStates.passwordRepetitionMatch.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch, "passwordRepetitionMatch").toEqual(false)
+	it("passwordRepetitionMismatch2", async () => {
+		expect(appStates.passwordRepetitionMismatch2.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch, "passwordRepetitionMismatch2").toEqual(true)
 	});
 	
 	it("registerDisabled", async () => {
@@ -155,8 +155,8 @@ describe("registrationscenarios.RegistrationHappyPath", function () {
 	it("passwordRepetition2", async () => {
 		expect(appStates.passwordRepetition2.rootContainer.mainView.registrationView.passwordRepetition.value, "passwordRepetition2").toEqual(`5f4dcc3b5aa765d61d8327deb882cf99`)
 	});
-	it("passwordRepetitionMismatch2", async () => {
-		expect(appStates.passwordRepetitionMismatch2.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch, "passwordRepetitionMismatch2").toEqual(false)
+	it("passwordRepetitionMatch", async () => {
+		expect(appStates.passwordRepetitionMatch.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch, "passwordRepetitionMatch").toEqual(false)
 	});
 	
 	it("registerDisabled", async () => {
