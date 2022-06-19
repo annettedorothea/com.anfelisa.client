@@ -27,7 +27,7 @@ export default class AbstractLoadBoxesCommand extends AsynchronousCommand {
 	execute(data) {
 	    return new Promise((resolve, reject) => {
 			AppUtils.httpGet(
-					`${AppUtils.settings.rootPath}/boxes/my/?${data.todayAtMidnightInUTC ? `todayAtMidnightInUTC=${data.todayAtMidnightInUTC}` : ""}`, 
+					`${AppUtils.settings.rootPath}/boxes/my/`, 
 					data.uuid, 
 					true)
 				.then((response) => {

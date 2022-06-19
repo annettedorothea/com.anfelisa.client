@@ -35,7 +35,7 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
 	execute(data) {
 	    return new Promise((resolve, reject) => {
 			AppUtils.httpGet(
-					`${AppUtils.settings.rootPath}/box/next-card?${data.boxId ? `boxId=${data.boxId}` : ""}&${data.todayAtMidnightInUTC ? `todayAtMidnightInUTC=${data.todayAtMidnightInUTC}` : ""}`, 
+					`${AppUtils.settings.rootPath}/box/next-card?${data.boxId ? `boxId=${data.boxId}` : ""}`, 
 					data.uuid, 
 					true)
 				.then((response) => {

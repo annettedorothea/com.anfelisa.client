@@ -30,7 +30,7 @@ export default class AbstractLoadBoxStatisticsCommand extends AsynchronousComman
 	execute(data) {
 	    return new Promise((resolve, reject) => {
 			AppUtils.httpGet(
-					`${AppUtils.settings.rootPath}/boxes/statistics/?${data.todayAtMidnightInUTC ? `todayAtMidnightInUTC=${data.todayAtMidnightInUTC}` : ""}`, 
+					`${AppUtils.settings.rootPath}/boxes/statistics/`, 
 					data.uuid, 
 					true)
 				.then((response) => {

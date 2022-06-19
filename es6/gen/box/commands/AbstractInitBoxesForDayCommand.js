@@ -26,14 +26,10 @@ export default class AbstractInitBoxesForDayCommand extends AsynchronousCommand 
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		todayAtMidnightInUTC : data.todayAtMidnightInUTC
-	    	};
 			AppUtils.httpPut(
 					`${AppUtils.settings.rootPath}/box/init`, 
 					data.uuid, 
-					true,
-					 payload)
+					true)
 				.then(() => {
 					this.handleResponse(data, resolve, reject);
 				}, (error) => {
