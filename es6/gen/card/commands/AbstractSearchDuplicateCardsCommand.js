@@ -40,7 +40,7 @@ export default class AbstractSearchDuplicateCardsCommand extends AsynchronousCom
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.categoryId) {
+		if (data.categoryId === undefined || data.categoryId === null) {
 			console.warn("AbstractSearchDuplicateCardsCommand: categoryId is mandatory but is not set", data);
 			return false;
 		}

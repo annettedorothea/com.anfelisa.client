@@ -33,11 +33,11 @@ export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCom
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.cardIds) {
+		if (data.cardIds === undefined || data.cardIds === null) {
 			console.warn("AbstractSortSelectedCardsOutCommand: cardIds is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.boxId) {
+		if (data.boxId === undefined || data.boxId === null) {
 			console.warn("AbstractSortSelectedCardsOutCommand: boxId is mandatory but is not set", data);
 			return false;
 		}

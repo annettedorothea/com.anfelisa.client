@@ -28,7 +28,7 @@ export default class AbstractGetInvitedUsernamesCommand extends AsynchronousComm
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.categoryId) {
+		if (data.categoryId === undefined || data.categoryId === null) {
 			console.warn("AbstractGetInvitedUsernamesCommand: categoryId is mandatory but is not set", data);
 			return false;
 		}

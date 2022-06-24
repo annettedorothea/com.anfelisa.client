@@ -57,19 +57,19 @@ export default class AbstractSaveBoxSettingsCommand extends AsynchronousCommand 
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.maxCardsPerDay) {
+		if (data.maxCardsPerDay === undefined || data.maxCardsPerDay === null) {
 			console.warn("AbstractSaveBoxSettingsCommand: maxCardsPerDay is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.boxId) {
+		if (data.boxId === undefined || data.boxId === null) {
 			console.warn("AbstractSaveBoxSettingsCommand: boxId is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.categoryId) {
+		if (data.categoryId === undefined || data.categoryId === null) {
 			console.warn("AbstractSaveBoxSettingsCommand: categoryId is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.categoryName) {
+		if (data.categoryName === undefined || data.categoryName === null) {
 			console.warn("AbstractSaveBoxSettingsCommand: categoryName is mandatory but is not set", data);
 			return false;
 		}

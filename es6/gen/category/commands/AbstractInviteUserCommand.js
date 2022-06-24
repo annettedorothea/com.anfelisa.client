@@ -36,15 +36,15 @@ export default class AbstractInviteUserCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.categoryId) {
+		if (data.categoryId === undefined || data.categoryId === null) {
 			console.warn("AbstractInviteUserCommand: categoryId is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.invitedUsername) {
+		if (data.invitedUsername === undefined || data.invitedUsername === null) {
 			console.warn("AbstractInviteUserCommand: invitedUsername is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.editable) {
+		if (data.editable === undefined || data.editable === null) {
 			console.warn("AbstractInviteUserCommand: editable is mandatory but is not set", data);
 			return false;
 		}

@@ -34,11 +34,11 @@ export default class AbstractForgotPasswordCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.username) {
+		if (data.username === undefined || data.username === null) {
 			console.warn("AbstractForgotPasswordCommand: username is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.language) {
+		if (data.language === undefined || data.language === null) {
 			console.warn("AbstractForgotPasswordCommand: language is mandatory but is not set", data);
 			return false;
 		}

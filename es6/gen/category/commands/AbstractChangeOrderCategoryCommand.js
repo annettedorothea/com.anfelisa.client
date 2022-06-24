@@ -41,11 +41,11 @@ export default class AbstractChangeOrderCategoryCommand extends AsynchronousComm
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.movedCategoryId) {
+		if (data.movedCategoryId === undefined || data.movedCategoryId === null) {
 			console.warn("AbstractChangeOrderCategoryCommand: movedCategoryId is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.targetCategoryId) {
+		if (data.targetCategoryId === undefined || data.targetCategoryId === null) {
 			console.warn("AbstractChangeOrderCategoryCommand: targetCategoryId is mandatory but is not set", data);
 			return false;
 		}

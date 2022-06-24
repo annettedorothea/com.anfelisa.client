@@ -25,11 +25,11 @@ export default class AbstractArchiveBoxCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.boxId) {
+		if (data.boxId === undefined || data.boxId === null) {
 			console.warn("AbstractArchiveBoxCommand: boxId is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.archived) {
+		if (data.archived === undefined || data.archived === null) {
 			console.warn("AbstractArchiveBoxCommand: archived is mandatory but is not set", data);
 			return false;
 		}

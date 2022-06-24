@@ -53,11 +53,11 @@ export default class AbstractCreateRootCategoryCommand extends AsynchronousComma
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.categoryName) {
+		if (data.categoryName === undefined || data.categoryName === null) {
 			console.warn("AbstractCreateRootCategoryCommand: categoryName is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.maxCardsPerDay) {
+		if (data.maxCardsPerDay === undefined || data.maxCardsPerDay === null) {
 			console.warn("AbstractCreateRootCategoryCommand: maxCardsPerDay is mandatory but is not set", data);
 			return false;
 		}

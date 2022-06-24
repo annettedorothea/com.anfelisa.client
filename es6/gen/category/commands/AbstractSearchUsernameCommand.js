@@ -32,11 +32,11 @@ export default class AbstractSearchUsernameCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.usernameSearchString) {
+		if (data.usernameSearchString === undefined || data.usernameSearchString === null) {
 			console.warn("AbstractSearchUsernameCommand: usernameSearchString is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.categoryId) {
+		if (data.categoryId === undefined || data.categoryId === null) {
 			console.warn("AbstractSearchUsernameCommand: categoryId is mandatory but is not set", data);
 			return false;
 		}

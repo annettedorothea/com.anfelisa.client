@@ -34,7 +34,7 @@ export default class AbstractDeleteUserCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.usernameToBeDeleted) {
+		if (data.usernameToBeDeleted === undefined || data.usernameToBeDeleted === null) {
 			console.warn("AbstractDeleteUserCommand: usernameToBeDeleted is mandatory but is not set", data);
 			return false;
 		}

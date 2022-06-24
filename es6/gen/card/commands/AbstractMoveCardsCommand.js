@@ -37,11 +37,11 @@ export default class AbstractMoveCardsCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.cardIdList) {
+		if (data.cardIdList === undefined || data.cardIdList === null) {
 			console.warn("AbstractMoveCardsCommand: cardIdList is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.categoryId) {
+		if (data.categoryId === undefined || data.categoryId === null) {
 			console.warn("AbstractMoveCardsCommand: categoryId is mandatory but is not set", data);
 			return false;
 		}

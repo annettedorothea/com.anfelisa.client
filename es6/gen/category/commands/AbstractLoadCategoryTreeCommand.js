@@ -29,7 +29,7 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.rootCategoryId) {
+		if (data.rootCategoryId === undefined || data.rootCategoryId === null) {
 			console.warn("AbstractLoadCategoryTreeCommand: rootCategoryId is mandatory but is not set", data);
 			return false;
 		}

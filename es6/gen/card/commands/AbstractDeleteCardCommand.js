@@ -29,7 +29,7 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.cardId) {
+		if (data.cardId === undefined || data.cardId === null) {
 			console.warn("AbstractDeleteCardCommand: cardId is mandatory but is not set", data);
 			return false;
 		}

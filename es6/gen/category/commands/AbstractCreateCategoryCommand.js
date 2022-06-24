@@ -37,11 +37,11 @@ export default class AbstractCreateCategoryCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.categoryName) {
+		if (data.categoryName === undefined || data.categoryName === null) {
 			console.warn("AbstractCreateCategoryCommand: categoryName is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.parentCategoryId) {
+		if (data.parentCategoryId === undefined || data.parentCategoryId === null) {
 			console.warn("AbstractCreateCategoryCommand: parentCategoryId is mandatory but is not set", data);
 			return false;
 		}

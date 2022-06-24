@@ -33,7 +33,7 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.boxId) {
+		if (data.boxId === undefined || data.boxId === null) {
 			console.warn("AbstractLoadNextCardCommand: boxId is mandatory but is not set", data);
 			return false;
 		}

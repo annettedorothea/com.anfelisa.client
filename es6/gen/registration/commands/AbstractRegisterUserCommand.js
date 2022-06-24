@@ -46,19 +46,19 @@ export default class AbstractRegisterUserCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.password) {
+		if (data.password === undefined || data.password === null) {
 			console.warn("AbstractRegisterUserCommand: password is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.username) {
+		if (data.username === undefined || data.username === null) {
 			console.warn("AbstractRegisterUserCommand: username is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.email) {
+		if (data.email === undefined || data.email === null) {
 			console.warn("AbstractRegisterUserCommand: email is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.language) {
+		if (data.language === undefined || data.language === null) {
 			console.warn("AbstractRegisterUserCommand: language is mandatory but is not set", data);
 			return false;
 		}

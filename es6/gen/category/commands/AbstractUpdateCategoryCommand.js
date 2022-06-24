@@ -41,11 +41,11 @@ export default class AbstractUpdateCategoryCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.categoryId) {
+		if (data.categoryId === undefined || data.categoryId === null) {
 			console.warn("AbstractUpdateCategoryCommand: categoryId is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.categoryName) {
+		if (data.categoryName === undefined || data.categoryName === null) {
 			console.warn("AbstractUpdateCategoryCommand: categoryName is mandatory but is not set", data);
 			return false;
 		}

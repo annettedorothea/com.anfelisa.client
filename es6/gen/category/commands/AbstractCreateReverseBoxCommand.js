@@ -29,7 +29,7 @@ export default class AbstractCreateReverseBoxCommand extends AsynchronousCommand
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.rootCategoryId) {
+		if (data.rootCategoryId === undefined || data.rootCategoryId === null) {
 			console.warn("AbstractCreateReverseBoxCommand: rootCategoryId is mandatory but is not set", data);
 			return false;
 		}

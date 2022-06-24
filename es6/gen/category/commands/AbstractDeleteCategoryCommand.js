@@ -37,7 +37,7 @@ export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.categoryId) {
+		if (data.categoryId === undefined || data.categoryId === null) {
 			console.warn("AbstractDeleteCategoryCommand: categoryId is mandatory but is not set", data);
 			return false;
 		}

@@ -38,11 +38,11 @@ export default class AbstractResetPasswordCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.password) {
+		if (data.password === undefined || data.password === null) {
 			console.warn("AbstractResetPasswordCommand: password is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.token) {
+		if (data.token === undefined || data.token === null) {
 			console.warn("AbstractResetPasswordCommand: token is mandatory but is not set", data);
 			return false;
 		}

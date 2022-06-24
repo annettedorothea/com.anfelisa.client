@@ -25,7 +25,7 @@ export default class AbstractUpdateCardPriorityCommand extends AsynchronousComma
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.cardId) {
+		if (data.cardId === undefined || data.cardId === null) {
 			console.warn("AbstractUpdateCardPriorityCommand: cardId is mandatory but is not set", data);
 			return false;
 		}

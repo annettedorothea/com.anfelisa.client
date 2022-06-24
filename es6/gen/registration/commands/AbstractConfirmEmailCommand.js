@@ -30,11 +30,11 @@ export default class AbstractConfirmEmailCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.token) {
+		if (data.token === undefined || data.token === null) {
 			console.warn("AbstractConfirmEmailCommand: token is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.username) {
+		if (data.username === undefined || data.username === null) {
 			console.warn("AbstractConfirmEmailCommand: username is mandatory but is not set", data);
 			return false;
 		}

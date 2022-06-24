@@ -37,11 +37,11 @@ export default class AbstractScoreCardCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.scheduledCardId) {
+		if (data.scheduledCardId === undefined || data.scheduledCardId === null) {
 			console.warn("AbstractScoreCardCommand: scheduledCardId is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.scoredCardQuality) {
+		if (data.scoredCardQuality === undefined || data.scoredCardQuality === null) {
 			console.warn("AbstractScoreCardCommand: scoredCardQuality is mandatory but is not set", data);
 			return false;
 		}

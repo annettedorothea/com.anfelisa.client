@@ -45,7 +45,7 @@ export default class AbstractReloadCategoryTreeCommand extends AsynchronousComma
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.rootCategoryId) {
+		if (data.rootCategoryId === undefined || data.rootCategoryId === null) {
 			console.warn("AbstractReloadCategoryTreeCommand: rootCategoryId is mandatory but is not set", data);
 			return false;
 		}

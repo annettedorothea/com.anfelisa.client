@@ -32,7 +32,7 @@ export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.username) {
+		if (data.username === undefined || data.username === null) {
 			console.warn("AbstractCheckUsernameCommand: username is mandatory but is not set", data);
 			return false;
 		}

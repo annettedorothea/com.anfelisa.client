@@ -57,15 +57,15 @@ export default class AbstractTranslateCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.sourceValue) {
+		if (data.sourceValue === undefined || data.sourceValue === null) {
 			console.warn("AbstractTranslateCommand: sourceValue is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.sourceLanguage) {
+		if (data.sourceLanguage === undefined || data.sourceLanguage === null) {
 			console.warn("AbstractTranslateCommand: sourceLanguage is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.targetLanguage) {
+		if (data.targetLanguage === undefined || data.targetLanguage === null) {
 			console.warn("AbstractTranslateCommand: targetLanguage is mandatory but is not set", data);
 			return false;
 		}

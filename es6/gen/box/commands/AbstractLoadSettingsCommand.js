@@ -29,7 +29,7 @@ export default class AbstractLoadSettingsCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.boxId) {
+		if (data.boxId === undefined || data.boxId === null) {
 			console.warn("AbstractLoadSettingsCommand: boxId is mandatory but is not set", data);
 			return false;
 		}

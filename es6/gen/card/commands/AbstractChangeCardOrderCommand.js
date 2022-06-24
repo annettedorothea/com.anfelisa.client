@@ -33,11 +33,11 @@ export default class AbstractChangeCardOrderCommand extends AsynchronousCommand 
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.cardIdList) {
+		if (data.cardIdList === undefined || data.cardIdList === null) {
 			console.warn("AbstractChangeCardOrderCommand: cardIdList is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.cardId) {
+		if (data.cardId === undefined || data.cardId === null) {
 			console.warn("AbstractChangeCardOrderCommand: cardId is mandatory but is not set", data);
 			return false;
 		}

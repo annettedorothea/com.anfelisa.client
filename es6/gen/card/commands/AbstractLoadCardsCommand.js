@@ -44,7 +44,7 @@ export default class AbstractLoadCardsCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.categoryId) {
+		if (data.categoryId === undefined || data.categoryId === null) {
 			console.warn("AbstractLoadCardsCommand: categoryId is mandatory but is not set", data);
 			return false;
 		}

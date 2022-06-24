@@ -37,15 +37,15 @@ export default class AbstractCreateCardCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.wanted) {
+		if (data.wanted === undefined || data.wanted === null) {
 			console.warn("AbstractCreateCardCommand: wanted is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.given) {
+		if (data.given === undefined || data.given === null) {
 			console.warn("AbstractCreateCardCommand: given is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.categoryId) {
+		if (data.categoryId === undefined || data.categoryId === null) {
 			console.warn("AbstractCreateCardCommand: categoryId is mandatory but is not set", data);
 			return false;
 		}

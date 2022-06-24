@@ -29,11 +29,11 @@ export default class AbstractScoreReinforceCardCommand extends AsynchronousComma
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.reinforceCardId) {
+		if (data.reinforceCardId === undefined || data.reinforceCardId === null) {
 			console.warn("AbstractScoreReinforceCardCommand: reinforceCardId is mandatory but is not set", data);
 			return false;
 		}
-		if (!data.keep) {
+		if (data.keep === undefined || data.keep === null) {
 			console.warn("AbstractScoreReinforceCardCommand: keep is mandatory but is not set", data);
 			return false;
 		}

@@ -33,7 +33,7 @@ export default class AbstractDeleteBoxCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (!data.boxId) {
+		if (data.boxId === undefined || data.boxId === null) {
 			console.warn("AbstractDeleteBoxCommand: boxId is mandatory but is not set", data);
 			return false;
 		}
