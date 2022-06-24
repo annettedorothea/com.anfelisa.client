@@ -7,30 +7,30 @@ CheckUsername
 	fromAppState (common.rootContainer.mainView.registrationView.username.value as username)
 	call com.anfelisa.user.UsernameAvailable
 	loadingFlag common.rootContainer.mainView.registrationView.username.displayUsernameSpinner 
-	on empty ( set common.rootContainer.mainView.registrationView.username.available ) triggers (Validate)
-	on ok ( set common.rootContainer.mainView.registrationView.username.available ) triggers (Validate)
+	on empty ( merge common.rootContainer.mainView.registrationView.username.available ) triggers (Validate)
+	on ok ( merge common.rootContainer.mainView.registrationView.username.available ) triggers (Validate)
 
 UsernameChanged ( value )
-	on ok (set common.rootContainer.mainView.registrationView.username.value) triggers (CheckUsername)
+	on ok (merge common.rootContainer.mainView.registrationView.username.value) triggers (CheckUsername)
 
 EmailChanged ( value )
 	on ok (
-		set common.rootContainer.mainView.registrationView.email.emailInvalid 
-		set common.rootContainer.mainView.registrationView.email.value
+		merge common.rootContainer.mainView.registrationView.email.emailInvalid 
+		merge common.rootContainer.mainView.registrationView.email.value
 	) triggers (Validate)
 
 PasswordChanged ( value  )
 	fromAppState (common.rootContainer.mainView.registrationView.passwordRepetition.value as passwordRepetition)
 	on ok ( 
-		set common.rootContainer.mainView.registrationView.password.value
-		set common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch
+		merge common.rootContainer.mainView.registrationView.password.value
+		merge common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch
 	) triggers (Validate)
 
 PasswordRepetitionChanged ( value  )
 	fromAppState (common.rootContainer.mainView.registrationView.password.value as password)
 	on ok ( 
-		set common.rootContainer.mainView.registrationView.passwordRepetition.value
-		set common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch
+		merge common.rootContainer.mainView.registrationView.passwordRepetition.value
+		merge common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch
 	) triggers (Validate)
 	
 Validate
@@ -43,7 +43,7 @@ Validate
 		common.rootContainer.mainView.registrationView.passwordRepetition.passwordMismatch
 	) 
 	on ok (
-		set common.rootContainer.mainView.registrationView.buttons.register.disabled
+		merge common.rootContainer.mainView.registrationView.buttons.register.disabled
 	) 
 
 RegisterUser

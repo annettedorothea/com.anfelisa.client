@@ -31,25 +31,41 @@ export default class AbstractChangeCardOrderCommand extends AsynchronousCommand 
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.cardIdList) {
+			console.warn("AbstractChangeCardOrderCommand: cardIdList is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.cardId) {
+			console.warn("AbstractChangeCardOrderCommand: cardId is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		cardIdList : data.cardIdList,
-	    		cardId : data.cardId
-	    	};
-			AppUtils.httpPut(
-					`${AppUtils.settings.rootPath}/cards/changeorder`, 
-					data.uuid, 
-					true,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		cardIdList : data.cardIdList,
+		    		cardId : data.cardId
+		    	};
+				AppUtils.httpPut(
+						`${AppUtils.settings.rootPath}/cards/changeorder`, 
+						data.uuid, 
+						true,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

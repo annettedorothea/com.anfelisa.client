@@ -51,29 +51,45 @@ export default class AbstractCreateRootCategoryCommand extends AsynchronousComma
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.categoryName) {
+			console.warn("AbstractCreateRootCategoryCommand: categoryName is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.maxCardsPerDay) {
+			console.warn("AbstractCreateRootCategoryCommand: maxCardsPerDay is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		categoryName : data.categoryName,
-	    		dictionaryLookup : data.dictionaryLookup,
-	    		givenLanguage : data.givenLanguage,
-	    		wantedLanguage : data.wantedLanguage,
-	    		maxCardsPerDay : data.maxCardsPerDay,
-	    		maxInterval : data.maxInterval
-	    	};
-			AppUtils.httpPost(
-					`${AppUtils.settings.rootPath}/box/create`, 
-					data.uuid, 
-					true,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		categoryName : data.categoryName,
+		    		dictionaryLookup : data.dictionaryLookup,
+		    		givenLanguage : data.givenLanguage,
+		    		wantedLanguage : data.wantedLanguage,
+		    		maxCardsPerDay : data.maxCardsPerDay,
+		    		maxInterval : data.maxInterval
+		    	};
+				AppUtils.httpPost(
+						`${AppUtils.settings.rootPath}/box/create`, 
+						data.uuid, 
+						true,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

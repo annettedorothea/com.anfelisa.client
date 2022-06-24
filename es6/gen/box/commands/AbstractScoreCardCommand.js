@@ -35,26 +35,42 @@ export default class AbstractScoreCardCommand extends AsynchronousCommand {
 	addShowWarningToastOutcome(data) {
 		data.outcomes.push("showWarningToast");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.scheduledCardId) {
+			console.warn("AbstractScoreCardCommand: scheduledCardId is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.scoredCardQuality) {
+			console.warn("AbstractScoreCardCommand: scoredCardQuality is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		scheduledCardId : data.scheduledCardId,
-	    		scoredCardQuality : data.scoredCardQuality
-	    	};
-			AppUtils.httpPost(
-					`${AppUtils.settings.rootPath}/card/score`, 
-					data.uuid, 
-					true,
-					 payload)
-				.then((response) => {
-					data.intervalDifference = response.intervalDifference;
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		scheduledCardId : data.scheduledCardId,
+		    		scoredCardQuality : data.scoredCardQuality
+		    	};
+				AppUtils.httpPost(
+						`${AppUtils.settings.rootPath}/card/score`, 
+						data.uuid, 
+						true,
+						 payload)
+					.then((response) => {
+						data.intervalDifference = response.intervalDifference;
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

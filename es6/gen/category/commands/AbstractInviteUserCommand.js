@@ -34,26 +34,46 @@ export default class AbstractInviteUserCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.categoryId) {
+			console.warn("AbstractInviteUserCommand: categoryId is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.invitedUsername) {
+			console.warn("AbstractInviteUserCommand: invitedUsername is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.editable) {
+			console.warn("AbstractInviteUserCommand: editable is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		categoryId : data.categoryId,
-	    		invitedUsername : data.invitedUsername,
-	    		editable : data.editable
-	    	};
-			AppUtils.httpPut(
-					`${AppUtils.settings.rootPath}/category/invite`, 
-					data.uuid, 
-					true,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		categoryId : data.categoryId,
+		    		invitedUsername : data.invitedUsername,
+		    		editable : data.editable
+		    	};
+				AppUtils.httpPut(
+						`${AppUtils.settings.rootPath}/category/invite`, 
+						data.uuid, 
+						true,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

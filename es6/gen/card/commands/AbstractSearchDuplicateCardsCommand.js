@@ -38,21 +38,33 @@ export default class AbstractSearchDuplicateCardsCommand extends AsynchronousCom
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.categoryId) {
+			console.warn("AbstractSearchDuplicateCardsCommand: categoryId is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(
-					`${AppUtils.settings.rootPath}/cards/search?${data.given ? `given=${data.given}` : ""}&${data.wanted ? `wanted=${data.wanted}` : ""}&${data.naturalInputOrder ? `naturalInputOrder=${data.naturalInputOrder}` : ""}&${data.categoryId ? `categoryId=${data.categoryId}` : ""}`, 
-					data.uuid, 
-					true)
-				.then((response) => {
-					data.cardList = response.cardList;
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+				AppUtils.httpGet(
+						`${AppUtils.settings.rootPath}/cards/search?${data.given ? `given=${data.given}` : ""}&${data.wanted ? `wanted=${data.wanted}` : ""}&${data.naturalInputOrder ? `naturalInputOrder=${data.naturalInputOrder}` : ""}&${data.categoryId ? `categoryId=${data.categoryId}` : ""}`, 
+						data.uuid, 
+						true)
+					.then((response) => {
+						data.cardList = response.cardList;
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

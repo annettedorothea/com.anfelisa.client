@@ -31,25 +31,41 @@ export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCo
 	addNoFilterOutcome(data) {
 		data.outcomes.push("noFilter");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.cardIds) {
+			console.warn("AbstractScheduleSelectedCardsCommand: cardIds is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.boxId) {
+			console.warn("AbstractScheduleSelectedCardsCommand: boxId is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		cardIds : data.cardIds,
-	    		boxId : data.boxId
-	    	};
-			AppUtils.httpPost(
-					`${AppUtils.settings.rootPath}/cards/schedule`, 
-					data.uuid, 
-					true,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		cardIds : data.cardIds,
+		    		boxId : data.boxId
+		    	};
+				AppUtils.httpPost(
+						`${AppUtils.settings.rootPath}/cards/schedule`, 
+						data.uuid, 
+						true,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

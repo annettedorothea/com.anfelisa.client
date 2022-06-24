@@ -4,14 +4,14 @@ login
 
 ACE 
 	UsernameChanged ( value  )
-		on ok (set common.rootContainer.mainView.loginView.username.value)
+		on ok (merge common.rootContainer.mainView.loginView.username.value)
 	
 	PasswordChanged ( value )
-		on ok (set common.rootContainer.mainView.loginView.password.value)
+		on ok (merge common.rootContainer.mainView.loginView.password.value)
 	
 	ToggleSaveInLocalStorage 
 		fromAppState ( common.rootContainer.mainView.loginView.saveInLocalStorage.checked )
-		on ok (set common.rootContainer.mainView.loginView.saveInLocalStorage.checked)
+		on ok (merge common.rootContainer.mainView.loginView.saveInLocalStorage.checked)
 	
 	Login 
 		fromAppState ( 

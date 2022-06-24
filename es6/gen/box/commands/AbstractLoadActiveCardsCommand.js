@@ -27,22 +27,34 @@ export default class AbstractLoadActiveCardsCommand extends AsynchronousCommand 
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.boxId) {
+			console.warn("AbstractLoadActiveCardsCommand: boxId is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(
-					`${AppUtils.settings.rootPath}/box/active-cards/${data.boxId}`, 
-					data.uuid, 
-					true)
-				.then((response) => {
-					data.cardList = response.cardList;
-					data.editable = response.editable;
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+				AppUtils.httpGet(
+						`${AppUtils.settings.rootPath}/box/active-cards/${data.boxId}`, 
+						data.uuid, 
+						true)
+					.then((response) => {
+						data.cardList = response.cardList;
+						data.editable = response.editable;
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

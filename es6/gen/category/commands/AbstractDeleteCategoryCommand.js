@@ -35,20 +35,32 @@ export default class AbstractDeleteCategoryCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.categoryId) {
+			console.warn("AbstractDeleteCategoryCommand: categoryId is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpDelete(
-					`${AppUtils.settings.rootPath}/category/delete?${data.categoryId ? `categoryId=${data.categoryId}` : ""}`, 
-					data.uuid, 
-					true)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+				AppUtils.httpDelete(
+						`${AppUtils.settings.rootPath}/category/delete?${data.categoryId ? `categoryId=${data.categoryId}` : ""}`, 
+						data.uuid, 
+						true)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

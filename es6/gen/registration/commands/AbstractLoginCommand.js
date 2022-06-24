@@ -31,26 +31,34 @@ export default class AbstractLoginCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		username : data.username,
-	    		password : data.password
-	    	};
-			AppUtils.httpPut(
-					`${AppUtils.settings.rootPath}/user/token`, 
-					data.uuid, 
-					false,
-					 payload)
-				.then((response) => {
-					data.token = response.token;
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		username : data.username,
+		    		password : data.password
+		    	};
+				AppUtils.httpPut(
+						`${AppUtils.settings.rootPath}/user/token`, 
+						data.uuid, 
+						false,
+						 payload)
+					.then((response) => {
+						data.token = response.token;
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

@@ -23,25 +23,41 @@ export default class AbstractArchiveBoxCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.boxId) {
+			console.warn("AbstractArchiveBoxCommand: boxId is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.archived) {
+			console.warn("AbstractArchiveBoxCommand: archived is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		boxId : data.boxId,
-	    		archived : data.archived
-	    	};
-			AppUtils.httpPut(
-					`${AppUtils.settings.rootPath}/box/archive`, 
-					data.uuid, 
-					true,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		boxId : data.boxId,
+		    		archived : data.archived
+		    	};
+				AppUtils.httpPut(
+						`${AppUtils.settings.rootPath}/box/archive`, 
+						data.uuid, 
+						true,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

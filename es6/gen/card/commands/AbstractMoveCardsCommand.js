@@ -35,25 +35,41 @@ export default class AbstractMoveCardsCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.cardIdList) {
+			console.warn("AbstractMoveCardsCommand: cardIdList is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.categoryId) {
+			console.warn("AbstractMoveCardsCommand: categoryId is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		cardIdList : data.cardIdList,
-	    		categoryId : data.categoryId
-	    	};
-			AppUtils.httpPut(
-					`${AppUtils.settings.rootPath}/cards/move`, 
-					data.uuid, 
-					true,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		cardIdList : data.cardIdList,
+		    		categoryId : data.categoryId
+		    	};
+				AppUtils.httpPut(
+						`${AppUtils.settings.rootPath}/cards/move`, 
+						data.uuid, 
+						true,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

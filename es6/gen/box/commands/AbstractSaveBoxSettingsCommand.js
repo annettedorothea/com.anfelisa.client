@@ -55,31 +55,55 @@ export default class AbstractSaveBoxSettingsCommand extends AsynchronousCommand 
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.maxCardsPerDay) {
+			console.warn("AbstractSaveBoxSettingsCommand: maxCardsPerDay is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.boxId) {
+			console.warn("AbstractSaveBoxSettingsCommand: boxId is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.categoryId) {
+			console.warn("AbstractSaveBoxSettingsCommand: categoryId is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.categoryName) {
+			console.warn("AbstractSaveBoxSettingsCommand: categoryName is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		maxInterval : data.maxInterval,
-	    		maxCardsPerDay : data.maxCardsPerDay,
-	    		boxId : data.boxId,
-	    		categoryId : data.categoryId,
-	    		categoryName : data.categoryName,
-	    		dictionaryLookup : data.dictionaryLookup,
-	    		givenLanguage : data.givenLanguage,
-	    		wantedLanguage : data.wantedLanguage
-	    	};
-			AppUtils.httpPut(
-					`${AppUtils.settings.rootPath}/box/update`, 
-					data.uuid, 
-					true,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		maxInterval : data.maxInterval,
+		    		maxCardsPerDay : data.maxCardsPerDay,
+		    		boxId : data.boxId,
+		    		categoryId : data.categoryId,
+		    		categoryName : data.categoryName,
+		    		dictionaryLookup : data.dictionaryLookup,
+		    		givenLanguage : data.givenLanguage,
+		    		wantedLanguage : data.wantedLanguage
+		    	};
+				AppUtils.httpPut(
+						`${AppUtils.settings.rootPath}/box/update`, 
+						data.uuid, 
+						true,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

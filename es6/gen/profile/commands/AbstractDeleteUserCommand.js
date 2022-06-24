@@ -32,20 +32,32 @@ export default class AbstractDeleteUserCommand extends AsynchronousCommand {
 	addErrorOutcome(data) {
 		data.outcomes.push("error");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.usernameToBeDeleted) {
+			console.warn("AbstractDeleteUserCommand: usernameToBeDeleted is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpDelete(
-					`${AppUtils.settings.rootPath}/user/delete?${data.usernameToBeDeleted ? `usernameToBeDeleted=${data.usernameToBeDeleted}` : ""}`, 
-					data.uuid, 
-					true)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+				AppUtils.httpDelete(
+						`${AppUtils.settings.rootPath}/user/delete?${data.usernameToBeDeleted ? `usernameToBeDeleted=${data.usernameToBeDeleted}` : ""}`, 
+						data.uuid, 
+						true)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

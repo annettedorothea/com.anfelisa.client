@@ -12,37 +12,37 @@ export default class EventListenerRegistrationProfile {
 
 	static init() {
 		ACEController.registerListener('profile.LoadUserOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "profileView", "email"]
 				)
 			});
 		ACEController.registerListener('profile.LoadUserOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "profileView", "username"]
 				)
 			});
 		ACEController.registerListener('profile.DeleteUserOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "profileView", "showDeleteUserDialog"]
 				)
 			});
 		ACEController.registerListener('profile.DeleteUserErrorEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "profileView", "showDeleteUserDialog"]
 				)
 			});
 		ACEController.registerListener('profile.DeleteUserClickOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "profileView", "showDeleteUserDialog"]
 				)
 			});
 		ACEController.registerListener('profile.DeleteUserCancelOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "profileView", "showDeleteUserDialog"]
 				)

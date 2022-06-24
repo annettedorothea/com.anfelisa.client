@@ -27,21 +27,29 @@ export default class AbstractGetUserInfoCommand extends AsynchronousCommand {
 	addErrorOutcome(data) {
 		data.outcomes.push("error");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(
-					`${AppUtils.settings.rootPath}/user/info`, 
-					data.uuid, 
-					true)
-				.then((response) => {
-					data.username = response.username;
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+				AppUtils.httpGet(
+						`${AppUtils.settings.rootPath}/user/info`, 
+						data.uuid, 
+						true)
+					.then((response) => {
+						data.username = response.username;
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

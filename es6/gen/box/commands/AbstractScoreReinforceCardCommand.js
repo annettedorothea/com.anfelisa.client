@@ -27,25 +27,41 @@ export default class AbstractScoreReinforceCardCommand extends AsynchronousComma
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.reinforceCardId) {
+			console.warn("AbstractScoreReinforceCardCommand: reinforceCardId is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.keep) {
+			console.warn("AbstractScoreReinforceCardCommand: keep is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		reinforceCardId : data.reinforceCardId,
-	    		keep : data.keep
-	    	};
-			AppUtils.httpPost(
-					`${AppUtils.settings.rootPath}/card/score-reinforce`, 
-					data.uuid, 
-					true,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		reinforceCardId : data.reinforceCardId,
+		    		keep : data.keep
+		    	};
+				AppUtils.httpPost(
+						`${AppUtils.settings.rootPath}/card/score-reinforce`, 
+						data.uuid, 
+						true,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

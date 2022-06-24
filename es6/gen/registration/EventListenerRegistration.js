@@ -12,61 +12,61 @@ export default class EventListenerRegistrationRegistration {
 
 	static init() {
 		ACEController.registerListener('registration.CheckUsernameEmptyEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "registrationView", "username", "available"]
 				)
 			});
 		ACEController.registerListener('registration.CheckUsernameOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "registrationView", "username", "available"]
 				)
 			});
 		ACEController.registerListener('registration.UsernameChangedOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "registrationView", "username", "value"]
 				)
 			});
 		ACEController.registerListener('registration.EmailChangedOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "registrationView", "email", "emailInvalid"]
 				)
 			});
 		ACEController.registerListener('registration.EmailChangedOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "registrationView", "email", "value"]
 				)
 			});
 		ACEController.registerListener('registration.PasswordChangedOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "registrationView", "password", "value"]
 				)
 			});
 		ACEController.registerListener('registration.PasswordChangedOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "registrationView", "passwordRepetition", "passwordMismatch"]
 				)
 			});
 		ACEController.registerListener('registration.PasswordRepetitionChangedOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "registrationView", "passwordRepetition", "value"]
 				)
 			});
 		ACEController.registerListener('registration.PasswordRepetitionChangedOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "registrationView", "passwordRepetition", "passwordMismatch"]
 				)
 			});
 		ACEController.registerListener('registration.ValidateOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "registrationView", "buttons", "register", "disabled"]
 				)

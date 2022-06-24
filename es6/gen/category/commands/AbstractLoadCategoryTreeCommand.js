@@ -27,23 +27,35 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.rootCategoryId) {
+			console.warn("AbstractLoadCategoryTreeCommand: rootCategoryId is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(
-					`${AppUtils.settings.rootPath}/category/tree?${data.rootCategoryId ? `rootCategoryId=${data.rootCategoryId}` : ""}&${data.filterNonScheduled ? `filterNonScheduled=${data.filterNonScheduled}` : ""}&${data.priority ? `priority=${data.priority}` : ""}&${data.reverse ? `reverse=${data.reverse}` : ""}`, 
-					data.uuid, 
-					true)
-				.then((response) => {
-					data.rootCategory = response.rootCategory;
-					data.reverseBoxExists = response.reverseBoxExists;
-					data.boxId = response.boxId;
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+				AppUtils.httpGet(
+						`${AppUtils.settings.rootPath}/category/tree?${data.rootCategoryId ? `rootCategoryId=${data.rootCategoryId}` : ""}&${data.filterNonScheduled ? `filterNonScheduled=${data.filterNonScheduled}` : ""}&${data.priority ? `priority=${data.priority}` : ""}&${data.reverse ? `reverse=${data.reverse}` : ""}`, 
+						data.uuid, 
+						true)
+					.then((response) => {
+						data.rootCategory = response.rootCategory;
+						data.reverseBoxExists = response.reverseBoxExists;
+						data.boxId = response.boxId;
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

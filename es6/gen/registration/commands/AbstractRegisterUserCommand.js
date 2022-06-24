@@ -44,27 +44,51 @@ export default class AbstractRegisterUserCommand extends AsynchronousCommand {
 	addErrorOutcome(data) {
 		data.outcomes.push("error");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.password) {
+			console.warn("AbstractRegisterUserCommand: password is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.username) {
+			console.warn("AbstractRegisterUserCommand: username is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.email) {
+			console.warn("AbstractRegisterUserCommand: email is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.language) {
+			console.warn("AbstractRegisterUserCommand: language is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		password : data.password,
-	    		username : data.username,
-	    		email : data.email,
-	    		language : data.language
-	    	};
-			AppUtils.httpPost(
-					`${AppUtils.settings.rootPath}/users/register`, 
-					data.uuid, 
-					false,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		password : data.password,
+		    		username : data.username,
+		    		email : data.email,
+		    		language : data.language
+		    	};
+				AppUtils.httpPost(
+						`${AppUtils.settings.rootPath}/users/register`, 
+						data.uuid, 
+						false,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

@@ -35,25 +35,41 @@ export default class AbstractCreateCategoryCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.categoryName) {
+			console.warn("AbstractCreateCategoryCommand: categoryName is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.parentCategoryId) {
+			console.warn("AbstractCreateCategoryCommand: parentCategoryId is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		categoryName : data.categoryName,
-	    		parentCategoryId : data.parentCategoryId
-	    	};
-			AppUtils.httpPost(
-					`${AppUtils.settings.rootPath}/category/create`, 
-					data.uuid, 
-					true,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		categoryName : data.categoryName,
+		    		parentCategoryId : data.parentCategoryId
+		    	};
+				AppUtils.httpPost(
+						`${AppUtils.settings.rootPath}/category/create`, 
+						data.uuid, 
+						true,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

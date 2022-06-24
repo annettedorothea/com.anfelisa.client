@@ -21,7 +21,7 @@ export default class AbstractUpdateCardAction extends Action {
 	}
 
 	preCall() {
-		AppState.set(
+		AppState.merge(
 			{display: true}, 
 			["rootContainer", "spinner", "display"]
 		)
@@ -29,7 +29,7 @@ export default class AbstractUpdateCardAction extends Action {
 	}
 	
 	postCall() {
-		AppState.set(
+		AppState.merge(
 			{display: false}, 
 			["rootContainer", "spinner", "display"]
 		)

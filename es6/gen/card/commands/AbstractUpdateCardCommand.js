@@ -35,26 +35,46 @@ export default class AbstractUpdateCardCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.cardId) {
+			console.warn("AbstractUpdateCardCommand: cardId is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.given) {
+			console.warn("AbstractUpdateCardCommand: given is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.wanted) {
+			console.warn("AbstractUpdateCardCommand: wanted is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		cardId : data.cardId,
-	    		given : data.given,
-	    		wanted : data.wanted
-	    	};
-			AppUtils.httpPut(
-					`${AppUtils.settings.rootPath}/card/update`, 
-					data.uuid, 
-					true,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		cardId : data.cardId,
+		    		given : data.given,
+		    		wanted : data.wanted
+		    	};
+				AppUtils.httpPut(
+						`${AppUtils.settings.rootPath}/card/update`, 
+						data.uuid, 
+						true,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

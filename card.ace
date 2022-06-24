@@ -25,7 +25,7 @@ ACE
 	 	)
 	 	call com.anfelisa.card.CreateCard
 		loadingFlag common.rootContainer.spinner.display 
-		on ok ( set common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard )
+		on ok ( merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard )
 		triggers (LoadCards)
 	
 	UpdateCard 
@@ -36,7 +36,7 @@ ACE
 	 	)
 	 	call com.anfelisa.card.UpdateCard
 		loadingFlag common.rootContainer.spinner.display 
-		on ok ( set common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard )
+		on ok ( merge common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard )
 		triggers (LoadCards)
 	
 	UpdateCardPriority(cardId, priority)
@@ -49,7 +49,7 @@ ACE
 	 	call com.anfelisa.card.DeleteCard
 		loadingFlag common.rootContainer.spinner.display 
 		on ok ( 
-			set common.rootContainer.mainView.authorView.categoryTree.cardView.deleteCard
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.deleteCard
 		) triggers (LoadCards)
 
 	GivenOfNewCardChanged ( given )
@@ -63,7 +63,7 @@ ACE
 		)triggers ( delayInMillis 1000 takeLatest SearchDuplicateCards )
 	
 	CancelNewCard 
-		on ok (set common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard)
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard)
 	
 	
 	GivenOfEditedCardChanged ( given )
@@ -73,22 +73,22 @@ ACE
 		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard.wanted)
 	
 	CancelEditCard 
-		on ok (set common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard)
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard)
 	
 	EditCard ( cardId )
 		fromAppState (common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.cardList)
 		on ok (
-			set common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard
 		)
 	
 	DeleteCardClick ( cardId )
-		on ok (set common.rootContainer.mainView.authorView.categoryTree.cardView.deleteCard)
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.deleteCard)
 	
 	CancelDeleteCard 
-		on ok (set common.rootContainer.mainView.authorView.categoryTree.cardView.deleteCard)
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.deleteCard)
 	
 	FilterCards ( filter )
-		on ok (set common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.filter)
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.filter)
 	
 	PassValueToDictionary 
 		fromAppState (
@@ -97,18 +97,18 @@ ACE
 			common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.wanted
 		)
 		on ok (
-			set common.rootContainer.mainView.authorView.categoryTree.cardView.dictionaryValue
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.dictionaryValue
 		)
 	
 	
 	ToggleInputOrder
 		fromAppState (common.rootContainer.mainView.authorView.categoryTree.cardView.naturalInputOrder)
-		on ok (set common.rootContainer.mainView.authorView.categoryTree.cardView.naturalInputOrder)
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.naturalInputOrder)
 	
 	
 	ToggleScheduleCardSelection ( cardId )
 		fromAppState (common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds)
-		on ok (set common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds)
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds)
 	
 	SelectScheduleCardRange ( cardId )
 		fromAppState (
@@ -117,7 +117,7 @@ ACE
 			common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.filter
 		)
 		on ok (
-			set common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds
 		)
 		on noSelection triggers (
 			ToggleScheduleCardSelection
@@ -129,7 +129,7 @@ ACE
 			common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.cardList,
 			common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.filter
 		)
-		on ok (set common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds)
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds)
 	
 	ScheduleSelectedCards
 		fromAppState (
@@ -154,7 +154,7 @@ ACE
 		
 	MoveCardsStarted
 		fromAppState (common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds) 
-		on ok (set common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds)
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds)
 		
 	MoveCards
 		fromAppState (
@@ -165,9 +165,9 @@ ACE
 	 	call com.anfelisa.card.MoveCards
 		loadingFlag common.rootContainer.spinner.display 
 		on ok (
-			set common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds
-			set common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
-			set common.rootContainer.mainView.authorView.categoryTree.dropAllowed
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds
+			merge common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
+			merge common.rootContainer.mainView.authorView.categoryTree.dropAllowed
 		) triggers (category.ReloadCategoryTree)
 		
 		
@@ -179,15 +179,15 @@ ACE
 	 	call com.anfelisa.card.ChangeOrder
 		loadingFlag common.rootContainer.spinner.display 
 		on ok (
-			set common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds
-			set common.rootContainer.mainView.authorView.categoryTree.cardView.dragTargetCardId
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.dragTargetCardId
 		) triggers (LoadCards)
 	
 	OnDragEnter ( dragTargetCardId )
-		on ok (set common.rootContainer.mainView.authorView.categoryTree.cardView.dragTargetCardId)
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.dragTargetCardId)
 		
 	OnDragExit ( dragTargetCardId )
-		on ok (set common.rootContainer.mainView.authorView.categoryTree.cardView.dragTargetCardId)
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.dragTargetCardId)
 		
 	SearchDuplicateCards 
 		fromAppState (
@@ -198,7 +198,7 @@ ACE
 		)
 		call com.anfelisa.card.GetDuplicates
 		loadingFlag common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.displaySpinner 
-		on ok ( set common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.cardDuplicates )
+		on ok ( merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.cardDuplicates )
 		
 	Translate 
 		fromAppState (
@@ -210,8 +210,8 @@ ACE
 		)
 		call com.anfelisa.card.GetTranslation
 		loadingFlag common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.displaySpinner 
-		on wantedFetched (set common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.wanted ) triggers (SearchDuplicateCards)
-		on givenFetched (set common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.given ) triggers (SearchDuplicateCards)
+		on wantedFetched (merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.wanted ) triggers (SearchDuplicateCards)
+		on givenFetched (merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.given ) triggers (SearchDuplicateCards)
 		on error
 		on empty
 		on targetNotEmtpy

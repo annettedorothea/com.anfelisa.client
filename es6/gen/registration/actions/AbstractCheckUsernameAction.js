@@ -21,7 +21,7 @@ export default class AbstractCheckUsernameAction extends Action {
 	}
 
 	preCall() {
-		AppState.set(
+		AppState.merge(
 			{displayUsernameSpinner: true}, 
 			["rootContainer", "mainView", "registrationView", "username", "displayUsernameSpinner"]
 		)
@@ -29,7 +29,7 @@ export default class AbstractCheckUsernameAction extends Action {
 	}
 	
 	postCall() {
-		AppState.set(
+		AppState.merge(
 			{displayUsernameSpinner: false}, 
 			["rootContainer", "mainView", "registrationView", "username", "displayUsernameSpinner"]
 		)

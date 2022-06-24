@@ -27,6 +27,10 @@ export default class AbstractCallSaveBugCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		return true;
+	}
 
 	
 	publishEvents(data) {

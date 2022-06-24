@@ -31,25 +31,41 @@ export default class AbstractSortCardOutCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.cardIds) {
+			console.warn("AbstractSortCardOutCommand: cardIds is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.boxId) {
+			console.warn("AbstractSortCardOutCommand: boxId is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		cardIds : data.cardIds,
-	    		boxId : data.boxId
-	    	};
-			AppUtils.httpPost(
-					`${AppUtils.settings.rootPath}/cards/sort-out`, 
-					data.uuid, 
-					true,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		cardIds : data.cardIds,
+		    		boxId : data.boxId
+		    	};
+				AppUtils.httpPost(
+						`${AppUtils.settings.rootPath}/cards/sort-out`, 
+						data.uuid, 
+						true,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

@@ -12,19 +12,19 @@ export default class EventListenerRegistrationLogin {
 
 	static init() {
 		ACEController.registerListener('login.UsernameChangedOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "loginView", "username", "value"]
 				)
 			});
 		ACEController.registerListener('login.PasswordChangedOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "loginView", "password", "value"]
 				)
 			});
 		ACEController.registerListener('login.ToggleSaveInLocalStorageOkEvent', (data) => {
-				AppState.set(
+				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "loginView", "saveInLocalStorage", "checked"]
 				)

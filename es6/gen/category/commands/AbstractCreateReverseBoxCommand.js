@@ -27,24 +27,36 @@ export default class AbstractCreateReverseBoxCommand extends AsynchronousCommand
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.rootCategoryId) {
+			console.warn("AbstractCreateReverseBoxCommand: rootCategoryId is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		rootCategoryId : data.rootCategoryId
-	    	};
-			AppUtils.httpPost(
-					`${AppUtils.settings.rootPath}/box/create-reverse`, 
-					data.uuid, 
-					true,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		rootCategoryId : data.rootCategoryId
+		    	};
+				AppUtils.httpPost(
+						`${AppUtils.settings.rootPath}/box/create-reverse`, 
+						data.uuid, 
+						true,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

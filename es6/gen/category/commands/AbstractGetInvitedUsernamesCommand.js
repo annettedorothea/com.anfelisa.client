@@ -26,21 +26,33 @@ export default class AbstractGetInvitedUsernamesCommand extends AsynchronousComm
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.categoryId) {
+			console.warn("AbstractGetInvitedUsernamesCommand: categoryId is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(
-					`${AppUtils.settings.rootPath}/category/invited-usernames?${data.categoryId ? `categoryId=${data.categoryId}` : ""}`, 
-					data.uuid, 
-					true)
-				.then((response) => {
-					data.invitedUsers = response.invitedUsers;
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+				AppUtils.httpGet(
+						`${AppUtils.settings.rootPath}/category/invited-usernames?${data.categoryId ? `categoryId=${data.categoryId}` : ""}`, 
+						data.uuid, 
+						true)
+					.then((response) => {
+						data.invitedUsers = response.invitedUsers;
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

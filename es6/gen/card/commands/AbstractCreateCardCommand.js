@@ -35,26 +35,46 @@ export default class AbstractCreateCardCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.wanted) {
+			console.warn("AbstractCreateCardCommand: wanted is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.given) {
+			console.warn("AbstractCreateCardCommand: given is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.categoryId) {
+			console.warn("AbstractCreateCardCommand: categoryId is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		wanted : data.wanted,
-	    		given : data.given,
-	    		categoryId : data.categoryId
-	    	};
-			AppUtils.httpPost(
-					`${AppUtils.settings.rootPath}/card/create`, 
-					data.uuid, 
-					true,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		wanted : data.wanted,
+		    		given : data.given,
+		    		categoryId : data.categoryId
+		    	};
+				AppUtils.httpPost(
+						`${AppUtils.settings.rootPath}/card/create`, 
+						data.uuid, 
+						true,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

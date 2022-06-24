@@ -30,21 +30,33 @@ export default class AbstractCheckUsernameCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.username) {
+			console.warn("AbstractCheckUsernameCommand: username is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(
-					`${AppUtils.settings.rootPath}/users/username?${data.username ? `username=${data.username}` : ""}`, 
-					data.uuid, 
-					false)
-				.then((response) => {
-					data.available = response.available;
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+				AppUtils.httpGet(
+						`${AppUtils.settings.rootPath}/users/username?${data.username ? `username=${data.username}` : ""}`, 
+						data.uuid, 
+						false)
+					.then((response) => {
+						data.available = response.available;
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

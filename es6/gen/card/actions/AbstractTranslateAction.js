@@ -21,7 +21,7 @@ export default class AbstractTranslateAction extends Action {
 	}
 
 	preCall() {
-		AppState.set(
+		AppState.merge(
 			{displaySpinner: true}, 
 			["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "cardTable", "newCard", "displaySpinner"]
 		)
@@ -29,7 +29,7 @@ export default class AbstractTranslateAction extends Action {
 	}
 	
 	postCall() {
-		AppState.set(
+		AppState.merge(
 			{displaySpinner: false}, 
 			["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "cardTable", "newCard", "displaySpinner"]
 		)

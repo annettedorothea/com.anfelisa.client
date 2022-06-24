@@ -55,21 +55,41 @@ export default class AbstractTranslateCommand extends AsynchronousCommand {
 	addTargetNotEmtpyOutcome(data) {
 		data.outcomes.push("targetNotEmtpy");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.sourceValue) {
+			console.warn("AbstractTranslateCommand: sourceValue is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.sourceLanguage) {
+			console.warn("AbstractTranslateCommand: sourceLanguage is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.targetLanguage) {
+			console.warn("AbstractTranslateCommand: targetLanguage is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpGet(
-					`${AppUtils.settings.rootPath}/card/translation?${data.sourceValue ? `sourceValue=${data.sourceValue}` : ""}&${data.sourceLanguage ? `sourceLanguage=${data.sourceLanguage}` : ""}&${data.targetLanguage ? `targetLanguage=${data.targetLanguage}` : ""}`, 
-					data.uuid, 
-					true)
-				.then((response) => {
-					data.targetValue = response.targetValue;
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+				AppUtils.httpGet(
+						`${AppUtils.settings.rootPath}/card/translation?${data.sourceValue ? `sourceValue=${data.sourceValue}` : ""}&${data.sourceLanguage ? `sourceLanguage=${data.sourceLanguage}` : ""}&${data.targetLanguage ? `targetLanguage=${data.targetLanguage}` : ""}`, 
+						data.uuid, 
+						true)
+					.then((response) => {
+						data.targetValue = response.targetValue;
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

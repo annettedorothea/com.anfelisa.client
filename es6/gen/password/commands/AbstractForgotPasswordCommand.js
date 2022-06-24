@@ -32,25 +32,41 @@ export default class AbstractForgotPasswordCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.username) {
+			console.warn("AbstractForgotPasswordCommand: username is mandatory but is not set", data);
+			return false;
+		}
+		if (!data.language) {
+			console.warn("AbstractForgotPasswordCommand: language is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-	    	let payload = {
-	    		username : data.username,
-	    		language : data.language
-	    	};
-			AppUtils.httpPost(
-					`${AppUtils.settings.rootPath}/users/forgot-password`, 
-					data.uuid, 
-					false,
-					 payload)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		username : data.username,
+		    		language : data.language
+		    	};
+				AppUtils.httpPost(
+						`${AppUtils.settings.rootPath}/users/forgot-password`, 
+						data.uuid, 
+						false,
+						 payload)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	

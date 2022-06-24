@@ -27,20 +27,32 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
 	addOkOutcome(data) {
 		data.outcomes.push("ok");
 	}
+	
+	allMandatoryValuesAreSet(data) {
+		if (!data.cardId) {
+			console.warn("AbstractDeleteCardCommand: cardId is mandatory but is not set", data);
+			return false;
+		}
+		return true;
+	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
-			AppUtils.httpDelete(
-					`${AppUtils.settings.rootPath}/card/delete?${data.cardId ? `cardId=${data.cardId}` : ""}`, 
-					data.uuid, 
-					true)
-				.then(() => {
-					this.handleResponse(data, resolve, reject);
-				}, (error) => {
-					data.error = error;
-					this.handleError(data, resolve, reject);
-				})
-				.catch(x => reject(x));
+	    	if (this.allMandatoryValuesAreSet(data)) {
+				AppUtils.httpDelete(
+						`${AppUtils.settings.rootPath}/card/delete?${data.cardId ? `cardId=${data.cardId}` : ""}`, 
+						data.uuid, 
+						true)
+					.then(() => {
+						this.handleResponse(data, resolve, reject);
+					}, (error) => {
+						data.error = error;
+						this.handleError(data, resolve, reject);
+					})
+					.catch(x => reject(x));
+			} else {
+				resolve(data);
+			}
 	    });
 	}
 	
