@@ -6,9 +6,11 @@ Init
 	on ok (
 		set rootContainer.language
 		set rootContainer.messageContainer.messages
+		set rootContainer.spinner
 	)
 	on user (
 		set rootContainer.loggedInUser.token
+		set rootContainer.spinner
 	) triggers ( GetUserInfo )
 	on noUser triggers ( 
 		RouteChanged

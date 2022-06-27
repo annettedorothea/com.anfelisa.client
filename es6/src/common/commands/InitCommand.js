@@ -3,8 +3,6 @@
  ********************************************************************************/
 
 
-
-
 import AbstractInitCommand from "../../../gen/common/commands/AbstractInitCommand";
 
 export default class InitCommand extends AbstractInitCommand {
@@ -17,11 +15,10 @@ export default class InitCommand extends AbstractInitCommand {
         } else {
             this.addNoUserOutcome(data);
         }
-    	return data;
+        data.spinner = {};
+        return data;
     }
 }
-
-
 
 
 /******* S.D.G. *******/

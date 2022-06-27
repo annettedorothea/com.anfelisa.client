@@ -23,10 +23,24 @@ export default class EventListenerRegistrationCommon {
 					["rootContainer", "messageContainer", "messages"]
 				)
 			});
+		ACEController.registerListener('common.InitOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "spinner"], 
+					["display"]
+				)
+			});
 		ACEController.registerListener('common.InitUserEvent', (data) => {
 				AppState.set(
 					data, 
 					["rootContainer", "loggedInUser", "token"]
+				)
+			});
+		ACEController.registerListener('common.InitUserEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "spinner"], 
+					["display"]
 				)
 			});
 		ACEController.registerListener('common.GetUserInfoOkEvent', (data) => {
