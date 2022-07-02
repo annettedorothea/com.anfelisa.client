@@ -25,6 +25,10 @@ export default class AbstractLoadBoxesCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
+		if (data.todayAtMidnightInUTC === undefined || data.todayAtMidnightInUTC === null) {
+			console.warn("AbstractLoadBoxesCommand: todayAtMidnightInUTC is mandatory but is not set", data);
+			return false;
+		}
 		return true;
 	}
 
@@ -32,7 +36,7 @@ export default class AbstractLoadBoxesCommand extends AsynchronousCommand {
 	    return new Promise((resolve, reject) => {
 	    	if (this.allMandatoryValuesAreSet(data)) {
 				AppUtils.httpGet(
-						`${AppUtils.settings.rootPath}/boxes/my/`, 
+						`${AppUtils.settings.rootPath}/boxes/my/?${data.todayAtMidnightInUTC ? `todayAtMidnightInUTC=${data.todayAtMidnightInUTC}` : ""}`, 
 						data.uuid, 
 						true)
 					.then((response) => {

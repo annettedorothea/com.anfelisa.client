@@ -25,16 +25,24 @@ export default class AbstractInitBoxesForDayCommand extends AsynchronousCommand 
 	}
 	
 	allMandatoryValuesAreSet(data) {
+		if (data.todayAtMidnightInUTC === undefined || data.todayAtMidnightInUTC === null) {
+			console.warn("AbstractInitBoxesForDayCommand: todayAtMidnightInUTC is mandatory but is not set", data);
+			return false;
+		}
 		return true;
 	}
 
 	execute(data) {
 	    return new Promise((resolve, reject) => {
 	    	if (this.allMandatoryValuesAreSet(data)) {
+		    	let payload = {
+		    		todayAtMidnightInUTC : data.todayAtMidnightInUTC
+		    	};
 				AppUtils.httpPut(
 						`${AppUtils.settings.rootPath}/box/init`, 
 						data.uuid, 
-						true)
+						true,
+						 payload)
 					.then(() => {
 						this.handleResponse(data, resolve, reject);
 					}, (error) => {

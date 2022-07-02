@@ -37,6 +37,10 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
 			console.warn("AbstractLoadNextCardCommand: boxId is mandatory but is not set", data);
 			return false;
 		}
+		if (data.todayAtMidnightInUTC === undefined || data.todayAtMidnightInUTC === null) {
+			console.warn("AbstractLoadNextCardCommand: todayAtMidnightInUTC is mandatory but is not set", data);
+			return false;
+		}
 		return true;
 	}
 
@@ -44,7 +48,7 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
 	    return new Promise((resolve, reject) => {
 	    	if (this.allMandatoryValuesAreSet(data)) {
 				AppUtils.httpGet(
-						`${AppUtils.settings.rootPath}/box/next-card?${data.boxId ? `boxId=${data.boxId}` : ""}`, 
+						`${AppUtils.settings.rootPath}/box/next-card?${data.boxId ? `boxId=${data.boxId}` : ""}&${data.todayAtMidnightInUTC ? `todayAtMidnightInUTC=${data.todayAtMidnightInUTC}` : ""}`, 
 						data.uuid, 
 						true)
 					.then((response) => {
