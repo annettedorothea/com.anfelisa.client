@@ -10,7 +10,8 @@
     "test-safari": "jasmine SELENIUM_BROWSER=safari",
     "test-headless": "jasmine SELENIUM_BROWSER=chrome HEADLESS=true",
     "start": "webpack serve --config ./webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "build": "webpack --config webpack.prod.js",
+    "update": "npx npm-check -u"
   },
   "author": "Annette Pohl",
   "license": "ISC",
@@ -18,8 +19,8 @@
     "crypto-js": "^4.1.1",
     "json-stable-stringify": "^1.0.1",
     "ramda": "^0.28.0",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
@@ -27,7 +28,7 @@
     "@babel/preset-react": "^7.16.7",
     "acorn": "^8.7.0",
     "babel-loader": "^8.2.3",
-    "chromedriver": "^102.0.0",
+    "chromedriver": "^103.0.0",
     "geckodriver": "^3.0.1",
     "jasmine": "^4.0.2",
     "react-hot-loader": "^4.13.0",
