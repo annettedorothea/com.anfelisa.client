@@ -25,9 +25,6 @@ export const NextCard = (props) => {
         }
         return <div className={`given lastQuality_${props.lastQuality}`}>
             <div className="given-word">{lineItems}</div>
-            {props.scheduledDate ? <div className="small-info">
-                {`${translate(Texts.queryCards.scheduledDate)} ${new Date(props.scheduledDate).toLocaleDateString()}`}
-            </div> : null}
             <div className="small-info">{
                 props.count === 0 ?
                     translate(Texts.queryCards.never) :

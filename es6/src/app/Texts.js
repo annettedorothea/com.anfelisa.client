@@ -644,15 +644,6 @@ export const Texts = {
                 de: "Perfekt"
             }
         },
-        scheduledDate: {
-            de: "geplant für den: "
-        },
-        scheduleNext: {
-            de: "Automatisch weiter mit neuen Karten"
-        },
-        scheduleNextCard: {
-            de: "Nächste Karte"
-        },
         scoredDate: {
             de: "zuletzt abgefragt am: "
         },

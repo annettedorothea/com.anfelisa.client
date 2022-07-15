@@ -69,7 +69,7 @@ export const ActiveCardListItem = (props) => {
 				<i className="far fa-thumbs-up"/>
 			</div>
 		}
-		if (props.ef > 2.0) {
+		if (props.ef > 1.3) {
 			return <div title={props.ef}>
 				<i className="far fa-thumbs-up"/>
 				<i className="far fa-thumbs-up"/>
