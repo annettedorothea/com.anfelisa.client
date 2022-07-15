@@ -25,6 +25,10 @@ export default class AbstractRegisterUserAction extends Action {
 			{display: true}, 
 			["rootContainer", "spinner", "display"]
 		)
+		AppState.merge(
+			{disabled: true}, 
+			["rootContainer", "mainView", "registrationView", "buttons", "register", "disabled"]
+		)
 		AppState.stateUpdated();
 	}
 	
@@ -32,6 +36,10 @@ export default class AbstractRegisterUserAction extends Action {
 		AppState.merge(
 			{display: false}, 
 			["rootContainer", "spinner", "display"]
+		)
+		AppState.merge(
+			{disabled: false}, 
+			["rootContainer", "mainView", "registrationView", "buttons", "register", "disabled"]
 		)
 		AppState.stateUpdated();
 	}

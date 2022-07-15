@@ -25,6 +25,10 @@ export default class AbstractSortCardOutAction extends Action {
 			{display: true}, 
 			["rootContainer", "spinner", "display"]
 		)
+		AppState.merge(
+			{disableSortOutButton: true}, 
+			["rootContainer", "mainView", "queryCardView", "nextCard", "disableSortOutButton"]
+		)
 		AppState.stateUpdated();
 	}
 	
@@ -32,6 +36,10 @@ export default class AbstractSortCardOutAction extends Action {
 		AppState.merge(
 			{display: false}, 
 			["rootContainer", "spinner", "display"]
+		)
+		AppState.merge(
+			{disableSortOutButton: false}, 
+			["rootContainer", "mainView", "queryCardView", "nextCard", "disableSortOutButton"]
 		)
 		AppState.stateUpdated();
 	}

@@ -14,6 +14,7 @@ export const Login = (props) => {
             className="primary"
             id="login"
             onClick={props.onClick}
+            {...props}
         >
             {translate(Texts.login.signin)}
         </button>

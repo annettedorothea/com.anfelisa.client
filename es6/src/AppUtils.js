@@ -30,6 +30,7 @@ import ReactDOM from "react-dom";
 import * as R from 'ramda'
 import {Texts} from "./app/Texts";
 import {RootContainerContainer} from "../gen/components/RootContainerContainer";
+import {initBoxesForDay, initBoxesForDayDuringScore, loadBoxes} from "../gen/box/ActionFunctions";
 
 export let settings;
 
@@ -90,6 +91,17 @@ export function startApp() {
             }
         });
     }, 300 * 1000);
+    document.onvisibilitychange = () => {
+        if (document.visibilityState === 'visible') {
+            const boxList = AppState.get(["rootContainer", "mainView", "dashboardView", "boxList"]);
+            const nextCard = AppState.get(["rootContainer", "mainView", "queryCardView", "nextCard"]);
+            if (boxList) {
+                initBoxesForDay().then();
+            } else if (nextCard) {
+                initBoxesForDayDuringScore().then();
+            }
+        }
+    }
 }
 
 function loadActualClientVersion() {

@@ -100,7 +100,7 @@ export default class EventListenerRegistrationBox {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "queryCardView", "nextCard"], 
-					["enableScoreButtons", "cardId", "categoryId", "categoryName", "count", "given", "lastQuality", "rootCategoryId", "scheduledCardId", "reinforceCardId", "scheduledDate", "scoredDate", "wanted", "index"]
+					["disableScoreButtons", "disableSortOutButton", "cardId", "categoryId", "categoryName", "count", "given", "lastQuality", "rootCategoryId", "scheduledCardId", "reinforceCardId", "scheduledDate", "scoredDate", "wanted", "index"]
 				)
 			});
 		ACEController.registerListener('box.LoadNextCardOkEvent', (data) => {
@@ -124,7 +124,7 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.LoadNextCardOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "queryCardView", "enableScoreButtons"]
+					["rootContainer", "mainView", "queryCardView", "nextCard", "disableScoreButtons"]
 				)
 			});
 		ACEController.registerListener('box.DisplayWantedOkEvent', (data) => {
@@ -136,7 +136,7 @@ export default class EventListenerRegistrationBox {
 		ACEController.registerListener('box.DisplayWantedOkEvent', (data) => {
 				AppState.set(
 					data, 
-					["rootContainer", "mainView", "queryCardView", "enableScoreButtons"]
+					["rootContainer", "mainView", "queryCardView", "nextCard", "disableScoreButtons"]
 				)
 			});
 		ACEController.registerListener('box.LoadSettingsOkEvent', (data) => {

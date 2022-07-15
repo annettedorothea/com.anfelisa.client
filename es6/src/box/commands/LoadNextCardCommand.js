@@ -21,7 +21,7 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
         } else {
             this.addOkOutcome(data);
             data.nextCard.index = 0;
-            data.enableScoreButtons = false;
+            data.disableScoreButtons = true;
         }
         resolve(data);
     }

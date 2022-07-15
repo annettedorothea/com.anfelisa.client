@@ -25,6 +25,10 @@ export default class AbstractForgotPasswordAction extends Action {
 			{display: true}, 
 			["rootContainer", "spinner", "display"]
 		)
+		AppState.merge(
+			{disabled: true}, 
+			["rootContainer", "mainView", "forgotPasswordView", "buttons", "forgotPassword", "disabled"]
+		)
 		AppState.stateUpdated();
 	}
 	
@@ -32,6 +36,10 @@ export default class AbstractForgotPasswordAction extends Action {
 		AppState.merge(
 			{display: false}, 
 			["rootContainer", "spinner", "display"]
+		)
+		AppState.merge(
+			{disabled: false}, 
+			["rootContainer", "mainView", "forgotPasswordView", "buttons", "forgotPassword", "disabled"]
 		)
 		AppState.stateUpdated();
 	}

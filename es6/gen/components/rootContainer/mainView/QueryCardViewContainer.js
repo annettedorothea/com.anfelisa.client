@@ -20,7 +20,7 @@ import { routeToSelectedCategory } from "../../../common/ActionFunctions";
 export const QueryCardViewContainer = ( props ) => {
 	
 	return <QueryCardView {...props} routeToDefault={routeToDefault} >
-		<NextCardContainer {...props.nextCard }  enableScoreButtons={props.enableScoreButtons}  displayWanted={displayWanted} scoreCard={scoreCard} scoreReinforceCard={scoreReinforceCard} sortCardOut={sortCardOut} routeToSelectedCategory={routeToSelectedCategory}  />
+		<NextCardContainer {...props.nextCard }   displayWanted={displayWanted} scoreCard={scoreCard} scoreReinforceCard={scoreReinforceCard} sortCardOut={sortCardOut} routeToSelectedCategory={routeToSelectedCategory}  />
 	</QueryCardView> 
 }
 

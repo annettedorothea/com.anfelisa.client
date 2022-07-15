@@ -14,6 +14,23 @@ export default class LoadBoxesCommand extends AbstractLoadBoxesCommand {
     }
 
     handleResponse(data, resolve) {
+        if (data.previousBoxList) {
+            data.boxList.forEach((box) => {
+                const boxWithStats = data.previousBoxList.find((bs) => {
+                    return bs.boxId === box.boxId;
+                });
+                if (boxWithStats) {
+                    box.countsPerDayNextWeek = boxWithStats.countsPerDayNextWeek;
+                    box.maxCardsPerDay = boxWithStats.maxCardsPerDay;
+                    box.quality0Count = boxWithStats.quality0Count;
+                    box.quality1Count = boxWithStats.quality1Count;
+                    box.quality2Count = boxWithStats.quality2Count;
+                    box.quality3Count = boxWithStats.quality3Count;
+                    box.quality4Count = boxWithStats.quality4Count;
+                    box.quality5Count = boxWithStats.quality5Count;
+                }
+            });
+        }
     	this.addOkOutcome(data);
     	resolve(data);
     }

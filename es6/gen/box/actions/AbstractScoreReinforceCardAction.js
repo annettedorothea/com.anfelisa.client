@@ -25,6 +25,10 @@ export default class AbstractScoreReinforceCardAction extends Action {
 			{display: true}, 
 			["rootContainer", "spinner", "display"]
 		)
+		AppState.merge(
+			{disableScoreButtons: true}, 
+			["rootContainer", "mainView", "queryCardView", "nextCard", "disableScoreButtons"]
+		)
 		AppState.stateUpdated();
 	}
 	
@@ -32,6 +36,10 @@ export default class AbstractScoreReinforceCardAction extends Action {
 		AppState.merge(
 			{display: false}, 
 			["rootContainer", "spinner", "display"]
+		)
+		AppState.merge(
+			{disableScoreButtons: false}, 
+			["rootContainer", "mainView", "queryCardView", "nextCard", "disableScoreButtons"]
 		)
 		AppState.stateUpdated();
 	}

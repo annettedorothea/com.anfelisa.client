@@ -10,10 +10,10 @@ export default class DisplayWantedCommand extends AbstractDisplayWantedCommand {
         if (data.index < data.wantedItemsLength) {
             data.index += 1;
             if (data.wantedItemsLength === data.index) {
-                data.enableScoreButtons = true;
+                data.disableScoreButtons = false;
             }
         } else {
-            data.enableScoreButtons = true;
+            data.disableScoreButtons = false;
         }
         this.addOkOutcome(data);
         return data;

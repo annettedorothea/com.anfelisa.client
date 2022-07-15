@@ -5,12 +5,13 @@ box
 ACE 
 	InitBoxesForDay
 		call com.anfelisa.box.InitMyBoxesForDay
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok triggers (LoadBoxes) 
 				
 	LoadBoxes 
+		fromAppState ( common.rootContainer.mainView.dashboardView.boxList as previousBoxList )
 		call com.anfelisa.box.GetBoxes
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok ( 
 			merge common.rootContainer.mainView.dashboardView.boxList
 		) triggers (LoadBoxStatistics)
@@ -18,7 +19,7 @@ ACE
 	LoadBoxStatistics 
 		fromAppState ( common.rootContainer.mainView.dashboardView.boxList )
 		call com.anfelisa.box.GetBoxStatistics
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok ( 
 			merge common.rootContainer.mainView.dashboardView.boxList
 		)
@@ -26,7 +27,7 @@ ACE
 	LoadActiveCards
 		fromAppState (common.rootContainer.mainView.allActiveCardsView.boxId)
 		call com.anfelisa.box.LoadAllActiveCards
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok ( 
 			set common.rootContainer.mainView.allActiveCardsView.activeCardList
 			set common.rootContainer.mainView.allActiveCardsView.selectedCardIds
@@ -64,7 +65,7 @@ ACE
 			common.rootContainer.mainView.allActiveCardsView.boxId
 		) 
 	 	call com.anfelisa.box.ScheduleCards
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on noFilter triggers (LoadActiveCards)
 	
 	SortSelectedCardsOut 
@@ -73,12 +74,12 @@ ACE
 			common.rootContainer.mainView.allActiveCardsView.boxId
 		) 
 	 	call com.anfelisa.box.SortCardsOut
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok triggers (LoadActiveCards)
 		
 	UpdateCardPriority(cardId, priority, actualPriority)
 	 	call com.anfelisa.card.UpdateCardPriority
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok triggers (LoadActiveCards)
 
 	FilterActiveCardListWithLastQualityChanged ( lastQualityFilter )
@@ -115,7 +116,7 @@ ACE
 	DeleteBox
 		fromAppState ( common.rootContainer.mainView.dashboardView.deleteBox.boxId )
 		call com.anfelisa.box.DeleteBox
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok (
 			set common.rootContainer.mainView.dashboardView.deleteBox.boxId
 		) triggers (LoadBoxes)
@@ -125,19 +126,19 @@ ACE
 		
 	ArchiveBox (archived, boxId)
 		call com.anfelisa.box.ArchiveBox
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok triggers (InitBoxesForDay)
 	
 	LoadNextCard
 		fromAppState (common.rootContainer.mainView.queryCardView.boxId)
 	 	call com.anfelisa.box.LoadNextCard
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok (
 			set common.rootContainer.mainView.queryCardView.nextCard
 			set common.rootContainer.mainView.queryCardView.reverse
 			set common.rootContainer.mainView.queryCardView.openTodaysCards
 			set common.rootContainer.mainView.queryCardView.allTodaysCards
-			set common.rootContainer.mainView.queryCardView.enableScoreButtons
+			set common.rootContainer.mainView.queryCardView.nextCard.disableScoreButtons
 		)
 		on finished triggers (
 			common.RouteToDefault 
@@ -148,13 +149,13 @@ ACE
 		fromAppState ( common.rootContainer.mainView.queryCardView.nextCard.index)
 		on ok (
 			set common.rootContainer.mainView.queryCardView.nextCard.index
-			set common.rootContainer.mainView.queryCardView.enableScoreButtons
+			set common.rootContainer.mainView.queryCardView.nextCard.disableScoreButtons
 		)
 	
 	ScoreCard ( scoredCardQuality )
 		fromAppState ( common.rootContainer.mainView.queryCardView.nextCard.scheduledCardId )
 	 	call com.anfelisa.box.ScoreCard
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display, common.rootContainer.mainView.queryCardView.nextCard.disableScoreButtons 
 		on ok triggers (InitBoxesForDayDuringScore)
 		on showInfoToast triggers (
 			common.DisplayToast
@@ -166,7 +167,7 @@ ACE
 	ScoreReinforceCard ( keep )
 		fromAppState (common.rootContainer.mainView.queryCardView.nextCard.reinforceCardId)
 	 	call com.anfelisa.box.ScoreReinforceCard
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display, common.rootContainer.mainView.queryCardView.nextCard.disableScoreButtons 
 		on ok triggers (InitBoxesForDayDuringScore)
 
 	SortCardOut
@@ -175,18 +176,18 @@ ACE
 			common.rootContainer.mainView.queryCardView.boxId
 		)
 	 	call com.anfelisa.box.SortCardsOut
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display, common.rootContainer.mainView.queryCardView.nextCard.disableSortOutButton
 		on ok triggers (InitBoxesForDayDuringScore)
 
 	InitBoxesForDayDuringScore
 		call com.anfelisa.box.InitMyBoxesForDay
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok triggers (LoadNextCard) 
 				
 	LoadSettings
 		fromAppState (common.rootContainer.mainView.boxSettingsView.boxId)
 	 	call com.anfelisa.box.GetBoxSettings
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok (	merge common.rootContainer.mainView.boxSettingsView.boxSettings )
 			triggers (TooManyCardsStatus)
 		
@@ -202,7 +203,7 @@ ACE
 			common.rootContainer.mainView.boxSettingsView.boxSettings.wantedLanguage
 		)
 	 	call com.anfelisa.box.UpdateBox
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok triggers (common.RouteToDefault)
 	
 
@@ -245,7 +246,7 @@ ACE
 			common.rootContainer.mainView.boxSettingsView.boxSettings.wantedLanguage
 		)
 		call com.anfelisa.box.CreateBox
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok triggers (common.RouteToDefault)
 	
 	CategoryNameChanged ( categoryName )

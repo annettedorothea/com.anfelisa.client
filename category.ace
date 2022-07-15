@@ -9,7 +9,7 @@ LoadCategoryTree ( rootCategoryId, selectedCategoryId )
 		common.rootContainer.mainView.authorView.reverse
 	)
 	call com.anfelisa.category.GetCategoryTree
-	loadingFlag common.rootContainer.spinner.display
+	set loading common.rootContainer.spinner.display
 	on ok ( 
 		merge common.rootContainer.mainView.authorView.categoryTree
 		merge common.rootContainer.mainView.authorView.categoryTree.cardView
@@ -25,7 +25,7 @@ ReloadCategoryTree ( selectedCategoryId, categoryIdToBeExpanded )
 		common.rootContainer.mainView.authorView.reverse
 	)
 	call com.anfelisa.category.GetCategoryTree
-	loadingFlag common.rootContainer.spinner.display 
+	set loading common.rootContainer.spinner.display 
 	on ok ( 
 		merge common.rootContainer.mainView.authorView.categoryTree.rootCategory
 		merge common.rootContainer.mainView.authorView.categoryTree.selectedCategory
@@ -75,7 +75,7 @@ CreateCategory
 		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId
 	)
 	call com.anfelisa.category.CreateCategory
-	loadingFlag common.rootContainer.spinner.display 
+	set loading common.rootContainer.spinner.display 
 	on ok (
 		merge common.rootContainer.mainView.authorView.categoryTree.categoryDialog
 	) triggers ( ReloadCategoryTree )
@@ -94,7 +94,7 @@ UpdateCategory
 		common.rootContainer.mainView.authorView.categoryTree.categoryDialog.categoryName
 	)
 	call com.anfelisa.category.UpdateCategory
-	loadingFlag common.rootContainer.spinner.display 
+	set loading common.rootContainer.spinner.display 
 	on ok (
 		merge common.rootContainer.mainView.authorView.categoryTree.categoryDialog
 	) triggers (ReloadCategoryTree)
@@ -126,7 +126,7 @@ SearchUsername
 		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId
 	)
 	call com.anfelisa.category.SearchUsernameForInvitation
-	loadingFlag common.rootContainer.spinner.display 
+	set loading common.rootContainer.spinner.display 
 	on ok (merge common.rootContainer.mainView.authorView.categoryTree.inviteUserDialog.usernames)
 
 InviteUserNextStep (invitedUsername, editable)
@@ -149,7 +149,7 @@ InviteUser
 		common.rootContainer.mainView.authorView.categoryTree.inviteUserEditableDialog.invitedUsername
 	)
 	call com.anfelisa.category.InviteUserToCategory
-	loadingFlag common.rootContainer.spinner.display 
+	set loading common.rootContainer.spinner.display 
 	on ok (
 		merge common.rootContainer.mainView.authorView.categoryTree.inviteUserEditableDialog
 	)
@@ -171,7 +171,7 @@ DeleteCategory
 		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId
 	)
 	call com.anfelisa.category.DeleteCategory
-	loadingFlag common.rootContainer.spinner.display 
+	set loading common.rootContainer.spinner.display 
 	on ok (
 		merge common.rootContainer.mainView.authorView.categoryTree.deleteCategoryDialog
 	) triggers (ReloadCategoryTree)
@@ -211,7 +211,7 @@ MoveCategory
 		common.rootContainer.mainView.authorView.categoryTree.movedCategory.categoryId as movedCategoryId
 	)
  	call com.anfelisa.category.MoveCategory
-	loadingFlag common.rootContainer.spinner.display 
+	set loading common.rootContainer.spinner.display 
 	on ok ( 
 		merge common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
 		merge common.rootContainer.mainView.authorView.categoryTree.dropAllowed
@@ -226,7 +226,7 @@ ChangeOrderCategory
 		common.rootContainer.mainView.authorView.categoryTree.movedCategory.categoryId as movedCategoryId
 	)
  	call com.anfelisa.category.ChangeOrderCategory
-	loadingFlag common.rootContainer.spinner.display 
+	set loading common.rootContainer.spinner.display 
 	on ok ( 
 		merge common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
 		merge common.rootContainer.mainView.authorView.categoryTree.dropAllowed
@@ -255,7 +255,7 @@ CreateReverseBox
 		common.rootContainer.mainView.authorView.categoryTree.rootCategory.rootCategoryId
 	)
 	call com.anfelisa.box.CreateReverseBox
-	loadingFlag common.rootContainer.spinner.display 
+	set loading common.rootContainer.spinner.display 
 	on ok triggers (common.RouteToDefault)
 	
 

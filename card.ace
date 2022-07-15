@@ -12,7 +12,7 @@ ACE
 			common.rootContainer.mainView.authorView.reverse
 		)
 		call com.anfelisa.card.GetCards
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok ( 
 			merge common.rootContainer.mainView.authorView.categoryTree.cardView
 		)
@@ -24,7 +24,7 @@ ACE
 	 		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId
 	 	)
 	 	call com.anfelisa.card.CreateCard
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok ( merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard )
 		triggers (LoadCards)
 	
@@ -35,19 +35,19 @@ ACE
 	 		common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard.cardId
 	 	)
 	 	call com.anfelisa.card.UpdateCard
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok ( merge common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard )
 		triggers (LoadCards)
 	
 	UpdateCardPriority(cardId, priority)
 	 	call com.anfelisa.card.UpdateCardPriority
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok triggers (LoadCards)
 	
 	DeleteCard 
 	 	fromAppState ( common.rootContainer.mainView.authorView.categoryTree.cardView.deleteCard.cardId )
 	 	call com.anfelisa.card.DeleteCard
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok ( 
 			merge common.rootContainer.mainView.authorView.categoryTree.cardView.deleteCard
 		) triggers (LoadCards)
@@ -138,7 +138,7 @@ ACE
 			common.rootContainer.mainView.authorView.categoryTree.filter.filterNonScheduled.value as filterNonScheduled
 		) 
 	 	call com.anfelisa.box.ScheduleCards
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on noFilter triggers (LoadCards)
 		on filter triggers (category.ReloadCategoryTree)
 			
@@ -149,7 +149,7 @@ ACE
 			common.rootContainer.mainView.authorView.boxId
 		) 
 	 	call com.anfelisa.box.SortCardsOut
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok triggers (LoadCards)
 		
 	MoveCardsStarted
@@ -163,7 +163,7 @@ ACE
 			common.rootContainer.mainView.authorView.categoryTree.rootCategory
 		)
 	 	call com.anfelisa.card.MoveCards
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok (
 			merge common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds
 			merge common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
@@ -177,7 +177,7 @@ ACE
 			common.rootContainer.mainView.authorView.categoryTree.cardView.dragTargetCardId as cardId
 		)
 	 	call com.anfelisa.card.ChangeOrder
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok (
 			merge common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds
 			merge common.rootContainer.mainView.authorView.categoryTree.cardView.dragTargetCardId
@@ -197,7 +197,7 @@ ACE
 			common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId
 		)
 		call com.anfelisa.card.GetDuplicates
-		loadingFlag common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.displaySpinner 
+		set loading common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.displaySpinner 
 		on ok ( merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.cardDuplicates )
 		
 	Translate 
@@ -209,7 +209,7 @@ ACE
 			common.rootContainer.mainView.authorView.categoryTree.rootCategory.wantedLanguage
 		)
 		call com.anfelisa.card.GetTranslation
-		loadingFlag common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.displaySpinner 
+		set loading common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.displaySpinner 
 		on wantedFetched (merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.wanted ) triggers (SearchDuplicateCards)
 		on givenFetched (merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.given ) triggers (SearchDuplicateCards)
 		on error

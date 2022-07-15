@@ -71,7 +71,7 @@ export const NextCard = (props) => {
     const scoreButton = (quality) => {
         return <button
             onClick={() => scoreButtonClick(quality)}
-            disabled={!props.enableScoreButtons}
+            disabled={props.disableScoreButtons}
             className={`quality_${quality}`}
         >
             {translate(Texts.queryCards.scoreButtons[quality])}
@@ -81,7 +81,7 @@ export const NextCard = (props) => {
     const reinforceButton = (keep) => {
         return <button
             onClick={() => props.scoreReinforceCard(keep)}
-            disabled={!props.enableScoreButtons}
+            disabled={props.disableScoreButtons}
             className={`keep_${keep}`}
         >
             {translate(Texts.queryCards.reinforceButtons[keep])}
@@ -106,7 +106,10 @@ export const NextCard = (props) => {
                     {scoreButton(0)}
                 </div>
                 <div>
-                    <button onClick={props.sortCardOut}>
+                    <button
+                        onClick={props.sortCardOut}
+                        disabled={props.disableSortOutButton}
+                    >
                         {translate(Texts.queryCards.sortOut)}
                     </button>
                 </div>

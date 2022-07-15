@@ -6,7 +6,7 @@ ACE
 CheckUsername
 	fromAppState (common.rootContainer.mainView.registrationView.username.value as username)
 	call com.anfelisa.user.UsernameAvailable
-	loadingFlag common.rootContainer.mainView.registrationView.username.displayUsernameSpinner 
+	set loading common.rootContainer.mainView.registrationView.username.displayUsernameSpinner 
 	on empty ( merge common.rootContainer.mainView.registrationView.username.available ) triggers (Validate)
 	on ok ( merge common.rootContainer.mainView.registrationView.username.available ) triggers (Validate)
 
@@ -54,7 +54,7 @@ RegisterUser
 		common.rootContainer.mainView.registrationView.password.value as password
 	)
 	call com.anfelisa.user.RegisterUser
-	loadingFlag common.rootContainer.spinner.display 
+	set loading common.rootContainer.spinner.display, common.rootContainer.mainView.registrationView.buttons.register.disabled
 	on ok triggers ( common.DisplayToast Login)
 	on error triggers (common.DisplayErrorToast) 
 
@@ -64,7 +64,7 @@ Login
 		common.rootContainer.mainView.registrationView.password.value as password
 	)
  	call com.anfelisa.user.GetToken
-	loadingFlag common.rootContainer.spinner.display 
+	set loading common.rootContainer.spinner.display 
 	on ok (
 		set common.rootContainer.loggedInUser.username
 		set common.rootContainer.loggedInUser.token
@@ -74,7 +74,7 @@ Login
 	
 ConfirmEmail ( username, token )
 	call com.anfelisa.user.ConfirmEmail
-	loadingFlag common.rootContainer.spinner.display 
+	set loading common.rootContainer.spinner.display 
 	on ok triggers ( common.DisplayToast common.RouteToDefault)
 	on error triggers ( common.DisplayErrorToast common.RouteToDefault)
 

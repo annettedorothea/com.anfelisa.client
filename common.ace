@@ -18,7 +18,7 @@ Init
 	
 GetUserInfo (token)
 	call com.anfelisa.user.GetUserInfo
-	loadingFlag rootContainer.spinner.display 
+	set loading rootContainer.spinner.display 
 	on ok (
 		set rootContainer.loggedInUser.username
 		set rootContainer.loggedInUser.token
@@ -225,6 +225,7 @@ ui JSX rootContainer {
 				}			
 			}
 			login Button {
+				disabled
 				actions {
 					"onClick" login.Login
 				}
@@ -490,7 +491,8 @@ ui JSX rootContainer {
 		}
 		queryCardView {
 			nextCard {
-				enableScoreButtons
+				disableScoreButtons
+				disableSortOutButton
 				cardId
 				categoryId
 				categoryName
@@ -515,7 +517,6 @@ ui JSX rootContainer {
 			openTodaysCards
 			allTodaysCards
 			reverse
-			enableScoreButtons
 			boxId
 			actions {
 				"routeToDefault" RouteToDefault

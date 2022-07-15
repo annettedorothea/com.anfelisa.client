@@ -20,7 +20,7 @@ ACE
 			common.rootContainer.mainView.loginView.saveInLocalStorage.checked as saveInLocalStorage
 		)
 	 	call com.anfelisa.user.GetToken
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display, common.rootContainer.mainView.loginView.login.disabled
 		on saveInLocalStorage ( 
 			set common.rootContainer.token
 		) on ok (

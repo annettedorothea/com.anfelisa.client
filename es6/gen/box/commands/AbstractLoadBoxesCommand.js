@@ -17,6 +17,10 @@ export default class AbstractLoadBoxesCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
+        data.previousBoxList = AppState.get(
+        	["rootContainer", "mainView", "dashboardView", "boxList"]
+        )
+        ;
         data.outcomes = [];
     }
 

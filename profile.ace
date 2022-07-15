@@ -6,7 +6,7 @@ profile
 ACE 
 	LoadUser 
 		call com.anfelisa.user.GetUserProfile
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok (
 			merge common.rootContainer.mainView.profileView.email
 			merge common.rootContainer.mainView.profileView.username
@@ -15,7 +15,7 @@ ACE
 	DeleteUser
 		fromAppState (common.rootContainer.mainView.profileView.username as usernameToBeDeleted)
 		call com.anfelisa.user.DeleteUser
-		loadingFlag common.rootContainer.spinner.display 
+		set loading common.rootContainer.spinner.display 
 		on ok ( 
 			merge common.rootContainer.mainView.profileView.showDeleteUserDialog
 		) triggers ( 
