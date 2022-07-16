@@ -9,9 +9,7 @@ export default class DisplayWantedCommand extends AbstractDisplayWantedCommand {
     execute(data) {
         if (data.index < data.wantedItemsLength) {
             data.index += 1;
-            if (data.wantedItemsLength === data.index) {
-                data.disableScoreButtons = false;
-            }
+            data.disableScoreButtons = data.wantedItemsLength !== data.index;
         } else {
             data.disableScoreButtons = false;
         }

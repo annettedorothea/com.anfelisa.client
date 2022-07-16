@@ -30,7 +30,7 @@ import ReactDOM from "react-dom";
 import * as R from 'ramda'
 import {Texts} from "./app/Texts";
 import {RootContainerContainer} from "../gen/components/RootContainerContainer";
-import {initBoxesForDay, initBoxesForDayDuringScore, loadBoxes} from "../gen/box/ActionFunctions";
+import {initBoxesForDay, initBoxesForDayDuringScore} from "../gen/box/ActionFunctions";
 
 export let settings;
 
@@ -75,6 +75,17 @@ export function initEventListeners() {
     EventListenerRegistrationPassword.init();
 }
 
+const versionCheck = () => {
+    return setInterval(() => {
+        const currentVersion = settings.clientVersion;
+        loadActualClientVersion().then((actualClientVersion) => {
+            if (actualClientVersion !== currentVersion) {
+                displayVersionMismatchDialog();
+            }
+        });
+    }, 300 * 1000);
+}
+
 export function startApp() {
     window.onhashchange = () => {
         routeChanged();
@@ -83,16 +94,10 @@ export function startApp() {
     loadSettings().then(() => {
         init(location.hash, localStorage.getItem("username"), localStorage.getItem("password"));
     });
-    setInterval(() => {
-        const currentVersion = settings.clientVersion;
-        loadActualClientVersion().then((actualClientVersion) => {
-            if (actualClientVersion !== currentVersion) {
-                displayVersionMismatchDialog();
-            }
-        });
-    }, 300 * 1000);
+    let versionCheckId = versionCheck();
     document.onvisibilitychange = () => {
         if (document.visibilityState === 'visible') {
+            versionCheckId = versionCheck();
             const boxList = AppState.get(["rootContainer", "mainView", "dashboardView", "boxList"]);
             const nextCard = AppState.get(["rootContainer", "mainView", "queryCardView", "nextCard"]);
             if (boxList) {
@@ -100,6 +105,8 @@ export function startApp() {
             } else if (nextCard) {
                 initBoxesForDayDuringScore().then();
             }
+        } else {
+            clearInterval(versionCheckId)
         }
     }
 }
