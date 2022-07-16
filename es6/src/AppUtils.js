@@ -76,14 +76,12 @@ export function initEventListeners() {
 }
 
 const versionCheck = () => {
-    return setInterval(() => {
-        const currentVersion = settings.clientVersion;
-        loadActualClientVersion().then((actualClientVersion) => {
-            if (actualClientVersion !== currentVersion) {
-                displayVersionMismatchDialog();
-            }
-        });
-    }, 300 * 1000);
+    const currentVersion = settings.clientVersion;
+    loadActualClientVersion().then((actualClientVersion) => {
+        if (actualClientVersion !== currentVersion) {
+            displayVersionMismatchDialog();
+        }
+    });
 }
 
 export function startApp() {
@@ -94,10 +92,12 @@ export function startApp() {
     loadSettings().then(() => {
         init(location.hash, localStorage.getItem("username"), localStorage.getItem("password"));
     });
-    let versionCheckId = versionCheck();
+    const versionCheckInterval = 300 * 1000;
+    let versionCheckId = setInterval(versionCheck, versionCheckInterval);
     document.onvisibilitychange = () => {
         if (document.visibilityState === 'visible') {
-            versionCheckId = versionCheck();
+            versionCheck();
+            versionCheckId = setInterval(versionCheck, versionCheckInterval);
             const boxList = AppState.get(["rootContainer", "mainView", "dashboardView", "boxList"]);
             const nextCard = AppState.get(["rootContainer", "mainView", "queryCardView", "nextCard"]);
             if (boxList) {
