@@ -28,7 +28,7 @@ export const Footer = (props) => {
 				<a onClick={() =>
 					Utils.saveTimeline(
 						"no description",
-						props.mainView && props.mainView.loggedInUser ? props.mainView.loggedInUser.username : "anonymous"
+						props.loggedInUser ? props.loggedInUser.username : "anonymous"
 					)}
 				   target="ace">save timeline</a>
 			</p>
