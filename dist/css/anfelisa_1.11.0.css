@@ -393,10 +393,6 @@ table td.priority i {
     cursor: pointer;
 }
 
-.backButton {
-    margin-bottom: 12px;
-}
-
 .noBreak {
     white-space: nowrap;
 }
@@ -710,6 +706,14 @@ a:hover.tile.active h2 {
     margin-right: 8px;
 }
 
+.box h1 {
+    line-height: 36px;
+}
+
+.box .backButton {
+    margin-right: 24px;
+}
+
 .box .categoryLink {
     margin-bottom: 20px;
     text-align: center;
@@ -896,7 +900,7 @@ a:hover.tile.active h2 {
     line-height: 34px;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 400px;
+    max-width: 600px;
 }
 
 @media screen and (max-width: 600px) {

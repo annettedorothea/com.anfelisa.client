@@ -14,7 +14,6 @@ export default class CreateCategoryCommand extends AbstractCreateCategoryCommand
     }
 
     handleResponse(data, resolve) {
-        data.displayNewCategory = false;
         data.selectedCategoryId = data.parentCategoryId;
         data.categoryIdToBeExpanded = data.parentCategoryId;
         data.categoryDialog = null;

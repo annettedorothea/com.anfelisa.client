@@ -23,6 +23,7 @@ export default class LoadNextCardCommand extends AbstractLoadNextCardCommand {
             data.nextCard.index = 0;
             data.disableScoreButtons = true;
         }
+        console.log("LoadNextCardCommand", data);
         resolve(data);
     }
     handleError(data, resolve, reject) {

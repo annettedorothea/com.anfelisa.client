@@ -60,7 +60,7 @@ NewCategoryClick
 	
 CancelCategoryDialog
 	on ok (
-		merge common.rootContainer.mainView.authorView.categoryTree.categoryDialog
+		set common.rootContainer.mainView.authorView.categoryTree.categoryDialog
 	)
 	
 CategoryNameChanged ( categoryName )
@@ -77,7 +77,7 @@ CreateCategory
 	call com.anfelisa.category.CreateCategory
 	set loading common.rootContainer.spinner.display 
 	on ok (
-		merge common.rootContainer.mainView.authorView.categoryTree.categoryDialog
+		set common.rootContainer.mainView.authorView.categoryTree.categoryDialog
 	) triggers ( ReloadCategoryTree )
 
 EditCategoryClick
@@ -96,7 +96,7 @@ UpdateCategory
 	call com.anfelisa.category.UpdateCategory
 	set loading common.rootContainer.spinner.display 
 	on ok (
-		merge common.rootContainer.mainView.authorView.categoryTree.categoryDialog
+		set common.rootContainer.mainView.authorView.categoryTree.categoryDialog
 	) triggers (ReloadCategoryTree)
 
 InviteUserClick
@@ -213,9 +213,9 @@ MoveCategory
  	call com.anfelisa.category.MoveCategory
 	set loading common.rootContainer.spinner.display 
 	on ok ( 
-		merge common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
-		merge common.rootContainer.mainView.authorView.categoryTree.dropAllowed
-		merge common.rootContainer.mainView.authorView.categoryTree.movedCategory
+		set common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
+		set common.rootContainer.mainView.authorView.categoryTree.dropAllowed
+		set common.rootContainer.mainView.authorView.categoryTree.movedCategory
 	) triggers (category.ReloadCategoryTree)
 
 ChangeOrderCategory
@@ -228,9 +228,9 @@ ChangeOrderCategory
  	call com.anfelisa.category.ChangeOrderCategory
 	set loading common.rootContainer.spinner.display 
 	on ok ( 
-		merge common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
-		merge common.rootContainer.mainView.authorView.categoryTree.dropAllowed
-		merge common.rootContainer.mainView.authorView.categoryTree.movedCategory
+		set common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
+		set common.rootContainer.mainView.authorView.categoryTree.dropAllowed
+		set common.rootContainer.mainView.authorView.categoryTree.movedCategory
 	) triggers (category.ReloadCategoryTree)
 
 FilterNonScheduledCards

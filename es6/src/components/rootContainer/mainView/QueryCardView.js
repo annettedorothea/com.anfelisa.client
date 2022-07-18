@@ -3,41 +3,45 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 
 
 export const QueryCardView = (props) => {
-	const progress = () => {
-		const open = Math.round(props.openTodaysCards / props.allTodaysCards * 100);
-		const done = 100 - open;
-		return <div className="progress">
-			<div
-				className={`${done === 100 ? 'all-done' : 'done'}`}
-				style={{width: `${done}%`}}
-			/>
-			<div
-				className={`${open === 100 ? 'all-open' : 'open'}`}
-				style={{width: `${open}%`}}
-			/>
-		</div>
-	}
+    const progress = () => {
+        const open = Math.round(props.openTodaysCards / props.allTodaysCards * 100);
+        const done = 100 - open;
+        return <div className="progress">
+            <div
+                className={`${done === 100 ? 'all-done' : 'done'}`}
+                style={{width: `${done}%`}}
+            />
+            <div
+                className={`${open === 100 ? 'all-open' : 'open'}`}
+                style={{width: `${open}%`}}
+            />
+        </div>
+    }
 
-	return <div className="box">
-		<h1>
-			<button
-				className="backButton"
-				onClick={props.routeToDefault}
-			>
-				<i className="fa fa-arrow-left"/>
-			</button>
-			<span>{props.categoryName} {props.reverse ?
-				<i className="fas fa-arrows-alt-h withmarginleft"/> : null}</span>
-		</h1>
-		{progress()}
-		{props.children}
-	</div>
+    console.log("query", props);
+
+    if (!props.nextCard) {
+        return null
+    }
+
+    return <div className="box">
+        <h1>
+            <button
+                className="backButton left"
+                onClick={props.routeToDefault}
+            >
+                <i className="fa fa-arrow-left"/>
+            </button>
+            {props.nextCard.categoryName} {props.reverse ?
+            <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
+        </h1>
+        {progress()}
+        {props.children}
+    </div>
 }
 
 /******* S.D.G. *******/

@@ -81,7 +81,7 @@ export default class EventListenerRegistrationCategory {
 				)
 			});
 		ACEController.registerListener('category.CancelCategoryDialogOkEvent', (data) => {
-				AppState.merge(
+				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "categoryDialog"], 
 					["categoryName", "newCategory", "display"]
@@ -94,7 +94,7 @@ export default class EventListenerRegistrationCategory {
 				)
 			});
 		ACEController.registerListener('category.CreateCategoryOkEvent', (data) => {
-				AppState.merge(
+				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "categoryDialog"], 
 					["categoryName", "newCategory", "display"]
@@ -108,7 +108,7 @@ export default class EventListenerRegistrationCategory {
 				)
 			});
 		ACEController.registerListener('category.UpdateCategoryOkEvent', (data) => {
-				AppState.merge(
+				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "categoryDialog"], 
 					["categoryName", "newCategory", "display"]
@@ -227,38 +227,38 @@ export default class EventListenerRegistrationCategory {
 				)
 			});
 		ACEController.registerListener('category.MoveCategoryOkEvent', (data) => {
-				AppState.merge(
+				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "dropTargetCategoryId"]
 				)
 			});
 		ACEController.registerListener('category.MoveCategoryOkEvent', (data) => {
-				AppState.merge(
+				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "dropAllowed"]
 				)
 			});
 		ACEController.registerListener('category.MoveCategoryOkEvent', (data) => {
-				AppState.merge(
+				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "movedCategory"], 
 					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', (data) => {
-				AppState.merge(
+				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "dropTargetCategoryId"]
 				)
 			});
 		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', (data) => {
-				AppState.merge(
+				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "dropAllowed"]
 				)
 			});
 		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', (data) => {
-				AppState.merge(
+				AppState.set(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "movedCategory"], 
 					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories"]

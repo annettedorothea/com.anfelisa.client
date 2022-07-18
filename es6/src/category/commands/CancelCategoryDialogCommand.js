@@ -9,11 +9,7 @@ import AbstractCancelCategoryDialogCommand from "../../../gen/category/commands/
 
 export default class CancelCategoryDialogCommand extends AbstractCancelCategoryDialogCommand {
     execute(data) {
-        data.categoryDialog = {
-            display: false,
-            categoryName: "",
-            newCategory: null
-        };
+        data.categoryDialog = null;
     	this.addOkOutcome(data);
     	return data;
     }

@@ -15,7 +15,7 @@ export const Reverse = (props) => {
 			onClick={props.onClick}
 			title={translate(Texts.categoryTree.createReverseBox)}
 		>
-			<i className="fas fa-plus-circle"/>
+			<i className="fas fa-arrows-alt-h"/>
 		</button>
 	}
 	return null
