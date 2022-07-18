@@ -8,6 +8,11 @@ import {translate} from "../../../../../../../AppUtils";
 import {Texts} from "../../../../../../../app/Texts";
 
 export const NewCard = (props) => {
+
+    if (props.rootCategory && !props.rootCategory.editable) {
+        return null
+    }
+
     const onAltKeyUp = (e) => {
         e.preventDefault();
         if (e.keyCode === 13 && e.altKey && isValid()) {

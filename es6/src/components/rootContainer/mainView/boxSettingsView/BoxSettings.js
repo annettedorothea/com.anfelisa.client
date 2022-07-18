@@ -56,6 +56,8 @@ export const BoxSettings = (props) => {
 		return null;
 	}
 
+	const disabled = props.boxId && !props.editable;
+
 	return <div className="center-wide">
 		<div className="form">
 			<h1>{translate(Texts.boxSettings.title)}</h1>
@@ -78,7 +80,7 @@ export const BoxSettings = (props) => {
 						type="text"
 						value={props.categoryName}
 						id="categoryName"
-						disabled={props.shared}
+						disabled={disabled}
 					/>
 					{!props.categoryName ? <i className="fas fa-times outside error"/> : null}
 				</div>
@@ -118,12 +120,12 @@ export const BoxSettings = (props) => {
 					value={props.dictionaryLookup}
 					checked={props.dictionaryLookup}
 					id="dictionaryLookupEditCheckbox"
-					disabled={props.shared}
+					disabled={disabled}
 				/>
 				<select
 					onChange={(e) => props.givenLanguageChanged(e.target.value)}
 					value={props.givenLanguage}
-					disabled={!props.dictionaryLookup || props.shared}
+					disabled={!props.dictionaryLookup || disabled}
 					id="givenLanguage"
 				>
 					<option value="">{translate(Texts.boxSettings.languages.emtpyFrom)}</option>
@@ -134,7 +136,7 @@ export const BoxSettings = (props) => {
 				<select
 					onChange={(e) => props.wantedLanguageChanged(e.target.value)}
 					value={props.wantedLanguage}
-					disabled={!props.dictionaryLookup || props.shared}
+					disabled={!props.dictionaryLookup || disabled}
 					id="wantedLanguage"
 				>
 					<option value="">{translate(Texts.boxSettings.languages.emtpyTo)}</option>

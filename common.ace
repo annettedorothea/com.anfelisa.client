@@ -425,7 +425,7 @@ ui JSX rootContainer {
 				givenLanguage
 				wantedLanguage
 				categoryId
-				deletable
+				editable
 				shared
 				
 				allActiveCards

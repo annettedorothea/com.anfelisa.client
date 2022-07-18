@@ -12,6 +12,10 @@ export const CardView = (props) => {
 		return null;
 	}
 
+	if (props.rootCategory && !props.rootCategory.editable && props.cardTable && props.cardTable.cardList && props.cardTable.cardList.length === 0) {
+		return null;
+	}
+
 	const dictionary = () => {
 		if (!props.rootCategory.givenLanguage || !props.rootCategory.wantedLanguage) {
 			return null;

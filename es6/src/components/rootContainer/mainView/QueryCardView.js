@@ -22,8 +22,6 @@ export const QueryCardView = (props) => {
         </div>
     }
 
-    console.log("query", props);
-
     if (!props.nextCard) {
         return null
     }
