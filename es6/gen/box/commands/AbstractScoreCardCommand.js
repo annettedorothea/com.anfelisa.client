@@ -62,6 +62,8 @@ export default class AbstractScoreCardCommand extends AsynchronousCommand {
 						 payload)
 					.then((response) => {
 						data.intervalDifference = response.intervalDifference;
+						data.maxCardsPerDay = response.maxCardsPerDay;
+						data.maxInterval = response.maxInterval;
 						this.handleResponse(data, resolve, reject);
 					}, (error) => {
 						data.error = error;

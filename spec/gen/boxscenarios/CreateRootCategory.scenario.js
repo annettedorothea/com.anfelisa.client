@@ -309,7 +309,6 @@ describe("boxscenarios.CreateRootCategory", function () {
 				quality3Count : 0,
 				quality4Count : 0,
 				quality5Count : 0,
-				categoryAuthor : `username-${testId}`,
 				reverse : false,
 				editable : true,
 				archived : false,

@@ -26,7 +26,7 @@ import {
 } from "../gen/common/ActionFunctions";
 import {dumpTimeline} from "../gen/ace/Timeline";
 import React from "react";
-import ReactDOM from "react-dom";
+import {createRoot} from "react-dom/client";
 import * as R from 'ramda'
 import {Texts} from "./app/Texts";
 import {RootContainerContainer} from "../gen/components/RootContainerContainer";
@@ -232,11 +232,9 @@ export function deepCopy(object) {
 }
 
 export function renderApp() {
-    let container = <RootContainerContainer {...AppState.appState} />;
-    ReactDOM.render(
-        container,
-        document.getElementById('root')
-    );
+    const rootContainer = document.getElementById('root');
+    const root = createRoot(rootContainer);
+    root.render(<RootContainerContainer {...AppState.appState} />);
 }
 
 export function createError(textKey, text, code) {

@@ -23,6 +23,12 @@ export default class EventListenerRegistrationProfile {
 					["rootContainer", "mainView", "profileView", "username"]
 				)
 			});
+		ACEController.registerListener('profile.LoadUserOkEvent', (data) => {
+				AppState.merge(
+					data, 
+					["rootContainer", "mainView", "profileView", "deletable"]
+				)
+			});
 		ACEController.registerListener('profile.DeleteUserOkEvent', (data) => {
 				AppState.merge(
 					data, 

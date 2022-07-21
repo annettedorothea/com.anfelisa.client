@@ -77,9 +77,6 @@ export const Texts = {
         settings: {
             de: "Einstellungen"
         },
-        sharedTitle: {
-            de: "{0} von {1}"
-        },
         unarchiveBox: {
             de: "Wieder aktivieren"
         },
@@ -505,17 +502,29 @@ export const Texts = {
         invalidRole: {
             de: "Ungültige Rolle."
         },
-        intervalOffsetPostponed: {
-            de: "Die Karte wurde {0} Tage nach hinten verschoben, weil deine Box zu voll ist."
+        intervalOffsetPostponedSingularSingular: {
+            de: "Die Karte wurde einen Tag nach hinten verschoben, weil nur eine Karte am Tag abgefragt werden soll."
         },
-        intervalOffsetPostponedSingular: {
-            de: "Die Karte wurde einen Tag nach hinten verschoben, weil deine Box zu voll ist."
+        intervalOffsetPostponedSingularPlural: {
+            de: "Die Karte wurde einen Tag nach hinten verschoben, weil nur {0} Karten am Tag abgefragt werden sollen."
         },
-        intervalOffsetMovedForwardSingular: {
-            de: "Die Karte wurde einen Tag nach vorne verschoben, weil du eine maximale Anzahl an Tagen angegeben hast, wann die Karte erneut abgefragt werden soll."
+        intervalOffsetPostponedPluralSingular: {
+            de: "Die Karte wurde {0} Tage nach hinten verschoben, weil nur eine Karte am Tag abgefragt werden soll."
         },
-        intervalOffsetMovedForward: {
-            de: "Die Karte wurde {0} Tage nach vorne verschoben, weil du eine maximale Anzahl an Tagen angegeben hast, wann die Karte erneut abgefragt werden soll."
+        intervalOffsetPostponedPluralPlural: {
+            de: "Die Karte wurde {0} Tage nach hinten verschoben, weil nur {1} Karten am Tag abgefragt werden sollen."
+        },
+        intervalOffsetMovedForwardSingularSingular: {
+            de: "Die Karte wurde einen Tag nach vorne verschoben, weil eine Karte spätestens nach einem Tag wieder abgefragt werden soll."
+        },
+        intervalOffsetMovedForwardSingularPlural: {
+            de: "Die Karte wurde einen Tag nach vorne verschoben, weil eine Karte spätestens nach {0} Tagen wieder abgefragt werden soll."
+        },
+        intervalOffsetMovedForwardPluralSingular: {
+            de: "Die Karte wurde {0} Tage nach vorne verschoben, weil eine Karte spätestens nach einem Tag wieder abgefragt werden soll."
+        },
+        intervalOffsetMovedForwardPluralPlural: {
+            de: "Die Karte wurde {0} Tage nach vorne verschoben, weil eine Karte spätestens nach {1} Tagen wieder abgefragt werden soll."
         },
         maxCardsPerDayMustNotBeZero: {
             de: "Die maximale Anzahl von Karten pro Tag darf nicht 0 sein."

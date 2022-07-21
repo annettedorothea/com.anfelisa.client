@@ -561,6 +561,10 @@ a:hover.tile.active h2 {
     color: #ffa84c;
 }
 
+a:hover.tile.active .cards-next-days-item {
+    color: #337ab7;
+}
+
 .tile .badge {
     position: absolute;
     top: -14px;

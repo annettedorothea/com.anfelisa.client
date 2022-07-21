@@ -11,9 +11,7 @@ export const BoxListItem = (props) => {
     if (props.archived === true) {
         return <a className="tile box box-archived">
             <h2>
-                {!props.editable ?
-                    translate(Texts.box.sharedTitle, [props.categoryName, props.categoryAuthor]) :
-                    props.categoryName}
+                {props.categoryName}
                 {props.reverse ? <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
             </h2>
             <br/>
@@ -26,9 +24,7 @@ export const BoxListItem = (props) => {
         id={props.boxId}
         onClick={() => props.onClick(props.boxId, props.openTodaysCards, props.categoryId, props.reverse)}>
         <h2>
-            {!props.editable ?
-                translate(Texts.box.sharedTitle, [props.categoryName, props.categoryAuthor]) :
-                props.categoryName}
+            {props.categoryName}
             {props.reverse ? <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
         </h2>
         {props.openTodaysCards > 0 ? <span className="badge">{props.openTodaysCards}</span> : null}

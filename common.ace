@@ -338,7 +338,6 @@ ui JSX rootContainer {
 				quality5Count
 				List countsPerDayNextWeek
 				maxCardsPerDay
-				categoryAuthor
 				editable
 				reverse
 				archived
@@ -481,6 +480,7 @@ ui JSX rootContainer {
 			username
 			email
 			role
+			deletable
 			showDeleteUserDialog
 			actions {
 				"deleteUser" profile.DeleteUser

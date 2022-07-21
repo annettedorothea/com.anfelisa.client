@@ -57,6 +57,7 @@ export const ProfileView = (props) => {
 				<button
 					className="danger"
 					onClick={props.deleteUserClick}
+					disabled={!props.deletable}
 				>
 					{translate(Texts.profile.delete)}
 				</button>

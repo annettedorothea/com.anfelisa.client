@@ -38,6 +38,7 @@ export default class AbstractLoadUserCommand extends AsynchronousCommand {
 						data.email = response.email;
 						data.username = response.username;
 						data.userId = response.userId;
+						data.deletable = response.deletable;
 						this.handleResponse(data, resolve, reject);
 					}, (error) => {
 						data.error = error;
