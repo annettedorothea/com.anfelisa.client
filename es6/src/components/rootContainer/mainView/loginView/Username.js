@@ -16,6 +16,7 @@ export const Username = (props) => {
         <input
             id="username"
             type="text"
+            value={props.value}
             onChange={(event) => props.onChange(event.target.value)}
         />
         <a id="registration" onClick={props.onClick}>{translate(Texts.login.registration)}</a>

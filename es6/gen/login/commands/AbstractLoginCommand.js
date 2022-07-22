@@ -12,7 +12,6 @@ import * as AppState from "../../../src/AppState";
 import RouteToDefaultAction from "../../../src/common/actions/RouteToDefaultAction";
 import RouteChangedAction from "../../../src/common/actions/RouteChangedAction";
 import DisplayErrorToastAction from "../../../src/common/actions/DisplayErrorToastAction";
-import LogoutAction from "../../../src/common/actions/LogoutAction";
 
 export default class AbstractLoginCommand extends AsynchronousCommand {
     constructor() {
@@ -107,13 +106,6 @@ export default class AbstractLoginCommand extends AsynchronousCommand {
 						data: {
 							textKey: data.textKey, 
 							args: data.args
-						}
-					}
-				);
-				actionsToBeTriggered.push(
-					{
-						action: new LogoutAction(), 
-						data: {
 						}
 					}
 				);

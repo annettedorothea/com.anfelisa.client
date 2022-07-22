@@ -3,15 +3,13 @@
  ********************************************************************************/
 
 
-
-
 import AbstractLoginCommand from "../../../gen/login/commands/AbstractLoginCommand";
 import {Texts} from "../../app/Texts";
 
 export default class LoginCommand extends AbstractLoginCommand {
 
     validateCommandData() {
-    	return true;
+        return true;
     }
 
     handleResponse(data, resolve) {
@@ -19,16 +17,18 @@ export default class LoginCommand extends AbstractLoginCommand {
             this.addSaveInLocalStorageOutcome(data);
         }
         this.addOkOutcome(data);
-    	resolve(data);
+        resolve(data);
     }
+
     handleError(data, resolve) {
         data.textKey = Texts.messages.loginFailed;
         this.addUnauthorizedOutcome(data);
+        data.password = {
+            value: ""
+        };
         resolve(data);
     }
 }
-
-
 
 
 /******* S.D.G. *******/

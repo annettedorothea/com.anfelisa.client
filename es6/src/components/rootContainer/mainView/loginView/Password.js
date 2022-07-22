@@ -5,13 +5,27 @@
  ********************************************************************************/
 
 
-import React from "react";
+import React, {useEffect, useState} from "react";
 
 import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 import CryptoJS from "crypto-js";
 
 export const Password = (props) => {
+    
+    const [clearPassword, setClearPassword] = useState("");
+
+    const onChange = (value) => {
+        setClearPassword(value);
+        props.onChange(CryptoJS.MD5(value).toString())
+    }
+
+    useEffect(() => {
+        if (!props.value || props.value === "") {
+            setClearPassword("");
+        }
+    }, [props.value])
+
     return <div className="line">
         <label htmlFor="password">
             {translate(Texts.login.password)}
@@ -19,7 +33,8 @@ export const Password = (props) => {
         <input
             id="password"
             type="password"
-            onChange={(event) => props.onChange(CryptoJS.MD5(event.target.value).toString())}
+            value={clearPassword}
+            onChange={(event) => onChange(event.target.value)}
             autoComplete="current-password"
         />
         <a onClick={props.onClick}>{translate(Texts.login.forgotPassword)}</a>

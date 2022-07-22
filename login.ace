@@ -29,9 +29,10 @@ ACE
 		) triggers ( 
 			common.RouteToDefault common.RouteChanged
 		)
-		on unauthorized triggers ( 
+		on unauthorized (
+			merge common.rootContainer.mainView.loginView.password
+		) triggers ( 
 			common.DisplayErrorToast 
-			common.Logout
 		)
 	
 

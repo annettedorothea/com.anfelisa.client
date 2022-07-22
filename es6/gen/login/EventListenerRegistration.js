@@ -47,6 +47,13 @@ export default class EventListenerRegistrationLogin {
 					["rootContainer", "loggedInUser", "token"]
 				)
 			});
+		ACEController.registerListener('login.LoginUnauthorizedEvent', (data) => {
+				AppState.merge(
+					data, 
+					["rootContainer", "mainView", "loginView", "password"], 
+					["value"]
+				)
+			});
 	}
 
 }
