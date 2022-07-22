@@ -59,7 +59,7 @@ describe("loginscenarios.LoginUnauthorized", function () {
 	});
 	
 	it("loggedInUserIsNotSet", async () => {
-		expect(appStates.loggedInUserIsNotSet.rootContainer.loggedInUser, "loggedInUserIsNotSet").toEqual(null)
+		expect(appStates.loggedInUserIsNotSet.rootContainer.loggedInUser, "loggedInUserIsNotSet").toEqual(undefined)
 	});
 	it("usernameInLocalStorageWasNotSet", async () => {
 		expect(appStates.usernameInLocalStorageWasNotSet.rootContainer.token, "usernameInLocalStorageWasNotSet").toEqual(undefined)

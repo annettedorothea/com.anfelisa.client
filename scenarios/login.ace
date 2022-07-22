@@ -74,7 +74,7 @@ LoginUnauthorized
 	WHEN login.Login
 	THEN 
 		expectedState 
-			loggedInUserIsNotSet common.rootContainer.loggedInUser should be null
+			loggedInUserIsNotSet common.rootContainer.loggedInUser should be undefined
 			usernameInLocalStorageWasNotSet common.rootContainer.token should be undefined
 		verifications
 			errorMessageShown(common.rootContainer.messageContainer.messages)
