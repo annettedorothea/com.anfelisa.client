@@ -116,7 +116,7 @@ export const Texts = {
             de: "Maximale Anzahl von Karten, die pro Tag abgefragt werden"
         },
         maxInterval: {
-            de: "Maximaler Abstand in Tagen, wann eine Karte erneut abgefragt werden sollte"
+            de: "Maximaler Abstand in Tagen, wann eine Karte erneut abgefragt wird"
         },
         save: {
             de: "Speichern"
@@ -125,10 +125,10 @@ export const Texts = {
             de: "Einstellungen"
         },
         tooManyCardsWarning: {
-            de: "In diese Box passen mit deinen Einstellungen {0} Karten. Du hast aber {1} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maximalen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
+            de: "In diese Box passen mit deinen Einstellungen {0} Karten. Du hast aber {1} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maximalen Abstand, wann eine Karte erneut abgefragt wird, vergrößern."
         },
         tooManyCardsWarningOne: {
-            de: "In diese Box passt mit deinen Einstellungen eine Karte. Du hast aber {0} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maximalen Abstand, wann eine Karte erneut abgefragt werden sollte, vergrößern."
+            de: "In diese Box passt mit deinen Einstellungen eine Karte. Du hast aber {0} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maximalen Abstand, wann eine Karte erneut abgefragt wird, vergrößern."
         },
         languages: {
             de: {
@@ -378,16 +378,16 @@ export const Texts = {
             de: "Dürfen wir deine aktuellen Daten und deine letzten Aktionen speichern, um diesen Fehler zu analysieren?"
         },
         versionMismatchError: {
-            de: "Leider kam es zu einem Fehler, weil du eine alte Version verwendest."
+            de: "Leider kam es zu einem Fehler, weil du eine veraltete Version verwendest."
         },
         versionMismatchErrorMessage: {
             de: "Wir laden die Anwendung neu. Dabei können noch nicht gespeicherte Daten verloren gehen. Wir entschuldigen uns für die Unannehmlichkeiten."
         },
         versionMismatch: {
-            de: "Du verwendest eine alte Version."
+            de: "Es gibt ein Update."
         },
         versionMismatchMessage: {
-            de: "Möchtest du die Anwendung neu laden? Dabei können noch nicht gespeicherte Daten verloren gehen."
+            de: "Deswegen ist es empfehlenswert, die Anwendung neu zu laden. Jetzt neu laden?"
         },
         version: {
             de: "Version"
