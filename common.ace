@@ -553,18 +553,18 @@ ui JSX rootContainer {
 							"onClick" category.EditCategoryClick
 						}
 					}
-					invite Button {
-						selectedCategory
-						rootCategory
-						actions {
-							"onClick" category.InviteUserClick
-						}
-					}
 					delete Button {
 						selectedCategory
 						rootCategory
 						actions {
 							"onClick" category.DeleteCategoryClick
+						}
+					}
+					invite Button {
+						selectedCategory
+						rootCategory
+						actions {
+							"onClick" category.InviteUserClick
 						}
 					}
 					reverse Button {
