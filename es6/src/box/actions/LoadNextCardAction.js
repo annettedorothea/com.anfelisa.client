@@ -3,7 +3,7 @@ import AbstractLoadNextCardAction from "../../../gen/box/actions/AbstractLoadNex
 export default class LoadNextCardAction extends AbstractLoadNextCardAction {
 
     initActionData(data) {
-        let date = new Date();
+        let date = data.clientSystemTime;
         date.setHours(0, 0, 0, 0);
         data.todayAtMidnightInUTC = date.toISOString();
         return data;

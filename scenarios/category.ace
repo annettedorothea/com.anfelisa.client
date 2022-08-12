@@ -7,7 +7,7 @@ scenarios
 CreateCategoriesAndCards
 	GIVEN 
 		boxscenarios.CreateRootCategory
-	WHEN common.RouteToAuthorView(categoryId: "box-${testId}", reverse: "false")
+	WHEN common.RouteToAuthorView(categoryId: "box-${testId}", reverse: "false") 
 	THEN 
 	expectedState 
 		init common.rootContainer.mainView.authorView.boxId should be "box-${testId}"

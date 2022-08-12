@@ -8,7 +8,7 @@ import React from "react";
 const cardsNextDaysItem = (item) => {
     const toDoFactor = item.count * 1.0 / item.maxCardsPerDay;
     return <div
-        key={item.day}
+        key={item.index}
         className={`${item.rounded} cards-next-days-item`}
         style={{background: `rgba(192, 192, 192, ${toDoFactor})`}}
     >
@@ -28,14 +28,10 @@ export const CardsNextDays = (props) => {
         let index = 0;
         let items = props.countsPerDayNextWeek.map((count) => {
             index++;
-            let date = new Date();
-            date.setDate(date.getDate() + index);
-            date.setHours(0, 0, 0, 0);
-            const day = date.getDay();
             return cardsNextDaysItem({
                 maxCardsPerDay: props.maxCardsPerDay,
                 count,
-                day,
+                index,
                 language: props.language,
                 rounded: index === 1 ? "rounded-left" : index === 7 ? "rounded-right" : ""
             });
