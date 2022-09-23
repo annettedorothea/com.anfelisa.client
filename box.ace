@@ -139,6 +139,7 @@ ACE
 			set common.rootContainer.mainView.queryCardView.openTodaysCards
 			set common.rootContainer.mainView.queryCardView.allTodaysCards
 			set common.rootContainer.mainView.queryCardView.nextCard.disableScoreButtons
+			set common.rootContainer.mainView.queryCardView.nextCard.disableSortOutButton
 		)
 		on finished triggers (
 			common.RouteToDefault 
@@ -151,11 +152,19 @@ ACE
 			set common.rootContainer.mainView.queryCardView.nextCard.index
 			set common.rootContainer.mainView.queryCardView.nextCard.disableScoreButtons
 		)
+		
+	ScoreCard (scoredCardQuality)
+		on ok (
+			set common.rootContainer.mainView.queryCardView.nextCard.disableScoreButtons
+			set common.rootContainer.mainView.queryCardView.nextCard.disableSortOutButton
+		) triggers (
+			CallScoreCard
+		)
 	
-	ScoreCard ( scoredCardQuality )
+	CallScoreCard ( scoredCardQuality )
 		fromAppState ( common.rootContainer.mainView.queryCardView.nextCard.scheduledCardId )
 	 	call com.anfelisa.box.ScoreCard
-		set loading common.rootContainer.spinner.display, common.rootContainer.mainView.queryCardView.nextCard.disableScoreButtons 
+		set loading common.rootContainer.spinner.display 
 		on ok triggers (InitBoxesForDayDuringScore)
 		on showInfoToast triggers (
 			common.DisplayToast
@@ -165,18 +174,34 @@ ACE
 		)
 	
 	ScoreReinforceCard ( keep )
+		on ok (
+			set common.rootContainer.mainView.queryCardView.nextCard.disableScoreButtons
+			set common.rootContainer.mainView.queryCardView.nextCard.disableSortOutButton
+		) triggers (
+			CallScoreReinforceCard
+		)
+
+	CallScoreReinforceCard ( keep )
 		fromAppState (common.rootContainer.mainView.queryCardView.nextCard.reinforceCardId)
 	 	call com.anfelisa.box.ScoreReinforceCard
-		set loading common.rootContainer.spinner.display, common.rootContainer.mainView.queryCardView.nextCard.disableScoreButtons 
+		set loading common.rootContainer.spinner.display 
 		on ok triggers (InitBoxesForDayDuringScore)
 
 	SortCardOut
+		on ok (
+			set common.rootContainer.mainView.queryCardView.nextCard.disableScoreButtons
+			set common.rootContainer.mainView.queryCardView.nextCard.disableSortOutButton
+		) triggers (
+			CallSortCardOut
+		)
+
+	CallSortCardOut
 		fromAppState (
 			common.rootContainer.mainView.queryCardView.nextCard.cardId, 
 			common.rootContainer.mainView.queryCardView.boxId
 		)
 	 	call com.anfelisa.box.SortCardsOut
-		set loading common.rootContainer.spinner.display, common.rootContainer.mainView.queryCardView.nextCard.disableSortOutButton
+		set loading common.rootContainer.spinner.display
 		on ok triggers (InitBoxesForDayDuringScore)
 
 	InitBoxesForDayDuringScore

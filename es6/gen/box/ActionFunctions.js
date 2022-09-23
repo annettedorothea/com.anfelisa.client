@@ -25,8 +25,11 @@ import ArchiveBoxAction from "../../src/box/actions/ArchiveBoxAction";
 import LoadNextCardAction from "../../src/box/actions/LoadNextCardAction";
 import DisplayWantedAction from "../../src/box/actions/DisplayWantedAction";
 import ScoreCardAction from "../../src/box/actions/ScoreCardAction";
+import CallScoreCardAction from "../../src/box/actions/CallScoreCardAction";
 import ScoreReinforceCardAction from "../../src/box/actions/ScoreReinforceCardAction";
+import CallScoreReinforceCardAction from "../../src/box/actions/CallScoreReinforceCardAction";
 import SortCardOutAction from "../../src/box/actions/SortCardOutAction";
+import CallSortCardOutAction from "../../src/box/actions/CallSortCardOutAction";
 import InitBoxesForDayDuringScoreAction from "../../src/box/actions/InitBoxesForDayDuringScoreAction";
 import LoadSettingsAction from "../../src/box/actions/LoadSettingsAction";
 import SaveBoxSettingsAction from "../../src/box/actions/SaveBoxSettingsAction";
@@ -120,12 +123,24 @@ export function scoreCard(scoredCardQuality) {
     return new ScoreCardAction().apply({scoredCardQuality});
 }
 
+export function callScoreCard(scoredCardQuality) {
+    return new CallScoreCardAction().apply({scoredCardQuality});
+}
+
 export function scoreReinforceCard(keep) {
     return new ScoreReinforceCardAction().apply({keep});
 }
 
+export function callScoreReinforceCard(keep) {
+    return new CallScoreReinforceCardAction().apply({keep});
+}
+
 export function sortCardOut() {
     return new SortCardOutAction().apply({});
+}
+
+export function callSortCardOut() {
+    return new CallSortCardOutAction().apply({});
 }
 
 export function initBoxesForDayDuringScore() {

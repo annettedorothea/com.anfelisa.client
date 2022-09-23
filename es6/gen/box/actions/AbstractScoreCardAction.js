@@ -5,44 +5,19 @@
 
 
 
-import Action from "../../ace/AsynchronousAction";
+import Action from "../../ace/SynchronousAction";
 import ScoreCardCommand from "../../../src/box/commands/ScoreCardCommand";
-import * as AppState from "../../../src/AppState";
 
 export default class AbstractScoreCardAction extends Action {
 
     constructor() {
         super('box.ScoreCardAction');
-		this.postCall = this.postCall.bind(this);
 	}
 		
 	getCommand() {
 		return new ScoreCardCommand();
 	}
 
-	preCall() {
-		AppState.merge(
-			{display: true}, 
-			["rootContainer", "spinner", "display"]
-		)
-		AppState.merge(
-			{disableScoreButtons: true}, 
-			["rootContainer", "mainView", "queryCardView", "nextCard", "disableScoreButtons"]
-		)
-		AppState.stateUpdated();
-	}
-	
-	postCall() {
-		AppState.merge(
-			{display: false}, 
-			["rootContainer", "spinner", "display"]
-		)
-		AppState.merge(
-			{disableScoreButtons: false}, 
-			["rootContainer", "mainView", "queryCardView", "nextCard", "disableScoreButtons"]
-		)
-		AppState.stateUpdated();
-	}
 
 }
 

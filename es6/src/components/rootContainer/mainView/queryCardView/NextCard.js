@@ -117,7 +117,10 @@ export const NextCard = (props) => {
                     {reinforceButton(true)}
                 </div>
                 <div>
-                    <button onClick={props.sortCardOut}>
+                    <button
+                        onClick={props.sortCardOut}
+                        disabled={props.disableSortOutButton}
+                    >
                         {translate(Texts.queryCards.sortOut)}
                     </button>
                 </div>

@@ -127,6 +127,12 @@ export default class EventListenerRegistrationBox {
 					["rootContainer", "mainView", "queryCardView", "nextCard", "disableScoreButtons"]
 				)
 			});
+		ACEController.registerListener('box.LoadNextCardOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "queryCardView", "nextCard", "disableSortOutButton"]
+				)
+			});
 		ACEController.registerListener('box.DisplayWantedOkEvent', (data) => {
 				AppState.set(
 					data, 
@@ -137,6 +143,42 @@ export default class EventListenerRegistrationBox {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "queryCardView", "nextCard", "disableScoreButtons"]
+				)
+			});
+		ACEController.registerListener('box.ScoreCardOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "queryCardView", "nextCard", "disableScoreButtons"]
+				)
+			});
+		ACEController.registerListener('box.ScoreCardOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "queryCardView", "nextCard", "disableSortOutButton"]
+				)
+			});
+		ACEController.registerListener('box.ScoreReinforceCardOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "queryCardView", "nextCard", "disableScoreButtons"]
+				)
+			});
+		ACEController.registerListener('box.ScoreReinforceCardOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "queryCardView", "nextCard", "disableSortOutButton"]
+				)
+			});
+		ACEController.registerListener('box.SortCardOutOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "queryCardView", "nextCard", "disableScoreButtons"]
+				)
+			});
+		ACEController.registerListener('box.SortCardOutOkEvent', (data) => {
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "queryCardView", "nextCard", "disableSortOutButton"]
 				)
 			});
 		ACEController.registerListener('box.LoadSettingsOkEvent', (data) => {

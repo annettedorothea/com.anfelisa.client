@@ -46,9 +46,15 @@ module.exports = {
 	
 	scoreCard : "box_scoreCard",
 	
+	callScoreCard : "box_callScoreCard",
+	
 	scoreReinforceCard : "box_scoreReinforceCard",
 	
+	callScoreReinforceCard : "box_callScoreReinforceCard",
+	
 	sortCardOut : "box_sortCardOut",
+	
+	callSortCardOut : "box_callSortCardOut",
 	
 	initBoxesForDayDuringScore : "box_initBoxesForDayDuringScore",
 	
