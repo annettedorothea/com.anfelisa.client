@@ -18,13 +18,21 @@ module.exports = {
 	
 	givenOfNewCardChanged : "card_givenOfNewCardChanged",
 	
+	givenImageOfNewCardChanged : "card_givenImageOfNewCardChanged",
+	
 	wantedOfNewCardChanged : "card_wantedOfNewCardChanged",
+	
+	wantedImageOfNewCardChanged : "card_wantedImageOfNewCardChanged",
 	
 	cancelNewCard : "card_cancelNewCard",
 	
 	givenOfEditedCardChanged : "card_givenOfEditedCardChanged",
 	
+	givenImageOfEditedCardChanged : "card_givenImageOfEditedCardChanged",
+	
 	wantedOfEditedCardChanged : "card_wantedOfEditedCardChanged",
+	
+	wantedImageOfEditedCardChanged : "card_wantedImageOfEditedCardChanged",
 	
 	cancelEditCard : "card_cancelEditCard",
 	

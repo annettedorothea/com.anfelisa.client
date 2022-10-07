@@ -9,7 +9,13 @@ import AbstractUpdateCardCommand from "../../../gen/card/commands/AbstractUpdate
 
 export default class UpdateCardCommand extends AbstractUpdateCardCommand {
 
-    validateCommandData() {
+    validateCommandData(data) {
+        if (data.givenImage && data.givenImage.length > 0) {
+            data.given = data.givenImage
+        }
+        if (data.wantedImage && data.wantedImage.length > 0) {
+            data.wanted = data.wantedImage
+        }
     	return true;
     }
 
@@ -17,7 +23,9 @@ export default class UpdateCardCommand extends AbstractUpdateCardCommand {
         data.editedCard = {
             cardId: "",
             given: "",
+            givenImage: null,
             wanted: "",
+            wantedImage: null,
         };
     	this.addOkOutcome(data);
     	resolve(data);

@@ -11,10 +11,14 @@ import UpdateCardAction from "../../src/card/actions/UpdateCardAction";
 import UpdateCardPriorityAction from "../../src/card/actions/UpdateCardPriorityAction";
 import DeleteCardAction from "../../src/card/actions/DeleteCardAction";
 import GivenOfNewCardChangedAction from "../../src/card/actions/GivenOfNewCardChangedAction";
+import GivenImageOfNewCardChangedAction from "../../src/card/actions/GivenImageOfNewCardChangedAction";
 import WantedOfNewCardChangedAction from "../../src/card/actions/WantedOfNewCardChangedAction";
+import WantedImageOfNewCardChangedAction from "../../src/card/actions/WantedImageOfNewCardChangedAction";
 import CancelNewCardAction from "../../src/card/actions/CancelNewCardAction";
 import GivenOfEditedCardChangedAction from "../../src/card/actions/GivenOfEditedCardChangedAction";
+import GivenImageOfEditedCardChangedAction from "../../src/card/actions/GivenImageOfEditedCardChangedAction";
 import WantedOfEditedCardChangedAction from "../../src/card/actions/WantedOfEditedCardChangedAction";
+import WantedImageOfEditedCardChangedAction from "../../src/card/actions/WantedImageOfEditedCardChangedAction";
 import CancelEditCardAction from "../../src/card/actions/CancelEditCardAction";
 import EditCardAction from "../../src/card/actions/EditCardAction";
 import DeleteCardClickAction from "../../src/card/actions/DeleteCardClickAction";
@@ -59,8 +63,16 @@ export function givenOfNewCardChanged(given) {
     return new GivenOfNewCardChangedAction().apply({given});
 }
 
+export function givenImageOfNewCardChanged(givenImage) {
+    return new GivenImageOfNewCardChangedAction().apply({givenImage});
+}
+
 export function wantedOfNewCardChanged(wanted) {
     return new WantedOfNewCardChangedAction().apply({wanted});
+}
+
+export function wantedImageOfNewCardChanged(wantedImage) {
+    return new WantedImageOfNewCardChangedAction().apply({wantedImage});
 }
 
 export function cancelNewCard() {
@@ -71,8 +83,16 @@ export function givenOfEditedCardChanged(given) {
     return new GivenOfEditedCardChangedAction().apply({given});
 }
 
+export function givenImageOfEditedCardChanged(givenImage) {
+    return new GivenImageOfEditedCardChangedAction().apply({givenImage});
+}
+
 export function wantedOfEditedCardChanged(wanted) {
     return new WantedOfEditedCardChangedAction().apply({wanted});
+}
+
+export function wantedImageOfEditedCardChanged(wantedImage) {
+    return new WantedImageOfEditedCardChangedAction().apply({wantedImage});
 }
 
 export function cancelEditCard() {

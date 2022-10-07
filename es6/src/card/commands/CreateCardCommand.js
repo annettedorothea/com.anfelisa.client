@@ -9,14 +9,22 @@ import AbstractCreateCardCommand from "../../../gen/card/commands/AbstractCreate
 
 export default class CreateCardCommand extends AbstractCreateCardCommand {
 
-    validateCommandData() {
+    validateCommandData(data) {
+        if (data.givenImage && data.givenImage.length > 0) {
+            data.given = data.givenImage
+        }
+        if (data.wantedImage && data.wantedImage.length > 0) {
+            data.wanted = data.wantedImage
+        }
     	return true;
     }
 
     handleResponse(data, resolve) {
         data.newCard = {
             given: "",
+            givenImage: null,
             wanted: "",
+            wantedImage: null,
             displaySpinner: false,
         };
         data.cardDuplicates = [];

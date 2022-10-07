@@ -80,6 +80,18 @@ export const ActiveCardListItem = (props) => {
 		</div>
 	}
 
+	const card = (text) => {
+		if (text.indexOf("data:image") === 0) {
+			return <td className="visibleMobile">
+				<img src={text} alt="image"/>
+			</td>
+		}
+		return <td>
+			<pre>{text}</pre>
+		</td>
+
+	}
+
 	if (props.hide === true) {
 		return null;
 	}
@@ -91,12 +103,8 @@ export const ActiveCardListItem = (props) => {
 				checked={props.selectedCardIds.indexOf(props.cardId) >= 0}
 			/>
 		</td>
-		<td className="visibleMobile">
-			<pre>{props.given}</pre>
-		</td>
-		<td className="visibleMobile">
-			<pre>{props.wanted}</pre>
-		</td>
+		{card(props.given)}
+		{card(props.wanted)}
 		{priority()}
 		<td className="noBreak visibleMobile alignRight">
 			{props.next ? new Date(props.next).toLocaleDateString() : ""}

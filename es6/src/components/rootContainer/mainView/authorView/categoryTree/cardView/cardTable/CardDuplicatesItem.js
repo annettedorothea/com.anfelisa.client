@@ -6,18 +6,15 @@
 
 
 import React from "react";
+import {CardPreview} from "./CardPreview";
 
 export const CardDuplicatesItem = (props) => {
 	const renderGiven = () => {
-		return <td>
-			<pre>{props.given}</pre>
-		</td>
+		return CardPreview({text: props.given})
 	}
 
 	const renderWanted = () => {
-		return <td>
-			<pre>{props.wanted}</pre>
-		</td>
+		return CardPreview({text: props.wanted})
 	}
 	const renderPath = () => {
 		return <td colSpan={2}>

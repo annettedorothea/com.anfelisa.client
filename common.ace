@@ -736,7 +736,9 @@ ui JSX rootContainer {
 				        	dragTargetCardId
 							listId cardId
 							given
+							givenImage
 							wanted
+							wantedImage
 							cardAuthor
 							cardIndex
 							categoryId
@@ -748,11 +750,13 @@ ui JSX rootContainer {
 				        		"deleteCardClick" card.DeleteCardClick
 				        		"editCard" card.EditCard
 				        		"givenOfEditedCardChanged" card.GivenOfEditedCardChanged
+				        		"givenImageOfEditedCardChanged" card.GivenImageOfEditedCardChanged
+				        		"wantedOfEditedCardChanged" card.WantedOfEditedCardChanged
+				        		"wantedImageOfEditedCardChanged" card.WantedImageOfEditedCardChanged
 				        		"selectScheduleCardRange" card.SelectScheduleCardRange
 				        		"toggleScheduleCardSelection" card.ToggleScheduleCardSelection
 				        		"updateCard" card.UpdateCard
 				        		"updateCardPriority" card.UpdateCardPriority
-				        		"wantedOfEditedCardChanged" card.WantedOfEditedCardChanged
 				        		"moveCardsStarted" card.MoveCardsStarted
 				        		"onDragEnter" card.OnDragEnter
 				        		"onDragExit" card.OnDragExit
@@ -762,16 +766,20 @@ ui JSX rootContainer {
 				        	naturalInputOrder
 				        	rootCategory
 				        	given
+				        	givenImage
 				        	wanted
+				        	wantedImage
 				        	index
 				        	displaySpinner
 				        	actions {
 				        		"cancelNewCard" card.CancelNewCard
 				        		"createCard" card.CreateCard
 				        		"givenOfNewCardChanged" card.GivenOfNewCardChanged
+				        		"givenImageOfNewCardChanged" card.GivenImageOfNewCardChanged
+				        		"wantedOfNewCardChanged" card.WantedOfNewCardChanged
+				        		"wantedImageOfNewCardChanged" card.WantedImageOfNewCardChanged
 				        		"passValueToDictionary" card.PassValueToDictionary
 				        		"translate" card.Translate
-				        		"wantedOfNewCardChanged" card.WantedOfNewCardChanged
 				        	}
 				        }
 				        List cardDuplicates {
@@ -780,7 +788,9 @@ ui JSX rootContainer {
 				        	reverse
 							listId cardId
 							given
+							givenImage
 							wanted
+							wantedImage
 							cardAuthor
 							cardIndex
 							categoryId
@@ -814,7 +824,9 @@ ui JSX rootContainer {
 			        noComponent editedCard {
 			        	cardId
 			        	given
+			        	givenImage
 			        	wanted
+			        	wantedImage
 			        	index
 			        }
 		        }

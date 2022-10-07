@@ -13,8 +13,10 @@ export const NextCard = (props) => {
     if (!props.given || !props.wanted || props.openTodaysCards === 0) {
         return null;
     }
+
     const given = () => {
         let lines = [];
+        const isImage = props.given.indexOf("data:image") === 0;
         if (props.given.length > 0) {
             lines = props.given.split("\n");
         }
@@ -24,7 +26,7 @@ export const NextCard = (props) => {
             lineItems.push(<div key={`line${i}`}>{lines[i]}</div>)
         }
         return <div className={`given lastQuality_${props.lastQuality}`}>
-            <div className="given-word">{lineItems}</div>
+            <div className="given-word">{isImage ? <img src={props.given} alt="image"/> : lineItems}</div>
             <div className="small-info">{
                 props.count === 0 ?
                     translate(Texts.queryCards.never) :
@@ -38,8 +40,21 @@ export const NextCard = (props) => {
 
     const wanted = () => {
         let lines = [];
-        if (props.wanted.length > 0) {
-            lines = props.wanted.split("\n");
+        let lineItems = [];
+
+        if (props.wanted.indexOf("data:image") === 0) {
+            lines.push(props.wanted)
+            lineItems.push(<img key="image" src={props.wanted} alt="image" className={0 < props.index ? "" : "hidden"}/>);
+        } else {
+            if (props.wanted.length > 0) {
+                lines = props.wanted.split("\n");
+            }
+            for (let i = 0; i < lines.length; i++) {
+                lineItems.push(<div
+                    key={`line${i}`}
+                    className={i < props.index ? "" : "hidden"}
+                >{lines[i]}</div>);
+            }
         }
 
         const onClick = () => {
@@ -47,17 +62,12 @@ export const NextCard = (props) => {
             props.displayWanted(wantedItemsLength);
         }
 
-        let lineItems = [];
-        for (let i = 0; i < lines.length; i++) {
-            lineItems.push(<div
-                key={`line${i}`}
-                className={i < props.index ? "" : "hidden"}
-            >{lines[i]}</div>);
-        }
         return <div className={`wanted lastQuality_${props.lastQuality}`} onClick={onClick}>
             <div
                 className="wanted-word"
-            >{lineItems}</div>
+            >
+                {lineItems}
+            </div>
         </div>
     }
 

@@ -3,218 +3,212 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 import {translate} from "../../../../../../../AppUtils";
 import {Texts} from "../../../../../../../app/Texts";
+import {CardInput} from "./CardInput";
+import {CardPreview} from "./CardPreview";
 
 export const CardListItem = (props) => {
-	if (!(props.given.indexOf(props.filter) >= 0 || props.wanted.indexOf(props.filter) >= 0)) {
-		return null;
-	}
-	const editable = props.rootCategory.editable;
-	const editMode = props.cardId === props.editedCard.cardId && editable;
+    if (!(props.given.indexOf(props.filter) >= 0 || props.wanted.indexOf(props.filter) >= 0)) {
+        return null;
+    }
+    const editable = props.rootCategory.editable;
+    const editMode = props.cardId === props.editedCard.cardId && editable;
 
-	const onCheckboxClicked = (e) => {
-		if (e.nativeEvent.shiftKey === true) {
-			props.selectScheduleCardRange(props.cardId)
-		} else {
-			props.toggleScheduleCardSelection(props.cardId)
-		}
-	}
+    const onCheckboxClicked = (e) => {
+        if (e.nativeEvent.shiftKey === true) {
+            props.selectScheduleCardRange(props.cardId)
+        } else {
+            props.toggleScheduleCardSelection(props.cardId)
+        }
+    }
 
-	const onDragStart = (event) => {
-		if (editable) {
-			event.dataTransfer.setData("Text", props.given);
-			props.moveCardsStarted();
-		}
-	}
+    const onDragStart = (event) => {
+        if (editable) {
+            event.dataTransfer.setData("Text", props.given);
+            props.moveCardsStarted();
+        }
+    }
 
-	const onDrop = (event) => {
-		if (editable) {
-			event.preventDefault();
-			props.changeCardOrder().then();
-		}
-	}
+    const onDrop = (event) => {
+        if (editable) {
+            event.preventDefault();
+            props.changeCardOrder().then();
+        }
+    }
 
-	const onDragOver = (event) => {
-		if (editable) {
-			event.preventDefault();
-			if (props.cardId !== props.dragTargetCardId) {
-				props.onDragEnter(props.cardId);
-			}
-		}
-	}
+    const onDragOver = (event) => {
+        if (editable) {
+            event.preventDefault();
+            if (props.cardId !== props.dragTargetCardId) {
+                props.onDragEnter(props.cardId);
+            }
+        }
+    }
 
-	const onDragLeave = () => {
-		if (editable) {
-			props.onDragExit(props.cardId);
-		}
-	}
+    const onDragLeave = () => {
+        if (editable) {
+            props.onDragExit(props.cardId);
+        }
+    }
 
-	const onAltKeyUp = (e) => {
-		e.preventDefault();
-		if (e.keyCode === 13 && e.altKey && isValid()) {
-			onUpdate();
-		}
-		if (e.keyCode === 27) {
-			onCancel();
-		}
-	}
+    const onAltKeyUp = (e) => {
+        e.preventDefault();
+        if (e.keyCode === 13 && e.altKey && isValid()) {
+            onUpdate();
+        }
+        if (e.keyCode === 27) {
+            onCancel();
+        }
+    }
 
-	const onUpdate = () => {
-		props.updateCard().then();
-		document.getElementById(props.naturalInputOrder === true ? "given" : "wanted").focus();
-	}
+    const onUpdate = () => {
+        props.updateCard().then();
+    }
 
-	const onCancel = () => {
-		props.cancelEditCard();
-		document.getElementById(props.naturalInputOrder === true ? "given" : "wanted").focus();
-	}
+    const onCancel = () => {
+        props.cancelEditCard();
+    }
 
 
-	const isValid = () => {
-		return props.given && props.given.length > 0 && props.wanted && props.wanted.length > 0;
-	}
+    const isValid = () => {
+        return (props.editedCard.given && props.editedCard.given.length > 0 || props.editedCard.givenImage && props.editedCard.givenImage.length > 0)
+            && (props.editedCard.wanted && props.editedCard.wanted.length > 0 || props.editedCard.wantedImage && props.editedCard.wantedImage.length > 0);
+    }
 
-	const renderGiven = () => {
-		if (editMode === true) {
-			return <td className="textarea input">
-                <textarea
-					onChange={(event) => props.givenOfEditedCardChanged(event.target.value)}
-					autoComplete="off"
-					value={props.editedCard.given}
-					placeholder={`${translate(Texts.cardList.given)} ${props.rootCategory.dictionaryLookup ? "(" + translate(Texts.categoryList.languages[props.rootCategory.givenLanguage]) + ")" : ""}`}
-					onKeyUp={onAltKeyUp}
-				>
+    const renderGiven = () => {
+        if (editMode === true) {
+            return CardInput({
+                text: props.editedCard.given,
+                placeholder: `${translate(Texts.cardList.given)} ${props.rootCategory.dictionaryLookup ? "(" + translate(Texts.categoryList.languages[props.rootCategory.givenLanguage]) + ")" : ""}`,
+                onTextChanged: (event) => props.givenOfEditedCardChanged(event.target.value),
+                onKeyUp: onAltKeyUp,
+                image: props.editedCard.givenImage,
+                imageFileId: "givenImageEdit",
+                onImageChanged: props.givenImageOfEditedCardChanged,
+            })
+        }
+        return CardPreview({
+            text: props.given,
+            onEdit: () => editable ? props.editCard(props.cardId) : {}
+        })
+    }
 
-                </textarea>
-			</td>
+    const renderWanted = () => {
+        if (editMode === true) {
+            return CardInput({
+                text: props.editedCard.wanted,
+                placeholder: `${translate(Texts.cardList.wanted)} ${props.rootCategory.dictionaryLookup ? "(" + translate(Texts.categoryList.languages[props.rootCategory.wantedLanguage]) + ")" : ""}`,
+                onTextChanged: (event) => props.wantedOfEditedCardChanged(event.target.value),
+                onKeyUp: onAltKeyUp,
+                image: props.editedCard.wantedImage,
+                imageFileId: "wantedImageEdit",
+                onImageChanged: props.wantedImageOfEditedCardChanged,
+            })
+        }
+        return CardPreview({
+            text: props.wanted,
+            onEdit: () => editable ? props.editCard(props.cardId) : {}
+        })
+    }
 
-		}
-		return <td onDoubleClick={() => editable ? props.editCard(props.cardId) : {}}>
-			<pre>{props.given}</pre>
-		</td>
-	}
+    const priority = () => {
+        const priorityChanged = (priority) => {
+            if (editable) {
+                props.updateCardPriority(props.cardId, priority).then();
+            }
+        }
+        const priorityClass = (index) => {
+            if (props.priority && index <= props.priority) {
+                return "fa fa-star";
+            }
+            return "far fa-star";
+        }
+        return <td className="priority noBreak">
+            <i
+                className={priorityClass(1)}
+                onClick={
+                    editable ?
+                        () => priorityChanged(props.priority === 1 ? null : 1) :
+                        () => {
+                        }
+                }
+            />
+            <i
+                className={priorityClass(2)}
+                onClick={
+                    editable ?
+                        () => priorityChanged(props.priority === 2 ? null : 2) :
+                        () => {
+                        }
+                }
+            />
+            <i
+                className={priorityClass(3)}
+                onClick={
+                    editable ?
+                        () => priorityChanged(props.priority === 3 ? null : 3) :
+                        () => {
+                        }
+                }
+            />
+        </td>
+    }
 
-	const renderWanted = () => {
-		if (editMode === true) {
-			return <td className="textarea input">
-                <textarea
-					onChange={(event) => props.wantedOfEditedCardChanged(event.target.value)}
-					autoComplete="off"
-					value={props.editedCard.wanted}
-					placeholder={`${translate(Texts.cardList.wanted)} ${props.rootCategory.dictionaryLookup ? "(" + translate(Texts.categoryList.languages[props.rootCategory.wantedLanguage]) + ")" : ""}`}
-					onKeyUp={onAltKeyUp}
-				>
-
-                </textarea>
-			</td>
-
-		}
-		return <td onDoubleClick={() => editable ? props.editCard(props.cardId) : {}}>
-			<pre>{props.wanted}</pre>
-		</td>
-	}
-
-	const priority = () => {
-		const priorityChanged = (priority) => {
-			if (editable) {
-				props.updateCardPriority(props.cardId, priority).then();
-			}
-		}
-		const priorityClass = (index) => {
-			if (props.priority && index <= props.priority) {
-				return "fa fa-star";
-			}
-			return "far fa-star";
-		}
-		return <td className="priority noBreak">
-			<i
-				className={priorityClass(1)}
-				onClick={
-					editable ?
-						() => priorityChanged(props.priority === 1 ? null : 1) :
-						() => {
-						}
-				}
-			/>
-			<i
-				className={priorityClass(2)}
-				onClick={
-					editable ?
-						() => priorityChanged(props.priority === 2 ? null : 2) :
-						() => {
-						}
-				}
-			/>
-			<i
-				className={priorityClass(3)}
-				onClick={
-					editable ?
-						() => priorityChanged(props.priority === 3 ? null : 3) :
-						() => {
-						}
-				}
-			/>
-		</td>
-	}
-
-	return <tr
-		onDragOver={onDragOver}
-		onDrop={onDrop}
-		onDragLeave={onDragLeave}
-		className={props.cardId === props.dragTargetCardId ? "dragTarget" : ""}
-	>
-		<td className="notPrinted">
-			<input
-				type="checkbox"
-				onChange={onCheckboxClicked}
-				checked={props.selectedCardIds.indexOf(props.cardId) >= 0}
-			/>
-		</td>
-		{props.naturalInputOrder === true ? renderGiven() : renderWanted()}
-		{props.naturalInputOrder === true ? renderWanted() : renderGiven()}
-		{priority()}
-		{editable ? editMode === false ?
-				<td className="noBreak notPrinted">
-					<button onClick={() => props.editCard(props.cardId)}>
-						<i className="fas fa-pen"/>
-					</button>
-					<button onClick={() => props.deleteCardClick(props.cardId)}>
-						<i className="fas fa-times"/>
-					</button>
-					{props.selectedCardIds.indexOf(props.cardId) >= 0 ?
-						<i
-							className="fas fa-align-justify"
-							draggable={true}
-							onDragStart={(event) => onDragStart(event)}
-						/> :
-						null
-					}
-				</td> :
-				<td className="noBreak notPrinted">
-					<button
-						disabled={!isValid()}
-						onClick={onUpdate}
-					>
-						<i className="fas fa-check"/>
-					</button>
-					<button
-						onClick={onCancel}
-					>
-						<i className="fas fa-times"/>
-					</button>
-				</td> :
-			null
-		}
-		<td className="noBreak notPrinted alignRight">
-			{props.next ? new Date(props.next).toLocaleDateString() : ""}
-		</td>
-	</tr>
+    return <tr
+        onDragOver={onDragOver}
+        onDrop={onDrop}
+        onDragLeave={onDragLeave}
+        className={props.cardId === props.dragTargetCardId ? "dragTarget" : ""}
+    >
+        <td className="notPrinted">
+            <input
+                type="checkbox"
+                onChange={onCheckboxClicked}
+                checked={props.selectedCardIds.indexOf(props.cardId) >= 0}
+            />
+        </td>
+        {props.naturalInputOrder === true ? renderGiven() : renderWanted()}
+        {props.naturalInputOrder === true ? renderWanted() : renderGiven()}
+        {priority()}
+        {editable ? editMode === false ?
+                <td className="noBreak notPrinted">
+                    <button onClick={() => props.editCard(props.cardId)}>
+                        <i className="fas fa-pen"/>
+                    </button>
+                    <button onClick={() => props.deleteCardClick(props.cardId)}>
+                        <i className="fas fa-times"/>
+                    </button>
+                    {props.selectedCardIds.indexOf(props.cardId) >= 0 ?
+                        <i
+                            className="fas fa-align-justify"
+                            draggable={true}
+                            onDragStart={(event) => onDragStart(event)}
+                        /> :
+                        null
+                    }
+                </td> :
+                <td className="noBreak notPrinted">
+                    <button
+                        disabled={!isValid()}
+                        onClick={onUpdate}
+                    >
+                        <i className="fas fa-check"/>
+                    </button>
+                    <button
+                        onClick={onCancel}
+                    >
+                        <i className="fas fa-times"/>
+                    </button>
+                </td> :
+            null
+        }
+        <td className="noBreak notPrinted alignRight">
+            {props.next ? new Date(props.next).toLocaleDateString() : ""}
+        </td>
+    </tr>
 }
-
 
 
 /******* S.D.G. *******/

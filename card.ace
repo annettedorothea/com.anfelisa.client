@@ -20,7 +20,9 @@ ACE
 	CreateCard 
 	 	fromAppState (
 	 		common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.wanted,
+	 		common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.wantedImage,
 	 		common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.given,
+	 		common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.givenImage,
 	 		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId
 	 	)
 	 	call com.anfelisa.card.CreateCard
@@ -31,7 +33,9 @@ ACE
 	UpdateCard 
 	 	fromAppState (
 	 		common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard.wanted,
+	 		common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard.wantedImage,
 	 		common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard.given,
+	 		common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard.givenImage,
 	 		common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard.cardId
 	 	)
 	 	call com.anfelisa.card.UpdateCard
@@ -57,10 +61,20 @@ ACE
 			merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.given
 		) triggers ( delayInMillis 1000 takeLatest SearchDuplicateCards )
 	
+	GivenImageOfNewCardChanged ( givenImage )
+		on ok (
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.givenImage
+		) triggers ( delayInMillis 1000 takeLatest SearchDuplicateCards )
+	
 	WantedOfNewCardChanged ( wanted )
 		on ok (
 			merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.wanted
-		)triggers ( delayInMillis 1000 takeLatest SearchDuplicateCards )
+		) triggers ( delayInMillis 1000 takeLatest SearchDuplicateCards )
+	
+	WantedImageOfNewCardChanged ( wantedImage )
+		on ok (
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard.wantedImage
+		) triggers ( delayInMillis 1000 takeLatest SearchDuplicateCards )
 	
 	CancelNewCard 
 		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.cardTable.newCard)
@@ -69,8 +83,14 @@ ACE
 	GivenOfEditedCardChanged ( given )
 		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard.given)
 	
+	GivenImageOfEditedCardChanged ( givenImage )
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard.givenImage)
+	
 	WantedOfEditedCardChanged ( wanted )
 		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard.wanted)
+	
+	WantedImageOfEditedCardChanged ( wantedImage )
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard.wantedImage)
 	
 	CancelEditCard 
 		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.editedCard)

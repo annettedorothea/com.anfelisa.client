@@ -24,7 +24,7 @@ pre {
     line-height: 20px;
 }
 
-input, button, textarea, select, .inputfile + label {
+input, button, textarea, select, .imageButton {
     font-size: 16px;
     font-family: Helvetica, sans-serif;
 }
@@ -45,7 +45,7 @@ input:disabled + label {
     color: #ccc;
 }
 
-button, .inputfile + label {
+button, .imageButton {
     border: none;
     border-radius: 4px;
     padding: 8px 20px;
@@ -56,7 +56,7 @@ button, .inputfile + label {
     opacity: .7;
 }
 
-button:hover:enabled, .inputfile + label:hover {
+button:hover:enabled, .imageButton:hover {
     opacity: 1;
 }
 
@@ -71,12 +71,12 @@ button.danger {
     color: #eee;
 }
 
-button.disabled, button[disabled], .inputfile[disabled] + label {
+button.disabled, button[disabled] {
     cursor: not-allowed;
     opacity: .4;
 }
 
-.inputfile + label {
+.imageButton {
     display: inline-block;
     cursor: pointer;
 }
@@ -294,7 +294,7 @@ th, td {
     padding: 4px 16px 4px 0;
 }
 
-td button, td .inputfile + label {
+td button, td .imageButton {
     padding: 2px 2px;
     margin-right: 4px;
 }
@@ -736,6 +736,13 @@ a:hover.tile.active .cards-next-days-item {
     margin: 12px 0;
 }
 
+.box .given-word img,
+.box .wanted-word img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+}
+
 .box .small-info {
     font-size: smaller;
     color: #777;
@@ -817,11 +824,6 @@ a:hover.tile.active .cards-next-days-item {
 
 .box button.keep_true {
     background-color: #E53C16;
-}
-
-.box img.image {
-    max-height: 600px;
-    max-width: 100%;
 }
 
 .box .scheduleNextCheckbox {
@@ -976,29 +978,20 @@ a:hover.tile.active .cards-next-days-item {
     margin-right: 8px;
 }
 
-.categoryCardSplitView .inputfile {
-    width: 0.1px;
-    height: 0.1px;
-    opacity: 0;
-    overflow: hidden;
-    position: absolute;
-    z-index: -1;
-}
-
 .categoryCardSplitView .preview {
     position: relative;
 
 }
 
 .categoryCardSplitView .preview img {
-    width: 240px;
+    height: auto;
+    width: auto;
+    max-width: 240px;
+    max-height: 240px;
 }
 
 .categoryCardSplitView .preview button {
-    border: none;
-    padding: 0;
-    width: 24px;
-    height: 24px;
+    padding: 2px;
     position: absolute;
     top: 0;
     right: 0;
@@ -1012,16 +1005,23 @@ a:hover.tile.active .cards-next-days-item {
 }
 
 .categoryCardSplitView table.cardTable td pre,
-.allActiveCards table.cardTable td pre {
+.allActiveCards td pre {
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 200px;
     max-height: 20px;
 }
 
+.allActiveCards img {
+    height: auto;
+    width: auto;
+    max-width: 240px;
+    max-height: 240px;
+}
+
 @media screen and (max-width: 600px) {
     .categoryCardSplitView table.cardTable td pre,
-    .allActiveCards table.cardTable td pre {
+    .allActiveCards td pre {
         max-width: 100px;
     }
 }
@@ -1033,7 +1033,7 @@ a:hover.tile.active .cards-next-days-item {
 }
 
 .categoryCardSplitView table.cardTable td.textarea,
-.allActiveCards table.cardTable td.textarea {
+.allActiveCards td.textarea {
     vertical-align: top;
 }
 

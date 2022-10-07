@@ -6,6 +6,7 @@
 import React from "react";
 import {translate} from "../../../../../../../AppUtils";
 import {Texts} from "../../../../../../../app/Texts";
+import {CardInput} from "./CardInput";
 
 export const NewCard = (props) => {
 
@@ -24,14 +25,11 @@ export const NewCard = (props) => {
     }
 
     const onCreate = () => {
-        props.createCard().then(() => {
-            document.getElementById(props.naturalInputOrder === true ? "given" : "wanted").focus();
-        });
+        props.createCard().then();
     }
 
     const onCancel = () => {
-        props.cancelNewCard();
-        document.getElementById(props.naturalInputOrder === true ? "given" : "wanted").focus();
+        props.cancelNewCard()
     }
 
     const onBlurGiven = () => {
@@ -53,35 +51,33 @@ export const NewCard = (props) => {
     }
 
     const renderGiven = () => {
-        return <td className="textarea input">
-            <textarea
-                onChange={(event) => props.givenOfNewCardChanged(event.target.value)}
-                autoComplete="off"
-                value={props.given}
-                placeholder={`${translate(Texts.cardList.given)} ${props.rootCategory.dictionaryLookup ? "(" + translate(Texts.categoryList.languages[props.rootCategory.givenLanguage]) + ")" : ""}`}
-                onKeyUp={onAltKeyUp}
-                onBlur={onBlurGiven}
-                id="given"
-            />
-        </td>
+        return CardInput({
+            text: props.given,
+            placeholder: `${translate(Texts.cardList.given)} ${props.rootCategory.dictionaryLookup ? "(" + translate(Texts.categoryList.languages[props.rootCategory.givenLanguage]) + ")" : ""}`,
+            onTextChanged: (event) => props.givenOfNewCardChanged(event.target.value),
+            onKeyUp: onAltKeyUp,
+            onBlur: onBlurGiven,
+            image: props.givenImage,
+            imageFileId: "givenImage",
+            onImageChanged: props.givenImageOfNewCardChanged,
+        })
     }
 
     const renderWanted = () => {
-        return <td className="textarea input">
-            <textarea
-                onChange={(event) => props.wantedOfNewCardChanged(event.target.value)}
-                autoComplete="off"
-                value={props.wanted}
-                placeholder={`${translate(Texts.cardList.wanted)} ${props.rootCategory.dictionaryLookup ? "(" + translate(Texts.categoryList.languages[props.rootCategory.wantedLanguage]) + ")" : ""}`}
-                onKeyUp={onAltKeyUp}
-                onBlur={onBlurWanted}
-                id="wanted"
-            />
-        </td>
+        return CardInput({
+            text: props.wanted,
+            placeholder: `${translate(Texts.cardList.wanted)} ${props.rootCategory.dictionaryLookup ? "(" + translate(Texts.categoryList.languages[props.rootCategory.wantedLanguage]) + ")" : ""}`,
+            onTextChanged: (event) => props.wantedOfNewCardChanged(event.target.value),
+            onKeyUp: onAltKeyUp,
+            onBlur: onBlurWanted,
+            image: props.wantedImage,
+            imageFileId: "wantedImage",
+            onImageChanged: props.wantedImageOfNewCardChanged,
+        })
     }
 
     const isValid = () => {
-        return props.given && props.given.length > 0 && props.wanted && props.wanted.length > 0;
+        return (props.given && props.given.length > 0 || props.givenImage && props.givenImage.length > 0) && (props.wanted && props.wanted.length > 0 || props.wantedImage && props.wantedImage.length > 0);
     }
     return <tr className="notPrinted inputRow">
         <td/>

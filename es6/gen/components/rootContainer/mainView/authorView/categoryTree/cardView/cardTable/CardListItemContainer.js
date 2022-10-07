@@ -13,11 +13,13 @@ import { changeCardOrder } from "../../../../../../../card/ActionFunctions";
 import { deleteCardClick } from "../../../../../../../card/ActionFunctions";
 import { editCard } from "../../../../../../../card/ActionFunctions";
 import { givenOfEditedCardChanged } from "../../../../../../../card/ActionFunctions";
+import { givenImageOfEditedCardChanged } from "../../../../../../../card/ActionFunctions";
+import { wantedOfEditedCardChanged } from "../../../../../../../card/ActionFunctions";
+import { wantedImageOfEditedCardChanged } from "../../../../../../../card/ActionFunctions";
 import { selectScheduleCardRange } from "../../../../../../../card/ActionFunctions";
 import { toggleScheduleCardSelection } from "../../../../../../../card/ActionFunctions";
 import { updateCard } from "../../../../../../../card/ActionFunctions";
 import { updateCardPriority } from "../../../../../../../card/ActionFunctions";
-import { wantedOfEditedCardChanged } from "../../../../../../../card/ActionFunctions";
 import { moveCardsStarted } from "../../../../../../../card/ActionFunctions";
 import { onDragEnter } from "../../../../../../../card/ActionFunctions";
 import { onDragExit } from "../../../../../../../card/ActionFunctions";
@@ -25,7 +27,7 @@ import { onDragExit } from "../../../../../../../card/ActionFunctions";
 
 export const CardListItemContainer = ( props ) => {
 	
-	return <CardListItem {...props} cancelEditCard={cancelEditCard} changeCardOrder={changeCardOrder} deleteCardClick={deleteCardClick} editCard={editCard} givenOfEditedCardChanged={givenOfEditedCardChanged} selectScheduleCardRange={selectScheduleCardRange} toggleScheduleCardSelection={toggleScheduleCardSelection} updateCard={updateCard} updateCardPriority={updateCardPriority} wantedOfEditedCardChanged={wantedOfEditedCardChanged} moveCardsStarted={moveCardsStarted} onDragEnter={onDragEnter} onDragExit={onDragExit}  /> 
+	return <CardListItem {...props} cancelEditCard={cancelEditCard} changeCardOrder={changeCardOrder} deleteCardClick={deleteCardClick} editCard={editCard} givenOfEditedCardChanged={givenOfEditedCardChanged} givenImageOfEditedCardChanged={givenImageOfEditedCardChanged} wantedOfEditedCardChanged={wantedOfEditedCardChanged} wantedImageOfEditedCardChanged={wantedImageOfEditedCardChanged} selectScheduleCardRange={selectScheduleCardRange} toggleScheduleCardSelection={toggleScheduleCardSelection} updateCard={updateCard} updateCardPriority={updateCardPriority} moveCardsStarted={moveCardsStarted} onDragEnter={onDragEnter} onDragExit={onDragExit}  /> 
 }
 
 

@@ -11,7 +11,9 @@ export default class CancelNewCardCommand extends AbstractCancelNewCardCommand {
     execute(data) {
         data.newCard = {
             given: "",
+            givenImage: null,
             wanted: "",
+            wantedImage: null,
             displaySpinner: false,
         };
     	this.addOkOutcome(data);

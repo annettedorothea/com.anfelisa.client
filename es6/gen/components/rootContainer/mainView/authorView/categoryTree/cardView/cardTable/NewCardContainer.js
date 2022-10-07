@@ -11,14 +11,16 @@ import { NewCard } from "../../../../../../../../src/components/rootContainer/ma
 import { cancelNewCard } from "../../../../../../../card/ActionFunctions";
 import { createCard } from "../../../../../../../card/ActionFunctions";
 import { givenOfNewCardChanged } from "../../../../../../../card/ActionFunctions";
+import { givenImageOfNewCardChanged } from "../../../../../../../card/ActionFunctions";
+import { wantedOfNewCardChanged } from "../../../../../../../card/ActionFunctions";
+import { wantedImageOfNewCardChanged } from "../../../../../../../card/ActionFunctions";
 import { passValueToDictionary } from "../../../../../../../card/ActionFunctions";
 import { translate } from "../../../../../../../card/ActionFunctions";
-import { wantedOfNewCardChanged } from "../../../../../../../card/ActionFunctions";
 
 
 export const NewCardContainer = ( props ) => {
 	
-	return <NewCard {...props} cancelNewCard={cancelNewCard} createCard={createCard} givenOfNewCardChanged={givenOfNewCardChanged} passValueToDictionary={passValueToDictionary} translate={translate} wantedOfNewCardChanged={wantedOfNewCardChanged}  /> 
+	return <NewCard {...props} cancelNewCard={cancelNewCard} createCard={createCard} givenOfNewCardChanged={givenOfNewCardChanged} givenImageOfNewCardChanged={givenImageOfNewCardChanged} wantedOfNewCardChanged={wantedOfNewCardChanged} wantedImageOfNewCardChanged={wantedImageOfNewCardChanged} passValueToDictionary={passValueToDictionary} translate={translate}  /> 
 }
 
 
