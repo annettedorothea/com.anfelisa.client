@@ -33,12 +33,14 @@ export const CardTable = (props) => {
                     type="checkbox"
                     onChange={props.toggleAllScheduleCardSelection}
                     checked={props.cardList.length > 0 && props.selectedCardIds.length === props.cardList.length}
+                    id="toggle-all"
                 />
             </th>
             <th colSpan={4}>
                 <button
                     disabled={props.selectedCardIds.length === 0}
                     onClick={props.scheduleSelectedCards}
+                    id="schedule"
                 >
                     {translate(Texts.cardList.scheduleSelectedCards)}
                 </button>

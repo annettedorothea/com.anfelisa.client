@@ -11,7 +11,8 @@ const LoginActionIds  = require("../../gen/actionIds/login/LoginActionIds");
 const RegistrationActionIds  = require("../../gen/actionIds/registration/RegistrationActionIds");
 const BoxActionIds  = require("../../gen/actionIds/box/BoxActionIds");
 const CategoryActionIds  = require("../../gen/actionIds/category/CategoryActionIds");
-const Verifications = require("../../src/categoryscenarios/CreateCategoriesAndCardsVerifications");
+const CardActionIds  = require("../../gen/actionIds/card/CardActionIds");
+const Verifications = require("../../src/happypath/HappyPathVerifications");
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
 
@@ -22,7 +23,7 @@ let driver;
 let appStates = {};
 let verifications = {};
     
-describe("categoryscenarios.CreateCategoriesAndCards", function () {
+describe("happypath.HappyPath", function () {
     beforeAll(async function () {
     	driver = ScenarioUtils.createDriver();
     	let appState;
@@ -98,7 +99,93 @@ describe("categoryscenarios.CreateCategoriesAndCards", function () {
 		await ScenarioUtils.waitInMillis(500);
 		
 		appState = await ScenarioUtils.getAppState(driver);
+		appStates.folderCreated = appState;
 		
+		
+		await ScenarioUtils.invokeAction(driver, CardActionIds.givenOfNewCardChanged, [`eins`]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, CardActionIds.passValueToDictionary);
+		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(500);
+		
+		await ScenarioUtils.invokeAction(driver, CardActionIds.createCard);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, CardActionIds.givenOfNewCardChanged, [`zwei`]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, CardActionIds.wantedOfNewCardChanged, [`two`]);
+		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(500);
+		
+		await ScenarioUtils.invokeAction(driver, CardActionIds.createCard);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, CardActionIds.givenOfNewCardChanged, [`drei`]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, CardActionIds.passValueToDictionary);
+		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(500);
+		
+		await ScenarioUtils.invokeAction(driver, CardActionIds.createCard);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, CardActionIds.toggleAllScheduleCardSelection);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, CardActionIds.scheduleSelectedCards);
+		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(500);
+		
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToDefault);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.boxClick, [`box-${testId}`,3,`box-${testId}`,`false`]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.displayWanted, [1]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.scoreCard, [0]);
+		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(500);
+		
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.displayWanted, [1]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.scoreCard, [5]);
+		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(500);
+		
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.displayWanted, [1]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.scoreCard, [3]);
+		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(500);
+		
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.displayWanted, [1]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.scoreReinforceCard, [`true`]);
+		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(500);
+		
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.displayWanted, [1]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.scoreReinforceCard, [`false`]);
+		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(500);
+		
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.displayWanted, [1]);
+		await ScenarioUtils.waitInMillis(10);
+		
+		await ScenarioUtils.invokeAction(driver, BoxActionIds.scoreReinforceCard, [`false`]);
+		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(5000);
 		
     });
 
@@ -126,6 +213,65 @@ describe("categoryscenarios.CreateCategoriesAndCards", function () {
 		}
 		)
 	});
+	
+	it("folderCreated", async () => {
+		expect(appStates.folderCreated.rootContainer.mainView.authorView.categoryTree.rootCategory, "folderCreated").toEqual({ 
+			categoryId : `box-${testId}`,
+			categoryIndex : null,
+			dictionaryLookup : true,
+			editable : true,
+			empty : false,
+			givenLanguage : `de`,
+			nonScheduledCount : null,
+			parentCategoryId : null,
+			rootCategoryId : `box-${testId}`,
+			wantedLanguage : `en`,
+			categoryName : `categoryWithDictionary`,
+			childCategories : [
+				{ 
+					categoryName : `Ordner 1`,
+					categoryId : `folder1-${testId}`,
+					categoryIndex : 1,
+					dictionaryLookup : true,
+					editable : true,
+					empty : true,
+					givenLanguage : `de`,
+					nonScheduledCount : null,
+					parentCategoryId : `box-${testId}`,
+					rootCategoryId : `box-${testId}`,
+					wantedLanguage : `en`,
+					expanded : false,
+					childCategories : [
+					]
+				}
+			]
+		}
+		)
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 

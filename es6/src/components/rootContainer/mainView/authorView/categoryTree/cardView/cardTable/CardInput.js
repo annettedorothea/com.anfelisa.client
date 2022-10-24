@@ -10,7 +10,8 @@ export const CardInput = ({
                               onBlur,
                               image,
                               imageFileId,
-                              onImageChanged
+                              onImageChanged,
+                              id
                           }) => {
 
     const onFileChange = (event) => {
@@ -34,11 +35,13 @@ export const CardInput = ({
     }
 
     if (image) {
-        return <td className="preview">
-            <img src={image} alt="image"/>
-            <button onClick={() => onImageChanged(null)} className="danger">
-                <i className="fas fa-times"/>
-            </button>
+        return <td>
+            <div className="preview">
+                <img src={image} alt="image"/>
+                <button onClick={() => onImageChanged(null)} className="danger">
+                    <i className="fas fa-times"/>
+                </button>
+            </div>
         </td>
     }
     return <td className="textarea input">
@@ -48,13 +51,17 @@ export const CardInput = ({
                 value={text}
                 placeholder={placeholder}
                 onKeyUp={onKeyUp}
-                onBlur={onBlur ? onBlur : () => {}}
+                onBlur={onBlur ? onBlur : () => {
+                }}
+                id={id}
             />
         <br/>
         <input type="file" id={imageFileId} onChange={onFileChange} hidden accept="image/*"/>
-        <label htmlFor={imageFileId} className="imageButton">
-            <i className="fas fa-image"/>
-        </label>
+        <div className="imageButtonWrapper">
+            <label htmlFor={imageFileId} className="imageButton">
+                <i className="fas fa-image"/>
+            </label>
+        </div>
     </td>
 
 }

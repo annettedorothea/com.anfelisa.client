@@ -8,6 +8,7 @@ const LoginActionIds = require("../gen/actionIds/login/LoginActionIds");
 const RegistrationActionIds = require("../gen/actionIds/registration/RegistrationActionIds");
 const BoxActionIds = require("../gen/actionIds/box/BoxActionIds");
 const CategoryActionIds = require("../gen/actionIds/category/CategoryActionIds");
+const CardActionIds = require("../gen/actionIds/card/CardActionIds");
 
 const browserParam = process.env.SELENIUM_BROWSER;
 const headless = process.env.HEADLESS;
@@ -95,6 +96,26 @@ module.exports = {
             await waitClearSendKeys(driver, 'categoryName', args[0]);
         } else if (CategoryActionIds.createCategory === action) {
             await click(driver, 'ok');
+        } else if (CardActionIds.givenOfNewCardChanged === action) {
+            await waitClearSendKeys(driver, 'given', args[0]);
+        } else if (CardActionIds.wantedOfNewCardChanged === action) {
+            await waitClearSendKeys(driver, 'wanted', args[0]);
+        } else if (CardActionIds.passValueToDictionary === action) {
+            await waitClearSendKeys(driver, 'wanted', " ");
+        } else if (CardActionIds.createCard === action) {
+            await click(driver, 'create-card');
+        } else if (CardActionIds.toggleAllScheduleCardSelection === action) {
+            await click(driver, 'toggle-all');
+        } else if (CardActionIds.scheduleSelectedCards === action) {
+            await click(driver, 'schedule');
+        } else if (BoxActionIds.boxClick === action) {
+            await click(driver, args[0]);
+        } else if (BoxActionIds.displayWanted === action) {
+            await click(driver, "wanted");
+        } else if (BoxActionIds.scoreCard === action) {
+            await click(driver, `score_${args[0]}`);
+        } else if (BoxActionIds.scoreReinforceCard === action) {
+            await click(driver, `keep_${args[0]}`);
         } else {
             console.log(`action ${action} not defined`);
         }

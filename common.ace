@@ -610,7 +610,8 @@ ui JSX rootContainer {
 						selectedCategory fromParent
 						dropAllowed fromParent
 						dropTargetCategoryId fromParent
-
+						expanded
+						childCategories
 						listId categoryId
 						categoryName
 						categoryIndex

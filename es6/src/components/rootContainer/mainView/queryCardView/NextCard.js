@@ -62,7 +62,7 @@ export const NextCard = (props) => {
             props.displayWanted(wantedItemsLength);
         }
 
-        return <div className={`wanted lastQuality_${props.lastQuality}`} onClick={onClick}>
+        return <div className={`wanted lastQuality_${props.lastQuality}`} onClick={onClick} id="wanted">
             <div
                 className="wanted-word"
             >
@@ -80,6 +80,7 @@ export const NextCard = (props) => {
             onClick={() => scoreButtonClick(quality)}
             disabled={props.disableScoreButtons}
             className={`quality_${quality}`}
+            id={`score_${quality}`}
         >
             {translate(Texts.queryCards.scoreButtons[quality])}
         </button>
@@ -90,6 +91,7 @@ export const NextCard = (props) => {
             onClick={() => props.scoreReinforceCard(keep)}
             disabled={props.disableScoreButtons}
             className={`keep_${keep}`}
+            id={`keep_${keep}`}
         >
             {translate(Texts.queryCards.reinforceButtons[keep])}
         </button>

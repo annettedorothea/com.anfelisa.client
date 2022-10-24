@@ -1,0 +1,99 @@
+HttpClient happypath
+
+ACE
+
+scenarios
+
+HappyPath
+	GIVEN 
+		boxscenarios.CreateRootCategory
+	WHEN common.RouteToAuthorView(categoryId: "box-${testId}", reverse: "false") 
+	THEN 
+	expectedState 
+		init common.rootContainer.mainView.authorView.boxId should be "box-${testId}"
+	AND WHEN category.NewCategoryClick
+	THEN expectedState
+		newCategoryDialogShown common.rootContainer.mainView.authorView.categoryTree.categoryDialog should be {
+			categoryName: "",
+			display: true,
+			newCategory: true
+		}
+		verifications okDisabled
+	AND WHEN category.CategoryNameChanged(categoryName:"Ordner 1")
+	THEN expectedState
+		categoryNameChanged common.rootContainer.mainView.authorView.categoryTree.categoryDialog should be {
+			categoryName: "Ordner 1",
+			display: true,
+			newCategory: true
+		}
+	AND WHEN category.CreateCategory 		
+		squishyValues {
+			uuid "folder1-${testId}"
+		} delayInMillis 500
+	THEN expectedState
+		folderCreated common.rootContainer.mainView.authorView.categoryTree.rootCategory should be {
+			categoryId: 'box-${testId}',
+			categoryIndex: null,
+			dictionaryLookup: true,
+			editable: true,
+        	empty: false,
+        	givenLanguage: 'de',
+        	nonScheduledCount: null,
+        	parentCategoryId: null,
+        	rootCategoryId: 'box-${testId}',
+        	wantedLanguage: 'en',
+			categoryName: "categoryWithDictionary",
+			childCategories: [
+				{
+					categoryName: "Ordner 1",
+					categoryId: 'folder1-${testId}',
+        			categoryIndex: 1,
+        			dictionaryLookup: true,
+        			editable: true,
+        			empty: true,
+        			givenLanguage: 'de',
+        			nonScheduledCount: null,
+        			parentCategoryId: 'box-${testId}',
+        			rootCategoryId: 'box-${testId}',
+        			wantedLanguage: 'en',
+        			expanded: false,
+        			childCategories: []
+				}
+			]
+		}
+	AND WHEN card.GivenOfNewCardChanged(given : "eins") 
+	AND WHEN card.PassValueToDictionary
+	delayInMillis 500
+	AND WHEN card.CreateCard 
+	AND WHEN card.GivenOfNewCardChanged(given : "zwei") 
+	AND WHEN card.WantedOfNewCardChanged(wanted : "two") 
+	delayInMillis 500
+	AND WHEN card.CreateCard 
+	AND WHEN card.GivenOfNewCardChanged(given : "drei") 
+	AND WHEN card.PassValueToDictionary
+	delayInMillis 500
+	AND WHEN card.CreateCard 
+	AND WHEN card.ToggleAllScheduleCardSelection
+	AND WHEN card.ScheduleSelectedCards
+	delayInMillis 500
+	AND WHEN common.RouteToDefault
+	AND WHEN box.BoxClick (boxId: "box-${testId}", openTodaysCards: 3, categoryId: "box-${testId}", reverse: "false")
+	AND WHEN box.DisplayWanted (wantedItemsLength: 1)
+	AND WHEN box.ScoreCard(scoredCardQuality: 0)
+	delayInMillis 500
+	AND WHEN box.DisplayWanted (wantedItemsLength: 1)
+	AND WHEN box.ScoreCard(scoredCardQuality: 5)
+	delayInMillis 500
+	AND WHEN box.DisplayWanted (wantedItemsLength: 1)
+	AND WHEN box.ScoreCard(scoredCardQuality: 3)
+	delayInMillis 500
+	AND WHEN box.DisplayWanted (wantedItemsLength: 1)
+	AND WHEN box.ScoreReinforceCard(keep: "true")
+	delayInMillis 500
+	AND WHEN box.DisplayWanted (wantedItemsLength: 1)
+	AND WHEN box.ScoreReinforceCard(keep: "false")
+	delayInMillis 500
+	AND WHEN box.DisplayWanted (wantedItemsLength: 1)
+	AND WHEN box.ScoreReinforceCard(keep: "false")
+	delayInMillis 5000
+		

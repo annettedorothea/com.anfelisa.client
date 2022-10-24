@@ -60,6 +60,7 @@ export const NewCard = (props) => {
             image: props.givenImage,
             imageFileId: "givenImage",
             onImageChanged: props.givenImageOfNewCardChanged,
+            id: "given"
         })
     }
 
@@ -73,6 +74,7 @@ export const NewCard = (props) => {
             image: props.wantedImage,
             imageFileId: "wantedImage",
             onImageChanged: props.wantedImageOfNewCardChanged,
+            id: "wanted"
         })
     }
 
@@ -90,6 +92,7 @@ export const NewCard = (props) => {
             <button
                 disabled={!isValid()}
                 onClick={onCreate}
+                id="create-card"
             >
                 <i className="fas fa-check"/>
             </button>
