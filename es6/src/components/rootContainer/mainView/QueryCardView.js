@@ -34,7 +34,7 @@ export const QueryCardView = (props) => {
             >
                 <i className="fa fa-arrow-left"/>
             </button>
-            {props.nextCard.categoryName} {props.reverse ?
+            {props.boxName} {props.reverse ?
             <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
         </h1>
         {progress()}

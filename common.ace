@@ -518,6 +518,7 @@ ui JSX rootContainer {
 			allTodaysCards
 			reverse
 			boxId
+			boxName
 			actions {
 				"routeToDefault" RouteToDefault
 			}

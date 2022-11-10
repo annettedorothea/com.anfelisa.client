@@ -56,6 +56,7 @@ export default class AbstractLoadNextCardCommand extends AsynchronousCommand {
 						data.allTodaysCards = response.allTodaysCards;
 						data.openTodaysCards = response.openTodaysCards;
 						data.reverse = response.reverse;
+						data.boxName = response.boxName;
 						this.handleResponse(data, resolve, reject);
 					}, (error) => {
 						data.error = error;

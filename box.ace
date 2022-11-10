@@ -134,6 +134,7 @@ ACE
 	 	call com.anfelisa.box.LoadNextCard
 		set loading common.rootContainer.spinner.display 
 		on ok (
+			set common.rootContainer.mainView.queryCardView.boxName
 			set common.rootContainer.mainView.queryCardView.nextCard
 			set common.rootContainer.mainView.queryCardView.reverse
 			set common.rootContainer.mainView.queryCardView.openTodaysCards
