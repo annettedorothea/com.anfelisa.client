@@ -14,7 +14,7 @@ export const MessagesItem = (props) => {
 		className={`toastWrapper ${props.visible === false ? "fadeOut" : ""}`}
 		onClick={() => props.destroyToast(props.id)}
 	>
-		<div className={`toast ${props.type}`}>{text}</div>
+		<div id={`toast_${props.id}`} className={`toast ${props.type}`}>{text}</div>
 	</div>
 }
 

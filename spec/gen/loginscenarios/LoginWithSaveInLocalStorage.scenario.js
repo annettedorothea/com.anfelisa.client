@@ -6,9 +6,9 @@
 
 
 const ScenarioUtils = require("../../src/ScenarioUtils");
-const LoginActionIds  = require("../../gen/actionIds/login/LoginActionIds");
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
 const RegistrationActionIds  = require("../../gen/actionIds/registration/RegistrationActionIds");
+const LoginActionIds  = require("../../gen/actionIds/login/LoginActionIds");
 const Verifications = require("../../src/loginscenarios/LoginWithSaveInLocalStorageVerifications");
 
 jasmine.DEFAULT_TIMEOUT_INTERVAL = ScenarioUtils.defaultTimeout;
@@ -42,6 +42,9 @@ describe("loginscenarios.LoginWithSaveInLocalStorage", function () {
 		await ScenarioUtils.waitInMillis(200);
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.logout);
 
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.destroyToast, [0]);
+		await ScenarioUtils.waitInMillis(10);
+		
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.usernameChanged, [`username-${testId}`]);
 		await ScenarioUtils.waitInMillis(10);
 		
@@ -88,6 +91,7 @@ describe("loginscenarios.LoginWithSaveInLocalStorage", function () {
 		
     });
 
+	
 	it("username", async () => {
 		expect(appStates.username.rootContainer.mainView.loginView.username.value, "username").toEqual(`username-${testId}`)
 	});

@@ -7,8 +7,8 @@
 
 const ScenarioUtils = require("../../src/ScenarioUtils");
 const CommonActionIds  = require("../../gen/actionIds/common/CommonActionIds");
-const LoginActionIds  = require("../../gen/actionIds/login/LoginActionIds");
 const RegistrationActionIds  = require("../../gen/actionIds/registration/RegistrationActionIds");
+const LoginActionIds  = require("../../gen/actionIds/login/LoginActionIds");
 const BoxActionIds  = require("../../gen/actionIds/box/BoxActionIds");
 const CategoryActionIds  = require("../../gen/actionIds/category/CategoryActionIds");
 const CardActionIds  = require("../../gen/actionIds/card/CardActionIds");
@@ -44,6 +44,7 @@ describe("happypath.HappyPath", function () {
 		await ScenarioUtils.invokeAction(driver, RegistrationActionIds.registerUser);
 		await ScenarioUtils.waitInMillis(200);
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.logout);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.destroyToast, [0]);
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.usernameChanged, [`username-${testId}`]);
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.passwordChanged, [`password`]);
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.toggleSaveInLocalStorage);

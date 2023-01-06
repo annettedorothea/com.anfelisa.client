@@ -34,9 +34,9 @@ DestroyToast
 	THEN expectedState 
 		errorDestroyed common.rootContainer.messageContainer.messages should be []
 		
-HideToastClick
+DestroyToastClick
 	GIVEN loginscenarios.LoginUnauthorized 
-	WHEN common.HideToast
+	WHEN common.DestroyToast(id: 0)
 	THEN expectedState 
 		errorDestroyed common.rootContainer.messageContainer.messages should be []
 		

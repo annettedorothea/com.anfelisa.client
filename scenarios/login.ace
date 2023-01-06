@@ -5,6 +5,9 @@ scenarios
 Login
 	GIVEN 
 		registrationscenarios.RegistrationHappyPath
+	WHEN
+		common.DestroyToast(id: 0)
+	AND
 	WHEN login.UsernameChanged(value: "username-${testId}")
 	THEN 
 		expectedState 
@@ -26,6 +29,9 @@ Login
 LoginWithSaveInLocalStorage
 	GIVEN 
 		registrationscenarios.RegistrationHappyPath
+	WHEN
+		common.DestroyToast(id: 0)
+	AND
 	WHEN login.UsernameChanged(value: "username-${testId}")
 	THEN 
 		expectedState 

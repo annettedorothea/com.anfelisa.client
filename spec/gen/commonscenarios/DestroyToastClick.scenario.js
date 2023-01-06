@@ -18,7 +18,7 @@ let driver;
 let appStates = {};
 let verifications = {};
     
-describe("commonscenarios.HideToastClick", function () {
+describe("commonscenarios.DestroyToastClick", function () {
     beforeAll(async function () {
     	driver = ScenarioUtils.createDriver();
     	let appState;
@@ -27,7 +27,7 @@ describe("commonscenarios.HideToastClick", function () {
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.passwordChanged, [`password`]);
 		await ScenarioUtils.invokeAction(driver, LoginActionIds.login);
 
-		await ScenarioUtils.invokeAction(driver, CommonActionIds.hideToast);
+		await ScenarioUtils.invokeAction(driver, CommonActionIds.destroyToast, [0]);
 		await ScenarioUtils.waitInMillis(10);
 		
 		appState = await ScenarioUtils.getAppState(driver);

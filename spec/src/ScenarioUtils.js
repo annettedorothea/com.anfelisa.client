@@ -50,8 +50,8 @@ module.exports = {
             await driver.get(`http://localhost:8080/#registration`);
         } else if (CommonActionIds.logout === action) {
             await click(driver, 'logout');
-        } else if (CommonActionIds.hideToast === action) {
-            await clickByClass(driver, 'toast');
+        } else if (CommonActionIds.destroyToast === action) {
+            await click(driver, `toast_${args[0]}`);
         } else if (LoginActionIds.usernameChanged === action) {
             await waitClearSendKeys(driver, 'username', args[0]);
         } else if (LoginActionIds.passwordChanged === action) {
