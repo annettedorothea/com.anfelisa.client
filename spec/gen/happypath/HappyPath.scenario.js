@@ -108,7 +108,7 @@ describe("happypath.HappyPath", function () {
 		
 		await ScenarioUtils.invokeAction(driver, CardActionIds.passValueToDictionary);
 		await ScenarioUtils.waitInMillis(10);
-		await ScenarioUtils.waitInMillis(500);
+		await ScenarioUtils.waitInMillis(1000);
 		
 		await ScenarioUtils.invokeAction(driver, CardActionIds.createCard);
 		await ScenarioUtils.waitInMillis(10);
@@ -118,7 +118,7 @@ describe("happypath.HappyPath", function () {
 		
 		await ScenarioUtils.invokeAction(driver, CardActionIds.wantedOfNewCardChanged, [`two`]);
 		await ScenarioUtils.waitInMillis(10);
-		await ScenarioUtils.waitInMillis(500);
+		await ScenarioUtils.waitInMillis(1000);
 		
 		await ScenarioUtils.invokeAction(driver, CardActionIds.createCard);
 		await ScenarioUtils.waitInMillis(10);
@@ -128,7 +128,7 @@ describe("happypath.HappyPath", function () {
 		
 		await ScenarioUtils.invokeAction(driver, CardActionIds.passValueToDictionary);
 		await ScenarioUtils.waitInMillis(10);
-		await ScenarioUtils.waitInMillis(500);
+		await ScenarioUtils.waitInMillis(1000);
 		
 		await ScenarioUtils.invokeAction(driver, CardActionIds.createCard);
 		await ScenarioUtils.waitInMillis(10);

@@ -63,15 +63,15 @@ HappyPath
 		}
 	AND WHEN card.GivenOfNewCardChanged(given : "eins") 
 	AND WHEN card.PassValueToDictionary
-	delayInMillis 500
+	delayInMillis 1000
 	AND WHEN card.CreateCard 
 	AND WHEN card.GivenOfNewCardChanged(given : "zwei") 
 	AND WHEN card.WantedOfNewCardChanged(wanted : "two") 
-	delayInMillis 500
+	delayInMillis 1000
 	AND WHEN card.CreateCard 
 	AND WHEN card.GivenOfNewCardChanged(given : "drei") 
 	AND WHEN card.PassValueToDictionary
-	delayInMillis 500
+	delayInMillis 1000
 	AND WHEN card.CreateCard 
 	AND WHEN card.ToggleAllScheduleCardSelection
 	AND WHEN card.ScheduleSelectedCards
