@@ -9,11 +9,9 @@ import {Texts} from "../../../app/Texts";
 
 
 export const ForgotPasswordView = (props) => {
-    return <div className="center">
-        <div className="form">
-            <h1>{translate(Texts.forgotPassword.title)}</h1>
-            {props.children}
-        </div>
+    return <div className="form">
+        <h1>{translate(Texts.forgotPassword.title)}</h1>
+        {props.children}
     </div>
 }
 

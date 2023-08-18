@@ -28,6 +28,7 @@ export default class AsynchronousCommand extends Command {
 			        reject(error);
 			    });
 			} else {
+				postCall();
 			    this.publishEvents(data).then(resolve);
 			}
         });

@@ -9,7 +9,7 @@ import {translate} from "../../../../../AppUtils";
 import {Texts} from "../../../../../app/Texts";
 
 export const ForgotPassword = (props) => {
-    return <button onClick={props.onClick} disabled={props.disabled}>
+    return <button onClick={props.onClick} disabled={props.disabled} className="primary">
         {translate(Texts.forgotPassword.submit)}
     </button>
 }

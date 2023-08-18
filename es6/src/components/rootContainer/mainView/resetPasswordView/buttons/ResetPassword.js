@@ -11,7 +11,9 @@ import {Texts} from "../../../../../app/Texts";
 export const ResetPassword = (props) => {
     return <button
         onClick={props.onClick}
-        disabled={props.disabled}>
+        disabled={props.disabled}
+        className="primary"
+    >
         {translate(Texts.resetPassword.submit)}
     </button>
 }

@@ -1,0 +1,36 @@
+@import "../style";
+
+.center-header {
+  margin: 1rem auto;
+  justify-content: center;
+}
+
+.wide-header {
+  margin: 1rem 0;
+}
+
+.header {
+  display: flex;
+  flex-wrap: wrap;
+  height: 2rem;
+
+  .title {
+    font-size: 2rem;
+    line-height: 2rem;
+    cursor: pointer;
+    flex-grow: 4;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  .profile {
+    align-self: end;
+    display: flex;
+    column-gap: 12px;
+
+    .username {
+      line-height: 2rem;
+      cursor: pointer;
+    }
+  }
+}

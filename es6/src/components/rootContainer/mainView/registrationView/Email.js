@@ -9,19 +9,17 @@ import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 
 export const Email = (props) => {
-    return <div className="line">
-        <label>{translate(Texts.registration.email)}</label>
-        <div className="inputContainer">
-            <input
-                type="text"
-                value={props.value}
-                autoComplete="off"
-                onChange={(event) => props.onChange(event.target.value)}
-                id="email"
-            />
-            {props.emailInvalid === true && props.value.length > 0 &&
-            <i className="fas fa-times outside error"/>}
-        </div>
+    return <div className="inputContainer">
+        <input
+            type="text"
+            value={props.value}
+            autoComplete="off"
+            onChange={(event) => props.onChange(event.target.value)}
+            id="email"
+            placeholder={translate(Texts.registration.email)}
+        />
+        {props.emailInvalid === true && props.value.length > 0 &&
+            <i className="fas fa-times error"/>}
     </div>
 }
 

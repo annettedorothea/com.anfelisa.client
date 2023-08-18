@@ -6,22 +6,22 @@
 import React from "react";
 import {translate} from "../../AppUtils";
 import {Texts} from "../../app/Texts";
+import "./loggedInUser.scss"
 
 
 export const LoggedInUser = (props) => {
-    if (props.username) {
-        return <div className="header">
-            <a
-                onClick={props.routeToDefault}
-                className="title"
-            >
-                Anfelisa
-            </a>
-            <a className="profile text-center" onClick={props.routeToProfileView}>{props.username}</a>
-            <button className="logout" onClick={props.logout}>{translate(Texts.logout.signout)}</button>
-        </div>
-    }
-    return null;
+    return <div className={`header ${props.username ? 'wide-header' : 'center-header'}`}>
+        <a
+            onClick={props.routeToDefault}
+            className="title"
+        >
+            Anfelisa
+        </a>
+        {props.username && <div className="profile">
+            <a className="username" onClick={props.routeToProfileView}>{props.username}</a>
+            <button className="logout primary" onClick={props.logout}>{translate(Texts.logout.signout)}</button>
+        </div>}
+    </div>
 }
 
 

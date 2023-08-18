@@ -7,25 +7,18 @@
 }
 
 body {
-    background-size: cover;
-    font-size: 16px;
+    font-size: 1rem;
     font-family: Helvetica, sans-serif;
 }
 
-@media screen and (max-width: 600px) {
-    body {
-        background: none;
-    }
-}
-
 pre {
-    font-size: 16px;
+    font-size: 1rem;
     font-family: Helvetica, sans-serif;
     line-height: 20px;
 }
 
 input, button, textarea, select, .imageButton {
-    font-size: 16px;
+    font-size: 1rem;
     font-family: Helvetica, sans-serif;
 }
 
@@ -101,14 +94,14 @@ h1 {
     color: #337ab7;
     font-size: 24px;
     font-weight: normal;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 }
 
 h2 {
     color: #337ab7;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: normal;
-    margin-bottom: 16px;
+    margin-bottom: 1rem;
 }
 
 h3 {
@@ -129,6 +122,9 @@ h3 {
 .header {
     margin: 30px 38px 30px 0;
     height: 56px;
+    max-width: 800px;
+    display: flex;
+    flex-wrap: nowrap;
 }
 
 @media screen and (max-width: 600px) {
@@ -136,39 +132,27 @@ h3 {
         padding: 12px 0 12px 0;
         height: 102px;
         margin: 0;
+        flex-wrap: wrap;
     }
 }
 
 .header a.title {
     color: #337ab7;
     font-size: 48px;
-    float: left;
-    height: 56px;
+    flex-grow: 4;
 }
 
 @media screen and (max-width: 600px) {
     .header a.title {
-        width: 100%;
-        display: block;
         font-size: 24px;
-        height: 32px;
     }
 }
 
-.header .logout {
-    float: right;
-    height: 56px;
-}
-
-@media screen and (max-width: 600px) {
-    .header .logout {
-        display: block;
-        width: 100%;
-    }
-}
-
-.header .logout a {
-    margin-right: 24px;
+.header .profile, .header .logout {
+    flex-grow: 1;
+    padding-left: 12px;
+    align-self: end;
+    vertical-align: center;
 }
 
 .content {
@@ -178,7 +162,7 @@ h3 {
 .wrapper {
     background-color: #fff;
     min-height: calc(100vh - 130px);
-    max-width: 1200px;
+    max-width: 800px;
     margin: auto;
     padding: 0 10px;
 }
@@ -264,7 +248,7 @@ h3 {
     }
 
     .footer .footerContent h1 {
-        font-size: 16px;
+        font-size: 1rem;
         margin-bottom: 8px;
     }
 
@@ -286,7 +270,7 @@ table, th, td {
 }
 
 th, td {
-    padding: 4px 16px 4px 0;
+    padding: 4px 1rem 4px 0;
 }
 
 td button, td .imageButton {
@@ -370,7 +354,7 @@ table td.priority i {
     width: auto;
     position: fixed;
     top: 35px;
-    right: 16px;
+    right: 1rem;
     z-index: 1;
     font-size: 24px;
 }
@@ -411,27 +395,29 @@ i.withmarginleft {
 .toastContainer {
     width: auto;
     position: fixed;
-    bottom: 16px;
-    right: 16px;
+    bottom: 1rem;
     z-index: 1;
 }
 
 .toast {
     width: auto;
-    padding: 16px;
+    max-width: calc(100vw - 20px);
+    padding: 1rem;
     color: #fff;
     text-align: center;
     border-radius: 4px;
-    margin-bottom: 24px;
-    margin-right: 24px;
+    margin: 0 auto 24px auto;
     display: block;
+    background-color: cadetblue;
 }
 
 .toastWrapper {
+    max-width: calc(100vw - 20px);
     width: 320px;
     display: block;
     visibility: visible;
-    opacity: 1;
+    //opacity: 1;
+    background-color: aqua;
     cursor: pointer;
 }
 
@@ -548,7 +534,7 @@ a:hover.tile.active {
 .tile h2 {
     text-align: center;
     overflow: hidden;
-    margin: 24px 0 16px 0;
+    margin: 24px 0 1rem 0;
     text-overflow: ellipsis;
 }
 
@@ -715,6 +701,7 @@ a:hover.tile.active .cards-next-days-item {
 
 .box .categoryLink {
     margin-bottom: 20px;
+    margin-top: 20px;
     text-align: center;
 }
 
@@ -774,9 +761,38 @@ a:hover.tile.active .cards-next-days-item {
     border-color: #669E00;
 }
 
+.box .scoreButtonsContainer {
+    width: 296px;
+    margin: auto;
+    text-align: center;
+    margin-top: 32px;
+}
+
+.box .sortOutButtonContainer {
+    width: 148px;
+    margin: auto;
+    text-align: center;
+    margin-top: 0;
+}
+
 .box .scoreButtons {
     text-align: center;
-    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    max-height: 156px;
+}
+
+@media screen and (max-width: 320px) {
+    .box .scoreButtonsContainer {
+        width: 148px;
+    }
+    .box .sortOutButtonContainer {
+        width: 148px;
+    }
+    .box .scoreButtons {
+        max-height: 312px;
+    }
 }
 
 .box .scoreButtons button {
@@ -784,7 +800,7 @@ a:hover.tile.active .cards-next-days-item {
     color: #fff;
     padding: 8px 8px;
     width: 140px;
-    margin: 0 4px 16px 4px;
+    margin: 0 4px 1rem 4px;
 }
 
 .box .scoreButtons button.reinforce {

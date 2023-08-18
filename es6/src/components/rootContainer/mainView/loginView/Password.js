@@ -12,7 +12,7 @@ import {Texts} from "../../../../app/Texts";
 import CryptoJS from "crypto-js";
 
 export const Password = (props) => {
-    
+
     const [clearPassword, setClearPassword] = useState("");
 
     const onChange = (value) => {
@@ -26,19 +26,17 @@ export const Password = (props) => {
         }
     }, [props.value])
 
-    return <div className="line">
-        <label htmlFor="password">
-            {translate(Texts.login.password)}
-        </label>
+    return <>
         <input
             id="password"
             type="password"
             value={clearPassword}
             onChange={(event) => onChange(event.target.value)}
             autoComplete="current-password"
+            placeholder={translate(Texts.login.password)}
         />
         <a onClick={props.onClick}>{translate(Texts.login.forgotPassword)}</a>
-    </div>
+    </>
 }
 
 

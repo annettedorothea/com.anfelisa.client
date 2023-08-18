@@ -9,23 +9,21 @@ import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 
 export const Username = (props) => {
-    return <div className="line">
-        <label>{translate(Texts.registration.username)}</label>
-        <div className="inputContainer">
-            <input
-                type="text"
-                value={props.value}
-                onChange={(event) => props.onChange(event.target.value)}
-                autoComplete="off"
-                id="username"
-            />
-            {props.displayUsernameSpinner === true &&
+    return <div className="inputContainer">
+        <input
+            type="text"
+            value={props.value}
+            onChange={(event) => props.onChange(event.target.value)}
+            autoComplete="off"
+            id="username"
+            placeholder={translate(Texts.registration.username)}
+        />
+        {props.displayUsernameSpinner === true &&
             <i className="fas fa-cog fa-spin inside"/>}
-            {props.available === true && props.value.length > 0 &&
-            <i className="fas fa-check outside success"/>}
-            {props.available === false && props.value.length > 0 &&
-            <i className="fas fa-times outside error"/>}
-        </div>
+        {props.available === true && props.value.length > 0 &&
+            <i className="fas fa-check success"/>}
+        {props.available === false && props.value.length > 0 &&
+            <i className="fas fa-times error"/>}
     </div>
 }
 

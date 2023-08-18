@@ -5,8 +5,6 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 
 import {translate} from "../../../../AppUtils";
@@ -14,18 +12,15 @@ import {Texts} from "../../../../app/Texts";
 import CryptoJS from "crypto-js";
 
 export const Password = (props) => {
-	return <div className="line">
-		<label>{translate(Texts.resetPassword.password)}</label>
-		<div className="inputContainer">
-			<input
-				type={"password"}
-				onChange={(e) => props.onChange(CryptoJS.MD5(e.target.value).toString())}
-				autoComplete="off"
-			/>
-		</div>
-	</div>
+    return <div className="inputContainer">
+        <input
+            type={"password"}
+            onChange={(e) => props.onChange(CryptoJS.MD5(e.target.value).toString())}
+            autoComplete="off"
+            placeholder={translate(Texts.resetPassword.password)}
+        />
+    </div>
 }
-
 
 
 /******* S.D.G. *******/

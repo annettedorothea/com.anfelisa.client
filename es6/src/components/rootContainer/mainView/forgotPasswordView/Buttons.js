@@ -9,7 +9,7 @@ import React from "react";
 
 
 export const Buttons = (props) => {
-	return <div className="moreMarginLine text-center">
+	return <div className="buttonContainer">
 		{props.children}
 	</div>
 }

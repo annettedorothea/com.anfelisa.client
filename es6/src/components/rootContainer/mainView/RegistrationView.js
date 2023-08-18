@@ -13,15 +13,9 @@ export const RegistrationView = (props) => {
         return null;
     }
     return (
-        <div className="center">
-            <div className="form">
-                <h1>{translate(Texts.registration.title)}</h1>
-                {props.children}
-                <div className="line">
-                    <div
-                        className="small-font">{translate(Texts.registration.terms)}</div>
-                </div>
-            </div>
+        <div className="form">
+            <h1>{translate(Texts.registration.title)}</h1>
+            {props.children}
         </div>
     )
 }

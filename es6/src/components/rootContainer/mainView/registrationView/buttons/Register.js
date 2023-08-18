@@ -14,7 +14,8 @@ export const Register = (props) => {
 	return <button
 		id="register"
 		onClick={props.onClick}
-		disabled={props.disabled}>
+		disabled={props.disabled}
+		className="primary">
 		{translate(Texts.registration.register)}
 	</button>
 }

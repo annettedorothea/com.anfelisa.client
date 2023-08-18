@@ -11,7 +11,7 @@ import {Texts} from "../../../app/Texts";
 
 
 export const LoginView = (props) => {
-	return <div className="center form">
+	return <div className="form">
 		<h1>{translate(Texts.login.title)}</h1>
 		{props.children}
 	</div>

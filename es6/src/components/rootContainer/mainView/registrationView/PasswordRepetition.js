@@ -12,18 +12,16 @@ import {Texts} from "../../../../app/Texts";
 import CryptoJS from "crypto-js";
 
 export const PasswordRepetition = (props) => {
-    return <div className="line">
-        <label>{translate(Texts.registration.passwordRepetition)}</label>
-        <div className="inputContainer">
+    return         <div className="inputContainer">
             <input
                 type="password"
                 onChange={(e) => props.onChange(CryptoJS.MD5(e.target.value).toString())}
                 autoComplete="off"
                 id="passwordRepetition"
+                placeholder={translate(Texts.registration.passwordRepetition)}
             />
-            {props.passwordMismatch === true && <i className="fas fa-times outside error"/>}
+            {props.passwordMismatch === true && <i className="fas fa-times error"/>}
         </div>
-    </div>
 }
 
 

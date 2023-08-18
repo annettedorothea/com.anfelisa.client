@@ -6,10 +6,12 @@
 
 
 import React from "react";
+import "./style.scss";
+import "./root.scss";
 
 
 export const RootContainer = (props) => {
-	return <div className={props.loggedInUser? "wrapper" : ""}>
+	return <div className={"root"}>
 		{props.children}
 	</div>
 }

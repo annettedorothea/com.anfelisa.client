@@ -3,26 +3,21 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 
 import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 
 export const Username = (props) => {
-	return <div className="line">
-		<label htmlFor="username">{translate(Texts.forgotPassword.username)}</label>
-		<input
-			id="username"
-			value={props.username}
-			type="text"
-			autoComplete="new-password"
-			onChange={(e) => props.onChange(e.target.value)}
-		/>
-	</div>
+    return <input
+        id="username"
+        value={props.username}
+        type="text"
+        autoComplete="new-password"
+        onChange={(e) => props.onChange(e.target.value)}
+        placeholder={translate(Texts.forgotPassword.username)}
+    />
 }
-
 
 
 /******* S.D.G. *******/

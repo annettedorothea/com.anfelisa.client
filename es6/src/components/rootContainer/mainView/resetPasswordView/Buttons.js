@@ -3,17 +3,16 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 
 
 export const Buttons = (props) => {
-	return <div className="moreMarginLine text-center">
-		{props.children}
-	</div>
+    return <div className="inputContainer">
+        <div className="buttonContainer">
+            {props.children}
+        </div>
+    </div>
 }
-
 
 
 /******* S.D.G. *******/

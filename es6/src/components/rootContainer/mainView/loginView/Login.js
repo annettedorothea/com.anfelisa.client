@@ -9,16 +9,14 @@ import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 
 export const Login = (props) => {
-    return <div className="moreMarginLine text-center">
-        <button
-            className="primary"
-            id="login"
-            onClick={props.onClick}
-            {...props}
-        >
-            {translate(Texts.login.signin)}
-        </button>
-    </div>
+    return <button
+        className="primary"
+        id="login"
+        onClick={props.onClick}
+        {...props}
+    >
+        {translate(Texts.login.signin)}
+    </button>
 }
 
 

@@ -9,7 +9,7 @@ import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 
 export const SaveInLocalStorage = (props) => {
-    return <div className="line">
+    return <div>
         <input
             id="saveInLocalStorage"
             type="checkbox"

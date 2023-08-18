@@ -6,12 +6,13 @@
 
 
 import React from "react";
+import "./mainView.scss"
 
 
 export const MainView = (props) => {
-	return <>
+	return <div className="mainView">
 		{props.children}
-	</> 
+	</div>
 }
 
 
