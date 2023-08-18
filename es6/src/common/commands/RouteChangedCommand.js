@@ -13,20 +13,18 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             data.token = hashes[2];
             this.addConfirmEmailOutcome(data);
         } else if (data.hash.startsWith("#resetpassword") && hashes.length >= 1 && hashes[1]) {
-            data.mainView = {
-                resetPasswordView: {
-                    token: hashes[1],
-                    password: {
-                        value: ""
-                    },
-                    passwordRepetition: {
-                        value: "",
-                        passwordMismatch: false
-                    },
-                    buttons: {
-                        resetPassword: {
-                            disabled: true
-                        }
+            data.resetPasswordView = {
+                token: hashes[1],
+                password: {
+                    value: ""
+                },
+                passwordRepetition: {
+                    value: "",
+                    passwordMismatch: false
+                },
+                buttons: {
+                    resetPassword: {
+                        disabled: true
                     }
                 }
             };
@@ -38,124 +36,106 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             this.addPrivacyPolicyOutcome(data);
         } else if (this.isUserLoggedIn(data)) {
             if (data.hash === "#profile") {
-                data.mainView = {
-                    profileView: {}
-                };
+                data.profileView = {};
                 this.addProfileOutcome(data);
             } else if (data.hash.startsWith("#categories") && hashes.length >= 2) {
                 data.rootCategoryId = hashes[1];
-                data.mainView = {
+                data.authorView = {
                     authorView: {}
                 };
                 if (hashes[hashes.length - 1] === "reverse") {
-                    data.mainView.authorView.reverse = true;
+                    data.authorView.reverse = true;
                     data.selectedCategoryId = hashes.length === 3 ? data.rootCategoryId : hashes[2];
                 } else {
-                    data.mainView.authorView.reverse = false;
+                    data.authorView.reverse = false;
                     data.selectedCategoryId = hashes.length === 2 ? data.rootCategoryId : hashes[2];
                 }
                 this.addCategoriesOutcome(data);
             } else if (data.hash.startsWith("#box/settings") && hashes.length >= 2 && hashes[2]) {
-                data.mainView = {
-                    boxSettingsView: {
-                        boxId: hashes[2]
-                    }
+                data.boxSettingsView = {
+                    boxId: hashes[2]
                 };
                 this.addBoxSettingsOutcome(data);
             } else if (data.hash.startsWith("#box/active-cards") && hashes.length >= 2 && hashes[2]) {
-                data.mainView = {
-                    allActiveCardsView: {
-                        boxId: hashes[2],
-                        selectedLastQualityFilters: [],
-                    }
+                data.allActiveCardsView = {
+                    boxId: hashes[2],
+                    selectedLastQualityFilters: [],
                 };
                 this.addAllActiveCardsOutcome(data);
             } else if (data.hash === "#box/create") {
-                data.mainView = {
-                    boxSettingsView: {
-                        boxSettings: {
-                            maxCardsPerDay: 8,
-                            maxInterval: "",
-                            boxId: "",
-                            categoryName: "",
-                            dictionaryLookup: false,
-                            wantedLanguage: "",
-                            givenLanguage: ""
-                        }
+                data.boxSettingsView = {
+                    boxSettings: {
+                        maxCardsPerDay: 8,
+                        maxInterval: "",
+                        boxId: "",
+                        categoryName: "",
+                        dictionaryLookup: false,
+                        wantedLanguage: "",
+                        givenLanguage: ""
                     }
                 };
                 this.addBoxCreateOutcome(data);
             } else if (data.hash.startsWith("#box") && hashes.length >= 1 && hashes[1]) {
-                data.mainView = {
-                    queryCardView: {
-                        boxId: hashes[1]
-                    }
+                data.queryCardView = {
+                    boxId: hashes[1]
                 };
                 this.addNextCardOutcome(data);
             } else {
-                data.mainView = {
-                    dashboardView: {
-                        deleteBox: {
-                            boxId: undefined
-                        }
+                data.dashboardView = {
+                    deleteBox: {
+                        boxId: undefined
                     }
                 };
                 this.addDashboardOutcome(data);
             }
         } else {
             if (data.hash === "#registration") {
-                data.mainView = {
-                    registrationView: {
-                        username: {
-                            value: "",
-                            displayUsernameSpinner: false,
-                            usernameAvailable: undefined,
-                        },
-                        email: {
-                            value: "",
-                            emailInvalid: false,
-                        },
-                        password: {
-                            value: ""
-                        },
-                        passwordRepetition: {
-                            value: "",
-                            passwordMismatch: false,
-                        },
-                        buttons: {
-                            register: {
-                                disabled: true
-                            }
+                data.registrationView = {
+                    username: {
+                        value: "",
+                        displayUsernameSpinner: false,
+                        usernameAvailable: undefined,
+                    },
+                    email: {
+                        value: "",
+                        emailInvalid: false,
+                    },
+                    password: {
+                        value: ""
+                    },
+                    passwordRepetition: {
+                        value: "",
+                        passwordMismatch: false,
+                    },
+                    buttons: {
+                        register: {
+                            disabled: true
                         }
                     }
                 };
                 this.addRegistrationOutcome(data);
             } else if (data.hash === "#forgotpassword") {
-                data.mainView = {
-                    forgotPasswordView: {
-                        username: {
-                            value: ""
-                        },
-                        buttons: {
-                            forgotPassword: {
-                                disabled: true
-                            }
+                data.forgotPasswordView = {
+                    username: {
+                        value: ""
+                    },
+                    buttons: {
+                        forgotPassword: {
+                            disabled: true
                         }
                     }
                 };
                 this.addForgotPasswordOutcome(data);
             } else {
-                data.mainView = {
-                    loginView: {
-                        username: {
-                            value: ""
-                        },
-                        password: {
-                            value: ""
-                        },
-                        saveInLocalStorage: {
-                            checked: false
-                        }
+                data.loginView = {
+                    username: {
+                        value: ""
+                    },
+                    password: {
+                        value: ""
+                    },
+                    saveInLocalStorage: {
+                        checked: false
                     }
                 };
                 this.addLoginOutcome(data);

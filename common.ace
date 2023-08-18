@@ -26,58 +26,59 @@ GetUserInfo (token)
 	on error triggers (Logout) 
 	
 
+
 RouteChanged
 	fromAppState ( rootContainer.hash, rootContainer.loggedInUser ) 
 	on login ( 
-		set rootContainer.mainView 
+		set rootContainer.mainView.loginView
 	)
 	on privacyPolicy ( 
-		set rootContainer.mainView 
+		set rootContainer.mainView.privacyPolicyView 
 	)
 	on registration ( 
-		set rootContainer.mainView
+		set rootContainer.mainView.registrationView
 	)
 	on confirmEmail triggers (
 		registration.ConfirmEmail
 	)
 	on forgotPassword ( 
-		set rootContainer.mainView 
+		set rootContainer.mainView.forgotPasswordView
 	)
 	on resetPassword ( 
-		set rootContainer.mainView 
+		set rootContainer.mainView.resetPasswordView
 	)
 	on dashboard (
-		set rootContainer.mainView
+		set rootContainer.mainView.dashboardView
 	) triggers (
 		box.InitBoxesForDay
 	)
 	on categories (
-		set rootContainer.mainView
+		set rootContainer.mainView.authorView
 	) triggers (
 		category.LoadCategoryTree
 	)
 	on profile (
-		set rootContainer.mainView
+		set rootContainer.mainView.profileView
 	) triggers ( 
 		profile.LoadUser
 	)
 	on nextCard (
-		set rootContainer.mainView
+		set rootContainer.mainView.queryCardView
 	) triggers (
 		box.LoadNextCard
 	)
 	on boxSettings (
-		set rootContainer.mainView
+		set rootContainer.mainView.boxSettingsView
 	) triggers (
 		box.LoadSettings
 	)
 	on allActiveCards (
-		set rootContainer.mainView
+		set rootContainer.mainView.allActiveCardsView
 	) triggers (
 		box.LoadActiveCards
 	)
 	on boxCreate ( 
-		set rootContainer.mainView
+		set rootContainer.mainView.boxSettingsView
 	)
 	
 RouteToDefault on ok ( set rootContainer.hash )
@@ -197,7 +198,7 @@ ui JSX rootContainer {
 			}
 		}
 	}
-	group mainView {
+	exclusiveView mainView {
 		privacyPolicyView {
 			actions {
 				"onClick" RouteToDefault

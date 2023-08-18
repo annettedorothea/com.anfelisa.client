@@ -9,7 +9,7 @@ import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 
 export const Login = (props) => {
-    return <div className="moreMarginLine hCenter">
+    return <div className="moreMarginLine text-center">
         <button
             className="primary"
             id="login"

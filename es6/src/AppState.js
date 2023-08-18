@@ -53,11 +53,6 @@ export function setStorage(data, path) {
 }
 
 export function merge(data, path, attributes) {
-    const mainView = get(["rootContainer", "mainView"]);
-    const keys = R.keys(mainView);
-    if (path.length >= 2 && path[1] === "mainView" && path[2] !== keys[0]) {
-        return;
-    }
     if (attributes) {
         const lens = R.lensPath(path);
         const appStateValue = R.view(lens, appState);
@@ -69,7 +64,7 @@ export function merge(data, path, attributes) {
     }
 }
 
-export function mergeLocation(data, path) {
+/*export function mergeLocation(data, path) {
     if (data[R.last(path)]) {
         location.hash = data[R.last(path)];
     }
@@ -80,7 +75,7 @@ export function mergeStorage(data, path) {
     if (data[lastParam]) {
         localStorage.setItem(lastParam, data[lastParam]);
     }
-}
+}*/
 
 export function createInitialAppState() {
     appState = {};
@@ -93,7 +88,9 @@ export function setInitialAppState(initialAppState) {
 
 
 export function stateUpdated() {
-    setContainerState(appState.rootContainer);
+    if (setContainerState) {
+        setContainerState(appState.rootContainer);
+    }
 }
 
 

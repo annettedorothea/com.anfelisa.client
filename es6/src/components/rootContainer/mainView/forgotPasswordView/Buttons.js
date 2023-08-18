@@ -9,7 +9,7 @@ import React from "react";
 
 
 export const Buttons = (props) => {
-	return <div className="moreMarginLine hCenter">
+	return <div className="moreMarginLine text-center">
 		{props.children}
 	</div>
 }

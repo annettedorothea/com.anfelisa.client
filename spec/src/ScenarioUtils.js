@@ -175,6 +175,9 @@ module.exports = {
 async function waitClearSendKeys(driver, id, value) {
     await driver.wait(until.elementLocated(By.id(id)), 5000);
     const element = await driver.findElement(By.id(id));
+    if (!element) {
+        console.error("element not found", id)
+    }
     if (value.length === 0) {
         let text = await element.getAttribute("value")
         while (text.length > 0) {
@@ -196,7 +199,10 @@ async function waitClearSendKeys(driver, id, value) {
 }
 
 async function click(driver, id) {
-    await driver.wait(until.elementLocated(By.id(id)), 5000);
+    const element = await driver.wait(until.elementLocated(By.id(id)), 5000);
+    if (!element) {
+        console.error("element not found", id)
+    }
     await driver.findElement(By.id(id)).click();
 }
 

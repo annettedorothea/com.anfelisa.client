@@ -132,16 +132,19 @@ describe("happypath.HappyPath", function () {
 		
 		await ScenarioUtils.invokeAction(driver, CardActionIds.createCard);
 		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(1000);
 		
 		await ScenarioUtils.invokeAction(driver, CardActionIds.toggleAllScheduleCardSelection);
 		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(1000);
 		
 		await ScenarioUtils.invokeAction(driver, CardActionIds.scheduleSelectedCards);
 		await ScenarioUtils.waitInMillis(10);
-		await ScenarioUtils.waitInMillis(500);
+		await ScenarioUtils.waitInMillis(1000);
 		
 		await ScenarioUtils.invokeAction(driver, CommonActionIds.routeToDefault);
 		await ScenarioUtils.waitInMillis(10);
+		await ScenarioUtils.waitInMillis(1000);
 		
 		await ScenarioUtils.invokeAction(driver, BoxActionIds.boxClick, [`box-${testId}`,3,`box-${testId}`,`false`]);
 		await ScenarioUtils.waitInMillis(10);

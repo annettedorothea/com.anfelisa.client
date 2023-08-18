@@ -12,18 +12,30 @@ export default class EventListenerRegistrationLogin {
 
 	static init() {
 		ACEController.registerListener('login.UsernameChangedOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "loginView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'loginView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "loginView", "username", "value"]
 				)
 			});
 		ACEController.registerListener('login.PasswordChangedOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "loginView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'loginView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "loginView", "password", "value"]
 				)
 			});
 		ACEController.registerListener('login.ToggleSaveInLocalStorageOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "loginView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'loginView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "loginView", "saveInLocalStorage", "checked"]
@@ -48,6 +60,10 @@ export default class EventListenerRegistrationLogin {
 				)
 			});
 		ACEController.registerListener('login.LoginUnauthorizedEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "loginView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'loginView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "loginView", "password"], 

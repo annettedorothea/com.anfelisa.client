@@ -53,7 +53,7 @@ export const ProfileView = (props) => {
 					/>
 				</div>
 			</div>
-			<div className="moreMarginLine hCenter">
+			<div className="moreMarginLine text-center">
 				<button
 					className="danger"
 					onClick={props.deleteUserClick}

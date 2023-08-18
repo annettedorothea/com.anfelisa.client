@@ -73,10 +73,13 @@ HappyPath
 	AND WHEN card.PassValueToDictionary
 	delayInMillis 1000
 	AND WHEN card.CreateCard 
+	delayInMillis 1000
 	AND WHEN card.ToggleAllScheduleCardSelection
+	delayInMillis 1000
 	AND WHEN card.ScheduleSelectedCards
-	delayInMillis 500
+	delayInMillis 1000
 	AND WHEN common.RouteToDefault
+	delayInMillis 1000
 	AND WHEN box.BoxClick (boxId: "box-${testId}", openTodaysCards: 3, categoryId: "box-${testId}", reverse: "false")
 	AND WHEN box.DisplayWanted (wantedItemsLength: 1)
 	AND WHEN box.ScoreCard(scoredCardQuality: 0)

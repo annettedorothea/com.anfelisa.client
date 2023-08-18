@@ -56,87 +56,98 @@ export default class EventListenerRegistrationCommon {
 				)
 			});
 		ACEController.registerListener('common.RouteChangedLoginEvent', (data) => {
+				AppState.set({mainView: {}}, ["rootContainer", "mainView"]);
 				AppState.set(
 					data, 
-					["rootContainer", "mainView"], 
-					["privacyPolicyView", "loginView", "registrationView", "forgotPasswordView", "resetPasswordView", "dashboardView", "boxSettingsView", "allActiveCardsView", "profileView", "queryCardView", "authorView"]
+					["rootContainer", "mainView", "loginView"], 
+					["username", "password", "saveInLocalStorage", "login"]
 				)
 			});
 		ACEController.registerListener('common.RouteChangedPrivacyPolicyEvent', (data) => {
+				AppState.set({mainView: {}}, ["rootContainer", "mainView"]);
 				AppState.set(
 					data, 
-					["rootContainer", "mainView"], 
-					["privacyPolicyView", "loginView", "registrationView", "forgotPasswordView", "resetPasswordView", "dashboardView", "boxSettingsView", "allActiveCardsView", "profileView", "queryCardView", "authorView"]
+					["rootContainer", "mainView", "privacyPolicyView"]
 				)
 			});
 		ACEController.registerListener('common.RouteChangedRegistrationEvent', (data) => {
+				AppState.set({mainView: {}}, ["rootContainer", "mainView"]);
 				AppState.set(
 					data, 
-					["rootContainer", "mainView"], 
-					["privacyPolicyView", "loginView", "registrationView", "forgotPasswordView", "resetPasswordView", "dashboardView", "boxSettingsView", "allActiveCardsView", "profileView", "queryCardView", "authorView"]
+					["rootContainer", "mainView", "registrationView"], 
+					["username", "password", "passwordRepetition", "email", "buttons"]
 				)
 			});
 		ACEController.registerListener('common.RouteChangedForgotPasswordEvent', (data) => {
+				AppState.set({mainView: {}}, ["rootContainer", "mainView"]);
 				AppState.set(
 					data, 
-					["rootContainer", "mainView"], 
-					["privacyPolicyView", "loginView", "registrationView", "forgotPasswordView", "resetPasswordView", "dashboardView", "boxSettingsView", "allActiveCardsView", "profileView", "queryCardView", "authorView"]
+					["rootContainer", "mainView", "forgotPasswordView"], 
+					["username", "buttons"]
 				)
 			});
 		ACEController.registerListener('common.RouteChangedResetPasswordEvent', (data) => {
+				AppState.set({mainView: {}}, ["rootContainer", "mainView"]);
 				AppState.set(
 					data, 
-					["rootContainer", "mainView"], 
-					["privacyPolicyView", "loginView", "registrationView", "forgotPasswordView", "resetPasswordView", "dashboardView", "boxSettingsView", "allActiveCardsView", "profileView", "queryCardView", "authorView"]
+					["rootContainer", "mainView", "resetPasswordView"], 
+					["token", "password", "passwordRepetition", "buttons"]
 				)
 			});
 		ACEController.registerListener('common.RouteChangedDashboardEvent', (data) => {
+				AppState.set({mainView: {}}, ["rootContainer", "mainView"]);
 				AppState.set(
 					data, 
-					["rootContainer", "mainView"], 
-					["privacyPolicyView", "loginView", "registrationView", "forgotPasswordView", "resetPasswordView", "dashboardView", "boxSettingsView", "allActiveCardsView", "profileView", "queryCardView", "authorView"]
+					["rootContainer", "mainView", "dashboardView"], 
+					["boxList", "newBox", "deleteBox"]
 				)
 			});
 		ACEController.registerListener('common.RouteChangedCategoriesEvent', (data) => {
+				AppState.set({mainView: {}}, ["rootContainer", "mainView"]);
 				AppState.set(
 					data, 
-					["rootContainer", "mainView"], 
-					["privacyPolicyView", "loginView", "registrationView", "forgotPasswordView", "resetPasswordView", "dashboardView", "boxSettingsView", "allActiveCardsView", "profileView", "queryCardView", "authorView"]
+					["rootContainer", "mainView", "authorView"], 
+					["boxId", "reverse", "categoryTree"]
 				)
 			});
 		ACEController.registerListener('common.RouteChangedProfileEvent', (data) => {
+				AppState.set({mainView: {}}, ["rootContainer", "mainView"]);
 				AppState.set(
 					data, 
-					["rootContainer", "mainView"], 
-					["privacyPolicyView", "loginView", "registrationView", "forgotPasswordView", "resetPasswordView", "dashboardView", "boxSettingsView", "allActiveCardsView", "profileView", "queryCardView", "authorView"]
+					["rootContainer", "mainView", "profileView"], 
+					["username", "email", "role", "deletable", "showDeleteUserDialog"]
 				)
 			});
 		ACEController.registerListener('common.RouteChangedNextCardEvent', (data) => {
+				AppState.set({mainView: {}}, ["rootContainer", "mainView"]);
 				AppState.set(
 					data, 
-					["rootContainer", "mainView"], 
-					["privacyPolicyView", "loginView", "registrationView", "forgotPasswordView", "resetPasswordView", "dashboardView", "boxSettingsView", "allActiveCardsView", "profileView", "queryCardView", "authorView"]
+					["rootContainer", "mainView", "queryCardView"], 
+					["nextCard", "openTodaysCards", "allTodaysCards", "reverse", "boxId", "boxName"]
 				)
 			});
 		ACEController.registerListener('common.RouteChangedBoxSettingsEvent', (data) => {
+				AppState.set({mainView: {}}, ["rootContainer", "mainView"]);
 				AppState.set(
 					data, 
-					["rootContainer", "mainView"], 
-					["privacyPolicyView", "loginView", "registrationView", "forgotPasswordView", "resetPasswordView", "dashboardView", "boxSettingsView", "allActiveCardsView", "profileView", "queryCardView", "authorView"]
+					["rootContainer", "mainView", "boxSettingsView"], 
+					["boxId", "boxSettings"]
 				)
 			});
 		ACEController.registerListener('common.RouteChangedAllActiveCardsEvent', (data) => {
+				AppState.set({mainView: {}}, ["rootContainer", "mainView"]);
 				AppState.set(
 					data, 
-					["rootContainer", "mainView"], 
-					["privacyPolicyView", "loginView", "registrationView", "forgotPasswordView", "resetPasswordView", "dashboardView", "boxSettingsView", "allActiveCardsView", "profileView", "queryCardView", "authorView"]
+					["rootContainer", "mainView", "allActiveCardsView"], 
+					["boxId", "editable", "activeCardList", "selectedCardIds", "selectedLastQualityFilters"]
 				)
 			});
 		ACEController.registerListener('common.RouteChangedBoxCreateEvent', (data) => {
+				AppState.set({mainView: {}}, ["rootContainer", "mainView"]);
 				AppState.set(
 					data, 
-					["rootContainer", "mainView"], 
-					["privacyPolicyView", "loginView", "registrationView", "forgotPasswordView", "resetPasswordView", "dashboardView", "boxSettingsView", "allActiveCardsView", "profileView", "queryCardView", "authorView"]
+					["rootContainer", "mainView", "boxSettingsView"], 
+					["boxId", "boxSettings"]
 				)
 			});
 		ACEController.registerListener('common.RouteToDefaultOkEvent', (data) => {

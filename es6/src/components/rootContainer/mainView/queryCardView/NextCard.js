@@ -44,7 +44,8 @@ export const NextCard = (props) => {
 
         if (props.wanted.indexOf("data:image") === 0) {
             lines.push(props.wanted)
-            lineItems.push(<img key="image" src={props.wanted} alt="image" className={0 < props.index ? "" : "hidden"}/>);
+            lineItems.push(<img key="image" src={props.wanted} alt="image"
+                                className={0 < props.index ? "" : "hidden"}/>);
         } else {
             if (props.wanted.length > 0) {
                 lines = props.wanted.split("\n");
@@ -72,7 +73,7 @@ export const NextCard = (props) => {
     }
 
     const scoreButtonClick = (quality) => {
-        props.scoreCard(quality).then();
+        props.scoreCard(quality);
     }
 
     const scoreButton = (quality) => {
@@ -101,26 +102,26 @@ export const NextCard = (props) => {
         {given()}
         {wanted()}
         {props.scheduledCardId ?
-            <div className="scoreButtons">
-                <div>
-                    {scoreButton(5)}
-                    {scoreButton(2)}
+            <div>
+                <div className="scoreButtonsContainer">
+                    <div className="scoreButtons">
+                        {scoreButton(5)}
+                        {scoreButton(4)}
+                        {scoreButton(3)}
+                        {scoreButton(2)}
+                        {scoreButton(1)}
+                        {scoreButton(0)}
+                    </div>
                 </div>
-                <div>
-                    {scoreButton(4)}
-                    {scoreButton(1)}
-                </div>
-                <div>
-                    {scoreButton(3)}
-                    {scoreButton(0)}
-                </div>
-                <div>
-                    <button
-                        onClick={props.sortCardOut}
-                        disabled={props.disableSortOutButton}
-                    >
-                        {translate(Texts.queryCards.sortOut)}
-                    </button>
+                <div className="sortOutButtonContainer">
+                    <div className="scoreButtons">
+                        <button
+                            onClick={props.sortCardOut}
+                            disabled={props.disableSortOutButton}
+                        >
+                            {translate(Texts.queryCards.sortOut)}
+                        </button>
+                    </div>
                 </div>
             </div> :
             <div className="scoreButtons">

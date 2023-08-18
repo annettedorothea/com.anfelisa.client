@@ -29,7 +29,7 @@ export const QueryCardView = (props) => {
     return <div className="box">
         <h1>
             <button
-                className="backButton left"
+                className="backButton"
                 onClick={props.routeToDefault}
             >
                 <i className="fa fa-arrow-left"/>

@@ -146,7 +146,7 @@ export const BoxSettings = (props) => {
 				</select>
 				{props.dictionaryLookupInvalid === true ? <i className="fas fa-times outside error"/> : null}
 			</div>
-			<div className="moreMarginLine hCenter">
+			<div className="moreMarginLine text-center">
 				<button
 					id="save"
 					onClick={() => props.boxId ? props.saveBoxSettings() : props.createRootCategory()}

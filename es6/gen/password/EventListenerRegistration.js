@@ -12,42 +12,70 @@ export default class EventListenerRegistrationPassword {
 
 	static init() {
 		ACEController.registerListener('password.UsernameForgotPasswordChangedOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "forgotPasswordView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'forgotPasswordView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "forgotPasswordView", "username", "value"]
 				)
 			});
 		ACEController.registerListener('password.ValidateUsernameOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "forgotPasswordView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'forgotPasswordView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "forgotPasswordView", "buttons", "forgotPassword", "disabled"]
 				)
 			});
 		ACEController.registerListener('password.PasswordChangedOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "resetPasswordView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'resetPasswordView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "resetPasswordView", "password", "value"]
 				)
 			});
 		ACEController.registerListener('password.PasswordChangedOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "resetPasswordView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'resetPasswordView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "resetPasswordView", "passwordRepetition", "passwordMismatch"]
 				)
 			});
 		ACEController.registerListener('password.PasswordRepetitionChangedOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "resetPasswordView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'resetPasswordView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "resetPasswordView", "passwordRepetition", "value"]
 				)
 			});
 		ACEController.registerListener('password.PasswordRepetitionChangedOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "resetPasswordView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'resetPasswordView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "resetPasswordView", "passwordRepetition", "passwordMismatch"]
 				)
 			});
 		ACEController.registerListener('password.ValidatePasswordOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "resetPasswordView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'resetPasswordView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "resetPasswordView", "buttons", "resetPassword", "disabled"]
