@@ -3,22 +3,17 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 
 export const NewBox = (props) => {
-	return <a
-		className="tile box-create"
-		id="new"
-		onClick={props.onClick}
-	>
-		<div className="text-center">
-			<i className="fas fa-plus-circle fa-2x"/>
-		</div>
-	</a>
+    return <div
+        className="tile box-create"
+        id="new"
+        onClick={props.onClick}
+    >
+        <i className="fas fa-plus-circle fa-2x"/>
+    </div>
 }
-
 
 
 /******* S.D.G. *******/

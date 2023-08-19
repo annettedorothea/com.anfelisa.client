@@ -6,12 +6,15 @@
 
 
 import React from "react";
+import {translate} from "../../../AppUtils";
+import {Texts} from "../../../app/Texts";
 
 
 export const BoxSettingsView = (props) => {
-	return <>
+	return <div className="form">
+		<h1>{translate(Texts.boxSettings.title)}</h1>
 		{props.children}
-	</>
+	</div>
 }
 
 

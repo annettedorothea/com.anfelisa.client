@@ -1,0 +1,22 @@
+@import "../../../style";
+
+.inputSelectContainer {
+  display: grid;
+  grid-template-columns: 1rem auto;
+  column-gap: $smallSpacing;
+
+  .inputWrapper {
+    display: flex;
+  }
+
+  .selectContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    column-gap: $smallerSpacing;
+
+    select {
+      flex-grow: 4;
+    }
+  }
+}

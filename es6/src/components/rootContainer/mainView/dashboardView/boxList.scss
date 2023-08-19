@@ -1,0 +1,177 @@
+@import "../../../style";
+
+.tile {
+  background-color: $lighter;
+  border: $border;
+  border-radius: $borderRadius;
+  padding: $spacing;
+  position: relative;
+  display: grid;
+
+  .tileHeader {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+
+    h2 {
+      color: $blue;
+      margin: 0;
+      cursor: default;
+    }
+
+    &.archived {
+      h2 {
+        color: $darker;
+      }
+    }
+
+    .buttons {
+      display: flex;
+      flex-wrap: nowrap;
+      column-gap: $smallerSpacing;
+
+      i.danger {
+        color: $red;
+      }
+
+      i.disabled {
+        color: $dark;
+      }
+
+      i:not(.disabled) {
+        color: $blue;
+      }
+
+      i:hover:not(.disabled) {
+        color: $orange;
+      }
+    }
+  }
+
+  .badge {
+    position: absolute;
+    top: -0.75rem;
+    right: -0.75rem;
+    background-color: $red;
+    color: $white;
+    font-family: $inputFont;
+    border-radius: 1rem;
+    min-width: 1rem;
+    line-height: 1rem;
+    padding: 0.25rem;
+    text-align: center;
+  }
+
+  .statistics {
+    border-radius: $smallSpacing;
+    background-color: $darker;
+    margin-top: $spacing;
+
+    .progressBar {
+      height: 0.5rem;
+
+      .progress {
+        height: 0.5rem;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+        border-radius: $smallSpacing;
+        overflow: hidden;
+        animation: w100 1s ease forwards;
+        @keyframes w100 {
+          from {
+            width: 0;
+          }
+          to {
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .quality5 {
+      background-color: $green;
+    }
+
+    .quality4 {
+      background-color: $blue;
+    }
+
+    .quality3 {
+      background-color: $lightBlue;
+    }
+
+    .quality2 {
+      background-color: $orange;
+    }
+
+    .quality1 {
+      background-color: $red;
+    }
+
+    .quality0 {
+      background-color: $pink;
+    }
+  }
+
+  .cards-next-days {
+    margin-top: $spacing;
+    font-size: $smallFont;
+    color: $darker;
+    align-self: end;
+
+    .next-days-header {
+      margin-top: $tinySpacing;
+    }
+
+    .calendar {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      justify-items: stretch;
+      gap: $tinySpacing;
+
+      .weekday {
+        border-bottom: $border;
+      }
+    }
+  }
+}
+
+
+.tile:hover {
+  background-color: $white;
+
+  h2 {
+    color: $orange;
+  }
+}
+
+.tile:hover {
+  background-color: $white;
+
+  .archived {
+    h2 {
+      color: $dark;
+    }
+  }
+}
+
+.box-create {
+  display: flex;
+  justify-content: center;
+
+  i {
+    align-self: center;
+    color: $blue;
+  }
+
+  @media screen and (min-width: $smallScreens) {
+    grid-column-start: 1;
+    grid-column-end: span 2;
+  }
+}
+.box-create:hover {
+  i {
+    color: $orange;
+  }
+}

@@ -8,20 +8,22 @@ import React from "react";
 
 export const Modal = (props) => {
     return <div className="modal">
-        <div className="modalContent">
+        <div className="modalContent form">
             <h2>{props.title}</h2>
             <div className="message">{props.message}</div>
-            <button
-                className="yes danger"
-                onClick={props.onConfirm}
-            >
-                {props.confirm}
-            </button>
-            <button
-                onClick={props.onCancel}
-            >
-                {props.cancel}
-            </button>
+            <div className="buttonContainer">
+                <button
+                    className="yes danger"
+                    onClick={props.onConfirm}
+                >
+                    {props.confirm}
+                </button>
+                <button
+                    onClick={props.onCancel}
+                >
+                    {props.cancel}
+                </button>
+            </div>
         </div>
     </div>
 }

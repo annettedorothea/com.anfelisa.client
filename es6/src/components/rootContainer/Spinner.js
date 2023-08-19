@@ -9,12 +9,37 @@ import React from "react";
 
 
 export const Spinner = (props) => {
+
+	const spinnerIcon = () => {
+		const actualMonth = new Date().getMonth();
+		switch (actualMonth) {
+			case 12:
+			case 1:
+			case 2:
+				return "fas fa-snowflake"
+			case 3:
+			case 4:
+			case 5:
+				return "far fa-sun"
+			case 6:
+			case 7:
+			case 8:
+				return "fas fa-sun"
+			case 9:
+			case 10:
+			case 11:
+				return "fas fa-fan"
+		}
+	}
+
 	if (props.display === true) {
 		return <div className="spinner">
-			<i className="fas fa-cog fa-spin"/>
+			<div>
+				<i className={`${spinnerIcon()} fa-spin`}/>
+			</div>
 		</div>
 	}
-	return null;
+	return <div className="spinner"/>;
 }
 
 

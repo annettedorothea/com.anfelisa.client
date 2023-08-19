@@ -74,12 +74,41 @@ export const Texts = {
         edit: {
             de: "Karten verwalten"
         },
+        statistics: {
+            de: "Statistik"
+        },
         settings: {
             de: "Einstellungen"
         },
         unarchiveBox: {
             de: "Wieder aktivieren"
         },
+        nextWeek: {
+          de: "Nächste Woche"
+        },
+        weekDays: {
+            0: {
+                de: "So"
+            },
+            1: {
+                de: "Mo"
+            },
+            2: {
+                de: "Di"
+            },
+            3: {
+                de: "Mi"
+            },
+            4: {
+                de: "Do"
+            },
+            5: {
+                de: "Fr"
+            },
+            6: {
+                de: "Sa"
+            },
+        }
     },
     boxSettings : {
         boxInfo: {
@@ -123,6 +152,9 @@ export const Texts = {
         },
         title: {
             de: "Einstellungen"
+        },
+        withTranslation: {
+          de: "Automatische Übersetzung von {0} nach {1}"
         },
         tooManyCardsWarning: {
             de: "In diese Box passen mit deinen Einstellungen {0} Karten. Du hast aber {1} Karten in der Box. Du musst entweder mehr Karten pro Tag erlauben oder den maximalen Abstand, wann eine Karte erneut abgefragt wird, vergrößern."

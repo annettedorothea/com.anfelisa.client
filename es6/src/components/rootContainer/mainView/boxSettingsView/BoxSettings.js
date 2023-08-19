@@ -3,169 +3,180 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
+import "./boxSettings.scss";
 
 
 export const BoxSettings = (props) => {
-	const getCardInfo = () => {
-		if (props.allCards === 0) {
-			return ""
-		}
-		if (props.allActiveCards === 0 && props.allCards === 1) {
-			return translate(Texts.boxSettings.cardInfoZeroOne);
-		}
-		if (props.allActiveCards === 1 && props.allCards === 1) {
-			return translate(Texts.boxSettings.cardInfoOneOne);
-		}
-		if (props.allActiveCards === 1 && props.allCards === 1) {
-			return translate(Texts.boxSettings.cardInfoOneOne);
-		}
-		if (props.allActiveCards === 0) {
-			return translate(Texts.boxSettings.cardInfoZero, [props.allCards]);
-		}
-		if (props.allActiveCards === 1) {
-			return translate(Texts.boxSettings.cardInfoOne, [props.allCards]);
-		}
-		return translate(Texts.boxSettings.cardInfo, [props.allActiveCards, props.allCards]);
-	}
+    const getCardInfo = () => {
+        if (props.allCards === 0) {
+            return ""
+        }
+        if (props.allActiveCards === 0 && props.allCards === 1) {
+            return translate(Texts.boxSettings.cardInfoZeroOne);
+        }
+        if (props.allActiveCards === 1 && props.allCards === 1) {
+            return translate(Texts.boxSettings.cardInfoOneOne);
+        }
+        if (props.allActiveCards === 1 && props.allCards === 1) {
+            return translate(Texts.boxSettings.cardInfoOneOne);
+        }
+        if (props.allActiveCards === 0) {
+            return translate(Texts.boxSettings.cardInfoZero, [props.allCards]);
+        }
+        if (props.allActiveCards === 1) {
+            return translate(Texts.boxSettings.cardInfoOne, [props.allCards]);
+        }
+        return translate(Texts.boxSettings.cardInfo, [props.allActiveCards, props.allCards]);
+    }
 
-	const getCardStatusWarning = () => {
-		const possibleCards = props.maxCardsPerDay * props.maxInterval;
-		if (possibleCards === 1) {
-			return translate(Texts.boxSettings.tooManyCardsWarningOne, [props.allActiveCards]);
-		}
-		return translate(Texts.boxSettings.tooManyCardsWarning, [possibleCards,  props.allActiveCards])
-	}
+    const getCardStatusWarning = () => {
+        const possibleCards = props.maxCardsPerDay * props.maxInterval;
+        if (possibleCards === 1) {
+            return translate(Texts.boxSettings.tooManyCardsWarningOne, [props.allActiveCards]);
+        }
+        return translate(Texts.boxSettings.tooManyCardsWarning, [possibleCards, props.allActiveCards])
+    }
 
-	const getCardStatusInfo = () => {
-		const possibleCards = props.maxCardsPerDay * props.maxInterval;
-		if (possibleCards === 1 && props.allActiveCards === 1) {
-			return translate(Texts.boxSettings.boxInfoOneOne);
-		}
-		if (props.allActiveCards === 1) {
-			return translate(Texts.boxSettings.boxInfoOne, [possibleCards])
-		}
-		return translate(Texts.boxSettings.boxInfo, [possibleCards, props.allActiveCards])
-	}
+    const getCardStatusInfo = () => {
+        const possibleCards = props.maxCardsPerDay * props.maxInterval;
+        if (possibleCards === 1 && props.allActiveCards === 1) {
+            return translate(Texts.boxSettings.boxInfoOneOne);
+        }
+        if (props.allActiveCards === 1) {
+            return translate(Texts.boxSettings.boxInfoOne, [possibleCards])
+        }
+        return translate(Texts.boxSettings.boxInfo, [possibleCards, props.allActiveCards])
+    }
 
-	if (props.categoryName === undefined) {
-		return null;
-	}
+    if (props.categoryName === undefined) {
+        return null;
+    }
 
-	const disabled = props.boxId && !props.editable;
+    const disabled = props.boxId && !props.editable;
 
-	return <div className="center-wide">
-		<div className="form">
-			<h1>{translate(Texts.boxSettings.title)}</h1>
-			{props.allCards > 0 ? <h2>{getCardInfo()}</h2> : null}
-			{props.tooManyCardsStatus === 2 && props.maxCardsPerDayInvalid !== true && props.maxIntervalInvalid !== true ?
-				<div className="line warning">{getCardStatusWarning()}</div> :
-				null
-			}
-			{props.tooManyCardsStatus === 1 && props.maxCardsPerDayInvalid !== true && props.maxIntervalInvalid !== true ?
-				<div className="line info">{getCardStatusInfo()}</div> :
-				null
-			}
-			<div className="line">
-				<label htmlFor="categoryName">
-					{translate(Texts.boxSettings.categoryName)}
-				</label>
-				<div className="inputContainer">
-					<input
-						onChange={(e) => props.rootCategoryNameChanged(e.target.value)}
-						type="text"
-						value={props.categoryName}
-						id="categoryName"
-						disabled={disabled}
-					/>
-					{!props.categoryName ? <i className="fas fa-times outside error"/> : null}
-				</div>
-			</div>
-			<div className="line">
-				<label htmlFor="maxCardsPerDay">
-					{translate(Texts.boxSettings.maxCardsPerDay)}
-				</label>
-				<div className="inputContainer">
-					<input
-						onChange={(e) => props.maxCardsPerDayChanged(e.target.value)}
-						type="text"
-						value={props.maxCardsPerDay}
-						id="maxCardsPerDay"
-					/>
-					{props.maxCardsPerDayInvalid === true ? <i className="fas fa-times outside error"/> : null}
-				</div>
-			</div>
-			<div className="line">
-				<label htmlFor="maxInterval">
-					{translate(Texts.boxSettings.maxInterval)}
-				</label>
-				<div className="inputContainer">
-					<input
-						onChange={(e) => props.maxIntervalChanged(e.target.value)}
-						type="text"
-						value={props.maxInterval}
-						id="maxInterval"
-					/>
-					{props.maxIntervalInvalid === true ? <i className="fas fa-times outside error"/> : null}
-				</div>
-			</div>
-			<div className="noBreak line">
-				<input
-					onChange={props.dictionaryLookupChanged}
-					type="checkbox"
-					value={props.dictionaryLookup}
-					checked={props.dictionaryLookup}
-					id="dictionaryLookupEditCheckbox"
-					disabled={disabled}
-				/>
-				<select
-					onChange={(e) => props.givenLanguageChanged(e.target.value)}
-					value={props.givenLanguage}
-					disabled={!props.dictionaryLookup || disabled}
-					id="givenLanguage"
-				>
-					<option value="">{translate(Texts.boxSettings.languages.emtpyFrom)}</option>
-					<option value="de">{translate(Texts.boxSettings.languages.de)}</option>
-					<option value="en">{translate(Texts.boxSettings.languages.en)}</option>
-					<option value="fr">{translate(Texts.boxSettings.languages.fr)}</option>
-				</select>
-				<select
-					onChange={(e) => props.wantedLanguageChanged(e.target.value)}
-					value={props.wantedLanguage}
-					disabled={!props.dictionaryLookup || disabled}
-					id="wantedLanguage"
-				>
-					<option value="">{translate(Texts.boxSettings.languages.emtpyTo)}</option>
-					<option value="de">{translate(Texts.boxSettings.languages.de)}</option>
-					<option value="en">{translate(Texts.boxSettings.languages.en)}</option>
-					<option value="fr">{translate(Texts.boxSettings.languages.fr)}</option>
-				</select>
-				{props.dictionaryLookupInvalid === true ? <i className="fas fa-times outside error"/> : null}
-			</div>
-			<div className="moreMarginLine text-center">
-				<button
-					id="save"
-					onClick={() => props.boxId ? props.saveBoxSettings() : props.createRootCategory()}
-					disabled={(props.maxCardsPerDayInvalid ||
-						props.maxIntervalInvalid ||
-						props.dictionaryLookupInvalid ||
-						!props.categoryName ||
-						!props.categoryName.trim())}
-				>
-					{translate(Texts.boxSettings.save)}
-				</button>
-				<button
-					id="cancel"
-					onClick={props.routeToDefault}>{translate(Texts.boxSettings.cancel)}</button>
-			</div>
-		</div>
-	</div>
+    return <>
+        {props.allCards > 0 ? <h2>{getCardInfo()}</h2> : null}
+        {props.tooManyCardsStatus === 2 && props.maxCardsPerDayInvalid !== true && props.maxIntervalInvalid !== true ?
+            <div className="line warning">{getCardStatusWarning()}</div> :
+            null
+        }
+        {props.tooManyCardsStatus === 1 && props.maxCardsPerDayInvalid !== true && props.maxIntervalInvalid !== true ?
+            <div className="line info">{getCardStatusInfo()}</div> :
+            null
+        }
+        <div className="inputContainer">
+            <input
+                onChange={(e) => props.rootCategoryNameChanged(e.target.value)}
+                type="text"
+                value={props.categoryName}
+                id="categoryName"
+                disabled={disabled}
+                placeholder={translate(Texts.boxSettings.categoryName)}
+            />
+            {!props.categoryName ? <i className="fas fa-times error"/> : null}
+        </div>
+        <div className="inputContainer">
+            <input
+                onChange={(e) => props.maxCardsPerDayChanged(e.target.value)}
+                type="text"
+                value={props.maxCardsPerDay}
+                id="maxCardsPerDay"
+            />
+            {props.maxCardsPerDayInvalid === true ? <i className="fas fa-times outside error"/> : null}
+        </div>
+        <div className="inputContainer">
+            <div className="small-font">
+                {translate(Texts.boxSettings.maxCardsPerDay)}
+            </div>
+        </div>
+        <div className="inputContainer">
+            <input
+                onChange={(e) => props.maxIntervalChanged(e.target.value)}
+                type="text"
+                value={props.maxInterval}
+                id="maxInterval"
+            />
+            {props.maxIntervalInvalid === true ? <i className="fas fa-times outside error"/> : null}
+        </div>
+        <div className="inputContainer">
+            <div className="small-font">
+                {translate(Texts.boxSettings.maxInterval)}
+            </div>
+        </div>
+        <div className="inputContainer">
+            <div className="inputSelectContainer">
+                <div className="inputWrapper">
+                    <input
+                        onChange={props.dictionaryLookupChanged}
+                        type="checkbox"
+                        value={props.dictionaryLookup}
+                        checked={props.dictionaryLookup}
+                        id="dictionaryLookupEditCheckbox"
+                        disabled={disabled}
+                    />
+                </div>
+                <div className="selectContainer">
+                    <select
+                        onChange={(e) => props.givenLanguageChanged(e.target.value)}
+                        value={props.givenLanguage}
+                        disabled={!props.dictionaryLookup || disabled}
+                        id="givenLanguage"
+                    >
+                        <option value="">{translate(Texts.boxSettings.languages.emtpyFrom)}</option>
+                        <option value="de">{translate(Texts.boxSettings.languages.de)}</option>
+                        <option value="en">{translate(Texts.boxSettings.languages.en)}</option>
+                        <option value="fr">{translate(Texts.boxSettings.languages.fr)}</option>
+                    </select>
+                    <select
+                        onChange={(e) => props.wantedLanguageChanged(e.target.value)}
+                        value={props.wantedLanguage}
+                        disabled={!props.dictionaryLookup || disabled}
+                        id="wantedLanguage"
+                    >
+                        <option value="">{translate(Texts.boxSettings.languages.emtpyTo)}</option>
+                        <option value="de">{translate(Texts.boxSettings.languages.de)}</option>
+                        <option value="en">{translate(Texts.boxSettings.languages.en)}</option>
+                        <option value="fr">{translate(Texts.boxSettings.languages.fr)}</option>
+                    </select>
+                </div>
+            </div>
+            {props.dictionaryLookupInvalid === true ? <i className="fas fa-times outside error"/> : null}
+        </div>
+        <div className="inputContainer">
+            <div className="small-font">
+                {translate(Texts.boxSettings.withTranslation, [
+                    props.givenLanguage ? translate(Texts.boxSettings.languages[props.givenLanguage]) : "-",
+                    props.wantedLanguage ? translate(Texts.boxSettings.languages[props.wantedLanguage]) : "-"
+                ])}
+            </div>
+        </div>
+        <div className="inputContainer">
+            <div className="buttonContainer">
+                <button
+                    id="save"
+                    className="primary"
+                    onClick={() => props.boxId ? props.saveBoxSettings() : props.createRootCategory()}
+                    disabled={(props.maxCardsPerDayInvalid ||
+                        props.maxIntervalInvalid ||
+                        props.dictionaryLookupInvalid ||
+                        !props.categoryName ||
+                        !props.categoryName.trim())}
+                >
+                    {translate(Texts.boxSettings.save)}
+                </button>
+                <button
+                    id="cancel"
+                    onClick={props.routeToDefault}
+                >
+                    {translate(Texts.boxSettings.cancel)}
+                </button>
+            </div>
+        </div>
+    </>
 }
-
 
 
 /******* S.D.G. *******/

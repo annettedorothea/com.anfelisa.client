@@ -153,6 +153,20 @@ HideSaveBugDialog
 
 
 ui JSX rootContainer {
+	messageContainer {
+		List messages {
+			type
+			text
+			id
+			visible
+			code
+			textKey
+			args
+			actions {
+				"destroyToast" DestroyToast
+			}
+		}
+	}
 	loggedInUser {
 		username
 		token
@@ -183,20 +197,6 @@ ui JSX rootContainer {
 	}
 	versionMismatchErrorDialog {
 		display
-	}
-	messageContainer {
-		List messages {
-			type
-			text
-			id
-			visible
-			code
-			textKey
-			args
-			actions {
-				"destroyToast" DestroyToast
-			}
-		}
 	}
 	exclusiveView mainView {
 		privacyPolicyView {
@@ -337,40 +337,56 @@ ui JSX rootContainer {
 				quality3Count
 				quality4Count
 				quality5Count
+				cardsCount
 				List countsPerDayNextWeek
-				maxCardsPerDay
 				editable
 				reverse
 				archived
 				deletable
-				edit Button {
+				todaysWeekDay
+				tileHeader {
+					boxId
 					categoryId
+					categoryName
 					reverse
 					archived
-					actions {
-						"onClick" RouteToAuthorView
-					}
-				}
-				settings Button {
-					boxId
-					archived
-					actions {
-						"onClick" RouteToBoxSettings
-					}
-				}
-				archive Button {
-					boxId
-					archived
-					actions {
-						"onClick" box.ArchiveBox
-					}
-				}
-				delete Button {
-					boxId
 					deletable
-					archived
-					actions {
-						"onClick" box.DeleteBoxClick
+					edit Button {
+						categoryId
+						reverse
+						archived
+						actions {
+							"onClick" RouteToAuthorView
+						}
+					}
+					settings Button {
+						boxId
+						archived
+						actions {
+							"onClick" RouteToBoxSettings
+						}
+					}
+					statistics Button {
+						boxId
+						archived
+						actions {
+							"onClick" RouteToActiveCards
+						}
+					}
+					archive Button {
+						boxId
+						archived
+						actions {
+							"onClick" box.ArchiveBox
+						}
+					}
+					delete Button {
+						boxId
+						deletable
+						archived
+						actions {
+							"onClick" box.DeleteBoxClick
+						}
 					}
 				}
 				statistics {
@@ -380,6 +396,7 @@ ui JSX rootContainer {
 					quality3Count
 					quality4Count
 					quality5Count
+					cardsCount
 					archived
 				}
 				cardsNextDays {
@@ -387,6 +404,7 @@ ui JSX rootContainer {
 					countsPerDayNextWeek
 					maxCardsPerDay
 					archived
+					todaysWeekDay
 					actions {
 						"onClick" RouteToActiveCards
 					}

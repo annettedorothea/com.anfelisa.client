@@ -7,10 +7,8 @@ import React from "react";
 
 
 export const DashboardView = (props) => {
-    return <div id="dashboard">
-        <div className="bottomMargin">
-            {props.children}
-        </div>
+    return <div id="dashboard" className="dashboard">
+        {props.children}
     </div>
 }
 

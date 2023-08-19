@@ -4,32 +4,17 @@
 
 
 import React from "react";
-import {translate} from "../../../../AppUtils";
-import {Texts} from "../../../../app/Texts";
+import "./boxList.scss"
 
 export const BoxListItem = (props) => {
-    if (props.archived === true) {
-        return <a className="tile box box-archived">
-            <h2>
-                {props.categoryName}
-                {props.reverse ? <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
-            </h2>
-            <br/>
-            {props.children}
-        </a>
-    }
-
-    return <a
-        className="tile box active"
+    return <div
+        className="tile"
         id={props.boxId}
-        onClick={() => props.onClick(props.boxId, props.openTodaysCards, props.categoryId, props.reverse)}>
-        <h2>
-            {props.categoryName}
-            {props.reverse ? <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
-        </h2>
+        onClick={props.archived ? () => {} : () => props.onClick(props.boxId, props.openTodaysCards, props.categoryId, props.reverse)}
+    >
         {props.openTodaysCards > 0 ? <span className="badge">{props.openTodaysCards}</span> : null}
         {props.children}
-    </a>
+    </div>
 }
 
 

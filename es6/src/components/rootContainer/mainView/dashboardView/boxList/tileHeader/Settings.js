@@ -6,25 +6,25 @@
 
 
 import React from "react";
-import {translate} from "../../../../../AppUtils";
-import {Texts} from "../../../../../app/Texts";
+import {translate} from "../../../../../../AppUtils";
+import {Texts} from "../../../../../../app/Texts";
 
-export const Edit = (props) => {
+export const Settings = (props) => {
 	if (props.archived === true) {
 		return null;
 	}
 
-	const onEditClick = (e) => {
+	const onSettingsClick = (e) => {
 		e.stopPropagation();
-		props.onClick(props.categoryId,props.reverse);
+		props.onClick(props.boxId)
 	}
 
 	return (
-		<div className="buttons button1">
+		<div className="buttons button2">
 			<i
-				className="fas fa-edit"
-				onClick={(e) => onEditClick(e)}
-				title={translate(Texts.box.edit)}
+				className="fas fa-cog"
+				onClick={(e) => onSettingsClick(e)}
+				title={translate(Texts.box.settings)}
 			/>
 		</div>
 	)

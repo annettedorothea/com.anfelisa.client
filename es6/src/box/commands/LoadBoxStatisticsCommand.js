@@ -27,6 +27,8 @@ export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsC
                 box.quality3Count = boxWithStats.quality3Count;
                 box.quality4Count = boxWithStats.quality4Count;
                 box.quality5Count = boxWithStats.quality5Count;
+                box.cardsCount = boxWithStats.cardsCount;
+                box.todaysWeekDay = data.clientSystemTime.getDay();
             }
         });
     	this.addOkOutcome(data);

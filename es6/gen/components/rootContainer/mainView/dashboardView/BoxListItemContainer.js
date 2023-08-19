@@ -8,29 +8,19 @@
 import React from "react";
 
 import { BoxListItem } from "../../../../../src/components/rootContainer/mainView/dashboardView/BoxListItem";
-import { Edit } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/Edit";
-import { Settings } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/Settings";
-import { Archive } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/Archive";
-import { Delete } from "../../../../../src/components/rootContainer/mainView/dashboardView/boxList/Delete";
+import { TileHeaderContainer } from "./boxList/TileHeaderContainer";
 import { StatisticsContainer } from "./boxList/StatisticsContainer";
 import { CardsNextDaysContainer } from "./boxList/CardsNextDaysContainer";
 import { boxClick } from "../../../../box/ActionFunctions";
-import { routeToAuthorView } from "../../../../common/ActionFunctions";
-import { routeToBoxSettings } from "../../../../common/ActionFunctions";
-import { archiveBox } from "../../../../box/ActionFunctions";
-import { deleteBoxClick } from "../../../../box/ActionFunctions";
 import { routeToActiveCards } from "../../../../common/ActionFunctions";
 
 
 export const BoxListItemContainer = ( props ) => {
 	
 	return <BoxListItem {...props} onClick={boxClick} >
-		<Edit {...props.edit }  categoryId={props.categoryId} reverse={props.reverse} archived={props.archived}  onClick={routeToAuthorView}  />
-		<Settings {...props.settings }  boxId={props.boxId} archived={props.archived}  onClick={routeToBoxSettings}  />
-		<Archive {...props.archive }  boxId={props.boxId} archived={props.archived}  onClick={archiveBox}  />
-		<Delete {...props.delete }  boxId={props.boxId} deletable={props.deletable} archived={props.archived}  onClick={deleteBoxClick}  />
-		<StatisticsContainer {...props.statistics }  quality0Count={props.quality0Count} quality1Count={props.quality1Count} quality2Count={props.quality2Count} quality3Count={props.quality3Count} quality4Count={props.quality4Count} quality5Count={props.quality5Count} archived={props.archived}   />
-		<CardsNextDaysContainer {...props.cardsNextDays }  boxId={props.boxId} countsPerDayNextWeek={props.countsPerDayNextWeek} maxCardsPerDay={props.maxCardsPerDay} archived={props.archived}  onClick={routeToActiveCards}  />
+		<TileHeaderContainer {...props.tileHeader }  boxId={props.boxId} categoryId={props.categoryId} categoryName={props.categoryName} reverse={props.reverse} archived={props.archived} deletable={props.deletable} statistics={props.statistics}   />
+		<StatisticsContainer {...props.statistics }  quality0Count={props.quality0Count} quality1Count={props.quality1Count} quality2Count={props.quality2Count} quality3Count={props.quality3Count} quality4Count={props.quality4Count} quality5Count={props.quality5Count} cardsCount={props.cardsCount} archived={props.archived}   />
+		<CardsNextDaysContainer {...props.cardsNextDays }  boxId={props.boxId} countsPerDayNextWeek={props.countsPerDayNextWeek} archived={props.archived} todaysWeekDay={props.todaysWeekDay}  onClick={routeToActiveCards}  />
 	</BoxListItem> 
 }
 

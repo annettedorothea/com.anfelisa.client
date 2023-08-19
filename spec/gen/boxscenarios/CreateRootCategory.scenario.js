@@ -302,7 +302,6 @@ describe("boxscenarios.CreateRootCategory", function () {
 					0,0,0,0,0,0,0
 				],
 				
-				maxCardsPerDay : 12,
 				openTodaysCards : 0,
 				quality0Count : 0,
 				quality1Count : 0,

@@ -4,17 +4,9 @@
 
 
 import React from "react";
+import {translate} from "../../../../../AppUtils";
+import {Texts} from "../../../../../app/Texts";
 
-const cardsNextDaysItem = (item) => {
-    const toDoFactor = item.count * 1.0 / item.maxCardsPerDay;
-    return <div
-        key={item.index}
-        className={`${item.rounded} cards-next-days-item`}
-        style={{background: `rgba(192, 192, 192, ${toDoFactor})`}}
-    >
-        {item.count}
-    </div>
-}
 export const CardsNextDays = (props) => {
     if (props.archived === true) {
         return null;
@@ -24,25 +16,27 @@ export const CardsNextDays = (props) => {
         e.stopPropagation();
         props.onClick(props.boxId)
     }
-    if (props.countsPerDayNextWeek && props.countsPerDayNextWeek.length === 7 && props.maxCardsPerDay && props.maxCardsPerDay > 0) {
+    if (props.countsPerDayNextWeek && props.countsPerDayNextWeek.length === 7) {
         let index = 0;
-        let items = props.countsPerDayNextWeek.map((count) => {
+        const weekdays = props.countsPerDayNextWeek.map((count) => {
             index++;
-            return cardsNextDaysItem({
-                maxCardsPerDay: props.maxCardsPerDay,
-                count,
-                index,
-                language: props.language,
-                rounded: index === 1 ? "rounded-left" : index === 7 ? "rounded-right" : ""
-            });
+            const weekDay = (index + props.todaysWeekDay) % 7;
+            return <div key={weekDay} className="weekday">
+                {translate(Texts.box.weekDays[weekDay])}
+            </div>
         });
-        return <div>
-            <br/>
+        const todos = props.countsPerDayNextWeek.map((count) => {
+            index++;
+            return <div key={index}>{count}</div>
+        });
+        return <div className="cards-next-days">
+            <div className="next-days-header">{translate(Texts.box.nextWeek)}</div>
             <div
-                className="cards-next-days"
+                className="calendar"
                 onClick={(e) => onClick(e)}
             >
-                {items}
+                {weekdays}
+                {todos}
             </div>
         </div>
     }

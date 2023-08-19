@@ -1,22 +1,20 @@
 @import "../style";
 
 .center-header {
-  margin: 1rem auto;
+  margin: $spacing auto;
   justify-content: center;
 }
 
 .wide-header {
-  margin: 1rem 0;
+  margin: $spacing 0;
 }
 
 .header {
   display: flex;
-  flex-wrap: wrap;
-  height: 2rem;
 
   .title {
-    font-size: 2rem;
-    line-height: 2rem;
+    font-size: $hugeFont;
+    line-height: $hugeFont;
     cursor: pointer;
     flex-grow: 4;
     text-decoration: none;
@@ -24,13 +22,36 @@
   }
 
   .profile {
-    align-self: end;
     display: flex;
-    column-gap: 12px;
+    column-gap: $largeSpacing;
 
     .username {
-      line-height: 2rem;
+      line-height: $hugeFont;
       cursor: pointer;
     }
   }
 }
+
+@media screen and (max-width: $smallScreens) {
+  .header {
+    flex-wrap: nowrap;
+    flex-direction: column;
+    height: $smallHeaderHeight;
+    .profile {
+      align-self: flex-start;
+      margin: $spacing 0;
+    }
+  }
+}
+
+@media screen and (min-width: $smallScreens) {
+  .header {
+    flex-wrap: nowrap;
+    flex-direction: row;
+    height: $hugeFont;
+  }
+  .profile {
+    align-self: flex-end;
+  }
+}
+
