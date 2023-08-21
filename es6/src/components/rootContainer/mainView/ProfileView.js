@@ -10,12 +10,11 @@ import {translate} from "../../../AppUtils";
 import {Texts} from "../../../app/Texts";
 import {Modal} from "../../common/Modal";
 
-
 export const ProfileView = (props) => {
 	if (props.username === undefined) {
 		return null;
 	}
-	return <div className="center-wide">
+	return <div className="form">
 		{props.showDeleteUserDialog === true &&
 			<Modal
 				title={translate(Texts.profile.confirmDelete.title)}
@@ -26,45 +25,9 @@ export const ProfileView = (props) => {
 				onCancel={props.deleteUserCancel}
 			/>
 		}
-		<div className="form">
-			<h1>
-				<button onClick={props.routeToDefault}><i className="fa fa-arrow-left"/></button>
-				{translate(Texts.profile.title)}
-			</h1>
-			<div className="line">
-				<label htmlFor="username">{translate(Texts.profile.username)}</label>
-				<div className="inputContainer">
-					<input
-						type="text"
-						value={props.username}
-						id="username"
-						readOnly={true}
-					/>
-				</div>
-			</div>
-			<div className="line">
-				<label htmlFor="email">{translate(Texts.profile.email)}</label>
-				<div className="inputContainer">
-					<input
-						type="text"
-						value={props.email}
-						id="email"
-						readOnly={true}
-					/>
-				</div>
-			</div>
-			<div className="moreMarginLine text-center">
-				<button
-					className="danger"
-					onClick={props.deleteUserClick}
-					disabled={!props.deletable}
-				>
-					{translate(Texts.profile.delete)}
-				</button>
-			</div>
-		</div>
+		<h1>{translate(Texts.profile.title)}</h1>
+		{props.children}
 	</div>
-
 }
 
 

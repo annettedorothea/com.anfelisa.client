@@ -4,21 +4,18 @@
 
 
 import React from "react";
-
+import "./queryCard.scss";
 
 export const QueryCardView = (props) => {
     const progress = () => {
         const open = Math.round(props.openTodaysCards / props.allTodaysCards * 100);
         const done = 100 - open;
         return <div className="progress">
-            <div
-                className={`${done === 100 ? 'all-done' : 'done'}`}
-                style={{width: `${done}%`}}
-            />
-            <div
-                className={`${open === 100 ? 'all-open' : 'open'}`}
-                style={{width: `${open}%`}}
-            />
+            <div style={{width: `${done}%`}}>
+                <div
+                    className="done"
+                />
+            </div>
         </div>
     }
 
@@ -27,16 +24,18 @@ export const QueryCardView = (props) => {
     }
 
     return <div className="box">
-        <h1>
+        <div className="boxHeader">
             <button
-                className="backButton"
+                className="primary"
                 onClick={props.routeToDefault}
             >
                 <i className="fa fa-arrow-left"/>
             </button>
-            {props.boxName} {props.reverse ?
-            <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
-        </h1>
+            <h2>
+                {props.boxName} {props.reverse ?
+                <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
+            </h2>
+        </div>
         {progress()}
         {props.children}
     </div>

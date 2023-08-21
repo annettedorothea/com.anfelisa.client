@@ -1,0 +1,137 @@
+@import "../../style";
+
+.box {
+  .boxHeader {
+    display: flex;
+    gap: $hugeSpacing;
+  }
+
+  .progress {
+    background-color: $light;
+    border-radius: $borderRadius;
+    height: 0.5rem;
+    margin-top: $spacing;
+
+    .done {
+      border-radius: $borderRadius;
+      background-color: $darker;
+      height: 0.5rem;
+      animation: w100 1s ease forwards;
+      @keyframes w100 {
+        from {
+          width: 0;
+        }
+        to {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+
+  .given, .wanted {
+    border: $bigBorder;
+    border-radius: $bigBorderRadius;
+    padding: $smallerSpacing;
+    margin: $spacing 0;
+
+    .given-word,
+    .wanted-word {
+      margin: $smallerSpacing 0;
+
+      img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+        border-radius: $bigBorderRadius;
+        overflow: hidden;
+        margin: 0 auto;
+      }
+    }
+
+    .hidden {
+      visibility: hidden;
+    }
+
+
+    .small-info {
+      font-size: $smallFont;
+      color: $darker;
+    }
+  }
+
+  .lastQuality_0 {
+    border-color: $pink;
+  }
+
+  .lastQuality_1 {
+    border-color: $red;
+  }
+
+  .lastQuality_2 {
+    border-color: $orange;
+  }
+
+  .lastQuality_3 {
+    border-color: $lightBlue;
+  }
+
+  .lastQuality_4 {
+    border-color: $blue;
+  }
+
+  .lastQuality_5 {
+    border-color: $green;
+  }
+
+
+  .scoreButtons {
+    margin: 0 auto;
+    width: 16rem;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: $smallSpacing;
+
+    button {
+      width: 8rem;
+      padding: $smallerSpacing $smallerSpacing;
+    }
+
+    button.quality_0 {
+      background-color: $pink;
+    }
+    button.quality_1 {
+      background-color: $red;
+    }
+    button.quality_2 {
+      background-color: $orange;
+    }
+    button.quality_3 {
+      background-color: $lightBlue;
+    }
+    button.quality_4 {
+      background-color: $blue;
+    }
+    button.quality_5 {
+      background-color: $green;
+    }
+    button.keep_false {
+      background-color: $green;
+    }
+    button.keep_true {
+      background-color: $red;
+    }
+    .line {
+      grid-column-start: 1;
+      grid-column-end: span 2;
+      display: flex;
+      justify-content: center;
+    }
+    a {
+      cursor: pointer;
+    }
+  }
+
+}
+

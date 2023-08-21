@@ -48,12 +48,7 @@ export const CardView = (props) => {
 			/>
 		</div>
 	}
-
-	return <div>
-		<h1>
-			{props.selectedCategory.categoryName}
-			{props.reverse === true ? <i className="fas fa-arrows-alt-h"/> : null}
-		</h1>
+	return <div className="cardView">
 		{props.children}
 		{dictionary()}
 	</div>

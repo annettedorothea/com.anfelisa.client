@@ -8,7 +8,7 @@
 import React from "react";
 
 export const Filter = (props) => {
-	return <div className="form">
+	return <div className="filter">
 		{props.children}
 	</div>
 }

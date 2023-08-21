@@ -8,55 +8,87 @@ import {translate} from "../../../../../../AppUtils";
 import {Texts} from "../../../../../../app/Texts";
 
 export const CardTable = (props) => {
-    return <table>
-        <thead>
-        <tr className="notPrinted">
-            <th colSpan={4}>
-                <button
-                    title={translate(Texts.cardList.toggleInputOrder)}
-                    onClick={props.toggleInputOrder}
-                >
-                    <i className="fas fa-arrows-alt-h"/>
-                </button>
+    return <>
+        <div className="cardViewHeader">
+            <h1>
+                {props.selectedCategory.categoryName}
+                {props.reverse === true ? <i className="fas fa-arrows-alt-h"/> : null}
+            </h1>
+            <div className="searchContainer">
                 <input
-                    type="text"
+                    type="search"
                     onChange={(event) => props.filterCards(event.target.value)}
                     autoComplete="off"
                     placeholder={translate(Texts.cardList.filterCards)}
                     value={props.filter}
                 />
-            </th>
-        </tr>
-        <tr>
-            <th>
-                <input
-                    type="checkbox"
-                    onChange={props.toggleAllScheduleCardSelection}
-                    checked={props.cardList.length > 0 && props.selectedCardIds.length === props.cardList.length}
-                    id="toggle-all"
-                />
-            </th>
-            <th colSpan={4}>
-                <button
-                    disabled={props.selectedCardIds.length === 0}
-                    onClick={props.scheduleSelectedCards}
-                    id="schedule"
-                >
-                    {translate(Texts.cardList.scheduleSelectedCards)}
-                </button>
-                <button
-                    disabled={props.selectedCardIds.length === 0}
-                    onClick={props.sortSelectedCardsOut}
-                >
-                    {translate(Texts.cardList.sortSelectedCardsOut)}
-                </button>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        {props.children}
-        </tbody>
-    </table>
+            </div>
+        </div>
+        <div className="cardTable">
+            <input
+                type="checkbox"
+                onChange={props.toggleAllScheduleCardSelection}
+                checked={props.cardList.length > 0 && props.selectedCardIds.length === props.cardList.length}
+                id="toggle-all"
+            />
+            <div className="tableHeader">
+                <div className="toolbarContainer">
+                    <div className="toolbar wrap">
+                        <button
+                            disabled={props.selectedCardIds.length === 0}
+                            onClick={props.scheduleSelectedCards}
+                            id="schedule"
+                        >
+                            {translate(Texts.cardList.scheduleSelectedCards)}
+                        </button>
+                        <button
+                            disabled={props.selectedCardIds.length === 0}
+                            onClick={props.sortSelectedCardsOut}
+                        >
+                            {translate(Texts.cardList.sortSelectedCardsOut)}
+                        </button>
+                        <button
+                            disabled={props.selectedCardIds.length === 0}
+                            onClick={props.deleteCardClick}
+                            id="schedule"
+                        >
+                            {translate(Texts.cardList.deleteSelectedCards)}
+                        </button>
+                        <button
+                            disabled={props.selectedCardIds.length === 0}
+                            onClick={props.moveCards}
+                        >
+                            {translate(Texts.cardList.moveSelectedCardsToSelectedCategory)}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+            <tr className="notPrinted">
+                <th colSpan={4}>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <input
+                        type="checkbox"
+                        onChange={props.toggleAllScheduleCardSelection}
+                        checked={props.cardList.length > 0 && props.selectedCardIds.length === props.cardList.length}
+                        id="toggle-all"
+                    />
+                </th>
+                <th colSpan={4}>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            {props.children}
+            </tbody>
+        </table>
+    </>
 }
 
 

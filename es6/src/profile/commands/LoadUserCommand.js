@@ -14,11 +14,16 @@ export default class LoadUserCommand extends AbstractLoadUserCommand {
     }
 
     handleResponse(data, resolve) {
-        data.mainView = {
-            username: data.username,
-            email: data.email,
+        data.profileView = {
+            username: {
+                value: data.username
+            },
+            email: {
+                value: data.email
+            },
             role: data.role,
-            showDeleteUserDialog: false
+            showDeleteUserDialog: false,
+            deletable: data.deletable
         };
     	this.addOkOutcome(data);
     	resolve(data);

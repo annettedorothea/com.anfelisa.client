@@ -3,8 +3,6 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 import {translate} from "../../AppUtils";
 import {Texts} from "../../app/Texts";
@@ -12,33 +10,35 @@ import * as AppUtils from "../../AppUtils";
 import * as Utils from "../../../gen/ace/Utils";
 
 export const Footer = (props) => {
-	return <div className={`footer ${props.loggedInUser === undefined ? "fixed" : ""}`}>
-		<div className="footerContent">
-			<h1>{translate(Texts.container.about)}</h1>
-			<p>
-				Annette Pohl &middot; Im Sommerhäldele 9 &middot; 77799 Ortenberg &middot; Deutschland
-			</p>
-			<p>
-				+49 781 99078158 &middot; <a href="mailto:info@anfelisa.de">info@anfelisa.de</a>
-			</p>
-			<p>
-				{translate(Texts.container.version)} {AppUtils.settings ? AppUtils.settings.clientVersion : ""} {AppUtils.settings && AppUtils.settings.mode === "dev" ? AppUtils.settings.mode : ""}
-			</p>
-			<p>
-				<a onClick={() =>
-					Utils.saveTimeline(
-						"no description",
-						props.loggedInUser ? props.loggedInUser.username : "anonymous"
-					)}
-				   target="ace">save timeline</a>
-			</p>
-			<p>
-				<a onClick={props.onClick}>{translate(Texts.login.privacyPolicy)}</a>
-			</p>
-		</div>
-	</div>
+    return <div className={`footer ${props.loggedInUser === undefined ? "fixed" : ""}`}>
+        <div className="footerContent">
+            <h1>{translate(Texts.container.about)}</h1>
+            <p>
+                Annette Pohl &middot; Im Sommerhäldele 9 &middot; 77799 Ortenberg &middot; Deutschland
+            </p>
+            <p>
+                +49 781 99078158
+                &middot;&nbsp;
+                <a href="mailto:info@anfelisa.de">info@anfelisa.de</a>
+                &middot;&nbsp;
+                <a onClick={props.onClick}>{translate(Texts.login.privacyPolicy)}</a>
+            </p>
+            <p className="smaller">
+                {translate(Texts.container.version)} {AppUtils.settings ? AppUtils.settings.clientVersion : ""} {AppUtils.settings && AppUtils.settings.mode === "dev" ? AppUtils.settings.mode : ""}
+                &middot;&nbsp;
+                <a onClick={() =>
+                    Utils.saveTimeline(
+                        "no description",
+                        props.loggedInUser ? props.loggedInUser.username : "anonymous"
+                    )}
+                   target="ace"
+                >
+                    save timeline
+                </a>
+            </p>
+        </div>
+    </div>
 }
-
 
 
 /******* S.D.G. *******/

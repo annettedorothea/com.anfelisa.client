@@ -12,33 +12,11 @@ export default class EventListenerRegistrationProfile {
 
 	static init() {
 		ACEController.registerListener('profile.LoadUserOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "profileView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'profileView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.merge(
+				AppState.set({mainView: {}}, ["rootContainer", "mainView"]);
+				AppState.set(
 					data, 
-					["rootContainer", "mainView", "profileView", "email"]
-				)
-			});
-		ACEController.registerListener('profile.LoadUserOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "profileView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'profileView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.merge(
-					data, 
-					["rootContainer", "mainView", "profileView", "username"]
-				)
-			});
-		ACEController.registerListener('profile.LoadUserOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "profileView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'profileView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.merge(
-					data, 
-					["rootContainer", "mainView", "profileView", "deletable"]
+					["rootContainer", "mainView", "profileView"], 
+					["username", "email", "buttons", "role", "deletable", "showDeleteUserDialog"]
 				)
 			});
 		ACEController.registerListener('profile.DeleteUserOkEvent', (data) => {
@@ -46,7 +24,7 @@ export default class EventListenerRegistrationProfile {
 					console.warn("path ['rootContainer', 'mainView', 'profileView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
 					return;
 				}
-				AppState.merge(
+				AppState.set(
 					data, 
 					["rootContainer", "mainView", "profileView", "showDeleteUserDialog"]
 				)
@@ -56,7 +34,7 @@ export default class EventListenerRegistrationProfile {
 					console.warn("path ['rootContainer', 'mainView', 'profileView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
 					return;
 				}
-				AppState.merge(
+				AppState.set(
 					data, 
 					["rootContainer", "mainView", "profileView", "showDeleteUserDialog"]
 				)
@@ -66,7 +44,7 @@ export default class EventListenerRegistrationProfile {
 					console.warn("path ['rootContainer', 'mainView', 'profileView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
 					return;
 				}
-				AppState.merge(
+				AppState.set(
 					data, 
 					["rootContainer", "mainView", "profileView", "showDeleteUserDialog"]
 				)
@@ -76,7 +54,7 @@ export default class EventListenerRegistrationProfile {
 					console.warn("path ['rootContainer', 'mainView', 'profileView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
 					return;
 				}
-				AppState.merge(
+				AppState.set(
 					data, 
 					["rootContainer", "mainView", "profileView", "showDeleteUserDialog"]
 				)

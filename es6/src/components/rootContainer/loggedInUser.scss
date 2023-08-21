@@ -11,6 +11,8 @@
 
 .header {
   display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
 
   .title {
     font-size: $hugeFont;
@@ -22,36 +24,45 @@
   }
 
   .profile {
+    align-self: flex-start;
     display: flex;
-    column-gap: $largeSpacing;
+    @media screen and (max-width: $smallScreens) {
+      column-gap: $spacing;
+      margin-left: $spacing;
+    }
+    @media screen and (min-width: $smallScreens) {
+      column-gap: $largeSpacing;
+      margin-left: $largeSpacing;
+    }
 
     .username {
       line-height: $hugeFont;
       cursor: pointer;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      @media screen and (max-width: $smallScreens) {
+        max-width: 8rem;
+      }
+      @media screen and (min-width: $smallScreens) {
+        max-width: 12rem;
+      }
+    }
+
+    .logout {
+      @media screen and (max-width: $smallScreens) {
+        .buttonText {
+          display: none;
+        }
+      }
+      @media screen and (min-width: $smallScreens) {
+        .buttonIcon {
+          display: none;
+        }
+      }
     }
   }
 }
 
-@media screen and (max-width: $smallScreens) {
-  .header {
-    flex-wrap: nowrap;
-    flex-direction: column;
-    height: $smallHeaderHeight;
-    .profile {
-      align-self: flex-start;
-      margin: $spacing 0;
-    }
-  }
-}
 
-@media screen and (min-width: $smallScreens) {
-  .header {
-    flex-wrap: nowrap;
-    flex-direction: row;
-    height: $hugeFont;
-  }
-  .profile {
-    align-self: flex-end;
-  }
-}
 

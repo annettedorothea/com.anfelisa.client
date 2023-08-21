@@ -11,7 +11,7 @@ import {translate} from "../../../AppUtils";
 export const MessagesItem = (props) => {
 	const text = translate(props.textKey, props.args);
 	return <div
-		className={`toastWrapper ${props.visible === false ? "fadeOut" : ""}`}
+		className={`${props.visible === false ? "fadeOut" : ""}`}
 		onClick={() => props.destroyToast(props.id)}
 	>
 		<div id={`toast_${props.id}`} className={`toast ${props.type}`}>{text}</div>

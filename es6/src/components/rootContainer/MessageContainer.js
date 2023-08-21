@@ -3,17 +3,14 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
-
+import "./messageContainer.scss"
 
 export const MessageContainer = (props) => {
-	return <div className="toastContainer">
-		{props.children}
-	</div>
+    return <div className="toastContainer">
+            {props.children}
+    </div>
 }
-
 
 
 /******* S.D.G. *******/

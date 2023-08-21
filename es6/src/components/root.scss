@@ -10,22 +10,19 @@
     max-width: $maxWidth;
     margin: auto;
     padding: 0 $spacing 0 $spacing;
+    grid-template-rows: $headerHeight 2rem auto auto;
 
     .spinner {
       display: flex;
       justify-content: flex-end;
     }
-  }
-  @media screen and (max-width: $smallScreens) {
-    .root {
-      grid-template-rows: 0 $smallHeaderHeight 2rem auto auto;
+
+    .footer {
+      border-top: $border;
+      text-align: center;
+      .smaller {
+        font-size: $smallFont;
+      }
     }
   }
-
-  @media screen and (min-width: $smallScreens) {
-    .root {
-      grid-template-rows: 0 $headerHeight 2rem auto auto;
-    }
-  }
-
 }

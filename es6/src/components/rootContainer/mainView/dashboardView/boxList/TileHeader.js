@@ -3,33 +3,19 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 
 export const TileHeader = (props) => {
-	if (props.archived === true) {
-		return <div className="tileHeader archived">
-			<h2>
-				{props.categoryName}
-				{props.reverse ? <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
-			</h2>
-			<div className="buttons">
-				{props.children}
-			</div>
-		</div>
-	}
-	return <div className="tileHeader">
-		<h2>
-			{props.categoryName}
-			{props.reverse ? <i className="fas fa-arrows-alt-h withmarginleft"/> : null}
-		</h2>
-		<div className="buttons">
-			{props.children}
-		</div>
-	</div>
+    return <div className={`tileHeader ${props.archived ? 'archived' : ''}`}>
+        <h2>
+            {props.categoryName}
+            {props.reverse ? <i className="fas fa-exchange-alt"/> : null}
+        </h2>
+        <div className="buttons">
+            {props.children}
+        </div>
+    </div>
 }
-
 
 
 /******* S.D.G. *******/

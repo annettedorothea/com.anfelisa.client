@@ -11,7 +11,8 @@ export default class CancelInviteUserCommand extends AbstractCancelInviteUserCom
     execute(data) {
         data.inviteUserDialog = {
             display: false,
-            usernameSearchString: ""
+            usernameSearchString: "",
+            usernames: []
         };
         data.inviteUserEditableDialog = {
             display: false,

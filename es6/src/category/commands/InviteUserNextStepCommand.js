@@ -11,12 +11,13 @@ export default class InviteUserNextStepCommand extends AbstractInviteUserNextSte
     execute(data) {
         data.inviteUserDialog = {
             display: false,
-            usernameSearchString: ""
+            usernameSearchString: "",
+            usernames: []
         };
         data.inviteUserEditableDialog = {
             display: true,
             editable: data.editable,
-            invitedUsername: data.invitedUsername
+            invitedUsername: data.invitedUsername,
         };
         this.addOkOutcome(data);
     	return data;

@@ -24,9 +24,8 @@ import { filterActiveCardListWithLastQualityChanged } from "../../box/ActionFunc
 import { scheduleSelectedCards } from "../../box/ActionFunctions";
 import { sortSelectedCardsOut } from "../../box/ActionFunctions";
 import { toggleAllScheduleCardSelection } from "../../box/ActionFunctions";
-import { deleteUser } from "../../profile/ActionFunctions";
 import { deleteUserCancel } from "../../profile/ActionFunctions";
-import { deleteUserClick } from "../../profile/ActionFunctions";
+import { deleteUser } from "../../profile/ActionFunctions";
 
 
 export const MainViewContainer = ( props ) => {
@@ -40,7 +39,7 @@ export const MainViewContainer = ( props ) => {
 		{ props.dashboardView && <DashboardViewContainer {...props.dashboardView }    /> }
 		{ props.boxSettingsView && <BoxSettingsViewContainer {...props.boxSettingsView }    /> }
 		{ props.allActiveCardsView && <AllActiveCardsViewContainer {...props.allActiveCardsView }   filterActiveCardListWithLastQualityChanged={filterActiveCardListWithLastQualityChanged} scheduleSelectedCards={scheduleSelectedCards} sortSelectedCardsOut={sortSelectedCardsOut} toggleAllScheduleCardSelection={toggleAllScheduleCardSelection}  /> }
-		{ props.profileView && <ProfileViewContainer {...props.profileView }   deleteUser={deleteUser} deleteUserCancel={deleteUserCancel} deleteUserClick={deleteUserClick} routeToDefault={routeToDefault}  /> }
+		{ props.profileView && <ProfileViewContainer {...props.profileView }   deleteUserCancel={deleteUserCancel} deleteUser={deleteUser}  /> }
 		{ props.queryCardView && <QueryCardViewContainer {...props.queryCardView }   routeToDefault={routeToDefault}  /> }
 		{ props.authorView && <AuthorViewContainer {...props.authorView }    /> }
 	</MainView> 

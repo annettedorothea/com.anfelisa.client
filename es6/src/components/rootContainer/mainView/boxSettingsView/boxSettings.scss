@@ -1,5 +1,23 @@
 @import "../../../style";
 
+.message {
+  display: grid;
+  grid-template-columns: auto $largerSpacing;
+
+  div {
+    font-size: $smallFont;
+    border: $border;
+    border-radius: $borderRadius;
+    padding: $smallSpacing;
+  }
+  .info {
+    border-color: $green;
+  }
+  .info {
+    border-color: $orange;
+  }
+}
+
 .inputSelectContainer {
   display: grid;
   grid-template-columns: 1rem auto;

@@ -8,12 +8,11 @@
 import React from "react";
 
 import { CardsNextDays } from "../../../../../../src/components/rootContainer/mainView/dashboardView/boxList/CardsNextDays";
-import { routeToActiveCards } from "../../../../../common/ActionFunctions";
 
 
 export const CardsNextDaysContainer = ( props ) => {
 	
-	return <CardsNextDays {...props} onClick={routeToActiveCards}  /> 
+	return <CardsNextDays {...props}  /> 
 }
 
 

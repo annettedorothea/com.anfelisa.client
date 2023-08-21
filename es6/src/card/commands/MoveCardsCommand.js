@@ -10,16 +10,11 @@ import AbstractMoveCardsCommand from "../../../gen/card/commands/AbstractMoveCar
 export default class MoveCardsCommand extends AbstractMoveCardsCommand {
 
     validateCommandData(data) {
-        data.cardIdList = data.movedCardIds;
-        data.categoryId = data.dropTargetCategoryId;
+        data.cardIdList = data.selectedCardIds;
     	return true;
     }
 
     handleResponse(data, resolve) {
-        data.movedCardIds = undefined;
-        data.dropAllowed = null;
-        data.dropTargetCategoryId = null;
-        data.selectedCategoryId = data.categoryId;
     	this.addOkOutcome(data);
     	resolve(data);
     }

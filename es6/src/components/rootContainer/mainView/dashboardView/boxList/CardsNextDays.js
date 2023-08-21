@@ -12,10 +12,6 @@ export const CardsNextDays = (props) => {
         return null;
     }
 
-    const onClick = (e) => {
-        e.stopPropagation();
-        props.onClick(props.boxId)
-    }
     if (props.countsPerDayNextWeek && props.countsPerDayNextWeek.length === 7) {
         let index = 0;
         const weekdays = props.countsPerDayNextWeek.map((count) => {
@@ -33,7 +29,6 @@ export const CardsNextDays = (props) => {
             <div className="next-days-header">{translate(Texts.box.nextWeek)}</div>
             <div
                 className="calendar"
-                onClick={(e) => onClick(e)}
             >
                 {weekdays}
                 {todos}

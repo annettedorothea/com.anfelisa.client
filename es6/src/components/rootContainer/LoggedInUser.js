@@ -18,14 +18,17 @@ export const LoggedInUser = (props) => {
             Anfelisa
         </a>
         {props.username && <div className="profile">
-            <a className="username" onClick={props.routeToProfileView}>{props.username}</a>
-            <button className="logout primary" onClick={props.logout}>{translate(Texts.logout.signout)}</button>
+            <a className="username" onClick={props.routeToProfileView}>
+                {props.username}
+            </a>
+            <button className="logout primary" onClick={props.logout}>
+                <span className="buttonText">
+                    {translate(Texts.logout.signout)}
+                </span>
+                <i className="buttonIcon fas fa-sign-out-alt"></i>
+            </button>
         </div>}
     </div>
 }
 
-
 /******* S.D.G. *******/
-
-
-

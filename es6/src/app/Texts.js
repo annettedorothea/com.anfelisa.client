@@ -252,39 +252,8 @@ export const Texts = {
         createReverseBox: {
             de: "Box mit umgedrehter Abfrage anlegen"
         },
-        csvPreview : {
-            cancel: {
-                de: "Abbrechen"
-            },
-            given: {
-                de: "Gegeben"
-            },
-            languages: {
-                de: {
-                    de: "Deutsch"
-                },
-                en: {
-                    de: "Englisch"
-                },
-                fr: {
-                    de: "Französisch"
-                },
-            },
-            ok: {
-                de: "OK"
-            },
-            swap: {
-                de: "Spalten tauschen"
-            },
-            title: {
-                de: "Vorschau"
-            },
-            wanted: {
-                de: "Gesucht"
-            }
-        },
-        csvUpload: {
-            de: "csv-Datei hochladen"
+        toggleInputOrder: {
+            de: "Karten in umgekehrter Reihenfolge eingeben"
         },
         delete : {
             de: "Löschen"
@@ -307,7 +276,7 @@ export const Texts = {
             }
         },
         filterNonScheduled: {
-            de: "Nie abgefragte und aussortierte anzeigen"
+            de: "Nur nie abgefragte und aussortierte anzeigen"
         },
         inviteUser: {
             alreadyInvited: {
@@ -361,8 +330,11 @@ export const Texts = {
             ok: {
                 de: "Ja"
             },
-            message: {
-                de: "Soll die Karte wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+            messageOne: {
+                de: "Soll die selektierte Karte wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+            },
+            messageMultiple: {
+                de: "Sollen {0} selektierte Karten wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
             },
             title: {
                 de: "Löschen"
@@ -380,14 +352,17 @@ export const Texts = {
         noCards: {
             de: "Hier gibt es noch keine Karten."
         },
+        deleteSelectedCards: {
+            de: "Löschen"
+        },
+        moveSelectedCardsToSelectedCategory: {
+            de: "Verschieben"
+        },
         scheduleSelectedCards: {
             de: "Heute abfragen"
         },
         sortSelectedCardsOut: {
             de: "Aussortieren"
-        },
-        toggleInputOrder: {
-            de: "Spalten tauschen"
         },
         wanted: {
             de: "Gesucht"
@@ -621,6 +596,9 @@ export const Texts = {
             title: {
                 de: "Löschen"
             }
+        },
+        cancel: {
+            de: "Zurück"
         },
         delete: {
             de: "Benutzer löschen"

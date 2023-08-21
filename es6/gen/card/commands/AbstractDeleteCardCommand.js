@@ -17,8 +17,8 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
     }
     
     initCommandData(data) {
-        data.cardId = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "deleteCard", "cardId"]
+        data.selectedCardIds = AppState.get(
+        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "selectedCardIds"]
         )
         ;
         data.outcomes = [];
@@ -29,8 +29,8 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (data.cardId === undefined || data.cardId === null) {
-			console.warn("AbstractDeleteCardCommand: cardId is mandatory but is not set", data);
+		if (data.cardIds === undefined || data.cardIds === null) {
+			console.warn("AbstractDeleteCardCommand: cardIds is mandatory but is not set", data);
 			return false;
 		}
 		return true;
@@ -40,7 +40,7 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
 	    return new Promise((resolve, reject) => {
 	    	if (this.allMandatoryValuesAreSet(data)) {
 				AppUtils.httpDelete(
-						`${AppUtils.settings.rootPath}/card/delete?${data.cardId ? `cardId=${data.cardId}` : ""}`, 
+						`${AppUtils.settings.rootPath}/card/delete?${data.cardIds ? `cardIds=${data.cardIds}` : ""}`, 
 						data.uuid, 
 						true)
 					.then(() => {

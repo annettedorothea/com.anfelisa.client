@@ -3,15 +3,19 @@
  ********************************************************************************/
 
 
+
+
 import React from "react";
 
-export const Buttons = (props) => {
-    return <div className="toolbarContainer">
-        <div className="toolbar">
-            {props.children}
-        </div>
-    </div>
+export const Email = (props) => {
+	return <input
+		type="text"
+		value={props.value}
+		id="email"
+		readOnly={true}
+	/>
 }
+
 
 
 /******* S.D.G. *******/

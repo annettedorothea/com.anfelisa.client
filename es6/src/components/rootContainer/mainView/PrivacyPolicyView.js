@@ -6,6 +6,7 @@
 import React from "react";
 
 export const PrivacyPolicyView = (props) => {
+    console.log("PrivacyPolicyView", props);
     return <div className="center privacy-policy">
         <h1>Datenschutzerklärung</h1>
         <h2>Speicherung von Daten in Log-Dateien</h2>

@@ -60,11 +60,19 @@ export const BoxSettings = (props) => {
     return <>
         {props.allCards > 0 ? <h2>{getCardInfo()}</h2> : null}
         {props.tooManyCardsStatus === 2 && props.maxCardsPerDayInvalid !== true && props.maxIntervalInvalid !== true ?
-            <div className="line warning">{getCardStatusWarning()}</div> :
+            <div className="message">
+                <div className="warning">
+                    {getCardStatusWarning()}
+                </div>
+            </div> :
             null
         }
         {props.tooManyCardsStatus === 1 && props.maxCardsPerDayInvalid !== true && props.maxIntervalInvalid !== true ?
-            <div className="line info">{getCardStatusInfo()}</div> :
+            <div className="message">
+                <div className="info">
+                    {getCardStatusInfo()}
+                </div>
+            </div> :
             null
         }
         <div className="inputContainer">

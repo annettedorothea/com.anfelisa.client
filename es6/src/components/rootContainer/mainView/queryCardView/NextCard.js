@@ -101,35 +101,22 @@ export const NextCard = (props) => {
     return <div>
         {given()}
         {wanted()}
-        {props.scheduledCardId ?
-            <div>
-                <div className="scoreButtonsContainer">
-                    <div className="scoreButtons">
-                        {scoreButton(5)}
-                        {scoreButton(4)}
-                        {scoreButton(3)}
-                        {scoreButton(2)}
-                        {scoreButton(1)}
-                        {scoreButton(0)}
-                    </div>
-                </div>
-                <div className="sortOutButtonContainer">
-                    <div className="scoreButtons">
-                        <button
-                            onClick={props.sortCardOut}
-                            disabled={props.disableSortOutButton}
-                        >
-                            {translate(Texts.queryCards.sortOut)}
-                        </button>
-                    </div>
-                </div>
-            </div> :
+        <div>
             <div className="scoreButtons">
-                <div>
-                    {reinforceButton(false)}
-                    {reinforceButton(true)}
-                </div>
-                <div>
+                {props.scheduledCardId ?
+                    <>
+                        {scoreButton(5)}
+                        {scoreButton(2)}
+                        {scoreButton(4)}
+                        {scoreButton(1)}
+                        {scoreButton(3)}
+                        {scoreButton(0)}
+                    </> :
+                    <>
+                        {reinforceButton(false)}
+                        {reinforceButton(true)}
+                    </>}
+                <div className="line">
                     <button
                         onClick={props.sortCardOut}
                         disabled={props.disableSortOutButton}
@@ -137,11 +124,14 @@ export const NextCard = (props) => {
                         {translate(Texts.queryCards.sortOut)}
                     </button>
                 </div>
-            </div>}
-        <div className="categoryLink">
-            <a
-                onClick={() => props.routeToSelectedCategory(props.rootCategoryId, props.categoryId, props.reverse)}
-            >{translate(Texts.queryCards.category)}</a>
+                <div className="line">
+                    <a
+                        onClick={() => props.routeToSelectedCategory(props.rootCategoryId, props.categoryId, props.reverse)}
+                    >
+                        {translate(Texts.queryCards.category)}
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 }

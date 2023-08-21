@@ -59,10 +59,10 @@ describe("profilescenarios.RouteToProfile", function () {
     });
 
 	it("username", async () => {
-		expect(appStates.username.rootContainer.mainView.profileView.username, "username").toEqual(`username-${testId}`)
+		expect(appStates.username.rootContainer.mainView.profileView.username.value, "username").toEqual(`username-${testId}`)
 	});
 	it("email", async () => {
-		expect(appStates.email.rootContainer.mainView.profileView.email, "email").toEqual(`info@anfelisa.de`)
+		expect(appStates.email.rootContainer.mainView.profileView.email.value, "email").toEqual(`info@anfelisa.de`)
 	});
 	
 

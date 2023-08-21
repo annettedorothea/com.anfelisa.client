@@ -3,15 +3,18 @@
  ********************************************************************************/
 
 
-import React from "react";
 
-export const Buttons = (props) => {
-    return <div className="toolbarContainer">
-        <div className="toolbar">
-            {props.children}
-        </div>
-    </div>
+
+import React from "react";
+import {translate} from "../../../../../AppUtils";
+import {Texts} from "../../../../../app/Texts";
+
+export const Cancel = (props) => {
+	return <button onClick={props.onClick}>
+		{translate(Texts.profile.cancel)}
+	</button>
 }
+
 
 
 /******* S.D.G. *******/

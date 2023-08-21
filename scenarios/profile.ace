@@ -9,5 +9,5 @@ RouteToProfile
 	WHEN common.RouteToProfileView
 	THEN
 		expectedState 
-			username common.rootContainer.mainView.profileView.username should be "username-${testId}"
-			email common.rootContainer.mainView.profileView.email should be "info@anfelisa.de"
+			username common.rootContainer.mainView.profileView.username.value should be "username-${testId}"
+			email common.rootContainer.mainView.profileView.email.value should be "info@anfelisa.de"

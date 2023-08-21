@@ -256,7 +256,7 @@ ui JSX rootContainer {
 			}
 	        email TextInput {
 	        	value
-	        emailInvalid
+		        emailInvalid
 	        	actions {
 	        		"onChange" registration.EmailChanged
 	        	}
@@ -400,14 +400,9 @@ ui JSX rootContainer {
 					archived
 				}
 				cardsNextDays {
-					boxId
 					countsPerDayNextWeek
-					maxCardsPerDay
 					archived
 					todaysWeekDay
-					actions {
-						"onClick" RouteToActiveCards
-					}
 				}
 				actions {
 					"onClick" box.BoxClick
@@ -496,16 +491,32 @@ ui JSX rootContainer {
 			}
 		} 
 		profileView {
-			username
-			email
+	        username TextInput {
+	        	value
+	        }
+	        email TextInput {
+	        	value
+	        }
+	        buttons {
+	        	deletable
+				delete Button {
+					deletable
+					actions {
+						"onClick" profile.DeleteUserClick
+					}
+				}
+				cancel Button {
+					actions {
+						"onClick" RouteToDefault
+					}
+				}
+			}
 			role
 			deletable
 			showDeleteUserDialog
 			actions {
-				"deleteUser" profile.DeleteUser
 				"deleteUserCancel" profile.DeleteUserCancel
-				"deleteUserClick" profile.DeleteUserClick
-				"routeToDefault" RouteToDefault
+				"deleteUser" profile.DeleteUser
 			}
 		}
 		queryCardView {
@@ -571,6 +582,11 @@ ui JSX rootContainer {
 						rootCategory
 						actions {
 							"onClick" category.EditCategoryClick
+						}
+					}
+					toggleInputOrder Button {
+						actions {
+							"onClick" card.ToggleInputOrder
 						}
 					}
 					delete Button {
@@ -741,6 +757,7 @@ ui JSX rootContainer {
 		        	reverse
 			        naturalInputOrder
 		        	cardTable {
+			        	selectedCategory
 		        		List selectedCardIds
 		        		editedCard
 		        		rootCategory
@@ -828,11 +845,13 @@ ui JSX rootContainer {
 				        	"toggleAllScheduleCardSelection" card.ToggleAllScheduleCardSelection
 				        	"scheduleSelectedCards" card.ScheduleSelectedCards
 				        	"sortSelectedCardsOut" card.SortSelectedCardsOut
+			        		"deleteCardClick" card.DeleteCardClick
+			        		"moveCards" card.MoveCards
 				        }
 		        	}
 			        deleteCard {
 			        	confirmDelete
-			        	cardId
+				        List selectedCardIds
 			        	actions {
 			        		"deleteCard" card.DeleteCard
 			        		"cancelDeleteCard" card.CancelDeleteCard

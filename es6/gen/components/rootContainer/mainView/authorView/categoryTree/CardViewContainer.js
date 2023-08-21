@@ -15,6 +15,8 @@ import { filterCards } from "../../../../../card/ActionFunctions";
 import { toggleAllScheduleCardSelection } from "../../../../../card/ActionFunctions";
 import { scheduleSelectedCards } from "../../../../../card/ActionFunctions";
 import { sortSelectedCardsOut } from "../../../../../card/ActionFunctions";
+import { deleteCardClick } from "../../../../../card/ActionFunctions";
+import { moveCards } from "../../../../../card/ActionFunctions";
 import { deleteCard } from "../../../../../card/ActionFunctions";
 import { cancelDeleteCard } from "../../../../../card/ActionFunctions";
 
@@ -22,8 +24,8 @@ import { cancelDeleteCard } from "../../../../../card/ActionFunctions";
 export const CardViewContainer = ( props ) => {
 	
 	return <CardView {...props} >
-		<CardTableContainer {...props.cardTable }  selectedCardIds={props.selectedCardIds} editedCard={props.editedCard} rootCategory={props.rootCategory} naturalInputOrder={props.naturalInputOrder} dragTargetCardId={props.dragTargetCardId} reverse={props.reverse}  toggleInputOrder={toggleInputOrder} filterCards={filterCards} toggleAllScheduleCardSelection={toggleAllScheduleCardSelection} scheduleSelectedCards={scheduleSelectedCards} sortSelectedCardsOut={sortSelectedCardsOut}  />
-		<DeleteCardContainer {...props.deleteCard }   deleteCard={deleteCard} cancelDeleteCard={cancelDeleteCard}  />
+		<CardTableContainer {...props.cardTable }  selectedCategory={props.selectedCategory} selectedCardIds={props.selectedCardIds} editedCard={props.editedCard} rootCategory={props.rootCategory} naturalInputOrder={props.naturalInputOrder} dragTargetCardId={props.dragTargetCardId} reverse={props.reverse}  toggleInputOrder={toggleInputOrder} filterCards={filterCards} toggleAllScheduleCardSelection={toggleAllScheduleCardSelection} scheduleSelectedCards={scheduleSelectedCards} sortSelectedCardsOut={sortSelectedCardsOut} deleteCardClick={deleteCardClick} moveCards={moveCards}  />
+		<DeleteCardContainer {...props.deleteCard }  selectedCardIds={props.selectedCardIds}  deleteCard={deleteCard} cancelDeleteCard={cancelDeleteCard}  />
 	</CardView> 
 }
 

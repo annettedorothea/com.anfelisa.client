@@ -49,7 +49,7 @@ ACE
 		on ok triggers (LoadCards)
 	
 	DeleteCard 
-	 	fromAppState ( common.rootContainer.mainView.authorView.categoryTree.cardView.deleteCard.cardId )
+	 	fromAppState ( common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds )
 	 	call com.anfelisa.card.DeleteCard
 		set loading common.rootContainer.spinner.display 
 		on ok ( 
@@ -178,8 +178,8 @@ ACE
 		
 	MoveCards
 		fromAppState (
-			common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds,
-			common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId,
+			common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds,
+			common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId,
 			common.rootContainer.mainView.authorView.categoryTree.rootCategory
 		)
 	 	call com.anfelisa.card.MoveCards

@@ -52,7 +52,7 @@ export default class EventListenerRegistrationCard {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "deleteCard"], 
-					["confirmDelete", "cardId"]
+					["confirmDelete", "selectedCardIds"]
 				)
 			});
 		ACEController.registerListener('card.GivenOfNewCardChangedOkEvent', (data) => {
@@ -176,7 +176,7 @@ export default class EventListenerRegistrationCard {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "deleteCard"], 
-					["confirmDelete", "cardId"]
+					["confirmDelete", "selectedCardIds"]
 				)
 			});
 		ACEController.registerListener('card.CancelDeleteCardOkEvent', (data) => {
@@ -187,7 +187,7 @@ export default class EventListenerRegistrationCard {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "deleteCard"], 
-					["confirmDelete", "cardId"]
+					["confirmDelete", "selectedCardIds"]
 				)
 			});
 		ACEController.registerListener('card.FilterCardsOkEvent', (data) => {

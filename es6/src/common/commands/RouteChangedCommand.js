@@ -30,8 +30,7 @@ export default class RouteChangedCommand extends AbstractRouteChangedCommand {
             };
             this.addResetPasswordOutcome(data);
         } else if (data.hash === "#privacypolicy") {
-            data.mainView = {
-                privacyPolicyView: {}
+            data.privacyPolicyView = {
             };
             this.addPrivacyPolicyOutcome(data);
         } else if (this.isUserLoggedIn(data)) {

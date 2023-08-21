@@ -9,17 +9,15 @@ import React from "react";
 import {translate} from "../../../../../../AppUtils";
 import {Texts} from "../../../../../../app/Texts";
 
-export const Reverse = (props) => {
-	if (props.reverseBoxExists === false) {
-		return <button
-			onClick={props.onClick}
-			title={translate(Texts.categoryTree.cardList)}
-		>
-			<i className="far fa-clone"/>
-		</button>
-	}
-	return null
+export const ToggleInputOrder = (props) => {
+	return <button
+		onClick={props.onClick}
+		title={translate(Texts.categoryTree.toggleInputOrder)}
+	>
+		<i className="fas fa-exchange-alt"/>
+	</button>
 }
+
 
 
 /******* S.D.G. *******/

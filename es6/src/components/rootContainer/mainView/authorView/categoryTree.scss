@@ -1,0 +1,176 @@
+@import "../../../style";
+
+.toolbarContainer {
+  display: flex;
+
+  .toolbar {
+    display: flex;
+    border: $border;
+    border-radius: $borderRadius;
+
+    &.wrap {
+      flex-wrap: wrap;
+    }
+
+    button {
+      background-color: $white;
+      color: $darker;
+      border-radius: 0;
+      @media screen and (max-width: 25rem) {
+        padding: $tinySpacing $smallSpacing;
+      }
+    }
+
+    button:hover {
+      background-color: $light;
+    }
+  }
+}
+
+
+.categoryTree {
+  .filter {
+    margin: $spacing 0;
+    display: flex;
+    gap: $tinySpacing;
+
+    .priority {
+      color: $blue;
+      margin-left: $spacing;
+    }
+
+    label {
+      color: $darker;
+    }
+  }
+
+  .categoryTreeItems {
+    margin: $spacing;
+
+    .categoryItem {
+      margin: 4px;
+
+      .item {
+        border-radius: $borderRadius;
+        padding: $tinySpacing $smallSpacing;
+        line-height: $spacing;
+        cursor: pointer;
+      }
+
+      .selected {
+        background-color: $blue;
+        color: $white;
+      }
+
+      .dropAllowed {
+        background-color: $orange;
+        color: $lighter;
+      }
+
+      .nonScheduledCount {
+        margin-left: $smallSpacing;
+        font-style: italic;
+      }
+
+      .notSelected .nonScheduledCount {
+        color: $darker;
+      }
+
+      .selected .nonScheduledCount {
+        color: $dark;
+      }
+
+
+      &.depth_0 {
+        margin-left: 0;
+      }
+
+      &.depth_1 {
+        margin-left: $tinySpacing;
+      }
+
+      &.depth_2 {
+        margin-left: calc(2 * $tinySpacing);
+      }
+
+      &.depth_3 {
+        margin-left: calc(3 * $tinySpacing);
+      }
+
+      &.depth_4 {
+        margin-left: calc(4 * $tinySpacing);
+      }
+
+      &.depth_5 {
+        margin-left: calc(5 * $tinySpacing);
+      }
+
+      &.depth_6 {
+        margin-left: calc(6 * $tinySpacing);
+      }
+
+      &.depth_7 {
+        margin-left: calc(7 * $tinySpacing);
+      }
+
+      i {
+        margin: $tinySpacing;
+      }
+
+      i.disabled {
+        color: $dark;
+      }
+
+    }
+
+
+  }
+
+  .cardView {
+    .cardViewHeader {
+      display: flex;
+      justify-content: space-between;
+
+      h1 {
+        flex-grow: 1;
+      }
+
+      .searchContainer {
+        flex-shrink: 4;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        justify-items: stretch;
+        align-items: center;
+        transition: all 0.5s ease-in-out;
+      }
+
+      .searchContainer:focus-within {
+        flex-grow: 4;
+      }
+    }
+
+    .cardTable {
+      display: grid;
+      grid-template-columns: $largerSpacing auto auto $largerSpacing $largerSpacing;
+
+      .tableHeader {
+        grid-column-start: 2;
+        grid-column-end: 4 span;
+      }
+    }
+  }
+
+}
+
+.modal {
+  .form {
+    .invitedUsername {
+      line-height: $largeFont;
+
+      i {
+        margin-left: $tinySpacing;
+        margin-top: 0;
+      }
+    }
+  }
+}

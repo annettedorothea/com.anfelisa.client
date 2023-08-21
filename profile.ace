@@ -8,22 +8,20 @@ ACE
 		call com.anfelisa.user.GetUserProfile
 		set loading common.rootContainer.spinner.display 
 		on ok (
-			merge common.rootContainer.mainView.profileView.email
-			merge common.rootContainer.mainView.profileView.username
-			merge common.rootContainer.mainView.profileView.deletable
+			set common.rootContainer.mainView.profileView
 		)
 	
 	DeleteUser
-		fromAppState (common.rootContainer.mainView.profileView.username as usernameToBeDeleted)
+		fromAppState (common.rootContainer.mainView.profileView.username.value as usernameToBeDeleted)
 		call com.anfelisa.user.DeleteUser
 		set loading common.rootContainer.spinner.display 
 		on ok ( 
-			merge common.rootContainer.mainView.profileView.showDeleteUserDialog
+			set common.rootContainer.mainView.profileView.showDeleteUserDialog
 		) triggers ( 
 			common.Logout
 		)
 		on error ( 
-			merge common.rootContainer.mainView.profileView.showDeleteUserDialog
+			set common.rootContainer.mainView.profileView.showDeleteUserDialog
 		) 
 		triggers (
 			LoadUser 
@@ -32,10 +30,10 @@ ACE
 		)
 	
 	DeleteUserClick 
-		on ok (merge common.rootContainer.mainView.profileView.showDeleteUserDialog)
+		on ok (set common.rootContainer.mainView.profileView.showDeleteUserDialog)
 	
 	DeleteUserCancel 
-		on ok (merge common.rootContainer.mainView.profileView.showDeleteUserDialog)
+		on ok (set common.rootContainer.mainView.profileView.showDeleteUserDialog)
 	
 
 

@@ -6,6 +6,7 @@
 
 
 import React from "react";
+import "./categoryTree.scss"
 
 export const CategoryTree = (props) => {
 	return <div className="categoryTree">

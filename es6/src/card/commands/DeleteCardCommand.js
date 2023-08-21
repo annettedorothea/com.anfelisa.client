@@ -9,7 +9,9 @@ import AbstractDeleteCardCommand from "../../../gen/card/commands/AbstractDelete
 
 export default class DeleteCardCommand extends AbstractDeleteCardCommand {
 
-    validateCommandData() {
+    validateCommandData(data) {
+        console.log("data", data);
+        data.cardIds = data.selectedCardIds.join(',');
     	return true;
     }
 

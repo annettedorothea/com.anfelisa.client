@@ -17,6 +17,9 @@
       color: $blue;
       margin: 0;
       cursor: default;
+      i {
+        margin-left: $spacing;
+      }
     }
 
     &.archived {

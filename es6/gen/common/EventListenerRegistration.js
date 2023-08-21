@@ -115,7 +115,7 @@ export default class EventListenerRegistrationCommon {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "profileView"], 
-					["username", "email", "role", "deletable", "showDeleteUserDialog"]
+					["username", "email", "buttons", "role", "deletable", "showDeleteUserDialog"]
 				)
 			});
 		ACEController.registerListener('common.RouteChangedNextCardEvent', (data) => {

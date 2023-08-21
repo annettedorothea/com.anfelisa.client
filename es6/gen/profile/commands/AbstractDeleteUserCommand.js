@@ -20,7 +20,7 @@ export default class AbstractDeleteUserCommand extends AsynchronousCommand {
     
     initCommandData(data) {
         data.usernameToBeDeleted = AppState.get(
-        	["rootContainer", "mainView", "profileView", "username"]
+        	["rootContainer", "mainView", "profileView", "username", "value"]
         )
         ;
         data.outcomes = [];
