@@ -4,8 +4,8 @@
 
 
 import React from "react";
-import {ExpandedCategoryItem} from "../../../../../common/ExpandedCategoryItem";
-import {CollapsedCategoryItem} from "../../../../../common/CollapsedCategoryItem";
+import {ExpandedCategoryItem} from "../../../../../../../common/ExpandedCategoryItem";
+import {CollapsedCategoryItem} from "../../../../../../../common/CollapsedCategoryItem";
 
 export const ChildCategoriesItem = (props) => {
     return <div
@@ -22,7 +22,6 @@ export const ChildCategoriesItem = (props) => {
         }
     </div>
 }
-
 
 
 /******* S.D.G. *******/

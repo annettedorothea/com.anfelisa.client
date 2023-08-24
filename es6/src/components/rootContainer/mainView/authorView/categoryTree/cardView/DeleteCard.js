@@ -11,11 +11,10 @@ import {translate} from "../../../../../../AppUtils";
 import {Texts} from "../../../../../../app/Texts";
 
 export const DeleteCard = (props) => {
-	console.log("DeleteCard", props);
-	const message = props.selectedCardIds.length === 1 ?
-		translate(Texts.cardList.confirmDelete.messageOne) :
-		translate(Texts.cardList.confirmDelete.messageMultiple, [props.selectedCardIds.length]);
 	if (props.confirmDelete === true) {
+		const message = props.selectedCardIds.length === 1 ?
+			translate(Texts.cardList.confirmDelete.messageOne) :
+			translate(Texts.cardList.confirmDelete.messageMultiple, [props.selectedCardIds.length]);
 		return <Modal
 			title={translate(Texts.cardList.confirmDelete.title)}
 			message={message}

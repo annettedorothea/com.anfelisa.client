@@ -340,6 +340,23 @@ export const Texts = {
                 de: "Löschen"
             }
         },
+        moveCards: {
+            cancel: {
+                de: "Abbrechen"
+            },
+            ok: {
+                de: "OK"
+            },
+            messageOne: {
+                de: "Soll die selektierte Karte wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+            },
+            messageMultiple: {
+                de: "Sollen {0} selektierte Karten wirklich gelöscht werden? Diese Aktion kann nicht rückgängig gemacht werden."
+            },
+            title: {
+                de: "Selektierte Karten verschieben"
+            }
+        },
         duplicateCards: {
             de: "Ähnliche Karten"
         },

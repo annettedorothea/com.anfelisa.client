@@ -60,6 +60,16 @@ module.exports = {
 	
 	moveCardsStarted : "card_moveCardsStarted",
 	
+	moveCardsClicked : "card_moveCardsClicked",
+	
+	moveCardsCancelled : "card_moveCardsCancelled",
+	
+	expandTreeItem : "card_expandTreeItem",
+	
+	collapseTreeItem : "card_collapseTreeItem",
+	
+	selectTargetCategory : "card_selectTargetCategory",
+	
 	moveCards : "card_moveCards",
 	
 	changeCardOrder : "card_changeCardOrder",

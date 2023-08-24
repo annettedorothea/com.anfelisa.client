@@ -21,12 +21,8 @@ export default class AbstractMoveCardsCommand extends AsynchronousCommand {
         	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "selectedCardIds"]
         )
         ;
-        data.categoryId = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "selectedCategory", "categoryId"]
-        )
-        ;
-        data.rootCategory = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory"]
+        data.selectedCategory = AppState.get(
+        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootTargetCategory", "selectedCategory"]
         )
         ;
         data.outcomes = [];

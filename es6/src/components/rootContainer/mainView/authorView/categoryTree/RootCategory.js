@@ -3,102 +3,20 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
-import {translate} from "../../../../../AppUtils";
-import {Texts} from "../../../../../app/Texts";
+import {ExpandedCategoryItem} from "../../../../common/ExpandedCategoryItem";
 
-export const collapsedCategoryItem = (props) => {
-	return <div className="collapsedCategoryItem">
-		{props.empty === false ?
-			<i
-				className="fas fa-caret-right"
-				onClick={() => props.expandTreeItem(props.categoryId)}
-			/> :
-			<i className="fas fa-caret-right disabled"/>
-		}
-		{
-			selectableCategoryItem({...props})
-		}
-	</div>
-}
-
-export const selectableCategoryItem = (props) => {
-	const dropAllowed = props.dropAllowed && props.selectedCategory.editable
-
-	const onDragStart = (event) => {
-		event.dataTransfer.setData('Text', props.categoryName);
-		props.moveCategoryStarted(props.categoryId)
-	}
-
-	const drop = (event) => {
-		event.preventDefault();
-		props.itemDropped(event.altKey);
-	}
-
-	const onDragOver = (event) => {
-		if (!!dropAllowed) {
-			event.preventDefault();
-		}
-	}
-
-	const onDragEnter = (event) => {
-		props.checkDropAllowed(props.categoryId, event.altKey);
-	}
-	const selected = props.selectedCategory && props.selectedCategory.categoryId === props.categoryId
-	return <span
-		draggable={true}
-		onDragStart={(event) => onDragStart(event)}
-		onDragEnter={(event) => onDragEnter(event)}
-		onDragOver={onDragOver}
-		onDrop={drop}
-	>
-        <span
-			className={`item ${selected ? "selected" : "notSelected"} ${dropAllowed && props.dropTargetCategoryId === props.categoryId ? "dropAllowed" : ""}`}
-			onClick={() => selected ? "" : props.selectTreeItem(props.categoryId)}
-		>
-            {props.categoryName}
-			{props.nonScheduledCount === 0 ?
-				<span className="nonScheduledCount">{translate(Texts.categoryList.nonScheduledNone)}</span> : null
-			}
-			{props.nonScheduledCount === 1 ?
-				<span
-					className="nonScheduledCount">{translate(Texts.categoryList.nonScheduledSingular)}</span> : null
-			}
-			{props.nonScheduledCount > 1 ?
-				<span
-					className="nonScheduledCount">{translate(Texts.categoryList.nonScheduled, [props.nonScheduledCount])}</span> : null
-			}
-        </span>
-    </span>
-}
-
-export const expandedCategoryItem = (props) => {
-	return <div className="expandedCategoryItem">
-		{props.depth > 0 ?
-			<i
-				className="fas fa-caret-down"
-				onClick={() => props.collapseTreeItem(props.categoryId)}
-			/> : null
-		}
-		{selectableCategoryItem({...props})}
-		<div>
-			{props.children}
-		</div>
-	</div>
-}
 
 export const RootCategory = (props) => {
-	return <div className="categoryTreeItems">
-		<div className="categoryItem depth_1">
-			{expandedCategoryItem({
-				...props,
-			})}
-		</div>
-	</div>
+    return <div className="categoryTreeItems">
+        <div className="categoryItem depth_1">
+            <ExpandedCategoryItem {...props}/>
+            <div>
+                {props.children}
+            </div>
+        </div>
+    </div>
 }
-
 
 
 /******* S.D.G. *******/

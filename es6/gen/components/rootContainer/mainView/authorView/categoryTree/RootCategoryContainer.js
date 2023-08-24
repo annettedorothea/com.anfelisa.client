@@ -9,17 +9,17 @@ import React from "react";
 
 import { RootCategory } from "../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/RootCategory";
 import { ChildCategoriesItemContainer } from "./rootCategory/ChildCategoriesItemContainer";
-import { checkDropAllowed } from "../../../../../category/ActionFunctions";
 import { collapseTreeItem } from "../../../../../category/ActionFunctions";
 import { expandTreeItem } from "../../../../../category/ActionFunctions";
+import { selectTreeItem } from "../../../../../category/ActionFunctions";
+import { checkDropAllowed } from "../../../../../category/ActionFunctions";
 import { itemDropped } from "../../../../../category/ActionFunctions";
 import { moveCategoryStarted } from "../../../../../category/ActionFunctions";
-import { selectTreeItem } from "../../../../../category/ActionFunctions";
 
 
 export const RootCategoryContainer = ( props ) => {
 	
-	return <RootCategory {...props} checkDropAllowed={checkDropAllowed} collapseTreeItem={collapseTreeItem} expandTreeItem={expandTreeItem} itemDropped={itemDropped} moveCategoryStarted={moveCategoryStarted} selectTreeItem={selectTreeItem} >
+	return <RootCategory {...props} collapseTreeItem={collapseTreeItem} expandTreeItem={expandTreeItem} selectTreeItem={selectTreeItem} >
 		{ props.childCategories ? props.childCategories.map((item, index) => <ChildCategoriesItemContainer {...item} key={item.categoryId} depth={1} index={index} selectedCategory={props.selectedCategory} dropAllowed={props.dropAllowed} dropTargetCategoryId={props.dropTargetCategoryId}   checkDropAllowed={checkDropAllowed} collapseTreeItem={collapseTreeItem} expandTreeItem={expandTreeItem} itemDropped={itemDropped} moveCategoryStarted={moveCategoryStarted} selectTreeItem={selectTreeItem}  />) : [] }
 	</RootCategory> 
 }

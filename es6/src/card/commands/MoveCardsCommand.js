@@ -11,6 +11,11 @@ export default class MoveCardsCommand extends AbstractMoveCardsCommand {
 
     validateCommandData(data) {
         data.cardIdList = data.selectedCardIds;
+        data.categoryId = data.selectedCategory.categoryId;
+        data.moveCards = {
+            selectTargetCategory: false,
+            rootTargetCategory: null,
+        };
     	return true;
     }
 

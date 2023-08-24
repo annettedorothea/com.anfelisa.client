@@ -8,6 +8,7 @@
 import React from "react";
 
 export const CardView = (props) => {
+
 	if (!props.rootCategory || !props.cardTable || !props.cardTable.cardList || !props.selectedCategory) {
 		return null;
 	}
@@ -42,7 +43,6 @@ export const CardView = (props) => {
 		return <div className="dictionaryWrapper">
 			<iframe
 				src={src}
-				frameBorder={0}
 				onLoad={setFocus}
 				sandbox="allow-scripts"
 			/>

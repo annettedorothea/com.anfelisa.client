@@ -176,20 +176,52 @@ ACE
 		fromAppState (common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds) 
 		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds)
 		
+	MoveCardsClicked
+		fromAppState (
+			common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds,
+			common.rootContainer.mainView.authorView.categoryTree.rootCategory
+		) 
+		on ok (
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards
+		)
+		
+	MoveCardsCancelled
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards)
+		
+	ExpandTreeItem ( categoryId  )
+		fromAppState (common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory)
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory)
+	
+	CollapseTreeItem ( categoryId )
+		fromAppState (
+			common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory,
+			common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory.selectedCategory
+
+		)
+		on ok (
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory
+		)
+		on selectParentCategory (
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory 
+		) triggers( SelectTargetCategory )
+	
+	SelectTargetCategory ( categoryId  )
+		fromAppState (
+			common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory
+		)
+		on ok ( merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory.selectedCategory)
+		
 	MoveCards
 		fromAppState (
 			common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds,
-			common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId,
-			common.rootContainer.mainView.authorView.categoryTree.rootCategory
+			common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory.selectedCategory
 		)
 	 	call com.anfelisa.card.MoveCards
 		set loading common.rootContainer.spinner.display 
 		on ok (
-			merge common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds
-			merge common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
-			merge common.rootContainer.mainView.authorView.categoryTree.dropAllowed
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards
 		) triggers (category.ReloadCategoryTree)
-		
+
 		
 	ChangeCardOrder 
 		fromAppState ( 

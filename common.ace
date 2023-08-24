@@ -669,11 +669,8 @@ ui JSX rootContainer {
 						}
 					}
 					actions {
-						"checkDropAllowed" category.CheckDropAllowed
 						"collapseTreeItem" category.CollapseTreeItem
 						"expandTreeItem" category.ExpandTreeItem
-						"itemDropped" category.ItemDropped
-						"moveCategoryStarted" category.MoveCategoryStarted
 						"selectTreeItem" category.SelectTreeItem
 					}
 				}
@@ -846,15 +843,67 @@ ui JSX rootContainer {
 				        	"scheduleSelectedCards" card.ScheduleSelectedCards
 				        	"sortSelectedCardsOut" card.SortSelectedCardsOut
 			        		"deleteCardClick" card.DeleteCardClick
-			        		"moveCards" card.MoveCards
+			        		"moveCards" card.MoveCardsClicked
 				        }
 		        	}
 			        deleteCard {
-			        	confirmDelete
 				        List selectedCardIds
+				        confirmDelete
 			        	actions {
 			        		"deleteCard" card.DeleteCard
 			        		"cancelDeleteCard" card.CancelDeleteCard
+			        	}
+			        }
+			        moveCards {
+				        List selectedCardIds
+				        selectTargetCategory
+						rootTargetCategory {
+							selectedCategory
+							dropAllowed
+							dropTargetCategoryId
+							categoryId
+							categoryName
+							categoryIndex
+							empty
+							parentCategoryId
+							dictionaryLookup
+							givenLanguage
+							wantedLanguage
+							rootCategoryId
+							nonScheduledCount
+							editable
+							Tree childCategories {
+								selectedCategory fromParent
+								dropAllowed fromParent
+								dropTargetCategoryId fromParent
+								expanded
+								childCategories
+								listId categoryId
+								categoryName
+								categoryIndex
+								empty
+								parentCategoryId
+								dictionaryLookup
+								givenLanguage
+								wantedLanguage
+								rootCategoryId
+								nonScheduledCount
+								editable
+								actions {
+									"collapseTreeItem" card.CollapseTreeItem
+									"expandTreeItem" card.ExpandTreeItem
+									"selectTreeItem" card.SelectTargetCategory
+								}
+							}
+							actions {
+									"collapseTreeItem" card.CollapseTreeItem
+									"expandTreeItem" card.ExpandTreeItem
+									"selectTreeItem" card.SelectTargetCategory
+							}
+						}
+			        	actions {
+			        		"moveCardsCancelled" card.MoveCardsCancelled
+			        		"moveCards" card.MoveCards
 			        	}
 			        }
 			        dictionaryValue

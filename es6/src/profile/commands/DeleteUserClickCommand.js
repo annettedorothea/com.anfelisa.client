@@ -11,7 +11,6 @@ export default class DeleteUserClickCommand extends AbstractDeleteUserClickComma
     execute(data) {
         data.showDeleteUserDialog = true;
     	this.addOkOutcome(data);
-        console.log("DeleteUserClickCommand", data)
     	return data;
     }
 }

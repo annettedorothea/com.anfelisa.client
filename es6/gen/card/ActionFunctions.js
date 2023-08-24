@@ -32,6 +32,11 @@ import ToggleAllScheduleCardSelectionAction from "../../src/card/actions/ToggleA
 import ScheduleSelectedCardsAction from "../../src/card/actions/ScheduleSelectedCardsAction";
 import SortSelectedCardsOutAction from "../../src/card/actions/SortSelectedCardsOutAction";
 import MoveCardsStartedAction from "../../src/card/actions/MoveCardsStartedAction";
+import MoveCardsClickedAction from "../../src/card/actions/MoveCardsClickedAction";
+import MoveCardsCancelledAction from "../../src/card/actions/MoveCardsCancelledAction";
+import ExpandTreeItemAction from "../../src/card/actions/ExpandTreeItemAction";
+import CollapseTreeItemAction from "../../src/card/actions/CollapseTreeItemAction";
+import SelectTargetCategoryAction from "../../src/card/actions/SelectTargetCategoryAction";
 import MoveCardsAction from "../../src/card/actions/MoveCardsAction";
 import ChangeCardOrderAction from "../../src/card/actions/ChangeCardOrderAction";
 import OnDragEnterAction from "../../src/card/actions/OnDragEnterAction";
@@ -145,6 +150,26 @@ export function sortSelectedCardsOut() {
 
 export function moveCardsStarted() {
     return new MoveCardsStartedAction().apply({});
+}
+
+export function moveCardsClicked() {
+    return new MoveCardsClickedAction().apply({});
+}
+
+export function moveCardsCancelled() {
+    return new MoveCardsCancelledAction().apply({});
+}
+
+export function expandTreeItem(categoryId) {
+    return new ExpandTreeItemAction().apply({categoryId});
+}
+
+export function collapseTreeItem(categoryId) {
+    return new CollapseTreeItemAction().apply({categoryId});
+}
+
+export function selectTargetCategory(categoryId) {
+    return new SelectTargetCategoryAction().apply({categoryId});
 }
 
 export function moveCards() {
