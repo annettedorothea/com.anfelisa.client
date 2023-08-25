@@ -15,6 +15,7 @@ import { CategoryDialogContainer } from "./categoryTree/CategoryDialogContainer"
 import { InviteUserDialogContainer } from "./categoryTree/InviteUserDialogContainer";
 import { InviteUserEditableDialogContainer } from "./categoryTree/InviteUserEditableDialogContainer";
 import { DeleteCategoryDialogContainer } from "./categoryTree/DeleteCategoryDialogContainer";
+import { MoveCategoryContainer } from "./categoryTree/MoveCategoryContainer";
 import { CardViewContainer } from "./categoryTree/CardViewContainer";
 import { collapseTreeItem } from "../../../../category/ActionFunctions";
 import { expandTreeItem } from "../../../../category/ActionFunctions";
@@ -30,6 +31,8 @@ import { inviteUser } from "../../../../category/ActionFunctions";
 import { inviteUserChangeEditable } from "../../../../category/ActionFunctions";
 import { cancelDeleteCategory } from "../../../../category/ActionFunctions";
 import { deleteCategory } from "../../../../category/ActionFunctions";
+import { moveCategoryCancelled } from "../../../../category/ActionFunctions";
+import { moveCategory } from "../../../../category/ActionFunctions";
 
 
 export const CategoryTreeContainer = ( props ) => {
@@ -42,6 +45,7 @@ export const CategoryTreeContainer = ( props ) => {
 		<InviteUserDialogContainer {...props.inviteUserDialog }   cancelInviteUser={cancelInviteUser} invitedUsernameChanged={invitedUsernameChanged} inviteUserNextStep={inviteUserNextStep}  />
 		<InviteUserEditableDialogContainer {...props.inviteUserEditableDialog }   cancelInviteUser={cancelInviteUser} inviteUser={inviteUser} inviteUserChangeEditable={inviteUserChangeEditable}  />
 		<DeleteCategoryDialogContainer {...props.deleteCategoryDialog }   cancelDeleteCategory={cancelDeleteCategory} deleteCategory={deleteCategory}  />
+		<MoveCategoryContainer {...props.moveCategory }   moveCardsCancelled={moveCategoryCancelled} moveCards={moveCategory}  />
 		<CardViewContainer {...props.cardView }  rootCategory={props.rootCategory} selectedCategory={props.selectedCategory} reverse={props.reverse}   />
 	</CategoryTree> 
 }

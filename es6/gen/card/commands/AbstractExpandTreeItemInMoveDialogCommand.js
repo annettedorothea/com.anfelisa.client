@@ -10,14 +10,14 @@
 	import * as AppUtils from "../../../src/AppUtils";
 	import * as AppState from "../../../src/AppState";
 	
-	export default class AbstractExpandTreeItemCommand extends SynchronousCommand {
+	export default class AbstractExpandTreeItemInMoveDialogCommand extends SynchronousCommand {
 	    constructor() {
-	        super("card.ExpandTreeItemCommand");
+	        super("card.ExpandTreeItemInMoveDialogCommand");
 	    }
 	
 	    initCommandData(data) {
-	        data.rootTargetCategory = AppState.get(
-	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootTargetCategory"]
+	        data.rootCategoryInMoveDialog = AppState.get(
+	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootCategoryInMoveDialog"]
 	        )
 	        ;
 	        data.outcomes = [];
@@ -31,7 +31,7 @@
 			const events = [];
 			const actionsToBeTriggered = [];
 			if (data.outcomes.includes("ok")) {
-				events.push(new Event('card.ExpandTreeItemOkEvent'));
+				events.push(new Event('card.ExpandTreeItemInMoveDialogOkEvent'));
 			}
 			
 			this.publish(events, data);

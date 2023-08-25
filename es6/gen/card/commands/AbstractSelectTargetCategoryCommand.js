@@ -16,8 +16,8 @@
 	    }
 	
 	    initCommandData(data) {
-	        data.rootTargetCategory = AppState.get(
-	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootTargetCategory"]
+	        data.rootCategoryInMoveDialog = AppState.get(
+	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootCategoryInMoveDialog"]
 	        )
 	        ;
 	        data.outcomes = [];

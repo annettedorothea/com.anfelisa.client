@@ -584,16 +584,18 @@ ui JSX rootContainer {
 							"onClick" category.EditCategoryClick
 						}
 					}
-					toggleInputOrder Button {
-						actions {
-							"onClick" card.ToggleInputOrder
-						}
-					}
 					delete Button {
 						selectedCategory
 						rootCategory
 						actions {
 							"onClick" category.DeleteCategoryClick
+						}
+					}
+					move Button {
+						selectedCategory
+						rootCategory
+						actions {
+							"onClick" category.MoveCategoryClicked
 						}
 					}
 					invite Button {
@@ -609,6 +611,11 @@ ui JSX rootContainer {
 						reverseBoxExists
 						actions {
 							"onClick" category.CreateReverseBox
+						}
+					}
+					toggleInputOrder Button {
+						actions {
+							"onClick" card.ToggleInputOrder
 						}
 					}
 				}
@@ -719,6 +726,59 @@ ui JSX rootContainer {
 						"deleteCategory" category.DeleteCategory
 					}
 				}
+				
+		        moveCategory {
+			        selectTargetCategory
+					moveAllowed
+					rootCategoryInMoveDialog {
+						selectedCategory
+						dropAllowed
+						dropTargetCategoryId
+						categoryId
+						categoryName
+						categoryIndex
+						empty
+						parentCategoryId
+						dictionaryLookup
+						givenLanguage
+						wantedLanguage
+						rootCategoryId
+						nonScheduledCount
+						editable
+						Tree childCategories {
+							selectedCategory fromParent
+							dropAllowed fromParent
+							dropTargetCategoryId fromParent
+							expanded
+							childCategories
+							listId categoryId
+							categoryName
+							categoryIndex
+							empty
+							parentCategoryId
+							dictionaryLookup
+							givenLanguage
+							wantedLanguage
+							rootCategoryId
+							nonScheduledCount
+							editable
+							actions {
+								"collapseTreeItem" category.CollapseTreeItemInMoveDialog
+								"expandTreeItem" category.ExpandTreeItemInMoveDialog
+								"selectTreeItem" category.SelectTargetCategory
+							}
+						}
+						actions {
+								"collapseTreeItem" category.CollapseTreeItemInMoveDialog
+								"expandTreeItem" category.ExpandTreeItemInMoveDialog
+								"selectTreeItem" category.SelectTargetCategory
+						}
+					}
+		        	actions {
+		        		"moveCardsCancelled" category.MoveCategoryCancelled
+		        		"moveCards" category.MoveCategory
+		        	}
+		        }
 				
 				dropAllowed
 				dropTargetCategoryId
@@ -855,9 +915,8 @@ ui JSX rootContainer {
 			        	}
 			        }
 			        moveCards {
-				        List selectedCardIds
 				        selectTargetCategory
-						rootTargetCategory {
+						rootCategoryInMoveDialog {
 							selectedCategory
 							dropAllowed
 							dropTargetCategoryId
@@ -890,14 +949,14 @@ ui JSX rootContainer {
 								nonScheduledCount
 								editable
 								actions {
-									"collapseTreeItem" card.CollapseTreeItem
-									"expandTreeItem" card.ExpandTreeItem
+									"collapseTreeItem" card.CollapseTreeItemInMoveDialog
+									"expandTreeItem" card.ExpandTreeItemInMoveDialog
 									"selectTreeItem" card.SelectTargetCategory
 								}
 							}
 							actions {
-									"collapseTreeItem" card.CollapseTreeItem
-									"expandTreeItem" card.ExpandTreeItem
+									"collapseTreeItem" card.CollapseTreeItemInMoveDialog
+									"expandTreeItem" card.ExpandTreeItemInMoveDialog
 									"selectTreeItem" card.SelectTargetCategory
 							}
 						}

@@ -34,8 +34,8 @@ import SortSelectedCardsOutAction from "../../src/card/actions/SortSelectedCards
 import MoveCardsStartedAction from "../../src/card/actions/MoveCardsStartedAction";
 import MoveCardsClickedAction from "../../src/card/actions/MoveCardsClickedAction";
 import MoveCardsCancelledAction from "../../src/card/actions/MoveCardsCancelledAction";
-import ExpandTreeItemAction from "../../src/card/actions/ExpandTreeItemAction";
-import CollapseTreeItemAction from "../../src/card/actions/CollapseTreeItemAction";
+import ExpandTreeItemInMoveDialogAction from "../../src/card/actions/ExpandTreeItemInMoveDialogAction";
+import CollapseTreeItemInMoveDialogAction from "../../src/card/actions/CollapseTreeItemInMoveDialogAction";
 import SelectTargetCategoryAction from "../../src/card/actions/SelectTargetCategoryAction";
 import MoveCardsAction from "../../src/card/actions/MoveCardsAction";
 import ChangeCardOrderAction from "../../src/card/actions/ChangeCardOrderAction";
@@ -160,12 +160,12 @@ export function moveCardsCancelled() {
     return new MoveCardsCancelledAction().apply({});
 }
 
-export function expandTreeItem(categoryId) {
-    return new ExpandTreeItemAction().apply({categoryId});
+export function expandTreeItemInMoveDialog(categoryId) {
+    return new ExpandTreeItemInMoveDialogAction().apply({categoryId});
 }
 
-export function collapseTreeItem(categoryId) {
-    return new CollapseTreeItemAction().apply({categoryId});
+export function collapseTreeItemInMoveDialog(categoryId) {
+    return new CollapseTreeItemInMoveDialogAction().apply({categoryId});
 }
 
 export function selectTargetCategory(categoryId) {

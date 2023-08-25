@@ -13,7 +13,7 @@ export const Reverse = (props) => {
 	if (props.reverseBoxExists === false) {
 		return <button
 			onClick={props.onClick}
-			title={translate(Texts.categoryTree.cardList)}
+			title={translate(Texts.categoryTree.createReverseBox)}
 		>
 			<i className="far fa-clone"/>
 		</button>

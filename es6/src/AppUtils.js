@@ -250,6 +250,10 @@ export function translate(path, args) {
     if (!language) {
         language = "de";
     }
+    if (!path) {
+        console.error("translate fails", path, args);
+        return "";
+    }
     const value = path[language]
     if (!value) {
         return path

@@ -317,6 +317,17 @@ export const Texts = {
             title: {
                 de: "Neu"
             }
+        },
+        moveCategory: {
+            cancel: {
+                de: "Abbrechen"
+            },
+            ok: {
+                de: "OK"
+            },
+            title: {
+                de: "Ordner verschieben"
+            }
         }
     },
     cardList: {

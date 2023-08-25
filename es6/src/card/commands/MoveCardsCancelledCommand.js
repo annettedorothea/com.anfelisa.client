@@ -11,7 +11,7 @@ export default class MoveCardsCancelledCommand extends AbstractMoveCardsCancelle
     execute(data) {
         data.moveCards = {
             selectTargetCategory: false,
-            rootTargetCategory: null,
+            rootCategoryInMoveDialog: null,
         };
     	this.addOkOutcome(data);
     	return data;

@@ -30,11 +30,17 @@ import DeleteCategoryAction from "../../src/category/actions/DeleteCategoryActio
 import CheckDropAllowedAction from "../../src/category/actions/CheckDropAllowedAction";
 import ItemDroppedAction from "../../src/category/actions/ItemDroppedAction";
 import MoveCategoryStartedAction from "../../src/category/actions/MoveCategoryStartedAction";
-import MoveCategoryAction from "../../src/category/actions/MoveCategoryAction";
 import ChangeOrderCategoryAction from "../../src/category/actions/ChangeOrderCategoryAction";
 import FilterNonScheduledCardsAction from "../../src/category/actions/FilterNonScheduledCardsAction";
 import PriorityChangedAction from "../../src/category/actions/PriorityChangedAction";
 import CreateReverseBoxAction from "../../src/category/actions/CreateReverseBoxAction";
+import MoveCategoryClickedAction from "../../src/category/actions/MoveCategoryClickedAction";
+import MoveCategoryCancelledAction from "../../src/category/actions/MoveCategoryCancelledAction";
+import ExpandTreeItemInMoveDialogAction from "../../src/category/actions/ExpandTreeItemInMoveDialogAction";
+import CollapseTreeItemInMoveDialogAction from "../../src/category/actions/CollapseTreeItemInMoveDialogAction";
+import SelectTargetCategoryAction from "../../src/category/actions/SelectTargetCategoryAction";
+import MoveCategoryAction from "../../src/category/actions/MoveCategoryAction";
+import MoveCategoryAllowedAction from "../../src/category/actions/MoveCategoryAllowedAction";
 
 export function loadCategoryTree(rootCategoryId, selectedCategoryId) {
     return new LoadCategoryTreeAction().apply({rootCategoryId, selectedCategoryId});
@@ -136,10 +142,6 @@ export function moveCategoryStarted(movedCategoryId) {
     return new MoveCategoryStartedAction().apply({movedCategoryId});
 }
 
-export function moveCategory() {
-    return new MoveCategoryAction().apply({});
-}
-
 export function changeOrderCategory() {
     return new ChangeOrderCategoryAction().apply({});
 }
@@ -154,6 +156,34 @@ export function priorityChanged(value) {
 
 export function createReverseBox() {
     return new CreateReverseBoxAction().apply({});
+}
+
+export function moveCategoryClicked() {
+    return new MoveCategoryClickedAction().apply({});
+}
+
+export function moveCategoryCancelled() {
+    return new MoveCategoryCancelledAction().apply({});
+}
+
+export function expandTreeItemInMoveDialog(categoryId) {
+    return new ExpandTreeItemInMoveDialogAction().apply({categoryId});
+}
+
+export function collapseTreeItemInMoveDialog(categoryId) {
+    return new CollapseTreeItemInMoveDialogAction().apply({categoryId});
+}
+
+export function selectTargetCategory(categoryId) {
+    return new SelectTargetCategoryAction().apply({categoryId});
+}
+
+export function moveCategory() {
+    return new MoveCategoryAction().apply({});
+}
+
+export function moveCategoryAllowed() {
+    return new MoveCategoryAllowedAction().apply({});
 }
 
 

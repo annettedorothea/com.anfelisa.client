@@ -29,7 +29,7 @@ export const CardViewContainer = ( props ) => {
 	return <CardView {...props} >
 		<CardTableContainer {...props.cardTable }  selectedCategory={props.selectedCategory} selectedCardIds={props.selectedCardIds} editedCard={props.editedCard} rootCategory={props.rootCategory} naturalInputOrder={props.naturalInputOrder} dragTargetCardId={props.dragTargetCardId} reverse={props.reverse}  toggleInputOrder={toggleInputOrder} filterCards={filterCards} toggleAllScheduleCardSelection={toggleAllScheduleCardSelection} scheduleSelectedCards={scheduleSelectedCards} sortSelectedCardsOut={sortSelectedCardsOut} deleteCardClick={deleteCardClick} moveCards={moveCardsClicked}  />
 		<DeleteCardContainer {...props.deleteCard }  selectedCardIds={props.selectedCardIds}  deleteCard={deleteCard} cancelDeleteCard={cancelDeleteCard}  />
-		<MoveCardsContainer {...props.moveCards }  selectedCardIds={props.selectedCardIds}  moveCardsCancelled={moveCardsCancelled} moveCards={moveCards}  />
+		<MoveCardsContainer {...props.moveCards }   moveCardsCancelled={moveCardsCancelled} moveCards={moveCards}  />
 	</CardView> 
 }
 

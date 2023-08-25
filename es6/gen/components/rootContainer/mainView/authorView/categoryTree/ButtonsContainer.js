@@ -11,17 +11,19 @@ import { Buttons } from "../../../../../../src/components/rootContainer/mainView
 import { Back } from "../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/buttons/Back";
 import { New } from "../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/buttons/New";
 import { Edit } from "../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/buttons/Edit";
-import { ToggleInputOrder } from "../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/buttons/ToggleInputOrder";
 import { Delete } from "../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/buttons/Delete";
+import { Move } from "../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/buttons/Move";
 import { Invite } from "../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/buttons/Invite";
 import { Reverse } from "../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/buttons/Reverse";
+import { ToggleInputOrder } from "../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/buttons/ToggleInputOrder";
 import { routeToDefault } from "../../../../../common/ActionFunctions";
 import { newCategoryClick } from "../../../../../category/ActionFunctions";
 import { editCategoryClick } from "../../../../../category/ActionFunctions";
-import { toggleInputOrder } from "../../../../../card/ActionFunctions";
 import { deleteCategoryClick } from "../../../../../category/ActionFunctions";
+import { moveCategoryClicked } from "../../../../../category/ActionFunctions";
 import { inviteUserClick } from "../../../../../category/ActionFunctions";
 import { createReverseBox } from "../../../../../category/ActionFunctions";
+import { toggleInputOrder } from "../../../../../card/ActionFunctions";
 
 
 export const ButtonsContainer = ( props ) => {
@@ -30,10 +32,11 @@ export const ButtonsContainer = ( props ) => {
 		<Back {...props.back }   onClick={routeToDefault}  />
 		<New {...props.new }  selectedCategory={props.selectedCategory} rootCategory={props.rootCategory}  onClick={newCategoryClick}  />
 		<Edit {...props.edit }  selectedCategory={props.selectedCategory} rootCategory={props.rootCategory}  onClick={editCategoryClick}  />
-		<ToggleInputOrder {...props.toggleInputOrder }   onClick={toggleInputOrder}  />
 		<Delete {...props.delete }  selectedCategory={props.selectedCategory} rootCategory={props.rootCategory}  onClick={deleteCategoryClick}  />
+		<Move {...props.move }  selectedCategory={props.selectedCategory} rootCategory={props.rootCategory}  onClick={moveCategoryClicked}  />
 		<Invite {...props.invite }  selectedCategory={props.selectedCategory} rootCategory={props.rootCategory}  onClick={inviteUserClick}  />
 		<Reverse {...props.reverse }  selectedCategory={props.selectedCategory} rootCategory={props.rootCategory} reverseBoxExists={props.reverseBoxExists}  onClick={createReverseBox}  />
+		<ToggleInputOrder {...props.toggleInputOrder }   onClick={toggleInputOrder}  />
 	</Buttons> 
 }
 

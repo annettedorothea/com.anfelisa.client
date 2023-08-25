@@ -268,7 +268,7 @@ export default class EventListenerRegistrationCard {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards"], 
-					["selectedCardIds", "selectTargetCategory", "rootTargetCategory"]
+					["selectTargetCategory", "rootCategoryInMoveDialog"]
 				)
 			});
 		ACEController.registerListener('card.MoveCardsCancelledOkEvent', (data) => {
@@ -279,39 +279,39 @@ export default class EventListenerRegistrationCard {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards"], 
-					["selectedCardIds", "selectTargetCategory", "rootTargetCategory"]
+					["selectTargetCategory", "rootCategoryInMoveDialog"]
 				)
 			});
-		ACEController.registerListener('card.ExpandTreeItemOkEvent', (data) => {
+		ACEController.registerListener('card.ExpandTreeItemInMoveDialogOkEvent', (data) => {
 				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
 					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
 					return;
 				}
 				AppState.merge(
 					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootTargetCategory"], 
+					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootCategoryInMoveDialog"], 
 					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
-		ACEController.registerListener('card.CollapseTreeItemOkEvent', (data) => {
+		ACEController.registerListener('card.CollapseTreeItemInMoveDialogOkEvent', (data) => {
 				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
 					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
 					return;
 				}
 				AppState.merge(
 					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootTargetCategory"], 
+					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootCategoryInMoveDialog"], 
 					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
-		ACEController.registerListener('card.CollapseTreeItemSelectParentCategoryEvent', (data) => {
+		ACEController.registerListener('card.CollapseTreeItemInMoveDialogSelectParentCategoryEvent', (data) => {
 				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
 					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
 					return;
 				}
 				AppState.merge(
 					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootTargetCategory"], 
+					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootCategoryInMoveDialog"], 
 					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
@@ -322,7 +322,7 @@ export default class EventListenerRegistrationCard {
 				}
 				AppState.merge(
 					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootTargetCategory", "selectedCategory"]
+					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootCategoryInMoveDialog", "selectedCategory"]
 				)
 			});
 		ACEController.registerListener('card.MoveCardsOkEvent', (data) => {
@@ -333,7 +333,18 @@ export default class EventListenerRegistrationCard {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards"], 
-					["selectedCardIds", "selectTargetCategory", "rootTargetCategory"]
+					["selectTargetCategory", "rootCategoryInMoveDialog"]
+				)
+			});
+		ACEController.registerListener('card.MoveCardsOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "authorView", "categoryTree", "selectedCategory"], 
+					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "rootCategoryId", "childCategories", "nonScheduledCount", "editable", "dictionaryLookup", "givenLanguage", "wantedLanguage"]
 				)
 			});
 		ACEController.registerListener('card.ChangeCardOrderOkEvent', (data) => {

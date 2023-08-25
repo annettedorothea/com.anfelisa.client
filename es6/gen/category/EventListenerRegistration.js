@@ -19,7 +19,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree"], 
-					["reverse", "reverseBoxExists", "buttons", "filter", "rootCategory", "displayDeleteCategory", "categoryDialog", "inviteUserDialog", "inviteUserEditableDialog", "deleteCategoryDialog", "dropAllowed", "dropTargetCategoryId", "selectedCategory", "movedCategory", "cardView"]
+					["reverse", "reverseBoxExists", "buttons", "filter", "rootCategory", "displayDeleteCategory", "categoryDialog", "inviteUserDialog", "inviteUserEditableDialog", "deleteCategoryDialog", "moveCategory", "dropAllowed", "dropTargetCategoryId", "selectedCategory", "movedCategory", "cardView"]
 				)
 			});
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', (data) => {
@@ -354,37 +354,6 @@ export default class EventListenerRegistrationCategory {
 					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories"]
 				)
 			});
-		ACEController.registerListener('category.MoveCategoryOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.set(
-					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "dropTargetCategoryId"]
-				)
-			});
-		ACEController.registerListener('category.MoveCategoryOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.set(
-					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "dropAllowed"]
-				)
-			});
-		ACEController.registerListener('category.MoveCategoryOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.set(
-					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "movedCategory"], 
-					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories"]
-				)
-			});
 		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', (data) => {
 				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
 					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
@@ -434,6 +403,92 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "filter", "priority", "value"]
+				)
+			});
+		ACEController.registerListener('category.MoveCategoryClickedOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
+				AppState.merge(
+					data, 
+					["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory"], 
+					["selectTargetCategory", "moveAllowed", "rootCategoryInMoveDialog"]
+				)
+			});
+		ACEController.registerListener('category.MoveCategoryCancelledOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
+				AppState.merge(
+					data, 
+					["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory"], 
+					["selectTargetCategory", "moveAllowed", "rootCategoryInMoveDialog"]
+				)
+			});
+		ACEController.registerListener('category.ExpandTreeItemInMoveDialogOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
+				AppState.merge(
+					data, 
+					["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory", "rootCategoryInMoveDialog"], 
+					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
+				)
+			});
+		ACEController.registerListener('category.CollapseTreeItemInMoveDialogOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
+				AppState.merge(
+					data, 
+					["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory", "rootCategoryInMoveDialog"], 
+					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
+				)
+			});
+		ACEController.registerListener('category.CollapseTreeItemInMoveDialogSelectParentCategoryEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
+				AppState.merge(
+					data, 
+					["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory", "rootCategoryInMoveDialog"], 
+					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
+				)
+			});
+		ACEController.registerListener('category.SelectTargetCategoryOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
+				AppState.merge(
+					data, 
+					["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory", "rootCategoryInMoveDialog", "selectedCategory"]
+				)
+			});
+		ACEController.registerListener('category.MoveCategoryOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
+				AppState.merge(
+					data, 
+					["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory"], 
+					["selectTargetCategory", "moveAllowed", "rootCategoryInMoveDialog"]
+				)
+			});
+		ACEController.registerListener('category.MoveCategoryAllowedOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
+				AppState.merge(
+					data, 
+					["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory", "moveAllowed"]
 				)
 			});
 	}

@@ -5,9 +5,9 @@
 
 
 
-import AbstractCollapseTreeItemAction from "../../../gen/card/actions/AbstractCollapseTreeItemAction";
+import AbstractMoveCategoryAllowedAction from "../../../gen/category/actions/AbstractMoveCategoryAllowedAction";
 
-export default class CollapseTreeItemAction extends AbstractCollapseTreeItemAction {
+export default class MoveCategoryAllowedAction extends AbstractMoveCategoryAllowedAction {
 
     initActionData(data) {
     	return data;

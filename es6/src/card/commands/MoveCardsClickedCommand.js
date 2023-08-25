@@ -11,7 +11,7 @@ export default class MoveCardsClickedCommand extends AbstractMoveCardsClickedCom
     execute(data) {
         data.moveCards = {
             selectTargetCategory: true,
-            rootTargetCategory: structuredClone(data.rootCategory),
+            rootCategoryInMoveDialog: structuredClone(data.rootCategory),
         };
         this.addOkOutcome(data);
         return data;

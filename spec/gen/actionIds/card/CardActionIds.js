@@ -64,9 +64,9 @@ module.exports = {
 	
 	moveCardsCancelled : "card_moveCardsCancelled",
 	
-	expandTreeItem : "card_expandTreeItem",
+	expandTreeItemInMoveDialog : "card_expandTreeItemInMoveDialog",
 	
-	collapseTreeItem : "card_collapseTreeItem",
+	collapseTreeItemInMoveDialog : "card_collapseTreeItemInMoveDialog",
 	
 	selectTargetCategory : "card_selectTargetCategory",
 	

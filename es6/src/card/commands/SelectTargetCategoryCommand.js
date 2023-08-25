@@ -6,17 +6,11 @@
 
 
 import AbstractSelectTargetCategoryCommand from "../../../gen/card/commands/AbstractSelectTargetCategoryCommand";
-import {findCategory} from "../../category/utils/CategoryTreeUtils";
+import {selectTreeItem} from "../../category/commands/SelectTreeItemCommand";
 
 export default class SelectTargetCategoryCommand extends AbstractSelectTargetCategoryCommand {
     execute(data) {
-        if (data.rootTargetCategory.categoryId === data.categoryId) {
-            data.selectedCategory = data.rootTargetCategory;
-        } else {
-            data.selectedCategory = findCategory(data.rootTargetCategory.childCategories, data.categoryId);
-        }
-        this.addOkOutcome(data);
-        return data;
+        return selectTreeItem(data, data.rootCategoryInMoveDialog, this.addOkOutcome);
     }
 }
 

@@ -56,15 +56,27 @@ module.exports = {
 	
 	moveCategoryStarted : "category_moveCategoryStarted",
 	
-	moveCategory : "category_moveCategory",
-	
 	changeOrderCategory : "category_changeOrderCategory",
 	
 	filterNonScheduledCards : "category_filterNonScheduledCards",
 	
 	priorityChanged : "category_priorityChanged",
 	
-	createReverseBox : "category_createReverseBox"
+	createReverseBox : "category_createReverseBox",
+	
+	moveCategoryClicked : "category_moveCategoryClicked",
+	
+	moveCategoryCancelled : "category_moveCategoryCancelled",
+	
+	expandTreeItemInMoveDialog : "category_expandTreeItemInMoveDialog",
+	
+	collapseTreeItemInMoveDialog : "category_collapseTreeItemInMoveDialog",
+	
+	selectTargetCategory : "category_selectTargetCategory",
+	
+	moveCategory : "category_moveCategory",
+	
+	moveCategoryAllowed : "category_moveCategoryAllowed"
 	
 }
 

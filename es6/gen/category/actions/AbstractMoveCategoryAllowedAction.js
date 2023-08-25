@@ -6,16 +6,16 @@
 
 
 import Action from "../../ace/SynchronousAction";
-import ExpandTreeItemCommand from "../../../src/card/commands/ExpandTreeItemCommand";
+import MoveCategoryAllowedCommand from "../../../src/category/commands/MoveCategoryAllowedCommand";
 
-export default class AbstractExpandTreeItemAction extends Action {
+export default class AbstractMoveCategoryAllowedAction extends Action {
 
     constructor() {
-        super('card.ExpandTreeItemAction');
+        super('category.MoveCategoryAllowedAction');
 	}
 		
 	getCommand() {
-		return new ExpandTreeItemCommand();
+		return new MoveCategoryAllowedCommand();
 	}
 
 

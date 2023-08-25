@@ -19,7 +19,7 @@ export const MoveCards = (props) => {
                     <button
                         className="yes danger"
                         onClick={props.moveCards}
-                        disabled={!props.rootTargetCategory.selectedCategory}
+                        disabled={!props.rootCategoryInMoveDialog.selectedCategory}
                     >
                         {translate(Texts.cardList.moveCards.ok)}
                     </button>

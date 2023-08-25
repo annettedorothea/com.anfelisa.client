@@ -8,12 +8,16 @@
 import AbstractExpandTreeItemCommand from "../../../gen/category/commands/AbstractExpandTreeItemCommand";
 import {findCategory} from "../utils/CategoryTreeUtils"
 
+export const expandTreeItem = (data, rootCategory, addOkOutcome) => {
+    let category = findCategory(rootCategory.childCategories, data.categoryId);
+    category.expanded = true;
+    addOkOutcome(data);
+    return data;
+}
+
 export default class ExpandTreeItemCommand extends AbstractExpandTreeItemCommand {
     execute(data) {
-        let category = findCategory(data.rootCategory.childCategories, data.categoryId);
-        category.expanded = true;
-    	this.addOkOutcome(data);
-    	return data;
+        return expandTreeItem(data, data.rootCategory, this.addOkOutcome);
     }
 }
 

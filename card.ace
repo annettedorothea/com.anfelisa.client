@@ -171,7 +171,7 @@ ACE
 	 	call com.anfelisa.box.SortCardsOut
 		set loading common.rootContainer.spinner.display 
 		on ok triggers (LoadCards)
-		
+	
 	MoveCardsStarted
 		fromAppState (common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds) 
 		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds)
@@ -188,38 +188,39 @@ ACE
 	MoveCardsCancelled
 		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards)
 		
-	ExpandTreeItem ( categoryId  )
-		fromAppState (common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory)
-		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory)
+	ExpandTreeItemInMoveDialog ( categoryId  )
+		fromAppState (common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootCategoryInMoveDialog)
+		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootCategoryInMoveDialog)
 	
-	CollapseTreeItem ( categoryId )
+	CollapseTreeItemInMoveDialog ( categoryId )
 		fromAppState (
-			common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory,
-			common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory.selectedCategory
+			common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootCategoryInMoveDialog,
+			common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootCategoryInMoveDialog.selectedCategory
 
 		)
 		on ok (
-			merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootCategoryInMoveDialog
 		)
 		on selectParentCategory (
-			merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory 
+			merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootCategoryInMoveDialog 
 		) triggers( SelectTargetCategory )
 	
 	SelectTargetCategory ( categoryId  )
 		fromAppState (
-			common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory
+			common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootCategoryInMoveDialog
 		)
-		on ok ( merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory.selectedCategory)
+		on ok ( merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootCategoryInMoveDialog.selectedCategory)
 		
 	MoveCards
 		fromAppState (
 			common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds,
-			common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootTargetCategory.selectedCategory
+			common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards.rootCategoryInMoveDialog.selectedCategory
 		)
 	 	call com.anfelisa.card.MoveCards
 		set loading common.rootContainer.spinner.display 
 		on ok (
 			merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards
+			set common.rootContainer.mainView.authorView.categoryTree.selectedCategory
 		) triggers (category.ReloadCategoryTree)
 
 		

@@ -203,21 +203,6 @@ MoveCategoryStarted ( movedCategoryId )
 		merge common.rootContainer.mainView.authorView.categoryTree.movedCategory
 	)
 	
-MoveCategory
-	fromAppState (
-		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId,
-		common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId as selectedCategoryId,
-		common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId as targetCategoryId,
-		common.rootContainer.mainView.authorView.categoryTree.movedCategory.categoryId as movedCategoryId
-	)
- 	call com.anfelisa.category.MoveCategory
-	set loading common.rootContainer.spinner.display 
-	on ok ( 
-		set common.rootContainer.mainView.authorView.categoryTree.dropTargetCategoryId
-		set common.rootContainer.mainView.authorView.categoryTree.dropAllowed
-		set common.rootContainer.mainView.authorView.categoryTree.movedCategory
-	) triggers (category.ReloadCategoryTree)
-
 ChangeOrderCategory
 	fromAppState (
 		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId,
@@ -259,6 +244,66 @@ CreateReverseBox
 	on ok triggers (common.RouteToDefault)
 	
 
+MoveCategoryClicked
+	fromAppState (
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory,
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory
+	) 
+	on ok (
+		merge common.rootContainer.mainView.authorView.categoryTree.moveCategory
+	)
+	
+MoveCategoryCancelled
+	on ok (
+		merge common.rootContainer.mainView.authorView.categoryTree.moveCategory
+	)
+	
+ExpandTreeItemInMoveDialog ( categoryId  )
+	fromAppState (common.rootContainer.mainView.authorView.categoryTree.moveCategory.rootCategoryInMoveDialog)
+	on ok (merge common.rootContainer.mainView.authorView.categoryTree.moveCategory.rootCategoryInMoveDialog)
 
-		
+CollapseTreeItemInMoveDialog ( categoryId )
+	fromAppState (
+		common.rootContainer.mainView.authorView.categoryTree.moveCategory.rootCategoryInMoveDialog,
+		common.rootContainer.mainView.authorView.categoryTree.moveCategory.rootCategoryInMoveDialog.selectedCategory
+
+	)
+	on ok (
+		merge common.rootContainer.mainView.authorView.categoryTree.moveCategory.rootCategoryInMoveDialog
+	)
+	on selectParentCategory (
+		merge common.rootContainer.mainView.authorView.categoryTree.moveCategory.rootCategoryInMoveDialog 
+	) triggers( SelectTargetCategory )
+
+SelectTargetCategory ( categoryId  )
+	fromAppState (
+		common.rootContainer.mainView.authorView.categoryTree.moveCategory.rootCategoryInMoveDialog
+	)
+	on ok ( merge common.rootContainer.mainView.authorView.categoryTree.moveCategory.rootCategoryInMoveDialog.selectedCategory)
+	triggers (MoveCategoryAllowed)
+
+MoveCategory
+	fromAppState (
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId,
+		common.rootContainer.mainView.authorView.categoryTree.moveCategory.rootCategoryInMoveDialog.selectedCategory as selectedCategory,
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId as movedCategoryId
+	)
+ 	call com.anfelisa.category.MoveCategory
+	set loading common.rootContainer.spinner.display 
+	on ok ( 
+		merge common.rootContainer.mainView.authorView.categoryTree.moveCategory
+	) triggers (category.ReloadCategoryTree)
+	
+MoveCategoryAllowed
+	fromAppState (
+		common.rootContainer.mainView.authorView.categoryTree.rootCategory,
+		common.rootContainer.mainView.authorView.categoryTree.moveCategory.rootCategoryInMoveDialog.selectedCategory as target,
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory as toBeMoved
+	)
+	on ok (
+		merge common.rootContainer.mainView.authorView.categoryTree.moveCategory.moveAllowed
+	)
+	
+
+	
 

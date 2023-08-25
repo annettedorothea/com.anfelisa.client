@@ -22,7 +22,7 @@ export default class AbstractMoveCardsCommand extends AsynchronousCommand {
         )
         ;
         data.selectedCategory = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootTargetCategory", "selectedCategory"]
+        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootCategoryInMoveDialog", "selectedCategory"]
         )
         ;
         data.outcomes = [];

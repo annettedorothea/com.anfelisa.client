@@ -11,18 +11,18 @@
 	import * as AppUtils from "../../../src/AppUtils";
 	import * as AppState from "../../../src/AppState";
 	
-	export default class AbstractCollapseTreeItemCommand extends SynchronousCommand {
+	export default class AbstractCollapseTreeItemInMoveDialogCommand extends SynchronousCommand {
 	    constructor() {
-	        super("card.CollapseTreeItemCommand");
+	        super("card.CollapseTreeItemInMoveDialogCommand");
 	    }
 	
 	    initCommandData(data) {
-	        data.rootTargetCategory = AppState.get(
-	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootTargetCategory"]
+	        data.rootCategoryInMoveDialog = AppState.get(
+	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootCategoryInMoveDialog"]
 	        )
 	        ;
 	        data.selectedCategory = AppState.get(
-	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootTargetCategory", "selectedCategory"]
+	        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards", "rootCategoryInMoveDialog", "selectedCategory"]
 	        )
 	        ;
 	        data.outcomes = [];
@@ -39,10 +39,10 @@
 			const events = [];
 			const actionsToBeTriggered = [];
 			if (data.outcomes.includes("ok")) {
-				events.push(new Event('card.CollapseTreeItemOkEvent'));
+				events.push(new Event('card.CollapseTreeItemInMoveDialogOkEvent'));
 			}
 			if (data.outcomes.includes("selectParentCategory")) {
-				events.push(new Event('card.CollapseTreeItemSelectParentCategoryEvent'));
+				events.push(new Event('card.CollapseTreeItemInMoveDialogSelectParentCategoryEvent'));
 				actionsToBeTriggered.push(
 					{
 						action: new SelectTargetCategoryAction(), 

@@ -8,18 +8,18 @@
 import React from "react";
 
 import { MoveCards } from "../../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/cardView/MoveCards";
-import { RootTargetCategoryContainer } from "./moveCards/RootTargetCategoryContainer";
+import { RootCategoryInMoveDialogContainer } from "./moveCards/RootCategoryInMoveDialogContainer";
 import { moveCardsCancelled } from "../../../../../../card/ActionFunctions";
 import { moveCards } from "../../../../../../card/ActionFunctions";
-import { collapseTreeItem } from "../../../../../../card/ActionFunctions";
-import { expandTreeItem } from "../../../../../../card/ActionFunctions";
+import { collapseTreeItemInMoveDialog } from "../../../../../../card/ActionFunctions";
+import { expandTreeItemInMoveDialog } from "../../../../../../card/ActionFunctions";
 import { selectTargetCategory } from "../../../../../../card/ActionFunctions";
 
 
 export const MoveCardsContainer = ( props ) => {
 	
 	return <MoveCards {...props} moveCardsCancelled={moveCardsCancelled} moveCards={moveCards} >
-		<RootTargetCategoryContainer {...props.rootTargetCategory }   collapseTreeItem={collapseTreeItem} expandTreeItem={expandTreeItem} selectTreeItem={selectTargetCategory}  />
+		<RootCategoryInMoveDialogContainer {...props.rootCategoryInMoveDialog }   collapseTreeItem={collapseTreeItemInMoveDialog} expandTreeItem={expandTreeItemInMoveDialog} selectTreeItem={selectTargetCategory}  />
 	</MoveCards> 
 }
 

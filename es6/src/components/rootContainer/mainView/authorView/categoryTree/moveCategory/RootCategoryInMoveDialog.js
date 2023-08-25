@@ -6,9 +6,9 @@
 
 
 import React from "react";
-import {ExpandedCategoryItem} from "../../../../../../common/ExpandedCategoryItem";
+import {ExpandedCategoryItem} from "../../../../../common/ExpandedCategoryItem";
 
-export const RootTargetCategory = (props) => {
+export const RootCategoryInMoveDialog = (props) => {
 	return <div className="categoryTreeItems">
 		<div className="categoryItem depth_1">
 			<ExpandedCategoryItem {...props}/>
@@ -18,6 +18,8 @@ export const RootTargetCategory = (props) => {
 		</div>
 	</div>
 }
+
+
 
 /******* S.D.G. *******/
 

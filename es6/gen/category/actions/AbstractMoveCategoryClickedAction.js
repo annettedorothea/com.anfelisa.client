@@ -6,16 +6,16 @@
 
 
 import Action from "../../ace/SynchronousAction";
-import CollapseTreeItemCommand from "../../../src/card/commands/CollapseTreeItemCommand";
+import MoveCategoryClickedCommand from "../../../src/category/commands/MoveCategoryClickedCommand";
 
-export default class AbstractCollapseTreeItemAction extends Action {
+export default class AbstractMoveCategoryClickedAction extends Action {
 
     constructor() {
-        super('card.CollapseTreeItemAction');
+        super('category.MoveCategoryClickedAction');
 	}
 		
 	getCommand() {
-		return new CollapseTreeItemCommand();
+		return new MoveCategoryClickedCommand();
 	}
 
 

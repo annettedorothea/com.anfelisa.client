@@ -9,16 +9,18 @@ import AbstractMoveCategoryCommand from "../../../gen/category/commands/Abstract
 
 export default class MoveCategoryCommand extends AbstractMoveCategoryCommand {
 
-    validateCommandData() {
+    validateCommandData(data) {
+        data.targetCategoryId = data.selectedCategory.categoryId;
     	return true;
     }
 
     handleResponse(data, resolve) {
         data.selectedCategoryId = data.targetCategoryId;
         data.categoryIdToBeExpanded = data.targetCategoryId;
-        data.movedCategory = null;
-        data.dropAllowed = null;
-        data.dropTargetCategoryId = null;
+        data.moveCategory = {
+            selectTargetCategory: false,
+            rootCategoryInMoveDialog: null,
+        };
     	this.addOkOutcome(data);
     	resolve(data);
     }

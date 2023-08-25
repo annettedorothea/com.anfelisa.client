@@ -21,16 +21,12 @@ export default class AbstractMoveCategoryCommand extends AsynchronousCommand {
         	["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory", "categoryId"]
         )
         ;
-        data.selectedCategoryId = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "dropTargetCategoryId"]
-        )
-        ;
-        data.targetCategoryId = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "dropTargetCategoryId"]
+        data.selectedCategory = AppState.get(
+        	["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory", "rootCategoryInMoveDialog", "selectedCategory"]
         )
         ;
         data.movedCategoryId = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "movedCategory", "categoryId"]
+        	["rootContainer", "mainView", "authorView", "categoryTree", "selectedCategory", "categoryId"]
         )
         ;
         data.outcomes = [];

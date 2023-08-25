@@ -8,15 +8,19 @@
 import AbstractSelectTreeItemCommand from "../../../gen/category/commands/AbstractSelectTreeItemCommand";
 import {findCategory} from "../utils/CategoryTreeUtils";
 
+export const selectTreeItem = (data, rootCategory, addOkOutcome) => {
+    if (rootCategory.categoryId === data.categoryId) {
+        data.selectedCategory = rootCategory;
+    } else {
+        data.selectedCategory = findCategory(rootCategory.childCategories, data.categoryId);
+    }
+    addOkOutcome(data);
+    return data;
+}
+
 export default class SelectTreeItemCommand extends AbstractSelectTreeItemCommand {
     execute(data) {
-        if (data.rootCategory.categoryId === data.categoryId) {
-            data.selectedCategory = data.rootCategory;
-        } else {
-            data.selectedCategory = findCategory(data.rootCategory.childCategories, data.categoryId);
-        }
-    	this.addOkOutcome(data);
-    	return data;
+        return selectTreeItem(data, data.rootCategory, this.addOkOutcome);
     }
 }
 
