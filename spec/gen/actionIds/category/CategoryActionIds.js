@@ -50,12 +50,6 @@ module.exports = {
 	
 	deleteCategory : "category_deleteCategory",
 	
-	checkDropAllowed : "category_checkDropAllowed",
-	
-	itemDropped : "category_itemDropped",
-	
-	moveCategoryStarted : "category_moveCategoryStarted",
-	
 	changeOrderCategory : "category_changeOrderCategory",
 	
 	filterNonScheduledCards : "category_filterNonScheduledCards",

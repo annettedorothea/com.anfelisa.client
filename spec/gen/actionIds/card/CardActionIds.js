@@ -58,8 +58,6 @@ module.exports = {
 	
 	sortSelectedCardsOut : "card_sortSelectedCardsOut",
 	
-	moveCardsStarted : "card_moveCardsStarted",
-	
 	moveCardsClicked : "card_moveCardsClicked",
 	
 	moveCardsCancelled : "card_moveCardsCancelled",
@@ -73,10 +71,6 @@ module.exports = {
 	moveCards : "card_moveCards",
 	
 	changeCardOrder : "card_changeCardOrder",
-	
-	onDragEnter : "card_onDragEnter",
-	
-	onDragExit : "card_onDragExit",
 	
 	searchDuplicateCards : "card_searchDuplicateCards",
 	

@@ -172,10 +172,6 @@ ACE
 		set loading common.rootContainer.spinner.display 
 		on ok triggers (LoadCards)
 	
-	MoveCardsStarted
-		fromAppState (common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds) 
-		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds)
-		
 	MoveCardsClicked
 		fromAppState (
 			common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds,
@@ -225,23 +221,11 @@ ACE
 
 		
 	ChangeCardOrder 
-		fromAppState ( 
-			common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds,
-			common.rootContainer.mainView.authorView.categoryTree.cardView.dragTargetCardId as cardId
-		)
 	 	call com.anfelisa.card.ChangeOrder
 		set loading common.rootContainer.spinner.display 
 		on ok (
-			merge common.rootContainer.mainView.authorView.categoryTree.cardView.movedCardIds
-			merge common.rootContainer.mainView.authorView.categoryTree.cardView.dragTargetCardId
 		) triggers (LoadCards)
 	
-	OnDragEnter ( dragTargetCardId )
-		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.dragTargetCardId)
-		
-	OnDragExit ( dragTargetCardId )
-		on ok (merge common.rootContainer.mainView.authorView.categoryTree.cardView.dragTargetCardId)
-		
 	SearchDuplicateCards 
 		fromAppState (
 			common.rootContainer.mainView.authorView.categoryTree.cardView.naturalInputOrder,

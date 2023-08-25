@@ -31,7 +31,6 @@ import SelectScheduleCardRangeAction from "../../src/card/actions/SelectSchedule
 import ToggleAllScheduleCardSelectionAction from "../../src/card/actions/ToggleAllScheduleCardSelectionAction";
 import ScheduleSelectedCardsAction from "../../src/card/actions/ScheduleSelectedCardsAction";
 import SortSelectedCardsOutAction from "../../src/card/actions/SortSelectedCardsOutAction";
-import MoveCardsStartedAction from "../../src/card/actions/MoveCardsStartedAction";
 import MoveCardsClickedAction from "../../src/card/actions/MoveCardsClickedAction";
 import MoveCardsCancelledAction from "../../src/card/actions/MoveCardsCancelledAction";
 import ExpandTreeItemInMoveDialogAction from "../../src/card/actions/ExpandTreeItemInMoveDialogAction";
@@ -39,8 +38,6 @@ import CollapseTreeItemInMoveDialogAction from "../../src/card/actions/CollapseT
 import SelectTargetCategoryAction from "../../src/card/actions/SelectTargetCategoryAction";
 import MoveCardsAction from "../../src/card/actions/MoveCardsAction";
 import ChangeCardOrderAction from "../../src/card/actions/ChangeCardOrderAction";
-import OnDragEnterAction from "../../src/card/actions/OnDragEnterAction";
-import OnDragExitAction from "../../src/card/actions/OnDragExitAction";
 import SearchDuplicateCardsAction from "../../src/card/actions/SearchDuplicateCardsAction";
 import TranslateAction from "../../src/card/actions/TranslateAction";
 
@@ -148,10 +145,6 @@ export function sortSelectedCardsOut() {
     return new SortSelectedCardsOutAction().apply({});
 }
 
-export function moveCardsStarted() {
-    return new MoveCardsStartedAction().apply({});
-}
-
 export function moveCardsClicked() {
     return new MoveCardsClickedAction().apply({});
 }
@@ -178,14 +171,6 @@ export function moveCards() {
 
 export function changeCardOrder() {
     return new ChangeCardOrderAction().apply({});
-}
-
-export function onDragEnter(dragTargetCardId) {
-    return new OnDragEnterAction().apply({dragTargetCardId});
-}
-
-export function onDragExit(dragTargetCardId) {
-    return new OnDragExitAction().apply({dragTargetCardId});
 }
 
 export function searchDuplicateCards() {

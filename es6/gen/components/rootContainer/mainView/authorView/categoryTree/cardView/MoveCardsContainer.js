@@ -11,15 +11,13 @@ import { MoveCards } from "../../../../../../../src/components/rootContainer/mai
 import { RootCategoryInMoveDialogContainer } from "./moveCards/RootCategoryInMoveDialogContainer";
 import { moveCardsCancelled } from "../../../../../../card/ActionFunctions";
 import { moveCards } from "../../../../../../card/ActionFunctions";
-import { collapseTreeItemInMoveDialog } from "../../../../../../card/ActionFunctions";
-import { expandTreeItemInMoveDialog } from "../../../../../../card/ActionFunctions";
 import { selectTargetCategory } from "../../../../../../card/ActionFunctions";
 
 
 export const MoveCardsContainer = ( props ) => {
 	
 	return <MoveCards {...props} moveCardsCancelled={moveCardsCancelled} moveCards={moveCards} >
-		<RootCategoryInMoveDialogContainer {...props.rootCategoryInMoveDialog }   collapseTreeItem={collapseTreeItemInMoveDialog} expandTreeItem={expandTreeItemInMoveDialog} selectTreeItem={selectTargetCategory}  />
+		<RootCategoryInMoveDialogContainer {...props.rootCategoryInMoveDialog }   selectTreeItem={selectTargetCategory}  />
 	</MoveCards> 
 }
 

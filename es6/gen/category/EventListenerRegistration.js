@@ -19,7 +19,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree"], 
-					["reverse", "reverseBoxExists", "buttons", "filter", "rootCategory", "displayDeleteCategory", "categoryDialog", "inviteUserDialog", "inviteUserEditableDialog", "deleteCategoryDialog", "moveCategory", "dropAllowed", "dropTargetCategoryId", "selectedCategory", "movedCategory", "cardView"]
+					["reverse", "reverseBoxExists", "buttons", "filter", "rootCategory", "displayDeleteCategory", "categoryDialog", "inviteUserDialog", "inviteUserEditableDialog", "deleteCategoryDialog", "moveCategory", "selectedCategory", "cardView"]
 				)
 			});
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', (data) => {
@@ -30,7 +30,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView"], 
-					["rootCategory", "selectedCategory", "reverse", "naturalInputOrder", "cardTable", "deleteCard", "moveCards", "dictionaryValue", "selectedCardIds", "movedCardIds", "dragTargetCardId", "editedCard"]
+					["rootCategory", "selectedCategory", "reverse", "naturalInputOrder", "cardTable", "deleteCard", "moveCards", "dictionaryValue", "selectedCardIds", "editedCard"]
 				)
 			});
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', (data) => {
@@ -51,7 +51,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory"], 
-					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
+					["selectedCategory", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.ReloadCategoryTreeOkEvent', (data) => {
@@ -73,7 +73,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory"], 
-					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
+					["selectedCategory", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.CollapseTreeItemOkEvent', (data) => {
@@ -84,7 +84,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory"], 
-					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
+					["selectedCategory", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.CollapseTreeItemSelectParentCategoryEvent', (data) => {
@@ -95,7 +95,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory"], 
-					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
+					["selectedCategory", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.SelectTreeItemOkEvent', (data) => {
@@ -323,68 +323,6 @@ export default class EventListenerRegistrationCategory {
 					["display"]
 				)
 			});
-		ACEController.registerListener('category.CheckDropAllowedOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.merge(
-					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "dropTargetCategoryId"]
-				)
-			});
-		ACEController.registerListener('category.CheckDropAllowedOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.merge(
-					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "dropAllowed"]
-				)
-			});
-		ACEController.registerListener('category.MoveCategoryStartedOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.merge(
-					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "movedCategory"], 
-					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories"]
-				)
-			});
-		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.set(
-					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "dropTargetCategoryId"]
-				)
-			});
-		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.set(
-					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "dropAllowed"]
-				)
-			});
-		ACEController.registerListener('category.ChangeOrderCategoryOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.set(
-					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "movedCategory"], 
-					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "childCategories"]
-				)
-			});
 		ACEController.registerListener('category.FilterNonScheduledCardsOkEvent', (data) => {
 				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
 					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
@@ -435,7 +373,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory", "rootCategoryInMoveDialog"], 
-					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
+					["selectedCategory", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.CollapseTreeItemInMoveDialogOkEvent', (data) => {
@@ -446,7 +384,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory", "rootCategoryInMoveDialog"], 
-					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
+					["selectedCategory", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.CollapseTreeItemInMoveDialogSelectParentCategoryEvent', (data) => {
@@ -457,7 +395,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory", "rootCategoryInMoveDialog"], 
-					["selectedCategory", "dropAllowed", "dropTargetCategoryId", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
+					["selectedCategory", "categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "dictionaryLookup", "givenLanguage", "wantedLanguage", "rootCategoryId", "nonScheduledCount", "editable", "childCategories"]
 				)
 			});
 		ACEController.registerListener('category.SelectTargetCategoryOkEvent', (data) => {

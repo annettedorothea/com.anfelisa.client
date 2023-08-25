@@ -19,7 +19,7 @@ export default class EventListenerRegistrationCard {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView"], 
-					["rootCategory", "selectedCategory", "reverse", "naturalInputOrder", "cardTable", "deleteCard", "moveCards", "dictionaryValue", "selectedCardIds", "movedCardIds", "dragTargetCardId", "editedCard"]
+					["rootCategory", "selectedCategory", "reverse", "naturalInputOrder", "cardTable", "deleteCard", "moveCards", "dictionaryValue", "selectedCardIds", "editedCard"]
 				)
 			});
 		ACEController.registerListener('card.CreateCardOkEvent', (data) => {
@@ -250,16 +250,6 @@ export default class EventListenerRegistrationCard {
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "selectedCardIds"]
 				)
 			});
-		ACEController.registerListener('card.MoveCardsStartedOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.merge(
-					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "movedCardIds"]
-				)
-			});
 		ACEController.registerListener('card.MoveCardsClickedOkEvent', (data) => {
 				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
 					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
@@ -345,46 +335,6 @@ export default class EventListenerRegistrationCard {
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "selectedCategory"], 
 					["categoryId", "categoryName", "categoryIndex", "empty", "parentCategoryId", "rootCategoryId", "childCategories", "nonScheduledCount", "editable", "dictionaryLookup", "givenLanguage", "wantedLanguage"]
-				)
-			});
-		ACEController.registerListener('card.ChangeCardOrderOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.merge(
-					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "movedCardIds"]
-				)
-			});
-		ACEController.registerListener('card.ChangeCardOrderOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.merge(
-					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "dragTargetCardId"]
-				)
-			});
-		ACEController.registerListener('card.OnDragEnterOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.merge(
-					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "dragTargetCardId"]
-				)
-			});
-		ACEController.registerListener('card.OnDragExitOkEvent', (data) => {
-				if (AppState.get(["rootContainer", "mainView", "authorView"]) === undefined) {
-					console.warn("path ['rootContainer', 'mainView', 'authorView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
-					return;
-				}
-				AppState.merge(
-					data, 
-					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "dragTargetCardId"]
 				)
 			});
 		ACEController.registerListener('card.SearchDuplicateCardsOkEvent', (data) => {

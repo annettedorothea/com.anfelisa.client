@@ -20,14 +20,11 @@ import { selectScheduleCardRange } from "../../../../../../../card/ActionFunctio
 import { toggleScheduleCardSelection } from "../../../../../../../card/ActionFunctions";
 import { updateCard } from "../../../../../../../card/ActionFunctions";
 import { updateCardPriority } from "../../../../../../../card/ActionFunctions";
-import { moveCardsStarted } from "../../../../../../../card/ActionFunctions";
-import { onDragEnter } from "../../../../../../../card/ActionFunctions";
-import { onDragExit } from "../../../../../../../card/ActionFunctions";
 
 
 export const CardListItemContainer = ( props ) => {
 	
-	return <CardListItem {...props} cancelEditCard={cancelEditCard} changeCardOrder={changeCardOrder} deleteCardClick={deleteCardClick} editCard={editCard} givenOfEditedCardChanged={givenOfEditedCardChanged} givenImageOfEditedCardChanged={givenImageOfEditedCardChanged} wantedOfEditedCardChanged={wantedOfEditedCardChanged} wantedImageOfEditedCardChanged={wantedImageOfEditedCardChanged} selectScheduleCardRange={selectScheduleCardRange} toggleScheduleCardSelection={toggleScheduleCardSelection} updateCard={updateCard} updateCardPriority={updateCardPriority} moveCardsStarted={moveCardsStarted} onDragEnter={onDragEnter} onDragExit={onDragExit}  /> 
+	return <CardListItem {...props} cancelEditCard={cancelEditCard} changeCardOrder={changeCardOrder} deleteCardClick={deleteCardClick} editCard={editCard} givenOfEditedCardChanged={givenOfEditedCardChanged} givenImageOfEditedCardChanged={givenImageOfEditedCardChanged} wantedOfEditedCardChanged={wantedOfEditedCardChanged} wantedImageOfEditedCardChanged={wantedImageOfEditedCardChanged} selectScheduleCardRange={selectScheduleCardRange} toggleScheduleCardSelection={toggleScheduleCardSelection} updateCard={updateCard} updateCardPriority={updateCardPriority}  /> 
 }
 
 

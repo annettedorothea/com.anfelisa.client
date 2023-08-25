@@ -17,8 +17,6 @@ import { InviteUserEditableDialogContainer } from "./categoryTree/InviteUserEdit
 import { DeleteCategoryDialogContainer } from "./categoryTree/DeleteCategoryDialogContainer";
 import { MoveCategoryContainer } from "./categoryTree/MoveCategoryContainer";
 import { CardViewContainer } from "./categoryTree/CardViewContainer";
-import { collapseTreeItem } from "../../../../category/ActionFunctions";
-import { expandTreeItem } from "../../../../category/ActionFunctions";
 import { selectTreeItem } from "../../../../category/ActionFunctions";
 import { cancelCategoryDialog } from "../../../../category/ActionFunctions";
 import { categoryNameChanged } from "../../../../category/ActionFunctions";
@@ -40,7 +38,7 @@ export const CategoryTreeContainer = ( props ) => {
 	return <CategoryTree {...props} >
 		<ButtonsContainer {...props.buttons }  selectedCategory={props.selectedCategory} rootCategory={props.rootCategory} reverseBoxExists={props.reverseBoxExists} reverse={props.reverse}   />
 		<FilterContainer {...props.filter }    />
-		<RootCategoryContainer {...props.rootCategory }  selectedCategory={props.selectedCategory} dropAllowed={props.dropAllowed} dropTargetCategoryId={props.dropTargetCategoryId}  collapseTreeItem={collapseTreeItem} expandTreeItem={expandTreeItem} selectTreeItem={selectTreeItem}  />
+		<RootCategoryContainer {...props.rootCategory }  selectedCategory={props.selectedCategory}  selectTreeItem={selectTreeItem}  />
 		<CategoryDialogContainer {...props.categoryDialog }   cancelCategoryDialog={cancelCategoryDialog} categoryNameChanged={categoryNameChanged} createCategory={createCategory} updateCategory={updateCategory}  />
 		<InviteUserDialogContainer {...props.inviteUserDialog }   cancelInviteUser={cancelInviteUser} invitedUsernameChanged={invitedUsernameChanged} inviteUserNextStep={inviteUserNextStep}  />
 		<InviteUserEditableDialogContainer {...props.inviteUserEditableDialog }   cancelInviteUser={cancelInviteUser} inviteUser={inviteUser} inviteUserChangeEditable={inviteUserChangeEditable}  />

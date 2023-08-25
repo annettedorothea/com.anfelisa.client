@@ -17,14 +17,6 @@ export default class AbstractChangeCardOrderCommand extends AsynchronousCommand 
     }
     
     initCommandData(data) {
-        data.movedCardIds = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "movedCardIds"]
-        )
-        ;
-        data.cardId = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "dragTargetCardId"]
-        )
-        ;
         data.outcomes = [];
     }
 

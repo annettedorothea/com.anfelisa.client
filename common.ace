@@ -635,8 +635,6 @@ ui JSX rootContainer {
 				}
 				rootCategory {
 					selectedCategory
-					dropAllowed
-					dropTargetCategoryId
 
 					categoryId
 					categoryName
@@ -651,8 +649,6 @@ ui JSX rootContainer {
 					editable
 					Tree childCategories {
 						selectedCategory fromParent
-						dropAllowed fromParent
-						dropTargetCategoryId fromParent
 						expanded
 						childCategories
 						listId categoryId
@@ -667,17 +663,12 @@ ui JSX rootContainer {
 						nonScheduledCount
 						editable
 						actions {
-							"checkDropAllowed" category.CheckDropAllowed
 							"collapseTreeItem" category.CollapseTreeItem
 							"expandTreeItem" category.ExpandTreeItem
-							"itemDropped" category.ItemDropped
-							"moveCategoryStarted" category.MoveCategoryStarted
 							"selectTreeItem" category.SelectTreeItem
 						}
 					}
 					actions {
-						"collapseTreeItem" category.CollapseTreeItem
-						"expandTreeItem" category.ExpandTreeItem
 						"selectTreeItem" category.SelectTreeItem
 					}
 				}
@@ -732,8 +723,6 @@ ui JSX rootContainer {
 					moveAllowed
 					rootCategoryInMoveDialog {
 						selectedCategory
-						dropAllowed
-						dropTargetCategoryId
 						categoryId
 						categoryName
 						categoryIndex
@@ -747,8 +736,6 @@ ui JSX rootContainer {
 						editable
 						Tree childCategories {
 							selectedCategory fromParent
-							dropAllowed fromParent
-							dropTargetCategoryId fromParent
 							expanded
 							childCategories
 							listId categoryId
@@ -769,8 +756,6 @@ ui JSX rootContainer {
 							}
 						}
 						actions {
-								"collapseTreeItem" category.CollapseTreeItemInMoveDialog
-								"expandTreeItem" category.ExpandTreeItemInMoveDialog
 								"selectTreeItem" category.SelectTargetCategory
 						}
 					}
@@ -780,8 +765,6 @@ ui JSX rootContainer {
 		        	}
 		        }
 				
-				dropAllowed
-				dropTargetCategoryId
 				noComponent selectedCategory {
 					categoryId
 					categoryName
@@ -795,18 +778,6 @@ ui JSX rootContainer {
 					dictionaryLookup
 					givenLanguage
 					wantedLanguage
-				}
-				noComponent movedCategory {
-					categoryId
-					categoryName
-					categoryIndex
-					empty
-					parentCategoryId
-					dictionaryLookup
-					givenLanguage
-					wantedLanguage
-					rootCategoryId
-					List childCategories
 				}
 		        cardView {
 		        	rootCategory
@@ -852,9 +823,6 @@ ui JSX rootContainer {
 				        		"toggleScheduleCardSelection" card.ToggleScheduleCardSelection
 				        		"updateCard" card.UpdateCard
 				        		"updateCardPriority" card.UpdateCardPriority
-				        		"moveCardsStarted" card.MoveCardsStarted
-				        		"onDragEnter" card.OnDragEnter
-				        		"onDragExit" card.OnDragExit
 				        	}
 				        }
 				        newCard {
@@ -955,8 +923,6 @@ ui JSX rootContainer {
 								}
 							}
 							actions {
-									"collapseTreeItem" card.CollapseTreeItemInMoveDialog
-									"expandTreeItem" card.ExpandTreeItemInMoveDialog
 									"selectTreeItem" card.SelectTargetCategory
 							}
 						}
@@ -967,8 +933,6 @@ ui JSX rootContainer {
 			        }
 			        dictionaryValue
 			        List selectedCardIds
-			        List movedCardIds
-			        dragTargetCardId
 			        noComponent editedCard {
 			        	cardId
 			        	given

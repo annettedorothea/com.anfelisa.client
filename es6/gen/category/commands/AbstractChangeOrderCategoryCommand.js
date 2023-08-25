@@ -21,18 +21,6 @@ export default class AbstractChangeOrderCategoryCommand extends AsynchronousComm
         	["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory", "categoryId"]
         )
         ;
-        data.selectedCategoryId = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "movedCategory", "categoryId"]
-        )
-        ;
-        data.targetCategoryId = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "dropTargetCategoryId"]
-        )
-        ;
-        data.movedCategoryId = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "movedCategory", "categoryId"]
-        )
-        ;
         data.outcomes = [];
     }
 

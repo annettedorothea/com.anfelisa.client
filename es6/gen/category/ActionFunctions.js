@@ -27,9 +27,6 @@ import InviteUserAction from "../../src/category/actions/InviteUserAction";
 import DeleteCategoryClickAction from "../../src/category/actions/DeleteCategoryClickAction";
 import CancelDeleteCategoryAction from "../../src/category/actions/CancelDeleteCategoryAction";
 import DeleteCategoryAction from "../../src/category/actions/DeleteCategoryAction";
-import CheckDropAllowedAction from "../../src/category/actions/CheckDropAllowedAction";
-import ItemDroppedAction from "../../src/category/actions/ItemDroppedAction";
-import MoveCategoryStartedAction from "../../src/category/actions/MoveCategoryStartedAction";
 import ChangeOrderCategoryAction from "../../src/category/actions/ChangeOrderCategoryAction";
 import FilterNonScheduledCardsAction from "../../src/category/actions/FilterNonScheduledCardsAction";
 import PriorityChangedAction from "../../src/category/actions/PriorityChangedAction";
@@ -128,18 +125,6 @@ export function cancelDeleteCategory() {
 
 export function deleteCategory() {
     return new DeleteCategoryAction().apply({});
-}
-
-export function checkDropAllowed(categoryId, altKey, depth) {
-    return new CheckDropAllowedAction().apply({categoryId, altKey, depth});
-}
-
-export function itemDropped(alt) {
-    return new ItemDroppedAction().apply({alt});
-}
-
-export function moveCategoryStarted(movedCategoryId) {
-    return new MoveCategoryStartedAction().apply({movedCategoryId});
 }
 
 export function changeOrderCategory() {

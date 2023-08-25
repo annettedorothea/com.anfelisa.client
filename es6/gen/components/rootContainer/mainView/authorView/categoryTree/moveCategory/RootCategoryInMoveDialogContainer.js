@@ -9,15 +9,15 @@ import React from "react";
 
 import { RootCategoryInMoveDialog } from "../../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/moveCategory/RootCategoryInMoveDialog";
 import { ChildCategoriesItemContainer } from "./rootCategoryInMoveDialog/ChildCategoriesItemContainer";
+import { selectTargetCategory } from "../../../../../../category/ActionFunctions";
 import { collapseTreeItemInMoveDialog } from "../../../../../../category/ActionFunctions";
 import { expandTreeItemInMoveDialog } from "../../../../../../category/ActionFunctions";
-import { selectTargetCategory } from "../../../../../../category/ActionFunctions";
 
 
 export const RootCategoryInMoveDialogContainer = ( props ) => {
 	
-	return <RootCategoryInMoveDialog {...props} collapseTreeItem={collapseTreeItemInMoveDialog} expandTreeItem={expandTreeItemInMoveDialog} selectTreeItem={selectTargetCategory} >
-		{ props.childCategories ? props.childCategories.map((item, index) => <ChildCategoriesItemContainer {...item} key={item.categoryId} depth={1} index={index} selectedCategory={props.selectedCategory} dropAllowed={props.dropAllowed} dropTargetCategoryId={props.dropTargetCategoryId}   collapseTreeItem={collapseTreeItemInMoveDialog} expandTreeItem={expandTreeItemInMoveDialog} selectTreeItem={selectTargetCategory}  />) : [] }
+	return <RootCategoryInMoveDialog {...props} selectTreeItem={selectTargetCategory} >
+		{ props.childCategories ? props.childCategories.map((item, index) => <ChildCategoriesItemContainer {...item} key={item.categoryId} depth={1} index={index} selectedCategory={props.selectedCategory}   collapseTreeItem={collapseTreeItemInMoveDialog} expandTreeItem={expandTreeItemInMoveDialog} selectTreeItem={selectTargetCategory}  />) : [] }
 	</RootCategoryInMoveDialog> 
 }
 
