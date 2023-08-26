@@ -13,6 +13,7 @@ export const MoveDown = (props) => {
 	return <button
 		onClick={() => props.onClick(true)}
 		title={translate(Texts.cardList.moveDown)}
+		disabled={props.selectedCardIds.length !== 1}
 	>
 		<i className="fas fa-angle-down"></i>
 	</button>

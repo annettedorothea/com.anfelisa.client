@@ -20,7 +20,7 @@ export const Statistics = (props) => {
 
     return (
         <i
-            className="fas fa-calendar"
+            className="far fa-calendar-alt"
             onClick={(e) => onStatisticsClick(e)}
             title={translate(Texts.box.statistics)}
         />

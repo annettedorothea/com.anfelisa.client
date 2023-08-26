@@ -17,15 +17,15 @@ export const CardDuplicatesItem = (props) => {
 		return CardPreview({text: props.wanted})
 	}
 	const renderPath = () => {
-		return <td colSpan={2}>
+		return <div colSpan={2}>
 			<a onClick={() => props.routeToSelectedCategory(props.rootCategory.rootCategoryId, props.categoryId, props.reverse)}>
 				{props.categoryName}
 			</a>
-		</td>
+		</div>
 	}
 
 	return <tr className="notPrinted">
-		<td/>
+		<div/>
 		{props.naturalInputOrder === true ? renderGiven() : renderWanted()}
 		{props.naturalInputOrder === true ? renderWanted() : renderGiven()}
 		{renderPath()}

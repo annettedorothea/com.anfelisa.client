@@ -35,16 +35,16 @@ export const CardInput = ({
     }
 
     if (image) {
-        return <td>
+        return <div>
             <div className="preview">
                 <img src={image} alt="image"/>
                 <button onClick={() => onImageChanged(null)} className="danger">
                     <i className="fas fa-times"/>
                 </button>
             </div>
-        </td>
+        </div>
     }
-    return <td className="textarea input">
+    return <div className="textarea input">
             <textarea
                 onChange={onTextChanged}
                 autoComplete="off"
@@ -62,6 +62,6 @@ export const CardInput = ({
                 <i className="fas fa-image"/>
             </label>
         </div>
-    </td>
+    </div>
 
 }

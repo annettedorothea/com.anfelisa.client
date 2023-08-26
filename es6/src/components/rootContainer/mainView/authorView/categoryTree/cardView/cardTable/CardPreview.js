@@ -2,13 +2,13 @@ import React from "react";
 
 export const CardPreview = ({text, onEdit}) => {
     if (text.indexOf("data:image") === 0) {
-        return <td className="preview">
+        return <div className="preview">
             <div>
                 <img src={text} alt="image"/>
             </div>
-        </td>
+        </div>
     }
-    return <td onDoubleClick={onEdit? onEdit : () => {}}>
+    return <div  className="preview" onClick={onEdit? onEdit : () => {}}>
         <pre>{text}</pre>
-    </td>
+    </div>
 }

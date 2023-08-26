@@ -16,7 +16,7 @@
       background-color: $white;
       color: $darker;
       border-radius: 0;
-      @media screen and (max-width: 25rem) {
+      @media screen and (max-width: 30rem) {
         padding: $tinySpacing $smallSpacing;
       }
     }
@@ -27,6 +27,13 @@
   }
 }
 
+.priority {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding: 0 $spacing;
+  place-self: center stretch;
+  color: $blue;
+}
 
 .categoryTree {
   .filter {
@@ -35,7 +42,6 @@
     gap: $tinySpacing;
 
     .priority {
-      color: $blue;
       margin-left: $spacing;
     }
 
@@ -46,8 +52,19 @@
 
   .cardView {
     .cardViewHeader {
-      display: flex;
-      justify-content: space-between;
+      margin-bottom: $spacing;
+
+      @media screen and (max-width: 25rem) {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      @media screen and (min-width: 25rem) {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+      }
+
 
       h1 {
         flex-grow: 1;
@@ -60,6 +77,7 @@
         justify-items: stretch;
         align-items: center;
         transition: all 0.5s ease-in-out;
+        justify-self: end;
       }
 
       .searchContainer:focus-within {
@@ -75,14 +93,47 @@
       }
     }
 
-    .cardTable {
-      display: grid;
-      grid-template-columns: $largerSpacing auto auto $largerSpacing $largerSpacing;
-      column-gap: $spacing;
+    .cardListItem {
+      &.readonly {
+        display: grid;
+        grid-template-columns: $largerSpacing auto 4.5rem $hugeSpacing;
+        border-bottom: 1px dotted $light;
 
-      .tableHeader {
-        grid-column-start: 2;
-        grid-column-end: 4 span;
+        .checkbox {
+          place-self: center stretch;
+        }
+        .schedule {
+          padding: 0 $spacing;
+          place-self: center stretch;
+        }
+        .givenAndWanted {
+          @media screen and (max-width: 30rem) {
+            display: grid;
+            grid-template-columns: 1fr;
+            .preview:last-of-type {
+              pre {
+                text-align: right;
+              }
+            }
+          }
+
+          @media screen and (min-width: 30rem) {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+          }
+
+
+          .preview {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            margin: $smallerSpacing $spacing;
+            pre {
+              font-family: $font;
+              margin: 0;
+            }
+          }
+        }
       }
     }
   }

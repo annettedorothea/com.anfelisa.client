@@ -13,6 +13,7 @@ export const MoveUp = (props) => {
 	return <button
 		onClick={() => props.onClick(false)}
 		title={translate(Texts.cardList.moveUp)}
+		disabled={props.selectedCardIds.length !== 1}
 	>
 		<i className="fas fa-angle-up"></i>
 	</button>
