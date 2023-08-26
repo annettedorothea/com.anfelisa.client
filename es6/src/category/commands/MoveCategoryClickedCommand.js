@@ -10,7 +10,7 @@ import AbstractMoveCategoryClickedCommand from "../../../gen/category/commands/A
 export default class MoveCategoryClickedCommand extends AbstractMoveCategoryClickedCommand {
     execute(data) {
         data.moveCategory = {
-            selectTargetCategory: true,
+            display: true,
             rootCategoryInMoveDialog: structuredClone(data.rootCategory),
         };
     	this.addOkOutcome(data);

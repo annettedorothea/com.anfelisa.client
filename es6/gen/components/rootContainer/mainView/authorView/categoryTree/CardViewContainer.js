@@ -11,13 +11,7 @@ import { CardView } from "../../../../../../src/components/rootContainer/mainVie
 import { CardTableContainer } from "./cardView/CardTableContainer";
 import { DeleteCardContainer } from "./cardView/DeleteCardContainer";
 import { MoveCardsContainer } from "./cardView/MoveCardsContainer";
-import { toggleInputOrder } from "../../../../../card/ActionFunctions";
 import { filterCards } from "../../../../../card/ActionFunctions";
-import { toggleAllScheduleCardSelection } from "../../../../../card/ActionFunctions";
-import { scheduleSelectedCards } from "../../../../../card/ActionFunctions";
-import { sortSelectedCardsOut } from "../../../../../card/ActionFunctions";
-import { deleteCardClick } from "../../../../../card/ActionFunctions";
-import { moveCardsClicked } from "../../../../../card/ActionFunctions";
 import { deleteCard } from "../../../../../card/ActionFunctions";
 import { cancelDeleteCard } from "../../../../../card/ActionFunctions";
 import { moveCardsCancelled } from "../../../../../card/ActionFunctions";
@@ -27,7 +21,7 @@ import { moveCards } from "../../../../../card/ActionFunctions";
 export const CardViewContainer = ( props ) => {
 	
 	return <CardView {...props} >
-		<CardTableContainer {...props.cardTable }  selectedCategory={props.selectedCategory} selectedCardIds={props.selectedCardIds} editedCard={props.editedCard} rootCategory={props.rootCategory} naturalInputOrder={props.naturalInputOrder} reverse={props.reverse}  toggleInputOrder={toggleInputOrder} filterCards={filterCards} toggleAllScheduleCardSelection={toggleAllScheduleCardSelection} scheduleSelectedCards={scheduleSelectedCards} sortSelectedCardsOut={sortSelectedCardsOut} deleteCardClick={deleteCardClick} moveCards={moveCardsClicked}  />
+		<CardTableContainer {...props.cardTable }  selectedCategory={props.selectedCategory} selectedCardIds={props.selectedCardIds} editedCard={props.editedCard} rootCategory={props.rootCategory} naturalInputOrder={props.naturalInputOrder} reverse={props.reverse}  filterCards={filterCards}  />
 		<DeleteCardContainer {...props.deleteCard }  selectedCardIds={props.selectedCardIds}  deleteCard={deleteCard} cancelDeleteCard={cancelDeleteCard}  />
 		<MoveCardsContainer {...props.moveCards }   moveCardsCancelled={moveCardsCancelled} moveCards={moveCards}  />
 	</CardView> 

@@ -37,9 +37,9 @@ import ExpandTreeItemInMoveDialogAction from "../../src/card/actions/ExpandTreeI
 import CollapseTreeItemInMoveDialogAction from "../../src/card/actions/CollapseTreeItemInMoveDialogAction";
 import SelectTargetCategoryAction from "../../src/card/actions/SelectTargetCategoryAction";
 import MoveCardsAction from "../../src/card/actions/MoveCardsAction";
-import ChangeCardOrderAction from "../../src/card/actions/ChangeCardOrderAction";
 import SearchDuplicateCardsAction from "../../src/card/actions/SearchDuplicateCardsAction";
 import TranslateAction from "../../src/card/actions/TranslateAction";
+import ToggleCardOrderAction from "../../src/card/actions/ToggleCardOrderAction";
 
 export function loadCards() {
     return new LoadCardsAction().apply({});
@@ -169,16 +169,16 @@ export function moveCards() {
     return new MoveCardsAction().apply({});
 }
 
-export function changeCardOrder() {
-    return new ChangeCardOrderAction().apply({});
-}
-
 export function searchDuplicateCards() {
     return new SearchDuplicateCardsAction().apply({});
 }
 
 export function translate() {
     return new TranslateAction().apply({});
+}
+
+export function toggleCardOrder(down) {
+    return new ToggleCardOrderAction().apply({down});
 }
 
 

@@ -9,14 +9,18 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
-import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
+import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
 
-export default class AbstractChangeCardOrderCommand extends AsynchronousCommand {
+export default class AbstractToggleCategoryOrderCommand extends AsynchronousCommand {
     constructor() {
-        super("card.ChangeCardOrderCommand");
+        super("category.ToggleCategoryOrderCommand");
     }
     
     initCommandData(data) {
+        data.categoryId = AppState.get(
+        	["rootContainer", "mainView", "authorView", "categoryTree", "selectedCategory", "categoryId"]
+        )
+        ;
         data.outcomes = [];
     }
 
@@ -25,12 +29,12 @@ export default class AbstractChangeCardOrderCommand extends AsynchronousCommand 
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (data.cardIdList === undefined || data.cardIdList === null) {
-			console.warn("AbstractChangeCardOrderCommand: cardIdList is mandatory but is not set", data);
+		if (data.categoryId === undefined || data.categoryId === null) {
+			console.warn("AbstractToggleCategoryOrderCommand: categoryId is mandatory but is not set", data);
 			return false;
 		}
-		if (data.cardId === undefined || data.cardId === null) {
-			console.warn("AbstractChangeCardOrderCommand: cardId is mandatory but is not set", data);
+		if (data.down === undefined || data.down === null) {
+			console.warn("AbstractToggleCategoryOrderCommand: down is mandatory but is not set", data);
 			return false;
 		}
 		return true;
@@ -40,11 +44,11 @@ export default class AbstractChangeCardOrderCommand extends AsynchronousCommand 
 	    return new Promise((resolve, reject) => {
 	    	if (this.allMandatoryValuesAreSet(data)) {
 		    	let payload = {
-		    		cardIdList : data.cardIdList,
-		    		cardId : data.cardId
+		    		categoryId : data.categoryId,
+		    		down : data.down
 		    	};
 				AppUtils.httpPut(
-						`${AppUtils.settings.rootPath}/cards/changeorder`, 
+						`${AppUtils.settings.rootPath}/category/toggleorder`, 
 						data.uuid, 
 						true,
 						 payload)
@@ -66,11 +70,13 @@ export default class AbstractChangeCardOrderCommand extends AsynchronousCommand 
 			const events = [];
 			const actionsToBeTriggered = [];
 			if (data.outcomes.includes("ok")) {
-				events.push(new Event('card.ChangeCardOrderOkEvent'));
+				events.push(new Event('category.ToggleCategoryOrderOkEvent'));
 				actionsToBeTriggered.push(
 					{
-						action: new LoadCardsAction(), 
+						action: new ReloadCategoryTreeAction(), 
 						data: {
+							selectedCategoryId: data.selectedCategoryId, 
+							categoryIdToBeExpanded: data.categoryIdToBeExpanded
 						}
 					}
 				);

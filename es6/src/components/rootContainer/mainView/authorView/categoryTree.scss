@@ -67,6 +67,14 @@
       }
     }
 
+    .cardViewSecondHeader {
+      display: flex;
+
+      .toolbarContainer {
+        margin-left: $spacing;
+      }
+    }
+
     .cardTable {
       display: grid;
       grid-template-columns: $largerSpacing auto auto $largerSpacing $largerSpacing;

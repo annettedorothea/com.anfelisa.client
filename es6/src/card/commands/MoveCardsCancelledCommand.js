@@ -10,7 +10,7 @@ import AbstractMoveCardsCancelledCommand from "../../../gen/card/commands/Abstra
 export default class MoveCardsCancelledCommand extends AbstractMoveCardsCancelledCommand {
     execute(data) {
         data.moveCards = {
-            selectTargetCategory: false,
+            display: false,
             rootCategoryInMoveDialog: null,
         };
     	this.addOkOutcome(data);

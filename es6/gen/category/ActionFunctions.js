@@ -27,7 +27,6 @@ import InviteUserAction from "../../src/category/actions/InviteUserAction";
 import DeleteCategoryClickAction from "../../src/category/actions/DeleteCategoryClickAction";
 import CancelDeleteCategoryAction from "../../src/category/actions/CancelDeleteCategoryAction";
 import DeleteCategoryAction from "../../src/category/actions/DeleteCategoryAction";
-import ChangeOrderCategoryAction from "../../src/category/actions/ChangeOrderCategoryAction";
 import FilterNonScheduledCardsAction from "../../src/category/actions/FilterNonScheduledCardsAction";
 import PriorityChangedAction from "../../src/category/actions/PriorityChangedAction";
 import CreateReverseBoxAction from "../../src/category/actions/CreateReverseBoxAction";
@@ -38,6 +37,7 @@ import CollapseTreeItemInMoveDialogAction from "../../src/category/actions/Colla
 import SelectTargetCategoryAction from "../../src/category/actions/SelectTargetCategoryAction";
 import MoveCategoryAction from "../../src/category/actions/MoveCategoryAction";
 import MoveCategoryAllowedAction from "../../src/category/actions/MoveCategoryAllowedAction";
+import ToggleCategoryOrderAction from "../../src/category/actions/ToggleCategoryOrderAction";
 
 export function loadCategoryTree(rootCategoryId, selectedCategoryId) {
     return new LoadCategoryTreeAction().apply({rootCategoryId, selectedCategoryId});
@@ -127,10 +127,6 @@ export function deleteCategory() {
     return new DeleteCategoryAction().apply({});
 }
 
-export function changeOrderCategory() {
-    return new ChangeOrderCategoryAction().apply({});
-}
-
 export function filterNonScheduledCards() {
     return new FilterNonScheduledCardsAction().apply({});
 }
@@ -169,6 +165,10 @@ export function moveCategory() {
 
 export function moveCategoryAllowed() {
     return new MoveCategoryAllowedAction().apply({});
+}
+
+export function toggleCategoryOrder(down) {
+    return new ToggleCategoryOrderAction().apply({down});
 }
 
 

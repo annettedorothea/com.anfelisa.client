@@ -176,15 +176,6 @@ DeleteCategory
 		merge common.rootContainer.mainView.authorView.categoryTree.deleteCategoryDialog
 	) triggers (ReloadCategoryTree)
 
-ChangeOrderCategory
-	fromAppState (
-		common.rootContainer.mainView.authorView.categoryTree.rootCategory.categoryId as rootCategoryId
-	)
- 	call com.anfelisa.category.ChangeOrderCategory
-	set loading common.rootContainer.spinner.display 
-	on ok ( 
-	) triggers (category.ReloadCategoryTree)
-
 FilterNonScheduledCards
 	fromAppState (
 		common.rootContainer.mainView.authorView.categoryTree.filter.filterNonScheduled.value, 
@@ -270,6 +261,14 @@ MoveCategoryAllowed
 	on ok (
 		merge common.rootContainer.mainView.authorView.categoryTree.moveCategory.moveAllowed
 	)
+	
+ToggleCategoryOrder ( down )
+	fromAppState (
+		common.rootContainer.mainView.authorView.categoryTree.selectedCategory.categoryId
+	)
+ 	call com.anfelisa.category.ToggleCategoryOrder
+	set loading common.rootContainer.spinner.display 
+	on ok triggers (category.ReloadCategoryTree)
 	
 
 	

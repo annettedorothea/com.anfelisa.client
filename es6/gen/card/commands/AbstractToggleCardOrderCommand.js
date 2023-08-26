@@ -9,16 +9,16 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
-import ReloadCategoryTreeAction from "../../../src/category/actions/ReloadCategoryTreeAction";
+import LoadCardsAction from "../../../src/card/actions/LoadCardsAction";
 
-export default class AbstractChangeOrderCategoryCommand extends AsynchronousCommand {
+export default class AbstractToggleCardOrderCommand extends AsynchronousCommand {
     constructor() {
-        super("category.ChangeOrderCategoryCommand");
+        super("card.ToggleCardOrderCommand");
     }
     
     initCommandData(data) {
-        data.rootCategoryId = AppState.get(
-        	["rootContainer", "mainView", "authorView", "categoryTree", "rootCategory", "categoryId"]
+        data.selectedCardIds = AppState.get(
+        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "selectedCardIds"]
         )
         ;
         data.outcomes = [];
@@ -29,12 +29,12 @@ export default class AbstractChangeOrderCategoryCommand extends AsynchronousComm
 	}
 	
 	allMandatoryValuesAreSet(data) {
-		if (data.movedCategoryId === undefined || data.movedCategoryId === null) {
-			console.warn("AbstractChangeOrderCategoryCommand: movedCategoryId is mandatory but is not set", data);
+		if (data.down === undefined || data.down === null) {
+			console.warn("AbstractToggleCardOrderCommand: down is mandatory but is not set", data);
 			return false;
 		}
-		if (data.targetCategoryId === undefined || data.targetCategoryId === null) {
-			console.warn("AbstractChangeOrderCategoryCommand: targetCategoryId is mandatory but is not set", data);
+		if (data.cardId === undefined || data.cardId === null) {
+			console.warn("AbstractToggleCardOrderCommand: cardId is mandatory but is not set", data);
 			return false;
 		}
 		return true;
@@ -44,11 +44,11 @@ export default class AbstractChangeOrderCategoryCommand extends AsynchronousComm
 	    return new Promise((resolve, reject) => {
 	    	if (this.allMandatoryValuesAreSet(data)) {
 		    	let payload = {
-		    		movedCategoryId : data.movedCategoryId,
-		    		targetCategoryId : data.targetCategoryId
+		    		down : data.down,
+		    		cardId : data.cardId
 		    	};
 				AppUtils.httpPut(
-						`${AppUtils.settings.rootPath}/category/changeorder`, 
+						`${AppUtils.settings.rootPath}/cards/changeorder`, 
 						data.uuid, 
 						true,
 						 payload)
@@ -70,13 +70,11 @@ export default class AbstractChangeOrderCategoryCommand extends AsynchronousComm
 			const events = [];
 			const actionsToBeTriggered = [];
 			if (data.outcomes.includes("ok")) {
-				events.push(new Event('category.ChangeOrderCategoryOkEvent'));
+				events.push(new Event('card.ToggleCardOrderOkEvent'));
 				actionsToBeTriggered.push(
 					{
-						action: new ReloadCategoryTreeAction(), 
+						action: new LoadCardsAction(), 
 						data: {
-							selectedCategoryId: data.selectedCategoryId, 
-							categoryIdToBeExpanded: data.categoryIdToBeExpanded
 						}
 					}
 				);

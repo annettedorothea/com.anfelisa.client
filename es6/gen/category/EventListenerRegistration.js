@@ -351,7 +351,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory"], 
-					["selectTargetCategory", "moveAllowed", "rootCategoryInMoveDialog"]
+					["display", "moveAllowed", "rootCategoryInMoveDialog"]
 				)
 			});
 		ACEController.registerListener('category.MoveCategoryCancelledOkEvent', (data) => {
@@ -362,7 +362,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory"], 
-					["selectTargetCategory", "moveAllowed", "rootCategoryInMoveDialog"]
+					["display", "moveAllowed", "rootCategoryInMoveDialog"]
 				)
 			});
 		ACEController.registerListener('category.ExpandTreeItemInMoveDialogOkEvent', (data) => {
@@ -416,7 +416,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "moveCategory"], 
-					["selectTargetCategory", "moveAllowed", "rootCategoryInMoveDialog"]
+					["display", "moveAllowed", "rootCategoryInMoveDialog"]
 				)
 			});
 		ACEController.registerListener('category.MoveCategoryAllowedOkEvent', (data) => {

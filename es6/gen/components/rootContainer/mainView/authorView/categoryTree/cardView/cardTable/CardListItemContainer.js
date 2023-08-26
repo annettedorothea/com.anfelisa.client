@@ -9,8 +9,6 @@ import React from "react";
 
 import { CardListItem } from "../../../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/cardView/cardTable/CardListItem";
 import { cancelEditCard } from "../../../../../../../card/ActionFunctions";
-import { changeCardOrder } from "../../../../../../../card/ActionFunctions";
-import { deleteCardClick } from "../../../../../../../card/ActionFunctions";
 import { editCard } from "../../../../../../../card/ActionFunctions";
 import { givenOfEditedCardChanged } from "../../../../../../../card/ActionFunctions";
 import { givenImageOfEditedCardChanged } from "../../../../../../../card/ActionFunctions";
@@ -24,7 +22,7 @@ import { updateCardPriority } from "../../../../../../../card/ActionFunctions";
 
 export const CardListItemContainer = ( props ) => {
 	
-	return <CardListItem {...props} cancelEditCard={cancelEditCard} changeCardOrder={changeCardOrder} deleteCardClick={deleteCardClick} editCard={editCard} givenOfEditedCardChanged={givenOfEditedCardChanged} givenImageOfEditedCardChanged={givenImageOfEditedCardChanged} wantedOfEditedCardChanged={wantedOfEditedCardChanged} wantedImageOfEditedCardChanged={wantedImageOfEditedCardChanged} selectScheduleCardRange={selectScheduleCardRange} toggleScheduleCardSelection={toggleScheduleCardSelection} updateCard={updateCard} updateCardPriority={updateCardPriority}  /> 
+	return <CardListItem {...props} cancelEditCard={cancelEditCard} editCard={editCard} givenOfEditedCardChanged={givenOfEditedCardChanged} givenImageOfEditedCardChanged={givenImageOfEditedCardChanged} wantedOfEditedCardChanged={wantedOfEditedCardChanged} wantedImageOfEditedCardChanged={wantedImageOfEditedCardChanged} selectScheduleCardRange={selectScheduleCardRange} toggleScheduleCardSelection={toggleScheduleCardSelection} updateCard={updateCard} updateCardPriority={updateCardPriority}  /> 
 }
 
 

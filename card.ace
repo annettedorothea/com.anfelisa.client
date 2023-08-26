@@ -9,7 +9,8 @@ ACE
 			common.rootContainer.mainView.authorView.categoryTree.cardView.naturalInputOrder,
 			common.rootContainer.mainView.authorView.categoryTree.filter.filterNonScheduled.value as filterNonScheduled,
 			common.rootContainer.mainView.authorView.categoryTree.filter.priority.value as priority,
-			common.rootContainer.mainView.authorView.reverse
+			common.rootContainer.mainView.authorView.reverse,
+			common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds
 		)
 		call com.anfelisa.card.GetCards
 		set loading common.rootContainer.spinner.display 
@@ -218,14 +219,7 @@ ACE
 			merge common.rootContainer.mainView.authorView.categoryTree.cardView.moveCards
 			set common.rootContainer.mainView.authorView.categoryTree.selectedCategory
 		) triggers (category.ReloadCategoryTree)
-
 		
-	ChangeCardOrder 
-	 	call com.anfelisa.card.ChangeOrder
-		set loading common.rootContainer.spinner.display 
-		on ok (
-		) triggers (LoadCards)
-	
 	SearchDuplicateCards 
 		fromAppState (
 			common.rootContainer.mainView.authorView.categoryTree.cardView.naturalInputOrder,
@@ -253,6 +247,14 @@ ACE
 		on empty
 		on targetNotEmtpy
 		
+	ToggleCardOrder ( down )
+		fromAppState (
+			common.rootContainer.mainView.authorView.categoryTree.cardView.selectedCardIds
+		)
+	 	call com.anfelisa.card.ChangeOrder
+		set loading common.rootContainer.spinner.display 
+		on ok triggers (LoadCards)
+	
 		
 	
 	

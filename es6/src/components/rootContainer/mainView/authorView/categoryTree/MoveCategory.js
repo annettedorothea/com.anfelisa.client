@@ -7,7 +7,7 @@ import React from "react";
 import {translate} from "../../../../../AppUtils";
 import {Texts} from "../../../../../app/Texts";
 export const MoveCategory = (props) => {
-    if (props.selectTargetCategory === true) {
+    if (props.display === true) {
         return <div className="modal">
             <div className="modalContent form">
                 <h2>{translate(Texts.categoryTree.moveCategory.title)}</h2>

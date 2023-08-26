@@ -50,8 +50,6 @@ module.exports = {
 	
 	deleteCategory : "category_deleteCategory",
 	
-	changeOrderCategory : "category_changeOrderCategory",
-	
 	filterNonScheduledCards : "category_filterNonScheduledCards",
 	
 	priorityChanged : "category_priorityChanged",
@@ -70,7 +68,9 @@ module.exports = {
 	
 	moveCategory : "category_moveCategory",
 	
-	moveCategoryAllowed : "category_moveCategoryAllowed"
+	moveCategoryAllowed : "category_moveCategoryAllowed",
+	
+	toggleCategoryOrder : "category_toggleCategoryOrder"
 	
 }
 

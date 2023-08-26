@@ -6,15 +6,15 @@
 
 
 import React from "react";
-import {translate} from "../../../../../../AppUtils";
-import {Texts} from "../../../../../../app/Texts";
+import {translate} from "../../../../../../../../AppUtils";
+import {Texts} from "../../../../../../../../app/Texts";
 
-export const ToggleInputOrder = (props) => {
+export const MoveDown = (props) => {
 	return <button
-		onClick={props.onClick}
-		title={translate(Texts.categoryTree.toggleInputOrder)}
+		onClick={() => props.onClick(true)}
+		title={translate(Texts.cardList.moveDown)}
 	>
-		<i className="fas fa-exchange-alt"/>
+		<i className="fas fa-angle-down"></i>
 	</button>
 }
 

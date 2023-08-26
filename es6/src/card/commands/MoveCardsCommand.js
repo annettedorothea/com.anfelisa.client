@@ -15,7 +15,7 @@ export default class MoveCardsCommand extends AbstractMoveCardsCommand {
         data.selectedCategoryId = data.selectedCategory.categoryId;
         data.categoryIdToBeExpanded = data.selectedCategory.categoryId;
         data.moveCards = {
-            selectTargetCategory: false,
+            display: false,
             rootCategoryInMoveDialog: null,
         };
     	return true;

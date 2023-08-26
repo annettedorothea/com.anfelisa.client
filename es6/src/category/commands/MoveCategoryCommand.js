@@ -18,7 +18,7 @@ export default class MoveCategoryCommand extends AbstractMoveCategoryCommand {
         data.selectedCategoryId = data.targetCategoryId;
         data.categoryIdToBeExpanded = data.targetCategoryId;
         data.moveCategory = {
-            selectTargetCategory: false,
+            display: false,
             rootCategoryInMoveDialog: null,
         };
     	this.addOkOutcome(data);

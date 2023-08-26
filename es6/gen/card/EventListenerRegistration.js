@@ -258,7 +258,7 @@ export default class EventListenerRegistrationCard {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards"], 
-					["selectTargetCategory", "rootCategoryInMoveDialog"]
+					["display", "rootCategoryInMoveDialog"]
 				)
 			});
 		ACEController.registerListener('card.MoveCardsCancelledOkEvent', (data) => {
@@ -269,7 +269,7 @@ export default class EventListenerRegistrationCard {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards"], 
-					["selectTargetCategory", "rootCategoryInMoveDialog"]
+					["display", "rootCategoryInMoveDialog"]
 				)
 			});
 		ACEController.registerListener('card.ExpandTreeItemInMoveDialogOkEvent', (data) => {
@@ -323,7 +323,7 @@ export default class EventListenerRegistrationCard {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "moveCards"], 
-					["selectTargetCategory", "rootCategoryInMoveDialog"]
+					["display", "rootCategoryInMoveDialog"]
 				)
 			});
 		ACEController.registerListener('card.MoveCardsOkEvent', (data) => {

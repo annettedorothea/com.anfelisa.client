@@ -24,70 +24,7 @@ export const CardTable = (props) => {
                 />
             </div>
         </div>
-        <div className="cardTable">
-            <input
-                type="checkbox"
-                onChange={props.toggleAllScheduleCardSelection}
-                checked={props.cardList.length > 0 && props.selectedCardIds.length === props.cardList.length}
-                id="toggle-all"
-            />
-            <div className="tableHeader">
-                <div className="toolbarContainer">
-                    <div className="toolbar wrap">
-                        <button
-                            disabled={props.selectedCardIds.length === 0}
-                            onClick={props.scheduleSelectedCards}
-                            id="schedule"
-                        >
-                            {translate(Texts.cardList.scheduleSelectedCards)}
-                        </button>
-                        <button
-                            disabled={props.selectedCardIds.length === 0}
-                            onClick={props.sortSelectedCardsOut}
-                        >
-                            {translate(Texts.cardList.sortSelectedCardsOut)}
-                        </button>
-                        <button
-                            disabled={props.selectedCardIds.length === 0}
-                            onClick={props.deleteCardClick}
-                            id="schedule"
-                        >
-                            {translate(Texts.cardList.deleteSelectedCards)}
-                        </button>
-                        <button
-                            disabled={props.selectedCardIds.length === 0}
-                            onClick={props.moveCards}
-                        >
-                            {translate(Texts.cardList.moveSelectedCardsToSelectedCategory)}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <table>
-            <thead>
-            <tr className="notPrinted">
-                <th colSpan={4}>
-                </th>
-            </tr>
-            <tr>
-                <th>
-                    <input
-                        type="checkbox"
-                        onChange={props.toggleAllScheduleCardSelection}
-                        checked={props.cardList.length > 0 && props.selectedCardIds.length === props.cardList.length}
-                        id="toggle-all"
-                    />
-                </th>
-                <th colSpan={4}>
-                </th>
-            </tr>
-            </thead>
-            <tbody>
-            {props.children}
-            </tbody>
-        </table>
+        {props.children}
     </>
 }
 

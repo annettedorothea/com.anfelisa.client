@@ -8,7 +8,7 @@ import {translate} from "../../../../../../AppUtils";
 import {Texts} from "../../../../../../app/Texts";
 
 export const MoveCards = (props) => {
-    if (props.selectTargetCategory === true) {
+    if (props.display === true) {
         return <div className="modal">
             <div className="modalContent form">
                 <h2>{translate(Texts.cardList.moveCards.title)}</h2>

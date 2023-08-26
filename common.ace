@@ -610,6 +610,19 @@ ui JSX rootContainer {
 							"onClick" category.MoveCategoryClicked
 						}
 					}
+					toggleOrderUp Button {
+						rootCategory fromParent
+						actions {
+							"onClick" category.ToggleCategoryOrder
+						}
+					}
+					toggleOrderDown Button {
+						selectedCategory fromParent
+						rootCategory fromParent
+						actions {
+							"onClick" category.ToggleCategoryOrder
+						}
+					}
 					invite Button {
 						selectedCategory fromParent
 						rootCategory fromParent
@@ -623,11 +636,6 @@ ui JSX rootContainer {
 						reverseBoxExists fromParent
 						actions {
 							"onClick" category.CreateReverseBox
-						}
-					}
-					toggleInputOrder Button {
-						actions {
-							"onClick" card.ToggleInputOrder
 						}
 					}
 				}
@@ -723,7 +731,7 @@ ui JSX rootContainer {
 					}
 				}
 		        moveCategory {
-			        selectTargetCategory
+			        display
 					moveAllowed
 					rootCategoryInMoveDialog {
 						selectedCategory
@@ -785,6 +793,55 @@ ui JSX rootContainer {
 			        }
 		        	cardTable {
 		        		filter
+		        		buttons {
+			        		List selectedCardIds fromParent
+			        		List cardList fromParent
+							toggleInputOrder Button {
+								actions {
+									"onClick" card.ToggleInputOrder
+								}
+							}
+							scheduleCards Button {
+				        		List selectedCardIds fromParent
+								actions {
+									"onClick" card.ScheduleSelectedCards
+								}
+							}
+							sortCardsOut Button {
+				        		List selectedCardIds fromParent
+								actions {
+									"onClick" card.SortSelectedCardsOut
+								}
+							}
+							deleteCards Button {
+				        		List selectedCardIds fromParent
+								actions {
+									"onClick" card.DeleteCardClick
+								}
+							}
+							moveCards Button {
+				        		List selectedCardIds fromParent
+								actions {
+									"onClick" card.MoveCardsClicked
+								}
+							}
+							moveUp Button {
+				        		List selectedCardIds fromParent
+								actions {
+									"onClick" card.ToggleCardOrder
+								}
+							}
+							moveDown Button {
+				        		List selectedCardIds fromParent
+								actions {
+									"onClick" card.ToggleCardOrder
+								}
+							}
+					        actions {
+					        	"filterCards" card.FilterCards
+					        	"toggleAllScheduleCardSelection" card.ToggleAllScheduleCardSelection
+				        	}
+		        		}
 			        	selectedCategory fromParent
 		        		List selectedCardIds fromParent
 		        		editedCard fromParent
@@ -809,8 +866,6 @@ ui JSX rootContainer {
 				        	filter fromParent
 				        	actions {
 				        		"cancelEditCard" card.CancelEditCard
-				        		"changeCardOrder" card.ChangeCardOrder
-				        		"deleteCardClick" card.DeleteCardClick
 				        		"editCard" card.EditCard
 				        		"givenOfEditedCardChanged" card.GivenOfEditedCardChanged
 				        		"givenImageOfEditedCardChanged" card.GivenImageOfEditedCardChanged
@@ -862,13 +917,7 @@ ui JSX rootContainer {
 				        	}
 				        }
 				        actions {
-				        	"toggleInputOrder" card.ToggleInputOrder
 				        	"filterCards" card.FilterCards
-				        	"toggleAllScheduleCardSelection" card.ToggleAllScheduleCardSelection
-				        	"scheduleSelectedCards" card.ScheduleSelectedCards
-				        	"sortSelectedCardsOut" card.SortSelectedCardsOut
-			        		"deleteCardClick" card.DeleteCardClick
-			        		"moveCards" card.MoveCardsClicked
 				        }
 		        	}
 			        deleteCard {
@@ -880,7 +929,7 @@ ui JSX rootContainer {
 			        	}
 			        }
 			        moveCards {
-				        selectTargetCategory
+				        display
 						rootCategoryInMoveDialog {
 							selectedCategory
 							dropAllowed

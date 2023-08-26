@@ -10,7 +10,7 @@ import AbstractMoveCategoryCancelledCommand from "../../../gen/category/commands
 export default class MoveCategoryCancelledCommand extends AbstractMoveCategoryCancelledCommand {
     execute(data) {
         data.moveCategory = {
-            selectTargetCategory: false,
+            display: false,
             rootCategoryInMoveDialog: null,
         };
         this.addOkOutcome(data);

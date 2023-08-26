@@ -36,6 +36,10 @@ export default class AbstractLoadCardsCommand extends AsynchronousCommand {
         	["rootContainer", "mainView", "authorView", "reverse"]
         )
         ;
+        data.selectedCardIds = AppState.get(
+        	["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "selectedCardIds"]
+        )
+        ;
         data.outcomes = [];
     }
 

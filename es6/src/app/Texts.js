@@ -255,6 +255,12 @@ export const Texts = {
         toggleInputOrder: {
             de: "Karten in umgekehrter Reihenfolge eingeben"
         },
+        moveDown: {
+            de: "Nach unten verschieben"
+        },
+        moveUp: {
+            de: "Nach oben verschieben"
+        },
         delete : {
             de: "Löschen"
         },
@@ -384,7 +390,13 @@ export const Texts = {
             de: "Löschen"
         },
         moveSelectedCardsToSelectedCategory: {
-            de: "Verschieben"
+            de: "In anderen Ordner verschieben"
+        },
+        moveUp: {
+            de: "Nach oben verschieben"
+        },
+        moveDown: {
+            de: "Nach unten verschieben"
         },
         scheduleSelectedCards: {
             de: "Heute abfragen"

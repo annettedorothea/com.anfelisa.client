@@ -6,18 +6,18 @@
 
 
 import Action from "../../ace/AsynchronousAction";
-import ChangeOrderCategoryCommand from "../../../src/category/commands/ChangeOrderCategoryCommand";
+import ToggleCardOrderCommand from "../../../src/card/commands/ToggleCardOrderCommand";
 import * as AppState from "../../../src/AppState";
 
-export default class AbstractChangeOrderCategoryAction extends Action {
+export default class AbstractToggleCardOrderAction extends Action {
 
     constructor() {
-        super('category.ChangeOrderCategoryAction');
+        super('card.ToggleCardOrderAction');
 		this.postCall = this.postCall.bind(this);
 	}
 		
 	getCommand() {
-		return new ChangeOrderCategoryCommand();
+		return new ToggleCardOrderCommand();
 	}
 
 	preCall() {

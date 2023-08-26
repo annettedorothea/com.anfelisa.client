@@ -70,11 +70,11 @@ module.exports = {
 	
 	moveCards : "card_moveCards",
 	
-	changeCardOrder : "card_changeCardOrder",
-	
 	searchDuplicateCards : "card_searchDuplicateCards",
 	
-	translate : "card_translate"
+	translate : "card_translate",
+	
+	toggleCardOrder : "card_toggleCardOrder"
 	
 }
 

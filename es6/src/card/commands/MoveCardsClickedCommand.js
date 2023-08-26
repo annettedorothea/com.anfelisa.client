@@ -10,7 +10,7 @@ import AbstractMoveCardsClickedCommand from "../../../gen/card/commands/Abstract
 export default class MoveCardsClickedCommand extends AbstractMoveCardsClickedCommand {
     execute(data) {
         data.moveCards = {
-            selectTargetCategory: true,
+            display: true,
             rootCategoryInMoveDialog: structuredClone(data.rootCategory),
         };
         this.addOkOutcome(data);

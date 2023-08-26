@@ -24,35 +24,6 @@ export const CardListItem = (props) => {
         }
     }
 
-    const onDragStart = (event) => {
-        if (editable) {
-            event.dataTransfer.setData("Text", props.given);
-            props.moveCardsStarted();
-        }
-    }
-
-    const onDrop = (event) => {
-        if (editable) {
-            event.preventDefault();
-            props.changeCardOrder().then();
-        }
-    }
-
-    const onDragOver = (event) => {
-        if (editable) {
-            event.preventDefault();
-            if (props.cardId !== props.dragTargetCardId) {
-                props.onDragEnter(props.cardId);
-            }
-        }
-    }
-
-    const onDragLeave = () => {
-        if (editable) {
-            props.onDragExit(props.cardId);
-        }
-    }
-
     const onAltKeyUp = (e) => {
         e.preventDefault();
         if (e.keyCode === 13 && e.altKey && isValid()) {
@@ -157,9 +128,6 @@ export const CardListItem = (props) => {
     }
 
     return <tr
-        onDragOver={onDragOver}
-        onDrop={onDrop}
-        onDragLeave={onDragLeave}
         className={props.cardId === props.dragTargetCardId ? "dragTarget" : ""}
     >
         <td className="notPrinted">
@@ -184,7 +152,6 @@ export const CardListItem = (props) => {
                         <i
                             className="fas fa-align-justify"
                             draggable={true}
-                            onDragStart={(event) => onDragStart(event)}
                         /> :
                         null
                     }
