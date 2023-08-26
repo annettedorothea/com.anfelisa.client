@@ -36,7 +36,7 @@ import { moveCategory } from "../../../../category/ActionFunctions";
 export const CategoryTreeContainer = ( props ) => {
 	
 	return <CategoryTree {...props} >
-		<ButtonsContainer {...props.buttons }  selectedCategory={props.selectedCategory} rootCategory={props.rootCategory} reverseBoxExists={props.reverseBoxExists} reverse={props.reverse}   />
+		<ButtonsContainer {...props.buttons }  selectedCategory={props.selectedCategory} rootCategory={props.rootCategory} reverseBoxExists={props.reverseBoxExists}   />
 		<FilterContainer {...props.filter }    />
 		<RootCategoryContainer {...props.rootCategory }  selectedCategory={props.selectedCategory}  selectTreeItem={selectTreeItem}  />
 		<CategoryDialogContainer {...props.categoryDialog }   cancelCategoryDialog={cancelCategoryDialog} categoryNameChanged={categoryNameChanged} createCategory={createCategory} updateCategory={updateCategory}  />

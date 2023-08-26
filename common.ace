@@ -153,6 +153,9 @@ HideSaveBugDialog
 
 
 ui JSX rootContainer {
+	hash location
+	token storage
+	language
 	messageContainer {
 		List messages {
 			type
@@ -169,19 +172,16 @@ ui JSX rootContainer {
 	}
 	loggedInUser {
 		username
-		token
+		token fromParent
 		actions {
 			"routeToDefault" RouteToDefault
 			"logout" Logout
 			"routeToProfileView" RouteToProfileView
 		}
 	}
-	hash location
-	token storage
 	spinner { 
 		display
 	} 
-	language
 	saveBugDialog {
 		display
 		actions {
@@ -345,64 +345,64 @@ ui JSX rootContainer {
 				deletable
 				todaysWeekDay
 				tileHeader {
-					boxId
-					categoryId
-					categoryName
-					reverse
-					archived
-					deletable
+					boxId fromParent
+					categoryId fromParent
+					categoryName fromParent
+					reverse fromParent
+					archived fromParent
+					deletable fromParent
 					edit Button {
-						categoryId
-						reverse
-						archived
+						categoryId fromParent
+						reverse fromParent
+						archived fromParent
 						actions {
 							"onClick" RouteToAuthorView
 						}
 					}
 					settings Button {
-						boxId
-						archived
+						boxId fromParent
+						archived fromParent
 						actions {
 							"onClick" RouteToBoxSettings
 						}
 					}
 					statistics Button {
-						boxId
-						archived
+						boxId fromParent
+						archived fromParent
 						actions {
 							"onClick" RouteToActiveCards
 						}
 					}
 					archive Button {
-						boxId
-						archived
+						boxId fromParent
+						archived fromParent
 						actions {
 							"onClick" box.ArchiveBox
 						}
 					}
 					delete Button {
-						boxId
-						deletable
-						archived
+						boxId fromParent
+						deletable fromParent
+						archived fromParent
 						actions {
 							"onClick" box.DeleteBoxClick
 						}
 					}
 				}
 				statistics {
-					quality0Count
-					quality1Count
-					quality2Count
-					quality3Count
-					quality4Count
-					quality5Count
-					cardsCount
-					archived
+					quality0Count fromParent
+					quality1Count fromParent
+					quality2Count fromParent
+					quality3Count fromParent
+					quality4Count fromParent
+					quality5Count fromParent
+					cardsCount fromParent
+					archived fromParent
 				}
 				cardsNextDays {
-					countsPerDayNextWeek
-					archived
-					todaysWeekDay
+					countsPerDayNextWeek fromParent
+					archived fromParent
+					todaysWeekDay fromParent
 				}
 				actions {
 					"onClick" box.BoxClick
@@ -430,7 +430,7 @@ ui JSX rootContainer {
 		    	tooManyCardsStatus
 				dictionaryLookupInvalid
 				
-				boxId
+				boxId fromParent
 				maxInterval
 				maxCardsPerDay
 				categoryName
@@ -459,8 +459,8 @@ ui JSX rootContainer {
 			boxId
 			editable
 			List activeCardList {
-				List selectedCardIds
-				editable
+				List selectedCardIds fromParent
+				editable fromParent
 				listId cardId
 				given
 				wanted
@@ -491,6 +491,9 @@ ui JSX rootContainer {
 			}
 		} 
 		profileView {
+			role
+			deletable
+			showDeleteUserDialog
 	        username TextInput {
 	        	value
 	        }
@@ -498,9 +501,9 @@ ui JSX rootContainer {
 	        	value
 	        }
 	        buttons {
-	        	deletable
+	        	deletable fromParent
 				delete Button {
-					deletable
+					deletable fromParent
 					actions {
 						"onClick" profile.DeleteUserClick
 					}
@@ -511,9 +514,6 @@ ui JSX rootContainer {
 					}
 				}
 			}
-			role
-			deletable
-			showDeleteUserDialog
 			actions {
 				"deleteUserCancel" profile.DeleteUserCancel
 				"deleteUser" profile.DeleteUser
@@ -554,61 +554,73 @@ ui JSX rootContainer {
 			}
 		}
 		authorView {
-
 			boxId
 	        reverse
-
 			categoryTree {
-		        reverse
 				reverseBoxExists
+		        reverse fromParent
+				noComponent selectedCategory {
+					categoryId
+					categoryName
+					categoryIndex
+					empty
+					parentCategoryId
+					rootCategoryId
+					List childCategories
+					nonScheduledCount
+					editable
+					dictionaryLookup
+					givenLanguage
+					wantedLanguage
+				}
 				buttons {
-					selectedCategory
-					rootCategory
-					reverseBoxExists
+					selectedCategory fromParent
+					rootCategory fromParent 
+					reverseBoxExists fromParent
 					back Button {
 						actions {
 							"onClick" RouteToDefault
 						}
 					}
 					new Button {
-						selectedCategory
-						rootCategory
+						selectedCategory fromParent
+						rootCategory fromParent
 						actions {
 							"onClick" category.NewCategoryClick
 						}
 					}
 					edit Button {
-						selectedCategory
-						rootCategory
+						selectedCategory fromParent
+						rootCategory fromParent
 						actions {
 							"onClick" category.EditCategoryClick
 						}
 					}
 					delete Button {
-						selectedCategory
-						rootCategory
+						selectedCategory fromParent
+						rootCategory fromParent
 						actions {
 							"onClick" category.DeleteCategoryClick
 						}
 					}
 					move Button {
-						selectedCategory
-						rootCategory
+						selectedCategory fromParent
+						rootCategory fromParent
 						actions {
 							"onClick" category.MoveCategoryClicked
 						}
 					}
 					invite Button {
-						selectedCategory
-						rootCategory
+						selectedCategory fromParent
+						rootCategory fromParent
 						actions {
 							"onClick" category.InviteUserClick
 						}
 					}
 					reverse Button {
-						selectedCategory
-						rootCategory
-						reverseBoxExists
+						selectedCategory fromParent
+						rootCategory fromParent
+						reverseBoxExists fromParent
 						actions {
 							"onClick" category.CreateReverseBox
 						}
@@ -634,8 +646,7 @@ ui JSX rootContainer {
 		        	}
 				}
 				rootCategory {
-					selectedCategory
-
+					selectedCategory fromParent
 					categoryId
 					categoryName
 					categoryIndex
@@ -672,9 +683,6 @@ ui JSX rootContainer {
 						"selectTreeItem" category.SelectTreeItem
 					}
 				}
-
-				displayDeleteCategory
-				
 				categoryDialog {
 					categoryName
 					newCategory
@@ -686,7 +694,6 @@ ui JSX rootContainer {
 						"updateCategory" category.UpdateCategory
 					}
 				}
-				
 				inviteUserDialog {
 					display
 					usernameSearchString
@@ -698,7 +705,6 @@ ui JSX rootContainer {
 						"inviteUserNextStep" category.InviteUserNextStep
 					}
 				}
-				
 				inviteUserEditableDialog {
 					invitedUsername
 					editable
@@ -709,7 +715,6 @@ ui JSX rootContainer {
 						"inviteUserChangeEditable" category.InviteUserChangeEditable
 					}
 				}
-				
 				deleteCategoryDialog {
 					display
 					actions {
@@ -717,7 +722,6 @@ ui JSX rootContainer {
 						"deleteCategory" category.DeleteCategory
 					}
 				}
-				
 		        moveCategory {
 			        selectTargetCategory
 					moveAllowed
@@ -764,42 +768,30 @@ ui JSX rootContainer {
 		        		"moveCards" category.MoveCategory
 		        	}
 		        }
-				
-				noComponent selectedCategory {
-					categoryId
-					categoryName
-					categoryIndex
-					empty
-					parentCategoryId
-					rootCategoryId
-					List childCategories
-					nonScheduledCount
-					editable
-					dictionaryLookup
-					givenLanguage
-					wantedLanguage
-				}
 		        cardView {
-		        	rootCategory
-		        	selectedCategory
-		        	reverse
 			        naturalInputOrder
+			        dictionaryValue
+			        List selectedCardIds
+		        	rootCategory fromParent
+		        	selectedCategory fromParent
+		        	reverse fromParent
+			        noComponent editedCard {
+			        	cardId
+			        	given
+			        	givenImage
+			        	wanted
+			        	wantedImage
+			        	index
+			        }
 		        	cardTable {
-			        	selectedCategory
-		        		List selectedCardIds
-		        		editedCard
-		        		rootCategory
 		        		filter
-		        		naturalInputOrder
-		        		dragTargetCardId
-		        		reverse
+			        	selectedCategory fromParent
+		        		List selectedCardIds fromParent
+		        		editedCard fromParent
+		        		rootCategory fromParent
+		        		naturalInputOrder fromParent
+		        		reverse fromParent
 				        List cardList {
-				        	rootCategory
-				        	editedCard
-				        	List selectedCardIds
-				        	naturalInputOrder
-				        	filter
-				        	dragTargetCardId
 							listId cardId
 							given
 							givenImage
@@ -810,6 +802,11 @@ ui JSX rootContainer {
 							categoryId
 							rootCategoryId
 				        	next
+				        	rootCategory fromParent
+				        	editedCard fromParent
+				        	List selectedCardIds fromParent
+				        	naturalInputOrder fromParent
+				        	filter fromParent
 				        	actions {
 				        		"cancelEditCard" card.CancelEditCard
 				        		"changeCardOrder" card.ChangeCardOrder
@@ -826,14 +823,14 @@ ui JSX rootContainer {
 				        	}
 				        }
 				        newCard {
-				        	naturalInputOrder
-				        	rootCategory
 				        	given
 				        	givenImage
 				        	wanted
 				        	wantedImage
 				        	index
 				        	displaySpinner
+				        	naturalInputOrder fromParent
+				        	rootCategory fromParent
 				        	actions {
 				        		"cancelNewCard" card.CancelNewCard
 				        		"createCard" card.CreateCard
@@ -846,9 +843,6 @@ ui JSX rootContainer {
 				        	}
 				        }
 				        List cardDuplicates {
-				        	naturalInputOrder
-				        	rootCategory
-				        	reverse
 							listId cardId
 							given
 							givenImage
@@ -860,6 +854,9 @@ ui JSX rootContainer {
 							rootCategoryId
 				        	next
 				        	categoryName
+				        	naturalInputOrder fromParent
+				        	rootCategory fromParent
+				        	reverse fromParent
 				        	actions {
 				        		"routeToSelectedCategory" RouteToSelectedCategory
 				        	}
@@ -875,7 +872,7 @@ ui JSX rootContainer {
 				        }
 		        	}
 			        deleteCard {
-				        List selectedCardIds
+				        List selectedCardIds fromParent
 				        confirmDelete
 			        	actions {
 			        		"deleteCard" card.DeleteCard
@@ -931,22 +928,12 @@ ui JSX rootContainer {
 			        		"moveCards" card.MoveCards
 			        	}
 			        }
-			        dictionaryValue
-			        List selectedCardIds
-			        noComponent editedCard {
-			        	cardId
-			        	given
-			        	givenImage
-			        	wanted
-			        	wantedImage
-			        	index
-			        }
 		        }
 			}
         }
 	}
 	footer {
-		loggedInUser
+		loggedInUser fromParent
 		actions {
 			"onClick" RouteToPrivacyPolicy
 		}

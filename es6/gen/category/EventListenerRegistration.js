@@ -19,7 +19,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree"], 
-					["reverse", "reverseBoxExists", "buttons", "filter", "rootCategory", "displayDeleteCategory", "categoryDialog", "inviteUserDialog", "inviteUserEditableDialog", "deleteCategoryDialog", "moveCategory", "selectedCategory", "cardView"]
+					["reverseBoxExists", "reverse", "selectedCategory", "buttons", "filter", "rootCategory", "categoryDialog", "inviteUserDialog", "inviteUserEditableDialog", "deleteCategoryDialog", "moveCategory", "cardView"]
 				)
 			});
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', (data) => {
@@ -30,7 +30,7 @@ export default class EventListenerRegistrationCategory {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView"], 
-					["rootCategory", "selectedCategory", "reverse", "naturalInputOrder", "cardTable", "deleteCard", "moveCards", "dictionaryValue", "selectedCardIds", "editedCard"]
+					["naturalInputOrder", "dictionaryValue", "selectedCardIds", "rootCategory", "selectedCategory", "reverse", "editedCard", "cardTable", "deleteCard", "moveCards"]
 				)
 			});
 		ACEController.registerListener('category.LoadCategoryTreeOkEvent', (data) => {

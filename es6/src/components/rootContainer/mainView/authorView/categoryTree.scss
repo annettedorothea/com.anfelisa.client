@@ -70,6 +70,7 @@
     .cardTable {
       display: grid;
       grid-template-columns: $largerSpacing auto auto $largerSpacing $largerSpacing;
+      column-gap: $spacing;
 
       .tableHeader {
         grid-column-start: 2;

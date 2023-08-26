@@ -16,7 +16,7 @@ export default class EventListenerRegistrationProfile {
 				AppState.set(
 					data, 
 					["rootContainer", "mainView", "profileView"], 
-					["username", "email", "buttons", "role", "deletable", "showDeleteUserDialog"]
+					["role", "deletable", "showDeleteUserDialog", "username", "email", "buttons"]
 				)
 			});
 		ACEController.registerListener('profile.DeleteUserOkEvent', (data) => {

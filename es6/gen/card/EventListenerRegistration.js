@@ -19,7 +19,7 @@ export default class EventListenerRegistrationCard {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView"], 
-					["rootCategory", "selectedCategory", "reverse", "naturalInputOrder", "cardTable", "deleteCard", "moveCards", "dictionaryValue", "selectedCardIds", "editedCard"]
+					["naturalInputOrder", "dictionaryValue", "selectedCardIds", "rootCategory", "selectedCategory", "reverse", "editedCard", "cardTable", "deleteCard", "moveCards"]
 				)
 			});
 		ACEController.registerListener('card.CreateCardOkEvent', (data) => {
@@ -30,7 +30,7 @@ export default class EventListenerRegistrationCard {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "cardTable", "newCard"], 
-					["naturalInputOrder", "rootCategory", "given", "givenImage", "wanted", "wantedImage", "index", "displaySpinner"]
+					["given", "givenImage", "wanted", "wantedImage", "index", "displaySpinner", "naturalInputOrder", "rootCategory"]
 				)
 			});
 		ACEController.registerListener('card.UpdateCardOkEvent', (data) => {
@@ -103,7 +103,7 @@ export default class EventListenerRegistrationCard {
 				AppState.merge(
 					data, 
 					["rootContainer", "mainView", "authorView", "categoryTree", "cardView", "cardTable", "newCard"], 
-					["naturalInputOrder", "rootCategory", "given", "givenImage", "wanted", "wantedImage", "index", "displaySpinner"]
+					["given", "givenImage", "wanted", "wantedImage", "index", "displaySpinner", "naturalInputOrder", "rootCategory"]
 				)
 			});
 		ACEController.registerListener('card.GivenOfEditedCardChangedOkEvent', (data) => {
