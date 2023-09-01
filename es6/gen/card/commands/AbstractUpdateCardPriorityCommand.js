@@ -67,6 +67,7 @@ export default class AbstractUpdateCardPriorityCommand extends AsynchronousComma
 					{
 						action: new LoadCardsAction(), 
 						data: {
+							keepSelectedCards: data.keepSelectedCards
 						}
 					}
 				);

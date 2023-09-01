@@ -66,6 +66,7 @@ export default class AbstractDeleteCardCommand extends AsynchronousCommand {
 					{
 						action: new LoadCardsAction(), 
 						data: {
+							keepSelectedCards: data.keepSelectedCards
 						}
 					}
 				);

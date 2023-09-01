@@ -87,6 +87,7 @@ export default class AbstractScheduleSelectedCardsCommand extends AsynchronousCo
 					{
 						action: new LoadCardsAction(), 
 						data: {
+							keepSelectedCards: data.keepSelectedCards
 						}
 					}
 				);

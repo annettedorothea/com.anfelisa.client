@@ -11,7 +11,7 @@ export const CardInput = ({
                               image,
                               imageFileId,
                               onImageChanged,
-                              id
+                              id,
                           }) => {
 
     const onFileChange = (event) => {
@@ -35,32 +35,30 @@ export const CardInput = ({
     }
 
     if (image) {
-        return <div>
-            <div className="preview">
-                <img src={image} alt="image"/>
-                <button onClick={() => onImageChanged(null)} className="danger">
-                    <i className="fas fa-times"/>
-                </button>
-            </div>
+        return <div className="preview">
+            <img src={image} alt="image"/>
+            <button onClick={() => onImageChanged(null)} className="danger">
+                <i className="fas fa-times"/>
+            </button>
         </div>
     }
-    return <div className="textarea input">
-            <textarea
-                onChange={onTextChanged}
-                autoComplete="off"
-                value={text}
-                placeholder={placeholder}
-                onKeyUp={onKeyUp}
-                onBlur={onBlur ? onBlur : () => {
-                }}
-                id={id}
-            />
-        <br/>
-        <input type="file" id={imageFileId} onChange={onFileChange} hidden accept="image/*"/>
+    return <div className="textarea">
+        <textarea
+            rows="4"
+            onChange={onTextChanged}
+            autoComplete="off"
+            value={text}
+            placeholder={placeholder}
+            onKeyUp={onKeyUp}
+            onBlur={onBlur ? onBlur : () => {
+            }}
+            id={id}
+        />
         <div className="imageButtonWrapper">
-            <label htmlFor={imageFileId} className="imageButton">
+            <label htmlFor={imageFileId} className="fileButton">
                 <i className="fas fa-image"/>
             </label>
+            <input type="file" id={imageFileId} onChange={onFileChange} hidden accept="image/*"/>
         </div>
     </div>
 

@@ -11,7 +11,7 @@ export const QueryCardView = (props) => {
         const open = Math.round(props.openTodaysCards / props.allTodaysCards * 100);
         const done = 100 - open;
         return <div className="progress">
-            <div style={{width: `${done}%`}}>
+            <div style={{width: `${done}%`}} className="doneContainer">
                 <div
                     className="done"
                 />

@@ -7,6 +7,7 @@ import React from "react";
 import {translate} from "../../../../../../../AppUtils";
 import {Texts} from "../../../../../../../app/Texts";
 import {CardInput} from "./CardInput";
+import {setFocus} from "../../CardView";
 
 export const NewCard = (props) => {
 
@@ -25,7 +26,7 @@ export const NewCard = (props) => {
     }
 
     const onCreate = () => {
-        props.createCard().then();
+        props.createCard().then(setFocus(props.naturalInputOrder, true));
     }
 
     const onCancel = () => {
@@ -60,7 +61,7 @@ export const NewCard = (props) => {
             image: props.givenImage,
             imageFileId: "givenImage",
             onImageChanged: props.givenImageOfNewCardChanged,
-            id: "given"
+            id: "given",
         })
     }
 
@@ -74,35 +75,39 @@ export const NewCard = (props) => {
             image: props.wantedImage,
             imageFileId: "wantedImage",
             onImageChanged: props.wantedImageOfNewCardChanged,
-            id: "wanted"
+            id: "wanted",
         })
     }
 
     const isValid = () => {
         return (props.given && props.given.length > 0 || props.givenImage && props.givenImage.length > 0) && (props.wanted && props.wanted.length > 0 || props.wantedImage && props.wantedImage.length > 0);
     }
-    return <tr className="notPrinted inputRow">
-        <td/>
-        {props.naturalInputOrder === true ? renderGiven() : renderWanted()}
-        {props.naturalInputOrder === true ? renderWanted() : renderGiven()}
-        <td className="top">
+    return <div className="cardListItem edit">
+        <div/>
+        <div className="givenAndWanted">
+            {props.naturalInputOrder === true ? renderGiven() : renderWanted()}
+            {props.naturalInputOrder === true ? renderWanted() : renderGiven()}
+        </div>
+        <div className="buttonsContainer">
+            <div className="buttons">
+                <button
+                    disabled={!isValid()}
+                    onClick={onCreate}
+                    id="create-card"
+                >
+                    <i className="fas fa-check"/>
+                </button>
+                <button
+                    onClick={onCancel}
+                >
+                    <i className="fas fa-times"/>
+                </button>
+            </div>
+        </div>
+        <div>
             {props.displaySpinner ? <i className="fas fa-cog fa-spin"/> : null}
-        </td>
-        <td className="noBreak input">
-            <button
-                disabled={!isValid()}
-                onClick={onCreate}
-                id="create-card"
-            >
-                <i className="fas fa-check"/>
-            </button>
-            <button
-                onClick={onCancel}
-            >
-                <i className="fas fa-times"/>
-            </button>
-        </td>
-    </tr>
+        </div>
+    </div>
 
 }
 

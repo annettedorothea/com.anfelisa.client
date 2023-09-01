@@ -6,16 +6,16 @@
 
 
 import React from "react";
-import {translate} from "../../../../../../../../AppUtils";
-import {Texts} from "../../../../../../../../app/Texts";
+import {translate} from "../../../../../../../../../AppUtils";
+import {Texts} from "../../../../../../../../../app/Texts";
 
-export const MoveDown = (props) => {
+export const MoveUp = (props) => {
 	return <button
-		onClick={() => props.onClick(true)}
-		title={translate(Texts.cardList.moveDown)}
+		onClick={() => props.onClick(false)}
+		title={translate(Texts.cardList.moveUp)}
 		disabled={props.selectedCardIds.length !== 1}
 	>
-		<i className="fas fa-angle-down"></i>
+		<i className="fas fa-angle-up"></i>
 	</button>
 }
 

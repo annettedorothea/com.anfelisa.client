@@ -4,8 +4,8 @@
 
 
 import React from "react";
-import {translate} from "../../../../../../../../AppUtils";
-import {Texts} from "../../../../../../../../app/Texts";
+import {translate} from "../../../../../../../../../AppUtils";
+import {Texts} from "../../../../../../../../../app/Texts";
 
 export const DeleteCards = (props) => {
     return <button

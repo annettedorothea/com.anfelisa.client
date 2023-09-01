@@ -9,21 +9,6 @@ import {Texts} from "../../../../../../app/Texts";
 
 export const CardTable = (props) => {
     return <>
-        <div className="cardViewHeader">
-            <h1>
-                {props.selectedCategory.categoryName}
-                {props.reverse === true ? <i className="fas fa-arrows-alt-h"/> : null}
-            </h1>
-            <div className="searchContainer">
-                <input
-                    type="search"
-                    onChange={(event) => props.filterCards(event.target.value)}
-                    autoComplete="off"
-                    placeholder={translate(Texts.cardList.filterCards)}
-                    value={props.filter}
-                />
-            </div>
-        </div>
         {props.children}
     </>
 }

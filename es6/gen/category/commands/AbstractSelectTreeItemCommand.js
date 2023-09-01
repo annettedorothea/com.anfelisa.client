@@ -37,6 +37,7 @@
 					{
 						action: new LoadCardsAction(), 
 						data: {
+							keepSelectedCards: data.keepSelectedCards
 						}
 					}
 				);

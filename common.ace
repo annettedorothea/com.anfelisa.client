@@ -344,6 +344,7 @@ ui JSX rootContainer {
 				archived
 				deletable
 				todaysWeekDay
+				maxCardsPerDay
 				tileHeader {
 					boxId fromParent
 					categoryId fromParent
@@ -793,54 +794,60 @@ ui JSX rootContainer {
 			        }
 		        	cardTable {
 		        		filter
-		        		buttons {
+		        		header {
+			        		filter fromParent
+			        		selectedCategory fromParent
 			        		List selectedCardIds fromParent
 			        		List cardList fromParent
-							toggleInputOrder Button {
-								actions {
-									"onClick" card.ToggleInputOrder
-								}
-							}
-							scheduleCards Button {
+			        		buttons {
 				        		List selectedCardIds fromParent
-								actions {
-									"onClick" card.ScheduleSelectedCards
+				        		List cardList fromParent
+								toggleInputOrder Button {
+									actions {
+										"onClick" card.ToggleInputOrder
+									}
 								}
-							}
-							sortCardsOut Button {
-				        		List selectedCardIds fromParent
-								actions {
-									"onClick" card.SortSelectedCardsOut
+								scheduleCards Button {
+					        		List selectedCardIds fromParent
+									actions {
+										"onClick" card.ScheduleSelectedCards
+									}
 								}
-							}
-							deleteCards Button {
-				        		List selectedCardIds fromParent
-								actions {
-									"onClick" card.DeleteCardClick
+								sortCardsOut Button {
+					        		List selectedCardIds fromParent
+									actions {
+										"onClick" card.SortSelectedCardsOut
+									}
 								}
-							}
-							moveCards Button {
-				        		List selectedCardIds fromParent
-								actions {
-									"onClick" card.MoveCardsClicked
+								deleteCards Button {
+					        		List selectedCardIds fromParent
+									actions {
+										"onClick" card.DeleteCardClick
+									}
 								}
-							}
-							moveUp Button {
-				        		List selectedCardIds fromParent
-								actions {
-									"onClick" card.ToggleCardOrder
+								moveCards Button {
+					        		List selectedCardIds fromParent
+									actions {
+										"onClick" card.MoveCardsClicked
+									}
 								}
-							}
-							moveDown Button {
-				        		List selectedCardIds fromParent
-								actions {
-									"onClick" card.ToggleCardOrder
+								moveUp Button {
+					        		List selectedCardIds fromParent
+									actions {
+										"onClick" card.ToggleCardOrder
+									}
 								}
-							}
-					        actions {
-					        	"filterCards" card.FilterCards
-					        	"toggleAllScheduleCardSelection" card.ToggleAllScheduleCardSelection
-				        	}
+								moveDown Button {
+					        		List selectedCardIds fromParent
+									actions {
+										"onClick" card.ToggleCardOrder
+									}
+								}
+						        actions {
+						        	"filterCards" card.FilterCards
+						        	"toggleAllScheduleCardSelection" card.ToggleAllScheduleCardSelection
+					        	}
+			        		}
 		        		}
 			        	selectedCategory fromParent
 		        		List selectedCardIds fromParent

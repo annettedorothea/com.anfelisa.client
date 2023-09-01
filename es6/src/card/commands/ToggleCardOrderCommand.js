@@ -17,6 +17,7 @@ export default class ToggleCardOrderCommand extends AbstractToggleCardOrderComma
             return false;
         }
         data.cardId = data.selectedCardIds[0];
+        data.keepSelectedCards = true
     	return true;
     }
 

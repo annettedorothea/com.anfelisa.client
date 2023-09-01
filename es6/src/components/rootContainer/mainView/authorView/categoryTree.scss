@@ -1,154 +1,312 @@
 @import "../../../style";
 
-.toolbarContainer {
-  display: flex;
+.categoryCardSplitView {
 
-  .toolbar {
-    display: flex;
-    border: $border;
-    border-radius: $borderRadius;
-
-    &.wrap {
-      flex-wrap: wrap;
+  .toolbarContainer {
+    @media screen and (max-width: $smallScreens) {
+      display: grid;
     }
 
-    button {
-      background-color: $white;
-      color: $darker;
-      border-radius: 0;
-      @media screen and (max-width: 30rem) {
-        padding: $tinySpacing $smallSpacing;
-      }
-    }
-
-    button:hover {
-      background-color: $light;
-    }
-  }
-}
-
-.priority {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  padding: 0 $spacing;
-  place-self: center stretch;
-  color: $blue;
-}
-
-.categoryTree {
-  .filter {
-    margin: $spacing 0;
-    display: flex;
-    gap: $tinySpacing;
-
-    .priority {
-      margin-left: $spacing;
-    }
-
-    label {
-      color: $darker;
-    }
-  }
-
-  .cardView {
-    .cardViewHeader {
-      margin-bottom: $spacing;
-
-      @media screen and (max-width: 25rem) {
-        display: grid;
-        grid-template-columns: 1fr;
-      }
-
-      @media screen and (min-width: 25rem) {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: nowrap;
-      }
-
-
-      h1 {
-        flex-grow: 1;
-      }
-
-      .searchContainer {
-        flex-shrink: 4;
-        display: grid;
-        grid-template-columns: 1fr auto;
-        justify-items: stretch;
-        align-items: center;
-        transition: all 0.5s ease-in-out;
-        justify-self: end;
-      }
-
-      .searchContainer:focus-within {
-        flex-grow: 4;
-      }
-    }
-
-    .cardViewSecondHeader {
+    @media screen and (min-width: $smallScreens) {
       display: flex;
+    }
 
-      .toolbarContainer {
+    .toolbar {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      border: $border;
+      border-radius: $borderRadius;
+
+      button {
+        background-color: $white;
+        color: $darker;
+        border-radius: 0;
+        @media screen and (max-width: $smallScreens) {
+          padding: $tinySpacing $smallSpacing;
+        }
+      }
+
+      button:hover {
+        background-color: $light;
+      }
+    }
+  }
+
+  .priority {
+    display: flex;
+    padding: 0 $spacing;
+    place-self: center stretch;
+    color: $blue;
+    @media screen and (max-width: $smallScreens) {
+      flex-direction: column;
+    }
+
+    @media screen and (min-width: $smallScreens) {
+      flex-direction: row;
+    }
+  }
+
+  .categoryTree {
+    .toolbarContainer {
+      position: sticky;
+      top: 0;
+      background-color: $white;
+      z-index: 2;
+      padding-bottom: $spacing;
+    }
+
+    .filter {
+      margin: $spacing 0;
+      display: flex;
+      gap: $tinySpacing;
+
+      .priority {
         margin-left: $spacing;
       }
+
+      label {
+        color: $darker;
+      }
     }
 
-    .cardListItem {
-      &.readonly {
-        display: grid;
-        grid-template-columns: $largerSpacing auto 4.5rem $hugeSpacing;
-        border-bottom: 1px dotted $light;
+    .cardView {
+      .stickyHeader {
+        position: sticky;
+        top: 0;
+        background-color: $white;
+        z-index: 2;
+        padding-bottom: $spacing;
 
-        .checkbox {
-          place-self: center stretch;
+        .cardViewHeader {
+          margin-bottom: $spacing;
+
+          @media screen and (max-width: $smallScreens) {
+            display: grid;
+            grid-template-columns: 1fr;
+          }
+
+          @media screen and (min-width: $smallScreens) {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+          }
+
+
+          h1 {
+            flex-grow: 1;
+          }
+
+          .searchContainer {
+            display: grid;
+            align-items: center;
+            transition: all 0.5s ease-in-out;
+          }
+
+          .searchContainer:focus-within {
+            flex-grow: 4;
+          }
         }
+
+        .cardViewSecondHeader {
+          display: grid;
+          grid-template-columns: $largerSpacing auto;
+
+          .toolbarContainer {
+            margin-left: $spacing;
+          }
+        }
+
+      }
+
+      .cardListItem {
+
+        display: grid;
+        align-content: center;
+        @media screen and (max-width: $smallScreens) {
+          grid-template-columns: $largerSpacing auto 2.5rem $hugeSpacing;
+        }
+
+        @media screen and (min-width: $smallScreens) {
+          grid-template-columns: $largerSpacing auto 4.6rem $hugeSpacing;
+        }
+
         .schedule {
           padding: 0 $spacing;
           place-self: center stretch;
         }
-        .givenAndWanted {
-          @media screen and (max-width: 30rem) {
-            display: grid;
-            grid-template-columns: 1fr;
-            .preview:last-of-type {
+
+        .preview {
+
+          img {
+            width: 98%;
+            border-radius: $bigBorderRadius;
+            border: $border;
+          }
+        }
+
+
+        &.readonly {
+          border-bottom: 1px dotted $light;
+
+          .checkbox {
+            place-self: center stretch;
+          }
+
+
+          .givenAndWanted {
+            @media screen and (max-width: $smallScreens) {
+              display: grid;
+              grid-template-columns: 1fr;
+              .preview:last-of-type {
+                pre {
+                  text-align: right;
+                }
+              }
+            }
+
+            @media screen and (min-width: $smallScreens) {
+              display: grid;
+              grid-template-columns: 1fr 1fr;
+            }
+
+
+            .preview {
+              overflow: scroll;
+              margin: $smallerSpacing $spacing;
+              cursor: pointer;
+
               pre {
-                text-align: right;
+                font-family: $font;
+                margin: 0;
               }
             }
           }
+        }
 
-          @media screen and (min-width: 30rem) {
+        &.edit {
+          .givenAndWanted {
+
+            margin: $spacing $spacing;
             display: grid;
-            grid-template-columns: 1fr 1fr;
-          }
+            grid-gap: $spacing;
 
+            .textarea {
+              display: grid;
+              grid-template-columns: auto $hugeSpacing;
+              border: $border;
+              border-radius: $borderRadius;
 
-          .preview {
-            overflow: hidden;
-            white-space: nowrap;
-            text-overflow: ellipsis;
-            margin: $smallerSpacing $spacing;
-            pre {
-              font-family: $font;
-              margin: 0;
+              textarea {
+                resize: none;
+                border: none;
+              }
+
+              .imageButtonWrapper {
+                background-color: $white;
+                color: $darker;
+                display: grid;
+
+                .fileButton {
+                  display: grid;
+                  justify-items: center;
+                  align-items: center;
+                  padding: $tinySpacing $tinySpacing;
+                }
+
+              }
+
+              .imageButtonWrapper:hover {
+                background-color: $light;
+              }
+            }
+
+            .preview {
+              position: relative;
+
+              button {
+                position: absolute;
+                top: -5px;
+                right: -8px;
+                margin: 0;
+                padding: $tinySpacing;
+
+                i {
+                  width: $spacing;
+                  height: $spacing;
+                }
+              }
+            }
+
+            @media screen and (max-width: $smallScreens) {
+              grid-template-columns: 1fr;
+              .preview:last-of-type {
+                input {
+                  text-align: right;
+                }
+              }
+            }
+
+            @media screen and (min-width: $smallScreens) {
+              grid-template-columns: 1fr 1fr;
             }
           }
+
+          .buttonsContainer {
+            display: grid;
+            justify-items: center;
+            align-items: center;
+
+            .buttons {
+              display: flex;
+              border: $border;
+              border-radius: $borderRadius;
+              justify-content: space-between;
+              @media screen and (max-width: $smallScreens) {
+                flex-direction: column;
+              }
+
+              @media screen and (min-width: $smallScreens) {
+                flex-direction: row;
+              }
+
+              button {
+                background-color: $white;
+                color: $darker;
+                border-radius: 0;
+                padding: $tinySpacing 0;
+                width: 2.3rem;
+              }
+
+              button:hover {
+                background-color: $light;
+              }
+            }
+          }
+        }
+      }
+
+    }
+
+  }
+
+  .modal {
+    z-index: 10;
+
+    .form {
+      .invitedUsername {
+        line-height: $largeFont;
+
+        i {
+          margin-left: $tinySpacing;
+          margin-top: 0;
         }
       }
     }
   }
 
-}
-
-.modal {
-  .form {
-    .invitedUsername {
-      line-height: $largeFont;
-
-      i {
-        margin-left: $tinySpacing;
-        margin-top: 0;
-      }
-    }
+  iframe {
+    width: 100%;
+    height: 500px;
   }
 }

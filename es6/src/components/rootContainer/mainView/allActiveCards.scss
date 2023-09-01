@@ -1,0 +1,198 @@
+@import "../../style";
+
+.allActiveCards {
+  .toolbarContainer {
+    display: grid;
+    grid-template-columns: $largerSpacing 5.5rem auto;
+    gap: $spacing;
+    position: sticky;
+    top: 0;
+    background-color: $white;
+    z-index: 2;
+    padding: $tinySpacing 0;
+
+    .buttons {
+      display: grid;
+      align-content: center;
+      .buttonContainer {
+        display: flex;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        border: $border;
+        border-radius: $borderRadius;
+        max-width: 5.5rem;
+
+        button {
+          background-color: $white;
+          color: $darker;
+          border-radius: 0;
+          padding: $tinySpacing $smallSpacing;
+        }
+
+        button:hover {
+          background-color: $light;
+        }
+      }
+    }
+  }
+
+  .qualities {
+    display: flex;
+    flex-direction: row;
+    gap: $tinySpacing;
+    font-size: $smallFont;
+    align-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+
+    label {
+      opacity: 0.6;
+      padding: $tinySpacing;
+      border-radius: $borderRadius;
+      white-space: nowrap;
+    }
+
+    .quality_5 {
+      background-color: $green;
+    }
+
+    .quality_4 {
+      background-color: $blue;
+    }
+
+    .quality_3 {
+      background-color: $lightBlue;
+    }
+
+    .quality_2 {
+      background-color: $orange;
+    }
+
+    .quality_1 {
+      background-color: $red;
+    }
+
+    .quality_0 {
+      background-color: $pink;
+    }
+
+    input[type="checkbox"]:checked + label {
+      opacity: 1;
+      color: white;
+    }
+  }
+
+  .cardListItem {
+
+    display: grid;
+    align-content: center;
+    @media screen and (max-width: $smallScreens) {
+      grid-template-columns: $largerSpacing auto 2.5rem 2.5rem $hugeSpacing;
+    }
+
+    @media screen and (min-width: $smallScreens) {
+      grid-template-columns: $largerSpacing auto 4.6rem 5rem $hugeSpacing;
+    }
+
+    .schedule {
+      padding: 0 $spacing;
+      place-self: center stretch;
+    }
+
+    .preview {
+      img {
+        width: 98%;
+        border-radius: $bigBorderRadius;
+        border: $border;
+      }
+    }
+
+
+    border-bottom: 1px dotted $light;
+
+    .checkbox {
+      place-self: center stretch;
+    }
+
+    .givenAndWanted {
+      @media screen and (max-width: $smallScreens) {
+        display: grid;
+        grid-template-columns: 1fr;
+        .preview:last-of-type {
+          pre {
+            text-align: right;
+          }
+        }
+      }
+
+      @media screen and (min-width: $smallScreens) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .preview {
+        overflow: scroll;
+        margin: $smallerSpacing $spacing;
+        cursor: pointer;
+
+        pre {
+          font-family: $font;
+          margin: 0;
+        }
+      }
+    }
+
+    .priority {
+      display: flex;
+      padding: 0 $spacing;
+      place-self: center stretch;
+      color: $blue;
+      @media screen and (max-width: $smallScreens) {
+        flex-direction: column;
+      }
+
+      @media screen and (min-width: $smallScreens) {
+        flex-direction: row;
+      }
+    }
+
+    .quality {
+      display: flex;
+      padding: 0 $spacing;
+      place-self: center stretch;
+      @media screen and (max-width: $smallScreens) {
+        flex-direction: column;
+      }
+
+      @media screen and (min-width: $smallScreens) {
+        flex-direction: row;
+      }
+    }
+
+    .quality_5 {
+      color: $green;
+    }
+
+    .quality_4 {
+      color: $blue;
+    }
+
+    .quality_3 {
+      color: $lightBlue;
+    }
+
+    .quality_2 {
+      color: $orange;
+    }
+
+    .quality_1 {
+      color: $red;
+    }
+
+    .quality_0 {
+      color: $pink;
+    }
+
+  }
+
+}

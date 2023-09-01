@@ -85,6 +85,7 @@ export default class AbstractReloadCategoryTreeCommand extends AsynchronousComma
 					{
 						action: new LoadCardsAction(), 
 						data: {
+							keepSelectedCards: data.keepSelectedCards
 						}
 					}
 				);

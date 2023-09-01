@@ -79,6 +79,7 @@ export default class AbstractSortSelectedCardsOutCommand extends AsynchronousCom
 					{
 						action: new LoadCardsAction(), 
 						data: {
+							keepSelectedCards: data.keepSelectedCards
 						}
 					}
 				);

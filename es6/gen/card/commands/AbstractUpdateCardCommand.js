@@ -96,6 +96,7 @@ export default class AbstractUpdateCardCommand extends AsynchronousCommand {
 					{
 						action: new LoadCardsAction(), 
 						data: {
+							keepSelectedCards: data.keepSelectedCards
 						}
 					}
 				);

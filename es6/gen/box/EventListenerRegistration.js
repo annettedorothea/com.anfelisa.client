@@ -111,6 +111,16 @@ export default class EventListenerRegistrationBox {
 					["rootContainer", "mainView", "allActiveCardsView", "activeCardList"]
 				)
 			});
+		ACEController.registerListener('box.FilterActiveCardListOkEvent', (data) => {
+				if (AppState.get(["rootContainer", "mainView", "allActiveCardsView"]) === undefined) {
+					console.warn("path ['rootContainer', 'mainView', 'allActiveCardsView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));
+					return;
+				}
+				AppState.set(
+					data, 
+					["rootContainer", "mainView", "allActiveCardsView", "selectedCardIds"]
+				)
+			});
 		ACEController.registerListener('box.DeleteBoxClickOkEvent', (data) => {
 				if (AppState.get(["rootContainer", "mainView", "dashboardView"]) === undefined) {
 					console.warn("path ['rootContainer', 'mainView', 'dashboardView'] does not match exclusive view mainView in AppState", AppState.get(["rootContainer", "mainView"]));

@@ -5,125 +5,121 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 import {translate} from "../../../../AppUtils";
 import {Texts} from "../../../../app/Texts";
 
 
 export const ActiveCardListItem = (props) => {
-	const onCheckboxClicked = (e) => {
-		if (e.nativeEvent.shiftKey === true) {
-			props.selectScheduleCardRange(props.cardId)
-		} else {
-			props.toggleScheduleCardSelection(props.cardId)
-		}
-	}
+    const onCheckboxClicked = (e) => {
+        if (e.nativeEvent.shiftKey === true) {
+            props.selectScheduleCardRange(props.cardId)
+        } else {
+            props.toggleScheduleCardSelection(props.cardId)
+        }
+    }
 
-	const priority = () => {
-		const priorityChanged = (priority) => {
-			if (props.editable) {
-				props.updateCardPriority(props.cardId, priority).then();
-			}
-		}
-		const priorityClass = (index) => {
-			if (props.priority && index <= props.priority) {
-				return "fa fa-star";
-			}
-			return "far fa-star";
-		}
-		return <td className="priority noBreak">
-			<i
-				className={priorityClass(1)}
-				onClick={props.editable ?
-					() => priorityChanged(props.priority === 1 ? null : 1) :
-					() => {
-					}
-				}
-			/>
-			<i
-				className={priorityClass(2)}
-				onClick={props.editable ?
-					() => priorityChanged(props.priority === 2 ? null : 2) :
-					() => {
-					}
-				}
-			/>
-			<i
-				className={priorityClass(3)}
-				onClick={props.editable ?
-					() => priorityChanged(props.priority === 3 ? null : 3) :
-					() => {
-					}
-				}
-			/>
-		</td>
-	}
+    const priority = () => {
+        const priorityChanged = (priority) => {
+            if (props.editable) {
+                props.updateCardPriority(props.cardId, priority).then();
+            }
+        }
+        const priorityClass = (index) => {
+            if (props.priority && index <= props.priority) {
+                return "fa fa-star";
+            }
+            return "far fa-star";
+        }
+        return <td className="priority">
+            <i
+                className={priorityClass(1)}
+                onClick={props.editable ?
+                    () => priorityChanged(props.priority === 1 ? null : 1) :
+                    () => {
+                    }
+                }
+            />
+            <i
+                className={priorityClass(2)}
+                onClick={props.editable ?
+                    () => priorityChanged(props.priority === 2 ? null : 2) :
+                    () => {
+                    }
+                }
+            />
+            <i
+                className={priorityClass(3)}
+                onClick={props.editable ?
+                    () => priorityChanged(props.priority === 3 ? null : 3) :
+                    () => {
+                    }
+                }
+            />
+        </td>
+    }
 
-	const thumbsUp = () => {
-		if (props.ef > 2.5) {
-			return <div title={props.ef}>
-				<i className="far fa-thumbs-up"/>
-				<i className="far fa-thumbs-up"/>
-				<i className="far fa-thumbs-up"/>
-			</div>
-		}
-		if (props.ef > 1.3) {
-			return <div title={props.ef}>
-				<i className="far fa-thumbs-up"/>
-				<i className="far fa-thumbs-up"/>
-			</div>
-		}
-		return <div title={props.ef}>
-			<i className="far fa-thumbs-up"/>
-		</div>
-	}
+    const thumbsUp = () => {
+        if (props.ef > 2.5) {
+            return <div title={props.ef}>
+                <i className="far fa-thumbs-up"/>
+                <i className="far fa-thumbs-up"/>
+                <i className="far fa-thumbs-up"/>
+            </div>
+        }
+        if (props.ef > 1.3) {
+            return <div title={props.ef}>
+                <i className="far fa-thumbs-up"/>
+                <i className="far fa-thumbs-up"/>
+            </div>
+        }
+        return <div title={props.ef}>
+            <i className="far fa-thumbs-up"/>
+        </div>
+    }
 
-	const card = (text) => {
-		if (text.indexOf("data:image") === 0) {
-			return <td className="visibleMobile">
-				<img src={text} alt="image"/>
-			</td>
-		}
-		return <td>
-			<pre>{text}</pre>
-		</td>
+    const card = (text) => {
+        if (text.indexOf("data:image") === 0) {
+            return <div className="preview">
+                <img src={text} alt="image"/>
+            </div>
+        }
+        return <div className="preview">
+            <pre>{text}</pre>
+        </div>
 
-	}
+    }
 
-	if (props.hide === true) {
-		return null;
-	}
-	return <tr key={props.cardId}>
-		<td className="notPrinted">
-			<input
-				type="checkbox"
-				onChange={onCheckboxClicked}
-				checked={props.selectedCardIds.indexOf(props.cardId) >= 0}
-			/>
-		</td>
-		{card(props.given)}
-		{card(props.wanted)}
-		{priority()}
-		<td className="noBreak visibleMobile alignRight">
-			{props.next ? new Date(props.next).toLocaleDateString() : ""}
-		</td>
-		<td className={`visibleMobile noBreak thumbsUp quality_${props.lastQuality}`}>
-			{thumbsUp()}
-		</td>
-		<td className="noBreak visibleMobile alignRight">
-			{translate(Texts.allActiveCards.count, [props.count])}
-		</td>
-		<td className="noBreak visibleMobile alignRight">
-			{props.interval === 1 ?
-				translate(Texts.allActiveCards.intervalOne) :
-				translate(Texts.allActiveCards.interval, [props.interval])
-			}
-		</td>
-	</tr>
+    if (props.hide === true) {
+        return null;
+    }
+
+    const count = translate(Texts.allActiveCards.count, [props.count]);
+    const interval = props.interval === 1 ?
+        translate(Texts.allActiveCards.intervalOne) :
+        translate(Texts.allActiveCards.interval, [props.interval]);
+    const date = new Date(props.next).toLocaleDateString();
+    const title = `${date} - ${interval} - ${count}`
+    return <div className="cardListItem">
+        <input
+            type="checkbox"
+            onChange={onCheckboxClicked}
+            checked={props.selectedCardIds.indexOf(props.cardId) >= 0}
+        />
+        <div className="givenAndWanted">
+            {card(props.given)}
+            {card(props.wanted)}
+        </div>
+        {priority()}
+        <div className={`quality quality_${props.lastQuality}`}>
+            {thumbsUp()}
+        </div>
+        <div className="schedule">
+            {props.next ?
+                <i className="far fa-calendar-check" title={title}></i> : ""}
+        </div>
+    </div>
 }
-
 
 
 /******* S.D.G. *******/

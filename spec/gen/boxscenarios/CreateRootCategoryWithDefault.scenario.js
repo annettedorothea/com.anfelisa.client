@@ -89,8 +89,6 @@ describe("boxscenarios.CreateRootCategoryWithDefault", function () {
 		await ScenarioUtils.waitInMillis(500);
 		
 		appState = await ScenarioUtils.getAppState(driver);
-		appStates.boxList = appState;
-		appStates.deleteBox = appState;
 		
 		
     });
@@ -153,37 +151,6 @@ describe("boxscenarios.CreateRootCategoryWithDefault", function () {
 	
 	it("saveEnabled", async () => {
 		expect(verifications.saveEnabled, "verifications.saveEnabled").toBeTrue();
-	});
-	it("boxList", async () => {
-		expect(appStates.boxList.rootContainer.mainView.dashboardView.boxList, "boxList").toEqual([
-			{ 
-				boxId : `box-${testId}`,
-				categoryId : `box-${testId}`,
-				categoryName : `category`,
-				countsPerDayNextWeek : [
-					0,0,0,0,0,0,0
-				],
-				
-				openTodaysCards : 0,
-				quality0Count : 0,
-				quality1Count : 0,
-				quality2Count : 0,
-				quality3Count : 0,
-				quality4Count : 0,
-				quality5Count : 0,
-				reverse : false,
-				editable : true,
-				archived : false,
-				deletable : true
-			}
-		]
-		)
-	});
-	it("deleteBox", async () => {
-		expect(appStates.deleteBox.rootContainer.mainView.dashboardView.deleteBox, "deleteBox").toEqual({ 
-			boxId : null
-		}
-		)
 	});
 	
 

@@ -75,6 +75,7 @@ export default class AbstractToggleCardOrderCommand extends AsynchronousCommand 
 					{
 						action: new LoadCardsAction(), 
 						data: {
+							keepSelectedCards: data.keepSelectedCards
 						}
 					}
 				);

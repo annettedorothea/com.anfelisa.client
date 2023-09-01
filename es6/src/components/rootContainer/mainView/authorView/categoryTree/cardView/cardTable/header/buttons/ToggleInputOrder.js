@@ -6,16 +6,15 @@
 
 
 import React from "react";
-import {translate} from "../../../../../../../../AppUtils";
-import {Texts} from "../../../../../../../../app/Texts";
+import {translate} from "../../../../../../../../../AppUtils";
+import {Texts} from "../../../../../../../../../app/Texts";
 
-export const SortCardsOut = (props) => {
+export const ToggleInputOrder = (props) => {
 	return <button
 		onClick={props.onClick}
-		title={translate(Texts.cardList.sortSelectedCardsOut)}
-		disabled={props.selectedCardIds.length === 0}
+		title={translate(Texts.categoryTree.toggleInputOrder)}
 	>
-		<i className="far fa-calendar-minus"></i>
+		<i className="fas fa-exchange-alt"/>
 	</button>
 }
 

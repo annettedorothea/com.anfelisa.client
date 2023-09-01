@@ -99,6 +99,7 @@ ACE
 		)
 		on ok (
 			set common.rootContainer.mainView.allActiveCardsView.activeCardList
+			set common.rootContainer.mainView.allActiveCardsView.selectedCardIds
 		)
 		
 	BoxClick ( boxId, openTodaysCards, categoryId, reverse )

@@ -80,20 +80,19 @@ export const CardReadonly = (props) => {
     }
 
     return <div className="cardListItem readonly">
-        <div className="checkbox notPrinted">
-            <input
-                type="checkbox"
-                onChange={onCheckboxClicked}
-                checked={props.selectedCardIds.indexOf(props.cardId) >= 0}
-            />
-        </div>
+        <input
+            type="checkbox"
+            onChange={onCheckboxClicked}
+            checked={props.selectedCardIds.indexOf(props.cardId) >= 0}
+        />
         <div className="givenAndWanted">
             {props.naturalInputOrder === true ? renderGiven() : renderWanted()}
             {props.naturalInputOrder === true ? renderWanted() : renderGiven()}
         </div>
         {priority()}
-        <div className="schedule noBreak notPrinted">
-            {props.next ? <i className="far fa-calendar-check" title={new Date(props.next).toLocaleDateString()}></i>  : ""}
+        <div className="schedule">
+            {props.next ?
+                <i className="far fa-calendar-check" title={new Date(props.next).toLocaleDateString()}></i> : ""}
         </div>
     </div>
 }

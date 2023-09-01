@@ -20,7 +20,6 @@ module.exports = {
     },
 
     invokeAction: async function (driver, action, args) {
-        //console.log("invokeAction", action);
         if (CommonActionIds.init === action) {
             await driver.get('http://localhost:8080/');
             await driver.wait(until.elementLocated(By.xpath("//*[contains(@id,'dashboard') or (contains(@id,'username'))]")), 5000);
@@ -89,7 +88,6 @@ module.exports = {
             await driver.findElement(By.xpath(`//select[@id='wantedLanguage']/option[@value='${args[0]}']`)).click();
         } else if (BoxActionIds.createRootCategory === action) {
             await click(driver, 'save');
-            await driver.wait(until.elementLocated(By.css('.box')), 5000);
         } else if (CategoryActionIds.newCategoryClick === action) {
             await click(driver, 'new');
         } else if (CategoryActionIds.categoryNameChanged === action) {

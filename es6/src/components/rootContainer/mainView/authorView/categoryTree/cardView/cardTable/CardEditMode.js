@@ -62,25 +62,28 @@ export const CardEditMode = (props) => {
         })
     }
 
-    return <div className="cardListItem">
-        <div className="notPrinted">
+    return <div className="cardListItem edit">
+        <div/>
+        <div className="givenAndWanted">
+            {props.naturalInputOrder === true ? renderGiven() : renderWanted()}
+            {props.naturalInputOrder === true ? renderWanted() : renderGiven()}
         </div>
-        {props.naturalInputOrder === true ? renderGiven() : renderWanted()}
-        {props.naturalInputOrder === true ? renderWanted() : renderGiven()}
-        <div className="noBreak notPrinted">
-            <button
-                disabled={!isValid()}
-                onClick={onUpdate}
-            >
-                <i className="fas fa-check"/>
-            </button>
-            <button
-                onClick={onCancel}
-            >
-                <i className="fas fa-times"/>
-            </button>
+        <div className="buttonsContainer">
+            <div className="buttons">
+                <button
+                    disabled={!isValid()}
+                    onClick={onUpdate}
+                >
+                    <i className="fas fa-check"/>
+                </button>
+                <button
+                    onClick={onCancel}
+                >
+                    <i className="fas fa-times"/>
+                </button>
+            </div>
         </div>
-        <div className="noBreak notPrinted">
+        <div className="schedule">
             {props.next ?
                 <i className="far fa-calendar-check" title={new Date(props.next).toLocaleDateString()}></i> : ""}
         </div>

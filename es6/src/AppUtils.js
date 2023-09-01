@@ -298,7 +298,8 @@ export function readSquishyValuesClient(data) {
     const squishyValue = squishyClientValues.shift();
     if (squishyValue) {
         data.uuid = squishyValue.uuid;
-        data.clientSystemTime = squishyValue.clientSystemTime;
+        data.clientSystemTime = Date.parse(squishyValue.clientSystemTime);
+        console.log("squishyValue ", data.clientSystemTime);
     }
     if (!data.uuid) {
         data.uuid = createUUID();

@@ -3,57 +3,65 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
+
+export const setFocus = (naturalInputOrder, first) => {
+    let id;
+    if (first && naturalInputOrder || !first && !naturalInputOrder) {
+        id = "given"
+    } else {
+        id = "wanted"
+    }
+    const input = document.getElementById(id);
+    if (input) {
+        input.focus();
+    }
+}
 
 export const CardView = (props) => {
 
-	if (!props.rootCategory || !props.cardTable || !props.cardTable.cardList || !props.selectedCategory) {
-		return null;
-	}
+    if (!props.rootCategory || !props.cardTable || !props.cardTable.cardList || !props.selectedCategory) {
+        return null;
+    }
 
-	if (props.rootCategory && !props.rootCategory.editable && props.cardTable && props.cardTable.cardList && props.cardTable.cardList.length === 0) {
-		return null;
-	}
+    if (props.rootCategory && !props.rootCategory.editable && props.cardTable && props.cardTable.cardList && props.cardTable.cardList.length === 0) {
+        return null;
+    }
 
-	const dictionary = () => {
-		if (!props.rootCategory.givenLanguage || !props.rootCategory.wantedLanguage) {
-			return null;
-		}
-		const setFocus = () => {
-			document.getElementById(props.naturalInputOrder === true ? "wanted" : "given").focus();
-		}
 
-		const value = props.dictionaryValue;
+    const dictionary = () => {
+        if (!props.rootCategory.givenLanguage || !props.rootCategory.wantedLanguage) {
+            return null;
+        }
 
-		if (!value || value.length === 0) {
-			return <div className="iframePlaceholder"/>
-		}
+        const value = props.dictionaryValue;
 
-		const languageMap = {
-			"de": "deutsch",
-			"fr": "franzoesisch",
-			"en": "englisch"
-		};
-		const sourceLanguage = props.naturalInputOrder === true ? props.rootCategory.givenLanguage : props.rootCategory.wantedLanguage;
-		const targetLanguage = props.naturalInputOrder === true ? props.rootCategory.wantedLanguage : props.rootCategory.givenLanguage;
+        if (!value || value.length === 0) {
+            return <div className="iframePlaceholder"/>
+        }
 
-		const src = `https://www.linguee.de/${languageMap[sourceLanguage]}-${languageMap[targetLanguage]}/search?query=${value}`;
-		return <div className="dictionaryWrapper">
-			<iframe
-				src={src}
-				onLoad={setFocus}
-				sandbox="allow-scripts"
-			/>
-		</div>
-	}
-	return <div className="cardView">
-		{props.children}
-		{dictionary()}
-	</div>
+        const languageMap = {
+            "de": "deutsch",
+            "fr": "franzoesisch",
+            "en": "englisch"
+        };
+        const sourceLanguage = props.naturalInputOrder === true ? props.rootCategory.givenLanguage : props.rootCategory.wantedLanguage;
+        const targetLanguage = props.naturalInputOrder === true ? props.rootCategory.wantedLanguage : props.rootCategory.givenLanguage;
+
+        const src = `https://www.linguee.de/${languageMap[sourceLanguage]}-${languageMap[targetLanguage]}/search?query=${value}`;
+        return <div className="dictionaryWrapper">
+            <iframe
+                src={src}
+                onLoad={() => setFocus(props.naturalInputOrder, false)}
+                sandbox="allow-scripts"
+            />
+        </div>
+    }
+    return <div className="cardView">
+        {props.children}
+        {dictionary()}
+    </div>
 }
-
 
 
 /******* S.D.G. *******/

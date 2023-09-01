@@ -6,16 +6,16 @@
 
 
 import React from "react";
-import {translate} from "../../../../../../../../AppUtils";
-import {Texts} from "../../../../../../../../app/Texts";
+import {translate} from "../../../../../../../../../AppUtils";
+import {Texts} from "../../../../../../../../../app/Texts";
 
-export const ScheduleCards = (props) => {
+export const SortCardsOut = (props) => {
 	return <button
 		onClick={props.onClick}
-		title={translate(Texts.cardList.scheduleSelectedCards)}
+		title={translate(Texts.cardList.sortSelectedCardsOut)}
 		disabled={props.selectedCardIds.length === 0}
 	>
-		<i className="far fa-calendar-plus"></i>
+		<i className="far fa-calendar-minus"></i>
 	</button>
 }
 

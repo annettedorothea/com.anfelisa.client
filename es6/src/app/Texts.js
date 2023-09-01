@@ -6,13 +6,13 @@ export const Texts = {
     },
     allActiveCards: {
         count: {
-            de: "{0}x"
+            de: "{0}x abgefragt"
         },
         interval: {
-            de: "{0} Tage"
+            de: "Abstand {0} Tage"
         },
         intervalOne: {
-            de: "1 Tag"
+            de: "Abstand 1 Tag"
         },
         maxEf: {
             de: "bis"

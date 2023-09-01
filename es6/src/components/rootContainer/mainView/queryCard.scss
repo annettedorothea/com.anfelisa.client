@@ -12,6 +12,9 @@
     height: 0.5rem;
     margin-top: $spacing;
 
+    .doneContainer {
+      transition: width 1s ease;
+    }
     .done {
       border-radius: $borderRadius;
       background-color: $darker;

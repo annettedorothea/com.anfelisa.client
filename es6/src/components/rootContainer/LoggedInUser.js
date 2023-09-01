@@ -21,7 +21,7 @@ export const LoggedInUser = (props) => {
             <a className="username" onClick={props.routeToProfileView}>
                 {props.username}
             </a>
-            <button className="logout primary" onClick={props.logout}>
+            <button className="logout primary" onClick={props.logout} id="logout">
                 <span className="buttonText">
                     {translate(Texts.logout.signout)}
                 </span>

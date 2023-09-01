@@ -3,7 +3,7 @@ HttpClient
 card
 
 ACE
-	LoadCards
+	LoadCards (keepSelectedCards)
 		fromAppState (
 			common.rootContainer.mainView.authorView.categoryTree.selectedCategory, 
 			common.rootContainer.mainView.authorView.categoryTree.cardView.naturalInputOrder,

@@ -41,8 +41,8 @@ import SearchDuplicateCardsAction from "../../src/card/actions/SearchDuplicateCa
 import TranslateAction from "../../src/card/actions/TranslateAction";
 import ToggleCardOrderAction from "../../src/card/actions/ToggleCardOrderAction";
 
-export function loadCards() {
-    return new LoadCardsAction().apply({});
+export function loadCards(keepSelectedCards) {
+    return new LoadCardsAction().apply({keepSelectedCards});
 }
 
 export function createCard() {

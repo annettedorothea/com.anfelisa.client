@@ -99,6 +99,7 @@ body {
     border-radius: $borderRadius;
     padding: $tinySpacing;
     line-height: calc($normalFont + $tinySpacing);
+    outline: none;
   }
 
   input[readonly], input[disabled] {

@@ -17,6 +17,7 @@ export default class FilterActiveCardListCommand extends AbstractFilterActiveCar
                 item.hide = data.selectedLastQualityFilters.length > 0;
             }
         });
+        data.selectedCardIds = [];
     	return data;
     }
 }

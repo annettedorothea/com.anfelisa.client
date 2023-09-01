@@ -34,7 +34,7 @@ export default class LoadCardsCommand extends AbstractLoadCardsCommand {
                 wanted: "",
             },
             dictionaryValue: null,
-            selectedCardIds: data.selectedCardIds ? data.selectedCardIds : [],
+            selectedCardIds: data.keepSelectedCards ? data.selectedCardIds : [],
             movedCardIds: [],
             dragTargetCardId: null,
             deleteCard: {

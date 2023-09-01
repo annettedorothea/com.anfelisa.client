@@ -69,6 +69,7 @@ export default class AbstractLoadCategoryTreeCommand extends AsynchronousCommand
 					{
 						action: new LoadCardsAction(), 
 						data: {
+							keepSelectedCards: data.keepSelectedCards
 						}
 					}
 				);
