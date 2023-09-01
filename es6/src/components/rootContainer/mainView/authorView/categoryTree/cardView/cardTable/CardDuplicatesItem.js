@@ -3,35 +3,39 @@
  ********************************************************************************/
 
 
-
-
 import React from "react";
 import {CardPreview} from "./CardPreview";
 
 export const CardDuplicatesItem = (props) => {
-	const renderGiven = () => {
-		return CardPreview({text: props.given})
-	}
+    const renderGiven = () => {
+        return CardPreview({text: props.given})
+    }
 
-	const renderWanted = () => {
-		return CardPreview({text: props.wanted})
-	}
-	const renderPath = () => {
-		return <div colSpan={2}>
-			<a onClick={() => props.routeToSelectedCategory(props.rootCategory.rootCategoryId, props.categoryId, props.reverse)}>
-				{props.categoryName}
-			</a>
-		</div>
-	}
+    const renderWanted = () => {
+        return CardPreview({text: props.wanted})
+    }
+    const renderPath = () => {
+        return <div className="path">
+            <div/>
+            <a className="link" onClick={() => props.routeToSelectedCategory(props.rootCategory.rootCategoryId, props.categoryId, props.reverse)}>
+                {props.categoryName}
+            </a>
+        </div>
+    }
 
-	return <tr className="notPrinted">
-		<div/>
-		{props.naturalInputOrder === true ? renderGiven() : renderWanted()}
-		{props.naturalInputOrder === true ? renderWanted() : renderGiven()}
-		{renderPath()}
-	</tr>
+    return <>
+        <div className="duplicates">
+            <div/>
+            <div className="givenAndWanted">
+                {props.naturalInputOrder === true ? renderGiven() : renderWanted()}
+                {props.naturalInputOrder === true ? renderWanted() : renderGiven()}
+            </div>
+            <div/>
+            <div/>
+        </div>
+        {renderPath()}
+    </>
 }
-
 
 
 /******* S.D.G. *******/

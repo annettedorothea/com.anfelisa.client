@@ -154,34 +154,6 @@
           }
 
 
-          .givenAndWanted {
-            @media screen and (max-width: $smallScreens) {
-              display: grid;
-              grid-template-columns: 1fr;
-              .preview:last-of-type {
-                pre {
-                  text-align: right;
-                }
-              }
-            }
-
-            @media screen and (min-width: $smallScreens) {
-              display: grid;
-              grid-template-columns: 1fr 1fr;
-            }
-
-
-            .preview {
-              overflow: scroll;
-              margin: $smallerSpacing $spacing;
-              cursor: pointer;
-
-              pre {
-                font-family: $font;
-                margin: 0;
-              }
-            }
-          }
         }
 
         &.edit {
@@ -283,6 +255,65 @@
               }
             }
           }
+        }
+      }
+
+      .givenAndWanted {
+        @media screen and (max-width: $smallScreens) {
+          display: grid;
+          grid-template-columns: 1fr;
+          .preview:last-of-type {
+            pre {
+              text-align: right;
+            }
+          }
+        }
+
+        @media screen and (min-width: $smallScreens) {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+
+
+        .preview {
+          overflow: scroll;
+          margin: $smallerSpacing $spacing;
+          cursor: pointer;
+
+          pre {
+            font-family: $font;
+            margin: 0;
+          }
+        }
+        .preview {
+          img {
+            width: 98%;
+            border-radius: $bigBorderRadius;
+            border: $border;
+          }
+        }
+
+
+      }
+
+      .duplicates {
+        display: grid;
+        @media screen and (max-width: $smallScreens) {
+          grid-template-columns: $largerSpacing auto 2.5rem $hugeSpacing;
+        }
+
+        @media screen and (min-width: $smallScreens) {
+          grid-template-columns: $largerSpacing auto 4.6rem $hugeSpacing;
+        }
+
+      }
+
+      .path {
+        display: grid;
+        border-bottom: 1px dotted $light;
+        grid-template-columns: $largerSpacing auto 2.5rem $hugeSpacing;
+        .link {
+          margin: $spacing $spacing;
         }
       }
 
