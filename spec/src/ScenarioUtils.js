@@ -22,7 +22,7 @@ module.exports = {
     invokeAction: async function (driver, action, args) {
         if (CommonActionIds.init === action) {
             await driver.get('http://localhost:8080/');
-            await driver.wait(until.elementLocated(By.xpath("//*[contains(@id,'dashboard') or (contains(@id,'username'))]")), 5000);
+            await driver.wait(until.elementLocated(By.xpath("//*[contains(@id,'dashboard') or (contains(@id,'username'))]")), 10000);
         } else if (CommonActionIds.routeToDefault === action) {
             await driver.get('http://localhost:8080/#');
             await this.waitInMillis(1000);

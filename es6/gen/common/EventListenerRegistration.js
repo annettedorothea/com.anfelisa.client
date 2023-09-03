@@ -31,9 +31,9 @@ export default class EventListenerRegistrationCommon {
 				)
 			});
 		ACEController.registerListener('common.InitUserEvent', (data) => {
-				AppState.set(
+				AppState.setStorage(
 					data, 
-					["rootContainer", "loggedInUser", "token"]
+					["rootContainer", "token"]
 				)
 			});
 		ACEController.registerListener('common.InitUserEvent', (data) => {
@@ -50,9 +50,9 @@ export default class EventListenerRegistrationCommon {
 				)
 			});
 		ACEController.registerListener('common.GetUserInfoOkEvent', (data) => {
-				AppState.set(
+				AppState.setStorage(
 					data, 
-					["rootContainer", "loggedInUser", "token"]
+					["rootContainer", "token"]
 				)
 			});
 		ACEController.registerListener('common.RouteChangedLoginEvent', (data) => {

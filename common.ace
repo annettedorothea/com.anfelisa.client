@@ -1,6 +1,8 @@
 HttpClient common
 
 ACE 
+
+
 Init 
 	fromAppState (rootContainer.token )
 	on ok (
@@ -9,7 +11,7 @@ Init
 		set rootContainer.spinner
 	)
 	on user (
-		set rootContainer.loggedInUser.token
+		set rootContainer.token
 		set rootContainer.spinner
 	) triggers ( GetUserInfo )
 	on noUser triggers ( 
@@ -21,7 +23,7 @@ GetUserInfo (token)
 	set loading rootContainer.spinner.display 
 	on ok (
 		set rootContainer.loggedInUser.username
-		set rootContainer.loggedInUser.token
+		set rootContainer.token
 	) triggers (RouteChanged)
 	on error triggers (Logout) 
 	
