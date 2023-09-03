@@ -1,8 +1,0 @@
-{
-  "aceScenariosApiKey": "4db812dc-411f-47be-bc59-ebbd371c724f",
-  "aceScenariosBaseUrl": "https://www.acegen.de/",
-  "clientVersion": "development",
-  "rootPath": "api",
-  "timelineSize": 1000,
-  "mode": "dev"
-}

@@ -1,1 +1,0 @@
-console.log("ServiceWorker"),navigator.setAppBadge&&navigator.setAppBadge(20);
