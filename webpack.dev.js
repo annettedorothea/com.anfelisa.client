@@ -3,6 +3,7 @@ const common = require('./webpack.common.js');
 const path = require("path");
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TransformJson = require('transform-json-webpack-plugin');
 
 module.exports = merge(common, {
     mode: 'development',
@@ -13,6 +14,14 @@ module.exports = merge(common, {
             title: 'DEV Anfelisa',
             script: './bundle.js',
             template: 'index.html'
+        }),
+        new TransformJson({
+            filename: 'settings.json',
+            source: __dirname + "/settings.json",
+            object: {
+                clientVersion: 'development',
+                mode: 'dev'
+            }
         })
     ],
     devServer: {

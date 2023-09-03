@@ -28,8 +28,6 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin({
             patterns: [
-                {from: 'ServiceWorker.js'},
-                {from: 'settings.json'},
                 {from: path.resolve(__dirname, "manifest"), to: path.resolve(__dirname, "dist/manifest")},
             ]
         })

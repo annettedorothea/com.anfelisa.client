@@ -58,10 +58,10 @@
     background-color: $red;
     color: $white;
     font-family: $inputFont;
-    border-radius: 1rem;
-    min-width: 1rem;
-    line-height: 1rem;
-    padding: 0.25rem;
+    border-radius: $spacing;
+    min-width: $spacing;
+    line-height: $spacing;
+    padding: $tinySpacing;
     text-align: center;
   }
 

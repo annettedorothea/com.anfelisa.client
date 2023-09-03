@@ -177,11 +177,11 @@ body {
       grid-template-columns: auto $largerSpacing;
       position: relative;
 
-      svg {
+      i {
         justify-self: end;
         align-self: center;
       }
-      svg.inside {
+      i.inside {
         position: absolute;
         right: $hugeSpacing;
       }
@@ -195,7 +195,7 @@ body {
       margin-bottom: $smallSpacing;
     }
 
-    input, svg, select {
+    input, i, select {
       margin-top: $smallSpacing;
     }
 

@@ -12,9 +12,6 @@ export function dumpAppState() {
 }
 
 AppUtils.initEventListeners();
-if ("serviceWorker" in navigator) {
-    navigator.serviceWorker.register("/ServiceWorker.js");
-}
 AppUtils.renderApp();
 AppUtils.startApp();
 

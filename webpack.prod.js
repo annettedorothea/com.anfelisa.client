@@ -3,6 +3,7 @@ const common = require('./webpack.common.js');
 const path = require("path");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TransformJson = require('transform-json-webpack-plugin');
 
 module.exports = merge(common, {
     mode: 'production',
@@ -22,8 +23,15 @@ module.exports = merge(common, {
         new HtmlWebpackPlugin({
             title: 'Anfelisa',
             template: 'index.html'
+        }),
+        new TransformJson({
+            filename: 'settings.json',
+            source: __dirname + "/settings.json",
+            object: {
+                clientVersion: require("./package.json").version,
+                mode: 'live'
+            }
         })
-
     ]
 
 });

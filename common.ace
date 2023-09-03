@@ -11,7 +11,7 @@ Init
 		set rootContainer.spinner
 	)
 	on user (
-		set rootContainer.token
+		set rootContainer.loggedInUser.token
 		set rootContainer.spinner
 	) triggers ( GetUserInfo )
 	on noUser triggers ( 
@@ -27,7 +27,6 @@ GetUserInfo (token)
 	) triggers (RouteChanged)
 	on error triggers (Logout) 
 	
-
 
 RouteChanged
 	fromAppState ( rootContainer.hash, rootContainer.loggedInUser ) 
@@ -174,7 +173,7 @@ ui JSX rootContainer {
 	}
 	loggedInUser {
 		username
-		token fromParent
+		token
 		actions {
 			"routeToDefault" RouteToDefault
 			"logout" Logout

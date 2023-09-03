@@ -22,6 +22,10 @@
       justify-content: flex-end;
     }
 
+    .mainView {
+      margin-bottom: $hugeSpacing;
+    }
+
     .footer {
       border-top: $border;
       text-align: center;

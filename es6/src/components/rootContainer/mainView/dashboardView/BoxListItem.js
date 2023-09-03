@@ -12,7 +12,7 @@ export const BoxListItem = (props) => {
         id={props.boxId}
         onClick={props.archived ? () => {} : () => props.onClick(props.boxId, props.openTodaysCards, props.categoryId, props.reverse)}
     >
-        {props.openTodaysCards > 0 ? <span className="badge">{props.openTodaysCards}</span> : null}
+        {props.openTodaysCards && !props.archived > 0 ? <span className="badge">{props.openTodaysCards}</span> : null}
         {props.children}
     </div>
 }

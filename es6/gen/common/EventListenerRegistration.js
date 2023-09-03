@@ -31,9 +31,9 @@ export default class EventListenerRegistrationCommon {
 				)
 			});
 		ACEController.registerListener('common.InitUserEvent', (data) => {
-				AppState.setStorage(
+				AppState.set(
 					data, 
-					["rootContainer", "token"]
+					["rootContainer", "loggedInUser", "token"]
 				)
 			});
 		ACEController.registerListener('common.InitUserEvent', (data) => {

@@ -38,7 +38,7 @@ export const RootContainerContainer = () => {
 	
 	return <RootContainer {...props} >
 		<MessageContainerContainer {...props.messageContainer }    />
-		<LoggedInUserContainer {...props.loggedInUser }  token={props.token}  routeToDefault={routeToDefault} logout={logout} routeToProfileView={routeToProfileView}  />
+		<LoggedInUserContainer {...props.loggedInUser }   routeToDefault={routeToDefault} logout={logout} routeToProfileView={routeToProfileView}  />
 		<SpinnerContainer {...props.spinner }    />
 		<SaveBugDialogContainer {...props.saveBugDialog }   callSaveBug={callSaveBug} cancelSaveBugDialog={cancelSaveBugDialog}  />
 		<VersionMismatchDialogContainer {...props.versionMismatchDialog }   cancelVersionMismatchDialog={cancelVersionMismatchDialog}  />
