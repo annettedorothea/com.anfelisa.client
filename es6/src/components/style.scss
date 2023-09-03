@@ -1,3 +1,8 @@
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts';
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+
 $blue: #337ab7;
 $orange: #ffa84c;
 $darker: #777;
@@ -172,11 +177,11 @@ body {
       grid-template-columns: auto $largerSpacing;
       position: relative;
 
-      i {
+      svg {
         justify-self: end;
         align-self: center;
       }
-      i.inside {
+      svg.inside {
         position: absolute;
         right: $hugeSpacing;
       }
@@ -190,7 +195,7 @@ body {
       margin-bottom: $smallSpacing;
     }
 
-    input, i, select {
+    input, svg, select {
       margin-top: $smallSpacing;
     }
 

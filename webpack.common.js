@@ -1,4 +1,5 @@
-const path = require('path');
+const path = require("path");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     entry: path.resolve(__dirname, './es6/src/index.js'),
@@ -11,7 +12,8 @@ module.exports = {
             },
             {
                 test: /\.(scss|css)$/,
-                use: ['style-loader', 'css-loader', 'sass-loader'],            },
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+            },
         ],
     },
     resolve: {
@@ -21,4 +23,16 @@ module.exports = {
         path: path.resolve(__dirname, './dist'),
         filename: 'bundle.js',
     },
+
+
+    plugins: [
+        new CopyWebpackPlugin({
+            patterns: [
+                {from: 'index.html'},
+                {from: 'ServiceWorker.js'},
+                {from: 'settings.json'},
+                {from: path.resolve(__dirname, "manifest"), to: path.resolve(__dirname, "dist/manifest")},
+            ]
+        })
+    ]
 };

@@ -4,13 +4,16 @@
   margin: $spacing;
 
   .categoryItem {
-    margin: 4px;
 
+    .itemContainer {
+      display: inline-flex;
+    }
     .item {
       border-radius: $borderRadius;
       padding: $tinySpacing $smallSpacing;
       line-height: $spacing;
       cursor: pointer;
+      margin-bottom: $tinySpacing
     }
 
     .selected {
@@ -24,8 +27,12 @@
     }
 
     .nonScheduledCount {
-      margin-left: $smallSpacing;
-      font-style: italic;
+      background-color: $red;
+      color: $white;
+      border-radius: $borderRadius;
+      margin-left: $spacing;
+      padding: $tinySpacing $smallSpacing;
+      margin-bottom: $tinySpacing
     }
 
     .notSelected .nonScheduledCount {

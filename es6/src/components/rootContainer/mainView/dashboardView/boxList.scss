@@ -33,10 +33,6 @@
       flex-wrap: nowrap;
       column-gap: $smallerSpacing;
 
-      i.danger {
-        color: $red;
-      }
-
       i.disabled {
         color: $dark;
       }
@@ -47,6 +43,10 @@
 
       i:hover:not(.disabled) {
         color: $orange;
+      }
+
+      i.danger {
+        color: $red;
       }
     }
   }

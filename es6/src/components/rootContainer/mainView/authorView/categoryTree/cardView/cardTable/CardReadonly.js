@@ -8,6 +8,7 @@ import {translate} from "../../../../../../../AppUtils";
 import {Texts} from "../../../../../../../app/Texts";
 import {CardInput} from "./CardInput";
 import {CardPreview} from "./CardPreview";
+import {Priority} from "../../../../../../common/Priority";
 
 export const CardReadonly = (props) => {
     if (!(props.given.indexOf(props.filter) >= 0 || props.wanted.indexOf(props.filter) >= 0)) {
@@ -36,47 +37,10 @@ export const CardReadonly = (props) => {
         })
     }
 
-    const priority = () => {
-        const priorityChanged = (priority) => {
-            if (props.editable) {
-                props.updateCardPriority(props.cardId, priority).then();
-            }
+    const priorityChanged = (priority) => {
+        if (props.editable) {
+            props.updateCardPriority(props.cardId, priority).then();
         }
-        const priorityClass = (index) => {
-            if (props.priority && index <= props.priority) {
-                return "fa fa-star";
-            }
-            return "far fa-star";
-        }
-        return <div className="priority noBreak">
-            <i
-                className={priorityClass(1)}
-                onClick={
-                    props.editable ?
-                        () => priorityChanged(props.priority === 1 ? null : 1) :
-                        () => {
-                        }
-                }
-            />
-            <i
-                className={priorityClass(2)}
-                onClick={
-                    props.editable ?
-                        () => priorityChanged(props.priority === 2 ? null : 2) :
-                        () => {
-                        }
-                }
-            />
-            <i
-                className={priorityClass(3)}
-                onClick={
-                    props.editable ?
-                        () => priorityChanged(props.priority === 3 ? null : 3) :
-                        () => {
-                        }
-                }
-            />
-        </div>
     }
 
     return <div className="cardListItem readonly">
@@ -89,7 +53,7 @@ export const CardReadonly = (props) => {
             {props.naturalInputOrder === true ? renderGiven() : renderWanted()}
             {props.naturalInputOrder === true ? renderWanted() : renderGiven()}
         </div>
-        {priority()}
+        <Priority priority={props.priority} editable={props.editable} priorityChanged={priorityChanged}/>
         <div className="schedule">
             {props.next ?
                 <i className="far fa-calendar-check" title={new Date(props.next).toLocaleDateString()}></i> : ""}
