@@ -158,6 +158,7 @@ function httpRequest(methodType, url, uuid, authorize, data) {
             options.body = JSON.stringify(data);
         }
         url = addUuidToUrl(url, uuid);
+        url = encodeURI(url)
         const request = new Request(url, options);
 
         fetch(request).then(function (response) {
