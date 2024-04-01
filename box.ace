@@ -167,7 +167,7 @@ ACE
 		fromAppState ( common.rootContainer.mainView.queryCardView.nextCard.scheduledCardId )
 	 	call com.anfelisa.box.ScoreCard
 		set loading common.rootContainer.spinner.display 
-		on ok triggers (InitBoxesForDayDuringScore)
+		on ok triggers (LoadNextCard)
 		on showInfoToast triggers (
 			common.DisplayToast
 		)
@@ -187,7 +187,7 @@ ACE
 		fromAppState (common.rootContainer.mainView.queryCardView.nextCard.reinforceCardId)
 	 	call com.anfelisa.box.ScoreReinforceCard
 		set loading common.rootContainer.spinner.display 
-		on ok triggers (InitBoxesForDayDuringScore)
+		on ok triggers (LoadNextCard)
 
 	SortCardOut
 		on ok (
@@ -204,13 +204,8 @@ ACE
 		)
 	 	call com.anfelisa.box.SortCardsOut
 		set loading common.rootContainer.spinner.display
-		on ok triggers (InitBoxesForDayDuringScore)
+		on ok triggers (LoadNextCard)
 
-	InitBoxesForDayDuringScore
-		call com.anfelisa.box.InitMyBoxesForDay
-		set loading common.rootContainer.spinner.display 
-		on ok triggers (LoadNextCard) 
-				
 	LoadSettings
 		fromAppState (common.rootContainer.mainView.boxSettingsView.boxId)
 	 	call com.anfelisa.box.GetBoxSettings

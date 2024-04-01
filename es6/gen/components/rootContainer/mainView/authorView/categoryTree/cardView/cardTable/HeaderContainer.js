@@ -15,8 +15,8 @@ import { toggleAllScheduleCardSelection } from "../../../../../../../card/Action
 
 export const HeaderContainer = ( props ) => {
 	
-	return <Header {...props} >
-		<ButtonsContainer {...props.buttons }  selectedCardIds={props.selectedCardIds} cardList={props.cardList}  filterCards={filterCards} toggleAllScheduleCardSelection={toggleAllScheduleCardSelection}  />
+	return <Header {...props} filterCards={filterCards} >
+		<ButtonsContainer {...props.buttons }  selectedCardIds={props.selectedCardIds} cardList={props.cardList}  toggleAllScheduleCardSelection={toggleAllScheduleCardSelection}  />
 	</Header> 
 }
 

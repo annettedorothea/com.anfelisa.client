@@ -9,7 +9,7 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
-import InitBoxesForDayDuringScoreAction from "../../../src/box/actions/InitBoxesForDayDuringScoreAction";
+import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 import DisplayToastAction from "../../../src/common/actions/DisplayToastAction";
 import DisplayWarningToastAction from "../../../src/common/actions/DisplayWarningToastAction";
 
@@ -84,7 +84,7 @@ export default class AbstractCallScoreCardCommand extends AsynchronousCommand {
 				events.push(new Event('box.CallScoreCardOkEvent'));
 				actionsToBeTriggered.push(
 					{
-						action: new InitBoxesForDayDuringScoreAction(), 
+						action: new LoadNextCardAction(), 
 						data: {
 						}
 					}

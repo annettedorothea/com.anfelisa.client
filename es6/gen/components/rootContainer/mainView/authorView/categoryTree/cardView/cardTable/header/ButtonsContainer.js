@@ -15,7 +15,6 @@ import { DeleteCards } from "../../../../../../../../../src/components/rootConta
 import { MoveCards } from "../../../../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/cardView/cardTable/header/buttons/MoveCards";
 import { MoveUp } from "../../../../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/cardView/cardTable/header/buttons/MoveUp";
 import { MoveDown } from "../../../../../../../../../src/components/rootContainer/mainView/authorView/categoryTree/cardView/cardTable/header/buttons/MoveDown";
-import { filterCards } from "../../../../../../../../card/ActionFunctions";
 import { toggleAllScheduleCardSelection } from "../../../../../../../../card/ActionFunctions";
 import { toggleInputOrder } from "../../../../../../../../card/ActionFunctions";
 import { scheduleSelectedCards } from "../../../../../../../../card/ActionFunctions";
@@ -27,7 +26,7 @@ import { toggleCardOrder } from "../../../../../../../../card/ActionFunctions";
 
 export const ButtonsContainer = ( props ) => {
 	
-	return <Buttons {...props} filterCards={filterCards} toggleAllScheduleCardSelection={toggleAllScheduleCardSelection} >
+	return <Buttons {...props} toggleAllScheduleCardSelection={toggleAllScheduleCardSelection} >
 		<ToggleInputOrder {...props.toggleInputOrder }   onClick={toggleInputOrder}  />
 		<ScheduleCards {...props.scheduleCards }  selectedCardIds={props.selectedCardIds}  onClick={scheduleSelectedCards}  />
 		<SortCardsOut {...props.sortCardsOut }  selectedCardIds={props.selectedCardIds}  onClick={sortSelectedCardsOut}  />

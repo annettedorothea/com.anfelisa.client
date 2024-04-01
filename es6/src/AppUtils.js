@@ -30,7 +30,7 @@ import {createRoot} from "react-dom/client";
 import * as R from 'ramda'
 import {Texts} from "./app/Texts";
 import {RootContainerContainer} from "../gen/components/RootContainerContainer";
-import {initBoxesForDay, initBoxesForDayDuringScore} from "../gen/box/ActionFunctions";
+import {initBoxesForDay} from "../gen/box/ActionFunctions";
 
 export let settings;
 
@@ -103,7 +103,7 @@ export function startApp() {
             if (boxList) {
                 initBoxesForDay().then();
             } else if (nextCard) {
-                initBoxesForDayDuringScore().then();
+                initBoxesForDay().then();
             }
         } else {
             clearInterval(versionCheckId)

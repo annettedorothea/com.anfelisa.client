@@ -845,10 +845,12 @@ ui JSX rootContainer {
 									}
 								}
 						        actions {
-						        	"filterCards" card.FilterCards
 						        	"toggleAllScheduleCardSelection" card.ToggleAllScheduleCardSelection
 					        	}
 			        		}
+					        actions {
+					        	"filterCards" card.FilterCards
+				        	}
 		        		}
 			        	selectedCategory fromParent
 		        		List selectedCardIds fromParent

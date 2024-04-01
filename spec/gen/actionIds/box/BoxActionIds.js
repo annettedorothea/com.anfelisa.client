@@ -56,8 +56,6 @@ module.exports = {
 	
 	callSortCardOut : "box_callSortCardOut",
 	
-	initBoxesForDayDuringScore : "box_initBoxesForDayDuringScore",
-	
 	loadSettings : "box_loadSettings",
 	
 	saveBoxSettings : "box_saveBoxSettings",

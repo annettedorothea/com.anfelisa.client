@@ -20,7 +20,7 @@ export const Spinner = (props) => {
 			case 3:
 			case 4:
 			case 5:
-				return "far fa-sun"
+				return "fas fa-sun"
 			case 6:
 			case 7:
 			case 8:

@@ -9,7 +9,7 @@ import AsynchronousCommand from "../../ace/AsynchronousCommand";
 import Event from "../../ace/Event";
 import * as AppUtils from "../../../src/AppUtils";
 import * as AppState from "../../../src/AppState";
-import InitBoxesForDayDuringScoreAction from "../../../src/box/actions/InitBoxesForDayDuringScoreAction";
+import LoadNextCardAction from "../../../src/box/actions/LoadNextCardAction";
 
 export default class AbstractCallScoreReinforceCardCommand extends AsynchronousCommand {
     constructor() {
@@ -73,7 +73,7 @@ export default class AbstractCallScoreReinforceCardCommand extends AsynchronousC
 				events.push(new Event('box.CallScoreReinforceCardOkEvent'));
 				actionsToBeTriggered.push(
 					{
-						action: new InitBoxesForDayDuringScoreAction(), 
+						action: new LoadNextCardAction(), 
 						data: {
 						}
 					}

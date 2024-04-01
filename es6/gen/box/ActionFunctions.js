@@ -30,7 +30,6 @@ import ScoreReinforceCardAction from "../../src/box/actions/ScoreReinforceCardAc
 import CallScoreReinforceCardAction from "../../src/box/actions/CallScoreReinforceCardAction";
 import SortCardOutAction from "../../src/box/actions/SortCardOutAction";
 import CallSortCardOutAction from "../../src/box/actions/CallSortCardOutAction";
-import InitBoxesForDayDuringScoreAction from "../../src/box/actions/InitBoxesForDayDuringScoreAction";
 import LoadSettingsAction from "../../src/box/actions/LoadSettingsAction";
 import SaveBoxSettingsAction from "../../src/box/actions/SaveBoxSettingsAction";
 import MaxCardsPerDayChangedAction from "../../src/box/actions/MaxCardsPerDayChangedAction";
@@ -141,10 +140,6 @@ export function sortCardOut() {
 
 export function callSortCardOut() {
     return new CallSortCardOutAction().apply({});
-}
-
-export function initBoxesForDayDuringScore() {
-    return new InitBoxesForDayDuringScoreAction().apply({});
 }
 
 export function loadSettings() {
