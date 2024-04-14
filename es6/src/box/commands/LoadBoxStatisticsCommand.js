@@ -14,7 +14,7 @@ export default class LoadBoxStatisticsCommand extends AbstractLoadBoxStatisticsC
     }
 
     handleResponse(data, resolve) {
-        data.boxList.forEach((box) => {
+        data.boxList?.forEach((box) => {
             const boxWithStats = data.boxStatisticsList.find((bs) => {
                 return bs.boxId === box.boxId;
             });

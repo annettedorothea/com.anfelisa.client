@@ -15,7 +15,7 @@ export default class LoadBoxesCommand extends AbstractLoadBoxesCommand {
 
     handleResponse(data, resolve) {
         if (data.previousBoxList) {
-            data.boxList.forEach((box) => {
+            data.boxList?.forEach((box) => {
                 const boxWithStats = data.previousBoxList.find((bs) => {
                     return bs.boxId === box.boxId;
                 });

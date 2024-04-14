@@ -99,10 +99,7 @@ export function startApp() {
             versionCheck();
             versionCheckId = setInterval(versionCheck, versionCheckInterval);
             const boxList = AppState.get(["rootContainer", "mainView", "dashboardView", "boxList"]);
-            const nextCard = AppState.get(["rootContainer", "mainView", "queryCardView", "nextCard"]);
             if (boxList) {
-                initBoxesForDay().then();
-            } else if (nextCard) {
                 initBoxesForDay().then();
             }
         } else {
